@@ -9,9 +9,7 @@ class Dash extends CI_Controller {
    }
    function index(){
      
-      $data['menu'] = null;//menu(file_get_contents("C:/xampp/htdocs/bpm/menu.json"));
-
-      $data['link'] = def_view;
+      $data['menu'] = menu(getJson("menu"));
     
       $this->load->view('layout/Admin',$data);
    }

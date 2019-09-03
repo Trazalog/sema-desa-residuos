@@ -53,9 +53,9 @@
         <!-- Logo -->
         <a href="#" onclick="linkTo()" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>F</b>RM</span>
+            <span class="logo-mini"><b><?php echo MNOM ?></b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Comp</b>FRM</span>
+            <span class="logo-lg"><b><?php echo NOM ?></b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -303,7 +303,7 @@
 <script>
 var link = '';
 
-linkTo('<?php echo $link ?>');
+linkTo('<?php echo DEF_VIEW ?>');
 
 $('.menu .link').on('click', function() {
     link = $(this).data('link');

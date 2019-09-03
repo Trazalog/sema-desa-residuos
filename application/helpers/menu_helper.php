@@ -4,7 +4,7 @@ if(!function_exists('menu')){
 
     function menu($json)
     {
-        $array =  json_decode($json);
+        $array =  $json;
        // var_dump($array->menu);die;
         $html = '<ul class="sidebar-menu tree menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>';
