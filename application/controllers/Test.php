@@ -5,12 +5,22 @@ class Test extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(FRM.'Forms');
+  
     }
 
     public function index()
     {
-        $data['forms'] = $this->Forms->listado();
-        $this->load->view('test', $data);
+        // $data['list'] = datos
+        // $this->load->view('test', $data);
+    }
+    public function pp()
+    {
+        echo 'esto es una prueba';
+    }
+
+    public function datos()
+    {
+        $data['nombre'] = "Fernando";
+        echo json_encode($data);
     }
 }
