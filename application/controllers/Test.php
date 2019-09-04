@@ -10,6 +10,17 @@ class Test extends CI_Controller
 
     public function index()
     {
-        echo 'prueba';
+        // $data['list'] = datos
+        // $this->load->view('test', $data);
+    }
+    public function pp()
+    {
+        echo 'esto es una prueba';
+    }
+
+    public function datos()
+    {
+        $data['nombre'] = "Fernando";
+        echo json_encode($data);
     }
 }

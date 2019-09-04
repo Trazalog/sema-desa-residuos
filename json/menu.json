@@ -53,8 +53,15 @@
         {
             "titulo": "ABM Tablas",
             "icono": "fa-flus",
-            "link": "general/Tabla",
-            "nivel": 1
+            "link": "",
+            "nivel": 2,
+            "submenu": [
+                {
+                    "titulo": "Orden de transporte",
+                    "icono": "fa-flus",
+                    "link": "general/Orden/ordenT"
+                }
+            ]
         }
     ]
 }
