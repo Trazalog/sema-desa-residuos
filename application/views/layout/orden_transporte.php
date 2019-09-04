@@ -165,5 +165,101 @@
                     <!-- /.box -->
                 </div>
     </div>
+    <!--  Box 3-->
+    <div class="box">
+        <div class="box-header with-border">
+        </div>
+            <div class="box-header">
+                <h3>Generador</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-1 col-xs-12">
+                            <label for="Nro" class="form-label">Nro:</label>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="text" name="nro" id="Nro">
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                            <label for="Nro de solicitud" class="form-label">Nro de solicitud:</label>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="text" name="nrosolicitud" id="Nro de solicitud">
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 col-xs-12">
+                            <label for="fecha" class="form-label">Fecha:</label>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                         <label for="dispfinal" class="form-label">Disposicion final:</label>
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                        <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
+                            <option value="" disabled selected>-Seleccione tipo-</option>
+                            <?php
+                            foreach($establecimientos as $fila)
+                            {
+                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
+                            } 
+                            ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+    <!--  Box 4-->
+    <div class="box">
+        <div class="box-header with-border">
+        </div>
+            <div class="box-header">
+                <h3>Transportistas</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-1 col-xs-12">
+                            <label for="Nro" class="form-label">Nro:</label>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="text" name="nro" id="Nro">
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                            <label for="Nro de solicitud" class="form-label">Nro de solicitud:</label>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="text" name="nrosolicitud" id="Nro de solicitud">
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 col-xs-12">
+                            <label for="fecha" class="form-label">Fecha:</label>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                         <label for="dispfinal" class="form-label">Disposicion final:</label>
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                        <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
+                            <option value="" disabled selected>-Seleccione tipo-</option>
+                            <?php
+                            foreach($establecimientos as $fila)
+                            {
+                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
+                            } 
+                            ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
 </body>
 </html>
