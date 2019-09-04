@@ -179,41 +179,34 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-1 col-xs-12">
-                            <label for="Nro" class="form-label">Nro:</label>
+                            <label for="razonsocial" class="form-label">Razon social:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="nro" id="Nro">
+                            <input type="text" name="rsocial" id="razonsocial">
                     </div>
                     <div class="col-md-2 col-xs-12">
-                            <label for="Nro de solicitud" class="form-label">Nro de solicitud:</label>
+                            <label for="dep" class="form-label">Departamento:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="nrosolicitud" id="Nro de solicitud">
+                            <input type="text" name="departamento" id="dep">
                     </div>
                     <div class="col-md-3"></div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-md-1 col-xs-12">
-                            <label for="fecha" class="form-label">Fecha:</label>
+                            <label for="cuitdni" class="form-label">Cuit/dni:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                            <input type="text" name="cuitdni" id="cuitdni">
                     </div>
                     <div class="col-md-2 col-xs-12">
-                         <label for="dispfinal" class="form-label">Disposicion final:</label>
+                            <label for="circuito" class="form-label">Circuito:</label>
                     </div>
-                    <div class="col-md-4 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                            <?php
-                            foreach($establecimientos as $fila)
-                            {
-                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                            } 
-                            ?>
-                        </select>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="text" name="circuito" id="circuito">
                     </div>
+                    <div class="col-md-3"></div>
                 </div>
             </div>
       </div>
@@ -226,44 +219,45 @@
                 <h3>Transportistas</h3>
             </div>
             <div class="box-body">
-                
                 <div class="row">
-                    <div class="col-md-1 col-xs-12">
-                            <label for="Nro" class="form-label">Nro:</label>
-                    </div>
-                    <div class="col-md-3 col-xs-12">
-                            <input type="text" name="nro" id="Nro">
-                    </div>
                     <div class="col-md-2 col-xs-12">
-                            <label for="Nro de solicitud" class="form-label">Nro de solicitud:</label>
+                        <label for="selecemp">Empresa:</label>
                     </div>
-                    <div class="col-md-3 col-xs-12">
-                            <input type="text" name="nrosolicitud" id="Nro de solicitud">
+                    <select multiple="" class="col-md-3 col-xs-12" id="selecemp">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                    </select>
+                    <!-- otro select -->
+                    <div class="col-md-2 col-xs-12">
+                        <label for="selecemp">Movilidad:</label>
                     </div>
+                    <select multiple="" class="col-md-2 col-xs-12" id="selecemp">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                    </select>
                     <div class="col-md-3"></div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-md-1 col-xs-12">
-                            <label for="fecha" class="form-label">Fecha:</label>
+                    <div class="col-md-2 col-xs-12">
+                            <label for="registron" class="form-label">Registro n°:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                            <input type="text" name="registron" id="registron">
                     </div>
                     <div class="col-md-2 col-xs-12">
-                         <label for="dispfinal" class="form-label">Disposicion final:</label>
+                            <label for="dominio" class="form-label">Dominio:</label>
                     </div>
-                    <div class="col-md-4 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                            <?php
-                            foreach($establecimientos as $fila)
-                            {
-                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                            } 
-                            ?>
-                        </select>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="text" name="dominio" id="dominio">
                     </div>
+                    <div class="col-md-2"></div>
                 </div>
             </div>
       </div>
@@ -274,33 +268,11 @@
         </div>
             <div class="box-body">
                 <div class="row">
-                    <div class="col-md-1 col-xs-12">
-                            <label for="Nro" class="form-label">Nro:</label>
-                    </div>
-                    <div class="col-md-3 col-xs-12">
-                            <input type="text" name="nro" id="Nro">
-                    </div>
                     <div class="col-md-2 col-xs-12">
-                            <label for="Nro de solicitud" class="form-label">Nro de solicitud:</label>
-                    </div>
-                    <div class="col-md-3 col-xs-12">
-                            <input type="text" name="nrosolicitud" id="Nro de solicitud">
-                    </div>
-                    <div class="col-md-3"></div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-1 col-xs-12">
-                            <label for="fecha" class="form-label">Fecha:</label>
-                    </div>
-                    <div class="col-md-3 col-xs-12">
-                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                         <label for="dispfinal" class="form-label">Disposicion final:</label>
+                         <label for="chofer" class="form-label">Chofer:</label>
                     </div>
                     <div class="col-md-4 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
+                        <select class="form-control select2 select2-hidden-accesible" id="chofer">
                             <option value="" disabled selected>-Seleccione tipo-</option>
                             <?php
                             foreach($establecimientos as $fila)
@@ -309,6 +281,22 @@
                             } 
                             ?>
                         </select>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-2 col-xs-12">
+                            <label for="fecha" class="form-label">Fecha de retiro:</label>
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                    </div>
+                    <div class="col-md-1 col-xs-12">
+                         <label for="hora" class="form-label">Hora:</label>
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                            <input type="number" id="hora" value="1" class="form-control" min="0">
                     </div>
                 </div>
             </div>
