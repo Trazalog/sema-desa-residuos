@@ -16,7 +16,7 @@
                             <label for="Nro" class="form-label">Nro:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="nro" id="Nro">
+                            <input type="text" name="nro" id="Nro" value=<?php echo rand(1,30)?>>
                     </div>
                     <div class="col-md-2 col-xs-12">
                             <label for="Nro de solicitud" class="form-label">Nro de solicitud:</label>
@@ -32,7 +32,7 @@
                             <label for="fecha" class="form-label">Fecha:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                            <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
                     </div>
                     <div class="col-md-2 col-xs-12">
                          <label for="dispfinal" class="form-label">Disposicion final:</label>
@@ -216,22 +216,14 @@
                         <label for="selecemp">Empresa:</label>
                     </div>
                     <select multiple="" class="col-md-3 col-xs-12" id="selecemp">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
+                        <?php echo $empresas ?>
                     </select>
                     <!-- otro select -->
                     <div class="col-md-2 col-xs-12">
                         <label for="selecemp">Movilidad:</label>
                     </div>
                     <select multiple="" class="col-md-2 col-xs-12" id="selecemp">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
+                        <?php echo $movilidad ?>
                     </select>
                     <div class="col-md-3"></div>
                 </div>

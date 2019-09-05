@@ -4,14 +4,18 @@ class Orden extends CI_Controller {
     function __construct(){
 
       parent::__construct();
-      //$this->load->model('general/');
+      $this->load->helper('empresas_helper');
+      $this->load->helper('movilidad_helper');
    }
    function index(){
      
    }
    function ordenT()
    {
-       $this->load->view('layout/orden_transporte');
+       $data['empresas'] = empresas(getJson("empresas"));
+       $data['movilidad'] = movilidad(getJson("movilidad"));
+       $data['fecha'] = date('Y-m-d');
+       $this->load->view('layout/orden_transporte', $data);
    }
    function templateOt()
    {

@@ -1,0 +1,19 @@
+{
+    "empresas": [
+        {
+            "nombre": "flecha BUS"
+        },
+        {
+            "nombre": "Express"
+        },
+        {
+            "nombre": "Chevallier"
+        },
+        {
+            "nombre": "Correo Argentino"
+        },
+        {
+            "nombre": "Red Bus"
+        }
+    ]
+}
