@@ -13,5 +13,9 @@ class Orden extends CI_Controller {
    {
        $this->load->view('layout/orden_transporte');
    }
+   function templateOt()
+   {
+       $this->load->view('layout/template_ot');
+   }
 }
 ?>

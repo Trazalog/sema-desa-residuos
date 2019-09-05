@@ -60,6 +60,11 @@
                     "titulo": "Orden de transporte",
                     "icono": "fa-flus",
                     "link": "general/Orden/ordenT"
+                },
+                {
+                    "titulo": "Template OT",
+                    "icono": "fa-flus",
+                    "link": "general/Orden/templateOt"
                 }
             ]
         }
