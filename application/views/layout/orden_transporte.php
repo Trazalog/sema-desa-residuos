@@ -28,6 +28,7 @@
                     </div>
                     <div class="col-md-3"></div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-md-1 col-xs-12">
                             <label for="fecha" class="form-label">Fecha:</label>
@@ -112,14 +113,15 @@
                     </div>
                     <div class="col-md-1"></div>
                 </div>
+                <br>
                 <div class="row">
-                    <div class="col-md-10 col-xs-12"></div>
-                    <div class="col-md-2 col-xs-12 text-center">
+                    <div class="col-md-10 col-lg-11 col-xs-12"></div>
+                    <div class="col-md-2 col-lg-1 col-xs-12 text-center">
                             <button type="button" class="btn btn-primary" aria-label="Left Align">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button><br>
                             <label for="agregar" class="form-label">Agregar</label>
-                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <i class="fas fa-ad"></i>
@@ -164,12 +166,14 @@
                     </div>
                     <!-- /.box -->
                 </div>
+            </div>
+        </div>
     </div>
     <!--  Box 3-->
     <div class="box">
         <div class="box-header with-border">
         </div>
-            <div class="box-header">
+            <div class="box-header with-border">
                 <h3>Generador</h3>
             </div>
             <div class="box-body">
@@ -188,6 +192,7 @@
                     </div>
                     <div class="col-md-3"></div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-md-1 col-xs-12">
                             <label for="fecha" class="form-label">Fecha:</label>
@@ -217,9 +222,56 @@
     <div class="box">
         <div class="box-header with-border">
         </div>
-            <div class="box-header">
+            <div class="box-header with-border">
                 <h3>Transportistas</h3>
             </div>
+            <div class="box-body">
+                
+                <div class="row">
+                    <div class="col-md-1 col-xs-12">
+                            <label for="Nro" class="form-label">Nro:</label>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="text" name="nro" id="Nro">
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                            <label for="Nro de solicitud" class="form-label">Nro de solicitud:</label>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="text" name="nrosolicitud" id="Nro de solicitud">
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-1 col-xs-12">
+                            <label for="fecha" class="form-label">Fecha:</label>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                         <label for="dispfinal" class="form-label">Disposicion final:</label>
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                        <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
+                            <option value="" disabled selected>-Seleccione tipo-</option>
+                            <?php
+                            foreach($establecimientos as $fila)
+                            {
+                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
+                            } 
+                            ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+    <!--  Box 5-->
+    <div class="box">
+        <div class="box-header with-border">
+        </div>
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-1 col-xs-12">
@@ -236,6 +288,7 @@
                     </div>
                     <div class="col-md-3"></div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-md-1 col-xs-12">
                             <label for="fecha" class="form-label">Fecha:</label>
