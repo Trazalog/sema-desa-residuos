@@ -20,6 +20,8 @@ class Orden extends CI_Controller {
        $data['empresas'] = empresas(getJson("empresas"));
        $data['movilidad'] = movilidades(getJson("movilidades"));
        $data['chofer'] = choferes(getJson("choferes"));
+       $data['disposicionFinal'] = disposicionesFinales(getJson("disposiciones_finales"));
+       $data['tipoResiduo'] = tipoResiduos(getJson("tipo_residuos"));
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/orden_transporte', $data);
    }

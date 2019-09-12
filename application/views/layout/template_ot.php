@@ -30,24 +30,25 @@
                 <h3>Informacion</h3>
             </div>
             <div class="box-body">
+              <form id="formInfo" method="POST">
                 <div class="row">
                     <div class="col-md-1 col-xs-12">
                          <label for="nro" class="form-label">Nro:</label>
                     </div>
                     <div class="col-md-2 col-xs-12">
-                            <input size="10" type="text" name="nro" id="nro">
+                            <input size="10" type="text" name="nro" id="nro" required>
                     </div>
                     <div class="col-md-1 col-xs-12">
                             <label for="fecha" class="form-label">Fecha:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
+                            <input type="date" id="fecha" name="fecha" value="<?php echo $fecha;?>" class="form-control" required>
                     </div>
                     <div class="col-md-2 col-xs-12">
                          <label for="dispfinal" class="form-label">Disposicion final:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
+                        <select class="form-control select2 select2-hidden-accesible" id="dispfinal" name="dispfinal" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php echo $disposicionFinal ?>
                         </select>
@@ -59,7 +60,7 @@
                          <label for="zona" class="form-label">Zona:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="zona">
+                        <select class="form-control select2 select2-hidden-accesible" id="zona" name="zona" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php echo $zona ?>
                         </select>
@@ -68,7 +69,7 @@
                         <label for="circuito" class="form-label">Circuito:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="circuito">
+                        <select class="form-control select2 select2-hidden-accesible" id="circuito" name="circuito" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php echo $circuito ?>
                         </select>
@@ -80,7 +81,7 @@
                         <label for="tiporesiduo" class="form-label">Tipo de residuo:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="tiporesiduo">
+                        <select class="form-control select2 select2-hidden-accesible" id="tiporesiduo" name="tiporesiduo" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php echo $tipoResiduo ?>
                         </select>
@@ -90,12 +91,13 @@
                 <div class="row">
                     <div class="col-md-10 col-lg-11 col-xs-12"></div>
                     <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                            <button type="button" class="btn btn-primary" aria-label="Left Align">
+                            <button type="submit"  onclick="agregarInfo()" class="btn btn-primary" aria-label="Left Align" id="btn_info">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button><br>
                             <label for="agregar" class="form-label">Agregar</label>
                     </div>
                 </div>
+              </form>
                 <div class="row">
                     <em class="fas fa-ad"></em>
                 </div>
@@ -107,18 +109,19 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <form id="formTransp" method="POST">
                                 <div class="row">
                                         <div class="col-md-2 col-xs-12">
                                             <label for="selecemp">Empresa:</label>
                                         </div>
-                                        <select multiple="" class="col-md-3 col-xs-12" id="selecemp">
+                                        <select multiple="" class="col-md-3 col-xs-12" id="selecemp" name="empresa" required>
                                             <?php echo $empresas ?>
                                         </select>
                                         <!-- otro select -->
                                         <div class="col-md-2 col-xs-12">
                                             <label for="selecemp">Movilidad:</label>
                                         </div>
-                                        <select multiple="" class="col-md-2 col-xs-12" id="selecmov">
+                                        <select multiple="" class="col-md-2 col-xs-12" id="selecmov" name="movilidad" required>
                                             
                                         </select>
                                         <div class="col-md-3"></div>
@@ -129,13 +132,13 @@
                                             <label for="registron" class="form-label">Registro n°:</label>
                                     </div>
                                     <div class="col-md-3 col-xs-12">
-                                            <input type="text" name="registron" id="registron">
+                                            <input type="text" name="registron" id="registron" name="numreg" required readonly>
                                     </div>
                                     <div class="col-md-2 col-xs-12">
                                             <label for="dominio" class="form-label">Dominio:</label>
                                     </div>
                                     <div class="col-md-3 col-xs-12">
-                                            <input type="text" name="dominio" id="dominio">
+                                            <input type="text" name="dominio" id="dominio" name="dominio" required readonly>
                                     </div>
                                     <div class="col-md-2"></div>
                                 </div>
@@ -145,27 +148,29 @@
                                                 <label for="chofer" class="form-label">Chofer:</label>
                                            </div>
                                            <div class="col-md-4 col-xs-12">
-                                               <select class="form-control select2 select2-hidden-accesible" id="chofer">
+                                               <select class="form-control select2 select2-hidden-accesible" id="chofer" name="chofer" required>
 
                                                </select>
                                            </div>
                                            <div class="col-md-6"></div>
                                 </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-10 col-lg-11 col-xs-12"></div>
+                                    <div class="col-md-2 col-lg-1 col-xs-12 text-center">
+                                            <button type="submit" class="btn btn-primary" aria-label="Left Align" onclick="agregarTransp()">
+                                                Guardar
+                                            </button><br>
+                                    </div>
+                                </div>
+                              </form>
 
                         </div>
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-10 col-lg-11 col-xs-12"></div>
-                    <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                            <button type="button" class="btn btn-primary" aria-label="Left Align">
-                                Guardar
-                            </button><br>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -244,3 +249,81 @@
 
     });
 </script>
+
+<!-- Script Agregar Informacion -->
+
+<script>
+
+function agregarInfo(){
+
+    $('#formInfo').on('submit', function(e){
+
+    e.preventDefault();
+    var me = $(this);
+    if ( me.data('requestRunning') ) {return;}
+    me.data('requestRunning', true);
+
+    datos=$('#formInfo').serialize();
+    //console.log(datos);
+    
+    $.ajax({
+                type:"POST",
+                data:datos,
+                url:"ajax/Ordentrabajo/guardarInfo",
+                success:function(r){
+                    if(r == "ok"){
+                        console.log(r);
+                        $('#formInfo')[0].reset();
+                        alertify.success("Agregado con exito");
+                    }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
+                }
+            });
+            
+    });
+    
+}
+
+</script>
+
+<!-- Script Agregar Transportista -->
+
+<script>
+
+        function agregarTransp(){
+        
+        $('#formTransp').on('submit', function(e){
+        
+        e.preventDefault();    
+        var me = $(this);  
+        if ( me.data('requestRunning') ) {return;}
+         me.data('requestRunning', true);
+        
+        datos=$('#formTransp').serialize();
+        //console.log(datos);
+        
+        $.ajax({
+                    type:"POST",
+                    data: datos,
+                    url: "ajax/Ordentrabajo/guardarTransp",
+                    success:function(r){
+                        //dato=jQuery.parseJSON(r)
+                        if(r == "ok"){
+                        console.log(r);
+                        $('#formTransp')[0].reset();
+                        $('#selecmov').find('option').remove();
+                        alertify.success("Agregado con exito");
+                      }
+                    },
+                    complete: function() {
+                        me.data('requestRunning', false);
+                    }
+                });
+                
+        });
+        }
+        
+</script>
+
