@@ -1,51 +1,64 @@
 {
     "empresas": {
-                "empresa": [
-                    {
-                        "nombre": "flecha BUS",
+        "empresa": [        
+                 {
+                        "nom": {
+                            "nom_emp":"emp 1"
+                        },
+                        "choferes" :{ 
+                            "chofer" : [
+                                    {
+                                        "nom_chofer": "fernando flecha bus"
+                                    },
+                                    {
+                                        "nom_chofer": "juan flecha bus"
+                                    }
+                            ]
+                        },
                         "movilidades":{
-                                        "movilidad" : [
-                                            {
-                                                "nombre" : "fiat 600",
-                                                "chofer" : "Pablo pepito fiat"
-                                            },
-                                            {
-                                                "nombre" : "fiat uno",
-                                                "chofer" : "Juan humito fiat"
-                                            }
-                                        ]
+                                "movilidad" : [
+                                    {
+                                        "nom_movil" : "fiat 600",
+                                        "registro" : "1",
+                                        "dominio" : "00"
+                                    },
+                                    {
+                                        "nom_movil" : "fiat uno",
+                                        "registro" : "2",
+                                        "dominio" : "22"
+                                    }
+                            ]
                         }
+                },
+                {
+                    "nom": {
+                        "nom_emp":"emp 2"
                     },
-                    {
-                        "nombre": "Express",
-                        "movilidades":{
-                                        "movilidad" : [
-                                            {
-                                                "nombre" : "Renault 12",
-                                                "chofer" : "Pablo pepito renault"
-                                            },
-                                            {
-                                                "nombre" : "Renault 19",
-                                                "chofer" : "Juan humito renault"
-                                            }
-                                        ]
-                        }
+                    "choferes" :{ 
+                        "chofer" : [
+                                {
+                                    "nom_chofer": "fernando flecha 2"
+                                },
+                                {
+                                    "nom_chofer": "juan flecha 2"
+                                }
+                        ]
                     },
-                    {
-                        "nombre": "Chevallier",
-                        "movilidades":{
-                                        "movilidad" : [
-                                            {
-                                                "nombre" : "Peugeot 206",
-                                                "chofer" : "Pablo pepito peugeot"
-                                            },
-                                            {
-                                                "nombre" : "Peugeot 306",
-                                                "chofer" : "Juan humito peugeot"
-                                            }
-                                        ]
-                        }
+                    "movilidades":{
+                            "movilidad" : [
+                                {
+                                    "nom_movil" : "peugeot 206",
+                                    "registro" : "3",
+                                    "dominio" : "33"
+                                },
+                                {
+                                    "nom_movil" : "peugeot 408",
+                                    "registro" : "4",
+                                    "dominio" : "44"
+                                }
+                        ]
                     }
-                ]
+                 }
+        ]
     }
 }

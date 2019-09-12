@@ -8,7 +8,7 @@ if(!function_exists('empresas')){
        // var_dump($array->menu);die;
         $html = '';
         foreach ($array->empresas->empresa as $i) {
-            $html .= '<option class="emp">'.$i->nombre.'</option>';
+            $html .= '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
         }
         
         return $html;

@@ -118,8 +118,8 @@
                                         <div class="col-md-2 col-xs-12">
                                             <label for="selecemp">Movilidad:</label>
                                         </div>
-                                        <select multiple="" class="col-md-2 col-xs-12" id="selecemp">
-                                            <?php echo $movilidad ?>
+                                        <select multiple="" class="col-md-2 col-xs-12" id="selecmov">
+                                            
                                         </select>
                                         <div class="col-md-3"></div>
                                 </div>
@@ -147,7 +147,7 @@
                                            <div class="col-md-4 col-xs-12">
                                                <select class="form-control select2 select2-hidden-accesible" id="chofer">
                                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                                   <?php echo $chofer?>
+                                                   
                                                </select>
                                            </div>
                                            <div class="col-md-6"></div>
@@ -207,24 +207,38 @@
         </div>
 </body>
 </html>
+
 <script>
     $(".emp").on('click', function() {
         
-        $dato = $(this).val();
-        alert($dato);
+        //$dato = $(this).val();
+        //alert($dato);
 
-        /*$.ajax({
-            url: 'helpers/movilidades_helper.php',
-            type: "GET",
-            data: $dato ,
-            dataType: "json",
-            success: function(respuesta) {
-                console.log(respuesta);
-            },
-            error: function() {
-                console.log("No se ha podido obtener la información");
-            }
-        });*/
+        var json = this.dataset.json;
+        
+        json = JSON.parse(json);
+        //console.log(json);
+        var html_mov = " ", html_chof = "";
+
+        json.movilidades.movilidad.forEach(function(valor) {
+           //console.log(valor.nombre);
+           html_mov += "<option class='movilito' data-reg='"+valor.registro+"' data-dom='"+valor.dominio+"'>"+valor.nom_movil+"</option>"
+        });
+
+        json.choferes.chofer.forEach(function(valor){
+            html_chof += "<option class='chof'>"+valor.nom_chofer+"</option>"
+        });
+
+        //console.log(html);
+        $('#selecmov').html(html_mov);
+        $("#chofer").html(html_chof);
+    });
+
+    $("#selecmov").on('change', function() {
+
+        var sel = $(this).find(":selected");
+        $("#registron").val(sel.data('reg'));
+        $("#dominio").val(sel.data('dom'));
 
     });
 </script>
