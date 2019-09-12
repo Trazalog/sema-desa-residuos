@@ -117,7 +117,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <i class="fas fa-ad"></i>
+                    <em class="fas fa-ad"></em>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
@@ -205,7 +205,7 @@
     </div>
     <!--  Box 3-->
     <div class="row">
-            <i class="fas fa-ad"></i>
+            <em class="fas fa-ad"></em>
         </div>
         <div class="row">
             <div class="col-xs-12">

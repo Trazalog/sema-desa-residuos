@@ -6,6 +6,7 @@ class Orden extends CI_Controller {
       parent::__construct();
       $this->load->helper('empresas_helper');
       $this->load->helper('movilidad_helper');
+      $this->load->helper('chofer_helper');
    }
    function index(){
      
@@ -14,6 +15,7 @@ class Orden extends CI_Controller {
    {
        $data['empresas'] = empresas(getJson("empresas"));
        $data['movilidad'] = movilidad(getJson("movilidad"));
+       $data['chofer'] = chofer(getJson("chofer"));
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/orden_transporte', $data);
    }

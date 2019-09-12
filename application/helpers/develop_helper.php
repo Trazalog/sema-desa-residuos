@@ -10,7 +10,8 @@ if(!function_exists('getJson'))
 
         if($show)
         {
-            echo var_dump($rsp);
+            //echo var_dump($rsp);
+            echo $rsp;
         }else
         {
             return $rsp;

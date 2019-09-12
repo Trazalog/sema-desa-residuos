@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                             foreach($establecimientos as $fila)
                             {
@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="tipores">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                             foreach($establecimientos as $fila)
                             {
@@ -75,7 +75,7 @@
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="contenedor">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                             foreach($establecimientos as $fila)
                             {
@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="porcentajell">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                             foreach($establecimientos as $fila)
                             {
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <i class="fas fa-ad"></i>
+                    <em class="fas fa-ad"></em>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
@@ -255,13 +255,8 @@
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="chofer">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                            <?php
-                            foreach($establecimientos as $fila)
-                            {
-                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                            } 
-                            ?>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php echo $chofer?>
                         </select>
                     </div>
                     <div class="col-md-6"></div>
@@ -272,13 +267,13 @@
                             <label for="fecha" class="form-label">Fecha de retiro:</label>
                     </div>
                     <div class="col-md-4 col-xs-12">
-                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                            <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
                     </div>
                     <div class="col-md-1 col-xs-12">
                          <label for="hora" class="form-label">Hora:</label>
                     </div>
                     <div class="col-md-2 col-xs-12">
-                            <input type="number" id="hora" value="1" class="form-control" min="0">
+                            <input type="number" id="hora" value="1" class="form-control" min="1">
                     </div>
                 </div>
             </div>
