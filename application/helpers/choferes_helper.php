@@ -1,14 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(!function_exists('empresas')){
+if(!function_exists('choferes')){
 
-    function empresas($json)
+    function choferes($json)
     {
         $array =  $json;
        // var_dump($array->menu);die;
         $html = '';
-        foreach ($array->empresas->empresa as $i) {
-            $html .= '<option class="emp">'.$i->nombre.'</option>';
+        foreach ($array->choferes->chofer as $i) {
+            $html .= '<option>'.$i->nombre.'</option>';
         }
         
         return $html;

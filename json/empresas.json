@@ -1,19 +1,51 @@
 {
-    "empresas": [
-        {
-            "nombre": "flecha BUS"
-        },
-        {
-            "nombre": "Express"
-        },
-        {
-            "nombre": "Chevallier"
-        },
-        {
-            "nombre": "Correo Argentino"
-        },
-        {
-            "nombre": "Red Bus"
-        }
-    ]
+    "empresas": {
+                "empresa": [
+                    {
+                        "nombre": "flecha BUS",
+                        "movilidades":{
+                                        "movilidad" : [
+                                            {
+                                                "nombre" : "fiat 600",
+                                                "chofer" : "Pablo pepito fiat"
+                                            },
+                                            {
+                                                "nombre" : "fiat uno",
+                                                "chofer" : "Juan humito fiat"
+                                            }
+                                        ]
+                        }
+                    },
+                    {
+                        "nombre": "Express",
+                        "movilidades":{
+                                        "movilidad" : [
+                                            {
+                                                "nombre" : "Renault 12",
+                                                "chofer" : "Pablo pepito renault"
+                                            },
+                                            {
+                                                "nombre" : "Renault 19",
+                                                "chofer" : "Juan humito renault"
+                                            }
+                                        ]
+                        }
+                    },
+                    {
+                        "nombre": "Chevallier",
+                        "movilidades":{
+                                        "movilidad" : [
+                                            {
+                                                "nombre" : "Peugeot 206",
+                                                "chofer" : "Pablo pepito peugeot"
+                                            },
+                                            {
+                                                "nombre" : "Peugeot 306",
+                                                "chofer" : "Juan humito peugeot"
+                                            }
+                                        ]
+                        }
+                    }
+                ]
+    }
 }

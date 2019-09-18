@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(!function_exists('chofer')){
+if(!function_exists('disposicionesFinales')){
 
-    function chofer($json)
+    function disposicionesFinales($json)
     {
         $array =  $json;
        // var_dump($array->menu);die;
         $html = '';
-        foreach ($array->chofer as $i) {
+        foreach ($array->disposicionesFinales->disposicionFinal as $i) {
             $html .= '<option>'.$i->nombre.'</option>';
         }
         

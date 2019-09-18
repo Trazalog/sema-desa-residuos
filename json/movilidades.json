@@ -1,0 +1,18 @@
+{
+    "movilidades" : {
+                    "movilidad": [
+                        {
+                            "nombre": "Fiat 600"
+                        },
+                        {
+                            "nombre": "Renault 19"
+                        },
+                        {
+                            "nombre": "Citroen 2CV"
+                        },
+                        {
+                            "nombre": "Peugeot 504"
+                        }
+                    ]
+    }
+}

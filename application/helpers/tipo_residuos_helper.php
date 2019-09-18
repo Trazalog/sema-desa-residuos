@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(!function_exists('movilidad')){
+if(!function_exists('tipoResiduos')){
 
-    function movilidad($json)
+    function tipoResiduos($json)
     {
         $array =  $json;
        // var_dump($array->menu);die;
         $html = '';
-        foreach ($array->movilidad as $i) {
+        foreach ($array->tipoResiduos->tipoResiduo as $i) {
             $html .= '<option>'.$i->nombre.'</option>';
         }
         

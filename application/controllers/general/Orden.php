@@ -5,8 +5,12 @@ class Orden extends CI_Controller {
 
       parent::__construct();
       $this->load->helper('empresas_helper');
-      $this->load->helper('movilidad_helper');
-      $this->load->helper('chofer_helper');
+      $this->load->helper('movilidades_helper');
+      $this->load->helper('choferes_helper');
+      $this->load->helper('zonas_helper');
+      $this->load->helper('tipo_residuos_helper');
+      $this->load->helper('circuitos_helper');
+      $this->load->helper('disposiciones_finales_helper');
    }
    function index(){
      
@@ -14,14 +18,23 @@ class Orden extends CI_Controller {
    function ordenT()
    {
        $data['empresas'] = empresas(getJson("empresas"));
-       $data['movilidad'] = movilidad(getJson("movilidad"));
-       $data['chofer'] = chofer(getJson("chofer"));
+       $data['movilidad'] = movilidades(getJson("movilidades"));
+       $data['chofer'] = choferes(getJson("choferes"));
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/orden_transporte', $data);
    }
    function templateOt()
    {
-       $this->load->view('layout/template_ot');
+       $data['empresas'] = empresas(getJson("empresas"));
+       $data['movilidad'] = movilidades(getJson("movilidades"));
+       $data['chofer'] = choferes(getJson("choferes"));
+       $data['circuito'] = circuitos(getJson("circuitos"));
+       $data['disposicionFinal'] = disposicionesFinales(getJson("disposiciones_finales"));
+       $data['tipoResiduo'] = tipoResiduos(getJson("tipo_residuos"));
+       $data['zona'] = zonas(getJson("zonas"));
+       $data['fecha'] = date('Y-m-d');
+       $this->load->view('layout/template_ot',$data);
+       
    }
 }
 ?>

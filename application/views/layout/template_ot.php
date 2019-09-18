@@ -41,20 +41,15 @@
                             <label for="fecha" class="form-label">Fecha:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                            <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
                     </div>
                     <div class="col-md-2 col-xs-12">
                          <label for="dispfinal" class="form-label">Disposicion final:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                            <?php
-                            foreach($establecimientos as $fila)
-                            {
-                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                            } 
-                            ?>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php echo $disposicionFinal ?>
                         </select>
                     </div>
                 </div>
@@ -65,13 +60,8 @@
                     </div>
                     <div class="col-md-3 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="zona">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                            <?php
-                            foreach($establecimientos as $fila)
-                            {
-                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                            } 
-                            ?>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php echo $zona ?>
                         </select>
                     </div>
                     <div class="col-md-1 col-xs-12">
@@ -79,13 +69,8 @@
                     </div>
                     <div class="col-md-3 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="circuito">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                               <?php
-                               foreach($establecimientos as $fila)
-                               {
-                                   echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                               } 
-                               ?>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php echo $circuito ?>
                         </select>
                     </div>
                 </div>
@@ -96,13 +81,8 @@
                     </div>
                     <div class="col-md-3 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="tiporesiduo">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                               <?php
-                               foreach($establecimientos as $fila)
-                               {
-                                   echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                               } 
-                               ?>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php echo $tipoResiduo ?>
                         </select>
                     </div>
                     <div class="col-md-7"></div>
@@ -132,22 +112,14 @@
                                             <label for="selecemp">Empresa:</label>
                                         </div>
                                         <select multiple="" class="col-md-3 col-xs-12" id="selecemp">
-                                              <option>option 1</option>
-                                              <option>option 2</option>
-                                              <option>option 3</option>
-                                              <option>option 4</option>
-                                              <option>option 5</option>
+                                            <?php echo $empresas ?>
                                         </select>
                                         <!-- otro select -->
                                         <div class="col-md-2 col-xs-12">
                                             <label for="selecemp">Movilidad:</label>
                                         </div>
                                         <select multiple="" class="col-md-2 col-xs-12" id="selecemp">
-                                              <option>option 1</option>
-                                              <option>option 2</option>
-                                              <option>option 3</option>
-                                              <option>option 4</option>
-                                              <option>option 5</option>
+                                            <?php echo $movilidad ?>
                                         </select>
                                         <div class="col-md-3"></div>
                                 </div>
@@ -174,13 +146,8 @@
                                            </div>
                                            <div class="col-md-4 col-xs-12">
                                                <select class="form-control select2 select2-hidden-accesible" id="chofer">
-                                                   <option value="" disabled selected>-Seleccione tipo-</option>
-                                                   <?php
-                                                   foreach($establecimientos as $fila)
-                                                   {
-                                                       echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                                                   } 
-                                                   ?>
+                                                   <option value="" disabled selected>-Seleccione opcion-</option>
+                                                   <?php echo $chofer?>
                                                </select>
                                            </div>
                                            <div class="col-md-6"></div>
@@ -240,3 +207,24 @@
         </div>
 </body>
 </html>
+<script>
+    $(".emp").on('click', function() {
+        
+        $dato = $(this).val();
+        alert($dato);
+
+        /*$.ajax({
+            url: 'helpers/movilidades_helper.php',
+            type: "GET",
+            data: $dato ,
+            dataType: "json",
+            success: function(respuesta) {
+                console.log(respuesta);
+            },
+            error: function() {
+                console.log("No se ha podido obtener la información");
+            }
+        });*/
+
+    });
+</script>

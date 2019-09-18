@@ -8,7 +8,7 @@ if(!function_exists('menu')){
        // var_dump($array->menu);die;
         $html = '<ul class="sidebar-menu tree menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>';
-        foreach ($array->menu as $i) {
+        foreach ($array->menuP->menuH as $i) {
 
             switch ($i->nivel) {
                 case 1:
