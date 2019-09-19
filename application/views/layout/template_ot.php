@@ -302,7 +302,7 @@ function agregarInfo(){
          me.data('requestRunning', true);
         
         datos=$('#formTransp').serialize();
-        //console.log(datos);
+        console.log(datos);
         
         $.ajax({
                     type:"POST",

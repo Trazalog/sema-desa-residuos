@@ -14,6 +14,7 @@ class Ordentrabajos extends CI_Model
     
     public function guardarTransps($datos){
 
+        //echo implode(", ",$datos);
         echo "ok";
     }
 }
