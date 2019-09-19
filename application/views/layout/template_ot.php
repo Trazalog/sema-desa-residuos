@@ -146,8 +146,7 @@
                                            </div>
                                            <div class="col-md-4 col-xs-12">
                                                <select class="form-control select2 select2-hidden-accesible" id="chofer">
-                                                   <option value="" disabled selected>-Seleccione opcion-</option>
-                                                   
+
                                                </select>
                                            </div>
                                            <div class="col-md-6"></div>
@@ -231,7 +230,10 @@
 
         //console.log(html);
         $('#selecmov').html(html_mov);
-        $("#chofer").html(html_chof);
+        $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>"+html_chof);
+
+        $("#registron").val("");
+        $("#dominio").val("");
     });
 
     $("#selecmov").on('change', function() {
