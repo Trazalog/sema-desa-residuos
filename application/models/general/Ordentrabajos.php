@@ -9,10 +9,16 @@ class Ordentrabajos extends CI_Model
 
     public function guardarInfos($datos){
         echo "ok";
-        
+        //$this->REST->callAPI("")
     }
     
     public function guardarTransps($datos){
+
+        //echo implode(", ",$datos);
+        echo "ok";
+    }
+
+    public function guardarResiduos($datos){
 
         //echo implode(", ",$datos);
         echo "ok";

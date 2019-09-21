@@ -30,13 +30,13 @@
                 <h3>Informacion</h3>
             </div>
             <div class="box-body">
-              <form id="formInfo" method="POST">
+              <form autocomplete="off" id="formInfo" method="POST">
                 <div class="row">
                     <div class="col-md-1 col-xs-12">
                          <label for="nro" class="form-label">Nro:</label>
                     </div>
                     <div class="col-md-2 col-xs-12">
-                            <input size="10" type="text" name="nro" id="nro" required>
+                            <input type="number" size="10" type="text" name="nro" id="nro" min="0" class="form-control" auto required pattern="^(0|[1-9][0-9]*)$">
                     </div>
                     <div class="col-md-1 col-xs-12">
                             <label for="fecha" class="form-label">Fecha:</label>
@@ -62,7 +62,14 @@
                     <div class="col-md-3 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="zona" name="zona" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
-                            <?php echo $zona ?>
+                            <?php
+                            
+                            foreach ($zona as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                            
+                            
+                            ?>
                         </select>
                     </div>
                     <div class="col-md-1 col-xs-12">
@@ -149,7 +156,7 @@
                                            </div>
                                            <div class="col-md-4 col-xs-12">
                                                <select class="form-control select2 select2-hidden-accesible" id="chofer" name="chofer" required>
-
+                                                    <option value="" disabled selected>-Seleccione opcion-</option>
                                                </select>
                                            </div>
                                            <div class="col-md-6"></div>
@@ -212,20 +219,17 @@
 </body>
 </html>
 
+<!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
     $(".emp").on('click', function() {
-        
-        //$dato = $(this).val();
-        //alert($dato);
 
         var json = this.dataset.json;
         
         json = JSON.parse(json);
-        //console.log(json);
+
         var html_mov = " ", html_chof = "";
 
         json.movilidades.movilidad.forEach(function(valor) {
-           //console.log(valor.nombre);
            html_mov += "<option class='movilito' data-reg='"+valor.registro+"' data-dom='"+valor.dominio+"'>"+valor.nom_movil+"</option>"
         });
 
@@ -233,7 +237,6 @@
             html_chof += "<option class='chof'>"+valor.nom_chofer+"</option>"
         });
 
-        //console.log(html);
         $('#selecmov').html(html_mov);
         $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>"+html_chof);
 
@@ -264,8 +267,6 @@ function agregarInfo(){
     me.data('requestRunning', true);
 
     datos=$('#formInfo').serialize();
-    //console.log(datos);
-    
     $.ajax({
                 type:"POST",
                 data:datos,

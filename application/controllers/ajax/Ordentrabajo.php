@@ -18,6 +18,13 @@ class Ordentrabajo  extends CI_Controller {
       $datos =  $this->input->post();
       $this->Ordentrabajos->guardarTransps($datos);
     }
+
+    public function guardarResiduo()
+    {
+      $datos =  $this->input->post();
+      $this->Ordentrabajos->guardarResiduos($datos);
+    }
+
 }
 
 
