@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="lib/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="lib/dist/css/AdminLTE.min.css">
+    <!-- css iconos redondos -->
+    <link rel="stylesheet" href="lib/iconcurved.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="lib/dist/css/skins/_all-skins.min.css">
@@ -36,6 +38,11 @@
 
     <link rel="stylesheet" href="<?php echo base_url();?>lib/bootstrapValidator/bootstrapValidator.min.css" />
 
+    <!-- alertifyjs -->
+
+    <link rel="stylesheet" href="<?php base_url();?>lib/alertify/css/alertify.css">
+    <link rel="stylesheet" href="<?php base_url();?>lib/alertify/css/themes/bootstrap.css">
+
     <!-- Google Font -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -53,9 +60,9 @@
         <!-- Logo -->
         <a href="#" onclick="linkTo()" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b><?php echo MNOM ?></b></span>
+            <span class="logo-mini"><strong><?php echo MNOM ?></strong></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b><?php echo NOM ?></b></span>
+            <span class="logo-lg"><strong><?php echo NOM ?></strong></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -99,7 +106,7 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.0
+            <strong>Version</strong> 2.4.0
         </div>
         <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
         reserved.
@@ -109,8 +116,8 @@
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><em class="fa fa-home"></em></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><em class="fa fa-gears"></em></a></li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
@@ -120,7 +127,7 @@
                 <ul class="control-sidebar-menu">
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                            <em class="menu-icon fa fa-birthday-cake bg-red"></em>
 
                             <div class="menu-info">
                                 <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
@@ -131,7 +138,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-user bg-yellow"></i>
+                            <em class="menu-icon fa fa-user bg-yellow"></em>
 
                             <div class="menu-info">
                                 <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
@@ -142,7 +149,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                            <em class="menu-icon fa fa-envelope-o bg-light-blue"></em>
 
                             <div class="menu-info">
                                 <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
@@ -153,7 +160,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                            <em class="menu-icon fa fa-file-code-o bg-green"></em>
 
                             <div class="menu-info">
                                 <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
@@ -285,7 +292,7 @@
                     <div class="form-group">
                         <label class="control-sidebar-subheading">
                             Delete chat history
-                            <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                            <a href="javascript:void(0)" class="text-red pull-right"><em class="fa fa-trash-o"></em></a>
                         </label>
                     </div>
                     <!-- /.form-group -->

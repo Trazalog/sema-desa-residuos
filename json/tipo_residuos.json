@@ -1,0 +1,21 @@
+{
+    "tipoResiduos" : {
+            "tipoResiduo" : [
+                {
+                    "nombre": "residuo solido urbano"
+                },
+                {
+                    "nombre": "residuo industrial"
+                },
+                {
+                    "nombre": "residuo agragrio"
+                },
+                {
+                    "nombre": "residuo medico y de laboratorio"
+                },
+                {
+                    "nombre": "residuo radioactivo"
+                }
+            ]
+    }
+}

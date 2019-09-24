@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Orden de transporte</title>
 </head>
 <body>
     
 <!--  Box 1-->
     <div class="box">
-        <div class="box-header with-border">
-        </div>
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-1 col-xs-12">
                             <label for="Nro" class="form-label">Nro:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="nro" id="Nro">
+                            <input type="text" name="nro" id="Nro" value=<?php echo rand(1,30)?>>
                     </div>
                     <div class="col-md-2 col-xs-12">
                             <label for="Nro de solicitud" class="form-label">Nro de solicitud:</label>
@@ -34,20 +32,15 @@
                             <label for="fecha" class="form-label">Fecha:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                            <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
                     </div>
                     <div class="col-md-2 col-xs-12">
                          <label for="dispfinal" class="form-label">Disposicion final:</label>
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                            <?php
-                            foreach($establecimientos as $fila)
-                            {
-                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                            } 
-                            ?>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php echo $disposicionFinal?>
                         </select>
                     </div>
                 </div>
@@ -56,37 +49,23 @@
     </div>
     <!--  Box 2-->
     <div class="box">
-        <div class="box-header with-border">
-        </div>
             <div class="box-body">
+              <form autocomplete="off" id="formResiduo" method="POST">
                 <div class="row">
                     <div class="col-md-2 col-xs-12">
                          <label for="tipores" class="form-label">Tipo residuo:</label>
                     </div>
                     <div class="col-md-4 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="tipores">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                            <?php
-                            foreach($establecimientos as $fila)
-                            {
-                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                            } 
-                            ?>
+                        <select class="form-control select2 select2-hidden-accesible" id="tipores" name="tipo_residuo" required>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php echo $tipoResiduo ?>
                         </select>
                     </div>
                     <div class="col-md-2 col-xs-12">
                          <label for="contenedor" class="form-label">Contenedor:</label>
                     </div>
                     <div class="col-md-4 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="contenedor">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                            <?php
-                            foreach($establecimientos as $fila)
-                            {
-                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                            } 
-                            ?>
-                        </select>
+                         <input type="number" id="contenedor" name="contenedor" class="form-control" min="1" required pattern="^(0|[1-9][0-9]*)$">
                     </div>
                 </div>
                 <br>
@@ -95,21 +74,13 @@
                          <label for="porcentajell" class="form-label">% de llenado:</label>
                     </div>
                     <div class="col-md-4 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="porcentajell">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                            <?php
-                            foreach($establecimientos as $fila)
-                            {
-                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                            } 
-                            ?>
-                        </select>
+                        <input type="number" step="0.0001" id="porcentajell" name="porcent_llenado" class="form-control" min="0" max="100" required pattern="[+]?[0-9]*\.?[0-9]*">
                     </div>
                     <div class="col-md-2 col-xs-12">
                             <label for="metroscubicos" class="form-label">Metros cubicos:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="nrosolicitud" id="metroscubicos">
+                            <input type="number" step="0.0001" name="metroscubicos" class="form-control" id="metroscubicos" min="0" required pattern="[+]?[0-9]*\.?[0-9]*">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -117,14 +88,15 @@
                 <div class="row">
                     <div class="col-md-10 col-lg-11 col-xs-12"></div>
                     <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                            <button type="button" class="btn btn-primary" aria-label="Left Align">
+                            <button type="submit" class="btn btn-primary" aria-label="Left Align" onclick="agregarResiduo()">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button><br>
                             <label for="agregar" class="form-label">Agregar</label>
                     </div>
                 </div>
+              </form>
                 <div class="row">
-                    <i class="fas fa-ad"></i>
+                    <em class="fas fa-ad"></em>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
@@ -171,8 +143,6 @@
     </div>
     <!--  Box 3-->
     <div class="box">
-        <div class="box-header with-border">
-        </div>
             <div class="box-header with-border">
                 <h3>Generador</h3>
             </div>
@@ -182,13 +152,13 @@
                             <label for="razonsocial" class="form-label">Razon social:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="rsocial" id="razonsocial">
+                            <input type="text" name="rsocial" id="razonsocial" readonly>
                     </div>
                     <div class="col-md-2 col-xs-12">
                             <label for="dep" class="form-label">Departamento:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="departamento" id="dep">
+                            <input type="text" name="departamento" id="dep" readonly>
                     </div>
                     <div class="col-md-3"></div>
                 </div>
@@ -198,13 +168,13 @@
                             <label for="cuitdni" class="form-label">Cuit/dni:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="cuitdni" id="cuitdni">
+                            <input type="text" name="cuitdni" id="cuitdni" readonly>
                     </div>
                     <div class="col-md-2 col-xs-12">
                             <label for="circuito" class="form-label">Circuito:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="circuito" id="circuito">
+                            <input type="text" name="circuito" id="circuito" readonly>
                     </div>
                     <div class="col-md-3"></div>
                 </div>
@@ -213,8 +183,6 @@
     </div>
     <!--  Box 4-->
     <div class="box">
-        <div class="box-header with-border">
-        </div>
             <div class="box-header with-border">
                 <h3>Transportistas</h3>
             </div>
@@ -224,22 +192,13 @@
                         <label for="selecemp">Empresa:</label>
                     </div>
                     <select multiple="" class="col-md-3 col-xs-12" id="selecemp">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
+                        <?php echo $empresas ?>
                     </select>
                     <!-- otro select -->
                     <div class="col-md-2 col-xs-12">
-                        <label for="selecemp">Movilidad:</label>
+                        <label for="selecmov">Movilidad:</label>
                     </div>
-                    <select multiple="" class="col-md-2 col-xs-12" id="selecemp">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
+                    <select multiple="" class="col-md-2 col-xs-12" id="selecmov">
                     </select>
                     <div class="col-md-3"></div>
                 </div>
@@ -249,13 +208,13 @@
                             <label for="registron" class="form-label">Registro n°:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="registron" id="registron">
+                            <input type="text" name="registron" id="registron" readonly>
                     </div>
                     <div class="col-md-2 col-xs-12">
                             <label for="dominio" class="form-label">Dominio:</label>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                            <input type="text" name="dominio" id="dominio">
+                            <input type="text" name="dominio" id="dominio" readonly>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -264,8 +223,6 @@
     </div>
     <!--  Box 5-->
     <div class="box">
-        <div class="box-header with-border">
-        </div>
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-2 col-xs-12">
@@ -273,13 +230,7 @@
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="chofer">
-                            <option value="" disabled selected>-Seleccione tipo-</option>
-                            <?php
-                            foreach($establecimientos as $fila)
-                            {
-                                echo '<option value="'.$fila->id.'" >'.$fila->titulo.'</option>';
-                            } 
-                            ?>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
                         </select>
                     </div>
                     <div class="col-md-6"></div>
@@ -290,13 +241,13 @@
                             <label for="fecha" class="form-label">Fecha de retiro:</label>
                     </div>
                     <div class="col-md-4 col-xs-12">
-                            <input type="date" id="fecha" value="2019-09-04" class="form-control">
+                            <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
                     </div>
                     <div class="col-md-1 col-xs-12">
                          <label for="hora" class="form-label">Hora:</label>
                     </div>
                     <div class="col-md-2 col-xs-12">
-                            <input type="number" id="hora" value="1" class="form-control" min="0">
+                            <input type="number" id="hora" value="1" class="form-control" min="1">
                     </div>
                 </div>
             </div>
@@ -304,3 +255,72 @@
     </div>
 </body>
 </html>
+
+<!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
+<script>
+        $(".emp").on('click', function() {
+    
+            var json = this.dataset.json;
+            
+            json = JSON.parse(json);
+    
+            var html_mov = " ", html_chof = "";
+    
+            json.movilidades.movilidad.forEach(function(valor) {
+               html_mov += "<option class='movilito' data-reg='"+valor.registro+"' data-dom='"+valor.dominio+"'>"+valor.nom_movil+"</option>"
+            });
+    
+            json.choferes.chofer.forEach(function(valor){
+                html_chof += "<option class='chof'>"+valor.nom_chofer+"</option>"
+            });
+    
+            $('#selecmov').html(html_mov);
+            $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>"+html_chof);
+    
+            $("#registron").val("");
+            $("#dominio").val("");
+        });
+    
+        $("#selecmov").on('change', function() {
+    
+            var sel = $(this).find(":selected");
+            $("#registron").val(sel.data('reg'));
+            $("#dominio").val(sel.data('dom'));
+    
+        });
+    </script>
+    
+    <!-- Script Agregar Residuo -->
+    
+    <script>
+
+    function agregarResiduo(){
+    
+        $('#formResiduo').on('submit', function(e){
+        //console.log("aloha madrefoca");
+        e.preventDefault();
+        var me = $(this);
+        if ( me.data('requestRunning') ) {return;}
+        me.data('requestRunning', true);
+    
+        datos=$('#formResiduo').serialize();
+        $.ajax({
+                    type:"POST",
+                    data:datos,
+                    url:"ajax/Ordentrabajo/guardarResiduo",
+                    success:function(r){
+                        if(r == "ok"){
+                            console.log(r);
+                            $('#formResiduo')[0].reset();
+                            alertify.success("Agregado con exito");
+                        }
+                    },
+                    complete: function() {
+                        me.data('requestRunning', false);
+                    }
+                });
+                
+        });
+        
+    }
+    </script>

@@ -15,15 +15,15 @@
     <div class="col-md-6">
         <div class="box box-primary">
             <div class="box-header">
-                <i class="ion ion-clipboard"></i>
+                <em class="ion ion-clipboard"></em>
                 <h3 class="box-title">Form</h2>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                             title="" data-original-title="Collapse">
-                            <i class="fa fa-minus"></i></button>
+                            <em class="fa fa-minus"></em></button>
                         <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
                             title="" data-original-title="Remove">
-                            <i class="fa fa-times"></i></button>
+                            <em class="fa fa-times"></em></button>
                     </div>
             </div>
             <div class="box-body" id="form-field">

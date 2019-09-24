@@ -1,0 +1,15 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Zonas extends CI_Model
+{
+	function __construct()
+	{
+		parent::__construct();
+    }
+
+    public function obtener(){
+         $aux = $this->rest->callAPI("GET","http://localhost:8080/zonas");
+         $aux =json_decode($aux["data"]);
+         return $aux->zonas->zona;
+    }
+}
