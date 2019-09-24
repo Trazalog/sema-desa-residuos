@@ -10,24 +10,26 @@ class Orden extends CI_Controller {
       $this->load->helper('circuitos_helper');
       $this->load->helper('disposiciones_finales_helper');
       $this->load->model('general/Zonas');
+      $this->load->model('general/Circuitos');
+      $this->load->model('general/DisposisionesFinales');
+      $this->load->model('general/TipoResiduos');
+      $this->load->model('general/Empresas');
    }
-   function index(){
-     
-   }
+
    function ordenT()
    {
-       $data['empresas'] = empresas(getJson("empresas"));
-       $data['disposicionFinal'] = disposicionesFinales(getJson("disposiciones_finales"));
-       $data['tipoResiduo'] = tipoResiduos(getJson("tipo_residuos"));
+       //$data['empresas'] = empresas(getJson("empresas"));
+       //$data['disposicionFinal'] = disposicionesFinales(getJson("disposiciones_finales"));
+       //$data['tipoResiduo'] = tipoResiduos(getJson("tipo_residuos"));
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/orden_transporte', $data);
    }
    function templateOt()
    {
-       $data['empresas'] = empresas(getJson("empresas"));
-       $data['circuito'] = circuitos(getJson("circuitos"));
-       $data['disposicionFinal'] = disposicionesFinales(getJson("disposiciones_finales"));
-       $data['tipoResiduo'] = tipoResiduos(getJson("tipo_residuos"));
+       $data['empresa'] = $this->Empresas->obtener();
+       $data['circuito'] = $this->Circuitos->obtener();
+       $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
+       $data['tipoResiduo'] = $this->TipoResiduos->obtener();
        $data['zona'] = $this->Zonas->obtener();
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/template_ot',$data);

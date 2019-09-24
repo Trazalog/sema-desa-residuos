@@ -50,7 +50,11 @@
                     <div class="col-md-3 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="dispfinal" name="dispfinal" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
-                            <?php echo $disposicionFinal ?>
+                            <?php
+                                    foreach ($disposicionFinal as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                            ?>
                         </select>
                     </div>
                 </div>
@@ -78,7 +82,11 @@
                     <div class="col-md-3 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="circuito" name="circuito" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
-                            <?php echo $circuito ?>
+                            <?php
+                                    foreach ($circuito as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                            ?>
                         </select>
                     </div>
                 </div>
@@ -90,7 +98,11 @@
                     <div class="col-md-3 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="tiporesiduo" name="tiporesiduo" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
-                            <?php echo $tipoResiduo ?>
+                            <?php
+                                    foreach ($tipoResiduo as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                            ?>
                         </select>
                     </div>
                     <div class="col-md-7"></div>
@@ -122,7 +134,11 @@
                                             <label for="selecemp">Empresa:</label>
                                         </div>
                                         <select multiple="" class="col-md-3 col-xs-12" id="selecemp" name="empresa" required>
-                                            <?php echo $empresas ?>
+                                            <?php
+                                            foreach ($empresa as $i) {
+                                                echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                                            }
+                                            ?>
                                         </select>
                                         <!-- otro select -->
                                         <div class="col-md-2 col-xs-12">
@@ -194,7 +210,8 @@
                     <thead>
                     <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Acciones</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Zona</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Circuito</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Transportista</th><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Movilidad</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Chofer</th></tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tabadd">
+
                     <tr role="row" class="odd">
                     <td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
                     <td>Zona 1</td>
@@ -202,14 +219,16 @@
                     <td>Transp 1</td>
                     <td>Asd 345</td>
                     <td>Hugo Gallardo</td>
-                    </tr><tr role="row" class="even">
+                    </tr>
+                    <tr role="row" class="even">
                     <td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
                     <td>Zona 5</td>
                     <td>Circuito 11</td>
                     <td>Transp 8</td>
                     <td>Asd 347</td>
                     <td>Fernando Leiva</td>
-                    </tr></tbody>
+                    </tr>
+                    </tbody>
                 </table></div></div><br><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="example2_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div></div></div>
                 </div>
                 <!-- /.box-body -->
@@ -303,7 +322,24 @@ function agregarInfo(){
          me.data('requestRunning', true);
         
         datos=$('#formTransp').serialize();
-        console.log(datos);
+        
+        //datos para mostrar a modo de ejemplo para DEMO---------------
+        //Serialize the Form
+        var values = {};
+        $.each($("#formTransp").serializeArray(), function (i, field) {
+            values[field.name] = field.value;
+        });
+        //Value Retrieval Function
+        var getValue = function (valueName) {
+            return values[valueName];
+        };
+        //Retrieve the Values
+        var empresa = getValue("empresa");
+        var movilidad = getValue("movilidad");
+        var numreg = getValue("numreg");
+        var dominio = getValue("dominio");
+        var chofer = getValue("chofer");
+        //--------------------------------------------------------------
         
         $.ajax({
                     type:"POST",
@@ -312,11 +348,16 @@ function agregarInfo(){
                     success:function(r){
                         //dato=jQuery.parseJSON(r)
                         if(r == "ok"){
-                        console.log(r);
+                        
                         $('#formTransp')[0].reset();
                         $('#selecmov').find('option').remove();
                         alertify.success("Agregado con exito");
-                      }
+                       }
+                       else{
+                        $('#formTransp')[0].reset();
+                        $('#selecmov').find('option').remove();
+                        alertify.error("Error al agregar");
+                       }
                     },
                     complete: function() {
                         me.data('requestRunning', false);

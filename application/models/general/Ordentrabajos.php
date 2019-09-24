@@ -13,9 +13,10 @@ class Ordentrabajos extends CI_Model
     }
     
     public function guardarTransps($datos){
-
-        //echo implode(", ",$datos);
-        echo "ok";
+        $data = array('username'=>'dog','password'=>'tall');
+        $aux = $this->rest->callAPI("POST","http://localhost:8080/tablatransportistas", $data);
+        $aux =json_decode($aux["status"]);
+        return $aux;
     }
 
     public function guardarResiduos($datos){
