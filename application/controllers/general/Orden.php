@@ -18,9 +18,9 @@ class Orden extends CI_Controller {
 
    function ordenT()
    {
-       //$data['empresas'] = empresas(getJson("empresas"));
-       //$data['disposicionFinal'] = disposicionesFinales(getJson("disposiciones_finales"));
-       //$data['tipoResiduo'] = tipoResiduos(getJson("tipo_residuos"));
+       $data['empresa'] = $this->Empresas->obtener();
+       $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
+       $data['tipoResiduo'] = $this->TipoResiduos->obtener();
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/orden_transporte', $data);
    }
