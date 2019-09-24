@@ -40,7 +40,11 @@
                     <div class="col-md-4 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="dispfinal">
                             <option value="" disabled selected>-Seleccione opcion-</option>
-                            <?php echo $disposicionFinal?>
+                            <?php
+                                    foreach ($disposicionFinal as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                            ?>
                         </select>
                     </div>
                 </div>
@@ -50,7 +54,7 @@
     <!--  Box 2-->
     <div class="box">
             <div class="box-body">
-              <form autocomplete="off" id="formResiduo" method="POST">
+              <form autocomplete="off" id="formDatos" method="POST">
                 <div class="row">
                     <div class="col-md-2 col-xs-12">
                          <label for="tipores" class="form-label">Tipo residuo:</label>
@@ -58,7 +62,11 @@
                     <div class="col-md-4 col-xs-12">
                         <select class="form-control select2 select2-hidden-accesible" id="tipores" name="tipo_residuo" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
-                            <?php echo $tipoResiduo ?>
+                            <?php
+                                    foreach ($tipoResiduo as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                            ?>
                         </select>
                     </div>
                     <div class="col-md-2 col-xs-12">
@@ -88,7 +96,7 @@
                 <div class="row">
                     <div class="col-md-10 col-lg-11 col-xs-12"></div>
                     <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                            <button type="submit" class="btn btn-primary" aria-label="Left Align" onclick="agregarResiduo()">
+                            <button type="submit" class="btn btn-primary" aria-label="Left Align" onclick="agregarDato()">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button><br>
                             <label for="agregar" class="form-label">Agregar</label>
@@ -108,31 +116,17 @@
                             <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Tipo de residuo</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Contenedor</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">% de llenado</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Metros cubicos</th></tr>
                             </thead>
                             <tbody>
-                            <tr role="row" class="odd">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Netscape 7.2</td>
-                            <td>Win 95+ / Mac OS 8.6-9.2</td>
-                            <td>1.7</td>
-                            </tr><tr role="row" class="even">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Netscape Browser 8</td>
-                            <td>Win 98SE+</td>
-                            <td>1.7</td>
-                            </tr><tr role="row" class="odd">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Netscape Navigator 9</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-                            </tr><tr role="row" class="even">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Mozilla 1.0</td>
-                            <td>Win 95+ / OSX.1+</td>
-                            <td>1</td>
-                            </tr></tbody>
-                            <tfoot>
-                            <tr><th rowspan="1" colspan="1">Tipo de residuo</th><th rowspan="1" colspan="1">Contenedor</th><th rowspan="1" colspan="1">% de llenado</th><th rowspan="1" colspan="1">Metros cubicos</th></tr>
-                            </tfoot>
-                        </table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="example2_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div></div></div>
+
+                            <tr role="row" class="even" id="primero">
+                            <td>residuo radioactivo</td>
+                            <td>3</td>
+                            <td>23</td>
+                            <td>1.5</td>
+                            </tr>
+                            
+                            </tbody>
+                            
+                        </table><br></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="example2_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div></div></div>
                         </div>
                         <!-- /.box-body -->
                     </div>
@@ -191,8 +185,12 @@
                     <div class="col-md-2 col-xs-12">
                         <label for="selecemp">Empresa:</label>
                     </div>
-                    <select multiple="" class="col-md-3 col-xs-12" id="selecemp">
-                        <?php echo $empresas ?>
+                    <select multiple="" class="col-md-3 col-xs-12" id="selecemp" name="empresa">
+                        <?php
+                            foreach ($empresa as $i) {
+                                echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                            }
+                        ?>
                     </select>
                     <!-- otro select -->
                     <div class="col-md-2 col-xs-12">
@@ -289,6 +287,68 @@
     
         });
     </script>
+
+<!-- Script Agregar datos -->
+
+<script>
+
+function agregarDato(){
+
+    $('#formDatos').on('submit', function(e){
+
+    e.preventDefault();
+    var me = $(this);
+    if ( me.data('requestRunning') ) {return;}
+    me.data('requestRunning', true);
+
+    datos=$('#formDatos').serialize();
+    
+        //datos para mostrar a modo de ejemplo para DEMO---------------
+        //Serialize the Form
+        var values = {};
+        $.each($("#formDatos").serializeArray(), function (i, field) {
+            values[field.name] = field.value;
+        });
+        //Value Retrieval Function
+        var getValue = function (valueName) {
+            return values[valueName];
+        };
+        //Retrieve the Values
+        var tipo_residuo = getValue("tipo_residuo");
+        var contenedor = getValue("contenedor");
+        var porcent_llenado = getValue("porcent_llenado");
+        var metroscubicos = getValue("metroscubicos");
+        //--------------------------------------------------------------
+        
+    $.ajax({
+                type:"POST",
+                data:datos,
+                url:"ajax/Ordentrabajo/guardarResiduo",
+                success:function(r){
+                    if(r == "ok"){
+                        //console.log(datos);
+                        html = '<tr role="row" class="even"><td>'+tipo_residuo+'</td><td>'+contenedor+'</td><td>'+porcent_llenado+'</td><td>'+metroscubicos+'</td></tr>';
+                        $('#primero').after(html);
+                        $('#formDatos')[0].reset();
+                        alertify.success("Agregado con exito");
+                    }
+                    else{
+                        console.log(r);
+                        $('#formDatos')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
+                }
+            });
+            
+    });
+    
+}
+
+</script>
+
     
     <!-- Script Agregar Residuo -->
     

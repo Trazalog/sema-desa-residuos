@@ -7,27 +7,26 @@ class Ordentrabajo  extends CI_Controller {
       $this->load->model('general/Ordentrabajos');
     }
 
-    public function guardarInfo()
+    public function guardarDato()
     {
         $datos =  $this->input->post();
-        $this->Ordentrabajos->guardarInfos($datos);
-    }
-
-    public function guardarTransp()
-    {
-      $datos =  $this->input->post();
-      $resp = $this->Ordentrabajos->guardarTransps($datos);
-      if($resp){
-        echo "ok";
-      }else{
-        echo "error";
-      }
+        $resp = $this->Ordentrabajos->guardarDatos($datos);
+        if($resp){
+          echo "ok";
+        }else{
+          echo "error";
+        }
     }
 
     public function guardarResiduo()
     {
       $datos =  $this->input->post();
-      $this->Ordentrabajos->guardarResiduos($datos);
+      $resp = $this->Ordentrabajos->guardarResiduos($datos);
+      if($resp){
+        echo "ok";
+      }else{
+        echo "error";
+      }
     }
 
 }

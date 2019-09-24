@@ -6,22 +6,16 @@ class Ordentrabajos extends CI_Model
 	{
 		parent::__construct();
     }
-
-    public function guardarInfos($datos){
-        echo "ok";
-        //$this->REST->callAPI("")
-    }
     
-    public function guardarTransps($datos){
-        $data = array('username'=>'dog','password'=>'tall');
-        $aux = $this->rest->callAPI("POST","http://localhost:8080/tablatransportistas", $data);
+    public function guardarDatos($datos){
+        $aux = $this->rest->callAPI("POST","http://localhost:8080/tabladatos", $datos);
         $aux =json_decode($aux["status"]);
         return $aux;
     }
 
     public function guardarResiduos($datos){
-
-        //echo implode(", ",$datos);
-        echo "ok";
+        $aux = $this->rest->callAPI("POST","http://localhost:8080/tablaresiduos", $datos);
+        $aux =json_decode($aux["status"]);
+        return $aux;
     }
 }
