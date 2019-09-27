@@ -28,6 +28,11 @@
     <div class="box animated bounceInDown" id="boxDatos" hidden>
             <div class="box-header with-border">
                 <h3>Informacion</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
             </div>
             <div class="box-body">
               <form id="formDatos" method="POST" autocomplete="off">
@@ -239,6 +244,15 @@
 </body>
 </html>
 
+<!-- script que cierra box con boton (x) -->
+
+<script>
+    $("#btnclose").on("click", function(){
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+    });
+</script>
+
 <!-- script que muestra box de datos al dar click en boton agregar -->
 
 <script>
@@ -333,7 +347,7 @@ function agregarDato(){
                         $('#primero').after(html);
                         $('#formDatos')[0].reset();
                         $('#selecmov').find('option').remove();
-                        $("#boxDatos").hide();
+                        $("#boxDatos").hide(500);
                         $("#botonAgregar").removeAttr("disabled");
                         alertify.success("Agregado con exito");
                     }
