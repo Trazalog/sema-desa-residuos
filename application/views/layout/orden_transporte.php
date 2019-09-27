@@ -96,16 +96,17 @@
                 <div class="row">
                     <div class="col-md-10 col-lg-11 col-xs-12"></div>
                     <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                            <button type="submit" class="btn btn-primary" aria-label="Left Align" onclick="agregarDato()">
+                            <button type="submit" class="btn btn-primary btn-circle" aria-label="Left Align" onclick="agregarDato()">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button><br>
-                            <label for="agregar" class="form-label">Agregar</label>
+                            <small for="agregar" class="form-label">Agregar</small>
                     </div>
                 </div>
               </form>
                 <div class="row">
                     <em class="fas fa-ad"></em>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-xs-12">
                     <div class="box">

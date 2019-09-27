@@ -18,4 +18,10 @@ class Ordentrabajos extends CI_Model
         $aux =json_decode($aux["status"]);
         return $aux;
     }
+
+    public function guardarRess($datos){
+        $aux = $this->rest->callAPI("POST","http://localhost:8080/tablares", $datos);
+        $aux =json_decode($aux["status"]);
+        return $aux;
+    }
 }
