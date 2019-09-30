@@ -8,11 +8,9 @@ class Registrar extends CI_Controller {
       $this->load->helper('tipo_helper');
       $this->load->helper('departamento_helper');
 
-      $this->load->model('general/Zonas');
-      $this->load->model('general/Circuitos');
-      $this->load->model('general/DisposisionesFinales');
-      $this->load->model('general/TipoResiduos');
-      $this->load->model('general/Empresas');
+      $this->load->model('general/zonag');
+      $this->load->model('general/tipo');
+      $this->load->model('general/dpto');
    }
 
    function registrarT()
