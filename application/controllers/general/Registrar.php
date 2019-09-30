@@ -8,24 +8,24 @@ class Registrar extends CI_Controller {
       $this->load->helper('tipo_helper');
       $this->load->helper('departamento_helper');
 
-      $this->load->model('general/zonag');
-      $this->load->model('general/tipo');
-      $this->load->model('general/dpto');
+      $this->load->model('general/Zonag');
+      $this->load->model('general/TipoG');
+      $this->load->model('general/Dpto');
    }
 
    function registrarT()
    {
-       $data['tipo'] = $this->tipo->obtener();
-       $data['zonag'] = $this->zonag->obtener();
-       $data['dpto'] = $this->dpto->obtener();
+       $data['Zonag'] = $this->Zonag->obtener();
+       $data['TipoG'] = $this->TipoG->obtener();
+       $data['Dpto'] = $this->Dpto->obtener();
        $this->load->view('layout/registrar_generadores', $data);
    }
-   function templateOt()
+   function templateRg()
    {
-       $data['tipo'] = $this->tipo->obtener();
-       $data['zonag'] = $this->zonag->obtener();
-       $data['dpto'] = $this->dpto->obtener();
-       //$this->load->view('layout/template_ot',$data);
+       $data['Zonag'] = $this->Zonag->obtener();
+       $data['TipoG'] = $this->TipoG->obtener();
+       $data['Dpto'] = $this->Dpto->obtener();
+       $this->load->view('layout/registrar_generadores',$data);
        
    }
 }
