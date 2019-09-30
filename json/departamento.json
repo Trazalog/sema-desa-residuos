@@ -1,0 +1,30 @@
+{
+    "dpto" : {
+                    "dpto" : [
+                        {
+                            "nombre": "Chimbas"
+                        },
+                        {
+                            "nombre": "Capital"
+                        },
+                        {
+                            "nombre": "Rawson"
+                        },
+                        {
+                            "nombre": "Rivadavia"
+                        }, 
+                        {
+                            "nombre": "San Martin"
+                        },
+                        {
+                            "nombre": "Calingasta"
+                        },
+                        {
+                            "nombre": "Sarmiento"
+                        },
+                        {
+                            "nombre": "Ullum"
+                        }
+                    ]
+    }
+}

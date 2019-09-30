@@ -33,13 +33,13 @@
                     <!--____________________________________________________________________________-->
                     <!--Zona-->
                     <div class="col-md-2 col-xs-12">
-                         <label for="Zona" class="form-label">Zona:</label>
+                         <label for="zonag" class="form-label">Zona:</label>
                     </div>
                     <div class="col-md-4 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="Zona">
+                        <select class="form-control select2 select2-hidden-accesible" id="zonag">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                    foreach ($disposicionFinal as $i) {
+                                    foreach ($zonag as $i) {
                                         echo '<option>'.$i->nombre.'</option>';
                                     }
                             ?>
@@ -58,13 +58,13 @@
                     <!--____________________________________________________________________________-->
                     <!--Tipo-->
                     <div class="col-md-2 col-xs-12">
-                         <label for="Tipo" class="form-label">Tipo:</label>
+                         <label for="tipo" class="form-label">Tipo:</label>
                     </div>
                     <div class="col-md-4 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="Tipo">
+                        <select class="form-control select2 select2-hidden-accesible" id="tipo">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                    foreach ($disposicionFinal as $i) {
+                                    foreach ($tipo as $i) {
                                         echo '<option>'.$i->nombre.'</option>';
                                     }
                             ?>
@@ -83,13 +83,13 @@
                     <!--____________________________________________________________________________-->
                     <!--Departamento-->
                     <div class="col-md-2 col-xs-12">
-                         <label for="Tipo" class="form-label">Tipo:</label>
+                         <label for="dpto" class="form-label">Departamento:</label>
                     </div>
                     <div class="col-md-4 col-xs-12">
-                        <select class="form-control select2 select2-hidden-accesible" id="Tipo">
+                        <select class="form-control select2 select2-hidden-accesible" id="dpto">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                    foreach ($disposicionFinal as $i) {
+                                    foreach ($dpto as $i) {
                                         echo '<option>'.$i->nombre.'</option>';
                                     }
                             ?>

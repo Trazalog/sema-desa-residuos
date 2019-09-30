@@ -1,0 +1,15 @@
+{
+    "tipo" : {
+                    "tipo" : [
+                        {
+                            "nombre": "Tipo 1"
+                        },
+                        {
+                            "nombre": "Tipo 2"
+                        },
+                        {
+                            "nombre": "Tipo 3"
+                        }
+                    ]
+    }
+}
