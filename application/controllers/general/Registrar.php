@@ -4,11 +4,10 @@ class Registrar extends CI_Controller {
     function __construct(){
 
       parent::__construct();
-      $this->load->helper('empresas_helper');
-      $this->load->helper('zonas_helper');
-      $this->load->helper('tipo_residuos_helper');
-      $this->load->helper('circuitos_helper');
-      $this->load->helper('disposiciones_finales_helper');
+      $this->load->helper('zona_generadores_helper');
+      $this->load->helper('tipo_helper');
+      $this->load->helper('departamento_helper');
+
       $this->load->model('general/Zonas');
       $this->load->model('general/Circuitos');
       $this->load->model('general/DisposisionesFinales');
@@ -18,21 +17,17 @@ class Registrar extends CI_Controller {
 
    function registrarT()
    {
-       $data['empresa'] = $this->Empresas->obtener();
-       $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
-       $data['tipoResiduo'] = $this->TipoResiduos->obtener();
-       $data['fecha'] = date('Y-m-d');
-       $this->load->view('layout/orden_transporte', $data);
+       $data['tipo'] = $this->tipo->obtener();
+       $data['zonag'] = $this->zonag->obtener();
+       $data['dpto'] = $this->dpto->obtener();
+       $this->load->view('layout/registrar_generadores', $data);
    }
    function templateOt()
    {
-       $data['empresa'] = $this->Empresas->obtener();
-       $data['circuito'] = $this->Circuitos->obtener();
-       $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
-       $data['tipoResiduo'] = $this->TipoResiduos->obtener();
-       $data['zona'] = $this->Zonas->obtener();
-       $data['fecha'] = date('Y-m-d');
-       $this->load->view('layout/template_ot',$data);
+       $data['tipo'] = $this->tipo->obtener();
+       $data['zonag'] = $this->zonag->obtener();
+       $data['dpto'] = $this->dpto->obtener();
+       //$this->load->view('layout/template_ot',$data);
        
    }
 }
