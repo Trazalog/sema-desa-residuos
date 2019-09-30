@@ -8,7 +8,7 @@ class DisposisionesFinales extends CI_Model
     }
 
     public function obtener(){
-         $aux = $this->rest->callAPI("GET","http://localhost:8080/disposisionesfinales");
+         $aux = $this->rest->callAPI("GET","http://localhost:3000/disposisionesfinales");
          $aux =json_decode($aux["data"]);
          return $aux->disposicionesFinales->disposicionFinal;
     }

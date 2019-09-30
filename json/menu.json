@@ -66,6 +66,11 @@
                                 "titulo": "Template OT",
                                 "icono": "fa-flus",
                                 "link": "general/Orden/templateOt"
+                            },
+                            {
+                                "titulo": "Registrar Generador",
+                                "icono": "fa-flus",
+                                "link": "general/Registrar/templateOt"
                             }
                         ]
                     }
