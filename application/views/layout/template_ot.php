@@ -9,7 +9,7 @@
 <body>
     
 <!--  Box 1-->
-    <div class="box">
+    <div class="box box-primary">
             <div class="box-header with-border">
                 <h3>Template de Orden de Transporte</h3>
             </div>
@@ -25,7 +25,7 @@
             </div>
     </div>
     <!--  Box 2-->
-    <div class="box animated bounceInDown" id="boxDatos" hidden>
+    <div class="box animated bounceInDown " id="boxDatos" hidden>
             <div class="box-header with-border">
                 <h3>Informacion</h3>
             </div>
