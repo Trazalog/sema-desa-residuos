@@ -1,12 +1,11 @@
 <div class="box box-primary">
     <div class="box-header">
         <div class="box-tittle">
-            <h3>Registrar Generadores</h3>
+            <h3>Registrar Generadores</h3>  
         </div>
     </div>
     <!--_____________________________________________-->
     <div class="box-body">
-        <div class="row">
         <div class="formGeneradores">
             <div class="col-md-6">
                 <!--Nombre / Razon social-->
@@ -96,8 +95,7 @@
     </div>
 </div>
 
-
-
+<!--_____________________________________________________________-->
 <!-- Script Agregar datos de registrar_generadores-->
 
 <script>

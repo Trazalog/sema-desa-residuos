@@ -71,6 +71,11 @@
                                 "titulo": "Registrar Generador",
                                 "icono": "fa-flus",
                                 "link": "general/Registrar/templateRg"
+                            },
+                            {
+                                "titulo": "Registrar Transportista",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarT/templateRg"
                             }
                         ]
                     }
