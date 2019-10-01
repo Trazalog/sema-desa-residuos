@@ -9,7 +9,7 @@
 <body>
     
 <!--  Box 1-->
-    <div class="box">
+    <div class="box box-primary animated fadeInLeft">
             <div class="box-header with-border">
                 <h3>Template de Orden de Transporte</h3>
             </div>
@@ -25,7 +25,7 @@
             </div>
     </div>
     <!--  Box 2-->
-    <div class="box animated bounceInDown" id="boxDatos" hidden>
+    <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
             <div class="box-header with-border">
                 <h3>Informacion</h3>
                 <div class="box-tools pull-right">
@@ -122,19 +122,17 @@
                   <!--  </form>  -->
                 </div>
                 <br>
+                <hr>
                 <div class="row">
                     <em class="fas fa-ad"></em>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h4>Transportistas</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            
                                 <div class="row">
+                                        <div class="box-header with-border">
+                                            <h3>Transportistas</h3>
+                                        </div>
+                                        <br>
                                         <div class="col-md-2 col-xs-12">
                                             <label for="selecemp">Empresa:</label>
                                         </div>
@@ -182,12 +180,6 @@
                                            </div>
                                            <div class="col-md-6"></div>
                                 </div>
-                              
-
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
                 </div>
 
                 </div>
@@ -208,7 +200,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-            <div class="box">
+            <div class="box box-primary animated fadeInLeft">
                 <!-- /.box-header -->
                 <div class="box-body">
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
