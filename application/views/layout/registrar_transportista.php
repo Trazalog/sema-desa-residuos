@@ -8,6 +8,7 @@
 <!--_________________________________________________-->
     
     <div class="box-body">
+    <form class="formTransportistas" id="formTransportistas">
 <div class="col-md-6">
     <!--Nombre / Razon social-->
     <div class="form-group">
@@ -29,29 +30,29 @@
     <!--_____________________________________________-->
     <!--Telefono-->
     <div class="form-group">
-        <label for="Direccion" name="Direccion">Direccion:</label>
-        <input type="text" class="form-control" id="Direccion">
+        <label for="Telefono" name="Telefono">Telefono:</label>
+        <input type="text" class="form-control" id="Telefono">
     </div>
     <!--_____________________________________________-->
     <!--Contacto-->
         <div class="form-group">
-        <label for="Direccion" name="Direccion">Direccion:</label>
-        <input type="text" class="form-control" id="Direccion">
+        <label for="Contacto" name="Contacto">Contacto:</label>
+        <input type="text" class="form-control" id="Contacto">
     </div>
     <!--_____________________________________________-->
 </div>
 <div class="col-md-6">
     <!--Resolucion-->
         <div class="form-group">
-        <label for="Direccion" name="Direccion">Direccion:</label>
-        <input type="text" class="form-control" id="Direccion">
+        <label for="Resolucion" name="Resolucion">Resolucion:</label>
+        <input type="text" class="form-control" id="Resolucion">
     </div>
     <!--_____________________________________________-->
 
     <!--Registro-->
         <div class="form-group">
-        <label for="Direccion" name="Direccion">Direccion:</label>
-        <input type="text" class="form-control" id="Direccion">
+        <label for="Registro" name="Registro">Registro:</label>
+        <input type="text" class="form-control" id="Registro">
     </div>
     <!--_____________________________________________-->
     <!--Fecha de alta-->
@@ -94,16 +95,58 @@
         </select>
     </div>
     <!--_____________________________________________-->
-
-
     <!--Boton de guardado-->
     <br>
 
-    <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+    <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
     <!--_____________________________________________-->
 </div>
+    </form>
     <br>
 
+
+<!-- Script Agregar datos de registrar_generadores-->
+
+<script>
+function agregarDato(){
+    console.log("entro a agregar datos");
+    $('#formTransportistas').on('submit', function(e){
+
+    e.preventDefault();
+    var me = $(this);
+    if ( me.data('requestRunning') ) {return;}
+    me.data('requestRunning', true);
+
+    datos=$('#formTransportistas').serialize();
+    console.log(datos);
+        //--------------------------------------------------------------
+
+
+    $.ajax({
+                type:"POST",
+                data:datos,
+                url:"ajax/Registrartransportista/guardarDato",
+                success:function(r){
+                    if(r == "ok"){
+                        //console.log(datos);
+                        $('#formTransportistas')[0].reset();
+                        alertify.success("Agregado con exito");
+                    }
+                    else{
+                        console.log(r);
+                        $('#formTransportistas')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
+                }
+            });
+            
+    });
+    
+}
+</script>
 
 
 

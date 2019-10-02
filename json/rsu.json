@@ -2,16 +2,13 @@
     "Rsu" : {
             "Rsu" : [
                 {
-                    "nombre": "Item #1"
+                    "nombre": "Tipo Residuo"
                 },
                 {
-                    "nombre": "Item #2"
+                    "nombre": "Rsu"
                 },
                 {
-                    "nombre": "Item #3"
-                },
-                {
-                    "nombre": "Item #4"
+                    "nombre": "Escombro"
                 }
             ]
     }

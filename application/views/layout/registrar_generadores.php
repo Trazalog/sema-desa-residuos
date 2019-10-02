@@ -6,7 +6,8 @@
     </div>
     <!--_____________________________________________-->
     <div class="box-body">
-        <div class="formGeneradores">
+        <form class="formGeneradores" id="formGeneradores">
+            
             <div class="col-md-6">
                 <!--Nombre / Razon social-->
                 <div class="form-group">
@@ -87,10 +88,10 @@
                 <!--_____________________________________________-->
                 <!--Boton de guardado-->
                 <br>
-                <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
                 <!--_____________________________________________-->
             </div>
-        </div>
+        </form>
         </div>
     </div>
 </div>
@@ -100,7 +101,7 @@
 
 <script>
 function agregarDato(){
-
+    console.log("entro a agregar datos");
     $('#formGeneradores').on('submit', function(e){
 
     e.preventDefault();
@@ -109,14 +110,14 @@ function agregarDato(){
     me.data('requestRunning', true);
 
     datos=$('#formGeneradores').serialize();
-    
+    console.log(datos);
         //--------------------------------------------------------------
 
 
     $.ajax({
                 type:"POST",
                 data:datos,
-                url:"ajax/Registrargeneradores/guardarDato",
+                url:"ajax/Registrargenerador/guardarDato",
                 success:function(r){
                     if(r == "ok"){
                         //console.log(datos);
