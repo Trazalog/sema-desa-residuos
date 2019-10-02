@@ -76,6 +76,11 @@
                                 "titulo": "Registrar Transportista",
                                 "icono": "fa-flus",
                                 "link": "general/RegistrarT/templateRt"
+                            },
+                            {
+                                "titulo": "Registrar Zona",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarZ/templateRz"
                             }
                         ]
                     }
