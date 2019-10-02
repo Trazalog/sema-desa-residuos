@@ -1,0 +1,18 @@
+{
+    "Rsu" : {
+            "Rsu" : [
+                {
+                    "nombre": "Item #1"
+                },
+                {
+                    "nombre": "Item #2"
+                },
+                {
+                    "nombre": "Item #3"
+                },
+                {
+                    "nombre": "Item #4"
+                }
+            ]
+    }
+}

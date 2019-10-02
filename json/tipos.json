@@ -2,13 +2,10 @@
     "TipoG" : {
                     "TipoG" : [
                         {
-                            "nombre": "Tipo 1"
+                            "nombre": "Eventual"
                         },
                         {
-                            "nombre": "Tipo 2"
-                        },
-                        {
-                            "nombre": "Tipo 3"
+                            "nombre": "Regular"
                         }
                     ]
     }
