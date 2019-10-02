@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Template OT</title>
-</head>
-<body>
-    
-<!--  Box 1-->
+    <!--  Box 1-->
     <div class="box box-primary animated fadeInLeft">
             <div class="box-header with-border">
                 <h3>Template de Orden de Transporte</h3>
@@ -40,19 +30,19 @@
                     <div class="col-md-1 col-xs-12">
                          <label for="nro" class="form-label">Nro:</label>
                     </div>
-                    <div class="col-md-2 col-xs-12">
+                    <div class="col-md-2 col-xs-12 form-group">
                             <input type="number" size="10" type="text" name="nro" id="nro" min="0" class="form-control" auto required pattern="^(0|[1-9][0-9]*)$">
                     </div>
                     <div class="col-md-1 col-xs-12">
                             <label for="fecha" class="form-label">Fecha:</label>
                     </div>
-                    <div class="col-md-3 col-xs-12">
+                    <div class="col-md-3 col-xs-12 form-group">
                             <input type="date" id="fecha" name="fecha" value="<?php echo $fecha;?>" class="form-control" required>
                     </div>
                     <div class="col-md-2 col-xs-12">
                          <label for="dispfinal" class="form-label">Disposicion final:</label>
                     </div>
-                    <div class="col-md-3 col-xs-12">
+                    <div class="col-md-3 col-xs-12 form-group">
                         <select class="form-control select2 select2-hidden-accesible" id="dispfinal" name="dispfinal" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
@@ -68,7 +58,7 @@
                     <div class="col-md-1 col-xs-12">
                          <label for="zona" class="form-label">Zona:</label>
                     </div>
-                    <div class="col-md-3 col-xs-12">
+                    <div class="col-md-3 col-xs-12 form-group">
                         <select class="form-control select2 select2-hidden-accesible" id="zona" name="zona" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
@@ -84,7 +74,7 @@
                     <div class="col-md-1 col-xs-12">
                         <label for="circuito" class="form-label">Circuito:</label>
                     </div>
-                    <div class="col-md-3 col-xs-12">
+                    <div class="col-md-3 col-xs-12 form-group">
                         <select class="form-control select2 select2-hidden-accesible" id="circuito" name="circuito" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
@@ -98,11 +88,10 @@
                 <br>
                
                 <div class="row">
-                  <!--  <form autocomplete="off" id="formInfo" method="POST"> -->
                     <div class="col-md-2 col-xs-12">
                         <label for="tiporesiduo" class="form-label">Tipo de residuo:</label>
                     </div>
-                    <div class="col-md-3 col-xs-12">
+                    <div class="col-md-3 col-xs-12 form-group">
                         <select class="form-control select2 select2-hidden-accesible" id="tiporesiduo" name="tiporesiduo" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
@@ -113,7 +102,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 col-lg-1 col-xs-12 text-center" hidden>
-                            <button type="button"  onclick="" title="agregar tipo de residuo" class="btn btn-secondary btn-sm btn-circle" aria-label="Left Align" id="btn_info">
+                            <button type="button"  title="agregar tipo de residuo" class="btn btn-secondary btn-sm btn-circle" aria-label="Left Align" id="btn_info">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button><br>
                             <small for="agregar" class="form-label">Agregar</small>
@@ -136,20 +125,24 @@
                                         <div class="col-md-2 col-xs-12">
                                             <label for="selecemp">Empresa:</label>
                                         </div>
-                                        <select multiple="" class="col-md-3 col-xs-12" id="selecemp" name="empresa" required>
-                                            <?php
-                                            foreach ($empresa as $i) {
-                                                echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
-                                            }
-                                            ?>
-                                        </select>
+                                        <div class="form-goup col-md-3 col-xs-12">
+                                            <select multiple="" class="form-control select2 select2-hidden-accesible" id="selecemp" name="empresa" required>
+                                                <?php
+                                                foreach ($empresa as $i) {
+                                                    echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
                                         <!-- otro select -->
                                         <div class="col-md-2 col-xs-12">
                                             <label for="selecemp">Movilidad:</label>
                                         </div>
-                                        <select multiple="" class="col-md-2 col-xs-12" id="selecmov" name="movilidad" required>
+                                        <div class="form-goup col-md-2 col-xs-12">
+                                        <select multiple="" class="form-control select2 select2-hidden-accesible" id="selecmov" name="movilidad" required>
                                             
                                         </select>
+                                        </div>
                                         <div class="col-md-3"></div>
                                 </div>
                                 <br>
@@ -157,14 +150,14 @@
                                     <div class="col-md-2 col-xs-12">
                                             <label for="registron" class="form-label">Registro n°:</label>
                                     </div>
-                                    <div class="col-md-3 col-xs-12">
-                                            <input type="text" name="registron" id="registron" name="numreg" required readonly>
+                                    <div class="col-md-3 col-xs-12 form-group">
+                                            <input type="text" class="form-control" name="registron" id="registron" name="numreg" readonly>
                                     </div>
                                     <div class="col-md-2 col-xs-12">
                                             <label for="dominio" class="form-label">Dominio:</label>
                                     </div>
-                                    <div class="col-md-3 col-xs-12">
-                                            <input type="text" name="dominio" id="dominio" name="dominio" required readonly>
+                                    <div class="col-md-3 col-xs-12 form-group">
+                                            <input type="text" class="form-control" name="dominio" id="dominio" name="dominio" readonly>
                                     </div>
                                     <div class="col-md-2"></div>
                                 </div>
@@ -173,7 +166,7 @@
                                            <div class="col-md-2 col-xs-12">
                                                 <label for="chofer" class="form-label">Chofer:</label>
                                            </div>
-                                           <div class="col-md-4 col-xs-12">
+                                           <div class="col-md-4 col-xs-12 form-group">
                                                <select class="form-control select2 select2-hidden-accesible" id="chofer" name="chofer" required>
                                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                                </select>
@@ -186,7 +179,7 @@
                 <div class="row">
                         <div class="col-md-10 col-lg-11 col-xs-12"></div>
                         <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                                <button type="submit" class="btn btn-primary" aria-label="Left Align" onclick="agregarDato()">
+                                <button type="submit" class="btn btn-primary" aria-label="Left Align">
                                     Guardar
                                 </button><br>
                         </div>
@@ -233,8 +226,134 @@
             </div>
             <!-- /.box -->
         </div>
-</body>
-</html>
+
+<!-- script bootstrap validator -->
+
+<script>
+  
+    $('#formDatos').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        fields: {
+            nro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            dispfinal: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            zona: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            circuito: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            tiporesiduo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            empresa: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'seleccione una opcion'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            movilidad: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'seleccione una opcion'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            chofer: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            }
+        }
+    }).on('success.form.bv', function(e){
+        e.preventDefault();
+        guardar();
+    });
+
+</script>
 
 <!-- script que cierra box con boton (x) -->
 
@@ -297,14 +416,7 @@
 
 <script>
 
-function agregarDato(){
-
-    $('#formDatos').on('submit', function(e){
-
-    e.preventDefault();
-    var me = $(this);
-    if ( me.data('requestRunning') ) {return;}
-    me.data('requestRunning', true);
+function guardar(){
 
     datos=$('#formDatos').serialize();
     
@@ -327,8 +439,9 @@ function agregarDato(){
         var dominio = getValue("dominio");
         var chofer = getValue("chofer");
         //--------------------------------------------------------------
-        
-    $.ajax({
+
+        if($("#formDatos").data('bootstrapValidator').isValid()){
+            $.ajax({
                 type:"POST",
                 data:datos,
                 url:"ajax/Ordentrabajo/guardarDato",
@@ -337,25 +450,22 @@ function agregarDato(){
                         //console.log(datos);
                         html = '<tr role="row" class="even"><td>'+zona+'</td><td>'+circuito+'</td><td>'+empresa+'</td><td>'+movilidad+'</td><td>'+chofer+'</td><td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td></tr>';
                         $('#primero').after(html);
-                        $('#formDatos')[0].reset();
+                        $('#formDatos').data('bootstrapValidator').resetForm();
+                        $("#formDatos")[0].reset();
                         $('#selecmov').find('option').remove();
+                        $('#chofer').find('option').remove();
+                        $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
                         $("#boxDatos").hide(500);
                         $("#botonAgregar").removeAttr("disabled");
                         alertify.success("Agregado con exito");
                     }
                     else{
-                        console.log(r);
-                        $('#formDatos')[0].reset();
-                        $('#selecmov').find('option').remove();
+                        //console.log(r);
                         alertify.error("error al agregar");
                     }
-                },
-                complete: function() {
-                    me.data('requestRunning', false);
                 }
             });
-            
-    });
+        }
     
 }
 

@@ -94,3 +94,6 @@ define('DEF_VIEW','test');
 //Componentes Formularios
 define('FRM','traz-comp-form/');
 
+define('PORT', ':8080/');
+
+define('REST', 'http://localhost'.PORT);

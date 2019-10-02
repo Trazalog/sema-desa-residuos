@@ -7,7 +7,7 @@ class Empresas extends CI_Model {
     }
     
     public function obtener(){
-        $aux = $this->rest->callAPI("GET","http://localhost:8080/empresas");
+        $aux = $this->rest->callAPI("GET",REST."empresas");
         $aux =json_decode($aux["data"]);
         return $aux->empresas->empresa;
    }

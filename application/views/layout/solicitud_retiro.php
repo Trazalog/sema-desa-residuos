@@ -26,12 +26,12 @@
                 <br>
                 <hr>
                 <br>
-                <form autocomplete="off" id="formDatos" method="POST">
+                <form autocomplete="off" id="formDatos" class="registerForm">
                 <div class="row">
                     <div class="col-md-2 col-xs-12">
-                         <label for="tipores" class="form-label">Tipo residuo:</label>
+                         <label for="tipores" class="control-label">Tipo residuo:</label>
                     </div>
-                    <div class="col-md-3 col-xs-12">
+                    <div class="col-md-3 col-xs-12 form-group">
                         <select class="form-control select2 select2-hidden-accesible" id="tipores" name="tipo_residuo" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
@@ -42,27 +42,33 @@
                         </select>
                     </div>
                     <div class="col-md-2 col-xs-12">
-                         <label for="contenedor" class="form-label">Contenedor:</label>
+                         <label for="contenedor" class="control-label">Contenedor:</label>
                     </div>
-                    <div class="col-md-2 col-xs-12">
-                         <input type="number" id="contenedor" name="contenedor" class="form-control" min="1" required pattern="^(0|[1-9][0-9]*)$">
+                    <div class="col-md-2 col-xs-12 form-group">
+                         <input type="text" id="contenedor" name="contenedor" class="form-control" required>
                     </div>
+                     
                     <div class="col-md-1 col-xs-12">
                             <label for="Nro" class="form-label">Otro:</label>
                     </div>
+                    
                     <div class="col-md-2 col-xs-12">
                          <input type="text" id="otro" name="otro" class="form-control">
-                    </div>
+                    </div> 
+                    
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-md-10 col-lg-11 col-xs-12"></div>
-                    <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                            <button type="submit" class="btn btn-primary btn-circle" aria-label="Left Align" onclick="agregarDato()">
+                    <div class="form-group">
+                        <div class="col-md-2 col-lg-1 col-xs-12 text-center">
+                            <button id="btn-add" type="submit" class="btn btn-primary btn-circle" aria-label="Left Align">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button><br>
                             <small for="agregar" class="form-label">Agregar</small>
+                        </div>
                     </div>
+
                 </div>
               </form>
               <br>
@@ -126,15 +132,61 @@
             </div>
         </div>
         
+<!-- script bootstrap validator -->
 
 <script>
-    function agregarDato(){
-        $('#formDatos').on('submit', function(e){
+  
+    $('#formDatos').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        fields: {
+            contenedor: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            tipo_residuo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            }
+        }
+    }).on('success.form.bv', function(e){
+        e.preventDefault();
+        guardar();
+    });
 
-            e.preventDefault();
-            var me = $(this);
-            if ( me.data('requestRunning') ) {return;}
-            me.data('requestRunning', true);
+</script>
+
+<!-- script agregar dato -->
+
+<script>
+    
+        function guardar(){
 
             datos=$('#formDatos').serialize();
 
@@ -152,8 +204,9 @@
             var tipo_residuo = getValue("tipo_residuo");
             var contenedor = getValue("contenedor");
             //--------------------------------------------------------------
+            if($("#formDatos").data('bootstrapValidator').isValid()){
 
-            $.ajax({
+                $.ajax({
                 type:"POST",
                 data:datos,
                 url:"ajax/Ordentrabajo/guardarRes",
@@ -162,19 +215,19 @@
                         //console.log(datos);
                         html = '<tr role="row" class="even"><td>'+tipo_residuo+'</td><td>'+contenedor+'</td>';
                         $('#primero').after(html);
-                        $('#formDatos')[0].reset();
+                        $('#formDatos').data('bootstrapValidator').resetForm(true);
                         alertify.success("Agregado con exito");
                     }
                     else{
-                        console.log(r);
-                        $('#formDatos')[0].reset();
+                        //console.log(r);
                         alertify.error("error al agregar");
                     }
                 },
-                complete: function() {
-                    me.data('requestRunning', false);
-                }
             });
-        });
-    }
+            }else{
+                
+                console.log("la entrada no puede ser vacia");
+            }
+        };
+    
 </script>

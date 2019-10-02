@@ -8,7 +8,7 @@ class TipoResiduos extends CI_Model
     }
 
     public function obtener(){
-         $aux = $this->rest->callAPI("GET","http://localhost:8080/tiporesiduos");
+         $aux = $this->rest->callAPI("GET",REST."tiporesiduos");
          $aux =json_decode($aux["data"]);
          return $aux->tipoResiduos->tipoResiduo;
     }
