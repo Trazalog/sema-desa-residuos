@@ -87,7 +87,7 @@
                 <!--_____________________________________________-->
                 <!--Boton de guardado-->
                 <br>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-primary pull-right">Guardar</button>
                 <!--_____________________________________________-->
             </div>
         </div>

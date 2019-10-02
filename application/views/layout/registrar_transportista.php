@@ -55,27 +55,33 @@
     </div>
     <!--_____________________________________________-->
     <!--Fecha de alta-->
-    <div class="input-group date">
-        <label for="Fechaalta" name="Fecha_de_alta">Fecha de Alta:</label>
-        <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-            </div>
-            <input type="text" class="form-control pull-right" id="datepicker">
-    </div>
-    <br>
+    <div class="form-group">
+                <label for="Fechalta" name="Fecha_de_alta">Fecha de alta:</label>
+
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" id="datepicker">
+                </div>
+                <!-- /.input group -->
+              </div>
+
     <!--_____________________________________________-->
     <!--Fecha de alta-->
-    <div class="input-group date">
-        <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
-        <div class="input-group-addon">
-            <i class="fa fa-calendar"></i>
-            </div>
-            <input type="text" class="form-control pull-right" id="datepicker">
-    </div>
+    <div class="form-group">
+                <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
+
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" id="datepicker">
+                </div>
+                <!-- /.input group -->
+              </div>
     <!--_____________________________________________-->
     <!--Tipo de RSU autorizado-->
-    <br>
-    <br>
     <div class="form-group">
     <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
         <select class="form-control select2 select2-hidden-accesible" id="Rsu">
@@ -92,9 +98,11 @@
 
     <!--Boton de guardado-->
     <br>
-    <button type="submit" class="btn btn-primary">Guardar</button>
+
+    <button type="submit" class="btn btn-primary pull-right">Guardar</button>
     <!--_____________________________________________-->
 </div>
+    <br>
 
 
 
