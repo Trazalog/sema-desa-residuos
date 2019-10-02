@@ -1,0 +1,14 @@
+{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "nombrerazonsocial": "",
+                        "cuit": "",
+                        "rubro": "",
+                        "domicilio": "",
+                        "numeroregistro": "",
+                        "tiporesiduo": "",
+                    }
+                ]
+    }
+}

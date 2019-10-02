@@ -8,7 +8,7 @@ class Zonas extends CI_Model
     }
 
     public function obtener(){
-         $aux = $this->rest->callAPI("GET","http://localhost:8080/zonas");
+         $aux = $this->rest->callAPI("GET","http://localhost:3000/zonas");
          $aux =json_decode($aux["data"]);
          return $aux->zonas->zona;
     }
