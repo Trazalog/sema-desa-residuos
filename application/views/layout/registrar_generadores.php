@@ -139,3 +139,137 @@ function agregarDato(){
     
 }
 </script>
+<!--Script Bootstrap Validacion.-->
+<script>
+  
+  $('#formGeneradores').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      fields: {
+        Nombre_razon: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Cuit: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Zona: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Rubro: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Tipo: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Domicilio: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Departamento: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Numero_registro: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Tipo_Residuo: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          }
+      }
+  }).on('success.form.bv', function(e){
+      e.preventDefault();
+      guardar();
+  });
+
+</script>
