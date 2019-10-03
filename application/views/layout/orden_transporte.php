@@ -1,6 +1,7 @@
     <!--  Box 1-->
     <div class="box box-primary animated fadeInLeft">
             <div class="box-body">
+                <br>
                 <div class="row">
                     <div class="col-md-1 col-xs-12">
                             <label for="Nro" class="form-label">Nro:</label>
