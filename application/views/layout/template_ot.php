@@ -116,17 +116,23 @@
                     <em class="fas fa-ad"></em>
                 </div>
                 <div class="row">
+                    <div class="box-header with-border">
+                        <h3>Transportistas</h3>
+                    </div>
+                    <br>
                     <div class="col-xs-12">
                                 <div class="row">
-                                        <div class="box-header with-border">
-                                            <h3>Transportistas</h3>
-                                        </div>
-                                        <br>
+                                    <div class="col-md-12 col-xs-12" >
+                                        <small for="selecemp">*se debe seleccionar una empresa para ver las movilidades disponibles</small>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
                                         <div class="col-md-2 col-xs-12">
                                             <label for="selecemp">Empresa:</label>
                                         </div>
-                                        <div class="form-goup col-md-3 col-xs-12">
-                                            <select multiple="" class="form-control select2 select2-hidden-accesible" id="selecemp" name="empresa" required>
+                                        <div class="form-group col-md-3 col-xs-12">
+                                            <select multiple="" class="form-control" id="selecemp" name="empresa" required>
                                                 <?php
                                                 foreach ($empresa as $i) {
                                                     echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
@@ -136,14 +142,13 @@
                                         </div>
                                         <!-- otro select -->
                                         <div class="col-md-2 col-xs-12">
-                                            <label for="selecemp">Movilidad:</label>
+                                            <label for="selecmov">Movilidad:</label>
                                         </div>
-                                        <div class="form-goup col-md-2 col-xs-12">
-                                        <select multiple="" class="form-control select2 select2-hidden-accesible" id="selecmov" name="movilidad" required>
-                                            
-                                        </select>
+                                        <div class="form-group col-md-3 col-xs-12">
+                                            <select multiple="" class="form-control" id="selecmov" name="movilidad" required>
+                                            </select>
                                         </div>
-                                        <div class="col-md-3"></div>
+                                        <div class="col-md-2"></div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -151,13 +156,13 @@
                                             <label for="registron" class="form-label">Registro n°:</label>
                                     </div>
                                     <div class="col-md-3 col-xs-12 form-group">
-                                            <input type="text" class="form-control" name="registron" id="registron" name="numreg" readonly>
+                                            <input type="text" class="" name="registron" id="registron" name="numreg" readonly>
                                     </div>
                                     <div class="col-md-2 col-xs-12">
                                             <label for="dominio" class="form-label">Dominio:</label>
                                     </div>
                                     <div class="col-md-3 col-xs-12 form-group">
-                                            <input type="text" class="form-control" name="dominio" id="dominio" name="dominio" readonly>
+                                            <input type="text" class="" name="dominio" id="dominio" name="dominio" readonly>
                                     </div>
                                     <div class="col-md-2"></div>
                                 </div>
@@ -230,7 +235,7 @@
 <!-- script bootstrap validator -->
 
 <script>
-  
+
     $('#formDatos').bootstrapValidator({
         message: 'This value is not valid',
         /*feedbackIcons: {
@@ -238,6 +243,7 @@
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },*/
+        excluded: ':disabled',
         fields: {
             nro: {
                 message: 'la entrada no es valida',
@@ -352,7 +358,6 @@
         e.preventDefault();
         guardar();
     });
-
 </script>
 
 <!-- script que cierra box con boton (x) -->
@@ -361,6 +366,10 @@
     $("#btnclose").on("click", function(){
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
     });
 </script>
 
