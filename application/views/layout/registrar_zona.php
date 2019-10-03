@@ -40,6 +40,11 @@
                     </select>
                 </div>
                 <!--_____________________________________________-->
+                <!--Adjuntador de imagenes-->
+                <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+                    <input type="file" name="upload">
+                </form>
+                <!--_____________________________________________-->
     </div>
     <div class="box-body">
             <div class="col-md-6">
