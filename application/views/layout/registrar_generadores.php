@@ -170,7 +170,7 @@ function agregarDato(){
                       message: 'la entrada no puede ser vacia'
                   },
                   regexp: {
-                      regexp: /[A-Za-z]/,
+                      regexp: /[0-9]*/,
                       message: 'la entrada debe ser un numero entero'
                   }
               }
@@ -181,10 +181,6 @@ function agregarDato(){
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada debe ser un numero entero'
                   }
               }
           },
@@ -197,7 +193,7 @@ function agregarDato(){
                   },
                   regexp: {
                       regexp: /[A-Za-z]/,
-                      message: 'la entrada debe ser un numero entero'
+                      message: 'la entrada no debe ser un numero entero'
                   }
               }
           },
@@ -207,10 +203,6 @@ function agregarDato(){
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada debe ser un numero entero'
                   }
               }
           },
@@ -223,7 +215,7 @@ function agregarDato(){
                   },
                   regexp: {
                       regexp: /[A-Za-z]/,
-                      message: 'la entrada debe ser un numero entero'
+                      message: 'la entrada no debe ser un numero entero'
                   }
               }
           },
@@ -233,10 +225,6 @@ function agregarDato(){
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada debe ser un numero entero'
                   }
               }
           },
@@ -248,7 +236,7 @@ function agregarDato(){
                       message: 'la entrada no puede ser vacia'
                   },
                   regexp: {
-                      regexp: /[A-Za-z]/,
+                      regexp: /[0-9]*/,
                       message: 'la entrada debe ser un numero entero'
                   }
               }
@@ -262,7 +250,7 @@ function agregarDato(){
                   },
                   regexp: {
                       regexp: /[A-Za-z]/,
-                      message: 'la entrada debe ser un numero entero'
+                      message: 'la entrada no debe ser un numero entero'
                   }
               }
           }
