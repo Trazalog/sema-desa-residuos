@@ -247,10 +247,10 @@
                                             <td>Residuo solido urbano</td>
                                             <td>Generador 2</td>
                                             <td>4/10/2019</td>
-                                            <td class="sorting_1"><button type="button"
+                                            <td class="sorting_1"><button type="button" id="btnrectificar" data-toggle="modal" data-target="#modalRectificar"
                                                     title="rectificar" class="btn btn-primary btn-circle"><span
                                                         class="glyphicon glyphicon-pencil"
-                                                        aria-hidden="true"></span></button>&nbsp<button type="button"
+                                                        aria-hidden="true"></span></button>&nbsp<button type="button" id="btninfo"
                                                     title="info" class="btn btn-primary btn-circle"><span
                                                         class="glyphicon glyphicon-info-sign"
                                                         aria-hidden="true"></span></button></td>
@@ -304,6 +304,132 @@
         </div>
     </div>
 
+    <!-- Modal rectificativa-->
+	<div class="modal fade"  id="modalRectificar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Rectificativa</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="frmrect" method="POST" autocomplete="off" class="registerForm">
+                        <!-- <input type="text" hidden="" id="idpersona" name="idpersona">  -->
+                        
+                        <div class="row">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary active" id="btnadd">Agregar</button>
+                                <button type="button" class="btn btn-primary" id="btnview">Ver cargadas</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="formadd">
+                                <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Numero</label>
+                                                <input type="text" class="form-control input-sm" id="numero" name="numero" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label">fecha</label>
+                                                    <input type="date" class="form-control input-sm" value="<?php echo $fecha;?>" id="fecha" name="fecha" required>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Motivo</label>
+                                                        <input type="text" class="form-control input-sm" id="motivo" name="motivo" required>
+                                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                                
+                                                        <div class="form-group">
+                                                            <label class="form-label">Descripcion</label>
+                                                            <textarea type="text" class="form-control input-sm" rows="5" id="descripcion" name="descripcion" required></textarea>
+                                                        </div>
+                                                        
+                                                
+                                        </div>
+                                    </div> 
+                        </div>
+                        
+                        <br>
+                        <div class="row">
+                                <div class="col-sm-12">
+                                        <table id="tablamodal" class="table table-condensed table-bordered table-hover" role="grid"
+                                            aria-describedby="example2_info" hidden>
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                                        colspan="1" aria-sort="ascending"
+                                                        aria-label="Rendering engine: activate to sort column descending">Nro</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                        colspan="1" aria-label="Browser: activate to sort column ascending">Fecha
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                        colspan="1" aria-label="Platform(s): activate to sort column ascending">
+                                                        Motivo</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                        colspan="1" aria-label="Engine version: activate to sort column ascending">
+                                                        Descripcion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tabadd">
+            
+                                                <tr role="row" class="even" id="primero">
+                                                    <td>7</td>
+                                                    <td>4/10/2019</td>
+                                                    <td>Motivo 2</td>
+                                                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, quis! Aut assumenda enim quisquam.</td>
+                                                </tr>
+                                                <tr role="row" class="even" id="primero">
+                                                    <td>5</td>
+                                                    <td>1/10/2019</td>
+                                                    <td>Motivo 1</td>
+                                                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, quis! Aut assumenda enim quisquam.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                        </div>
+                        <div >
+                                <div class="form-group text-right">
+                                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                                </div>
+                        </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<!-- script modal -->
+<script>
+    $("#btnview").on("click", function(){
+        $("#btnadd").removeClass("active");
+        $("#btnview").addClass("active");
+        $("#tablamodal").show();
+        $("#formadd").hide();
+        $("#btnsave").hide();
+    });
+
+    $("#btnadd").on("click", function(){
+        $("#btnadd").addClass("active");
+        $("#btnview").removeClass("active");
+        $("#formadd").show();
+        $("#tablamodal").hide();
+        $("#btnsave").show();
+    });
+
+</script>
+
 <!-- script que cierra box con boton (x) -->
 
 <script>
@@ -317,9 +443,85 @@
 </script>
 
 <!-- script bootstrap validator -->
+<script>
+
+        $('#frmrect').bootstrapValidator({
+            message: 'This value is not valid',
+            /*feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },*/
+            fields: {
+                numero: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        },
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                        regexp: {
+                            regexp: /^(0|[1-9][0-9]*)$/,
+                            message: 'la entrada debe ser un numero entero'
+                        }
+                    }
+                },
+                fecha: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                    }
+                },
+                motivo: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'la entrada solo debe contener letras'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                    }
+                },
+                descripcion: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                    }
+                }
+            }
+        }).on('success.form.bv', function (e) {
+            e.preventDefault();
+            guardarmodal();
+        });
+    
+    </script>
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
-
 <script>
 
     $("#botonAgregar").on("click", function () {
@@ -332,6 +534,8 @@
 
 </script>
 
+
+<!-- script bootstrap validator -->
 <script>
 
     $('#formDatos').bootstrapValidator({

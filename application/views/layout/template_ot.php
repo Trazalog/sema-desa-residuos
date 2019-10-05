@@ -405,6 +405,7 @@
 
             $("#botonAgregar").attr("disabled", "");
             //$("#boxDatos").removeAttr("hidden");
+            $("#boxDatos").focus(); 
             $("#boxDatos").show();
 
         });
