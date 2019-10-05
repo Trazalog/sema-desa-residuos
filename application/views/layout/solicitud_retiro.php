@@ -218,8 +218,8 @@
                             <div class="col-sm-6"></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
-                                <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                            <div class="col-sm-12 table-scroll">
+                                <table id="example2" class="table table-condensed table-bordered table-hover dataTable" role="grid"
                                     aria-describedby="example2_info">
                                     <thead>
                                         <tr role="row">
@@ -251,9 +251,12 @@
                                                     title="rectificar" class="btn btn-primary btn-circle"><span
                                                         class="glyphicon glyphicon-pencil"
                                                         aria-hidden="true"></span></button>&nbsp<button type="button" id="btninfo"
-                                                    title="info" class="btn btn-primary btn-circle"><span
+                                                    title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span
                                                         class="glyphicon glyphicon-info-sign"
-                                                        aria-hidden="true"></span></button></td>
+                                                        aria-hidden="true"></span></button>&nbsp<button type="button" id="btnentrega"
+                                                        title="entregar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEntrega"><span
+                                                            class="glyphicon glyphicon-check"
+                                                            aria-hidden="true"></span></button></td>
                                         </tr>
                                         <!--
                         <tr role="row" class="even">
@@ -309,19 +312,19 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Rectificativa</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
+					<h5 class="modal-title" id="exampleModalLabel">Rectificativa</h5>
 				</div>
 				<div class="modal-body">
 					<form id="frmrect" method="POST" autocomplete="off" class="registerForm">
                         <!-- <input type="text" hidden="" id="idpersona" name="idpersona">  -->
                         
-                        <div class="row">
+                        <div class="row" hidden>
                             <div class="text-center">
-                                <button type="button" class="btn btn-primary active" id="btnadd">Agregar</button>
-                                <button type="button" class="btn btn-primary" id="btnview">Ver cargadas</button>
+                                <button type="button" class="btn btn-sm btn-default active" id="btnadd">Agregar</button>
+                                <button type="button" class="btn btn-sm btn-default" id="btnview">Ver cargadas</button>
                             </div>
                         </div>
                         <br>
@@ -357,13 +360,21 @@
                                                 
                                         </div>
                                     </div> 
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12">
+                                            <!--Adjuntador de imagenes-->
+                                            <div class="form-group">
+                                                <input type="file" class=" input-sm" id="file" name="file" accept=".docx, application/msword, application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
                         </div>
                         
                         <br>
                         <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 table-scroll">
                                         <table id="tablamodal" class="table table-condensed table-bordered table-hover" role="grid"
-                                            aria-describedby="example2_info" hidden>
+                                            aria-describedby="example2_info">
                                             <thead>
                                                 <tr role="row">
                                                     <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
@@ -378,6 +389,9 @@
                                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                         colspan="1" aria-label="Engine version: activate to sort column ascending">
                                                         Descripcion</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                        colspan="1" aria-label="Engine version: activate to sort column ascending">
+                                                        Archivo adjunto</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tabadd">
@@ -387,12 +401,14 @@
                                                     <td>4/10/2019</td>
                                                     <td>Motivo 2</td>
                                                     <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, quis! Aut assumenda enim quisquam.</td>
+                                                    <td></td>
                                                 </tr>
                                                 <tr role="row" class="even" id="primero">
                                                     <td>5</td>
                                                     <td>1/10/2019</td>
                                                     <td>Motivo 1</td>
                                                     <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, quis! Aut assumenda enim quisquam.</td>
+                                                    <td></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -401,15 +417,157 @@
                         <div >
                                 <div class="form-group text-right">
                                     <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                                    <button class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
                                 </div>
                         </div>
 					</form>
 				</div>
 			</div>
 		</div>
+    </div>
+    
+    <!-- Modal informacion-->
+	<div class="modal fade"  id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h5 class="modal-title" id="exampleModalLabel">Informacion</h5>
+				</div>
+				<div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+			</div>
+		</div>
 	</div>
 
+        <!-- Modal Entrega-->
+	<div class="modal fade"  id="modalEntrega" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel">Entrega de contenedor</h5>
+                    </div>
+                    <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+                        <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="nro" class="form-label label-sm">Nro de solicitud</label>
+                                            <input type="text" id="nro" name="nro" class="form-control input-sm" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="generador" class="form-label label-sm">Generador</label>
+                                            <input type="text" id="generador" name="generador" required class="form-control input-sm">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tipores" class="form-label label-sm">Tipo de residuo</label>
+                                            <input type="text" id="tipores" name="tipores" required class="form-control input-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="rectificatoria" class="form-label label-sm">Rectificatoria</label>
+                                            <input type="text" id="rectificatoria" required name="rectificatoria" class="form-control input-sm">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fecha" class="form-label label-sm">Fecha</label>
+                                            <input type="date" id="fecha" name="fecha" required class="form-control input-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="cont" class="form-label label-sm">Contenedor</label>
+                                            <input type="text" id="cont" required name="contenedor" class="form-control input-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="fecharet" class="form-label label-sm">Fecha de retiro</label>
+                                            <input type="date" id="fecharet" required name="fecharetiro" class="form-control input-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            <div class="row">
+                                    <div class="col-sm-12 table-scroll">
+                                            <table id="tablamodal" class="table table-condensed table-bordered table-hover" role="grid"
+                                                aria-describedby="example2_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                                            colspan="1" aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">Codigo</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                            colspan="1" aria-label="Browser: activate to sort column ascending">Capacidad
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                            colspan="1" aria-label="Platform(s): activate to sort column ascending">
+                                                            Tarea</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tabadd">
+                
+                                                    <tr role="row" class="even" id="primero">
+                                                        <td>7</td>
+                                                        <td>4/10/2019</td>
+                                                        <td>Motivo 2</td>
+                                                    </tr>
+                                                    <tr role="row" class="even" id="primero">
+                                                        <td>5</td>
+                                                        <td>1/10/2019</td>
+                                                        <td>Motivo 1</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group text-right">
+                                <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                                <button class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
+<!--script close modal entrega -->
+<script>
+    $("#modalEntrega").on("hidden.bs.modal", function (e) {
+        //console.log("se cerro el modal");
+        $("#frmentrega").data('bootstrapValidator').resetForm(true);
+        $("#frmentrega")[0].reset();
+    });
+</script>
+
+<!--script close modal rectificativa -->
+<script>
+        $("#modalRectificar").on("hidden.bs.modal", function (e) {
+            //console.log("se cerro el modal");
+            $("#frmrect").data('bootstrapValidator').resetForm(true);
+            $("#frmrect")[0].reset();
+        });
+</script>
 <!-- script modal -->
 <script>
     $("#btnview").on("click", function(){
@@ -445,6 +603,121 @@
 <!-- script bootstrap validator -->
 <script>
 
+        $('#frmentrega').bootstrapValidator({
+            message: 'This value is not valid',
+            /*feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },*/
+            excluded: [':disabled'],
+            fields: {
+                nro: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        },
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                        regexp: {
+                            regexp: /^(0|[1-9][0-9]*)$/,
+                            message: 'la entrada debe ser un numero entero'
+                        }
+                    }
+                },
+                fecha: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                    }
+                },
+                generador: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        },
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                    }
+                },
+                tipores: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                    }
+                },
+                rectificatoria: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                    }
+                },
+                contenedor: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                    }
+                },
+                fecharetiro: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                    }
+                }
+            }
+        }).on('success.form.bv', function (e) {
+            e.preventDefault();
+            guardarmodalentrega();
+        });
+    
+    </script>
+
+<!-- script bootstrap validator -->
+<script>
+
         $('#frmrect').bootstrapValidator({
             message: 'This value is not valid',
             /*feedbackIcons: {
@@ -452,6 +725,7 @@
                 invalid: 'glyphicon glyphicon-remove',
                 validating: 'glyphicon glyphicon-refresh'
             },*/
+            excluded: [':disabled'],
             fields: {
                 numero: {
                     message: 'la entrada no es valida',
@@ -512,11 +786,17 @@
                             message: 'The username must be more than 6 and less than 30 characters long'
                         },*/
                     }
+                },
+                file: {
+                        extension: 'doc,pdf',
+                        type: 'application/msword,application/pdf',
+                        //maxSize: 2048 * 1024,
+                        message: 'The selected file is not valid'
                 }
             }
         }).on('success.form.bv', function (e) {
             e.preventDefault();
-            guardarmodal();
+            guardarmodalrectificativa();
         });
     
     </script>

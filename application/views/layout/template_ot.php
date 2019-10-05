@@ -160,7 +160,7 @@
                         <div class="col-sm-6"></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 table-scroll">
                             <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
                                 aria-describedby="example2_info">
                                 <thead>
