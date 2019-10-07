@@ -6,7 +6,6 @@ class Registrargenerador  extends CI_Controller {
       parent::__construct();
       $this->load->model('general/Registrargeneradores');
     }
-
     public function guardarDato()
     {
         $datos =  $this->input->post();
@@ -17,7 +16,4 @@ class Registrargenerador  extends CI_Controller {
           echo "error";
         }
     }
-
 }
-
-

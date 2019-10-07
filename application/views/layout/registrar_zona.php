@@ -42,7 +42,7 @@
                 <!--_____________________________________________-->
                 <!--Adjuntador de imagenes-->
                 <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                    <input type="file" name="upload">
+                    <input  type="file" name="upload">
                 </form>
                 <!--_____________________________________________-->
     </div>
@@ -66,7 +66,7 @@
 
 
 
-<!-- Script Agregar datos de registrar_generadores-->
+<!-- Script Agregar datos de registrar_zona-->
 
 <script>
 function agregarDato(){
@@ -107,4 +107,61 @@ function agregarDato(){
     });
     
 }
+</script>
+<script>
+  
+  $('#formZonas').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      fields: {
+        Nombre: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+          Departamento: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+          Circuito_Recorrido: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'   
+                  }
+              }
+          },
+          Descripcion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+              }
+          }
+      }
+  }).on('success.form.bv', function(e){
+      e.preventDefault();
+      guardar();
+  });
+
 </script>

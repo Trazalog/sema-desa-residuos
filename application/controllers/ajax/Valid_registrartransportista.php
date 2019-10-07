@@ -2,17 +2,17 @@
     
         function guardar(){
  
-            datos=$('#formGeneradores').serialize();
+            datos=$('#formTransportista').serialize();
  
-            if($("#formGeneradores").data('bootstrapValidator').isValid()){
+            if($("#formTransportista").data('bootstrapValidator').isValid()){
  
                 $.ajax({
                 type:"POST",
                 data:datos,
-                url:"ajax/Valid_registrargenerador/guardardato",
+                url:"ajax/Valid_registrartransportista/guardardato",
                 success:function(r){
                     if(r == "ok"){
-               	$('#formGeneradores').data('bootstrapValidator').resetForm(true);
+               	$('#formTransportista').data('bootstrapValidator').resetForm(true);
                      alertify.success("Agregado con exito");
                     }
                     else{

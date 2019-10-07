@@ -36,7 +36,7 @@
                 <!--_____________________________________________-->
                 <!--Rubro-->
                 <div class="form-group">
-                    <label for="Rubro" name="Rubro">Rubro:</label>
+                    <label for="Rubro" name="Rubro" >Rubro:</label>
                     <input type="text" class="form-control" id="Rubro">
                 </div>
                 <!--_____________________________________________-->
@@ -149,6 +149,7 @@ function agregarDato(){
           invalid: 'glyphicon glyphicon-remove',
           validating: 'glyphicon glyphicon-refresh'
       },*/
+      //excluded: ':disabled',
       fields: {
         Nombre_razon: {
               message: 'la entrada no es valida',
@@ -158,7 +159,7 @@ function agregarDato(){
                   },
                   regexp: {
                       regexp: /[A-Za-z]/,
-                      message: 'la entrada debe ser un numero entero'
+                      message: 'la entrada no debe ser un numero entero'
                   }
               }
           },
