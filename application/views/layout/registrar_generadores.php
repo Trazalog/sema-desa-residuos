@@ -171,7 +171,7 @@ function agregarDato(){
                       message: 'la entrada no puede ser vacia'
                   },
                   regexp: {
-                      regexp: /[0-9]*/,
+                      regexp: /^(0|[1-9][0-9]*)$/,
                       message: 'la entrada debe ser un numero entero'
                   }
               }
@@ -237,7 +237,7 @@ function agregarDato(){
                       message: 'la entrada no puede ser vacia'
                   },
                   regexp: {
-                      regexp: /[0-9]*/,
+                      regexp: /^(0|[1-9][0-9]*)$/,
                       message: 'la entrada debe ser un numero entero'
                   }
               }
