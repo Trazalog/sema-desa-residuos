@@ -1,0 +1,18 @@
+{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "nombrerazonsocial": "",
+                        "descripcion": "",
+                        "direccion": "",
+                        "telefono": "",
+                        "contacto": "",
+                        "resolucion": "",
+                        "registro": "",
+                        "fechadealta": "",
+                        "fechadebaja": "",
+                        "tipodersu": "",
+                    }
+                ]
+    }
+}
