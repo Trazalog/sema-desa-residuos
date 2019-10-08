@@ -2,9 +2,9 @@
     
         function guardar(){
  
-            datos=$('#formTransportista').serialize();
+            datos=$('#formTransportistas').serialize();
  
-            if($("#formTransportista").data('bootstrapValidator').isValid()){
+            if($("#formTransportistas").data('bootstrapValidator').isValid()){
  
                 $.ajax({
                 type:"POST",
@@ -12,7 +12,7 @@
                 url:"ajax/Valid_registrartransportista/guardardato",
                 success:function(r){
                     if(r == "ok"){
-               	$('#formTransportista').data('bootstrapValidator').resetForm(true);
+               	$('#formTransportistas').data('bootstrapValidator').resetForm(true);
                      alertify.success("Agregado con exito");
                     }
                     else{

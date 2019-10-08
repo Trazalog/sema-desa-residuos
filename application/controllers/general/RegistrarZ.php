@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class registrarZ extends CI_Controller {
+class RegistrarZ extends CI_Controller {
     function __construct(){
 
       parent::__construct();

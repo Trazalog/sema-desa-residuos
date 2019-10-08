@@ -6,7 +6,6 @@ class Registrarzona  extends CI_Controller {
       parent::__construct();
       $this->load->model('general/Registrarzonas');
     }
-
     public function guardarDato()
     {
         $datos =  $this->input->post();
@@ -17,5 +16,4 @@ class Registrarzona  extends CI_Controller {
           echo "error";
         }
     }
-
 }

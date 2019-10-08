@@ -153,7 +153,7 @@ function agregarDato(){
 <!--Script Bootstrap Validacion.-->
 <script>
   
-  $('#formTransportista').bootstrapValidator({
+  $('#formTransportistas').bootstrapValidator({
       message: 'This value is not valid',
       /*feedbackIcons: {
           valid: 'glyphicon glyphicon-ok',
@@ -193,7 +193,7 @@ function agregarDato(){
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
-                  }
+                  },
                   regexp: {
                       regexp: /[A-Za-z]/,
                       message: 'la entrada no debe ser un numero entero'
@@ -219,7 +219,7 @@ function agregarDato(){
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
-                  }
+                  },
                   regexp: {
                       regexp: /[A-Za-z]/,
                       message: 'la entrada no debe ser un numero entero'
@@ -245,7 +245,7 @@ function agregarDato(){
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
-                  }
+                  },
                   regexp: {
                       regexp: /[A-Za-z]/,
                       message: 'la entrada no debe ser un numero entero'
