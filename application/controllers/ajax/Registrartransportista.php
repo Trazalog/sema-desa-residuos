@@ -6,7 +6,6 @@ class Registrartransportista  extends CI_Controller {
       parent::__construct();
       $this->load->model('general/Registrartransportistas');
     }
-
     public function guardarDato()
     {
         $datos =  $this->input->post();
@@ -17,5 +16,4 @@ class Registrartransportista  extends CI_Controller {
           echo "error";
         }
     }
-
 }
