@@ -6,10 +6,10 @@
     </div>
     <!--_____________________________________________-->
     <div class="box-body">
-        <form class="formGeneradores" id="formGeneradores">
+        <form class="formContenedores" id="formContenedores">
         
         <div class="col-md-6">
-            <!--Nombre / Razon social-->
+            <!--Codigo / Registro-->
                 <div class="form-group">
                     <label for="Codigo/Registro" name="Codigo_registro">Codigo / Registro:</label>
                     <input type="text" class="form-control" id="Codigo/Registro">
@@ -64,7 +64,50 @@
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             <!--_____________________________________________-->
         </div>
-        
+
         </form>
     </div>
 </div>
+
+<!-- Script Agregar datos de registrar_generadores-->
+
+<script>
+function agregarDato(){
+    console.log("entro a agregar datos");
+    $('#formContenedores').on('submit', function(e){
+
+    e.preventDefault();
+    var me = $(this);
+    if ( me.data('requestRunning') ) {return;}
+    me.data('requestRunning', true);
+
+    datos=$('#formContenedores').serialize();
+    console.log(datos);
+        //--------------------------------------------------------------
+
+
+    $.ajax({
+                type:"POST",
+                data:datos,
+                url:"ajax/Registrargenerador/guardarDato",
+                success:function(r){
+                    if(r == "ok"){
+                        //console.log(datos);
+                        $('#formContenedores')[0].reset();
+                        alertify.success("Agregado con exito");
+                    }
+                    else{
+                        console.log(r);
+                        $('#formContenedores')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
+                }
+            });
+            
+    });
+    
+}
+</script>
