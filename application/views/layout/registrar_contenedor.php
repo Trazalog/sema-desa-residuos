@@ -1,7 +1,7 @@
 <div class="box box-primary">
     <div class="box-header">
         <div class="box-tittle">
-           <h3>Registrar Generadores</h3>  
+           <h3>Registrar Contenedor</h3>  
         </div>
     </div>
     <!--_____________________________________________-->

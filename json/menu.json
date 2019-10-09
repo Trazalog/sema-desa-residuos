@@ -81,6 +81,11 @@
                                 "titulo": "Registrar Zona",
                                 "icono": "fa-flus",
                                 "link": "general/RegistrarZ/templateRz"
+                            },
+                            {
+                                "titulo": "Registrar Contenedor",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarC/templateRc"
                             }
                         ]
                     }
