@@ -86,6 +86,11 @@
                                 "titulo": "Registrar Contenedor",
                                 "icono": "fa-flus",
                                 "link": "general/RegistrarC/templateRc"
+                            },
+                            {
+                                "titulo": "Registrar Circuito",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarCi/templateRci"
                             }
                         ]
                     }
