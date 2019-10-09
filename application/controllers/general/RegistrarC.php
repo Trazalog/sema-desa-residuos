@@ -11,12 +11,12 @@ class RegistrarC extends CI_Controller {
 
    function registrarC()
    {
-       $data['Estado'] = $this->Estado->obtener();
+       $data['Estados'] = $this->Estados->obtener();
        $this->load->view('layout/registrar_contenedor', $data);
    }
    function templateRc()
    {
-       $data['Estado'] = $this->Estado->obtener();
+       $data['Estados'] = $this->Estados->obtener();
        $this->load->view('layout/registrar_contenedor',$data);
        
    }

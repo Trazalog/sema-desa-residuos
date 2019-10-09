@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Estado extends CI_Model {
+class Estados extends CI_Model {
     function __construct()
     {
       parent::__construct();
@@ -9,6 +9,6 @@ class Estado extends CI_Model {
     public function obtener(){
         $aux = $this->rest->callAPI("GET","http://localhost:3000/estado");
         $aux =json_decode($aux["data"]);
-        return $aux->estado->estado;
+        return $aux->Estado->Estado;
    }
 }

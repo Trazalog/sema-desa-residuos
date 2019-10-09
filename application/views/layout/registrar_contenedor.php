@@ -43,11 +43,11 @@
             <!--_____________________________________________-->
                 <!--Estado-->
                 <div class="form-group">
-                    <label for="Estado" name="Estado">Estado:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Estado">
+                    <label for="Estados" name="Estados">Estado:</label>
+                    <select class="form-control select2 select2-hidden-accesible" id="Estados">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
-                        foreach ($Estado as $i) {
+                        foreach ($Estados as $i) {
                             echo '<option>'.$i->nombre.'</option>';
                         }
                         ?>
