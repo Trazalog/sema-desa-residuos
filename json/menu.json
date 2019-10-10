@@ -91,6 +91,11 @@
                                 "titulo": "Registrar Circuito",
                                 "icono": "fa-flus",
                                 "link": "general/RegistrarCi/templateRci"
+                            },
+                            {
+                                "titulo": "Registrar Inspector",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarIn/templateIn"
                             }
                         ]
                     }

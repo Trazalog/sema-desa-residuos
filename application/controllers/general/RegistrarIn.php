@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class RegistrarCi extends CI_Controller {
+class RegistrarIn extends CI_Controller {
     function __construct(){
 
       parent::__construct();
@@ -9,15 +9,15 @@ class RegistrarCi extends CI_Controller {
       //$this->load->model('general/Estados');
    }
 
-   function registrarCi()
+   function registrarIn()
    {
        //$data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/registrar_circuitos');
+       $this->load->view('layout/registrar_inspector');
    }
-   function templateRci()
+   function templateIn()
    {
        //$data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/registrar_circuitos');
+       $this->load->view('layout/registrar_inspector');
        
    }
 }
