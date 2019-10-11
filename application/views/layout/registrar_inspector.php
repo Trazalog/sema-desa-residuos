@@ -61,7 +61,7 @@
     </div>
 </div>
 
-<!-- Script Agregar datos de registrar_generadores-->
+<!-- Script Agregar datos de registrar_inspector-->
 
 <script>
 function agregarDato(){
@@ -81,7 +81,7 @@ function agregarDato(){
     $.ajax({
                 type:"POST",
                 data:datos,
-                url:"ajax/Registrargenerador/guardarDato",
+                url:"ajax/Registrarinspector/guardarDato",
                 success:function(r){
                     if(r == "ok"){
                         //console.log(datos);
