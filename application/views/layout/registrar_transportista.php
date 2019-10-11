@@ -102,6 +102,9 @@
     <!--_____________________________________________-->
 </div>
     </form>
+    </div>
+</div>
+
     <br>
 
 
@@ -147,8 +150,6 @@ function agregarDato(){
     
 }
 </script>
-  </div>
-</div>
 
 <!--Script Bootstrap Validacion.-->
 <script>
@@ -302,6 +303,7 @@ function agregarDato(){
                       regexp: /^(0|[1-9][0-9]*)$/,
                       message: 'la entrada debe ser un numero entero'
                   }
+              }
               }
           }
    }).on('success.form.bv', function(e){

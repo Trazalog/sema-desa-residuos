@@ -17,7 +17,7 @@ class RegistrarT extends CI_Controller {
    function templateRt()
    {
        $data['Rsu'] = $this->Rsu->obtener();
-       $this->load->view('layout/registrar_transportista',$data);
+       $this->load->view('layout/registrar_transportista', $data);
        
    }
 }
