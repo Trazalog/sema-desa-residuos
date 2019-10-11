@@ -155,6 +155,10 @@
                 </table>
             </div>
             </div>
+                <!--Boton de guardado-->
+                <br>
+                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+                <!--_____________________________________________-->
             <!--_____________________________________________-->
         </div>
     </form>
