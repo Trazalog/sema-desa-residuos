@@ -36,8 +36,11 @@ $.widget.bridge('uibutton', $.ui.button);
        <script src="<?php base_url();?>lib/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
        <!-- jqBootstrapValidation.js -->
-
        <script src="<?php base_url() ?>lib/jqBootstrapValidation/jqBootstrapValidation.js"></script>
+
+       <!-- plugin sweet alert -->
+       <script src="<?php base_url() ?>lib/sweetalert/sweetalert.min.js"></script>
+       <script src="<?php base_url() ?>lib/sweetalert/sweetalert.js"></script>
 
        <!-- props   -->
        <script src="<?php base_url() ?>lib/props/forms.js"></script>

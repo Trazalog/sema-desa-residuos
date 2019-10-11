@@ -102,7 +102,7 @@
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label for="selecemp" class="form-label">Empresa:</label>
-                        <select multiple="" class="form-control" id="selecemp" name="empresa" required>
+                        <select size="3" class="form-control" id="selecemp" name="empresa" required>
                             <?php
                             foreach ($empresa as $i) {
                                 echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
@@ -112,7 +112,7 @@
                     </div>
                     <div class="form-group">
                         <label for="registron" class="form-label">Registro n°:</label>
-                        <input type="text" class="form-control" name="registron" id="registron" name="numreg" readonly>
+                        <input type="text" class="form-control" id="registron" name="numreg" readonly>
                     </div>
                     <div class="form-group">
                         <label for="chofer" class="form-label">Chofer:</label>
@@ -125,7 +125,7 @@
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label for="selecmov" class="form-label">Movilidad:</label>
-                        <select multiple="" class="form-control" id="selecmov" name="movilidad" required>
+                        <select size="3" class="form-control" id="selecmov" name="movilidad" required>
                         </select>
                     </div>
                     <div class="form-group">
@@ -188,7 +188,7 @@
                                 </thead>
                                 <tbody id="tabadd">
 
-                                    <tr role="row" class="even" id="primero">
+                                    <tr role="row" class="even" id="primero" hidden>
                                         <td>Zona 1</td>
                                         <td>Circuito 5</td>
                                         <td>Transp 1</td>
@@ -197,13 +197,13 @@
                                         <td class="sorting_1"><button type="button" title="ok"
                                                 class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok"
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                title="editar" class="btn btn-primary btn-circle"><span
+                                                title="editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span
                                                     class="glyphicon glyphicon-pencil"
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                title="eliminar" class="btn btn-primary btn-circle"><span
+                                                title="eliminar" class="btn btn-primary btn-circle delete"><span
                                                     class="glyphicon glyphicon-trash"
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                title="buscar" class="btn btn-primary btn-circle"><span
+                                                title="buscar" class="btn btn-primary btn-circle info" data-toggle="modal" data-target="#modalInfo"><span
                                                     class="glyphicon glyphicon-search"
                                                     aria-hidden="true"></span></button></td>
                                     </tr>
@@ -256,11 +256,389 @@
     </div>
 </div>
 
-    <!-- script bootstrap validator -->
+    <!-- Modal editar-->
+	<div class="modal fade"  id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h5 class="modal-title" id="exampleModalLabell">Editar datos</h5>
+				</div>
+				<div class="modal-body">
+                        <form id="formEditDatos" method="POST" autocomplete="off" class="registerForm">
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="nroo" class="form-label">Nro:</label>
+                                            <input type="number" size="10" type="text" name="nro" id="nroo" min="0" class="form-control" auto
+                                                required pattern="^(0|[1-9][0-9]*)$">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="zonaa" class="form-label">Zona:</label>
+                                            <select class="form-control select2 select2-hidden-accesible" id="zonaa" name="zona" required>
+                                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                                <?php
+                                                            foreach ($zona as $i) {
+                                                                echo '<option>'.$i->nombre.'</option>';
+                                                            }
+                                                            ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tiporesiduoo" class="form-label">Tipo de residuo:</label>
+                                            <select class="form-control select2 select2-hidden-accesible" id="tiporesiduoo"
+                                                name="tiporesiduo" required>
+                                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                                <?php
+                                                                foreach ($tipoResiduo as $i) {
+                                                                    echo '<option>'.$i->nombre.'</option>';
+                                                                }
+                                                        ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="fechaa" class="form-label">Fecha:</label>
+                                            <input type="date" id="fechaa" name="fecha" value="<?php echo $fecha;?>" class="form-control"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dispfinall" class="form-label">Disposicion final:</label>
+                                            <select class="form-control select2 select2-hidden-accesible" id="dispfinall" name="dispfinal"
+                                                required>
+                                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                                <?php
+                                                            foreach ($disposicionFinal as $i) {
+                                                                echo '<option>'.$i->nombre.'</option>';
+                                                                }
+                                                            ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="circuitoo" class="form-label">Circuito:</label>
+                                            <select class="form-control select2 select2-hidden-accesible" id="circuitoo" name="circuito"
+                                                required>
+                                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                                <?php
+                                                                foreach ($circuito as $i) {
+                                                                    echo '<option>'.$i->nombre.'</option>';
+                                                                }
+                                                        ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <br>
+                                <hr>
+                    
+                                <div class="row">
+                                    <div class="box-header with-border">
+                                        <h4>Transportistas</h4>
+                                    </div>
+                                    <br>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="selecempp" class="form-label">Empresa:</label>
+                                            <select size="3" class="form-control" id="selecempp" name="empresa" required>
+                                                <?php
+                                                foreach ($empresa as $i) {
+                                                    echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="registronn" class="form-label">Registro n°:</label>
+                                            <input type="text" class="form-control" id="registronn" name="numreg" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="choferr" class="form-label">Chofer:</label>
+                                            <select class="form-control select2 select2-hidden-accesible" id="choferr" name="chofer"
+                                                required>
+                                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="selecmovv" class="form-label">Movilidad:</label>
+                                            <select size="3" class="form-control" id="selecmovv" name="movilidad" required>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dominioo" class="form-label">Dominio:</label>
+                                            <input type="text" class="form-control" name="dominio" id="dominioo" name="dominio" readonly>
+                    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div >
+                                        <div class="form-group text-right">
+                                            <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                                            <button class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                </div>
+                            </form>
+                </div>
+			</div>
+		</div>
+    </div>
+    
+    <!-- Modal info-->
+	<div class="modal fade"  id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h5 class="modal-title" id="exampleModalLabel">Informacion</h5>
+				</div>
+				<div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nro" class="form-label">Nro:</label>
+                                <input type="text" id="num" class="form-control input-sm" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="fechita" class="form-label">Fecha:</label>
+                                <input type="text" id="fechita" class="form-control input-sm" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="zonita" class="form-label">Zona:</label>
+                                <input type="text" id="zonita" class="form-control input-sm" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="dispofinal" class="form-label">Disposicion final</label>
+                                <input type="text" id="dispofinal" class="form-control input-sm" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="tipores" class="form-label">Tipo de residuo:</label>
+                                <input type="text" id="tipores" class="form-control input-sm" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="circuit" class="form-label">Circuito:</label>
+                                <input type="text" id="circuit" class="form-control input-sm" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="empresita" class="form-label">Empresa:</label>
+                                <input type="text" id="empresita" class="form-control input-sm" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="movi" class="form-label">Movilidad:</label>
+                                <input type="text" id="movi" class="form-control input-sm" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg" class="form-label">Registro n°:</label>
+                                <input type="text" id="reg" class="form-control input-sm" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="dom" class="form-label">Dominio:</label>
+                                <input type="text" id="dom" class="form-control input-sm" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="chof" class="form-label">Chofer:</label>
+                                <input type="text" id="chof" class="form-control input-sm" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+			</div>
+		</div>
+    </div>
+    
+    <!-- script muestra datos -->
+    <script>
+        function clickinfo(aux){
+            //console.log(localStorage.getItem('num'));
+            $("#num").val(localStorage.getItem('num'+aux));
+            $("#fechita").val(localStorage.getItem('fecha'+aux));
+            $("#zonita").val(localStorage.getItem('zona'+aux));
+            $("#dispofinal").val(localStorage.getItem('dispfinal'+aux));
+            $("#tipores").val(localStorage.getItem('tiporesiduo'+aux));
+            $("#circuit").val(localStorage.getItem('circuito'+aux));
+            $("#empresita").val(localStorage.getItem('empresa'+aux));
+            $("#movi").val(localStorage.getItem('movilidad'+aux));
+            $("#reg").val(localStorage.getItem('numreg'+aux));
+            $("#dom").val(localStorage.getItem('dominio'+aux));
+            $("#chof").val(localStorage.getItem('chofer'+aux));
+        }
+    </script>
 
+    <!-- script delete con sweet alert 2 -->
+    <script>
+        function borrar(aux){
+            swal({
+            title: "Esta seguro que desea eliminar el elemento?",
+            text: "Una vez completada la accion no se podra revertir el cambio!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Si, eliminar",
+            cancelButtonText: "No, cancelar",
+            closeOnConfirm: false,
+            //closeOnCancel: false
+            },
+            function(isConfirm) {
+            if (isConfirm) {
+                swal({
+                    title: "Eliminado!",
+                    text: "La accion fue completada con exito" ,
+                    type: "success",
+                    timer: 1800,
+                    showConfirmButton: false
+                });
+                $("#"+aux).hide(500);
+            } else {
+                
+            }
+            });
+        }
+    </script>
+
+    <!-- script bootstrap validator -->
     <script>
 
-        $('#formDatos').bootstrapValidator({
+            $('#formDatos').bootstrapValidator({
+                message: 'This value is not valid',
+                /*feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },*/
+                excluded: ':disabled',
+                fields: {
+                    nro: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            /*stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'The username must be more than 6 and less than 30 characters long'
+                            },*/
+                            regexp: {
+                                regexp: /^(0|[1-9][0-9]*)$/,
+                                message: 'la entrada debe ser un numero entero'
+                            }
+                        }
+                    },
+                    dispfinal: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                            /*stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'The username must be more than 6 and less than 30 characters long'
+                            },*/
+                        }
+                    },
+                    zona: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                            /*stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'The username must be more than 6 and less than 30 characters long'
+                            },*/
+                        }
+                    },
+                    circuito: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                            /*stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'The username must be more than 6 and less than 30 characters long'
+                            },*/
+                        }
+                    },
+                    tiporesiduo: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                            /*stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'The username must be more than 6 and less than 30 characters long'
+                            },*/
+                        }
+                    },
+                    empresa: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'seleccione una opcion'
+                            }
+                            /*stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'The username must be more than 6 and less than 30 characters long'
+                            },*/
+                        }
+                    },
+                    movilidad: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'seleccione una opcion'
+                            }
+                            /*stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'The username must be more than 6 and less than 30 characters long'
+                            },*/
+                        }
+                    },
+                    chofer: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                            /*stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'The username must be more than 6 and less than 30 characters long'
+                            },*/
+                        }
+                    }
+                }
+            }).on('success.form.bv', function (e) {
+                e.preventDefault();
+                guardar();
+            });
+        </script>
+
+    <!-- script bootstrap validator -->
+    <script>
+
+        $('#formEditDatos').bootstrapValidator({
             message: 'This value is not valid',
             /*feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -269,75 +647,6 @@
             },*/
             excluded: ':disabled',
             fields: {
-                nro: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                        regexp: {
-                            regexp: /^(0|[1-9][0-9]*)$/,
-                            message: 'la entrada debe ser un numero entero'
-                        }
-                    }
-                },
-                dispfinal: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    }
-                },
-                zona: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    }
-                },
-                circuito: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    }
-                },
-                tiporesiduo: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    }
-                },
                 empresa: {
                     message: 'la entrada no es valida',
                     validators: {
@@ -356,19 +665,6 @@
                     validators: {
                         notEmpty: {
                             message: 'seleccione una opcion'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    }
-                },
-                chofer: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
                         }
                         /*stringLength: {
                             min: 6,
@@ -412,6 +708,38 @@
 
     </script>
 
+        <!-- Script modal para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
+        <script>
+                $(".emp").on('click', function () {
+        
+                    var json = this.dataset.json;
+        
+                    json = JSON.parse(json);
+        
+                    var html_mov = " ", html_chof = "";
+        
+                    json.movilidades.movilidad.forEach(function (valor) {
+                        html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor.dominio + "'>" + valor.nom_movil + "</option>"
+                    });
+        
+                    json.choferes.chofer.forEach(function (valor) {
+                        html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
+                    });
+        
+                    $('#selecmovv').html(html_mov);
+                    $("#choferr").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
+        
+                    $("#registronn").val("");
+                    $("#dominioo").val("");
+                });
+        
+                $("#selecmovv").on('change', function () {
+                    var sel = $(this).find(":selected");
+                    $("#registronn").val(sel.data('reg'));
+                    $("#dominioo").val(sel.data('dom'));
+                });
+            </script>
+
     <!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
     <script>
         $(".emp").on('click', function () {
@@ -446,8 +774,18 @@
         });
     </script>
 
-    <!-- Script Agregar datos -->
+    <!-- Script inicia variable auxiliar gloabal -->
+    <script>
+        $(document).ready(function() {
+            localStorage.setItem('aux', 0);
+            /*var val = localStorage.getItem('aux');
+            var aux = parseInt(val);
+            aux = aux + 1;
+            console.log(aux);*/
+        });
+    </script>
 
+    <!-- Script Agregar datos -->
     <script>
 
         function guardar() {
@@ -472,6 +810,25 @@
             var numreg = getValue("numreg");
             var dominio = getValue("dominio");
             var chofer = getValue("chofer");
+            var fecha = getValue("fecha");
+            var dispfinal = getValue("dispfinal");
+            var tiporesiduo = getValue("tiporesiduo");
+            var num = getValue("nro");
+
+            var aux = parseInt(localStorage.getItem('aux'));
+
+            localStorage.setItem('num'+aux, num);
+            localStorage.setItem('tiporesiduo'+aux, tiporesiduo);
+            localStorage.setItem('dispfinal'+aux, dispfinal);
+            localStorage.setItem('fecha'+aux, fecha);
+            localStorage.setItem('chofer'+aux, chofer);
+            localStorage.setItem('dominio'+aux, dominio);
+            localStorage.setItem('numreg'+aux, numreg);
+            localStorage.setItem('movilidad'+aux, movilidad);
+            localStorage.setItem('circuito'+aux, circuito);
+            localStorage.setItem('zona'+aux, zona);
+            localStorage.setItem('empresa'+aux, empresa);
+            
             //--------------------------------------------------------------
 
             if ($("#formDatos").data('bootstrapValidator').isValid()) {
@@ -482,7 +839,9 @@
                     success: function (r) {
                         if (r == "ok") {
                             //console.log(datos);
-                            html = '<tr role="row" class="even"><td>' + zona + '</td><td>' + circuito + '</td><td>' + empresa + '</td><td>' + movilidad + '</td><td>' + chofer + '</td><td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td></tr>';
+                            html = '<tr id="'+ aux +'" role="row" class="even"><td>' + zona + '</td><td>' + circuito + '</td><td>' + empresa + '</td><td>' + movilidad + '</td><td>' + chofer + '</td><td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td></tr>';
+                            aux = aux + 1;
+                            localStorage.setItem('aux', aux);
                             $('#primero').after(html);
                             $('#formDatos').data('bootstrapValidator').resetForm();
                             $("#formDatos")[0].reset();
