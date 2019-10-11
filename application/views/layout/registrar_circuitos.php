@@ -76,7 +76,6 @@
                 </form>
             <!--_____________________________________________-->
     </div>
-
     </div>
     </form>
 </div>
@@ -103,8 +102,60 @@
                     <label for="Descripcion" name="Descripcion">Descripcion:</label>
                     <input type="text" class="form-control" id="Descripcion">
                 </div>
+            
             <!--_____________________________________________-->
     </div>
+    <hr>
+            <!--Tabla de informacion que devuelve los datos del Punto Critico-->
+            <div class="row">
+            <div class="box-body col-md-12">
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <!--Columna Nombre-->
+                            <th style="width: 10px; text-align: center; border-color: #3c8dbc;">
+                            <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">
+                            Nombre
+                            </font>
+                            </font>
+                            </th>
+                            <!--_____________________________________________-->
+                            <!--Columna Descripcion-->
+                            <th style="width: 10px; text-align: center; border-color: #3c8dbc;">
+                            <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">
+                            Descripcion
+                            </font>
+                            </font>
+                            </th>
+                            <!--_____________________________________________-->
+                        </tr>
+                        <tr>
+                            <!--Columna de escritura-->
+                            <th style="width: 10px; border-color: #3c8dbc;">
+                            <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">
+                            Roberto Basañes
+                            </font>
+                            </font>
+                            </th>
+                            <!--_____________________________________________-->
+                            <!--Columna de escritura-->
+                            <th style="width: 10px; border-color: #3c8dbc;">
+                            <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">
+                            Desarrollador
+                            </font>
+                            </font>
+                            </th>
+                            <!--_____________________________________________-->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <!--_____________________________________________-->
         </div>
     </form>
 </div>
