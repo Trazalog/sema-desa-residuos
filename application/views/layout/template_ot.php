@@ -745,6 +745,7 @@ $('#formEditDatos').bootstrapValidator({
     }
 }).on('success.form.bv', function(e) {
     e.preventDefault();
+    //se invoca a la funcion actualizar con el parametro auxedit que contiene el id de la fila seleccionada, a la que le vamos a actualizar los datos
     actualizar(localStorage.getItem('auxedit'));
 });
 </script>
@@ -821,7 +822,7 @@ $("#botonAgregar").on("click", function() {
     //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
     var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
     $("#nro").val(aleatorio);
-    
+
     $("#botonAgregar").attr("disabled", "");
     //$("#boxDatos").removeAttr("hidden");
     $("#boxDatos").focus();
