@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="63ef023d-8c1f-44c2-98cf-a1a6176086c8" activeEnvironment="Default" name="Project 2" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="63f97c2c-9500-414e-88af-e9ccc396671f" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://CI:8089/</con:endpoint><con:endpoint>http://localhost</con:endpoint></con:endpoints><con:resource name="" path="/" id="b5a625d1-85e1-423e-bfab-fbf36e5ccdb1"><con:settings/><con:parameters/><con:method name="1" id="1b80f299-dee6-4f59-a43a-763de7cc2b16" method="GET"><con:settings/><con:parameters/></con:method></con:resource></con:interface><con:restMockService id="efc44172-fd5f-4f66-93c2-4d5bfa4935b4" port="8080" path="/" host="CI" name="http://localhost" docroot=""><con:settings/><con:properties/><con:restMockAction name="/empresas" method="GET" resourcePath="/empresas" id="80c50217-c593-4096-8fed-63490e8e2005"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+<con:soapui-project id="63ef023d-8c1f-44c2-98cf-a1a6176086c8" activeEnvironment="Default" name="Project 2" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="63f97c2c-9500-414e-88af-e9ccc396671f" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://CI:8089/</con:endpoint><con:endpoint>http://localhost</con:endpoint></con:endpoints><con:resource name="" path="/" id="b5a625d1-85e1-423e-bfab-fbf36e5ccdb1"><con:settings/><con:parameters/><con:method name="1" id="1b80f299-dee6-4f59-a43a-763de7cc2b16" method="GET"><con:settings/><con:parameters/></con:method></con:resource></con:interface><con:restMockService id="efc44172-fd5f-4f66-93c2-4d5bfa4935b4" port="3000" path="/" host="CI" name="http://localhost" docroot=""><con:settings/><con:properties/><con:restMockAction name="/empresas" method="GET" resourcePath="/empresas" id="80c50217-c593-4096-8fed-63490e8e2005"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Script dispatcher is used to select a response based on the incoming request.
 // Here are few examples showing how to match based on path, query param, header and body
 
@@ -509,7 +509,7 @@ if( requestBody.contains("some data") )
     return "Response N"
 }
 */
-</con:dispatchPath><con:response name="/tablaresiduos" id="ac600a99-d6a7-475f-9976-2a6301b8faaa" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/tablares" method="POST" resourcePath="/tablares" id="819153f4-49b4-42e9-a77a-48cb834060d1"><con:settings/><con:defaultResponse>/tablares</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+</con:dispatchPath><con:response name="/tablaresiduos" id="ac600a99-d6a7-475f-9976-2a6301b8faaa" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/zonag" method="GET" resourcePath="/zonag" id="baa79efc-7358-4d99-a711-511fad8b6a5e"><con:settings/><con:defaultResponse>zonag</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Script dispatcher is used to select a response based on the incoming request.
 // Here are few examples showing how to match based on path, query param, header and body
 
@@ -561,4 +561,816 @@ if( requestBody.contains("some data") )
     return "Response N"
 }
 */
-</con:dispatchPath><con:response name="/tablares" id="cb4e947d-5e63-4a17-b542-21c49327b2b1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</con:dispatchPath><con:response name="zonag" id="8f002a9e-b54e-43a9-9aeb-ebe8c8b2ad05" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "zonag" : {
+            "zonag" : [
+                {
+                    "nombre": "zona 1"
+                },
+                {
+                    "nombre": "zona 2"
+                },
+                {
+                    "nombre": "zona 3"
+                },
+                {
+                    "nombre": "zona 4"
+                }
+            ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/tipo" method="GET" resourcePath="/tipo" id="2102df39-8bfe-4185-98f7-50711c810d7c"><con:settings/><con:defaultResponse>tipo</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="tipo" id="43d06313-b325-479e-a731-c5a6b32dba8e" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "TipoG" : {
+                    "TipoG" : [
+                        {
+                            "nombre": "Eventual"
+                        },
+                        {
+                            "nombre": "Regular"
+                        }
+                    ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/dpto" method="GET" resourcePath="/dpto" id="0e6a41af-0d5a-45e4-8fae-483eed61ffe0"><con:settings/><con:defaultResponse>dpto</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="dpto" id="eb5baff1-2845-47c4-b276-e6ae1e1b2046" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "Dpto" : {
+                    "Dpto" : [
+                        {
+                            "nombre": "Chimbas"
+                        },
+                        {
+                            "nombre": "Capital"
+                        },
+                        {
+                            "nombre": "Rawson"
+                        },
+                        {
+                            "nombre": "Rivadavia"
+                        }, 
+                        {
+                            "nombre": "San Martin"
+                        },
+                        {
+                            "nombre": "Calingasta"
+                        },
+                        {
+                            "nombre": "Sarmiento"
+                        },
+                        {
+                            "nombre": "Ullum"
+                        }
+                    ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/tablageneradores" method="POST" resourcePath="/tablageneradores" id="4165b3d1-d332-4848-8b6a-c8de432395de"><con:settings/><con:defaultResponse>/tablageneradores</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="/tablageneradores" id="1824a47f-f63b-430b-803d-c8f153e41890" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "nombrerazonsocial": "",
+                        "cuit": "",
+                        "zona": "",
+                        "rubro": "",
+                        "tipo": "",
+                        "domicilio": "",
+                        "departamento": "",
+                        "numeroregistro": "",
+                        "tiporesiduo": "",
+                    }
+                ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/rsu" method="GET" resourcePath="/rsu" id="75734d69-6a9b-4de1-8569-a4af1ffab18b"><con:settings/><con:defaultResponse>rsu</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="rsu" id="37781067-91b6-4f3d-9ed2-eb5b42c1c4d4" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "Rsu" : {
+            "Rsu" : [
+                {
+                    "nombre": "Tipo Residuo"
+                },
+                {
+                    "nombre": "Rsu"
+                },
+                {
+                    "nombre": "Escombro"
+                }
+            ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/tablatransportistas" method="POST" resourcePath="/tablatransportistas" id="beb4291f-895d-4972-ad5a-0e67a5ae4c9c"><con:settings/><con:defaultResponse>tablatransportistas</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="tablatransportistas" id="e99d1c76-3041-4b96-b22b-8cc4fbca2bc8" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "nombrerazonsocial": "",
+                        "descripcion": "",
+                        "direccion": "",
+                        "telefono": "",
+                        "contacto": "",
+                        "resolucion": "",
+                        "registro": "",
+                        "fechadealta": "",
+                        "fechadebaja": "",
+                        "tipodersu": "",
+                    }
+                ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/circr" method="GET" resourcePath="/circr" id="1b9d0775-f2ba-465e-a281-30a41716e72d"><con:settings/><con:defaultResponse>circr</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="circr" id="87ea83b5-8a72-48c6-86b4-452ae1a62337" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "CircR" : {
+            "CircR" : [
+                {
+                    "nombre": "Circuito 1"
+                },
+                {
+                    "nombre": "Circuito 6"
+                },
+                {
+                    "nombre": "Circuito 9"
+                }
+            ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="tablazonas" method="POST" resourcePath="/tablazonas" id="c7b12162-0906-4fcb-a4fc-facde203fb39"><con:settings/><con:defaultResponse>tablazonas</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="tablazonas" id="26d98046-7f64-44c1-b4d8-6bb2a25236d4" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "nombre": "",
+                        "Departamento": "",
+                        "Circuito / Recorrido": "",
+                        "Descripcion": "",
+                    }
+                ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/cargarimagen" method="GET" resourcePath="/cargarimagen" id="83c4ce25-c70a-4989-bffb-e4a483eee74a"><con:settings/><con:defaultResponse>cargarimagen</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="cargarimagen" id="075985cc-df45-4536-997f-b65a89c20d28" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "CargarImagenes" : {
+            "CargarImagenes" : [
+                {
+                    "imagen": ""
+                }
+            ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/estado" method="GET" resourcePath="/estado" id="a3a2c84d-c864-4d4e-a1f3-836a9b04de17"><con:settings/><con:defaultResponse>estado</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="estado" id="621154e8-8037-492d-a188-beef85794cbf" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "Estado" : {
+            "Estado" : [
+                {
+                    "nombre": "optimo"
+                },
+                {
+                    "nombre": "ocupado"
+                }
+            ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="tablacontenedores" method="POST" resourcePath="/tablacontenedores" id="4024eb64-f0d0-4a78-a4a1-06584b065cbf"><con:settings/><con:defaultResponse>tablacontenedores</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="tablacontenedores" id="6d8955ce-0524-4116-ac67-9d1513fd0dae" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "codigoregistro": "",
+                        "descripcion": "",
+                        "capacidad": "",
+                        "añoelaboracion": "",
+                        "tara": "",
+                        "estado": "",
+                        "habilitacion": "",
+                    }
+                ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/tablainspectores" method="POST" resourcePath="/tablainspectores" id="736b1c73-56d8-4392-99c5-60f1dbf812e1"><con:settings/><con:defaultResponse>tablainspectores</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="tablainspectores" id="d0e80df6-df6a-4ffe-a86a-8355852fde86" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "nombre": "",
+                        "apellido": "",
+                        "direccion": "",
+                        "email": "",
+                        "dni": "",
+                        "departamento": "",
+                        "movilidadasignada": "",
+                    }
+                ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/tablacircuitos" method="POST" resourcePath="/tablacircuitos" id="5fdf0450-57a4-47c2-8afc-bb2747f52357"><con:settings/><con:defaultResponse>/tablacircuitos</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="tablacircuitos" id="0d96b39f-b249-4b22-8bc5-22e6a383ec4a" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "codigo": "",
+                        "chofer": "",
+                        "descripcion": "",
+                        "vehiculo": "",
+                        "tiporesiduo": "",
+                    }
+                ]
+    }
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
