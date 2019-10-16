@@ -6,7 +6,7 @@
     </div>
     <!--_____________________________________________-->
     <div class="box-body">
-    <form class="formZonas" id="formZonas">
+    <form class="formCircuitos" id="formCircuitos">
     <div class="col-md-6">
             <!--Codigo-->
                 <div class="form-group">
@@ -56,11 +56,11 @@
     <div class="col-md-6">
             <!--Tipo de residuo-->
                 <div class="form-group">
-                    <label for="Tiporesiduo" name="Tipo_residuo">Tipo de residuo:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Tiporesiduo">
+                    <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
+                    <select class="form-control select2 select2-hidden-accesible" id="tipoResiduos">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
-                        foreach ($Tiporesiduo as $i) {
+                        foreach ($tipoResiduos as $i) {
                             echo '<option>'.$i->nombre.'</option>';
                         }
                         ?>
@@ -104,9 +104,16 @@
                 </div>
             
             <!--_____________________________________________-->
+            <!--Boton de guardado-->
+            <br>
+            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+            <br>
+            <br>
+            <!--_____________________________________________-->
     </div>
     <hr>
         <!--Tabla de informacion que devuelve los datos del Punto Critico-->    
+        <section class="content">
         <div class="row">
             <em class="fas fa-ad"></em>
         </div>
@@ -130,12 +137,8 @@
         </div>
         </div>
         </div>
+        </section>
         <!--_____________________________________________-->
-                <!--Boton de guardado-->
-                <br>
-                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-                <!--_____________________________________________-->
-            <!--_____________________________________________-->
         </div>
     </form>
 </div>

@@ -4,19 +4,23 @@ class RegistrarCi extends CI_Controller {
     function __construct(){
 
       parent::__construct();
-      //$this->load->helper('estado_helper');
+      //$this->load->helper('choferes1_helper');
+      //$this->load->helper('choferes1_helper');
 
-      //$this->load->model('general/Estados');
+      //$this->load->model('general/Choferes');
+      //$this->load->model('general/Choferes');
    }
 
    function registrarCi()
    {
-       //$data['Estados'] = $this->Estados->obtener();
+       //$data['Chofer'] = $this->Chofer->obtener();
+       //$data['Chofer'] = $this->Chofer->obtener();
        $this->load->view('layout/registrar_circuitos');
    }
    function templateRci()
    {
-       //$data['Estados'] = $this->Estados->obtener();
+       //$data['Chofer'] = $this->Chofer->obtener();
+       //$data['Chofer'] = $this->Chofer->obtener();
        $this->load->view('layout/registrar_circuitos');
        
    }
