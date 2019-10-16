@@ -29,6 +29,16 @@ class Ordentrabajo  extends CI_Controller {
       }
     }
 
+    public function guardarRes(){
+      $datos =  $this->input->post();
+      $resp = $this->Ordentrabajos->guardarRess($datos);
+      if($resp){
+        echo "ok";
+      }else{
+        echo "error";
+      }
+    }
+
 }
 
 

@@ -35,5 +35,13 @@ class Orden extends CI_Controller {
        $this->load->view('layout/template_ot',$data);
        
    }
+   function solicitudRetiro()
+   {
+       $data['empresa'] = $this->Empresas->obtener();
+       $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
+       $data['tipoResiduo'] = $this->TipoResiduos->obtener();
+       $data['fecha'] = date('Y-m-d');
+       $this->load->view('layout/solicitud_retiro',$data);
+   }
 }
 ?>

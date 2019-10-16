@@ -68,6 +68,11 @@
                                 "link": "general/Orden/templateOt"
                             },
                             {
+                                "titulo": "Solicitud de retiro",
+                                "icono": "fa-flus",
+                                "link": "general/Orden/solicitudRetiro"
+                            },
+                            {
                                 "titulo": "Registrar Generador",
                                 "icono": "fa-flus",
                                 "link": "general/Registrar/templateRg"
