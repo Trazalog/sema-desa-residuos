@@ -71,6 +71,26 @@
                                 "titulo": "Solicitud de retiro",
                                 "icono": "fa-flus",
                                 "link": "general/Orden/solicitudRetiro"
+                            },
+                            {
+                                "titulo": "Registrar Generador",
+                                "icono": "fa-flus",
+                                "link": "general/Registrar/templateRg"
+                            },
+                            {
+                                "titulo": "Registrar Transportista",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarT/templateRt"
+                            },
+                            {
+                                "titulo": "Registrar Zona",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarZ/templateRz"
+                            },
+                            {
+                                "titulo": "Registrar Contenedor",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarC/templateRc"
                             }
                         ]
                     }

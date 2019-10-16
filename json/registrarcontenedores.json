@@ -1,0 +1,15 @@
+{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "codigoregistro": "",
+                        "descripcion": "",
+                        "capacidad": "",
+                        "añoelaboracion": "",
+                        "tara": "",
+                        "estado": "",
+                        "habilitacion": "",
+                    }
+                ]
+    }
+}
