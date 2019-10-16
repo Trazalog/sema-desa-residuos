@@ -10,25 +10,25 @@
         <div class="col-md-6">
             <!--Nombre-->
                 <div class="form-group">
-                    <label for="Nombre" name="Nombre">Nombre:</label>
+                    <label for="Nombre" name="nombre">Nombre:</label>
                     <input type="text" class="form-control" id="Nombre">
                 </div>
             <!--_____________________________________________-->
             <!--Apellido-->
                 <div class="form-group">
-                    <label for="Apellido" name="Apellido">Apellido:</label>
+                    <label for="Apellido" name="apellido">Apellido:</label>
                     <input type="text" class="form-control" id="Apellido">
                 </div>
             <!--_____________________________________________-->
             <!--Direccion-->
                 <div class="form-group">
-                    <label for="Direccion" name="Direccion">Direccion:</label>
+                    <label for="Direccion" name="descripcion">Direccion:</label>
                     <input type="text" class="form-control" id="Direccion">
                 </div>
             <!--_____________________________________________-->
             <!--Email-->
                 <div class="form-group">
-                    <label for="Email" name="Email">Email:</label>
+                    <label for="Email" name="email">Email:</label>
                     <input type="text" class="form-control" id="Email">
                 </div>
             <!--_____________________________________________-->
@@ -36,19 +36,19 @@
         <div class="col-md-6">
             <!--DNI-->
                 <div class="form-group">
-                    <label for="DNI" name="DNI">DNI:</label>
+                    <label for="DNI" name="dni">DNI:</label>
                     <input type="text" class="form-control" id="DNI">
                 </div>
             <!--_____________________________________________-->
             <!--Departamento-->
                 <div class="form-group">
-                    <label for="Departamento" name="Departamento">Departamento:</label>
+                    <label for="Departamento" name="departamento">Departamento:</label>
                     <input type="text" class="form-control" id="Departamento">
                 </div>
             <!--_____________________________________________-->
             <!--Movilidad Asignada-->
                 <div class="form-group">
-                    <label for="MovAsignada" name="MovAsignada">Movilidad Asignada:</label>
+                    <label for="MovAsignada" name="movilidadasignada">Movilidad Asignada:</label>
                     <input type="text" class="form-control" id="MovAsignada">
                 </div>
             <!--_____________________________________________-->
@@ -102,4 +102,105 @@ function agregarDato(){
     });
     
 }
+</script>
+    <!--Script Bootstrap Validacion.-->
+<script>
+      $('#formInspectores').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      fields: {
+            nombre: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            apellido: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            email: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            dni: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            departamento: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            movilidadasignada: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+        }
+  }).on('success.form.bv', function(e){
+      e.preventDefault();
+      guardar();
+  });
+
 </script>
