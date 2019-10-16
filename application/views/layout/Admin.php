@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="lib/dist/css/AdminLTE.min.css">
     <!-- css iconos redondos -->
     <link rel="stylesheet" href="lib/iconcurved.css">
+    <!-- css tabla scroll dispositivo movil -->
+    <link rel="stylesheet" href="lib/table-scroll.css">
+
+    <!-- css sweetalert -->
+    <link rel="stylesheet" href="lib/sweetalert/sweetalert.css">
+    
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="lib/dist/css/skins/_all-skins.min.css">
