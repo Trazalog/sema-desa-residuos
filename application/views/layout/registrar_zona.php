@@ -1,4 +1,4 @@
-<div class="box box-primary">
+<div class="box box-primary animated fadeInLeft">
     <div class="box-header">
         <div class="box-tittle">
             <h3>Registrar Zona</h3>  
