@@ -43,5 +43,9 @@ class Orden extends CI_Controller {
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/solicitud_retiro',$data);
    }
+   function registrarRecepcionDeOrden()
+   {
+    $this->load->view('layout/registrar_recepcion_de_orden');
+   }
 }
 ?>
