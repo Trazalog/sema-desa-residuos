@@ -4,11 +4,13 @@ table.dataTable {
   margin-bottom: 6px !important;
   max-width: none !important;
   border-collapse: separate !important;
+
 }
 table.dataTable td,
 table.dataTable th {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
+  
 }
 table.dataTable td.dataTables_empty,
 table.dataTable th.dataTables_empty {

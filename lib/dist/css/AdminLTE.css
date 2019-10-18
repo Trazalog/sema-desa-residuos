@@ -18,7 +18,7 @@ body {
   height: 100%;
 }
 body {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
@@ -91,9 +91,9 @@ body {
   z-index: 800;
 }
 .main-footer {
-  background: #fff;
+  background: #103968;
   padding: 15px;
-  color: #444;
+  color: #fff;
   border-top: 1px solid #d2d6de;
 }
 /* Fixed layout */
@@ -158,7 +158,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'roboto', sans-serif;
 }
 /* General Links */
 a {
@@ -1538,7 +1538,7 @@ a:focus {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 .box.box-primary {
-  border-top-color: #3c8dbc;
+  border-top-color: #37abde;
 }
 .box.box-info {
   border-top-color: #00c0ef;
@@ -1599,12 +1599,12 @@ a:focus {
   color: #444444;
 }
 .box.box-solid.box-primary {
-  border: 1px solid #3c8dbc;
+  border: 1px solid #37abde;
 }
 .box.box-solid.box-primary > .box-header {
   color: #ffffff;
   background: #3c8dbc;
-  background-color: #3c8dbc;
+  background-color: #37abde;
 }
 .box.box-solid.box-primary > .box-header a,
 .box.box-solid.box-primary > .box-header .btn {
@@ -2232,7 +2232,7 @@ a:focus {
   background-color: #e7e7e7;
 }
 .btn-primary {
-  background-color: #3c8dbc;
+  background-color: #37abde;
   border-color: #367fa9;
 }
 .btn-primary:hover,

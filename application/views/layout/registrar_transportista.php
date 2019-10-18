@@ -41,7 +41,7 @@
     </div>
     <!--_____________________________________________-->
 </div>
-<div class="col-md-6">
+<div class="col-md-6 ">
     <!--Resolucion-->
         <div class="form-group">
         <label for="Resolucion" name="Resolucion">Resolucion:</label>
@@ -94,6 +94,10 @@
                 ?>
         </select>
     </div>
+
+
+
+    
     <!--_____________________________________________-->
     <!--Boton de guardado-->
     <br>

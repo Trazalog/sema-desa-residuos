@@ -59,15 +59,15 @@
 .skin-blue .wrapper,
 .skin-blue .main-sidebar,
 .skin-blue .left-side {
-  background-color: #222d32;
+  background-color: #124d91;
 }
 .skin-blue .user-panel > .info,
 .skin-blue .user-panel > .info > a {
   color: #fff;
 }
 .skin-blue .sidebar-menu > li.header {
-  color: #4b646f;
-  background: #1a2226;
+  color: #ffff;
+  background: #124d91;
 }
 .skin-blue .sidebar-menu > li > a {
   border-left: 3px solid transparent;
@@ -76,7 +76,7 @@
 .skin-blue .sidebar-menu > li.active > a,
 .skin-blue .sidebar-menu > li.menu-open > a {
   color: #ffffff;
-  background: #1e282c;
+  background: #103968;
 }
 .skin-blue .sidebar-menu > li.active > a {
   border-left-color: #3c8dbc;
@@ -92,7 +92,7 @@
   text-decoration: none;
 }
 .skin-blue .sidebar-menu .treeview-menu > li > a {
-  color: #8aa4af;
+  color: #2171b0;
 }
 .skin-blue .sidebar-menu .treeview-menu > li.active > a,
 .skin-blue .sidebar-menu .treeview-menu > li > a:hover {
@@ -391,7 +391,7 @@
   color: #fff;
 }
 .skin-black .sidebar-menu > li.header {
-  color: #4b646f;
+  color: #fff;
   background: #1a2226;
 }
 .skin-black .sidebar-menu > li > a {
@@ -401,7 +401,7 @@
 .skin-black .sidebar-menu > li.active > a,
 .skin-black .sidebar-menu > li.menu-open > a {
   color: #ffffff;
-  background: #1e282c;
+  background: #103968;
 }
 .skin-black .sidebar-menu > li.active > a {
   border-left-color: #ffffff;
@@ -713,7 +713,7 @@
 .skin-green .sidebar-menu > li.active > a,
 .skin-green .sidebar-menu > li.menu-open > a {
   color: #ffffff;
-  background: #1e282c;
+  background: #103968;
 }
 .skin-green .sidebar-menu > li.active > a {
   border-left-color: #00a65a;
@@ -999,7 +999,7 @@
 .skin-red .sidebar-menu > li.active > a,
 .skin-red .sidebar-menu > li.menu-open > a {
   color: #ffffff;
-  background: #1e282c;
+  background: #103968;
 }
 .skin-red .sidebar-menu > li.active > a {
   border-left-color: #dd4b39;
@@ -1285,7 +1285,7 @@
 .skin-yellow .sidebar-menu > li.active > a,
 .skin-yellow .sidebar-menu > li.menu-open > a {
   color: #ffffff;
-  background: #1e282c;
+  background: #103968;
 }
 .skin-yellow .sidebar-menu > li.active > a {
   border-left-color: #f39c12;
@@ -1571,7 +1571,7 @@
 .skin-purple .sidebar-menu > li.active > a,
 .skin-purple .sidebar-menu > li.menu-open > a {
   color: #ffffff;
-  background: #1e282c;
+  background: #103968;
 }
 .skin-purple .sidebar-menu > li.active > a {
   border-left-color: #605ca8;
