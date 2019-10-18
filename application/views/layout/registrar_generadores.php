@@ -11,20 +11,20 @@
             <div class="col-md-6">
                 <!--Nombre / Razon social-->
                 <div class="form-group">
-                    <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
-                    <input type="text" class="form-control" id="Nombre/Razon social">
+                    <label for="Nombre/Razon social">Nombre / Razon social:</label>
+                    <input type="text" class="form-control" id="Nombre/Razon social" name="Nombre_razon">
                 </div>
                 <!--_____________________________________________-->
                 <!--CUIT-->
                 <div class="form-group">
-                    <label for="CUIT" name="Cuit">CUIT:</label>
-                    <input type="text" class="form-control" id="CUIT">
+                    <label for="CUIT" >CUIT:</label>
+                    <input type="text" class="form-control" id="CUIT" name="Cuit">
                 </div>
                 <!--_____________________________________________-->
                 <!--Zona-->
                 <div class="form-group">
-                    <label for="Zonag" name="Zona">Zona:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Zonag">
+                    <label for="Zonag">Zona:</label>
+                    <select class="form-control select2 select2-hidden-accesible" id="Zonag" name="Zona">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Zonag as $i) {
@@ -36,14 +36,14 @@
                 <!--_____________________________________________-->
                 <!--Rubro-->
                 <div class="form-group">
-                    <label for="Rubro" name="Rubro" >Rubro:</label>
-                    <input type="text" class="form-control" id="Rubro">
+                    <label for="Rubro">Rubro:</label>
+                    <input type="text" class="form-control" id="Rubro" name="Rubro">
                 </div>
                 <!--_____________________________________________-->
                 <!--Tipo-->  
                 <div class="form-group">
-                    <label for="TipoG" name="Tipo">Tipo:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="TipoG">
+                    <label for="TipoG">Tipo:</label>
+                    <select class="form-control select2 select2-hidden-accesible" id="TipoG" name="Tipo">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($TipoG as $i) {
@@ -57,14 +57,14 @@
                 <!--Domicilio-->
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="Domicilio" name="Domicilio">Domicilio:</label>
-                    <input type="text" class="form-control" id="Domicilio">
+                    <label for="Domicilio">Domicilio:</label>
+                    <input type="text" class="form-control" id="Domicilio" name="Domicilio">
                 </div>
                 <!--_____________________________________________-->
                 <!--Departamento-->
                 <div class="form-group">
-                    <label for="Dpto" name="Departamento">Departamento:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Dpto">
+                    <label for="Dpto">Departamento:</label>
+                    <select class="form-control select2 select2-hidden-accesible" id="Dpto" name="Departamento">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Dpto as $i) {
@@ -76,14 +76,14 @@
                 <!--_____________________________________________-->
                 <!--Numero de registro-->
                 <div class="form-group">
-                    <label for="Numero de registro" name="Numero_registro">Numero de registro:</label>
-                    <input type="text" class="form-control" id="Numero de registro">
+                    <label for="Numero de registro">Numero de registro:</label>
+                    <input type="text" class="form-control" id="Numero de registro" name="Numero_registro">
                 </div>
                 <!--_____________________________________________-->
                 <!--Tipo de residuos-->
                 <div class="form-group">
-                    <label for="Tipo de residuos" name="Tipo_Residuo">Tipo de residuos:</label>
-                    <input type="text" class="form-control" id="Tipo de residuos">
+                    <label for="Tipo de residuos">Tipo de residuos:</label>
+                    <input type="text" class="form-control" id="Tipo de residuos" name="Tipo_Residuo">
                 </div>
                 <!--_____________________________________________-->
                 <!--Boton de guardado-->

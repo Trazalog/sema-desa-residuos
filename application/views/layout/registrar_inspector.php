@@ -10,46 +10,46 @@
         <div class="col-md-6">
             <!--Nombre-->
                 <div class="form-group">
-                    <label for="Nombre" name="nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="Nombre">
+                    <label for="Nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="Nombre" name="nombre">
                 </div>
             <!--_____________________________________________-->
             <!--Apellido-->
                 <div class="form-group">
-                    <label for="Apellido" name="apellido">Apellido:</label>
-                    <input type="text" class="form-control" id="Apellido">
+                    <label for="Apellido">Apellido:</label>
+                    <input type="text" class="form-control" id="Apellido" name="apellido">
                 </div>
             <!--_____________________________________________-->
             <!--Direccion-->
                 <div class="form-group">
-                    <label for="Direccion" name="descripcion">Direccion:</label>
-                    <input type="text" class="form-control" id="Direccion">
+                    <label for="Direccion">Direccion:</label>
+                    <input type="text" class="form-control" id="Direccion" name="descripcion">
                 </div>
             <!--_____________________________________________-->
             <!--Email-->
                 <div class="form-group">
-                    <label for="Email" name="email">Email:</label>
-                    <input type="text" class="form-control" id="Email">
+                    <label for="Email">Email:</label>
+                    <input type="text" class="form-control" id="Email" name="email">
                 </div>
             <!--_____________________________________________-->
         </div>
         <div class="col-md-6">
             <!--DNI-->
                 <div class="form-group">
-                    <label for="DNI" name="dni">DNI:</label>
-                    <input type="text" class="form-control" id="DNI">
+                    <label for="DNI">DNI:</label>
+                    <input type="text" class="form-control" id="DNI" name="dni">
                 </div>
             <!--_____________________________________________-->
             <!--Departamento-->
                 <div class="form-group">
-                    <label for="Departamento" name="departamento">Departamento:</label>
-                    <input type="text" class="form-control" id="Departamento">
+                    <label for="Departamento">Departamento:</label>
+                    <input type="text" class="form-control" id="Departamento" name="departamento">
                 </div>
             <!--_____________________________________________-->
             <!--Movilidad Asignada-->
                 <div class="form-group">
-                    <label for="MovAsignada" name="movilidadasignada">Movilidad Asignada:</label>
-                    <input type="text" class="form-control" id="MovAsignada">
+                    <label for="MovAsignada">Movilidad Asignada:</label>
+                    <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada">
                 </div>
             <!--_____________________________________________-->
             <!--Boton de guardado-->
@@ -143,10 +143,6 @@ function agregarDato(){
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
                     },
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada debe ser un numero entero'
-                    }
                 }
             },
             email: {
@@ -155,10 +151,6 @@ function agregarDato(){
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
                     },
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada debe ser un numero entero'
-                    }
                 }
             },
             dni: {
@@ -181,7 +173,7 @@ function agregarDato(){
                     },
                     regexp: {
                         regexp: /[A-Za-z]/,
-                        message: 'la entrada debe ser un numero entero'
+                        message: 'la entrada no debe ser un numero entero'
                     }
                 }
             },
@@ -193,7 +185,7 @@ function agregarDato(){
                     },
                     regexp: {
                         regexp: /[A-Za-z]/,
-                        message: 'la entrada debe ser un numero entero'
+                        message: 'la entrada no debe ser un numero entero'
                     }
                 }
             },

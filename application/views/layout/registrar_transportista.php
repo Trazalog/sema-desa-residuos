@@ -12,58 +12,58 @@
 <div class="col-md-6">
     <!--Nombre / Razon social-->
     <div class="form-group">
-        <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
-        <input type="text" class="form-control" id="Nombre/Razon social">
+        <label for="Nombre/Razon social">Nombre / Razon social:</label>
+        <input type="text" class="form-control" id="Nombre/Razon social" name="Nombre_razon">
     </div>
     <!--_____________________________________________-->
     <!--Descripcion-->
     <div class="form-group">
-        <label for="Descripcion" name="Descripcion">Descripcion:</label>
-        <input type="text" class="form-control" id="Descripcion">
+        <label for="Descripcion">Descripcion:</label>
+        <input type="text" class="form-control" id="Descripcion" name="Descripcion">
     </div>
     <!--_____________________________________________-->
     <!--Direccion-->
     <div class="form-group">
-        <label for="Direccion" name="Direccion">Direccion:</label>
-        <input type="text" class="form-control" id="Direccion">
+        <label for="Direccion">Direccion:</label>
+        <input type="text" class="form-control" id="Direccion" name="Direccion">
     </div>
     <!--_____________________________________________-->
     <!--Telefono-->
     <div class="form-group">
-        <label for="Telefono" name="Telefono">Telefono:</label>
-        <input type="text" class="form-control" id="Telefono">
+        <label for="Telefono">Telefono:</label>
+        <input type="text" class="form-control" id="Telefono" name="Telefono">
     </div>
     <!--_____________________________________________-->
     <!--Contacto-->
         <div class="form-group">
-        <label for="Contacto" name="Contacto">Contacto:</label>
-        <input type="text" class="form-control" id="Contacto">
+        <label for="Contacto">Contacto:</label>
+        <input type="text" class="form-control" id="Contacto" name="Contacto">
     </div>
     <!--_____________________________________________-->
 </div>
 <div class="col-md-6">
     <!--Resolucion-->
         <div class="form-group">
-        <label for="Resolucion" name="Resolucion">Resolucion:</label>
-        <input type="text" class="form-control" id="Resolucion">
+        <label for="Resolucion">Resolucion:</label>
+        <input type="text" class="form-control" id="Resolucion" name="Resolucion">
     </div>
     <!--_____________________________________________-->
 
     <!--Registro-->
         <div class="form-group">
-        <label for="Registro" name="Registro">Registro:</label>
-        <input type="text" class="form-control" id="Registro">
+        <label for="Registro">Registro:</label>
+        <input type="text" class="form-control" id="Registro" name="Registro">
     </div>
     <!--_____________________________________________-->
     <!--Fecha de alta-->
     <div class="form-group">
-                <label for="Fechalta" name="Fecha_de_alta">Fecha de alta:</label>
+                <label for="Fechalta">Fecha de alta:</label>
 
                 <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker">
+                  <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_alta">
                 </div>
                 <!-- /.input group -->
               </div>
@@ -71,21 +71,21 @@
     <!--_____________________________________________-->
     <!--Fecha de baja-->
     <div class="form-group">
-                <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
+                <label for="Fechabaja">Fecha de baja:</label>
 
                 <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker">
+                  <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_baja">
                 </div>
                 <!-- /.input group -->
               </div>
     <!--_____________________________________________-->
     <!--Tipo de RSU autorizado-->
     <div class="form-group">
-    <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
-        <select class="form-control select2 select2-hidden-accesible" id="Rsu">
+    <label for="Rsu">Tipo de RSU autorizado:</label>
+        <select class="form-control select2 select2-hidden-accesible" id="Rsu" name="Rsu">
             <option value="" disabled selected>-Seleccione opcion-</option>
                 <?php
                     foreach ($Rsu as $i) {
@@ -273,23 +273,6 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-
-          Fecha_de_alta: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
               }
           },
 
@@ -299,13 +282,18 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
               }
+          },
+
+          Rsu: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
               }
           }
+      }
    }).on('success.form.bv', function(e){
       e.preventDefault();
       guardar();
