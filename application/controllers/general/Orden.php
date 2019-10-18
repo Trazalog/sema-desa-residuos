@@ -14,6 +14,7 @@ class Orden extends CI_Controller {
       $this->load->model('general/DisposisionesFinales');
       $this->load->model('general/TipoResiduos');
       $this->load->model('general/Empresas');
+      $this->load->model('general/Sectoresdescarga');
    }
 
    function ordenT()
@@ -34,6 +35,19 @@ class Orden extends CI_Controller {
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/template_ot',$data);
        
+   }
+   function solicitudRetiro()
+   {
+       $data['empresa'] = $this->Empresas->obtener();
+       $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
+       $data['tipoResiduo'] = $this->TipoResiduos->obtener();
+       $data['fecha'] = date('Y-m-d');
+       $this->load->view('layout/solicitud_retiro',$data);
+   }
+   function registrarRecepcionDeOrden()
+   {
+    $data['zonaDescarga'] = $this->Sectoresdescarga->obtener();
+    $this->load->view('layout/registrar_recepcion_de_orden', $data);
    }
 }
 ?>

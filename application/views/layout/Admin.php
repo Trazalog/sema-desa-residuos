@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FRM | Componentes</title>
+    <title>RSD | RESIDUOS</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="lib/dist/css/AdminLTE.min.css">
     <!-- css iconos redondos -->
     <link rel="stylesheet" href="lib/iconcurved.css">
+    <!-- css tabla scroll dispositivo movil -->
+    <link rel="stylesheet" href="lib/table-scroll.css">
+
+    <!-- css sweetalert -->
+    <link rel="stylesheet" href="lib/sweetalert/sweetalert.css">
+    
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="lib/dist/css/skins/_all-skins.min.css">
@@ -66,7 +72,9 @@
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><strong><?php echo MNOM ?></strong></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><strong><?php echo NOM ?></strong></span>
+            <span class="logo-lg"><img src="<?php echo base_url()?>lib\dist\img\Isologo.png" class="brandlogo-image">
+        
+        </span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -112,7 +120,7 @@
         <div class="pull-right hidden-xs">
             <strong>Version</strong> 2.4.0
         </div>
-        <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+        <strong>Copyright &copy; 2019 <a href="">RSD</a>.</strong> All rights
         reserved.
     </footer>
 

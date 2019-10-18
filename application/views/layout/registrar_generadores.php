@@ -36,7 +36,7 @@
                 <!--_____________________________________________-->
                 <!--Rubro-->
                 <div class="form-group">
-                    <label for="Rubro" name="Rubro">Rubro:</label>
+                    <label for="Rubro" name="Rubro" >Rubro:</label>
                     <input type="text" class="form-control" id="Rubro">
                 </div>
                 <!--_____________________________________________-->
@@ -138,4 +138,127 @@ function agregarDato(){
     });
     
 }
+</script>
+<!--Script Bootstrap Validacion.-->
+<script>
+  
+  $('#formGeneradores').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      //excluded: ':disabled',
+      fields: {
+        Nombre_razon: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+
+          Cuit: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Zona: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+              }
+          },
+
+          Rubro: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+
+          Tipo: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+              }
+          },
+
+          Domicilio: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+
+          Departamento: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+              }
+          },
+
+          Numero_registro: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Tipo_Residuo: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          }
+      }
+  }).on('success.form.bv', function(e){
+      e.preventDefault();
+      guardar();
+  });
+
 </script>

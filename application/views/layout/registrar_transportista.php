@@ -41,7 +41,7 @@
     </div>
     <!--_____________________________________________-->
 </div>
-<div class="col-md-6">
+<div class="col-md-6 ">
     <!--Resolucion-->
         <div class="form-group">
         <label for="Resolucion" name="Resolucion">Resolucion:</label>
@@ -69,7 +69,7 @@
               </div>
 
     <!--_____________________________________________-->
-    <!--Fecha de alta-->
+    <!--Fecha de baja-->
     <div class="form-group">
                 <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
 
@@ -94,6 +94,10 @@
                 ?>
         </select>
     </div>
+
+
+
+    
     <!--_____________________________________________-->
     <!--Boton de guardado-->
     <br>
@@ -105,7 +109,7 @@
     <br>
 
 
-<!-- Script Agregar datos de registrar_generadores-->
+<!-- Script Agregar datos de registrar_transportista-->
 
 <script>
 function agregarDato(){
@@ -147,10 +151,164 @@ function agregarDato(){
     
 }
 </script>
-
-
-
-
-
-    </div>
+  </div>
 </div>
+
+<!--Script Bootstrap Validacion.-->
+<script>
+  
+  $('#formTransportistas').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      //excluded: ':disabled',
+      fields: {
+        Nombre_razon: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+
+          Descripcion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+
+          Direccion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+
+          Telefono: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Contacto: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+
+          Domicilio: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+
+          Resolucion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+
+          Registro: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+
+          Fecha_de_alta: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Fecha_de_alta: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+
+          Fecha_de_baja: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          }
+   }).on('success.form.bv', function(e){
+      e.preventDefault();
+      guardar();
+  });

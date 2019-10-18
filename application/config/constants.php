@@ -89,8 +89,11 @@ define('MNOM', 'RSD');
 define('NOM', 'Residuos');
 
 //Vista por Defecto
-define('DEF_VIEW','test');
+define('DEF_VIEW','Test');
 
 //Componentes Formularios
 define('FRM','traz-comp-form/');
 
+define('PORT', ':3000/');
+
+define('REST', 'http://localhost'.PORT);

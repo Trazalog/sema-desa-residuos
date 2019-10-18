@@ -7,7 +7,7 @@ class Circuitos extends CI_Model {
     }
     
     public function obtener(){
-        $aux = $this->rest->callAPI("GET","http://localhost:3000/circuitos");
+        $aux = $this->rest->callAPI("GET",REST."circuitos");
         $aux =json_decode($aux["data"]);
         return $aux->circuitos->circuito;
    }

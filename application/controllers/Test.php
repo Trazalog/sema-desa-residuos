@@ -10,8 +10,8 @@ class Test extends CI_Controller
 
     public function index()
     {
-        // $data['list'] = datos
-        // $this->load->view('test', $data);
+     
+         $this->load->view('test');
     }
     public function pp()
     {
