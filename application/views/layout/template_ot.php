@@ -25,13 +25,14 @@
             </button>
         </div>
     </div>
-    <div class="box-body">
-        <form id="formDatos" method="POST" autocomplete="off" class="registerForm">
+    <form id="formDatos" method="POST" autocomplete="off" class="registerForm">
+        <div class="box-body">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label for="nro" class="form-label">Nro:</label>
-                        <input type="number" size="10" type="text" name="nro" id="nro" min="0" class="form-control" required>
+                        <input type="number" size="10" type="text" name="nro" id="nro" min="0" class="form-control"
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="zona" class="form-label">Zona:</label>
@@ -134,18 +135,13 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-10 col-lg-11 col-xs-12"></div>
-                <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" aria-label="Left Align">
-                            Guardar
-                        </button><br>
-                    </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
 <!--  Box 3-->
 <div class="row">
@@ -267,8 +263,9 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabell">Editar datos</h5>
             </div>
-            <div class="modal-body">
-                <form id="formEditDatos" method="POST" autocomplete="off" class="registerForm">
+            <form id="formEditDatos" method="POST" autocomplete="off" class="registerForm">
+                <div class="modal-body">
+
                     <div class="row">
                         <div class="col-md-6 col-xs-12">
                             <div class="form-group">
@@ -381,14 +378,14 @@
                             </div>
                         </div>
                     </div>
-                    <div>
+                </div>
+                <div class="modal-footer">
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
-                            <button class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -467,89 +464,89 @@
 
 <!-- script que muestra datos en modal edit -->
 <script>
-function clickedit(aux) {
-    //limpia los select para cargar datos especificos
-    $("#selecempp").prop('selectedIndex', 0);
-    $('#selecmovv').find('option').remove();
-    $('#choferr').find('option').remove();
+    function clickedit(aux) {
+        //limpia los select para cargar datos especificos
+        $("#selecempp").prop('selectedIndex', 0);
+        $('#selecmovv').find('option').remove();
+        $('#choferr').find('option').remove();
 
-    //se obtiene el valor de la empresa seleccionada
-    var emp = localStorage.getItem('empresa' + aux);
+        //se obtiene el valor de la empresa seleccionada
+        var emp = localStorage.getItem('empresa' + aux);
 
-    //se carga parte del formulario con los datos previamente cargados
-    $("#nroo").val(localStorage.getItem('num' + aux));
-    $("#fechaa").val(localStorage.getItem('fecha' + aux));
-    $("#zonaa").val(localStorage.getItem('zona' + aux));
-    $("#dispfinall").val(localStorage.getItem('dispfinal' + aux));
-    $("#tiporesiduoo").val(localStorage.getItem('tiporesiduo' + aux));
-    $("#circuitoo").val(localStorage.getItem('circuito' + aux));
-    $("#registronn").val(localStorage.getItem('numreg' + aux));
-    $("#dominioo").val(localStorage.getItem('dominio' + aux));
+        //se carga parte del formulario con los datos previamente cargados
+        $("#nroo").val(localStorage.getItem('num' + aux));
+        $("#fechaa").val(localStorage.getItem('fecha' + aux));
+        $("#zonaa").val(localStorage.getItem('zona' + aux));
+        $("#dispfinall").val(localStorage.getItem('dispfinal' + aux));
+        $("#tiporesiduoo").val(localStorage.getItem('tiporesiduo' + aux));
+        $("#circuitoo").val(localStorage.getItem('circuito' + aux));
+        $("#registronn").val(localStorage.getItem('numreg' + aux));
+        $("#dominioo").val(localStorage.getItem('dominio' + aux));
 
-    //se le asigna el valor especifico previamente cargado y se lo selecciona
-    $('#selecempp').val(emp).trigger('click');
-    //se trae el json de la opcion seleccionada
-    var json = $('#selecempp').find(':selected').data('json');
+        //se le asigna el valor especifico previamente cargado y se lo selecciona
+        $('#selecempp').val(emp).trigger('click');
+        //se trae el json de la opcion seleccionada
+        var json = $('#selecempp').find(':selected').data('json');
 
-    //json = JSON.parse(json);
-    //se inicializa las variables
-    var html_mov = " ",
-        html_chof = "";
+        //json = JSON.parse(json);
+        //se inicializa las variables
+        var html_mov = " ",
+            html_chof = "";
 
-    //carga la variable html_mov con las movilidades disponibles de la empresa seleccionada
-    json.movilidades.movilidad.forEach(function(valor) {
-        html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
-            .dominio + "'>" + valor.nom_movil + "</option>"
-    });
+        //carga la variable html_mov con las movilidades disponibles de la empresa seleccionada
+        json.movilidades.movilidad.forEach(function (valor) {
+            html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
+                .dominio + "'>" + valor.nom_movil + "</option>"
+        });
 
-    //idem anterior pero con los choferes de la empresa
-    json.choferes.chofer.forEach(function(valor) {
-        html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
-    });
+        //idem anterior pero con los choferes de la empresa
+        json.choferes.chofer.forEach(function (valor) {
+            html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
+        });
 
-    //se asigna las variables antes mencionadas a sus select correspondientes
-    $('#selecmovv').html(html_mov);
-    $("#choferr").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-    
-    //se termina de cargar el formulario con los datos previamente cargados
-    $("#selecmovv").val(localStorage.getItem('movilidad' + aux));
-    $("#choferr").val(localStorage.getItem('chofer' + aux));
+        //se asigna las variables antes mencionadas a sus select correspondientes
+        $('#selecmovv').html(html_mov);
+        $("#choferr").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
 
-    //se guarda localmente una nueva variable auxedit que indica el id de la fila seleccionada para luego saber en que id guardar los datos a actualizar
-    localStorage.setItem('auxedit', aux);
-}
+        //se termina de cargar el formulario con los datos previamente cargados
+        $("#selecmovv").val(localStorage.getItem('movilidad' + aux));
+        $("#choferr").val(localStorage.getItem('chofer' + aux));
+
+        //se guarda localmente una nueva variable auxedit que indica el id de la fila seleccionada para luego saber en que id guardar los datos a actualizar
+        localStorage.setItem('auxedit', aux);
+    }
 </script>
 
 <!--script close modal edit -->
 <script>
-//este script me permite limpiar la validacion una vez cerrado el modal
-$("#modalEdit").on("hidden.bs.modal", function(e) {
-    $("#formEditDatos").data('bootstrapValidator').resetForm();
-});
+    //este script me permite limpiar la validacion una vez cerrado el modal
+    $("#modalEdit").on("hidden.bs.modal", function (e) {
+        $("#formEditDatos").data('bootstrapValidator').resetForm();
+    });
 </script>
 
 <!-- script muestra datos modal info -->
 <script>
-function clickinfo(aux) {
-    //console.log(localStorage.getItem('num'));
-    $("#num").val(localStorage.getItem('num' + aux));
-    $("#fechita").val(localStorage.getItem('fecha' + aux));
-    $("#zonita").val(localStorage.getItem('zona' + aux));
-    $("#dispofinal").val(localStorage.getItem('dispfinal' + aux));
-    $("#tipores").val(localStorage.getItem('tiporesiduo' + aux));
-    $("#circuit").val(localStorage.getItem('circuito' + aux));
-    $("#empresita").val(localStorage.getItem('empresa' + aux));
-    $("#movi").val(localStorage.getItem('movilidad' + aux));
-    $("#reg").val(localStorage.getItem('numreg' + aux));
-    $("#dom").val(localStorage.getItem('dominio' + aux));
-    $("#chof").val(localStorage.getItem('chofer' + aux));
-}
+    function clickinfo(aux) {
+        //console.log(localStorage.getItem('num'));
+        $("#num").val(localStorage.getItem('num' + aux));
+        $("#fechita").val(localStorage.getItem('fecha' + aux));
+        $("#zonita").val(localStorage.getItem('zona' + aux));
+        $("#dispofinal").val(localStorage.getItem('dispfinal' + aux));
+        $("#tipores").val(localStorage.getItem('tiporesiduo' + aux));
+        $("#circuit").val(localStorage.getItem('circuito' + aux));
+        $("#empresita").val(localStorage.getItem('empresa' + aux));
+        $("#movi").val(localStorage.getItem('movilidad' + aux));
+        $("#reg").val(localStorage.getItem('numreg' + aux));
+        $("#dom").val(localStorage.getItem('dominio' + aux));
+        $("#chof").val(localStorage.getItem('chofer' + aux));
+    }
 </script>
 
 <!-- script delete con sweet alert 2 -->
 <script>
-function borrar(aux) {
-    swal({
+    function borrar(aux) {
+        swal({
             title: "Esta seguro que desea eliminar el elemento?",
             text: "Una vez completada la accion no se podra revertir el cambio!",
             type: "warning",
@@ -560,439 +557,439 @@ function borrar(aux) {
             closeOnConfirm: false,
             //closeOnCancel: false
         },
-        function(isConfirm) {
-            if (isConfirm) {
-                swal({
-                    title: "Eliminado!",
-                    text: "La accion fue completada con exito",
-                    type: "success",
-                    timer: 1800,
-                    showConfirmButton: false
-                });
-                
-                //oculta la fila eliminada
-                $("#" + aux).hide(500);
-            } else {
+            function (isConfirm) {
+                if (isConfirm) {
+                    swal({
+                        title: "Eliminado!",
+                        text: "La accion fue completada con exito",
+                        type: "success",
+                        timer: 1800,
+                        showConfirmButton: false
+                    });
 
-            }
-        });
-}
+                    //oculta la fila eliminada
+                    $("#" + aux).hide(500);
+                } else {
+
+                }
+            });
+    }
 </script>
 
 <!-- script bootstrap validator -->
 <script>
-$('#formDatos').bootstrapValidator({
-    message: 'This value is not valid',
-    /*feedbackIcons: {
-        valid: 'glyphicon glyphicon-ok',
-        invalid: 'glyphicon glyphicon-remove',
-        validating: 'glyphicon glyphicon-refresh'
-    },*/
-    excluded: ':disabled',
-    fields: {
-        nro: {
-            message: 'la entrada no es valida',
-            validators: {
-                notEmpty: {
-                    message: 'la entrada no puede ser vacia'
-                },
-                /*stringLength: {
-                    min: 6,
-                    max: 30,
-                    message: 'The username must be more than 6 and less than 30 characters long'
-                },*/
-                regexp: {
-                    regexp: /^(0|[1-9][0-9]*)$/,
-                    message: 'la entrada debe ser un numero entero'
+    $('#formDatos').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        excluded: ':disabled',
+        fields: {
+            nro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
                 }
-            }
-        },
-        dispfinal: {
-            message: 'la entrada no es valida',
-            validators: {
-                notEmpty: {
-                    message: 'la entrada no puede ser vacia'
+            },
+            dispfinal: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                 }
-                /*stringLength: {
-                    min: 6,
-                    max: 30,
-                    message: 'The username must be more than 6 and less than 30 characters long'
-                },*/
-            }
-        },
-        zona: {
-            message: 'la entrada no es valida',
-            validators: {
-                notEmpty: {
-                    message: 'la entrada no puede ser vacia'
+            },
+            zona: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                 }
-                /*stringLength: {
-                    min: 6,
-                    max: 30,
-                    message: 'The username must be more than 6 and less than 30 characters long'
-                },*/
-            }
-        },
-        circuito: {
-            message: 'la entrada no es valida',
-            validators: {
-                notEmpty: {
-                    message: 'la entrada no puede ser vacia'
+            },
+            circuito: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                 }
-                /*stringLength: {
-                    min: 6,
-                    max: 30,
-                    message: 'The username must be more than 6 and less than 30 characters long'
-                },*/
-            }
-        },
-        tiporesiduo: {
-            message: 'la entrada no es valida',
-            validators: {
-                notEmpty: {
-                    message: 'la entrada no puede ser vacia'
+            },
+            tiporesiduo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                 }
-                /*stringLength: {
-                    min: 6,
-                    max: 30,
-                    message: 'The username must be more than 6 and less than 30 characters long'
-                },*/
-            }
-        },
-        empresa: {
-            message: 'la entrada no es valida',
-            validators: {
-                notEmpty: {
-                    message: 'seleccione una opcion'
+            },
+            empresa: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'seleccione una opcion'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                 }
-                /*stringLength: {
-                    min: 6,
-                    max: 30,
-                    message: 'The username must be more than 6 and less than 30 characters long'
-                },*/
-            }
-        },
-        movilidad: {
-            message: 'la entrada no es valida',
-            validators: {
-                notEmpty: {
-                    message: 'seleccione una opcion'
+            },
+            movilidad: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'seleccione una opcion'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                 }
-                /*stringLength: {
-                    min: 6,
-                    max: 30,
-                    message: 'The username must be more than 6 and less than 30 characters long'
-                },*/
-            }
-        },
-        chofer: {
-            message: 'la entrada no es valida',
-            validators: {
-                notEmpty: {
-                    message: 'la entrada no puede ser vacia'
+            },
+            chofer: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                 }
-                /*stringLength: {
-                    min: 6,
-                    max: 30,
-                    message: 'The username must be more than 6 and less than 30 characters long'
-                },*/
             }
         }
-    }
-}).on('success.form.bv', function(e) {
-    e.preventDefault();
-    guardar();
-});
+    }).on('success.form.bv', function (e) {
+        e.preventDefault();
+        guardar();
+    });
 </script>
 
 <!-- script bootstrap validator -->
 <script>
-$('#formEditDatos').bootstrapValidator({
-    message: 'This value is not valid',
-    /*feedbackIcons: {
-        valid: 'glyphicon glyphicon-ok',
-        invalid: 'glyphicon glyphicon-remove',
-        validating: 'glyphicon glyphicon-refresh'
-    },*/
-    excluded: ':disabled',
-    fields: {
-        empresa: {
-            message: 'la entrada no es valida',
-            validators: {
-                notEmpty: {
-                    message: 'seleccione una opcion'
+    $('#formEditDatos').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        excluded: ':disabled',
+        fields: {
+            empresa: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'seleccione una opcion'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                 }
-                /*stringLength: {
-                    min: 6,
-                    max: 30,
-                    message: 'The username must be more than 6 and less than 30 characters long'
-                },*/
-            }
-        },
-        movilidad: {
-            message: 'la entrada no es valida',
-            validators: {
-                notEmpty: {
-                    message: 'seleccione una opcion'
+            },
+            movilidad: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'seleccione una opcion'
+                    }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                 }
-                /*stringLength: {
-                    min: 6,
-                    max: 30,
-                    message: 'The username must be more than 6 and less than 30 characters long'
-                },*/
             }
         }
-    }
-}).on('success.form.bv', function(e) {
-    e.preventDefault();
-    //se invoca a la funcion actualizar con el parametro auxedit que contiene el id de la fila seleccionada, a la que le vamos a actualizar los datos
-    actualizar(localStorage.getItem('auxedit'));
-});
+    }).on('success.form.bv', function (e) {
+        e.preventDefault();
+        //se invoca a la funcion actualizar con el parametro auxedit que contiene el id de la fila seleccionada, a la que le vamos a actualizar los datos
+        actualizar(localStorage.getItem('auxedit'));
+    });
 </script>
 
 <!-- script actualiza datos -->
 <script>
-function actualizar(aux) {
-    //datos para mostrar a modo de ejemplo para DEMO---------------
-    //Serialize the Form
-    var values = {};
-    $.each($("#formEditDatos").serializeArray(), function(i, field) {
-        values[field.name] = field.value;
-    });
-    //Value Retrieval Function
-    var getValue = function(valueName) {
-        return values[valueName];
-    };
-    //Retrieve the Values
-    var empresa = getValue("empresa");
-    var zona = getValue("zona");
-    var circuito = getValue("circuito");
-    var movilidad = getValue("movilidad");
-    var numreg = getValue("numreg");
-    var dominio = getValue("dominio");
-    var chofer = getValue("chofer");
-    var fecha = getValue("fecha");
-    var dispfinal = getValue("dispfinal");
-    var tiporesiduo = getValue("tiporesiduo");
-    var num = getValue("nro");
+    function actualizar(aux) {
+        //datos para mostrar a modo de ejemplo para DEMO---------------
+        //Serialize the Form
+        var values = {};
+        $.each($("#formEditDatos").serializeArray(), function (i, field) {
+            values[field.name] = field.value;
+        });
+        //Value Retrieval Function
+        var getValue = function (valueName) {
+            return values[valueName];
+        };
+        //Retrieve the Values
+        var empresa = getValue("empresa");
+        var zona = getValue("zona");
+        var circuito = getValue("circuito");
+        var movilidad = getValue("movilidad");
+        var numreg = getValue("numreg");
+        var dominio = getValue("dominio");
+        var chofer = getValue("chofer");
+        var fecha = getValue("fecha");
+        var dispfinal = getValue("dispfinal");
+        var tiporesiduo = getValue("tiporesiduo");
+        var num = getValue("nro");
 
-    //se actualizan los datos en localStorage
-    localStorage.setItem('num' + aux, num);
-    localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
-    localStorage.setItem('dispfinal' + aux, dispfinal);
-    localStorage.setItem('fecha' + aux, fecha);
-    localStorage.setItem('chofer' + aux, chofer);
-    localStorage.setItem('dominio' + aux, dominio);
-    localStorage.setItem('numreg' + aux, numreg);
-    localStorage.setItem('movilidad' + aux, movilidad);
-    localStorage.setItem('circuito' + aux, circuito);
-    localStorage.setItem('zona' + aux, zona);
-    localStorage.setItem('empresa' + aux, empresa);
+        //se actualizan los datos en localStorage
+        localStorage.setItem('num' + aux, num);
+        localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
+        localStorage.setItem('dispfinal' + aux, dispfinal);
+        localStorage.setItem('fecha' + aux, fecha);
+        localStorage.setItem('chofer' + aux, chofer);
+        localStorage.setItem('dominio' + aux, dominio);
+        localStorage.setItem('numreg' + aux, numreg);
+        localStorage.setItem('movilidad' + aux, movilidad);
+        localStorage.setItem('circuito' + aux, circuito);
+        localStorage.setItem('zona' + aux, zona);
+        localStorage.setItem('empresa' + aux, empresa);
 
-    //se actualizan los datos de la fila correspondiente de la tabla
-    $("#" + aux + " .Zona").text(zona);
-    $("#" + aux + " .Circuito").text(circuito);
-    $("#" + aux + " .Empresa").text(empresa);
-    $("#" + aux + " .Movilidad").text(movilidad);
-    $("#" + aux + " .Chofer").text(chofer);
+        //se actualizan los datos de la fila correspondiente de la tabla
+        $("#" + aux + " .Zona").text(zona);
+        $("#" + aux + " .Circuito").text(circuito);
+        $("#" + aux + " .Empresa").text(empresa);
+        $("#" + aux + " .Movilidad").text(movilidad);
+        $("#" + aux + " .Chofer").text(chofer);
 
-    //se cierra el modal y se indica que los datos se actualizaron con exito
-    $('#modalEdit').modal('toggle');
-    alertify.success("Actualizacion realizada con exito");
-}
+        //se cierra el modal y se indica que los datos se actualizaron con exito
+        $('#modalEdit').modal('toggle');
+        alertify.success("Actualizacion realizada con exito");
+    }
 </script>
 
 <!-- script que cierra box con boton (x) -->
 
 <script>
-$("#btnclose").on("click", function() {
-    $("#boxDatos").hide(500);
-    $("#botonAgregar").removeAttr("disabled");
-    $('#formDatos').data('bootstrapValidator').resetForm();
-    $("#formDatos")[0].reset();
-    $('#selecmov').find('option').remove();
-    $('#chofer').find('option').remove();
-});
+    $("#btnclose").on("click", function () {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+    });
 </script>
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 
 <script>
-$("#botonAgregar").on("click", function() {
-    //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-    var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-    $("#nro").val(aleatorio);
+    $("#botonAgregar").on("click", function () {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
 
-    $("#botonAgregar").attr("disabled", "");
-    //$("#boxDatos").removeAttr("hidden");
-    $("#boxDatos").focus();
-    $("#boxDatos").show();
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
 
-});
+    });
 </script>
 
 <!-- Script modal para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
-$(".emp").on('click', function() {
+    $(".emp").on('click', function () {
 
-    var json = this.dataset.json;
+        var json = this.dataset.json;
 
-    json = JSON.parse(json);
+        json = JSON.parse(json);
 
-    var html_mov = " ",
-        html_chof = "";
+        var html_mov = " ",
+            html_chof = "";
 
-    json.movilidades.movilidad.forEach(function(valor) {
-        html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
-            .dominio + "'>" + valor.nom_movil + "</option>"
+        json.movilidades.movilidad.forEach(function (valor) {
+            html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
+                .dominio + "'>" + valor.nom_movil + "</option>"
+        });
+
+        json.choferes.chofer.forEach(function (valor) {
+            html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
+        });
+
+        $('#selecmovv').html(html_mov);
+        $("#choferr").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
+
+        $("#registronn").val("");
+        $("#dominioo").val("");
     });
 
-    json.choferes.chofer.forEach(function(valor) {
-        html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
+    $("#selecmovv").on('change', function () {
+        var sel = $(this).find(":selected");
+        $("#registronn").val(sel.data('reg'));
+        $("#dominioo").val(sel.data('dom'));
     });
-
-    $('#selecmovv').html(html_mov);
-    $("#choferr").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-
-    $("#registronn").val("");
-    $("#dominioo").val("");
-});
-
-$("#selecmovv").on('change', function() {
-    var sel = $(this).find(":selected");
-    $("#registronn").val(sel.data('reg'));
-    $("#dominioo").val(sel.data('dom'));
-});
 </script>
 
 <!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
-$(".emp").on('click', function() {
+    $(".emp").on('click', function () {
 
-    var json = this.dataset.json;
+        var json = this.dataset.json;
 
-    json = JSON.parse(json);
+        json = JSON.parse(json);
 
-    var html_mov = " ",
-        html_chof = "";
+        var html_mov = " ",
+            html_chof = "";
 
-    json.movilidades.movilidad.forEach(function(valor) {
-        html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
-            .dominio + "'>" + valor.nom_movil + "</option>"
+        json.movilidades.movilidad.forEach(function (valor) {
+            html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
+                .dominio + "'>" + valor.nom_movil + "</option>"
+        });
+
+        json.choferes.chofer.forEach(function (valor) {
+            html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
+        });
+
+        $('#selecmov').html(html_mov);
+        $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
+
+        $("#registron").val("");
+        $("#dominio").val("");
     });
 
-    json.choferes.chofer.forEach(function(valor) {
-        html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
+    $("#selecmov").on('change', function () {
+
+        var sel = $(this).find(":selected");
+        $("#registron").val(sel.data('reg'));
+        $("#dominio").val(sel.data('dom'));
+
     });
-
-    $('#selecmov').html(html_mov);
-    $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-
-    $("#registron").val("");
-    $("#dominio").val("");
-});
-
-$("#selecmov").on('change', function() {
-
-    var sel = $(this).find(":selected");
-    $("#registron").val(sel.data('reg'));
-    $("#dominio").val(sel.data('dom'));
-
-});
 </script>
 
 <!-- Script inicia variable auxiliar gloabal -->
 <script>
-$(document).ready(function() {
-    localStorage.setItem('aux', 0);
-    /*var val = localStorage.getItem('aux');
-    var aux = parseInt(val);
-    aux = aux + 1;
-    console.log(aux);*/
-});
+    $(document).ready(function () {
+        localStorage.setItem('aux', 0);
+        /*var val = localStorage.getItem('aux');
+        var aux = parseInt(val);
+        aux = aux + 1;
+        console.log(aux);*/
+    });
 </script>
 
 <!-- Script Agregar datos -->
 <script>
-function guardar() {
+    function guardar() {
 
-    datos = $('#formDatos').serialize();
+        datos = $('#formDatos').serialize();
 
-    //datos para mostrar a modo de ejemplo para DEMO---------------
-    //Serialize the Form
-    var values = {};
-    $.each($("#formDatos").serializeArray(), function(i, field) {
-        values[field.name] = field.value;
-    });
-    //Value Retrieval Function
-    var getValue = function(valueName) {
-        return values[valueName];
-    };
-    //Retrieve the Values
-    var empresa = getValue("empresa");
-    var zona = getValue("zona");
-    var circuito = getValue("circuito");
-    var movilidad = getValue("movilidad");
-    var numreg = getValue("numreg");
-    var dominio = getValue("dominio");
-    var chofer = getValue("chofer");
-    var fecha = getValue("fecha");
-    var dispfinal = getValue("dispfinal");
-    var tiporesiduo = getValue("tiporesiduo");
-    var num = getValue("nro");
-
-    var aux = parseInt(localStorage.getItem('aux'));
-
-    localStorage.setItem('num' + aux, num);
-    localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
-    localStorage.setItem('dispfinal' + aux, dispfinal);
-    localStorage.setItem('fecha' + aux, fecha);
-    localStorage.setItem('chofer' + aux, chofer);
-    localStorage.setItem('dominio' + aux, dominio);
-    localStorage.setItem('numreg' + aux, numreg);
-    localStorage.setItem('movilidad' + aux, movilidad);
-    localStorage.setItem('circuito' + aux, circuito);
-    localStorage.setItem('zona' + aux, zona);
-    localStorage.setItem('empresa' + aux, empresa);
-
-    //--------------------------------------------------------------
-
-    if ($("#formDatos").data('bootstrapValidator').isValid()) {
-        $.ajax({
-            type: "POST",
-            data: datos,
-            url: "ajax/Ordentrabajo/guardarDato",
-            success: function(r) {
-                if (r == "ok") {
-                    //console.log(datos);
-                    html = '<tr id="' + aux + '" role="row" class="even"><td class="Zona">' + zona +
-                        '</td><td class="Circuito">' + circuito + '</td><td class="Empresa">' + empresa +
-                        '</td><td class="Movilidad">' + movilidad + '</td><td class="Chofer">' + chofer +
-                        '</td><td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit(' +
-                        aux +
-                        ')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar(' +
-                        aux +
-                        ')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo(' +
-                        aux +
-                        ')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td></tr>';
-                    aux = aux + 1;
-                    localStorage.setItem('aux', aux);
-                    $('#primero').after(html);
-                    $('#formDatos').data('bootstrapValidator').resetForm();
-                    $("#formDatos")[0].reset();
-                    $('#selecmov').find('option').remove();
-                    $('#chofer').find('option').remove();
-                    $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
-                    $("#boxDatos").hide(500);
-                    $("#botonAgregar").removeAttr("disabled");
-                    alertify.success("Agregado con exito");
-                } else {
-                    //console.log(r);
-                    alertify.error("error al agregar");
-                }
-            }
+        //datos para mostrar a modo de ejemplo para DEMO---------------
+        //Serialize the Form
+        var values = {};
+        $.each($("#formDatos").serializeArray(), function (i, field) {
+            values[field.name] = field.value;
         });
-    }
+        //Value Retrieval Function
+        var getValue = function (valueName) {
+            return values[valueName];
+        };
+        //Retrieve the Values
+        var empresa = getValue("empresa");
+        var zona = getValue("zona");
+        var circuito = getValue("circuito");
+        var movilidad = getValue("movilidad");
+        var numreg = getValue("numreg");
+        var dominio = getValue("dominio");
+        var chofer = getValue("chofer");
+        var fecha = getValue("fecha");
+        var dispfinal = getValue("dispfinal");
+        var tiporesiduo = getValue("tiporesiduo");
+        var num = getValue("nro");
 
-}
+        var aux = parseInt(localStorage.getItem('aux'));
+
+        localStorage.setItem('num' + aux, num);
+        localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
+        localStorage.setItem('dispfinal' + aux, dispfinal);
+        localStorage.setItem('fecha' + aux, fecha);
+        localStorage.setItem('chofer' + aux, chofer);
+        localStorage.setItem('dominio' + aux, dominio);
+        localStorage.setItem('numreg' + aux, numreg);
+        localStorage.setItem('movilidad' + aux, movilidad);
+        localStorage.setItem('circuito' + aux, circuito);
+        localStorage.setItem('zona' + aux, zona);
+        localStorage.setItem('empresa' + aux, empresa);
+
+        //--------------------------------------------------------------
+
+        if ($("#formDatos").data('bootstrapValidator').isValid()) {
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "ajax/Ordentrabajo/guardarDato",
+                success: function (r) {
+                    if (r == "ok") {
+                        //console.log(datos);
+                        html = '<tr id="' + aux + '" role="row" class="even"><td class="Zona">' + zona +
+                            '</td><td class="Circuito">' + circuito + '</td><td class="Empresa">' + empresa +
+                            '</td><td class="Movilidad">' + movilidad + '</td><td class="Chofer">' + chofer +
+                            '</td><td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit(' +
+                            aux +
+                            ')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar(' +
+                            aux +
+                            ')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo(' +
+                            aux +
+                            ')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td></tr>';
+                        aux = aux + 1;
+                        localStorage.setItem('aux', aux);
+                        $('#primero').after(html);
+                        $('#formDatos').data('bootstrapValidator').resetForm();
+                        $("#formDatos")[0].reset();
+                        $('#selecmov').find('option').remove();
+                        $('#chofer').find('option').remove();
+                        $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
+                        $("#boxDatos").hide(500);
+                        $("#botonAgregar").removeAttr("disabled");
+                        alertify.success("Agregado con exito");
+                    } else {
+                        //console.log(r);
+                        alertify.error("error al agregar");
+                    }
+                }
+            });
+        }
+
+    }
 </script>

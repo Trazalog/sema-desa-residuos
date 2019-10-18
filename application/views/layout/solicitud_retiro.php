@@ -44,7 +44,7 @@
         <hr>
         <br>
 
-        <form autocomplete="off" id="formDatos" class="registerForm">
+        <!--  <form autocomplete="off" id="formDatos" class="registerForm">-->
             <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <div class="form-group">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        <!-- </form>  -->
         
         <div class="row">
             <div class="col-xs-12">
@@ -193,16 +193,10 @@
                 </div>
             </div>
         </div>
-        <br>
-        <div class="row">
-                <div class="col-md-10 col-lg-11 col-xs-12"></div>
-                <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" aria-label="Left Align">
-                            Guardar
-                        </button><br>
-                    </div>
-                </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group text-right">
+            <button type="submit" class="btn btn-primary" id="btnsave" >Guardar</button>
         </div>
     </div>
 </div>
