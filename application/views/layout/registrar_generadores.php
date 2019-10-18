@@ -157,6 +157,11 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                   regexp: {
                       regexp: /[A-Za-z]/,
                       message: 'la entrada no debe ser un numero entero'
@@ -170,6 +175,11 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                   regexp: {
                       regexp: /^(0|[1-9][0-9]*)$/,
                       message: 'la entrada debe ser un numero entero'
@@ -183,6 +193,11 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
               }
           },
 
@@ -192,6 +207,11 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                   regexp: {
                       regexp: /[A-Za-z]/,
                       message: 'la entrada no debe ser un numero entero'
@@ -205,6 +225,11 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
               }
           },
 
@@ -214,6 +239,11 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                   regexp: {
                       regexp: /[A-Za-z]/,
                       message: 'la entrada no debe ser un numero entero'
@@ -227,6 +257,11 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
               }
           },
 
@@ -236,6 +271,11 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                   regexp: {
                       regexp: /^(0|[1-9][0-9]*)$/,
                       message: 'la entrada debe ser un numero entero'
@@ -249,6 +289,11 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                   regexp: {
                       regexp: /[A-Za-z]/,
                       message: 'la entrada no debe ser un numero entero'
