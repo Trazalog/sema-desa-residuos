@@ -520,20 +520,20 @@
                                                         </th>
                                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                             colspan="1" aria-label="Platform(s): activate to sort column ascending">
-                                                            Tarea</th>
+                                                            Tara</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tabadd">
                 
                                                     <tr role="row" class="even" id="primero">
                                                         <td>7</td>
-                                                        <td>4/10/2019</td>
-                                                        <td>Motivo 2</td>
+                                                        <td>20kg</td>
+                                                        <td>tara 2</td>
                                                     </tr>
                                                     <tr role="row" class="even" id="primero">
                                                         <td>5</td>
-                                                        <td>1/10/2019</td>
-                                                        <td>Motivo 1</td>
+                                                        <td>40kg</td>
+                                                        <td>tara 1</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
