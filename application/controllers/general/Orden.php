@@ -14,6 +14,7 @@ class Orden extends CI_Controller {
       $this->load->model('general/DisposisionesFinales');
       $this->load->model('general/TipoResiduos');
       $this->load->model('general/Empresas');
+      $this->load->model('general/Sectoresdescarga');
    }
 
    function ordenT()
@@ -45,7 +46,8 @@ class Orden extends CI_Controller {
    }
    function registrarRecepcionDeOrden()
    {
-    $this->load->view('layout/registrar_recepcion_de_orden');
+    $data['zonaDescarga'] = $this->Sectoresdescarga->obtener();
+    $this->load->view('layout/registrar_recepcion_de_orden', $data);
    }
 }
 ?>
