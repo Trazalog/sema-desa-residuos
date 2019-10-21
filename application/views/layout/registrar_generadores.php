@@ -7,7 +7,6 @@
     <!--_____________________________________________-->
     <div class="box-body">
         <form class="formGeneradores" id="formGeneradores">
-            
             <div class="col-md-6">
                 <!--Nombre / Razon social-->
                 <div class="form-group">
@@ -95,25 +94,19 @@
         </div>
     </div>
 </div>
-
 <!--_____________________________________________________________-->
 <!-- Script Agregar datos de registrar_generadores-->
-
 <script>
 function agregarDato(){
     console.log("entro a agregar datos");
     $('#formGeneradores').on('submit', function(e){
-
     e.preventDefault();
     var me = $(this);
     if ( me.data('requestRunning') ) {return;}
     me.data('requestRunning', true);
-
     datos=$('#formGeneradores').serialize();
     console.log(datos);
         //--------------------------------------------------------------
-
-
     $.ajax({
                 type:"POST",
                 data:datos,
@@ -134,14 +127,11 @@ function agregarDato(){
                     me.data('requestRunning', false);
                 }
             });
-            
     });
-    
 }
 </script>
 <!--Script Bootstrap Validacion.-->
 <script>
-  
   $('#formGeneradores').bootstrapValidator({
       message: 'This value is not valid',
       /*feedbackIcons: {
@@ -168,7 +158,6 @@ function agregarDato(){
                   }
               }
           },
-
           Cuit: {
               message: 'la entrada no es valida',
               validators: {
@@ -186,7 +175,6 @@ function agregarDato(){
                   }
               }
           },
-
           Zona: {
               message: 'la entrada no es valida',
               validators: {
@@ -200,7 +188,6 @@ function agregarDato(){
                     },*/
               }
           },
-
           Rubro: {
               message: 'la entrada no es valida',
               validators: {
@@ -218,7 +205,6 @@ function agregarDato(){
                   }
               }
           },
-
           Tipo: {
               message: 'la entrada no es valida',
               validators: {
@@ -232,7 +218,6 @@ function agregarDato(){
                     },*/
               }
           },
-
           Domicilio: {
               message: 'la entrada no es valida',
               validators: {
@@ -250,7 +235,6 @@ function agregarDato(){
                   }
               }
           },
-
           Departamento: {
               message: 'la entrada no es valida',
               validators: {
@@ -264,7 +248,6 @@ function agregarDato(){
                     },*/
               }
           },
-
           Numero_registro: {
               message: 'la entrada no es valida',
               validators: {
@@ -282,7 +265,6 @@ function agregarDato(){
                   }
               }
           },
-
           Tipo_Residuo: {
               message: 'la entrada no es valida',
               validators: {
@@ -301,9 +283,8 @@ function agregarDato(){
               }
           }
       }
-  }).on('success.form.bv', function(e){
+  }).on('success.form.bv', function (e) {
       e.preventDefault();
       guardar();
   });
-
 </script>

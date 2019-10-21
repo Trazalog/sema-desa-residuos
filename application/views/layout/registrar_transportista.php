@@ -4,9 +4,7 @@
             <h3>Registrar Transportista</h3>  
         </div>
     </div>
-
-<!--_________________________________________________-->
-    
+<!--_________________________________________________-->    
     <div class="box-body">
     <form class="formTransportistas" id="formTransportistas">
 <div class="col-md-6">
@@ -48,7 +46,6 @@
         <input type="text" class="form-control" id="Resolucion" name="Resolucion">
     </div>
     <!--_____________________________________________-->
-
     <!--Registro-->
         <div class="form-group">
         <label for="Registro">Registro:</label>
@@ -58,7 +55,6 @@
     <!--Fecha de alta-->
     <div class="form-group">
                 <label for="Fechalta">Fecha de alta:</label>
-
                 <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
@@ -67,7 +63,6 @@
                 </div>
                 <!-- /.input group -->
               </div>
-
     <!--_____________________________________________-->
     <!--Fecha de baja-->
     <div class="form-group">
@@ -97,34 +92,25 @@
     <!--_____________________________________________-->
     <!--Boton de guardado-->
     <br>
-
     <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
     <!--_____________________________________________-->
 </div>
     </form>
     </div>
 </div>
-
     <br>
-
-
 <!-- Script Agregar datos de registrar_transportista-->
-
 <script>
 function agregarDato(){
     console.log("entro a agregar datos");
     $('#formTransportistas').on('submit', function(e){
-
     e.preventDefault();
     var me = $(this);
     if ( me.data('requestRunning') ) {return;}
     me.data('requestRunning', true);
-
     datos=$('#formTransportistas').serialize();
     console.log(datos);
         //--------------------------------------------------------------
-
-
     $.ajax({
                 type:"POST",
                 data:datos,
@@ -145,15 +131,11 @@ function agregarDato(){
                     me.data('requestRunning', false);
                 }
             });
-            
     });
-    
 }
 </script>
-
 <!--Script Bootstrap Validacion.-->
 <script>
-  
   $('#formTransportistas').bootstrapValidator({
       message: 'This value is not valid',
       /*feedbackIcons: {
@@ -175,7 +157,6 @@ function agregarDato(){
                   }
               }
           },
-
           Descripcion: {
               message: 'la entrada no es valida',
               validators: {
@@ -188,7 +169,6 @@ function agregarDato(){
                   }
               }
           },
-
           Direccion: {
               message: 'la entrada no es valida',
               validators: {
@@ -201,7 +181,6 @@ function agregarDato(){
                   }
               }
           },
-
           Telefono: {
               message: 'la entrada no es valida',
               validators: {
@@ -214,7 +193,6 @@ function agregarDato(){
                   }
               }
           },
-
           Contacto: {
               message: 'la entrada no es valida',
               validators: {
@@ -227,7 +205,6 @@ function agregarDato(){
                   }
               }
           },
-
           Domicilio: {
               message: 'la entrada no es valida',
               validators: {
@@ -240,7 +217,6 @@ function agregarDato(){
                   }
               }
           },
-
           Resolucion: {
               message: 'la entrada no es valida',
               validators: {
@@ -253,7 +229,6 @@ function agregarDato(){
                   }
               }
           },
-
           Registro: {
               message: 'la entrada no es valida',
               validators: {
@@ -266,7 +241,6 @@ function agregarDato(){
                   }
               }
           },
-
           Fecha_de_alta: {
               message: 'la entrada no es valida',
               validators: {
@@ -275,7 +249,6 @@ function agregarDato(){
                   },
               }
           },
-
           Fecha_de_baja: {
               message: 'la entrada no es valida',
               validators: {
@@ -284,7 +257,6 @@ function agregarDato(){
                   },
               }
           },
-
           Rsu: {
               message: 'la entrada no es valida',
               validators: {
@@ -298,3 +270,4 @@ function agregarDato(){
       e.preventDefault();
       guardar();
   });
+</script>

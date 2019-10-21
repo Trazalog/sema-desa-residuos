@@ -31,11 +31,9 @@
                 </div>
             </div>
         </div>
-
         <br>
         <hr>
         <br>
-
         <form autocomplete="off" id="formDatos" method="POST">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
@@ -114,16 +112,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     <tr role="row" class="even" id="primero">
                                         <td>residuo radioactivo</td>
                                         <td>3</td>
                                         <td>23</td>
                                         <td>1.5</td>
                                     </tr>
-
                                 </tbody>
-
                             </table><br>
                         </div>
                     </div>
@@ -156,14 +151,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
         <br>
         <hr>
-
-
         <div class="row">
             <div class="box-header with-border">
                 <h3>Generador</h3>
@@ -190,10 +181,8 @@
                 </div>
             </div>
         </div>
-
         <br>
         <hr>
-
         <div class="row">
             <div class="box-header with-border">
                 <h3>Transportistas</h3>
@@ -227,11 +216,9 @@
                 </div>
             </div>
         </div>
-
         <br>
         <hr>
         <br>
-
         <div class="row">
             <div class="col-md-6 col-xs-12">
                 <div class="form-group">
@@ -254,45 +241,31 @@
         </div>
     </div>
 </div>
-
 <!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
     $(".emp").on('click', function () {
-
         var json = this.dataset.json;
-
         json = JSON.parse(json);
-
         var html_mov = " ", html_chof = "";
-
         json.movilidades.movilidad.forEach(function (valor) {
             html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor.dominio + "'>" + valor.nom_movil + "</option>"
         });
-
         json.choferes.chofer.forEach(function (valor) {
             html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
         });
-
         $('#selecmov').html(html_mov);
         $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-
         $("#registron").val("");
         $("#dominio").val("");
     });
-
     $("#selecmov").on('change', function () {
-
         var sel = $(this).find(":selected");
         $("#registron").val(sel.data('reg'));
         $("#dominio").val(sel.data('dom'));
-
     });
 </script>
-
 <!-- script bootstrap validator -->
-
 <script>
-
     $('#formDatos').bootstrapValidator({
         message: 'This value is not valid',
         /*feedbackIcons: {
@@ -370,17 +343,11 @@
         e.preventDefault();
         guardar();
     });
-
 </script>
-
 <!-- Script Agregar datos -->
-
 <script>
-
     function guardar() {
-
         datos = $('#formDatos').serialize();
-
         //datos para mostrar a modo de ejemplo para DEMO---------------
         //Serialize the Form
         var values = {};
@@ -397,9 +364,7 @@
         var porcent_llenado = getValue("porcent_llenado");
         var metroscubicos = getValue("metroscubicos");
         //--------------------------------------------------------------
-
         if ($("#formDatos").data('bootstrapValidator').isValid()) {
-
             $.ajax({
                 type: "POST",
                 data: datos,
@@ -421,21 +386,15 @@
         }
     }
 </script>
-
-
 <!-- Script Agregar Residuo -->
-
 <script>
-
     function agregarResiduo() {
-
         $('#formResiduo').on('submit', function (e) {
             //console.log("aloha madrefoca");
             e.preventDefault();
             var me = $(this);
             if (me.data('requestRunning')) { return; }
             me.data('requestRunning', true);
-
             datos = $('#formResiduo').serialize();
             $.ajax({
                 type: "POST",
@@ -452,8 +411,6 @@
                     me.data('requestRunning', false);
                 }
             });
-
         });
-
     }
 </script>

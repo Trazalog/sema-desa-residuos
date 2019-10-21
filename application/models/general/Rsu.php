@@ -5,7 +5,6 @@ class Rsu extends CI_Model {
     {
       parent::__construct();
     }
-    
     public function obtener(){
         $aux = $this->rest->callAPI("GET","http://localhost:3000/rsu");
         $aux =json_decode($aux["data"]);

@@ -5,7 +5,6 @@ class Circuitos extends CI_Model {
     {
       parent::__construct();
     }
-    
     public function obtener(){
         $aux = $this->rest->callAPI("GET",REST."circuitos");
         $aux =json_decode($aux["data"]);

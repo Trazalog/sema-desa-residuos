@@ -63,26 +63,19 @@
         </form>
     </div>
 </div>
-
-
 <!--_____________________________________________________________-->
 <!-- Script Agregar datos de registrar_zona-->
-
 <script>
 function agregarDato(){
     console.log("entro a agregar datos");
     $('#formZonas').on('submit', function(e){
-
     e.preventDefault();
     var me = $(this);
     if ( me.data('requestRunning') ) {return;}
     me.data('requestRunning', true);
-
     datos=$('#formZonas').serialize();
     console.log(datos);
         //--------------------------------------------------------------
-
-
     $.ajax({
                 type:"POST",
                 data:datos,
@@ -103,13 +96,10 @@ function agregarDato(){
                     me.data('requestRunning', false);
                 }
             });
-            
     });
-    
 }
 </script>
 <script>
-  
   $('#formZonas').bootstrapValidator({
       message: 'This value is not valid',
       /*feedbackIcons: {
@@ -163,5 +153,4 @@ function agregarDato(){
       e.preventDefault();
       guardar();
   });
-
 </script>

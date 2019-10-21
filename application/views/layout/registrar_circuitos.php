@@ -102,7 +102,6 @@
                     <label for="Descripcion" name="Descripcion">Descripcion:</label>
                     <input type="text" class="form-control" id="Descripcion">
                 </div>
-            
             <!--_____________________________________________-->
             <!--Boton de guardado-->
             <br>
@@ -142,24 +141,15 @@
         </div>
     </form>
 </div>
-
-
-
 <!-- Script Agregar datos -->
-
 <script>
-
 function agregarDato(){
-
     $('#formCircuitos').on('submit', function(e){
-
     e.preventDefault();
     var me = $(this);
     if ( me.data('requestRunning') ) {return;}
     me.data('requestRunning', true);
-
     datos=$('#formCircuitos').serialize();
-    
         //datos para mostrar a modo de ejemplo para DEMO---------------
         //Serialize the Form
         var values = {};
@@ -174,7 +164,6 @@ function agregarDato(){
         var nombre = getValue("nombre");
         var descripcion = getValue("descripcion");
         //--------------------------------------------------------------
-        
     $.ajax({
                 type:"POST",
                 data:datos,
@@ -201,9 +190,6 @@ function agregarDato(){
                     me.data('requestRunning', false);
                 }
             });
-            
     });
-    
 }
-
 </script>

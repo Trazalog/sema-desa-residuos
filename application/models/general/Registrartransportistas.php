@@ -5,8 +5,7 @@ class Registrartransportistas extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-    }
-    
+    } 
     public function guardarDatos($datos){
         $aux = $this->rest->callAPI("POST","http://localhost:3000/tablatransportistas", $datos);
         $aux =json_decode($aux["status"]);

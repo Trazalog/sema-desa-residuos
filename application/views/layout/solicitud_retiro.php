@@ -39,11 +39,9 @@
             </div>
             <div class="col-md-6 col-xs-12"></div>
         </div>
-
         <br>
         <hr>
         <br>
-
         <form autocomplete="off" id="formDatos" class="registerForm">
             <div class="row">
                 <div class="col-md-4 col-xs-12">
@@ -86,7 +84,6 @@
                 </div>
             </div>
         </form>
-        
         <div class="row">
             <div class="col-xs-12">
                 <!-- /.box-header -->
@@ -111,14 +108,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    ​
                                     <tr role="row" class="even" id="primero">
                                         <td>residuo radioactivo</td>
                                         <td>3</td>
                                     </tr>
-
                                 </tbody>
-
                             </table><br>
                         </div>
                     </div>
@@ -155,7 +149,6 @@
         </div>
         <br>
         <hr>
-
         <div class="row">
             <div class="box-header with-border">
                 <h4>Transportistas</h4>
@@ -175,7 +168,6 @@
             </div>
             <div class="col-md-6"></div>
         </div>
-
         <br>
         <hr>
         <br>
@@ -241,7 +233,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="tabadd">
-    
                                         <tr role="row" class="even" id="primero">
                                             <td>7</td>
                                             <td>Residuo solido urbano</td>
@@ -306,7 +297,6 @@
             <!-- /.box -->
         </div>
     </div>
-
     <!-- Modal rectificativa-->
 	<div class="modal fade"  id="modalRectificar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -320,7 +310,6 @@
 				<div class="modal-body">
 					<form id="frmrect" method="POST" autocomplete="off" class="registerForm">
                         <!-- <input type="text" hidden="" id="idpersona" name="idpersona">  -->
-                        
                         <div class="row" hidden>
                             <div class="text-center">
                                 <button type="button" class="btn btn-sm btn-default active" id="btnadd">Agregar</button>
@@ -356,8 +345,6 @@
                                                             <label class="form-label">Descripcion</label>
                                                             <textarea type="text" class="form-control input-sm" rows="5" id="descripcion" name="descripcion" required></textarea>
                                                         </div>
-                                                        
-                                                
                                         </div>
                                     </div> 
                                     <div class="row">
@@ -368,8 +355,7 @@
                                             </div>
                                         </div>
                                     </div>
-                        </div>
-                        
+                        </div>                        
                         <br>
                         <div class="row">
                                 <div class="col-sm-12 table-scroll">
@@ -424,8 +410,7 @@
 				</div>
 			</div>
 		</div>
-    </div>
-    
+    </div>    
     <!-- Modal informacion-->
 	<div class="modal fade"  id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -447,7 +432,6 @@
 			</div>
 		</div>
 	</div>
-
         <!-- Modal Entrega-->
 	<div class="modal fade"  id="modalEntrega" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -550,7 +534,6 @@
                 </div>
             </div>
         </div>
-
 <!--script close modal entrega -->
 <script>
     $("#modalEntrega").on("hidden.bs.modal", function (e) {
@@ -559,7 +542,6 @@
         $("#frmentrega")[0].reset();
     });
 </script>
-
 <!--script close modal rectificativa -->
 <script>
         $("#modalRectificar").on("hidden.bs.modal", function (e) {
@@ -577,7 +559,6 @@
         $("#formadd").hide();
         $("#btnsave").hide();
     });
-
     $("#btnadd").on("click", function(){
         $("#btnadd").addClass("active");
         $("#btnview").removeClass("active");
@@ -585,11 +566,8 @@
         $("#tablamodal").hide();
         $("#btnsave").show();
     });
-
 </script>
-
 <!-- script que cierra box con boton (x) -->
-
 <script>
     $("#btnclose").on("click", function () {
             $("#boxDatos").hide(500);
@@ -599,10 +577,8 @@
             $('#chofer').find('option').remove();
     });
 </script>
-
 <!-- script bootstrap validator -->
 <script>
-
         $('#frmentrega').bootstrapValidator({
             message: 'This value is not valid',
             /*feedbackIcons: {
@@ -712,12 +688,9 @@
             e.preventDefault();
             guardarmodalentrega();
         });
-    
     </script>
-
 <!-- script bootstrap validator -->
 <script>
-
         $('#frmrect').bootstrapValidator({
             message: 'This value is not valid',
             /*feedbackIcons: {
@@ -798,26 +771,18 @@
             e.preventDefault();
             guardarmodalrectificativa();
         });
-    
     </script>
-
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
-
     $("#botonAgregar").on("click", function () {
 
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").show();
-
     });
-
 </script>
-
-
 <!-- script bootstrap validator -->
 <script>
-
     $('#formDatos').bootstrapValidator({
         message: 'This value is not valid',
         /*feedbackIcons: {
@@ -861,17 +826,11 @@
         e.preventDefault();
         guardar();
     });
-
 </script>
-
 <!-- script agregar dato -->
-
 <script>
-
     function guardar() {
-
         datos = $('#formDatos').serialize();
-
         //datos para mostrar a modo de ejemplo para DEMO---------------
         //Serialize the Form
         var values = {};
@@ -887,7 +846,6 @@
         var contenedor = getValue("contenedor");
         //--------------------------------------------------------------
         if ($("#formDatos").data('bootstrapValidator').isValid()) {
-
             $.ajax({
                 type: "POST",
                 data: datos,
@@ -907,9 +865,7 @@
                 },
             });
         } else {
-
             console.log("la entrada no puede ser vacia");
         }
     };
-
 </script>

@@ -60,24 +60,18 @@
         </form>
     </div>
 </div>
-
 <!-- Script Agregar datos de registrar_inspector-->
-
 <script>
 function agregarDato(){
     console.log("entro a agregar datos");
     $('#formInspectores').on('submit', function(e){
-
     e.preventDefault();
     var me = $(this);
     if ( me.data('requestRunning') ) {return;}
     me.data('requestRunning', true);
-
     datos=$('#formInspectores').serialize();
     console.log(datos);
         //--------------------------------------------------------------
-
-
     $.ajax({
                 type:"POST",
                 data:datos,
@@ -97,10 +91,8 @@ function agregarDato(){
                 complete: function() {
                     me.data('requestRunning', false);
                 }
-            });
-            
-    });
-    
+            });            
+    });    
 }
 </script>
     <!--Script Bootstrap Validacion.-->
@@ -194,5 +186,4 @@ function agregarDato(){
       e.preventDefault();
       guardar();
   });
-
 </script>

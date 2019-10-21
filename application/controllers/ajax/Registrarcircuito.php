@@ -6,7 +6,6 @@ class Registrarcircuito  extends CI_Controller {
       parent::__construct();
       $this->load->model('general/Registrarcircuitos');
     }
-
     public function guardarDato()
     {
         $datos =  $this->input->post();

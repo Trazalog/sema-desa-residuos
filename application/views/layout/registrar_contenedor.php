@@ -7,7 +7,6 @@
     <!--_____________________________________________-->
     <div class="box-body">
         <form class="formContenedores" id="formContenedores">
-        
         <div class="col-md-6">
             <!--Codigo / Registro-->
                 <div class="form-group">
@@ -64,28 +63,21 @@
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             <!--_____________________________________________-->
         </div>
-
         </form>
     </div>
 </div>
-
 <!-- Script Agregar datos de registrar_generadores-->
-
 <script>
 function agregarDato(){
     console.log("entro a agregar datos");
     $('#formContenedores').on('submit', function(e){
-
     e.preventDefault();
     var me = $(this);
     if ( me.data('requestRunning') ) {return;}
     me.data('requestRunning', true);
-
     datos=$('#formContenedores').serialize();
     console.log(datos);
         //--------------------------------------------------------------
-
-
     $.ajax({
                 type:"POST",
                 data:datos,
@@ -106,15 +98,11 @@ function agregarDato(){
                     me.data('requestRunning', false);
                 }
             });
-            
     });
-    
 }
 </script>
-
 <!--Script Bootstrap Validacion.-->
 <script>
-  
   $('#formContenedores').bootstrapValidator({
       message: 'This value is not valid',
       /*feedbackIcons: {
@@ -201,5 +189,4 @@ function agregarDato(){
       e.preventDefault();
       guardar();
   });
-
 </script>

@@ -6,7 +6,6 @@ class TipoResiduos extends CI_Model
 	{
 		parent::__construct();
     }
-
     public function obtener(){
          $aux = $this->rest->callAPI("GET",REST."tiporesiduos");
          $aux =json_decode($aux["data"]);

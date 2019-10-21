@@ -5,7 +5,6 @@ class Empresas extends CI_Model {
     {
       parent::__construct();
     }
-    
     public function obtener(){
         $aux = $this->rest->callAPI("GET",REST."empresas");
         $aux =json_decode($aux["data"]);

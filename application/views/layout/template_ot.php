@@ -89,10 +89,8 @@
                     </div>
                 </div>
             </div>
-
             <br>
             <hr>
-
             <div class="row">
                 <div class="box-header with-border">
                     <h4>Transportistas</h4>
@@ -130,7 +128,6 @@
                     <div class="form-group">
                         <label for="dominio" class="form-label">Dominio:</label>
                         <input type="text" class="form-control" name="dominio" id="dominio" name="dominio" readonly>
-
                     </div>
                 </div>
             </div>
@@ -186,7 +183,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tabadd">
-
                                     <tr role="row" class="even" id="primero" hidden>
                                         <td>Zona 1</td>
                                         <td>Circuito 5</td>
@@ -255,7 +251,6 @@
         <!-- /.box -->
     </div>
 </div>
-
 <!-- Modal editar-->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -333,10 +328,8 @@
                             </div>
                         </div>
                     </div>
-
                     <br>
                     <hr>
-
                     <div class="row">
                         <div class="box-header with-border">
                             <h4>Transportistas</h4>
@@ -346,8 +339,7 @@
                             <div class="form-group">
                                 <label for="selecempp" class="form-label">Empresa:</label>
                                 <select size="3" class="form-control" id="selecempp" name="empresa" required>
-                                    <?php
-                                                
+                                    <?php                                               
                                                 foreach ($empresa as $i) {
                                                     echo '<option value="'.$i->nom->nom_emp.'" class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
                                                     
@@ -377,7 +369,6 @@
                                 <label for="dominioo" class="form-label">Dominio:</label>
                                 <input type="text" class="form-control" name="dominio" id="dominioo" name="dominio"
                                     readonly>
-
                             </div>
                         </div>
                     </div>
@@ -392,7 +383,6 @@
         </div>
     </div>
 </div>
-
 <!-- Modal info-->
 <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -464,7 +454,6 @@
         </div>
     </div>
 </div>
-
 <!-- script que muestra datos en modal edit -->
 <script>
 function clickedit(aux) {
@@ -472,10 +461,8 @@ function clickedit(aux) {
     $("#selecempp").prop('selectedIndex', 0);
     $('#selecmovv').find('option').remove();
     $('#choferr').find('option').remove();
-
     //se obtiene el valor de la empresa seleccionada
     var emp = localStorage.getItem('empresa' + aux);
-
     //se carga parte del formulario con los datos previamente cargados
     $("#nroo").val(localStorage.getItem('num' + aux));
     $("#fechaa").val(localStorage.getItem('fecha' + aux));
@@ -485,41 +472,33 @@ function clickedit(aux) {
     $("#circuitoo").val(localStorage.getItem('circuito' + aux));
     $("#registronn").val(localStorage.getItem('numreg' + aux));
     $("#dominioo").val(localStorage.getItem('dominio' + aux));
-
     //se le asigna el valor especifico previamente cargado y se lo selecciona
     $('#selecempp').val(emp).trigger('click');
     //se trae el json de la opcion seleccionada
     var json = $('#selecempp').find(':selected').data('json');
-
     //json = JSON.parse(json);
     //se inicializa las variables
     var html_mov = " ",
         html_chof = "";
-
     //carga la variable html_mov con las movilidades disponibles de la empresa seleccionada
     json.movilidades.movilidad.forEach(function(valor) {
         html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
             .dominio + "'>" + valor.nom_movil + "</option>"
     });
-
     //idem anterior pero con los choferes de la empresa
     json.choferes.chofer.forEach(function(valor) {
         html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
     });
-
     //se asigna las variables antes mencionadas a sus select correspondientes
     $('#selecmovv').html(html_mov);
     $("#choferr").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-    
     //se termina de cargar el formulario con los datos previamente cargados
     $("#selecmovv").val(localStorage.getItem('movilidad' + aux));
     $("#choferr").val(localStorage.getItem('chofer' + aux));
-
     //se guarda localmente una nueva variable auxedit que indica el id de la fila seleccionada para luego saber en que id guardar los datos a actualizar
     localStorage.setItem('auxedit', aux);
 }
 </script>
-
 <!--script close modal edit -->
 <script>
 //este script me permite limpiar la validacion una vez cerrado el modal
@@ -527,7 +506,6 @@ $("#modalEdit").on("hidden.bs.modal", function(e) {
     $("#formEditDatos").data('bootstrapValidator').resetForm();
 });
 </script>
-
 <!-- script muestra datos modal info -->
 <script>
 function clickinfo(aux) {
@@ -545,7 +523,6 @@ function clickinfo(aux) {
     $("#chof").val(localStorage.getItem('chofer' + aux));
 }
 </script>
-
 <!-- script delete con sweet alert 2 -->
 <script>
 function borrar(aux) {
@@ -578,7 +555,6 @@ function borrar(aux) {
         });
 }
 </script>
-
 <!-- script bootstrap validator -->
 <script>
 $('#formDatos').bootstrapValidator({
@@ -704,7 +680,6 @@ $('#formDatos').bootstrapValidator({
     guardar();
 });
 </script>
-
 <!-- script bootstrap validator -->
 <script>
 $('#formEditDatos').bootstrapValidator({
@@ -749,7 +724,6 @@ $('#formEditDatos').bootstrapValidator({
     actualizar(localStorage.getItem('auxedit'));
 });
 </script>
-
 <!-- script actualiza datos -->
 <script>
 function actualizar(aux) {
@@ -775,7 +749,6 @@ function actualizar(aux) {
     var dispfinal = getValue("dispfinal");
     var tiporesiduo = getValue("tiporesiduo");
     var num = getValue("nro");
-
     //se actualizan los datos en localStorage
     localStorage.setItem('num' + aux, num);
     localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
@@ -788,22 +761,18 @@ function actualizar(aux) {
     localStorage.setItem('circuito' + aux, circuito);
     localStorage.setItem('zona' + aux, zona);
     localStorage.setItem('empresa' + aux, empresa);
-
     //se actualizan los datos de la fila correspondiente de la tabla
     $("#" + aux + " .Zona").text(zona);
     $("#" + aux + " .Circuito").text(circuito);
     $("#" + aux + " .Empresa").text(empresa);
     $("#" + aux + " .Movilidad").text(movilidad);
     $("#" + aux + " .Chofer").text(chofer);
-
     //se cierra el modal y se indica que los datos se actualizaron con exito
     $('#modalEdit').modal('toggle');
     alertify.success("Actualizacion realizada con exito");
 }
 </script>
-
 <!-- script que cierra box con boton (x) -->
-
 <script>
 $("#btnclose").on("click", function() {
     $("#boxDatos").hide(500);
@@ -814,93 +783,68 @@ $("#btnclose").on("click", function() {
     $('#chofer').find('option').remove();
 });
 </script>
-
 <!-- script que muestra box de datos al dar click en boton agregar -->
-
 <script>
 $("#botonAgregar").on("click", function() {
     //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
     var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
     $("#nro").val(aleatorio);
-
     $("#botonAgregar").attr("disabled", "");
     //$("#boxDatos").removeAttr("hidden");
     $("#boxDatos").focus();
     $("#boxDatos").show();
-
 });
 </script>
-
 <!-- Script modal para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
 $(".emp").on('click', function() {
-
     var json = this.dataset.json;
-
     json = JSON.parse(json);
-
     var html_mov = " ",
         html_chof = "";
-
     json.movilidades.movilidad.forEach(function(valor) {
         html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
             .dominio + "'>" + valor.nom_movil + "</option>"
     });
-
     json.choferes.chofer.forEach(function(valor) {
         html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
     });
-
     $('#selecmovv').html(html_mov);
     $("#choferr").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-
     $("#registronn").val("");
     $("#dominioo").val("");
 });
-
 $("#selecmovv").on('change', function() {
     var sel = $(this).find(":selected");
     $("#registronn").val(sel.data('reg'));
     $("#dominioo").val(sel.data('dom'));
 });
 </script>
-
 <!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
 $(".emp").on('click', function() {
-
     var json = this.dataset.json;
-
     json = JSON.parse(json);
-
     var html_mov = " ",
         html_chof = "";
-
     json.movilidades.movilidad.forEach(function(valor) {
         html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
             .dominio + "'>" + valor.nom_movil + "</option>"
     });
-
     json.choferes.chofer.forEach(function(valor) {
         html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
     });
-
     $('#selecmov').html(html_mov);
     $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-
     $("#registron").val("");
     $("#dominio").val("");
 });
-
 $("#selecmov").on('change', function() {
-
     var sel = $(this).find(":selected");
     $("#registron").val(sel.data('reg'));
     $("#dominio").val(sel.data('dom'));
-
 });
 </script>
-
 <!-- Script inicia variable auxiliar gloabal -->
 <script>
 $(document).ready(function() {
@@ -911,13 +855,10 @@ $(document).ready(function() {
     console.log(aux);*/
 });
 </script>
-
 <!-- Script Agregar datos -->
 <script>
 function guardar() {
-
     datos = $('#formDatos').serialize();
-
     //datos para mostrar a modo de ejemplo para DEMO---------------
     //Serialize the Form
     var values = {};
@@ -940,9 +881,7 @@ function guardar() {
     var dispfinal = getValue("dispfinal");
     var tiporesiduo = getValue("tiporesiduo");
     var num = getValue("nro");
-
     var aux = parseInt(localStorage.getItem('aux'));
-
     localStorage.setItem('num' + aux, num);
     localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
     localStorage.setItem('dispfinal' + aux, dispfinal);
@@ -954,9 +893,7 @@ function guardar() {
     localStorage.setItem('circuito' + aux, circuito);
     localStorage.setItem('zona' + aux, zona);
     localStorage.setItem('empresa' + aux, empresa);
-
     //--------------------------------------------------------------
-
     if ($("#formDatos").data('bootstrapValidator').isValid()) {
         $.ajax({
             type: "POST",
@@ -993,6 +930,5 @@ function guardar() {
             }
         });
     }
-
 }
 </script>
