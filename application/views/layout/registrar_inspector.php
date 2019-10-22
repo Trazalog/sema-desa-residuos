@@ -1,3 +1,4 @@
+<!-- Hecha por Jose Roberto el mas vergas -->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header">
         <div class="box-tittle">
@@ -184,6 +185,6 @@ function agregarDato(){
         }
   }).on('success.form.bv', function(e){
       e.preventDefault();
-      guardar();
+      //guardar();
   });
 </script>
