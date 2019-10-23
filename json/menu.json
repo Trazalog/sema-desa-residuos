@@ -78,6 +78,11 @@
                                 "link": "general/Orden/registrarRecepcionDeOrden"
                             },
                             {
+                                "titulo": "Control de descarga",
+                                "icono": "fa-flus",
+                                "link": "general/Orden/controlDeDescarga"
+                            },
+                            {
                                 "titulo": "Registrar Generador",
                                 "icono": "fa-flus",
                                 "link": "general/Registrar/templateRg"

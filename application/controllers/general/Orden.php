@@ -46,8 +46,12 @@ class Orden extends CI_Controller {
    }
    function registrarRecepcionDeOrden()
    {
-    $data['zonaDescarga'] = $this->Sectoresdescarga->obtener();
-    $this->load->view('layout/registrar_recepcion_de_orden', $data);
+       $data['zonaDescarga'] = $this->Sectoresdescarga->obtener();
+       $this->load->view('layout/registrar_recepcion_de_orden', $data);
+   }
+
+   function controlDeDescarga(){
+        $this->load->view('layout/control_descarga');
    }
 }
 ?>

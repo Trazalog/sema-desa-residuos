@@ -116,7 +116,7 @@
                     </div>
                     <div class="form-group text-center">
                         <h4 for="nro" class="form-label">Incidencia</h4>
-                        <button type="button" class="btn btn-primary btn-circle" aria-label="Left Align"
+                        <button type="button" class="btn btn-default btn-circle" aria-label="Left Align"
                             data-toggle="modal" data-target="#modalIncidencia">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </button><br>
@@ -489,4 +489,82 @@
         e.preventDefault();
         guardarIncidencia();
     });
+</script>
+
+<!--script close modal entrega -->
+<script>
+    $("#modalIncidencia").on("hidden.bs.modal", function (e) {
+        //console.log("se cerro el modal");
+        $("#formIncidencia").data('bootstrapValidator').resetForm(true);
+        $("#formIncidencia")[0].reset();
+    });
+</script>
+
+<!-- script box guardarRecepcion -->
+
+<script>
+
+    function guardarRecepcion() {
+
+        datos = $('#formRecepcion').serialize();
+
+        //--------------------------------------------------------------
+        if ($("#formRecepcion").data('bootstrapValidator').isValid()) {
+
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "ajax/Ordentrabajo/guardarRecepcion",
+                success: function (r) {
+                    if (r === "ok") {
+                        console.log(r);
+                        $('#formRecepcion').data('bootstrapValidator').resetForm(true);
+                        alertify.success("Agregado con exito");
+                    }
+                    else {
+                        console.log(r);
+                        alertify.error("error al agregar");
+                    }
+                }
+            });
+        } else {
+            console.log("la entrada no puede ser vacia");
+        }
+    };
+
+</script>
+
+<!-- script guardar incidencia modal -->
+
+<script>
+
+    function guardarIncidencia() {
+
+        datos = $('#formIncidencia').serialize();
+
+        //--------------------------------------------------------------
+        if ($("#formIncidencia").data('bootstrapValidator').isValid()) {
+
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "ajax/Ordentrabajo/guardarIncidencia",
+                success: function (r) {
+                    if (r === "ok") {
+                        console.log(r);
+                        $('#formIncidencia').data('bootstrapValidator').resetForm(true);
+                        $('#modalIncidencia').modal('toggle');
+                        alertify.success("Agregado con exito");
+                    }
+                    else {
+                        console.log(r);
+                        alertify.error("error al agregar");
+                    }
+                }
+            });
+        } else {
+            console.log("la entrada no puede ser vacia");
+        }
+    };
+
 </script>
