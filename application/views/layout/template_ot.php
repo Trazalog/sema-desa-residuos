@@ -156,8 +156,8 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 table-scroll">
-                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
-                                aria-describedby="example2_info">
+                            <table id="example2" class="table table-condensed table-bordered table-hover dataTable"
+                                role="grid" aria-describedby="example2_info">
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
@@ -183,40 +183,11 @@
                                 </thead>
                                 <tbody id="tabadd">
 
-                                    <tr role="row" class="even" id="primero" hidden>
-                                        <td>Zona 1</td>
-                                        <td>Circuito 5</td>
-                                        <td>Transp 1</td>
-                                        <td>Asd 345</td>
-                                        <td>Hugo Gallardo</td>
-                                        <td class="sorting_1"><button type="button" title="ok"
-                                                class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok"
-                                                    aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                title="editar" class="btn btn-primary btn-circle" data-toggle="modal"
-                                                data-target="#modalEdit"><span class="glyphicon glyphicon-pencil"
-                                                    aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                title="eliminar" class="btn btn-primary btn-circle delete"><span
-                                                    class="glyphicon glyphicon-trash"
-                                                    aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                title="buscar" class="btn btn-primary btn-circle info"
-                                                data-toggle="modal" data-target="#modalInfo"><span
-                                                    class="glyphicon glyphicon-search"
-                                                    aria-hidden="true"></span></button></td>
-                                    </tr>
-                                    <!--
-                    <tr role="row" class="even">
-                    <td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
-                    <td>Zona 5</td>
-                    <td>Circuito 11</td>
-                    <td>Transp 8</td>
-                    <td>Asd 347</td>
-                    <td>Fernando Leiva</td>
-                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                   <br>
+                    <br>
                 </div>
             </div>
             <!-- /.box-body -->
@@ -353,11 +324,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                        <div class="form-group text-right">
-                            <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
-                            <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
-                        </div>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                        <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>
@@ -541,7 +512,12 @@
                     });
 
                     //oculta la fila eliminada
-                    $("#" + aux).hide(500);
+                    //$("#" + aux).hide(500);
+                    /*var myTable = $('#example2').DataTable();
+                    myTable.row(this).delete();*/
+                    var t = $('#example2').DataTable();
+                    t.row("#"+aux).remove().draw();
+
                 } else {
 
                 }
@@ -759,12 +735,9 @@
         localStorage.setItem('zona' + aux, zona);
         localStorage.setItem('empresa' + aux, empresa);
 
-        //se actualizan los datos de la fila correspondiente de la tabla
-        $("#" + aux + " .Zona").text(zona);
-        $("#" + aux + " .Circuito").text(circuito);
-        $("#" + aux + " .Empresa").text(empresa);
-        $("#" + aux + " .Movilidad").text(movilidad);
-        $("#" + aux + " .Chofer").text(chofer);
+        var t = $('#example2').DataTable();
+        //me permite editar una fila de dataTable indicando el id de la fila(aux) y pasando como parametro en data un array con los datos a editar
+        t.row(aux).data([zona, circuito, empresa, movilidad, chofer, '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>']).draw();
 
         //se cierra el modal y se indica que los datos se actualizaron con exito
         $('#modalEdit').modal('toggle');
@@ -934,20 +907,23 @@
                 url: "ajax/Ordentrabajo/guardarDato",
                 success: function (r) {
                     if (r == "ok") {
-                        //console.log(datos);
-                        html = '<tr id="' + aux + '" role="row" class="even"><td class="Zona">' + zona +
-                            '</td><td class="Circuito">' + circuito + '</td><td class="Empresa">' + empresa +
-                            '</td><td class="Movilidad">' + movilidad + '</td><td class="Chofer">' + chofer +
-                            '</td><td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit(' +
-                            aux +
-                            ')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar(' +
-                            aux +
-                            ')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo(' +
-                            aux +
-                            ')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td></tr>';
-                        aux = aux + 1;
-                        localStorage.setItem('aux', aux);
-                        $('#primero').after(html);
+                        
+                        //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
+                        var t = $('#example2').DataTable();
+                        var fila = t.row.add([
+                            zona,
+                            circuito,
+                            empresa,
+                            movilidad,
+                            chofer,
+                            //agrega los iconos correspondientes
+                            '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
+                        ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
+                        t.draw(false);
+
+                        aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
+                        localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
+
                         $('#formDatos').data('bootstrapValidator').resetForm();
                         $("#formDatos")[0].reset();
                         $('#selecmov').find('option').remove();
@@ -963,20 +939,19 @@
                 }
             });
         }
-
     }
 </script>
 
 <script>
- $(function () {
-   $('#example1').DataTable()
-   $('#example2').DataTable({
-     'paging'      : true,
-     'lengthChange': true,
-     'searching'   : true,
-     'ordering'    : true,
-     'info'        : true,
-     'autoWidth'   : true
-   })
- })
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': true
+        })
+    })
 </script>

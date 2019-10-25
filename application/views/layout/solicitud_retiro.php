@@ -245,14 +245,14 @@
                                         <td>4/10/2019</td>
                                         <td class="sorting_1"><button type="button" id="btnrectificar"
                                                 data-toggle="modal" data-target="#modalRectificar" title="rectificar"
-                                                class="btn btn-primary btn-circle"><span
+                                                class="btn btn-primary btn-xs btn-circle"><span
                                                     class="glyphicon glyphicon-pencil"
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                id="btninfo" title="info" class="btn btn-primary btn-circle"
+                                                id="btninfo" title="info" class="btn btn-primary btn-xs btn-circle"
                                                 data-toggle="modal" data-target="#modalInfo"><span
                                                     class="glyphicon glyphicon-info-sign"
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                id="btnentrega" title="entregar" class="btn btn-primary btn-circle"
+                                                id="btnentrega" title="entregar" class="btn btn-primary btn-xs btn-circle"
                                                 data-toggle="modal" data-target="#modalEntrega"><span
                                                     class="glyphicon glyphicon-check"
                                                     aria-hidden="true"></span></button></td>
