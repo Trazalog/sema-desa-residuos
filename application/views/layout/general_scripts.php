@@ -28,6 +28,16 @@ $.widget.bridge('uibutton', $.ui.button);
        <script src="<?php base_url() ?>lib/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 
        <script src="<?php base_url() ?>lib/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+       
+       
+       <script src="<?php base_url() ?>lib/bower_components/datatables1/datatables.js"></script>
+       
+       
+       <script src="<?php base_url() ?>lib/bower_components/datatables1/dataTables.bootstrap.min.js"></script>
+       
+       
+    
+       
        <!-- alertifyjs  -->
        <script src="<?php base_url() ?>lib/alertify/alertify.js"></script>
        <!-- AdminLTE App -->

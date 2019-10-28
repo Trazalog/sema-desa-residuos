@@ -32,6 +32,18 @@
     <link rel="stylesheet"
         href="<?php base_url()?>lib/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
+        <link rel="stylesheet"
+        href="<?php base_url()?>lib/bower_components/datatables1/datatables.css">
+
+     
+
+        
+        <link rel="stylesheet"
+        href="<?php base_url()?>lib/bower_components/datatables1/datatables.min.css">
+
+        
+
+
     <link rel="stylesheet" href="<?php base_url()?>lib/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
     <link rel="stylesheet" href="<?php base_url()?>lib/bower_components/bootstrap-daterangepicker/daterangepicker.css">

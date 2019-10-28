@@ -1,5 +1,5 @@
 <div class="box box-primary">
-    <div class="box-header">
+    <div class="box-header with-border">
         <div class="box-tittle">
             <h3>Registrar Generadores</h3>  
         </div>
@@ -262,3 +262,60 @@ function agregarDato(){
   });
 
 </script>
+
+
+
+<!---//////////////////////////////////////---DATA TABLES SCRIPT---///////////////////////////////////////////////////////----->
+<!-- Script Data-Tables-->
+<script>
+  
+    $('#example1').DataTable({
+      'dom': 'Bfrtip',
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true,
+      'buttons' : [  'excel',                    
+                    'pdf',
+                    'print'
+                ]
+
+
+    });
+    
+    $('#example2').DataTable({
+      dom: 'Bfrtip',
+        buttons: [
+            
+            {
+                extend: 'excel',
+                messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+            },
+            {
+                extend: 'pdf',
+                messageBottom: null
+            },
+            {
+                extend: 'print',
+                messageTop: function () {
+                    printCounter++;
+ 
+                    if ( printCounter === 1 ) {
+                        return 'This is the first time you have printed this document.';
+                    }
+                    else {
+                        return 'You have printed this document '+printCounter+' times';
+                    }
+                },
+                messageBottom: null
+            }
+        ]
+    });
+
+</script>
+
+<!-- Script Data-Tables-->
+
+<!---//////////////////////////////////////---DATA TABLES SCRIPT---///////////////////////////////////////////////////////----->

@@ -1,5 +1,5 @@
 <div class="box box-primary">
-    <div class="box-header">
+    <div class="box-header with-border">
         <div class="box-tittle">
             <h3>Registrar Transportista</h3>  
         </div>

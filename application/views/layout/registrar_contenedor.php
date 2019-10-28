@@ -1,5 +1,5 @@
 <div class="box box-primary">
-    <div class="box-header">
+    <div class="box-header  with-border">
         <div class="box-tittle">
            <h3>Registrar Contenedor</h3>  
         </div>
@@ -111,3 +111,61 @@ function agregarDato(){
     
 }
 </script>
+
+
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true,
+      'autoFill'    : true,
+      'buttons'     :true,
+      'fixedHeader': true,
+        'colReorder': true,
+        'scroller': true,
+        'keytable': true
+    })
+  })
+</script>
+
+
+<script>
+$(document).ready(function() {
+    var table = $('#example1').DataTable( {
+        fixedHeader: true,
+        colReorder: true
+    } );
+} );
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#example1').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'print',
+                text: 'Print all',
+                exportOptions: {
+                    modifier: {
+                        selected: null
+                    }
+                }
+            },
+            {
+                extend: 'print',
+                text: 'Print selected'
+            }
+        ],
+        select: true
+    } );
+} );
+</script>
+
+
+

@@ -18,7 +18,7 @@
                             {
                                 "titulo": "Artículos",
                                 "icono": "fa-flus",
-                                "link": "almacen/Articulo"
+                                "link": "general/Registrar/templateRg"
                             },
                             {
                                 "titulo": "Stock",
@@ -76,7 +76,7 @@
                             {
                                 "titulo": "Registrar Zona",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarT/.."
+                                "link": "general/RegistrarZ/templateRz"
                             },
                             {
                                 "titulo": "Registrar Circuito",
@@ -86,7 +86,7 @@
                             {
                                 "titulo": "Registrar Contenedor",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
+                                "link": "general/RegistrarC/templateRc"
                             },
                             {
                                 "titulo": "Registrar Chofer",
@@ -106,7 +106,7 @@
                             {
                                 "titulo": "Solicitud de retiro",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/..r"
+                                "link": "general/Orden/solicitudRetiro"
                             }
                             
                         ]
@@ -131,9 +131,9 @@
                                 
                             },
                             {
-                                "titulo": "Seguimiento OT",
+                                "titulo": "Template OT",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Registrar/.."
+                                "link": "general/Orden/templateOt"
                             },
                             {
                                 "titulo": "Reporte de camiones",
@@ -163,7 +163,7 @@
                             {
                                 "titulo": "Recepcion de orden",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
+                                "link": "general/Orden/registrarRecepcionDeOrden"
                             },
                             {
                                 "titulo": "Control de trayecto",
@@ -173,7 +173,7 @@
                             {
                                 "titulo": "Control de descarga",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
+                                "link": "general/Orden/controlDeDescarga"
                             },
                             {
                                 "titulo": "Certificado de vuelco",
@@ -229,12 +229,12 @@
                             {
                                 "titulo": "Solicitud de retiro",
                                 "icono": "fa-flus",
-                                "link": "general/Orden/solicitudRetiro"
+                                "link": "general/Orden/......"
                             },
                             {
                                 "titulo": "Registrar recepcion de orden",
                                 "icono": "fa-flus",
-                                "link": "general/Orden/registrarRecepcionDeOrden"
+                                "link": "general/Orden/........"
                             },
                             {
                                 "titulo": "Registrar Generador",
@@ -244,17 +244,17 @@
                             {
                                 "titulo": "Finalizar una nueva Instancia",
                                 "icono": "fa-flus",
-                                "link": "general/RegistrarT/templateRt"
+                                "link": "general/RegistrarT/......."
                             },
                             {
                                 "titulo": "Registrar Zona",
                                 "icono": "fa-flus",
-                                "link": "general/RegistrarZ/templateRz"
+                                "link": "general/RegistrarZ/......"
                             },
                             {
                                 "titulo": "Registrar Contenedor",
                                 "icono": "fa-flus",
-                                "link": "general/RegistrarC/templateRc"
+                                "link": "general/RegistrarC/....."
                             }
                         ]
                     
