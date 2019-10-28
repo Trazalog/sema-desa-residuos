@@ -1,5 +1,7 @@
 <!-- Hecha por Fer Guardia el mascapito -->
+
 <!--  Box 1-->
+
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
         <h3>Template solicitud de retiro</h3>
@@ -15,7 +17,9 @@
         </div>
     </div>
 </div>
+
 <!-- box 2 -->
+
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
         <br>
@@ -87,7 +91,9 @@
         </form>
         <div class="row">
             <div class="col-xs-12">
+
                 <!-- /.box-header -->
+
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
                         <div class="col-sm-6"></div>
@@ -199,11 +205,15 @@
         </div>
     </div>
 </div>
+
 <!--  Box 3-->
+
 <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary animated fadeInLeft">
+
                 <!-- /.box-header -->
+
                 <div class="box-body">
                     <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
@@ -293,12 +303,18 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- /.box-body -->
+
             </div>
+
             <!-- /.box -->
+
         </div>
     </div>
+
     <!-- Modal rectificativa-->
+
 	<div class="modal fade"  id="modalRectificar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -310,7 +326,9 @@
 				</div>
 				<div class="modal-body">
 					<form id="frmrect" method="POST" autocomplete="off" class="registerForm">
+
                         <!-- <input type="text" hidden="" id="idpersona" name="idpersona">  -->
+
                         <div class="row" hidden>
                             <div class="text-center">
                                 <button type="button" class="btn btn-sm btn-default active" id="btnadd">Agregar</button>
@@ -350,7 +368,9 @@
                                     </div> 
                                     <div class="row">
                                         <div class="col-md-6 col-xs-12">
+
                                             <!--Adjuntador de imagenes-->
+
                                             <div class="form-group">
                                                 <input type="file" class=" input-sm" id="file" name="file" accept=".docx, application/msword, application/pdf">
                                             </div>
@@ -412,7 +432,9 @@
 			</div>
 		</div>
     </div>    
+
     <!-- Modal informacion-->
+
 	<div class="modal fade"  id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -433,7 +455,9 @@
 			</div>
 		</div>
 	</div>
+
         <!-- Modal Entrega-->
+
 	<div class="modal fade"  id="modalEntrega" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -535,7 +559,9 @@
                 </div>
             </div>
         </div>
+
 <!--script close modal entrega -->
+
 <script>
     $("#modalEntrega").on("hidden.bs.modal", function (e) {
         //console.log("se cerro el modal");
@@ -543,7 +569,9 @@
         $("#frmentrega")[0].reset();
     });
 </script>
+
 <!--script close modal rectificativa -->
+
 <script>
         $("#modalRectificar").on("hidden.bs.modal", function (e) {
             //console.log("se cerro el modal");
@@ -551,7 +579,9 @@
             $("#frmrect")[0].reset();
         });
 </script>
+
 <!-- script modal -->
+
 <script>
     $("#btnview").on("click", function(){
         $("#btnadd").removeClass("active");
@@ -568,7 +598,9 @@
         $("#btnsave").show();
     });
 </script>
+
 <!-- script que cierra box con boton (x) -->
+
 <script>
     $("#btnclose").on("click", function () {
             $("#boxDatos").hide(500);
@@ -578,7 +610,9 @@
             $('#chofer').find('option').remove();
     });
 </script>
+
 <!-- script bootstrap validator -->
+
 <script>
         $('#frmentrega').bootstrapValidator({
             message: 'This value is not valid',
@@ -690,7 +724,9 @@
             guardarmodalentrega();
         });
     </script>
+
 <!-- script bootstrap validator -->
+
 <script>
         $('#frmrect').bootstrapValidator({
             message: 'This value is not valid',
@@ -773,7 +809,9 @@
             guardarmodalrectificativa();
         });
     </script>
+
 <!-- script que muestra box de datos al dar click en boton agregar -->
+
 <script>
     $("#botonAgregar").on("click", function () {
 
@@ -782,7 +820,9 @@
         $("#boxDatos").show();
     });
 </script>
+
 <!-- script bootstrap validator -->
+
 <script>
     $('#formDatos').bootstrapValidator({
         message: 'This value is not valid',
@@ -828,24 +868,34 @@
         guardar();
     });
 </script>
+
 <!-- script agregar dato -->
+
 <script>
     function guardar() {
         datos = $('#formDatos').serialize();
+
         //datos para mostrar a modo de ejemplo para DEMO---------------
         //Serialize the Form
+
         var values = {};
         $.each($("#formDatos").serializeArray(), function (i, field) {
             values[field.name] = field.value;
         });
+
         //Value Retrieval Function
+
         var getValue = function (valueName) {
             return values[valueName];
         };
+
         //Retrieve the Values
+
         var tipo_residuo = getValue("tipo_residuo");
         var contenedor = getValue("contenedor");
+
         //--------------------------------------------------------------
+        
         if ($("#formDatos").data('bootstrapValidator').isValid()) {
             $.ajax({
                 type: "POST",

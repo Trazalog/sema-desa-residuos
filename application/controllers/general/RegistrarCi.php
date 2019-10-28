@@ -17,6 +17,7 @@ class RegistrarCi extends CI_Controller {
        //$data['Chofer'] = $this->Chofer->obtener();
        $this->load->view('layout/registrar_circuitos');
    }
+   
    function templateRci()
    {
        //$data['Chofer'] = $this->Chofer->obtener();

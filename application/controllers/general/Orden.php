@@ -24,6 +24,7 @@ class Orden extends CI_Controller {
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/orden_transporte', $data);
    }
+
    function templateOt()
    {
        $data['empresa'] = $this->Empresas->obtener();
@@ -35,6 +36,7 @@ class Orden extends CI_Controller {
        $this->load->view('layout/template_ot',$data);
        
    }
+   
    function solicitudRetiro()
    {
        $data['empresa'] = $this->Empresas->obtener();

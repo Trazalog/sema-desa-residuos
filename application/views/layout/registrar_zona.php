@@ -5,20 +5,24 @@
             <h3>Registrar Zona</h3>  
         </div>
     </div>
+
     <!--_____________________________________________-->
+
     <div class="box-body">
         <form class="formZonas" id="formZonas">
-            <div class="col-md-6">
+                <div class="col-md-6">
+
                 <!--Nombre-->
                 <div class="form-group">
-                    <label for="Nombre" name="Nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="Nombre">
+                    <label for="Nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="Nombre" name="Nombre">
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Departamento-->
                 <div class="form-group">
-                    <label for="Dpto" name="Departamento">Departamento:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Dpto">
+                    <label for="Dpto">Departamento:</label>
+                    <select class="form-control select2 select2-hidden-accesible" id="Dpto" name="Departamento">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Dpto as $i) {
@@ -28,10 +32,11 @@
                     </select>
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Circuito / Recorrido-->
                 <div class="form-group">
-                    <label for="CircR" name="Circuito_Recorrido">Circuito / Recorrido:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="CircR">
+                    <label for="CircR">Circuito / Recorrido:</label>
+                    <select class="form-control select2 select2-hidden-accesible" id="CircR" name="Circuito_Recorrido">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($CircR as $i) {
@@ -41,30 +46,33 @@
                     </select>
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Adjuntador de imagenes-->
                 <form action="cargar_archivo" method="post" enctype="multipart/form-data">
                     <input  type="file" name="upload">
                 </form>
                 <!--_____________________________________________-->
-    </div>
-    <div class="box-body">
-            <div class="col-md-6">
+
+                </div>
+                <div class="col-md-6">
+
                 <!--Descripcion-->
                 <div class="form-group">
-                    <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                    <input type="text" class="form-control" id="Descripcion">
+                    <label for="Descripcion">Descripcion:</label>
+                    <input type="text" class="form-control" id="Descripcion" name="Descripcion">
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Boton de guardado-->
                 <br>
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
                 <!--_____________________________________________-->
             </div>
-            </div>
         </form>
     </div>
 </div>
 <!--_____________________________________________________________-->
+
 <!-- Script Agregar datos de registrar_zona-->
 <script>
 function agregarDato(){
@@ -77,6 +85,7 @@ function agregarDato(){
     datos=$('#formZonas').serialize();
     console.log(datos);
         //--------------------------------------------------------------
+
     $.ajax({
                 type:"POST",
                 data:datos,
@@ -100,6 +109,8 @@ function agregarDato(){
     });
 }
 </script>
+
+<!--Script Bootstrap Validacion.-->
 <script>
   $('#formZonas').bootstrapValidator({
       message: 'This value is not valid',
@@ -108,6 +119,7 @@ function agregarDato(){
           invalid: 'glyphicon glyphicon-remove',
           validating: 'glyphicon glyphicon-refresh'
       },*/
+      //excluded: ':disabled',
       fields: {
         Nombre: {
               message: 'la entrada no es valida',
@@ -150,8 +162,8 @@ function agregarDato(){
               }
           }
       }
-  }).on('success.form.bv', function(e){
+  }).on('success.form.bv', function (e) {
       e.preventDefault();
-      guardar();
+      //guardar();
   });
 </script>

@@ -5,54 +5,65 @@
             <h3>Registrar Transportista</h3>  
         </div>
     </div>
-<!--_________________________________________________-->    
+
+<!--_________________________________________________-->   
+
     <div class="box-body">
     <form class="formTransportistas" id="formTransportistas">
 <div class="col-md-6">
+
     <!--Nombre / Razon social-->
     <div class="form-group">
         <label for="Nombre/Razon social">Nombre / Razon social:</label>
         <input type="text" class="form-control" id="Nombre/Razon social" name="Nombre_razon">
     </div>
     <!--_____________________________________________-->
+
     <!--Descripcion-->
     <div class="form-group">
         <label for="Descripcion">Descripcion:</label>
         <input type="text" class="form-control" id="Descripcion" name="Descripcion">
     </div>
     <!--_____________________________________________-->
+
     <!--Direccion-->
     <div class="form-group">
         <label for="Direccion">Direccion:</label>
         <input type="text" class="form-control" id="Direccion" name="Direccion">
     </div>
     <!--_____________________________________________-->
+
     <!--Telefono-->
     <div class="form-group">
         <label for="Telefono">Telefono:</label>
         <input type="text" class="form-control" id="Telefono" name="Telefono">
     </div>
     <!--_____________________________________________-->
+
     <!--Contacto-->
         <div class="form-group">
         <label for="Contacto">Contacto:</label>
         <input type="text" class="form-control" id="Contacto" name="Contacto">
     </div>
     <!--_____________________________________________-->
+
 </div>
 <div class="col-md-6">
+
     <!--Resolucion-->
         <div class="form-group">
         <label for="Resolucion">Resolucion:</label>
         <input type="text" class="form-control" id="Resolucion" name="Resolucion">
     </div>
     <!--_____________________________________________-->
+
     <!--Registro-->
         <div class="form-group">
         <label for="Registro">Registro:</label>
         <input type="text" class="form-control" id="Registro" name="Registro">
     </div>
     <!--_____________________________________________-->
+
     <!--Fecha de alta-->
     <div class="form-group">
                 <label for="Fechalta">Fecha de alta:</label>
@@ -65,6 +76,7 @@
                 <!-- /.input group -->
               </div>
     <!--_____________________________________________-->
+
     <!--Fecha de baja-->
     <div class="form-group">
                 <label for="Fechabaja">Fecha de baja:</label>
@@ -78,6 +90,7 @@
                 <!-- /.input group -->
               </div>
     <!--_____________________________________________-->
+
     <!--Tipo de RSU autorizado-->
     <div class="form-group">
     <label for="Rsu">Tipo de RSU autorizado:</label>
@@ -91,15 +104,18 @@
         </select>
     </div>
     <!--_____________________________________________-->
+
     <!--Boton de guardado-->
     <br>
     <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
     <!--_____________________________________________-->
+
 </div>
     </form>
     </div>
 </div>
     <br>
+
 <!-- Script Agregar datos de registrar_transportista-->
 <script>
 function agregarDato(){
@@ -135,6 +151,7 @@ function agregarDato(){
     });
 }
 </script>
+
 <!--Script Bootstrap Validacion.-->
 <script>
   $('#formTransportistas').bootstrapValidator({

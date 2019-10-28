@@ -5,18 +5,23 @@
             <h3>Registrar Circuitos</h3>  
         </div>
     </div>
+
     <!--_____________________________________________-->
+
     <div class="box-body">
     <form class="formCircuitos" id="formCircuitos">
     <div class="col-md-6">
+
             <!--Codigo-->
                 <div class="form-group">
                     <label for="Codigo" name="Codigo">Codigo:</label>
                     <input type="text" class="form-control" id="Codigo">
                 </div>
             <!--_____________________________________________-->
+
     </div>        
     <div class="col-md-6">
+
             <!--Chofer-->
                 <div class="form-group">
                     <label for="Chofer" name="Chofer">Chofer:</label>
@@ -30,16 +35,20 @@
                     </select>
                 </div>
             <!--_____________________________________________-->
+
     </div>
     <div class="col-md-12">
+
             <!--Descripcion-->
                 <div class="form-group">
                     <label for="Descripcion" name="Descripcion">Descripcion:</label>
                     <textarea style="resize: none;" type="text" class="form-control" id="Descripcion"></textarea>
                 </div>
             <!--_____________________________________________-->
+
     </div>
     <div class="col-md-6">
+
             <!--Vehiculo-->
                 <div class="form-group">
                     <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
@@ -53,8 +62,10 @@
                     </select>
                 </div>
             <!--_____________________________________________-->
+
     </div>
     <div class="col-md-6">
+
             <!--Tipo de residuo-->
                 <div class="form-group">
                     <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
@@ -68,14 +79,17 @@
                     </select>
                 </div>
             <!--_____________________________________________-->
+
     </div>
     <div class="col-md-6">
+
             <!--Adjuntador de imagenes-->
                 <br>
                 <form action="cargar_archivo" method="post" enctype="multipart/form-data">
                     <input  type="file" name="upload">
                 </form>
             <!--_____________________________________________-->
+
     </div>
     </div>
     </form>
@@ -86,32 +100,40 @@
             <h3>Registrar Punto Critico</h3>  
         </div>
     </div>
+
     <!--_____________________________________________-->
+
 <div class="box-body">
 <form class="formZonas" id="formZonas">
     <div class="col-md-6">
+
             <!--Nombre-->
                 <div class="form-group">
                     <label for="Nombre" name="Nombre">Nombre:</label>
                     <input type="text" class="form-control" id="Nombre">
                 </div>
             <!--_____________________________________________-->
+
     </div>
     <div class="col-md-6">
+
             <!--Descripcion-->
                 <div class="form-group">
                     <label for="Descripcion" name="Descripcion">Descripcion:</label>
                     <input type="text" class="form-control" id="Descripcion">
                 </div>
             <!--_____________________________________________-->
+
             <!--Boton de guardado-->
             <br>
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             <br>
             <br>
             <!--_____________________________________________-->
+
     </div>
     <hr>
+
         <!--Tabla de informacion que devuelve los datos del Punto Critico-->    
         <section class="content">
         <div class="row">
@@ -126,6 +148,7 @@
             <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nombre</th><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Descripcion</th></tr>
         </thead>
         <!--_____________________________________________-->
+
         <tbody id="tabadd">
             <tr role="row" class="even" id="primero">
             <td>Roberto Basañes</td>
@@ -142,6 +165,7 @@
         </div>
     </form>
 </div>
+
 <!-- Script Agregar datos -->
 <script>
 function agregarDato(){

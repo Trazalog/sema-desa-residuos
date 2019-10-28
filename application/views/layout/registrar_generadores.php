@@ -5,22 +5,27 @@
             <h3>Registrar Generadores</h3>  
         </div>
     </div>
+
     <!--_____________________________________________-->
+
     <div class="box-body">
         <form class="formGeneradores" id="formGeneradores">
             <div class="col-md-6">
+
                 <!--Nombre / Razon social-->
                 <div class="form-group">
                     <label for="Nombre/Razon social">Nombre / Razon social:</label>
                     <input type="text" class="form-control" id="Nombre/Razon social" name="Nombre_razon">
                 </div>
                 <!--_____________________________________________-->
+
                 <!--CUIT-->
                 <div class="form-group">
                     <label for="CUIT" >CUIT:</label>
                     <input type="text" class="form-control" id="CUIT" name="Cuit">
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Zona-->
                 <div class="form-group">
                     <label for="Zonag">Zona:</label>
@@ -34,12 +39,14 @@
                     </select>
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Rubro-->
                 <div class="form-group">
                     <label for="Rubro">Rubro:</label>
                     <input type="text" class="form-control" id="Rubro" name="Rubro">
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Tipo-->  
                 <div class="form-group">
                     <label for="TipoG">Tipo:</label>
@@ -54,6 +61,7 @@
                 </div>
             </div>
                 <!--_____________________________________________-->
+
                 <!--Domicilio-->
             <div class="col-md-6">
                 <div class="form-group">
@@ -61,6 +69,7 @@
                     <input type="text" class="form-control" id="Domicilio" name="Domicilio">
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Departamento-->
                 <div class="form-group">
                     <label for="Dpto">Departamento:</label>
@@ -74,28 +83,33 @@
                     </select>
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Numero de registro-->
                 <div class="form-group">
                     <label for="Numero de registro">Numero de registro:</label>
                     <input type="text" class="form-control" id="Numero de registro" name="Numero_registro">
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Tipo de residuos-->
                 <div class="form-group">
                     <label for="Tipo de residuos">Tipo de residuos:</label>
                     <input type="text" class="form-control" id="Tipo de residuos" name="Tipo_Residuo">
                 </div>
                 <!--_____________________________________________-->
+
                 <!--Boton de guardado-->
                 <br>
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
                 <!--_____________________________________________-->
+
             </div>
         </form>
         </div>
     </div>
 </div>
 <!--_____________________________________________________________-->
+
 <!-- Script Agregar datos de registrar_generadores-->
 <script>
 function agregarDato(){
@@ -131,6 +145,7 @@ function agregarDato(){
     });
 }
 </script>
+
 <!--Script Bootstrap Validacion.-->
 <script>
   $('#formGeneradores').bootstrapValidator({

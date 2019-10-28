@@ -5,43 +5,52 @@
            <h3>Registrar Contenedor</h3>  
         </div>
     </div>
+
     <!--_____________________________________________-->
+
     <div class="box-body">
         <form class="formContenedores" id="formContenedores">
         <div class="col-md-6">
+
             <!--Codigo / Registro-->
                 <div class="form-group">
                     <label for="Codigo/Registro">Codigo / Registro:</label>
                     <input type="text" class="form-control" id="Codigo/Registro" name="Codigo_registro">
                 </div>
             <!--_____________________________________________-->
+
             <!--Descripcion-->
                 <div class="form-group">
                     <label for="Descripcion">Descripcion:</label>
                     <input type="text" class="form-control" id="Descripcion" name="Descripcion">
                 </div>
             <!--_____________________________________________-->
+
             <!--Capacidad-->
                 <div class="form-group">
                     <label for="Capacidad">Capacidad:</label>
                     <input type="text" class="form-control" id="Capacidad" name="Capacidad">
                 </div>
             <!--_____________________________________________-->
+
             <!--Año de elaboracion-->
                 <div class="form-group">
                     <label for="Añoelab">Año de elaboracion:</label>
                     <input type="text" class="form-control" id="Añoelab" name="Añoelab">
                 </div>
             <!--_____________________________________________-->
+
         </div>
         <div class="col-md-6">
+
             <!--Tara-->
                 <div class="form-group">
                     <label for="Tara">Tara:</label>
                     <input type="text" class="form-control" id="Tara" name="Tara">
                 </div>
             <!--_____________________________________________-->
-                <!--Estado-->
+
+            <!--Estado-->
                 <div class="form-group">
                     <label for="Estados">Estado:</label>
                     <select class="form-control select2 select2-hidden-accesible" id="Estados" name="Estados">
@@ -53,20 +62,24 @@
                         ?>
                     </select>
                 </div>
-                <!--_____________________________________________-->
+            <!--_____________________________________________-->
+
             <!--Habilitacion-->
                 <div class="form-group">
                     <label for="Habilitacion">Habilitacion:</label>
                     <input type="text" class="form-control" id="Habilitacion" name="Habilitacion">
                 </div>
             <!--_____________________________________________-->
+
             <!--Boton de guardado-->
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             <!--_____________________________________________-->
+
         </div>
         </form>
     </div>
 </div>
+
 <!-- Script Agregar datos de registrar_generadores-->
 <script>
 function agregarDato(){
@@ -79,6 +92,7 @@ function agregarDato(){
     datos=$('#formContenedores').serialize();
     console.log(datos);
         //--------------------------------------------------------------
+        
     $.ajax({
                 type:"POST",
                 data:datos,
@@ -102,6 +116,7 @@ function agregarDato(){
     });
 }
 </script>
+
 <!--Script Bootstrap Validacion.-->
 <script>
   $('#formContenedores').bootstrapValidator({

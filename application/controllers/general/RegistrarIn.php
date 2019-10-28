@@ -10,6 +10,7 @@ class RegistrarIn extends CI_Controller {
    {
        $this->load->view('layout/registrar_inspector');
    }
+   
    function templateIn()
    {
        $this->load->view('layout/registrar_inspector');

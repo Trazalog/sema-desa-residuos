@@ -5,62 +5,75 @@
             <h3>Registrar Inspector</h3>
         </div>
     </div>
+
     <!--_____________________________________________-->
+
     <div class="box-body">
         <form class="formInspectores" id="formInspectores">
         <div class="col-md-6">
+
             <!--Nombre-->
                 <div class="form-group">
                     <label for="Nombre">Nombre:</label>
                     <input type="text" class="form-control" id="Nombre" name="nombre">
                 </div>
             <!--_____________________________________________-->
+
             <!--Apellido-->
                 <div class="form-group">
                     <label for="Apellido">Apellido:</label>
                     <input type="text" class="form-control" id="Apellido" name="apellido">
                 </div>
             <!--_____________________________________________-->
+
             <!--Direccion-->
                 <div class="form-group">
                     <label for="Direccion">Direccion:</label>
                     <input type="text" class="form-control" id="Direccion" name="descripcion">
                 </div>
             <!--_____________________________________________-->
+
             <!--Email-->
                 <div class="form-group">
                     <label for="Email">Email:</label>
                     <input type="text" class="form-control" id="Email" name="email">
                 </div>
             <!--_____________________________________________-->
+
         </div>
         <div class="col-md-6">
+
             <!--DNI-->
                 <div class="form-group">
                     <label for="DNI">DNI:</label>
                     <input type="text" class="form-control" id="DNI" name="dni">
                 </div>
             <!--_____________________________________________-->
+
             <!--Departamento-->
                 <div class="form-group">
                     <label for="Departamento">Departamento:</label>
                     <input type="text" class="form-control" id="Departamento" name="departamento">
                 </div>
             <!--_____________________________________________-->
+
             <!--Movilidad Asignada-->
                 <div class="form-group">
                     <label for="MovAsignada">Movilidad Asignada:</label>
                     <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada">
                 </div>
             <!--_____________________________________________-->
+
             <!--Boton de guardado-->
             <br>
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             <!--_____________________________________________-->
+
         </div>
         </form>
     </div>
 </div>
+
 <!-- Script Agregar datos de registrar_inspector-->
 <script>
 function agregarDato(){
@@ -73,6 +86,7 @@ function agregarDato(){
     datos=$('#formInspectores').serialize();
     console.log(datos);
         //--------------------------------------------------------------
+
     $.ajax({
                 type:"POST",
                 data:datos,
@@ -96,6 +110,7 @@ function agregarDato(){
     });    
 }
 </script>
+
     <!--Script Bootstrap Validacion.-->
 <script>
       $('#formInspectores').bootstrapValidator({

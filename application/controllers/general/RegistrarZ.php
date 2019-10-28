@@ -17,12 +17,14 @@ class RegistrarZ extends CI_Controller {
        $this->load->view('layout/registrar_zona', $data);
        $this->cargar_archivo();
    }
+
    function templateRz()
    {
        $data['Dpto'] = $this->Dpto->obtener();
        $data['CircR'] = $this->CircR->obtener();
        $this->load->view('layout/registrar_zona',$data);
    }
+
    function cargar_archivo() {
 
     $upload = 'upload';
@@ -31,13 +33,14 @@ class RegistrarZ extends CI_Controller {
     $config['allowed_types'] = "*";
     $config['max_height'] = "*";
     $this->load->library('upload', $config);
-    
+        
     if (!$this->upload->do_upload($upload)) {
         //*** ocurrio un error
         //$data['uploadError'] = $this->upload->display_errors();
         echo $this->upload->display_errors();
         return;
     }
+    
      echo($this->uploads);
      var_dump($this->uploads->data());
     //$data['uploadSuccess'] = $this->upload->data();

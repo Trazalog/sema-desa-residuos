@@ -20,6 +20,7 @@ class Registrar extends CI_Controller {
        $data['Dpto'] = $this->Dpto->obtener();
        $this->load->view('layout/registrar_generadores', $data);
    }
+   
    function templateRg()
    {
        $data['Zonag'] = $this->Zonag->obtener();
