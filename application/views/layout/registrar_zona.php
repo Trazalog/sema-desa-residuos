@@ -49,7 +49,7 @@
 
                 <!--Adjuntador de imagenes-->
                 <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                    <input  type="file" name="upload">
+                <input  type="file"  id="imgarch" name="upload" data-required="true">
                 </form>
                 <!--_____________________________________________-->
 
@@ -67,6 +67,7 @@
                 <br>
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
                 <!--_____________________________________________-->
+                
             </div>
         </form>
     </div>
@@ -167,3 +168,16 @@ function agregarDato(){
       //guardar();
   });
 </script>
+<!--_____________________________________________________________-->
+
+<!--Script validador de campo de imagenes-->
+<script>
+var value = $("#imgarch").val();
+if (value == "1") {
+    document.getElementById('imgarch').setAttribute("data-required","true");
+}
+else {
+    document.getElementById('imgarch').setAttribute("data-required","false");
+}
+</script>
+<!--_____________________________________________________________-->

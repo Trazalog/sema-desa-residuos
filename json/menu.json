@@ -101,6 +101,11 @@
                                 "titulo": "Registrar Inspector",
                                 "icono": "fa-flus",
                                 "link": "general/RegistrarIn/templateIn"
+                            },
+                            {
+                                "titulo": "Establecimiento",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarIn/templateIn"
                             }
                         ]
                     }
