@@ -105,7 +105,12 @@
                             {
                                 "titulo": "Establecimiento",
                                 "icono": "fa-flus",
-                                "link": "general/RegistrarIn/templateIn"
+                                "link": "general/RegistrarE/templateEs"
+                            },
+                            {
+                                "titulo": "Etapa",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarEt/templateEt"
                             }
                         ]
                     }

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 /* Hecha por Jose Roberto el mas vergas */
-class RegistrarE extends CI_Controller {
+class RegistrarEt extends CI_Controller {
     function __construct(){
 
       parent::__construct();
@@ -9,16 +9,16 @@ class RegistrarE extends CI_Controller {
       //$this->load->model('general/Estados');
    }
 
-   function registrarE()
+   function registrarEt()
    {
        //$data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/registrar_establecimiento');
+       $this->load->view('layout/registrar_etapa');
    }
    
-   function templateEs()
+   function templateEt()
    {
        //$data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/registrar_establecimiento');
+       $this->load->view('layout/registrar_etapa');
        
    }
 }

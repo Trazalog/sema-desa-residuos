@@ -23,11 +23,18 @@
             <!--Ubicacion-->
             <div class="form-group">
                 <label for="Ubicacion">Ubicacion:</label>
+                <br>
+                <div class="col-md-6">
                 <input type="text" class="form-control" id="Ubicacion" name="Ubicacion">
+                </div>
+                <div class="col-md-6">
+                <input type="text" class="form-control" id="Ubicacion" name="Ubicacion">
+                </div>
             </div>
             <!--_____________________________________________-->
 
             <!--Pais-->
+            <br><br>
             <div class="form-group">
                 <label for="Pais">Pais:</label>
                 <input type="text" class="form-control" id="Pais" name="Pais">
@@ -63,8 +70,8 @@
 
         </div>
         <div class="col-md-6">
-            <!--Calles-->
 
+            <!--Calles-->
             <div class="form-group">
                 <label for="Calles">Calles:</label>
                 <input type="text" class="form-control" id="Calles" name="Calles">
@@ -90,6 +97,11 @@
                 <label for="Estado">Estado:</label>
                 <input type="text" class="form-control" id="Estado" name="Estado">
             </div>
+            <!--_____________________________________________-->
+
+            <!--Boton de guardado-->
+            <hr>
+            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             <!--_____________________________________________-->
         </div>
         </form>
