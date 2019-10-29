@@ -46,19 +46,32 @@
                                 </thead>
                                 <tbody id="tabadd">
 
-                                    <tr role="row" class="even" id="primero">
+                                    <tr role="row" class="even">
                                         <td>
-                                            <button type="button" id="btnvuelco" title="vuelco"
-                                                class="btn btn-primary btn-circle" data-toggle="modal"
-                                                data-target="#modalInfo"><span class="glyphicon glyphicon-log-in"
+                                            <button type="button" title="vuelco"
+                                                class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in"
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                id="btnadjuntar" title="adjuntar" class="btn btn-primary btn-circle"
-                                                data-toggle="modal" data-target="#modalEntrega"><span
-                                                    class="glyphicon glyphicon-paperclip"
+                                                title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"
+                                                ><span class="glyphicon glyphicon-paperclip"
                                                     aria-hidden="true"></span></button></td>
                                         <td>7</td>
                                         <td>asd 234</td>
                                         <td>Generador 2</td>
+                                        <td>4/10/2019</td>
+                                        <td>4/10/2019</td>
+                                        <td>4/10/2019</td>
+                                    </tr>
+                                    <tr role="row" class="even">
+                                        <td>
+                                            <button type="button" title="vuelco"
+                                                class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in"
+                                                    aria-hidden="true"></span></button>&nbsp<button type="button"
+                                                title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span
+                                                    class="glyphicon glyphicon-paperclip"
+                                                    aria-hidden="true"></span></button></td>
+                                        <td>8</td>
+                                        <td>dsa 213</td>
+                                        <td>Generador 4</td>
                                         <td>4/10/2019</td>
                                         <td>4/10/2019</td>
                                         <td>4/10/2019</td>
@@ -361,7 +374,8 @@
 <script>
     $("#btnclose").on("click", function () {
         $("#boxDatos").hide(500);
-        $("#btnvuelco").removeAttr("disabled");
+        $(".btnvuelco").removeAttr("disabled");
+        $(".btnadjuntar").removeAttr("disabled");
         /*$('#formDatos').data('bootstrapValidator').resetForm();
         $("#formDatos")[0].reset();
         $('#selecmov').find('option').remove();
@@ -372,11 +386,11 @@
 <!-- script que muestra box de datos al dar click en boton volcar del dataTable -->
 
 <script>
-    $("#btnvuelco").on("click", function () {
-
-        $("#btnvuelco").attr("disabled", "");
+    $(".btnvuelco").on("click", function () {
+        
+        $(".btnvuelco").attr("disabled", "");
+        $(".btnadjuntar").attr("disabled", "");
         $("#boxDatos").focus();
         $("#boxDatos").show();
-
     });
 </script>
