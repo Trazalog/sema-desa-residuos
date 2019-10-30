@@ -48,7 +48,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="Fechalta" name="Fecha_de_alta">
+                  <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_alta">
                 </div>
                 <!-- /.input group -->
             </div>
@@ -182,12 +182,16 @@ function agregarDato(){
                     },
                 }
             },
-            Fechalta: {
+            Fecha_de_alta: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
                     },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
                 }
             },
             Usuario: {

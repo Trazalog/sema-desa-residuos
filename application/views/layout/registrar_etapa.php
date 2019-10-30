@@ -119,14 +119,14 @@ function agregarDato(){
                     }
                 }
             },
-            datepicker: {
+            Fecha_de_alta: {
                     message: 'la entrada no es valida',
                     validators: {
                         notEmpty: {
                             message: 'la entrada no puede ser vacia'
                         },
                         regexp: {
-                            regexp: /[A-Za-z]/,
+                            regexp: /^(0|[1-9][0-9]*)$/,
                             message: 'la entrada debe ser un numero entero'
                     }
                 }
