@@ -9,7 +9,7 @@
     <!--_____________________________________________-->
 
     <div class="box-body">
-        <form class="formContenedores" id="formContenedores">
+        <form class="formEstablecimiento" id="formEstablecimiento">
         
         <div class="col-md-6">
 
@@ -48,16 +48,9 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_alta">
+                  <input type="text" class="form-control pull-right" id="Fechalta" name="Fecha_de_alta">
                 </div>
                 <!-- /.input group -->
-            </div>
-            <!--_____________________________________________-->
-
-            <!--Pais-->
-            <div class="form-group">
-                <label for="Pais">Pais:</label>
-                <input type="text" class="form-control" id="Pais" name="Pais">
             </div>
             <!--_____________________________________________-->
 
@@ -99,11 +92,167 @@
             </div>
             <!--_____________________________________________-->
 
+        </div>
+        
             <!--Boton de guardado-->
-            <hr>
+            <br><br>
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             <!--_____________________________________________-->
-        </div>
+        
         </form>
     </div>
 </div>
+
+<!-- Script Agregar datos de registrar_inspector-->
+<script>
+function agregarDato(){
+    console.log("entro a agregar datos");
+    $('#formEstablecimiento').on('submit', function(e){
+    e.preventDefault();
+    var me = $(this);
+    if ( me.data('requestRunning') ) {return;}
+    me.data('requestRunning', true);
+    datos=$('#formEstablecimiento').serialize();
+    console.log(datos);
+        //--------------------------------------------------------------
+
+    $.ajax({
+                type:"POST",
+                data:datos,
+                url:"ajax/Registrarinspector/guardarDato",
+                success:function(r){
+                    if(r == "ok"){
+                        //console.log(datos);
+                        $('#formEstablecimiento')[0].reset();
+                        alertify.success("Agregado con exito");
+                    }
+                    else{
+                        console.log(r);
+                        $('#formEstablecimiento')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
+                }
+            });            
+    });    
+}
+</script>
+
+<!--Script Bootstrap Validacion.-->
+ <script>
+      $('#formEstablecimiento').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      fields: {
+            Nombre: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Ubicacion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Pais: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            Fechalta: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            Usuario: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Calles: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Altura: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Localidad: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Estado: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            }
+        }
+  }).on('success.form.bv', function(e){
+      e.preventDefault();
+      //guardar();
+  });
+</script>
