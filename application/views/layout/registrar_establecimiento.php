@@ -57,7 +57,7 @@
             <!--Usuario-->
             <div class="form-group">
                 <label for="Usuario">Usuario:</label>
-                <input type="text" class="form-control" id="Usuario" name="Usuario">
+                <input type="text" class="form-control" id="Usuario" name="Usuario" disabled>
             </div>
             <!--_____________________________________________-->
 
@@ -93,6 +93,7 @@
             <!--_____________________________________________-->
 
         </div>
+        
         
             <!--Boton de guardado-->
             <br><br>
@@ -201,7 +202,7 @@ function agregarDato(){
                         message: 'la entrada no puede ser vacia'
                     },
                     regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
+                        regexp: /[A-Za-z]/,
                         message: 'la entrada debe ser un numero entero'
                     }
                 }

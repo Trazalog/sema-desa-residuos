@@ -38,7 +38,7 @@
         
             <!--Nombre Recipiente-->
             <div class="form-group">
-                <label for="NombreRecipiente">Nombre Recipiente:</label>
+                 <label for="NombreRecipiente">Nombre Recipiente:</label>
                 <input type="text" class="form-control" id="NombreRecipiente" name="NombreRecipiente">
             </div>
             <!--_____________________________________________-->
@@ -46,7 +46,7 @@
             <!--Usuario-->
             <div class="form-group">
                 <label for="Usuario">Usuario:</label>
-                <input type="text" class="form-control" id="Usuario" name="Usuario">
+                <input type="text" class="form-control" id="Usuario" name="Usuario" disabled>
             </div>
             <!--_____________________________________________-->
         
@@ -54,13 +54,13 @@
             <hr>
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             <!--_____________________________________________-->
-            
-        </div>
+
+            </div>
         </form>
     </div>
 </div>
 
-<!-- Script Agregar datos de registrar_inspector-->
+<!-- Script Agregar datos de registrar_etapa-->
 <script>
 function agregarDato(){
     console.log("entro a agregar datos");
@@ -76,7 +76,7 @@ function agregarDato(){
     $.ajax({
                 type:"POST",
                 data:datos,
-                url:"ajax/Registrarinspector/guardarDato",
+                url:"ajax/Registraretapa/guardarDato",
                 success:function(r){
                     if(r == "ok"){
                         //console.log(datos);

@@ -1,4 +1,5 @@
 <script>
+
     /* Hecha por Jose Roberto el mas vergas */
         function guardar(){
  
@@ -24,5 +25,4 @@
                 console.log("la entrada no puede ser vacia");
             }
         }
-    
 </script>
