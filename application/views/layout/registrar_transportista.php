@@ -114,6 +114,7 @@
     </form>
     </div>
 </div>
+
     <br>
 
 <!-- Script Agregar datos de registrar_transportista-->

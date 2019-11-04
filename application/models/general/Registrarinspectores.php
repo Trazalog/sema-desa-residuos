@@ -6,6 +6,7 @@ class Registrarinspectores extends CI_Model
 	{
 		parent::__construct();
     }
+    
     public function guardarDatos($datos){
         $aux = $this->rest->callAPI("POST","http://localhost:3000/tablainspectores", $datos);
         $aux =json_decode($aux["status"]);

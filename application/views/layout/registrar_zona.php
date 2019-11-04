@@ -67,7 +67,7 @@
                 <br>
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
                 <!--_____________________________________________-->
-                
+
             </div>
         </form>
     </div>
@@ -85,6 +85,7 @@ function agregarDato(){
     me.data('requestRunning', true);
     datos=$('#formZonas').serialize();
     console.log(datos);
+    
         //--------------------------------------------------------------
 
     $.ajax({

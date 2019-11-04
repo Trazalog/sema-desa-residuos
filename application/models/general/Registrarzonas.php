@@ -6,6 +6,7 @@ class Registrarzonas extends CI_Model
 	{
 		parent::__construct();
     }
+    
     public function guardarDatos($datos){
         $aux = $this->rest->callAPI("POST","http://localhost:3000/tablazonas", $datos);
         $aux =json_decode($aux["status"]);

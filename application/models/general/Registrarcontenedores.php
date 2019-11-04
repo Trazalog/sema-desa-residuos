@@ -6,6 +6,7 @@ class Registrarcontenedores extends CI_Model
 	{
 		parent::__construct();
     }
+    
     public function guardarDatos($datos){
         $aux = $this->rest->callAPI("POST","http://localhost:3000/tablacontenedores", $datos);
         $aux =json_decode($aux["status"]);

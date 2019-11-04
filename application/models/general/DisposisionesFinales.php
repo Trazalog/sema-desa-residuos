@@ -5,7 +5,8 @@ class DisposisionesFinales extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-    }
+     }
+
     public function obtener(){
          $aux = $this->rest->callAPI("GET",REST."disposisionesfinales");
          $aux =json_decode($aux["data"]);

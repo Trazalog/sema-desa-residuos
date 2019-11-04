@@ -5,6 +5,7 @@ class Zonag extends CI_Model {
     {
       parent::__construct();
     }
+    
     public function obtener(){
         $aux = $this->rest->callAPI("GET","http://localhost:3000/zonag");
         $aux =json_decode($aux["data"]);
