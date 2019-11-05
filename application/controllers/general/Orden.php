@@ -53,5 +53,9 @@ class Orden extends CI_Controller {
    function controlDeDescarga(){
         $this->load->view('layout/control_descarga');
    }
+
+   function nueva(){
+       $this->load->view('layout/nueva_vista');
+   }
 }
 ?>

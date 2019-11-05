@@ -83,6 +83,11 @@
                                 "link": "general/Orden/controlDeDescarga"
                             },
                             {
+                                "titulo": "eli dame un nombre",
+                                "icono": "fa-flus",
+                                "link": "general/Orden/nueva"
+                            },
+                            {
                                 "titulo": "Registrar Generador",
                                 "icono": "fa-flus",
                                 "link": "general/Registrar/templateRg"
