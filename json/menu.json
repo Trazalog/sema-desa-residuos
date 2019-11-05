@@ -73,6 +73,21 @@
                                 "link": "general/Orden/solicitudRetiro"
                             },
                             {
+                                "titulo": "Registrar recepcion de orden",
+                                "icono": "fa-flus",
+                                "link": "general/Orden/registrarRecepcionDeOrden"
+                            },
+                            {
+                                "titulo": "Control de descarga",
+                                "icono": "fa-flus",
+                                "link": "general/Orden/controlDeDescarga"
+                            },
+                            {
+                                "titulo": "eli dame un nombre",
+                                "icono": "fa-flus",
+                                "link": "general/Orden/nueva"
+                            },
+                            {
                                 "titulo": "Registrar Generador",
                                 "icono": "fa-flus",
                                 "link": "general/Registrar/templateRg"

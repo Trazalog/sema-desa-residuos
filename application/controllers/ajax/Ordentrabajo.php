@@ -18,6 +18,27 @@ class Ordentrabajo  extends CI_Controller {
         }
     }
 
+    public function guardarRecepcion(){
+      $datos =  $this->input->post();
+      $resp = $this->Ordentrabajos->guardarRecepciones($datos);
+      if($resp){
+        echo "ok";
+      }else{
+        echo "error";
+      }
+    }
+
+    public function guardarIncidencia()
+    {
+      $datos =  $this->input->post();
+      $resp = $this->Ordentrabajos->guardarIncidencias($datos);
+      if($resp){
+        echo "ok";
+      }else{
+        echo "error";
+      }
+    }
+
     public function guardarResiduo()
     {
       $datos =  $this->input->post();
