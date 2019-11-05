@@ -68,6 +68,11 @@
                                 "link": "general/Orden/templateOt"
                             },
                             {
+                                "titulo": "Solicitud de retiro",
+                                "icono": "fa-flus",
+                                "link": "general/Orden/solicitudRetiro"
+                            },
+                            {
                                 "titulo": "Registrar Generador",
                                 "icono": "fa-flus",
                                 "link": "general/Registrar/templateRg"
@@ -86,6 +91,26 @@
                                 "titulo": "Registrar Contenedor",
                                 "icono": "fa-flus",
                                 "link": "general/RegistrarC/templateRc"
+                            },
+                            {
+                                "titulo": "Registrar Circuito",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarCi/templateRci"
+                            },
+                            {
+                                "titulo": "Registrar Inspector",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarIn/templateIn"
+                            },
+                            {
+                                "titulo": "Establecimiento",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarE/templateEs"
+                            },
+                            {
+                                "titulo": "Etapa",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarEt/templateEt"
                             }
                         ]
                     }

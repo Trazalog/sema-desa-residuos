@@ -1,6 +1,5 @@
 <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
-
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -28,11 +27,9 @@
                     .notFA {
                         margin-left: 27px;
                     }
-
                     .navbar-nav>.user-menu>.dropdown-menu>.user-body {
                         padding: 15px 0;
                     }
-
                     .navbar-nav>.user-menu>.dropdown-menu>.user-footer {
                         padding: 10px 20px;
                     }

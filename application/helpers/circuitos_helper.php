@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 if(!function_exists('circuitos')){
-
     function circuitos($json)
     {
         $array =  $json;
@@ -10,7 +9,6 @@ if(!function_exists('circuitos')){
         foreach ($array->circuitos->circuito as $i) {
             $html .= '<option>'.$i->nombre.'</option>';
         }
-        
         return $html;
     }
 }

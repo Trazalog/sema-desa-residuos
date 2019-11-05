@@ -10,7 +10,6 @@ if(!function_exists('formato_fecha')){
             return $date;
         }
     }
-
     function resta_fechas($a,$b){
         $fecha1 = new DateTime($a);
         $fecha2 = new DateTime($b);

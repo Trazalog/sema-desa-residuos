@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+/* Hecha por Jose Roberto el mas vergas */
 class Registrar extends CI_Controller {
     function __construct(){
 
@@ -20,6 +21,7 @@ class Registrar extends CI_Controller {
        $data['Dpto'] = $this->Dpto->obtener();
        $this->load->view('layout/registrar_generadores', $data);
    }
+   
    function templateRg()
    {
        $data['Zonag'] = $this->Zonag->obtener();

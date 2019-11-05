@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 if(!function_exists('menu')){
-
     function menu($json)
     {
         $array =  $json;
@@ -9,7 +8,6 @@ if(!function_exists('menu')){
         $html = '<ul class="sidebar-menu tree menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>';
         foreach ($array->menuP->menuH as $i) {
-
             switch ($i->nivel) {
                 case 1:
                     $html .= '<li><a class="link" href="#" data-link="'.$i->link.'"><i class="'.$i->icono.'"></i><span>'.$i->titulo.'</span></a></li>';
@@ -23,17 +21,13 @@ if(!function_exists('menu')){
                                     </span>
                                 </a>';
                     $html.= submenu($i->submenu);
-                   
                     break;   
                 default:
                     break;
             }
-            
-
         }
         return $html.'</ul>';
     }
-
     function submenu($data)
     {
         $html = ' <ul class="treeview-menu">';
@@ -42,7 +36,4 @@ if(!function_exists('menu')){
         }
         return $html.'</ul>';
     }
-
-
-
 }
