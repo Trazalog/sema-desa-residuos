@@ -1,0 +1,15 @@
+{
+    "vehiculo" : {
+                "vehiculo" : [
+                    {
+                        "nombre": "vehiculo 1"
+                    },
+                    {
+                        "nombre": "vehiculo 2"
+                    },
+                    {
+                        "nombre": "vehiculo 3"
+                    }
+                ]
+    }
+}

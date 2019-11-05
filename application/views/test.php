@@ -32,10 +32,8 @@
         </div>
     </div>
 </div>
-
 <script>
 function initForm() {
-
     $('form').each(function() {
         $(this).bootstrapValidator({
             feedbackIcons: {
@@ -65,11 +63,9 @@ function initForm() {
             e.preventDefault();
         });
     });
-
     $('.datepicker').datepicker({
         dateFormat: 'DD-MM-YYYY'
     });
-
     $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
         checkboxClass: 'icheckbox_flat-green',
         radioClass: 'iradio_flat-green'
@@ -78,81 +74,54 @@ function initForm() {
         var field = $(this).attr('name');
         $(this).closest('form').bootstrapValidator('revalidateField', field);
     });
-
     $('input[type="file"]').on('change', function(e) {
-
         var filename = $(this).val();
-
         if (filename != "" && filename != null) {
-
             var link = $(this).closest('.form-group').find('a').show();
             var file = e.target.files[0];
             var filename = e.target.files[0].name;
             var blob = new Blob([file]);
             var url = URL.createObjectURL(blob);
-
             $(link).find('a').attr({
                 'download': filename,
                 'href': url
             });
         }
     });
-
     $('.save-form').click(function(e) {
-
         e.preventDefault();
-
         var form = $(this).closest('form').attr('id');
         var info = $(this).closest('form').data('info');
-
-
         $('#' + form).bootstrapValidator('validate');
-
         var bv = $('#' + form).data('bootstrapValidator');
-
-        //if (!bv.isValid()) return;
-
+        //if (!bv.isValid()) return
         var formData = new FormData($('#' + form)[0]);
-
         var checkbox = $('#' + form).find("input[type=checkbox]");
-
         $.each(checkbox, function(key, val) {
             if (!formData.has($(val).attr('name'))) {
                 formData.append($(val).attr('name'), '');
             }
         });
-
         var object = {};
-
         formData.forEach((value, key) => {
-
             if (!object.hasOwnProperty(key)) {
                 object[key] = value;
                 return;
             }
-
             if (!Array.isArray(object[key])) {
                 object[key] = [object[key]];
             }
-
             object[key].push(value);
-
         });
         var json = JSON.stringify(object);
-
         if (!navigator.onLine) sessionStorage.setItem(form, json);
-
         else {
-
             var files = $('#' + form + ' input[type="file"]');
-
             files.each(function() {
                 if (this.value != null && this.value != '') formData.append('-file-' + this.name, this
                     .value);
             });
         }
-
-
         $.ajax({
             type: 'POST',
             dataType: 'JSON',
@@ -169,18 +138,13 @@ function initForm() {
                 console.log(rsp.msj);
             }
         });
-
     });
-
 }
 </script>
-
 <script>
 $('.tag-form').click(function() {
-
     var form = this.dataset.form;
     var info = this.dataset.info;
-
     $.ajax({
         type: 'GET',
         dataType: 'JSON',

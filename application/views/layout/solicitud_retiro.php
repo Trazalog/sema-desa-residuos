@@ -1,4 +1,7 @@
+<!-- Hecha por Fer Guardia el mascapito -->
+
 <!--  Box 1-->
+
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
         <h3>Template solicitud de retiro</h3>
@@ -14,7 +17,9 @@
         </div>
     </div>
 </div>
+
 <!-- box 2 -->
+
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
         <br>
@@ -39,7 +44,6 @@
             </div>
             <div class="col-md-6 col-xs-12"></div>
         </div>
-
         <br>
         <hr>
         <br>
@@ -89,7 +93,9 @@
 
         <div class="row">
             <div class="col-xs-12">
+
                 <!-- /.box-header -->
+
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
                         <div class="col-sm-6"></div>
@@ -111,14 +117,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    ​
                                     <tr role="row" class="even" id="primero">
                                         <td>residuo radioactivo</td>
                                         <td>3</td>
                                     </tr>
-
                                 </tbody>
-
                             </table><br>
                         </div>
                     </div>
@@ -155,7 +158,6 @@
         </div>
         <br>
         <hr>
-
         <div class="row">
             <div class="box-header with-border">
                 <h4>Transportistas</h4>
@@ -175,7 +177,6 @@
             </div>
             <div class="col-md-6"></div>
         </div>
-
         <br>
         <hr>
         <br>
@@ -200,7 +201,9 @@
         </div>
     </div>
 </div>
+
 <!--  Box 3-->
+
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary animated fadeInLeft">
@@ -566,6 +569,7 @@
 </div>
 
 <!--script close modal entrega -->
+
 <script>
     $("#modalEntrega").on("hidden.bs.modal", function (e) {
         //console.log("se cerro el modal");
@@ -575,6 +579,7 @@
 </script>
 
 <!--script close modal rectificativa -->
+
 <script>
     $("#modalRectificar").on("hidden.bs.modal", function (e) {
         //console.log("se cerro el modal");
@@ -582,7 +587,9 @@
         $("#frmrect")[0].reset();
     });
 </script>
+
 <!-- script modal -->
+
 <script>
     $("#btnview").on("click", function () {
         $("#btnadd").removeClass("active");
@@ -599,7 +606,6 @@
         $("#tablamodal").hide();
         $("#btnsave").show();
     });
-
 </script>
 
 <!-- script que cierra box con boton (x) -->
@@ -615,6 +621,7 @@
 </script>
 
 <!-- script bootstrap validator -->
+
 <script>
 
     $('#frmentrega').bootstrapValidator({
@@ -730,6 +737,7 @@
 </script>
 
 <!-- script bootstrap validator -->
+
 <script>
 
     $('#frmrect').bootstrapValidator({
@@ -816,22 +824,19 @@
 </script>
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
-<script>
 
+<script>
     $("#botonAgregar").on("click", function () {
 
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").show();
-
     });
-
 </script>
 
-
 <!-- script bootstrap validator -->
-<script>
 
+<script>
     $('#formDatos').bootstrapValidator({
         message: 'This value is not valid',
         /*feedbackIcons: {
@@ -875,33 +880,36 @@
         e.preventDefault();
         guardar();
     });
-
 </script>
 
 <!-- script agregar dato -->
 
 <script>
-
     function guardar() {
-
         datos = $('#formDatos').serialize();
 
         //datos para mostrar a modo de ejemplo para DEMO---------------
         //Serialize the Form
+
         var values = {};
         $.each($("#formDatos").serializeArray(), function (i, field) {
             values[field.name] = field.value;
         });
+
         //Value Retrieval Function
+
         var getValue = function (valueName) {
             return values[valueName];
         };
+
         //Retrieve the Values
+
         var tipo_residuo = getValue("tipo_residuo");
         var contenedor = getValue("contenedor");
-        //--------------------------------------------------------------
-        if ($("#formDatos").data('bootstrapValidator').isValid()) {
 
+        //--------------------------------------------------------------
+        
+        if ($("#formDatos").data('bootstrapValidator').isValid()) {
             $.ajax({
                 type: "POST",
                 data: datos,
@@ -921,9 +929,7 @@
                 },
             });
         } else {
-
             console.log("la entrada no puede ser vacia");
         }
     };
-
 </script>

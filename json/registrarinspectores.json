@@ -1,0 +1,15 @@
+{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "nombre": "",
+                        "apellido": "",
+                        "direccion": "",
+                        "email": "",
+                        "dni": "",
+                        "departamento": "",
+                        "movilidadasignada": "",
+                    }
+                ]
+    }
+}

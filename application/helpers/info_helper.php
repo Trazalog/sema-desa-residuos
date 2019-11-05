@@ -6,9 +6,7 @@ if (!function_exists('info_orden')) {
             //load databse library
             $ci->load->database();		
         if($id_OT){
-
-            $resultOT = null;
-       
+            $resultOT = null;       
             $ci->db->select('tareas.descripcion AS tareaDescrip,
                                             orden_trabajo.descripcion AS otDescrip,
                                             orden_trabajo.fecha,
@@ -22,18 +20,14 @@ if (!function_exists('info_orden')) {
             if($queryOT->num_rows() > 0){
                     $resultOT = $queryOT->row_array();
             }
-
             if(!$resultOT) return;
-				
             return '
-
                         <div class="col-xs-12 col-sm-4">
                             <div class="form-group">
                                     <label style="margin-top: 7px;">Nº Orden Trabajo: </label>
                                     <input type="text" id="ot" class="form-control" value="'.$resultOT['id_orden'].'" disabled/>
                             </div>						
-                        </div>
-                            
+                        </div>                            
                         <div class="col-xs-12 col-sm-4">
                             <div class="form-group">
                                     <label style="margin-top: 7px;">Descripción: </label>
@@ -49,13 +43,11 @@ if (!function_exists('info_orden')) {
                         <div class="col-xs-12 col-sm-4">
                             <label style="margin-top: 7px;">Duración: </label>
                             <input type="text" id="duracion" class="form-control"  value="'.$resultOT['duracion'].'" disabled/>
-                        </div>
-                        
+                        </div>                        
                         <div class="col-xs-12 col-sm-4">
                             <label style="margin-top: 7px;">Tarea: </label>
                             <input type="text" class="form-control"  value="'.$resultOT['tareaDescrip'].'" disabled/>
-                        </div>
-                        
+                        </div>                        
                         <div class="col-xs-12 col-sm-4">
                             <label style="margin-top: 7px;">Estado: </label>
                             <input type="text" class="form-control"  value="'.$resultOT['estado'].'" disabled/>

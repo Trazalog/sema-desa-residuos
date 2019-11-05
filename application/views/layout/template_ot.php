@@ -1,3 +1,4 @@
+<!-- Hecha por Fer Guardia el mascapito -->
 <!--  Box 1-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
@@ -90,10 +91,8 @@
                     </div>
                 </div>
             </div>
-
             <br>
             <hr>
-
             <div class="row">
                 <div class="box-header with-border">
                     <h4>Transportistas</h4>
@@ -131,7 +130,6 @@
                     <div class="form-group">
                         <label for="dominio" class="form-label">Dominio:</label>
                         <input type="text" class="form-control" name="dominio" id="dominio" name="dominio" readonly>
-
                     </div>
                 </div>
             </div>
@@ -195,7 +193,6 @@
         <!-- /.box -->
     </div>
 </div>
-
 <!-- Modal editar-->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -274,10 +271,8 @@
                             </div>
                         </div>
                     </div>
-
                     <br>
                     <hr>
-
                     <div class="row">
                         <div class="box-header with-border">
                             <h4>Transportistas</h4>
@@ -287,8 +282,7 @@
                             <div class="form-group">
                                 <label for="selecempp" class="form-label">Empresa:</label>
                                 <select size="3" class="form-control" id="selecempp" name="empresa" required>
-                                    <?php
-                                                
+                                    <?php                                               
                                                 foreach ($empresa as $i) {
                                                     echo '<option value="'.$i->nom->nom_emp.'" class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
                                                     
@@ -318,7 +312,6 @@
                                 <label for="dominioo" class="form-label">Dominio:</label>
                                 <input type="text" class="form-control" name="dominio" id="dominioo" name="dominio"
                                     readonly>
-
                             </div>
                         </div>
                     </div>
@@ -333,7 +326,6 @@
         </div>
     </div>
 </div>
-
 <!-- Modal info-->
 <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -405,7 +397,6 @@
         </div>
     </div>
 </div>
-
 <!-- script que muestra datos en modal edit -->
 <script>
     function clickedit(aux) {
@@ -460,7 +451,6 @@
         localStorage.setItem('auxedit', aux);
     }
 </script>
-
 <!--script close modal edit -->
 <script>
     //este script me permite limpiar la validacion una vez cerrado el modal
@@ -468,7 +458,6 @@
         $("#formEditDatos").data('bootstrapValidator').resetForm();
     });
 </script>
-
 <!-- script muestra datos modal info -->
 <script>
     function clickinfo(aux) {
@@ -486,7 +475,6 @@
         $("#chof").val(localStorage.getItem('chofer' + aux));
     }
 </script>
-
 <!-- script delete con sweet alert 2 -->
 <script>
     function borrar(aux) {
@@ -524,7 +512,6 @@
             });
     }
 </script>
-
 <!-- script bootstrap validator -->
 <script>
     $('#formDatos').bootstrapValidator({
@@ -650,7 +637,6 @@
         guardar();
     });
 </script>
-
 <!-- script bootstrap validator -->
 <script>
     $('#formEditDatos').bootstrapValidator({
@@ -695,7 +681,6 @@
         actualizar(localStorage.getItem('auxedit'));
     });
 </script>
-
 <!-- script actualiza datos -->
 <script>
     function actualizar(aux) {
@@ -744,9 +729,7 @@
         alertify.success("Actualizacion realizada con exito");
     }
 </script>
-
 <!-- script que cierra box con boton (x) -->
-
 <script>
     $("#btnclose").on("click", function () {
         $("#boxDatos").hide(500);
@@ -757,9 +740,7 @@
         $('#chofer').find('option').remove();
     });
 </script>
-
 <!-- script que muestra box de datos al dar click en boton agregar -->
-
 <script>
     $("#botonAgregar").on("click", function () {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
@@ -773,7 +754,6 @@
 
     });
 </script>
-
 <!-- Script modal para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
     $(".emp").on('click', function () {
@@ -807,7 +787,6 @@
         $("#dominioo").val(sel.data('dom'));
     });
 </script>
-
 <!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
     $(".emp").on('click', function () {
@@ -843,7 +822,6 @@
 
     });
 </script>
-
 <!-- Script inicia variable auxiliar gloabal -->
 <script>
     $(document).ready(function () {
@@ -854,7 +832,6 @@
         console.log(aux);*/
     });
 </script>
-
 <!-- Script Agregar datos -->
 <script>
     function guardar() {

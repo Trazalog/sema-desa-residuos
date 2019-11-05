@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 if(!function_exists('disposicionesFinales')){
-
     function disposicionesFinales($json)
     {
         $array =  $json;
@@ -10,7 +9,6 @@ if(!function_exists('disposicionesFinales')){
         foreach ($array->disposicionesFinales->disposicionFinal as $i) {
             $html .= '<option>'.$i->nombre.'</option>';
         }
-        
         return $html;
     }
 }

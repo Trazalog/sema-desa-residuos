@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+/* Hecha por Fer Guardia el mascapito */
 class Orden extends CI_Controller {
     function __construct(){
 
@@ -25,6 +26,7 @@ class Orden extends CI_Controller {
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/orden_transporte', $data);
    }
+
    function templateOt()
    {
        $data['empresa'] = $this->Empresas->obtener();
@@ -36,6 +38,7 @@ class Orden extends CI_Controller {
        $this->load->view('layout/template_ot',$data);
        
    }
+   
    function solicitudRetiro()
    {
        $data['empresa'] = $this->Empresas->obtener();

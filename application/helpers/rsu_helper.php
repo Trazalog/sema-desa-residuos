@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 if(!function_exists('rsu')){
-
     function rsu($json)
     {
         $array =  $json;
@@ -9,8 +8,7 @@ if(!function_exists('rsu')){
         $html = '';
         foreach ($array->rsu->rsu as $i) {
             $html .= '<option>'.$i->nombre.'</option>';
-        }
-        
+        }        
         return $html;
     }
 }
