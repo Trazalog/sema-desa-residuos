@@ -111,6 +111,11 @@
                                 "titulo": "Etapa",
                                 "icono": "fa-flus",
                                 "link": "general/RegistrarEt/templateEt"
+                            },
+                            {
+                                "titulo": "Proceso Productivo",
+                                "icono": "fa-flus",
+                                "link": "general/procesoP/templatePp"
                             }
                         ]
                     }

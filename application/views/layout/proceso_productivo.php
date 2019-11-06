@@ -6,7 +6,6 @@
         </div>
     </div>
 
-
     <!--_____________________________________________-->
 
     <div class="box-body">
@@ -81,5 +80,61 @@ function agregarDato(){
             });
     });
 }
+</script>
+<!--_____________________________________________________________-->
+
+<!--Script Bootstrap Validacion.-->
+<script>
+      $('#formProcesoProductivo').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      //excluded: ':disabled',
+
+      fields: {
+        Nombre: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+          EtapaProceso: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+          NombreRecipiente: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          }
+      }
+  }).on('success.form.bv', function (e) {
+      e.preventDefault();
+      //guardar();
+  });
 </script>
 <!--_____________________________________________________________-->
