@@ -1,3 +1,4 @@
+<!-- Hecha por Fer Guardia-->
 <!--  Box 1-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-body">
@@ -32,12 +33,14 @@
             <div class="col-md-2 col-xs-12">
                 <div class="form-group">
                     <label for="addEstablecimiento" style="visibility:hidden;">Agregar:</label>
-                    <button type="button" class="btn btn-primary form-control" id="addEstablecimiento"><span>Agregar
+                    <button type="button" class="btn btn-primary form-control" data-toggle="modal"
+                        data-target="#modalEstablecimiento" id="addEstablecimiento"><span>Agregar
                         </span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </div>
                 <div class="form-group">
                     <label for="addDeposito" style="visibility:hidden;">Agregar:</label>
-                    <button type="button" id="addDeposito" class="btn btn-primary form-control"><span>Agregar
+                    <button type="button" id="addDeposito" class="btn btn-primary form-control" data-toggle="modal"
+                        data-target="#modalDeposito"><span>Agregar
                         </span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </div>
             </div>
@@ -165,6 +168,161 @@
         <div class="modal-footer">
             <div class="form-group text-right">
                 <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal establecimiento-->
+<div class="modal fade" id="modalEstablecimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Establecimiento</h5>
+            </div>
+            <form method="POST" id="formEstablecimiento" autocomplete="off">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <!--Nombre-->
+                            <div class="form-group">
+                                <label for="Nombre">Nombre:</label>
+                                <input type="text" class="form-control input-sm" id="Nombre" name="Nombre">
+                            </div>
+                            <!--_____________________________________________-->
+
+                            <!--Ubicacion-->
+                            <div class="form-group">
+                                <label for="Ubicacion">Ubicacion:</label>
+                                <br>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control input-sm" id="Ubicacion" name="Ubicacion">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control input-sm" id="Ubicacion" name="Ubicacion">
+                                </div>
+                            </div>
+                            <!--_____________________________________________-->
+
+                            <!--Pais-->
+                            <br><br>
+                            <div class="form-group">
+                                <label for="Pais">Pais:</label>
+                                <input type="text" class="form-control input-sm" id="Pais" name="Pais">
+                            </div>
+                            <!--_____________________________________________-->
+
+                            <!--Fecha de alta-->
+                            <div class="form-group">
+                                <label for="Fechalta">Fecha de alta:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right input-sm" id="datepicker"
+                                        name="Fecha_de_alta">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!--_____________________________________________-->
+
+                            <!--Usuario-->
+                            <div class="form-group">
+                                <label for="Usuario">Usuario:</label>
+                                <input type="text" class="form-control input-sm" id="Usuario" name="Usuario" disabled>
+                            </div>
+                            <!--_____________________________________________-->
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <!--Calles-->
+                            <div class="form-group">
+                                <label for="Calles">Calles:</label>
+                                <input type="text" class="form-control input-sm" id="Calles" name="Calles">
+                            </div>
+                            <!--_____________________________________________-->
+
+                            <!--Altura-->
+                            <div class="form-group">
+                                <label for="Altura">Altura:</label>
+                                <input type="text" class="form-control input-sm" id="Altura" name="Altura">
+                            </div>
+                            <!--_____________________________________________-->
+
+                            <!--Localidad-->
+                            <div class="form-group">
+                                <label for="Localidad">Localidad:</label>
+                                <input type="text" class="form-control input-sm" id="Localidad" name="Localidad">
+                            </div>
+                            <!--_____________________________________________-->
+
+                            <!--Estado-->
+                            <div class="form-group">
+                                <label for="Estado">Estado:</label>
+                                <input type="text" class="form-control input-sm" id="Estado" name="Estado">
+                            </div>
+                            <!--_____________________________________________-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary" onclick="agregarDato()">Guardar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal deposito-->
+<div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Deposito</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nom" class="form-label label-sm">Nombre</label>
+                            <input type="text" id="nom" name="nom" class="form-control input-sm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="localidad" class="form-label label-sm">Localidad</label>
+                            <input type="text" id="localidad" name="localidad" class="form-control input-sm" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="drireccion" class="form-label label-sm">Direccion</label>
+                            <input type="text" id="drireccion" name="drireccion" class="form-control input-sm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pais" class="form-label label-sm">Pais</label>
+                            <input type="text" id="pais" name="pais" class="form-control input-sm" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -298,4 +456,153 @@
             });
         }
     }
+</script>
+
+<!-- Script Agregar datos de registrar_inspector-->
+<script>
+    function agregarDato() {
+        datos = $('#formEstablecimiento').serialize();
+        //console.log(datos);
+        //--------------------------------------------------------------
+        if ($("#formEstablecimiento").data('bootstrapValidator').isValid()) {
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "ajax/Registrarinspector/guardarDato",
+                success: function (r) {
+                    if (r == "ok") {
+                        //console.log(datos);
+                        $('#formEstablecimiento')[0].reset();
+                        alertify.success("Agregado con exito");
+                    }
+                    else {
+                        console.log(r);
+                        $('#formEstablecimiento')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+<!--Script Bootstrap Validacion.-->
+<script>
+    $('#formEstablecimiento').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        fields: {
+            Nombre: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Ubicacion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Pais: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            Fecha_de_alta: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Usuario: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Calles: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Altura: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Localidad: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Estado: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            }
+        }
+    }).on('success.form.bv', function (e) {
+        e.preventDefault();
+        agregarDato();
+    });
 </script>
