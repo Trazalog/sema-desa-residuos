@@ -10,17 +10,17 @@ class ProcesoProductivo extends CI_Controller {
       //$this->load->model('general/Estados');
    }
 
-   function procesoP()
+   function registrarP()
    {
        //$data['Estados'] = $this->Estados->obtener();
        $this->load->view('layout/proceso_productivo');
    }
-
-   function templatePp()
+   
+   function templateP()
    {
        //$data['Estados'] = $this->Estados->obtener();
        $this->load->view('layout/proceso_productivo');
+       
    }
-
 }
 ?>

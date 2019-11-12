@@ -115,7 +115,7 @@
                             {
                                 "titulo": "Proceso Productivo",
                                 "icono": "fa-flus",
-                                "link": "general/procesoP/templatePp"
+                                "link": "general/registrarP/templateP"
                             }
                         ]
                     }

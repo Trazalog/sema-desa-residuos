@@ -95,7 +95,7 @@ function agregarDato(){
       //excluded: ':disabled',
 
       fields: {
-        Nombre: {
+          Nombre: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
