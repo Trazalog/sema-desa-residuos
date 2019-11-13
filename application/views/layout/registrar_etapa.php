@@ -96,6 +96,7 @@ function agregarDato(){
     });    
 }
 </script>
+<!--_____________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
@@ -106,58 +107,59 @@ function agregarDato(){
           invalid: 'glyphicon glyphicon-remove',
           validating: 'glyphicon glyphicon-refresh'
       },*/
-        fields: {
-            Nombre: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /[A-Za-z]/,
-                            message: 'la entrada debe ser un numero entero'
-                    }
+    fields: {
+        Nombre: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
                 }
-            },
-            Fecha_de_alta: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /^(0|[1-9][0-9]*)$/,
-                            message: 'la entrada debe ser un numero entero'
-                    }
+            }
+        },
+        Fecha_de_alta: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
                 }
-            },
-            NombreRecipiente: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /[A-Za-z]/,
-                            message: 'la entrada debe ser un numero entero'
-                    }
+            }
+        },
+        NombreRecipiente: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
                 }
-            },
-            Usuario: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /[A-Za-z]/,
-                            message: 'la entrada debe ser un numero entero'
-                    }
+            }
+        },
+        Usuario: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
                 }
             }
         }
+    }
 }).on('success.form.bv', function(e){
     e.preventDefault();
     //guardar();
 });
 </script>
+<!--_____________________________________________________________-->
