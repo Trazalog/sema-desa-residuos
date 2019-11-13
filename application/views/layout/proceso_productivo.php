@@ -44,7 +44,7 @@
 </div>
 <!--_____________________________________________________________-->
 
-<!-- Script Agregar datos de registrar_zona-->
+<!-- Script Agregar datos de proceso_productivo-->
 <script>
 function agregarDato(){
     console.log("entro a agregar datos");
@@ -61,7 +61,7 @@ function agregarDato(){
     $.ajax({
                 type:"POST",
                 data:datos,
-                url:"ajax/Registrarzona/guardarDato",
+                url:"ajax/Procesoproductivo/guardarDato",
                 success:function(r){
                     if(r == "ok"){
                         //console.log(datos);
@@ -92,7 +92,6 @@ function agregarDato(){
           invalid: 'glyphicon glyphicon-remove',
           validating: 'glyphicon glyphicon-refresh'
       },*/
-      //excluded: ':disabled',
 
       fields: {
           Nombre: {
@@ -132,9 +131,9 @@ function agregarDato(){
               }
           }
       }
-  }).on('success.form.bv', function (e) {
-      e.preventDefault();
-      //guardar();
-  });
+}).on('success.form.bv', function(e){
+    e.preventDefault();
+    //guardar();
+});
 </script>
 <!--_____________________________________________________________-->
