@@ -1,0 +1,15 @@
+{
+    "etapaproceso" : {
+            "etapaproceso" : [
+                {
+                    "nombre": "Etapa 1"
+                },
+                {
+                    "nombre": "Etapa 2"
+                },
+                {
+                    "nombre": "Etapa 3"
+                }
+            ]
+    }
+}

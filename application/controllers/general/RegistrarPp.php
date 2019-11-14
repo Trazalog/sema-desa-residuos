@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /* Hecha por Jose Roberto el mas vergas */
-class ProcesoProductivo extends CI_Controller {
+class RegistrarPp extends CI_Controller {
     function __construct(){
 
       parent::__construct();
@@ -10,16 +10,16 @@ class ProcesoProductivo extends CI_Controller {
       //$this->load->model('general/Estados');
    }
 
-   function RegistrarP()
+   function RegistrarPp()
    {
        //$data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/proceso_productivo');
+       $this->load->view('layout/registrar_procesoproductivo');
    }
    
-   function templateP()
+   function templatePp()
    {
        //$data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/proceso_productivo');
+       $this->load->view('layout/registrar_procesoproductivo');
        
    }
 }

@@ -113,9 +113,9 @@
                                 "link": "general/RegistrarEt/templateEt"
                             },
                             {
-                                "titulo": "Proceso Productivo",
+                                "titulo": "Registrar Proceso Productivo",
                                 "icono": "fa-flus",
-                                "link": "general/registrarP/templateP"
+                                "link": "general/RegistrarPp/templatePp"
                             }
                         ]
                     }
