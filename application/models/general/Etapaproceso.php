@@ -9,6 +9,6 @@ class Etapaproceso extends CI_Model {
     public function obtener(){
         $aux = $this->rest->callAPI("GET","http://localhost:3000/etapaproceso");
         $aux =json_decode($aux["data"]);
-        return $aux->etapaproceso->etapaproceso;
+        return $aux->Etapaproceso->Etapaproceso;
    }
 }

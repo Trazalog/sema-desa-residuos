@@ -1,6 +1,6 @@
 {
-    "etapaproceso" : {
-            "etapaproceso" : [
+    "Etapaproceso" : {
+            "Etapaproceso" : [
                 {
                     "nombre": "Etapa 1"
                 },
@@ -9,6 +9,9 @@
                 },
                 {
                     "nombre": "Etapa 3"
+                },
+                {
+                    "nombre": "Etapa 4"
                 }
             ]
     }

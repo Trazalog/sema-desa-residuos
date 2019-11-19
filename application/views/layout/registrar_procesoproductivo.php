@@ -10,7 +10,7 @@
 
     <div class="box-body">
         <form class="formProcesoProductivo" id="formProcesoProductivo">
-            <div class="col-md-6">
+            <div class="col-md-12">
 
                 <!--Nombre-->
                 <div class="form-group">
@@ -19,13 +19,26 @@
                 </div>
                 <!--_____________________________________________-->
 
-                <!--Etapa del proceso-->
+            </div>
+            <div class="col-md-5">
+
+                <!--Nombre-->
                 <div class="form-group">
-                    <label for="EtapaProceso">Etapa del proceso:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="EtapaProceso" name="EtapaProceso">
+                    <label for="Nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="Nombre" name="Nombre">
+                </div>
+                <!--_____________________________________________-->
+
+            </div>
+            <div class="col-md-5">
+
+                <!--Recipiente-->
+                <div class="form-group">
+                    <label for="Recipiente">Recipiente:</label>
+                    <select class="form-control select2 select2-hidden-accesible" id="Recipiente" name="Recipiente">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
-                        foreach ($EtapaProceso as $i) {
+                        foreach ($Recipiente as $i) {
                             echo '<option>'.$i->nombre.'</option>';
                         }
                         ?>
@@ -34,24 +47,46 @@
                 <!--_____________________________________________-->
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-1">
 
-                <!--Nombre del Recipiente-->
+                <!--Orden-->
                 <div class="form-group">
-                    <label for="NombreRecipiente">Nombre del Recipiente:</label>
-                    <input type="text" class="form-control" id="NombreRecipiente" name="NombreRecipiente">
+                    <label for="Orden">Orden:</label>
+                    <input type="text" class="form-control" id="Orden" name="Orden">
                 </div>
                 <!--_____________________________________________-->
+                
+            </div>
+            <div class="col-md-12">
 
                 <!--Boton de guardado-->
-                <br>
-                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
                 <!--_____________________________________________-->
-
             </div>
+
         </form>
     </div>
 </div>
+
+
+<div class="box box-primary animated fadeInLeft">
+    <div class="box-header">
+    </div>
+
+    <!--Tabla de informacion de proceso productivo-->
+        
+    <section class="content">
+            <div class="row">
+                <em class="fas fa-ad"></em>
+            </div>
+
+        </section>
+
+    <!--_____________________________________________________________-->
+    
+</div>
+
+
 <!--_____________________________________________________________-->
 
 <!-- Script Agregar datos de proceso_productivo-->
@@ -116,16 +151,12 @@ function agregarDato(){
                   }
               }
           },
-          EtapaProceso: {
+          Etapaproceso: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
               }
           },
           NombreRecipiente: {
