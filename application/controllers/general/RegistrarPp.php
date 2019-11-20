@@ -5,21 +5,21 @@ class RegistrarPp extends CI_Controller {
     function __construct(){
 
       parent::__construct();
-      $this->load->helper('etapaproceso_helper');
+      //$this->load->helper('etapaproceso_helper');
 
-      $this->load->model('general/Etapaproceso');
+      //$this->load->model('general/Etapaproceso');
    }
 
    function RegistrarPp()
    {
-       $data['Etapaproceso'] = $this->Etapaproceso->obtener();
-       $this->load->view('layout/registrar_procesoproductivo', $data);
+       //$data['Etapaproceso'] = $this->Etapaproceso->obtener();
+       $this->load->view('layout/registrar_procesoproductivo');
    }
    
    function templatePp()
    {
-       $data['Etapaproceso'] = $this->Etapaproceso->obtener();
-       $this->load->view('layout/registrar_procesoproductivo', $data);
+       //$data['Etapaproceso'] = $this->Etapaproceso->obtener();
+       $this->load->view('layout/registrar_procesoproductivo');
        
    }
 }

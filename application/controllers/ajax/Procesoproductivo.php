@@ -17,7 +17,7 @@ class Procesoproductivo  extends CI_Controller {
           echo "error";
         }
     }
-
+/*
     public function guardarProceso()
     {
       $datos =  $this->input->post();
@@ -28,5 +28,5 @@ class Procesoproductivo  extends CI_Controller {
         echo "error";
       }
     }
-
+*/
 }
