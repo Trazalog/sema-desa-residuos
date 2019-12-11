@@ -50,13 +50,13 @@
                                     <tr role="row" class="even">
                                         <td>
                                             <button type="button" title="vuelco"
-                                                class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in"
+                                                class="btn btn-primary btn-circle btnvuelco" data="0"><span class="glyphicon glyphicon-log-in"
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
                                                 title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"
                                                 ><span class="glyphicon glyphicon-paperclip"
                                                     aria-hidden="true"></span></button></td>
                                         <td>7</td>
-                                        <td>asd 234</td>
+                                        <td id="patente0">asd 234</td>
                                         <td>Generador 2</td>
                                         <td>4/10/2019</td>
                                         <td>4/10/2019</td>
@@ -65,13 +65,13 @@
                                     <tr role="row" class="even">
                                         <td>
                                             <button type="button" title="vuelco"
-                                                class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in"
+                                                class="btn btn-primary btn-circle btnvuelco" data="1"><span class="glyphicon glyphicon-log-in"
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
                                                 title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span
                                                     class="glyphicon glyphicon-paperclip"
                                                     aria-hidden="true"></span></button></td>
                                         <td>8</td>
-                                        <td>dsa 213</td>
+                                        <td id="patente1">dsa 213</td>
                                         <td>Generador 4</td>
                                         <td>4/10/2019</td>
                                         <td>4/10/2019</td>
@@ -113,8 +113,8 @@
         <div class="row">
             <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                    <label for="nro" class="form-label">Vehiculo:</label>
-                    <input type="number" size="10" type="text" name="nro" id="nro" min="0" class="form-control" required
+                    <label for="vehiculoform" class="form-label">Vehiculo:</label>
+                    <input size="10" type="text" name="vehiculoform" id="vehiculoform" min="0" class="form-control"
                         readonly>
                 </div>
                 <div class="form-group">
@@ -388,7 +388,9 @@
 
 <script>
     $(".btnvuelco").on("click", function () {
-        
+        //ejemplo de carga de patente en input vehiculo
+        vehiculo = "patente"+$(this).attr("data");
+        $("#vehiculoform").val($("#"+vehiculo).text());
         $(".btnvuelco").attr("disabled", "");
         $(".btnadjuntar").attr("disabled", "");
         $("#boxDatos").focus();
