@@ -388,6 +388,7 @@
 
 <script>
     $(".btnvuelco").on("click", function () {
+        //ejemplo de carga de patente en input vehiculo
         vehiculo = "patente"+$(this).attr("data");
         $("#vehiculoform").val($("#"+vehiculo).text());
         $(".btnvuelco").attr("disabled", "");
