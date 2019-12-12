@@ -492,7 +492,7 @@
     });
 </script>
 
-<!--script close modal entrega -->
+<!--script close modal incidencia -->
 <script>
     $("#modalIncidencia").on("hidden.bs.modal", function (e) {
         //console.log("se cerro el modal");
