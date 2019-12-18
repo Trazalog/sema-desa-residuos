@@ -75,7 +75,7 @@
                             {
                                 "titulo": "Registrar Circuito",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarCi/ templateRci"
+                                "link": "general/RegistrarCi/templateRci"
                             },
                             {
                                 "titulo": "Registrar Contenedor",
@@ -91,12 +91,7 @@
                                 "titulo": "Registrar Vehiculo",
                                 "icono": "fa fa-genderless",
                                 "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Registrar Circuito",
-                                "icono": "fa fa-genderless",
-                                "link": "general/RegistrarCi/templateRci"
-                            },
+                            },                        
                             {
                                 "titulo": "Solicitud de retiro",
                                 "icono": "fa fa-genderless",
