@@ -1,4 +1,4 @@
-<!-- Hecha por Fer Guardia el mascapito -->
+<!-- Hecha por Fer Guardia-->
 <!--  Box 1-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-body">
