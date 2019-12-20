@@ -179,8 +179,7 @@
 <!--_____________________________________________________________-->
 
 
-            <!-- script que muestra box de datos al dar click en boton agregar -->
-
+<!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro

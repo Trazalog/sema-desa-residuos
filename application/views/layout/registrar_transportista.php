@@ -130,13 +130,57 @@
     <br>
     <button type="submit" class="btn btn-primary pull-right" style="width: 200px; font-weight: lighter;" onclick="agregarDato()">Guardar</button>
     <!--_____________________________________________-->
-
 </div>
+</div>
+</div>
+            <!--Datatable Registrar Generadores-->
+            <div class="box box-primary animated fadeInLeft">
+                <div class="box-body table-scroll">
+                    <table id="example2" class="table table-bordered table-hover table-responsive">
+
+                    <!--Cabecera del Datatable-->
+                        <thead>
+                            <tr>
+                                <th id="Nombre_razon" class="Nombre_razon" style="width: 200px; font-weight: lighter;">Nombre / Razon social</th>
+                                <th id="Descripcion" class="Descripcion" style="width: 200px; font-weight: lighter;">Descripcion</th>
+                                <th id="Direccion" class="Direccion" style="width: 200px; font-weight: lighter;">Direccion</th>
+                                <th id="Telefono" class="Telefono" style="width: 200px; font-weight: lighter;">Telefono</th>
+                                <th id="Contacto" class="Contacto" style="width: 200px; font-weight: lighter;">Contacto</th>
+                                <th id="Resolucion" class="Resolucion" style="width: 200px; font-weight: lighter;">Resolucion</th>
+                                <th id="Registro" class="Registro" style="width: 200px; font-weight: lighter;">Registro</th>
+                                <th id="Fechalta" class="Fechalta" style="width: 200px; font-weight: lighter;">Fecha de alta</th>
+                                <th id="Fechabaja" class="Fechabaja" style="width: 200px; font-weight: lighter;">Fecha de baja</th>
+                                <th id="Rsu" class="Rsu" style="width: 200px; font-weight: lighter;">Tipo de RSU autorizado</th>
+                            </tr>
+                        </thead>
+                    <!--_____________________________________________-->
+
+                    <!--Cuerpo del Datatable-->
+                        <tbody>
+                            <tr style="width: 200px; font-weight: lighter;">
+                                <td id="Nombre_razon" class="Nombre_razon">Trident</td>
+                                <td id="Descripcion" class="Descripcion">Internet Explorer 4.0</td>
+                                <td id="Direccion" class="Direccion">Win 95+</td>
+                                <td id="Telefono" class="Telefono">4</td>
+                                <td id="Contacto" class="Contacto">X</td>
+                                <td id="Resolucion" class="Resolucion">X</td>
+                                <td id="Registro" class="Registro">X</td>
+                                <td id="Fechalta" class="Fechalta">X</td>
+                                <td id="Fechabaja" class="Fechabaja">X</td>
+                                <td id="Rsu" class="Rsu">X</td>
+                            </tr>
+                        </tbody>
+                    <!--_____________________________________________-->
+
+                    </table>
+                </div>
+            </div>
+<!--_____________________________________________________________-->
+
     </form>
     </div>
 </div>
 </div>
-    <br>
 
  <!-- script que muestra box de datos al dar click en boton agregar -->
  <script>
@@ -165,8 +209,6 @@
 </script>
 ​<!--_____________________________________________________________-->
 
-
-<!-- Script Data-Tables-->
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
     $("#botonAgregar").on("click", function() {
