@@ -3,7 +3,7 @@
 <!--//////////////////////////////Box1//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
-        <h3>Registrar Generadores</h3>
+        <h3 style="font-weight: lighter;">Registrar Generadores</h3>
     </div>
     <div class="box-body">
         <div class="row">
@@ -16,10 +16,10 @@
         </div>
     </div>
 </div>
-<!--_____________________________________________-->
+<!--_____________________________________________________________-->
 
 <!--//////////////////////////////Box2//////////////////////////////-->
-<div class="box box-primary animated fadeInLeft" id="boxDatos">
+<div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
     <div class="box-body">
         <form class="formGeneradores" id="formGeneradores">
 
@@ -127,8 +127,9 @@
         </div>
     </div>
 </div>
-<!--_____________________________________________-->
+<!--_____________________________________________________________-->
 
+<!--//////////////////////////////Box3//////////////////////////////-->
             <!--Datatable Registrar Generadores-->
             <div class="box box-primary animated fadeInLeft">
                 <div class="box-body table-scroll">
@@ -169,7 +170,7 @@
                     </table>
                 </div>
             </div>
-            <!--_____________________________________________-->
+<!--_____________________________________________________________-->
 
         </form>
         </div>
@@ -178,29 +179,49 @@
 <!--_____________________________________________________________-->
 
 
-<!-- script que muestra box de datos al dar click en boton agregar -->
+            <!-- script que muestra box de datos al dar click en boton agregar -->
+
 <script>
-$("#botonAgregar").on("click", function() {
-    //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-    var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-    $("#nro").val(aleatorio);
-​
-    $("#botonAgregar").attr("disabled", "");
-    //$("#boxDatos").removeAttr("hidden");
-    $("#boxDatos").focus();
-    $("#boxDatos").show();
-});
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+
+    });
 </script>
 
 <script>
-$("#btnclose").on("click", function() {
-    $("#boxDatos").hide(500);
-    $("#botonAgregar").removeAttr("disabled");
-    $('#formDatos').data('bootstrapValidator').resetForm();
-    $("#formDatos")[0].reset();
-    //$('#selecmov').find('option').remove();
-    //$('#chofer').find('option').remove();
-});
+        $("#btnclose").on("click", function() {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+        });
+</script>
+
+<!-- Script Data-Tables-->
+
+<!-- script que muestra box de datos al dar click en boton agregar -->
+
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+
+    });
 </script>
 ​<!--_____________________________________________________________-->
 

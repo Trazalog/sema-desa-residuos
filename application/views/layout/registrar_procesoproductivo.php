@@ -1,4 +1,6 @@
 <!-- Hecha por Jose Roberto el mas vergas -->
+
+<!--//////////////////////////////Box1//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header">
         <div class="box-tittle">
