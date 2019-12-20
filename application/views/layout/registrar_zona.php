@@ -85,7 +85,7 @@ function agregarDato(){
     me.data('requestRunning', true);
     datos=$('#formZonas').serialize();
     console.log(datos);
-    
+
         //--------------------------------------------------------------
 
     $.ajax({

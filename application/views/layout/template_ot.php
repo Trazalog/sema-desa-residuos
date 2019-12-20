@@ -3,6 +3,7 @@
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
         <h3>Template de Orden de Transporte</h3>
+        <!--<h3>Hecha por Fer Guardia el masca pito</h3>-->
     </div>
     <div class="box-body">
         <div class="row">

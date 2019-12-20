@@ -260,7 +260,12 @@
                             {
                                 "titulo": "Registrar Contenedor",
                                 "icono": "fa-flus",
-                                "link": "general/RegistrarC/....."
+                                "link": "general/RegistrarEt/templateEt"
+                            },
+                            {
+                                "titulo": "Registrar Proceso Productivo",
+                                "icono": "fa-flus",
+                                "link": "general/RegistrarPp/templatePp"
                             }
                         ]
                     

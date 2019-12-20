@@ -1,49 +1,70 @@
 <!-- Hecha por Jose Roberto el mas virgo -->
+
+<!--//////////////////////////////Box1//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft">
-    <div class="box-header">
-        <div class="box-tittle">
-            <h3>Registrar Transportista</h3>  
+    <div class="box-header with-border">
+        <h3 style="font-weight: lighter;">Registrar Transportista</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-2 col-lg-1 col-xs-12">
+                <button type="button" id="botonAgregar" class="btn btn-primary" aria-label="Left Align">
+                    Agregar
+                </button><br>
+            </div>
+            <div class="col-md-10 col-lg-11 col-xs-12"></div>
         </div>
     </div>
+</div>
+<!--_____________________________________________________________--> 
 
-<!--_________________________________________________-->   
-
+<div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
     <div class="box-body">
     <form class="formTransportistas" id="formTransportistas">
-<div class="col-md-6">
 
+        <!--Boton de cerrar-->
+        <div class="box-tools pull-right">
+                <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                    data-toggle="tooltip" title="" data-original-title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        <!--_____________________________________________-->
+
+<div class="col-md-6">
+<br>
     <!--Nombre / Razon social-->
     <div class="form-group">
-        <label for="Nombre/Razon social">Nombre / Razon social:</label>
-        <input type="text" class="form-control" id="Nombre/Razon social" name="Nombre_razon">
+        <label for="Nombre/Razon social" style="width: 200px; font-weight: lighter;">Nombre / Razon social:</label>
+        <input type="text" class="form-control" id="Nombre/Razon social" name="Nombre_razon" style="width: 200px; font-weight: lighter;">
     </div>
     <!--_____________________________________________-->
 
     <!--Descripcion-->
     <div class="form-group">
-        <label for="Descripcion">Descripcion:</label>
-        <input type="text" class="form-control" id="Descripcion" name="Descripcion">
+        <label for="Descripcion" style="width: 200px; font-weight: lighter;">Descripcion:</label>
+        <input type="text" class="form-control" id="Descripcion" name="Descripcion" style="width: 200px; font-weight: lighter;">
     </div>
     <!--_____________________________________________-->
 
     <!--Direccion-->
     <div class="form-group">
-        <label for="Direccion">Direccion:</label>
-        <input type="text" class="form-control" id="Direccion" name="Direccion">
+        <label for="Direccion" style="width: 200px; font-weight: lighter;">Direccion:</label>
+        <input type="text" class="form-control" id="Direccion" name="Direccion" style="width: 200px; font-weight: lighter;">
     </div>
     <!--_____________________________________________-->
 
     <!--Telefono-->
     <div class="form-group">
-        <label for="Telefono">Telefono:</label>
-        <input type="text" class="form-control" id="Telefono" name="Telefono">
+        <label for="Telefono" style="width: 200px; font-weight: lighter;">Telefono:</label>
+        <input type="text" class="form-control" id="Telefono" name="Telefono" style="width: 200px; font-weight: lighter;">
     </div>
     <!--_____________________________________________-->
 
     <!--Contacto-->
         <div class="form-group">
-        <label for="Contacto">Contacto:</label>
-        <input type="text" class="form-control" id="Contacto" name="Contacto">
+        <label for="Contacto" style="width: 200px; font-weight: lighter;">Contacto:</label>
+        <input type="text" class="form-control" id="Contacto" name="Contacto" style="width: 200px; font-weight: lighter;">
     </div>
     <!--_____________________________________________-->
 
@@ -52,40 +73,40 @@
 
     <!--Resolucion-->
         <div class="form-group">
-        <label for="Resolucion">Resolucion:</label>
-        <input type="text" class="form-control" id="Resolucion" name="Resolucion">
+        <label for="Resolucion" style="width: 200px; font-weight: lighter;">Resolucion:</label>
+        <input type="text" class="form-control" id="Resolucion" name="Resolucion" style="width: 200px; font-weight: lighter;">
     </div>
     <!--_____________________________________________-->
 
     <!--Registro-->
         <div class="form-group">
-        <label for="Registro">Registro:</label>
-        <input type="text" class="form-control" id="Registro" name="Registro">
+        <label for="Registro" style="width: 200px; font-weight: lighter;">Registro:</label>
+        <input type="text" class="form-control" id="Registro" name="Registro" style="width: 200px; font-weight: lighter;">
     </div>
     <!--_____________________________________________-->
 
     <!--Fecha de alta-->
-    <div class="form-group">
-                <label for="Fechalta">Fecha de alta:</label>
+    <div class="form-group" style="width: 200px; font-weight: lighter;">
+                <label for="Fechalta" style="width: 200px; font-weight: lighter;">Fecha de alta:</label>
                 <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_alta">
+                  <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_alta" >
                 </div>
                 <!-- /.input group -->
               </div>
     <!--_____________________________________________-->
 
     <!--Fecha de baja-->
-    <div class="form-group">
-                <label for="Fechabaja">Fecha de baja:</label>
+    <div class="form-group" style="width: 200px; font-weight: lighter;">
+                <label for="Fechabaja" style="width: 200px; font-weight: lighter;">Fecha de baja:</label>
 
                 <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_baja">
+                  <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_baja" >
                 </div>
                 <!-- /.input group -->
               </div>
@@ -93,9 +114,9 @@
 
     <!--Tipo de RSU autorizado-->
     <div class="form-group">
-    <label for="Rsu">Tipo de RSU autorizado:</label>
-        <select class="form-control select2 select2-hidden-accesible" id="Rsu" name="Rsu">
-            <option value="" disabled selected>-Seleccione opcion-</option>
+    <label for="Rsu" style="width: 200px; font-weight: lighter;">Tipo de RSU autorizado:</label>
+        <select class="form-control select2 select2-hidden-accesible" id="Rsu" name="Rsu" style="width: 200px; font-weight: lighter;">
+            <option value="" disabled selected style="width: 200px; font-weight: lighter;">-Seleccione opcion-</option>
                 <?php
                     foreach ($Rsu as $i) {
                         echo '<option>'.$i->nombre.'</option>';
@@ -107,15 +128,60 @@
 
     <!--Boton de guardado-->
     <br>
-    <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+    <button type="submit" class="btn btn-primary pull-right" style="width: 200px; font-weight: lighter;" onclick="agregarDato()">Guardar</button>
     <!--_____________________________________________-->
 
 </div>
     </form>
     </div>
 </div>
-
+</div>
     <br>
+
+ <!-- script que muestra box de datos al dar click en boton agregar -->
+ <script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+
+    });
+</script>
+
+<script>
+        $("#btnclose").on("click", function() {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+        });
+</script>
+​<!--_____________________________________________________________-->
+
+
+<!-- Script Data-Tables-->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+
+    });
+</script>
+​<!--_____________________________________________________________-->
 
 <!-- Script Agregar datos de registrar_transportista-->
 <script>
@@ -290,3 +356,4 @@ function agregarDato(){
       //guardar();
   });
 </script>
+<!--_____________________________________________-->
