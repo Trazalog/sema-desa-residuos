@@ -134,7 +134,7 @@
     </div>
     <hr>
 
-        <!--Tabla de informacion que devuelve los datos del Punto Critico-->    
+        <!--Tabla de informacion que devuelve los datos del Punto Critico--> 
         <section class="content">
         <div class="row">
             <em class="fas fa-ad"></em>
