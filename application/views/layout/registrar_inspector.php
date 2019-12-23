@@ -1,4 +1,4 @@
-<!-- Hecha por Jose Roberto el mas virgo -->
+<!-- Hecha por Jose Roberto el mas vergas -->
 
 <!--//////////////////////////////Box1//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft">
