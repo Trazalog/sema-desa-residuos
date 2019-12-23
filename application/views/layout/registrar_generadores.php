@@ -20,8 +20,7 @@
 
 <!--//////////////////////////////Box2//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
-    <div class="box-body">
-        <form class="formGeneradores" id="formGeneradores">
+    <div class="box-header with-border">
 
         <!--Boton de cerrar-->
             <div class="box-tools pull-right">
@@ -31,10 +30,11 @@
                 </button>
             </div>
         <!--_____________________________________________-->
+    <div class="box-body">
+        <form class="formInspectores" id="formInspectores"  method="POST" autocomplete="off" class="registerForm">
 
             <!--Nombre / Razon social-->
         <div class="col-md-6">
-        <br>
             <div class="form-group">
                 <label for="Nombre/Razon social" style="width: 200px; font-weight: lighter;">Nombre / Razon social:</label>
                 <input type="text" class="form-control" id="Nombre/Razon social" name="Nombre_razon" style="width: 200px; font-weight: lighter;">
@@ -124,6 +124,7 @@
             <br>
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             <!--_____________________________________________-->
+        </div>
         </div>
     </div>
 </div>
