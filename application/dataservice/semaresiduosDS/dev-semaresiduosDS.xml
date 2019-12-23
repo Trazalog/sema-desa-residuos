@@ -1,0 +1,165 @@
+<data enableBatchRequests="true" enableBoxcarring="true" name="semaresiduosDS" transports="http https local">
+   <config enableOData="false" id="semaresiduosDS">
+      <property name="driverClassName">org.postgresql.Driver</property>
+      <property name="url">jdbc:postgresql://PC-PC:5432/tools</property>
+      <property name="username">postgres</property>
+      <property name="password">admin24</property>
+   </config>
+   <query id="generadoresGet" useConfig="semaresiduosDS">
+      <sql>select &#xd; gene_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tige_id, tire_id from &#xd; sma.generadores</sql>
+      <result outputType="json">{&#xd;   "generadores": {&#xd;	"generador": [&#xd;	   {&#xd;       	   "gene_id": "$gene_id",&#xd;	   "razon_social": "$razon_social",&#xd;	   "cuit": "$cuit",&#xd;	   "domicilio": "$domicilio",&#xd;	   "num_registro": "$num_registro",&#xd;	   "lat": "$lat",&#xd;	   "lng": "$lng",&#xd;	   "zona_id": "$zona_id",&#xd;	   "rubr_id": "$rubr_id",&#xd;	   "tige_id": "$tige_id",&#xd;	   "tire_id": "$tire_id"	            &#xd;	   }&#xd;	    ]&#xd;	}&#xd;}</result>
+   </query>
+   <query id="departamentosSet" useConfig="semaresiduosDS">
+      <sql>insert into &#xd;   core.departamentos &#xd;   (nombre, descripcion) &#xd;values&#xd;   (:nombre, :descripcion)&#xd;returning &#xd;    depa_id</sql>
+      <result outputType="json">{&#xd;  "respuesta":&#xd;     {&#xd;       "depa_id": "$depa_id"&#xd;     }&#xd;}</result>
+      <param name="nombre" sqlType="STRING"/>
+      <param name="descripcion" sqlType="STRING"/>
+   </query>
+   <query id="zonasGet" useConfig="semaresiduosDS">
+      <sql>select &#xd;   zona_id, nombre, descripción, depa_id &#xd;from &#xd;   core.zonas</sql>
+      <result outputType="json">{&#xd;  "zonas": {&#xd;	    "zona": [&#xd;	       {&#xd;	        "zona_id": "$zona_id",&#xd;	        "nombre": "$nombre",&#xd;	        "descripción": "$descripción",&#xd;	        "depa_id": "$depa_id"&#xd;	       }&#xd;	     ]&#xd;  }&#xd;}</result>
+   </query>
+   <query id="generadoresSet" useConfig="semaresiduosDS">
+      <sql>insert into &#xd;     sma.generadores&#xd;    (razon_social, cuit, domicilio, num_registro, lat, lng, usuario_app, zona_id, rubr_id, tige_id, tire_id)&#xd;values&#xd;    (:razon_social, :cuit, :domicilio, :num_registro, :lat, :lng, :usuario_app, CAST(:zona_id AS INTEGER), :rubr_id, :tige_id, :tire_id)&#xd;returning &#xd;    gene_id</sql>
+      <result outputType="json"> {&#xd;   "respuesta": &#xd;     {      &#xd;      "gene_id": "$gene_id"&#xd;     }  &#xd; }&#xd;</result>
+      <param name="razon_social" sqlType="STRING"/>
+      <param name="cuit" sqlType="STRING"/>
+      <param name="domicilio" sqlType="STRING"/>
+      <param name="num_registro" sqlType="STRING"/>
+      <param name="lat" sqlType="STRING"/>
+      <param name="lng" sqlType="STRING"/>
+      <param name="zona_id" sqlType="STRING"/>
+      <param name="rubr_id" sqlType="STRING"/>
+      <param name="tige_id" sqlType="STRING"/>
+      <param name="tire_id" sqlType="STRING"/>
+      <param name="usuario_app" sqlType="STRING"/>
+   </query>
+   <query id="transportistasSet" useConfig="semaresiduosDS">
+      <sql>insert into log.transportistas(razon_social,descripcion,direccion,telefono,contacto,resolucion,registro,fec_alta_efectiva,fec_baja_efectiva,usuario_app)&#xd;values(:razon_social,:descripcion,:direccion,:telefono,:contacto,:resolucion,:registro,TO_DATE(:fec_alta_efectiva,'YYYY-MM-DD'),TO_DATE(:fec_baja_efectiva,'YYYY-MM-DD'),:usuario_app)&#xd;returning tran_id</sql>
+      <result outputType="json">{&#xd;	"respuesta":{&#xd;		"tran_id": "$tran_id"&#xd;	}&#xd;}</result>
+      <param name="razon_social" sqlType="STRING"/>
+      <param name="descripcion" sqlType="STRING"/>
+      <param name="direccion" sqlType="STRING"/>
+      <param name="telefono" sqlType="STRING"/>
+      <param name="contacto" sqlType="STRING"/>
+      <param name="resolucion" sqlType="STRING"/>
+      <param name="registro" sqlType="STRING"/>
+      <param name="fec_alta_efectiva" sqlType="STRING"/>
+      <param name="fec_baja_efectiva" sqlType="STRING"/>
+      <param name="usuario_app" sqlType="STRING"/>
+   </query>
+   <query id="departamentosGet" useConfig="semaresiduosDS">
+      <sql>select depa_id, nombre from core.departamentos</sql>
+      <result outputType="json">{&#xd;   "departamentos":{&#xd;      "departamento":[&#xd;         {&#xd;            "depa_id":"$depa_id",&#xd;            "nombre":"$nombre"&#xd;         }&#xd;      ]&#xd;   }&#xd;}</result>
+   </query>
+   <query id="zonasSet" useConfig="semaresiduosDS">
+      <sql>insert into &#xd;   core.zonas(nombre, descripcion, imagen, usuario_app, depa_id)&#xd;   values(:nombre, :descripcion, :imagen, :usuario_app, CAST(:depa_id AS INTEGER))&#xd;    returning zona_id</sql>
+      <result outputType="json">{ "respuesta":{&#xd;     "zona_id": "$zona_id"&#xd;    }&#xd;  }</result>
+      <param name="nombre" sqlType="STRING"/>
+      <param name="usuario_app" sqlType="STRING"/>
+      <param name="depa_id" sqlType="STRING"/>
+      <param name="descripcion" sqlType="STRING"/>
+      <param name="imagen" optional="false" sqlType="BINARY"/>
+   </query>
+   <query id="circuitosGet" useConfig="semaresiduosDS">
+      <sql>select &#xd;   circ_id, codigo, descripcion, imagen, chof_id, vehi_id, zona_id &#xd;from &#xd;   log.circuitos</sql>
+      <result outputType="json">{&#xd;   "circuitos":{&#xd;      "circuito":[&#xd;         {&#xd;            "circ_id":"$circ_id",&#xd;            "codigo":"$codigo",&#xd;            "descripcion":"$descripcion",&#xd;            "imagen":"$descripcion",&#xd;            "chof_id":"$descripcion",&#xd;            "vehi_id":"$vehi_id",&#xd;            "zona_id":"$zona_id"&#xd;         }&#xd;      ]&#xd;   }&#xd;}</result>
+   </query>
+   <query id="choferesGet" useConfig="semaresiduosDS">
+      <sql>select &#xd;  chof_id, nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id  &#xd;from &#xd;  log.choferes</sql>
+      <result outputType="json">{&#xd;  "choferes":{&#xd;      "chofere":[&#xd;        {&#xd;          "chof_id": "$chof_id", &#xd;          "nombre": "$nombre", &#xd;          "apellido": "$apellido", &#xd;          "documento": "$documento", &#xd;          "fec_nacimiento": "$fec_nacimiento", &#xd;          "direccion": "$fec_nacimiento", &#xd;          "celular": "$celular", &#xd;          "codigo": "$codigo", &#xd;          "carnet": "$carnet", &#xd;          "vencimiento": "$vencimiento", &#xd;          "habilitacion": "$habilitacion", &#xd;          "imagen": "$imagen", &#xd;          "tran_id": "$tran_id", &#xd;          "cach_id": "$cach_id"&#xd;        }&#xd;      ]&#xd;  }    &#xd;}</result>
+   </query>
+   <query id="choferesSet" useConfig="semaresiduosDS">
+      <sql>insert into &#xd;   log.choferes(nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id)&#xd;values(:nombre, :apellido, :documento, TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), :direccion, CAST(:celular AS INTEGER), CAST(:codigo AS INTEGER), :carnet, TO_DATE(:vencimiento,'YYYY-MM-DD'), :habilitacion, :imagen, CAST(:tran_id AS INTEGER), :cach_id)&#xd;returning chof_id</sql>
+      <result outputType="json">{"respuesta":{&#xd;    "chof_id": "$chof_id"&#xd;  }&#xd;}</result>
+      <param name="nombre" sqlType="STRING"/>
+      <param name="apellido" sqlType="STRING"/>
+      <param name="documento" sqlType="STRING"/>
+      <param name="fec_nacimiento" sqlType="STRING"/>
+      <param name="direccion" sqlType="STRING"/>
+      <param name="celular" sqlType="STRING"/>
+      <param name="codigo" sqlType="STRING"/>
+      <param name="carnet" sqlType="STRING"/>
+      <param name="vencimiento" sqlType="STRING"/>
+      <param name="habilitacion" sqlType="STRING"/>
+      <param name="imagen" optional="false" sqlType="BINARY"/>
+      <param name="tran_id" sqlType="STRING"/>
+      <param name="cach_id" sqlType="STRING"/>
+   </query>
+   <resource method="GET" path="/generadores">
+      <call-query href="generadoresGet"/>
+   </resource>
+   <resource method="POST" path="/departamentos">
+      <call-query href="departamentosSet">
+         <with-param name="nombre" query-param="nombre"/>
+         <with-param name="descripcion" query-param="descripcion"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/zonas">
+      <call-query href="zonasGet"/>
+   </resource>
+   <resource method="POST" path="/generadores">
+      <call-query href="generadoresSet">
+         <with-param name="razon_social" query-param="razon_social"/>
+         <with-param name="cuit" query-param="cuit"/>
+         <with-param name="domicilio" query-param="domicilio"/>
+         <with-param name="num_registro" query-param="num_registro"/>
+         <with-param name="lat" query-param="lat"/>
+         <with-param name="lng" query-param="lng"/>
+         <with-param name="zona_id" query-param="zona_id"/>
+         <with-param name="rubr_id" query-param="rubr_id"/>
+         <with-param name="tige_id" query-param="tige_id"/>
+         <with-param name="tire_id" query-param="tire_id"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="/transportistas">
+      <call-query href="transportistasSet">
+         <with-param name="razon_social" query-param="razon_social"/>
+         <with-param name="descripcion" query-param="descripcion"/>
+         <with-param name="direccion" query-param="direccion"/>
+         <with-param name="telefono" query-param="telefono"/>
+         <with-param name="contacto" query-param="contacto"/>
+         <with-param name="resolucion" query-param="resolucion"/>
+         <with-param name="registro" query-param="registro"/>
+         <with-param name="fec_alta_efectiva" query-param="fec_alta_efectiva"/>
+         <with-param name="fec_baja_efectiva" query-param="fec_baja_efectiva"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/departamentos">
+      <call-query href="departamentosGet"/>
+   </resource>
+   <resource method="POST" path="/zonas">
+      <call-query href="zonasSet">
+         <with-param name="nombre" query-param="nombre"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
+         <with-param name="depa_id" query-param="depa_id"/>
+         <with-param name="descripcion" query-param="descripcion"/>
+         <with-param name="imagen" query-param="imagen"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/circuitos">
+      <call-query href="circuitosGet"/>
+   </resource>
+   <resource method="GET" path="/choferes">
+      <call-query href="choferesGet"/>
+   </resource>
+   <resource method="POST" path="/choferes">
+      <call-query href="choferesSet">
+         <with-param name="nombre" query-param="nombre"/>
+         <with-param name="apellido" query-param="apellido"/>
+         <with-param name="documento" query-param="documento"/>
+         <with-param name="fec_nacimiento" query-param="fec_nacimiento"/>
+         <with-param name="direccion" query-param="direccion"/>
+         <with-param name="celular" query-param="celular"/>
+         <with-param name="codigo" query-param="codigo"/>
+         <with-param name="carnet" query-param="carnet"/>
+         <with-param name="vencimiento" query-param="vencimiento"/>
+         <with-param name="habilitacion" query-param="habilitacion"/>
+         <with-param name="imagen" query-param="imagen"/>
+         <with-param name="tran_id" query-param="tran_id"/>
+         <with-param name="cach_id" query-param="cach_id"/>
+      </call-query>
+   </resource>
+</data>
