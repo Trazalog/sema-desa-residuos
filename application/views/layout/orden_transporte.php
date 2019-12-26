@@ -1,14 +1,14 @@
 <!--  Box 1-->
 <div class="box box-primary animated fadeInLeft">
-<div class="box-header with-border">
+    <div class="box-header with-border">
         <div class="box-tittle">
-            <h3>orden de Transporte</h3>  
+            <h4>Orden de Transporte</h4>
         </div>
     </div>
     <div class="box-body">
         <br>
         <div class="row">
-            <div class="col-md-6 col-xs-12">
+            <div class="col-md-6 ">
                 <div class="form-group">
                     <label for="Nro" class="form-label">Nro:</label>
                     <input type="text" name="nro" id="Nro" value="<?php echo rand(1,30);?>" class="form-control">
@@ -58,7 +58,8 @@
                     </div>
                     <div class="form-group">
                         <label for="porcentajell" class="form-label">% de llenado:</label>
-                        <input type="number" step="0.0001" id="porcentajell" name="porcent_llenado" class="form-control" required>
+                        <input type="number" step="0.0001" id="porcentajell" name="porcent_llenado" class="form-control"
+                            required>
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
@@ -74,25 +75,215 @@
                 </div>
             </div>
             <br>
+            <div class="col-md-12">
+                <hr>
+            </div>
             <div class="row">
                 <div class="col-md-10 col-lg-11 col-xs-12"></div>
                 <div class="col-md-2 col-lg-1 col-xs-12 text-center">
+
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-circle" aria-label="Left Align">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </button><br>
+                        </button>
                         <small for="agregar" class="form-label">Agregar</small>
                     </div>
+
                 </div>
             </div>
         </form>
 
-<!--SPARADOR-->
+        <!--SPARADOR-->
         <br>
         <hr>
-        <br>
-<!--SPARADOR-->
+
+        <!--SPARADOR-->
+
         
+        
+<!---//////////////////////////////////////--- BOX ACORDION ---///////////////////////////////////////////////////////----->
+
+
+
+<div class="accordion" id="">
+
+    
+
+
+
+        <!--_______________header ACORDION 1_______________-->
+
+        <div class="card z-depth-0 bordered">
+
+        <div class="card-header  bg-blue" id="headingOne2" data-toggle="collapse" data-target="#collapseOne2" >
+        <h5 class="mb-0">
+            <button class="btn  collapsed box-header bg-blue" type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">
+            <h5>Generadoresewgasgs</h5>
+            </button>
+        </h5>
+        </div>
+
+        <!--_______________BODY ACORDION 1_______________-->
+
+        <div id="collapseOne2" class="collapse" aria-labelledby="headingOne2" data-parent="#accordionExample275">
+        
+            <div class="card-body">
+
+                    <div class="col-md-12">
+
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <label for="razonsocial" class="form-label">Razon social:</label>
+                                <input type="text" name="rsocial" id="razonsocial" readonly class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="cuitdni" class="form-label">Cuit/dni:</label>
+                                <input type="text" name="cuitdni" id="cuitdni" readonly class="form-control">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="dep" class="form-label">Departamento:</label>
+                                <input type="text" name="departamento" id="dep" readonly class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="circuito" class="form-label">Circuito:</label>
+                                <input type="text" name="circuito" id="circuito" readonly class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+
+        </div>
+
+
+
+    <!--_______________header ACORDION 2_______________-->
+
+        <div class="card z-depth-0 bordered">
+
+            <div class="card-header  bg-blue" id="headingTwo2" data-toggle="collapse" data-target="#collapseTwo2">
+            <h5 class="mb-0">
+                <button class="btn  collapsed box-header bg-blue" type="button" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
+                <h5>Transportistas</h5>
+                </button>
+            </h5>
+            </div>
+
+
+        <!--_______________BODY ACORDION 2_______________-->
+
+        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#accordionExample275">
+        <div class="card-body">
+            <div class="col-md-12">
+                
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="selecemp" class="form-label">Empresa:</label>
+                        <select multiple="" class="form-control" id="selecemp" name="empresa">
+                            <?php
+                                                            foreach ($empresa as $i) {
+                                                                echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                                                            }
+                                                        ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="registron" class="form-label">Registro n°:</label>
+                        <input type="text" name="registron" id="registron" readonly class="form-control">
+                    </div>
+                </div>
+
+                
+
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="selecmov">Movilidad:</label>
+        <select multiple="" class="form-control" id="selecmov">
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="dominio" class="form-label">Dominio:</label>
+        <input type="text" name="dominio" id="dominio" readonly class="form-control">
+    </div>
+</div>
+
+<!-- _____________GRUPO FORMULARIO________________ -->
+
+<div class="col-md-12"><hr></div>
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label for="chofer" class="form-label">Chofer:</label>
+                <select class="form-control select2 select2-hidden-accesible" id="chofer">
+                    <option value="" disabled selected>-Seleccione opcion-</option>
+                </select>
+            </div>
+        </div>
+
+    
+<div class="col-md-12">
+
+    <div class="col-md-6">            
+        <div class="form-group">
+            <label for="fecha" class="form-label">Fecha de retiro:</label>
+            <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="hora" class="form-label">Hora:</label>
+            <input type="number" id="hora" value="1" class="form-control" min="1">
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="col-md-12">
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary pull-right" aria-label="Left Align">
+            Guardar
+        </button><br>
+    </div>
+</div>
+</div>
+            </div>
+            </div>
+        </div>
+
+
+</div>  
+
+<div class="col-md-12"><hr><br></div>
+
+        
+<!---//////////////////////////////////////--- FIN BOX ACORDION ---///////////////////////////////////////////////////////----->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- *************** BOX REGISTRAR FORMULARIO *************** -->
+
         <div class="row">
             <em class="fas fa-ad"></em>
         </div>
@@ -100,7 +291,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                
+
                     <div class="row">
                         <div class="col-sm-6"></div>
                         <div class="col-sm-6"></div>
@@ -140,331 +331,411 @@
                             </table><br>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
         </div>
 
-        <br>
-        <hr>
 
 
-        <div class="row">
-            <div class="box-header with-border">
-            <div class="box-header with-border">
-        <div class="box-tittle">
-            <h3>Registrar Generadores</h3> </div>
-         </div>
+        <!-- *************** BOX REGISTRAR Generadores *************** -->
+
+
+
+        <!-- <div class="row"> -->
+
+            <!-- ________________HEADER_______________ -->
+
+            <!-- <div class="col-md-12">
+
+                <div class="box box-primary"></div>
+
+                <div class="box-header with-border">
+                    <div class="box-tittle">
+                        <h4>Generadores</h4>
+                    </div>
+                </div>
             </div>
-            <br>
-            <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                    <label for="razonsocial" class="form-label">Razon social:</label>
-                    <input type="text" name="rsocial" id="razonsocial" readonly class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="cuitdni" class="form-label">Cuit/dni:</label>
-                    <input type="text" name="cuitdni" id="cuitdni" readonly class="form-control">
-                </div>
+        </div><div class="col-md-6 col-xs-12">
+            <div class="form-group">
+                <label for="razonsocial" class="form-label">Razon social:</label>
+                <input type="text" name="rsocial" id="razonsocial" readonly class="form-control">
             </div>
-            <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                    <label for="dep" class="form-label">Departamento:</label>
-                    <input type="text" name="departamento" id="dep" readonly class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="circuito" class="form-label">Circuito:</label>
-                    <input type="text" name="circuito" id="circuito" readonly class="form-control">
-                </div>
+            <div class="form-group">
+                <label for="cuitdni" class="form-label">Cuit/dni:</label>
+                <input type="text" name="cuitdni" id="cuitdni" readonly class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+                <label for="dep" class="form-label">Departamento:</label>
+                <input type="text" name="departamento" id="dep" readonly class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="circuito" class="form-label">Circuito:</label>
+                <input type="text" name="circuito" id="circuito" readonly class="form-control">
             </div>
         </div>
 
-        <br>
-        <hr>
 
-        <div class="row">
-            <div class="box-header with-border">
-                <h3>Transportistas</h3>
+        <br>
+        
+    </div>
+ -->
+
+
+
+
+    <!-- *************** BOX REGISTRAR Transportista *************** -->
+
+    
+<!-- 
+    <div class="row">
+
+    <div class="col-md-12"> -->
+
+            <!-- _____________HEADER________________ -->
+<!-- 
+            <div class="col-md-12">
+
+                <div class="box box-primary"></div>
+
+                <div class="box-header with-border">
+                    <div class="box-tittle">
+                        <h4>Transportista</h4>
+                    </div>
+                </div>
             </div>
-            <br>
-            <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                    <label for="selecemp" class="form-label">Empresa:</label>
-                    <select multiple="" class="form-control" id="selecemp" name="empresa">
-                            <?php
+        </div>
+        
+
+        < _____________HEADER________________ -->
+<!-- 
+        <div class="col-md-12"> -->
+
+
+        <!-- _____________GRUPO FORMULARIO________________ -->
+        <br>
+       
+<!-- 
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label for="selecemp" class="form-label">Empresa:</label>
+                <select multiple="" class="form-control" id="selecemp" name="empresa">
+                    <?php
                                                     foreach ($empresa as $i) {
                                                         echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
                                                     }
                                                 ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="registron" class="form-label">Registro n°:</label>
-                    <input type="text" name="registron" id="registron" readonly class="form-control">
-                </div>
+                </select>
             </div>
-            <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                    <label for="selecmov">Movilidad:</label>
-                    <select multiple="" class="form-control" id="selecmov">
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="dominio" class="form-label">Dominio:</label>
-                    <input type="text" name="dominio" id="dominio" readonly class="form-control">
-                </div>
+
+
+            <div class="form-group">
+                <label for="registron" class="form-label">Registro n°:</label>
+                <input type="text" name="registron" id="registron" readonly class="form-control">
             </div>
-        </div>
+        </div> -->
 
-        <br>
-        <hr>
-        <br>
+        <!-- _____________GRUPO FORMULARIO________________ -->
 
-        <div class="row">
-            <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                    <label for="chofer" class="form-label">Chofer:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="chofer">
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                    </select>
+<!-- 
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="selecmov">Movilidad:</label>
+                <select multiple="" class="form-control" id="selecmov">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dominio" class="form-label">Dominio:</label>
+                <input type="text" name="dominio" id="dominio" readonly class="form-control">
+            </div>
+        </div> -->
+
+        <!-- _____________GRUPO FORMULARIO________________ -->
+
+        <!-- <div class="col-md-12"><hr></div>
+
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="chofer" class="form-label">Chofer:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="chofer">
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                        </select>
+                    </div>
                 </div>
+
+            
+        <div class="col-md-12">
+
+            <div class="col-md-6">            
                 <div class="form-group">
                     <label for="fecha" class="form-label">Fecha de retiro:</label>
                     <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
                 </div>
             </div>
-            <div class="col-md-6 col-xs-12">
+
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="hora" class="form-label">Hora:</label>
                     <input type="number" id="hora" value="1" class="form-control" min="1">
                 </div>
             </div>
         </div>
-    </div>
+
+        <br>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary pull-right" aria-label="Left Align">
+                    Guardar
+                </button><br>
+            </div>
+        </div>
 </div>
+
+<br> -->
+
+        
+
+    <!-- </div> --> 
+
+    <!-- _____________GRUPO FORMULARIO________________ -->
+</div>
+
+
+
+
+</div>
+
+
+
+
+ <!---//////////////////////////////////////--- SCRIPT---///////////////////////////////////////////////////////----->
 
 <!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
-    $(".emp").on('click', function () {
+$(".emp").on('click', function() {
 
-        var json = this.dataset.json;
+    var json = this.dataset.json;
 
-        json = JSON.parse(json);
+    json = JSON.parse(json);
 
-        var html_mov = " ", html_chof = "";
+    var html_mov = " ",
+        html_chof = "";
 
-        json.movilidades.movilidad.forEach(function (valor) {
-            html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor.dominio + "'>" + valor.nom_movil + "</option>"
-        });
-
-        json.choferes.chofer.forEach(function (valor) {
-            html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
-        });
-
-        $('#selecmov').html(html_mov);
-        $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-
-        $("#registron").val("");
-        $("#dominio").val("");
+    json.movilidades.movilidad.forEach(function(valor) {
+        html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
+            .dominio + "'>" + valor.nom_movil + "</option>"
     });
 
-    $("#selecmov").on('change', function () {
-
-        var sel = $(this).find(":selected");
-        $("#registron").val(sel.data('reg'));
-        $("#dominio").val(sel.data('dom'));
-
+    json.choferes.chofer.forEach(function(valor) {
+        html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
     });
+
+    $('#selecmov').html(html_mov);
+    $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
+
+    $("#registron").val("");
+    $("#dominio").val("");
+});
+
+$("#selecmov").on('change', function() {
+
+    var sel = $(this).find(":selected");
+    $("#registron").val(sel.data('reg'));
+    $("#dominio").val(sel.data('dom'));
+
+});
 </script>
 
 <!-- script bootstrap validator -->
 
 <script>
-
-    $('#formDatos').bootstrapValidator({
-        message: 'This value is not valid',
-        /*feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },*/
-        fields: {
-            contenedor: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada debe ser un numero natural'
-                    }
-                }
-            },
-            tipo_residuo: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                }
-            },
-            porcent_llenado: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                    regexp: {
-                        regexp: /[+]?[0-9]*\.?[0-9]*/,
-                        message: 'la entrada debe ser un numero entero o flotante'
-                    }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                }
-            },
-            metroscubicos: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                    regexp: {
-                        regexp: /[+]?[0-9]*\.?[0-9]*/,
-                        message: 'la entrada debe ser un numero entero o flotante'
-                    }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
+$('#formDatos').bootstrapValidator({
+    message: 'This value is not valid',
+    /*feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+    },*/
+    fields: {
+        contenedor: {
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                },
+                /*stringLength: {
+                    min: 6,
+                    max: 30,
+                    message: 'The username must be more than 6 and less than 30 characters long'
+                },*/
+                regexp: {
+                    regexp: /^(0|[1-9][0-9]*)$/,
+                    message: 'la entrada debe ser un numero natural'
                 }
             }
+        },
+        tipo_residuo: {
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                }
+                /*stringLength: {
+                    min: 6,
+                    max: 30,
+                    message: 'The username must be more than 6 and less than 30 characters long'
+                },*/
+            }
+        },
+        porcent_llenado: {
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                },
+                regexp: {
+                    regexp: /[+]?[0-9]*\.?[0-9]*/,
+                    message: 'la entrada debe ser un numero entero o flotante'
+                }
+                /*stringLength: {
+                    min: 6,
+                    max: 30,
+                    message: 'The username must be more than 6 and less than 30 characters long'
+                },*/
+            }
+        },
+        metroscubicos: {
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                },
+                regexp: {
+                    regexp: /[+]?[0-9]*\.?[0-9]*/,
+                    message: 'la entrada debe ser un numero entero o flotante'
+                }
+                /*stringLength: {
+                    min: 6,
+                    max: 30,
+                    message: 'The username must be more than 6 and less than 30 characters long'
+                },*/
+            }
         }
-    }).on('success.form.bv', function (e) {
-        e.preventDefault();
-        guardar();
-    });
-
+    }
+}).on('success.form.bv', function(e) {
+    e.preventDefault();
+    guardar();
+});
 </script>
 
 <!-- Script Agregar datos -->
 
 <script>
+function guardar() {
 
-    function guardar() {
+    datos = $('#formDatos').serialize();
 
-        datos = $('#formDatos').serialize();
+    //datos para mostrar a modo de ejemplo para DEMO---------------
+    //Serialize the Form
+    var values = {};
+    $.each($("#formDatos").serializeArray(), function(i, field) {
+        values[field.name] = field.value;
+    });
+    //Value Retrieval Function
+    var getValue = function(valueName) {
+        return values[valueName];
+    };
+    //Retrieve the Values
+    var tipo_residuo = getValue("tipo_residuo");
+    var contenedor = getValue("contenedor");
+    var porcent_llenado = getValue("porcent_llenado");
+    var metroscubicos = getValue("metroscubicos");
+    //--------------------------------------------------------------
 
-        //datos para mostrar a modo de ejemplo para DEMO---------------
-        //Serialize the Form
-        var values = {};
-        $.each($("#formDatos").serializeArray(), function (i, field) {
-            values[field.name] = field.value;
-        });
-        //Value Retrieval Function
-        var getValue = function (valueName) {
-            return values[valueName];
-        };
-        //Retrieve the Values
-        var tipo_residuo = getValue("tipo_residuo");
-        var contenedor = getValue("contenedor");
-        var porcent_llenado = getValue("porcent_llenado");
-        var metroscubicos = getValue("metroscubicos");
-        //--------------------------------------------------------------
+    if ($("#formDatos").data('bootstrapValidator').isValid()) {
 
-        if ($("#formDatos").data('bootstrapValidator').isValid()) {
-
-            $.ajax({
-                type: "POST",
-                data: datos,
-                url: "ajax/Ordentrabajo/guardarResiduo",
-                success: function (r) {
-                    if (r == "ok") {
-                        //console.log(datos);
-                        html = '<tr role="row" class="even"><td>' + tipo_residuo + '</td><td>' + contenedor + '</td><td>' + porcent_llenado + '</td><td>' + metroscubicos + '</td></tr>';
-                        $('#primero').after(html);
-                        $('#formDatos').data('bootstrapValidator').resetForm(true);
-                        alertify.success("Agregado con exito");
-                    }
-                    else {
-                        //console.log(r);
-                        alertify.error("error al agregar");
-                    }
+        $.ajax({
+            type: "POST",
+            data: datos,
+            url: "ajax/Ordentrabajo/guardarResiduo",
+            success: function(r) {
+                if (r == "ok") {
+                    //console.log(datos);
+                    html = '<tr role="row" class="even"><td>' + tipo_residuo + '</td><td>' + contenedor +
+                        '</td><td>' + porcent_llenado + '</td><td>' + metroscubicos + '</td></tr>';
+                    $('#primero').after(html);
+                    $('#formDatos').data('bootstrapValidator').resetForm(true);
+                    alertify.success("Agregado con exito");
+                } else {
+                    //console.log(r);
+                    alertify.error("error al agregar");
                 }
-            });
-        }
+            }
+        });
     }
+}
 </script>
 
 
 <!-- Script Agregar Residuo -->
 
 <script>
+function agregarResiduo() {
 
-    function agregarResiduo() {
+    $('#formResiduo').on('submit', function(e) {
+        //console.log("aloha madrefoca");
+        e.preventDefault();
+        var me = $(this);
+        if (me.data('requestRunning')) {
+            return;
+        }
+        me.data('requestRunning', true);
 
-        $('#formResiduo').on('submit', function (e) {
-            //console.log("aloha madrefoca");
-            e.preventDefault();
-            var me = $(this);
-            if (me.data('requestRunning')) { return; }
-            me.data('requestRunning', true);
-
-            datos = $('#formResiduo').serialize();
-            $.ajax({
-                type: "POST",
-                data: datos,
-                url: "ajax/Ordentrabajo/guardarResiduo",
-                success: function (r) {
-                    if (r == "ok") {
-                        console.log(r);
-                        $('#formResiduo')[0].reset();
-                        alertify.success("Agregado con exito");
-                    }
-                },
-                complete: function () {
-                    me.data('requestRunning', false);
+        datos = $('#formResiduo').serialize();
+        $.ajax({
+            type: "POST",
+            data: datos,
+            url: "ajax/Ordentrabajo/guardarResiduo",
+            success: function(r) {
+                if (r == "ok") {
+                    console.log(r);
+                    $('#formResiduo')[0].reset();
+                    alertify.success("Agregado con exito");
                 }
-            });
-
+            },
+            complete: function() {
+                me.data('requestRunning', false);
+            }
         });
 
-    }
+    });
+
+}
 </script>
 
- <script>
-  $(function () {
+<script>
+$(function() {
     $('#example1').DataTable()
     $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': true,
-      'searching'   : true,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : true,
-      'autoFill'    : true,
-      'buttons'     :true,
-      'fixedHeader': true,
+        'paging': true,
+        'lengthChange': true,
+        'searching': true,
+        'ordering': true,
+        'info': true,
+        'autoWidth': true,
+        'autoFill': true,
+        'buttons': true,
+        'fixedHeader': true,
         dom: 'Bfrtip',
         buttons: [
-             'excel', 'pdf', 'print'
+            'excel', 'pdf', 'print'
         ]
     })
-  })
+})
 </script>
-

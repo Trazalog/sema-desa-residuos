@@ -1,8 +1,49 @@
-<!--  Box 1-->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
         <h3>Registrar recepción de orden</h3>
     </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-2 col-lg-1 col-xs-12">
+                <button type="button" id="botonAgregar" class="btn btn-primary" aria-label="Left Align">
+                    Agregar
+                </button><br>
+            </div>
+            <div class="col-md-10 col-lg-11 col-xs-12"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+
+
+
+
+
+<!--  Box 1-->
+<div class="box box-primary animated animated bounceInDown" id="boxDatos" hidden>
+    <div class="box-header with-border">
+       
+    </div>
+
+
+    <div class="box-header with-border">
+        <div class="box-tittle">
+        <h5>Informacion</h5>  
+        </div>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+    </div>
+    
     <div class="box-body">
         <form id="formRecepcion" method="POST" autocomplete="off" class="registerForm">
             <div class="row">
@@ -68,7 +109,7 @@
                         <label for="imgmovil" class="form-label">Vehiculo:</label>
                         <img src="<?php base_url() ?>files/vehiculo.png" id="imgmovil" height="60" width="60">
                     </div>
-                </div>
+                </div>X
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="cont" class="form-label">Contenedor:</label>
@@ -152,7 +193,7 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-blue">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -494,3 +535,35 @@
             guardarIncidencia();
         });
     </script>
+
+    <!--_____________________________________________________________-->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+            
+
+<script>
+            $("#botonAgregar").on("click", function() {
+                //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+                var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+                $("#nro").val(aleatorio);
+
+                $("#botonAgregar").attr("disabled", "");
+                //$("#boxDatos").removeAttr("hidden");
+                $("#boxDatos").focus();
+                $("#boxDatos").show();
+
+            });
+            </script>
+
+<!--_____________________________________________________________-->
+<!-- script close box de datos al dar click en cerrar -->
+
+            <script>
+            $("#btnclose").on("click", function() {
+                $("#boxDatos").hide(500);
+                $("#botonAgregar").removeAttr("disabled");
+                $('#formDatos').data('bootstrapValidator').resetForm();
+                $("#formDatos")[0].reset();
+                $('#selecmov').find('option').remove();
+                $('#chofer').find('option').remove();
+            });
+            </script>

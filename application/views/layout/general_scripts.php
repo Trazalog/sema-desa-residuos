@@ -1,10 +1,22 @@
-       <!-- jQuery 3 -->
-       <script src="<?php base_url() ?>lib/bower_components/jquery/dist/jquery.min.js"></script>
+       
+       
+        <!-- jQuery 3 -->
+        <script src="<?php base_url() ?>lib/bower_components/jquery/dist/jquery.min.js"></script>
+       
        <!-- jQuery UI 1.11.4 -->
        <script src="<?php base_url() ?>lib/bower_components/jquery-ui/jquery-ui.min.js"></script>
+             
+       
        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
        <script>
-$.widget.bridge('uibutton', $.ui.button);
+           
+        $.widget.bridge('uibutton', $.ui.button);
+
+       
+     
+
+        
+
        </script>
        <!-- Bootstrap 3.3.7 -->
        <script src="<?php base_url() ?>lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -29,19 +41,41 @@ $.widget.bridge('uibutton', $.ui.button);
 
        <script src="<?php base_url() ?>lib/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
        
-       
+
+       <!-- Datatables 1  -->
+
        <script src="<?php base_url() ?>lib/bower_components/datatables1/datatables.js"></script>
        
        
        <script src="<?php base_url() ?>lib/bower_components/datatables1/dataTables.bootstrap.min.js"></script>
+
+        <!-- Datatables 1  -->
+
+
+
+
+
+
+
+
+
        
        
-    
+
+  
+
+   
        
        <!-- alertifyjs  -->
        <script src="<?php base_url() ?>lib/alertify/alertify.js"></script>
        <!-- AdminLTE App -->
        <script src="<?php base_url() ?>lib/dist/js/adminlte.min.js"></script>
+
+       
+
+        <!-- <script type="text/javascript"> var $jq1 = jQuery.noConflict(true);</script>  -->
+
+       <!-- <script type="text/javascript"> var $jq = jQuery.noConflict(true);</script>  -->
 
        <script src="<?php base_url();?>lib/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 

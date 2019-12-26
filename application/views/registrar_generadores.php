@@ -100,6 +100,8 @@
 <!-- Script Agregar datos de registrar_generadores-->
 
 <script>
+
+
 function agregarDato(){
     console.log("entro a agregar datos");
     $('#formGeneradores').on('submit', function(e){

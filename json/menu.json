@@ -1,52 +1,9 @@
 {
     "menuP" : {
                 "menuH": [
-                    {
-                        "titulo": "Proceso",
-                        "icono": "fa fa-dot-circle-o",
-                        "link": "general/Proceso",
-                        "nivel": 1
-                    },
+                    
 
-
-                    {
-                        "titulo": "Almancenes",
-                        "icono": "fa fa-circle",
-                        "link": "",
-                        "nivel": 2,
-                        "submenu": [
-                            {
-                                "titulo": "Artículos",
-                                "icono": "fa-flus",
-                                "link": "general/Registrar/templateRg"
-                            },
-                            {
-                                "titulo": "Stock",
-                                "icono": "fa-flus",
-                                "link": "almacen/Lote"
-                            },
-                            {
-                                "titulo": "Entrega Materiales",
-                                "icono": "fa-flus",
-                                "link": "almacen/Ordeninsumo"
-                            },
-                            {
-                                "titulo": "Recepcion Materiales",
-                                "icono": "fa-flus",
-                                "link": "almacen/Remito"
-                            },
-                            {
-                                "titulo": "Punto de Pedido",
-                                "icono": "fa-flus",
-                                "link": "almacen/Lote/puntoPedList"
-                            },
-                            {
-                                "titulo": "Pedido Materiales",
-                                "icono": "fa-flus",
-                                "link": "almacen/Notapedido"
-                            }
-                        ]
-                    },
+                    
 
                                      
 
@@ -59,9 +16,10 @@
                         "nivel": 2,
                         "submenu":[
                             {
-                                "titulo": "Registrar Rol",
+                                "titulo": "Registrar Inspectores",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Orden/.."
+                                "link": "general/RegistrarIn/templateIn"
+                                
                             },
                             {
                                 "titulo": "Registrar Generadores ",
@@ -81,54 +39,34 @@
                             {
                                 "titulo": "Registrar Circuito",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
+                                "link": "general/RegistrarCi/templateRci"
                             },
                             {
                                 "titulo": "Registrar Contenedor",
                                 "icono": "fa fa-genderless",
                                 "link": "general/RegistrarC/templateRc"
                             },
-                            {
-                                "titulo": "Registrar Chofer",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Registrar Vehiculo",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Registrar Circuito",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
+                            
+                            
                             {
                                 "titulo": "Solicitud de retiro",
                                 "icono": "fa fa-genderless",
                                 "link": "general/Orden/solicitudRetiro"
-                            }
-                            
-                        ]
-                    
-                    },
-
-                    {
-                        "titulo": "Ordenes",
-                        "icono": "fa-flus",
-                        "link": "general/Componente",
-                        "nivel": 2,
-                        "submenu":[
+                            },
+                            {
+                                "titulo": "Registrar Proceso Productivo",
+                                "icono": "fa fa-genderless",
+                                "link": "general/RegistrarPp/templatePp"
+                            },
+                            {
+                                "titulo": "Establecimiento",
+                                "icono": "fa fa-genderless",
+                                "link": "general/RegistrarE/templateEs"
+                            },
                             {
                                 "titulo": "Orden de transporte",
                                 "icono": "fa fa-genderless",
                                 "link": "general/Orden/ordenT"                                
-                            },
-                            {
-                                "titulo": "Registrar Inspectores",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Orden/.."
-                                
                             },
                             {
                                 "titulo": "Template OT",
@@ -136,29 +74,11 @@
                                 "link": "general/Orden/templateOt"
                             },
                             {
-                                "titulo": "Reporte de camiones",
+
+                                "titulo": "Control de descarga",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarT/.."
-                            },
-                            {
-                                "titulo": "Pesaje en bascula",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Registro de incidencia",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Reportes de incidencia",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Registor acta de Infraccion",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
+                                "link": "general/Orden/controlDeDescarga"
+
                             },
                             {
                                 "titulo": "Recepcion de orden",
@@ -166,99 +86,31 @@
                                 "link": "general/Orden/registrarRecepcionDeOrden"
                             },
                             {
-                                "titulo": "Control de trayecto",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Control de descarga",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Orden/controlDeDescarga"
-                            },
-                            {
-                                "titulo": "Certificado de vuelco",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Reporte de toneladas",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Reporte de Volúmenes ingresados",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Liquidación de OT",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
-                            },
-                            {
-                                "titulo": "Mapas",
-                                "icono": "fa fa-map-marker",
-                                "link": "general/Registrar_inspector/.."
-                            }
-                            
+                                "titulo": "ABM establecimiento",
 
-                            
-                            
-                            
-                            
-                        ]
-                    
-                    },
+                                "icono": "fa fa-genderless",
 
-                    {
-                        "titulo": "Etapas de tratamiento",
-                        "icono": "fa-flus",
-                        "link": "general/Componente",
-                        "nivel": 2,
-                        "submenu":[
-                            {
-                                "titulo": "Agregar nueva Instancia",
-                                "icono": "fa-flus",
-                                "link": "general/Orden/.."
+                                "link": "general/Orden/nueva"
+
                             },
                             {
-                                "titulo": "Editar nueva Instancia",
-                                "icono": "fa-flus",
-                                "link": "general/Orden/.."
+                                "titulo": "ABM Incidencias ",
+
+                                "icono": "fa fa-genderless",
+
+                                "link": "general/Orden/nueva2"
+
                             },
                             {
-                                "titulo": "Solicitud de retiro",
-                                "icono": "fa-flus",
-                                "link": "general/Orden/......"
-                            },
-                            {
-                                "titulo": "Registrar recepcion de orden",
-                                "icono": "fa-flus",
-                                "link": "general/Orden/........"
-                            },
-                            {
-                                "titulo": "Registrar Generador",
-                                "icono": "fa-flus",
-                                "link": "general/Registrar/.."
-                            },
-                            {
-                                "titulo": "Finalizar una nueva Instancia",
-                                "icono": "fa-flus",
-                                "link": "general/RegistrarT/......."
-                            },
-                            {
-                                "titulo": "Registrar Zona",
-                                "icono": "fa-flus",
-                                "link": "general/RegistrarZ/......"
-                            },
-                            {
-                                "titulo": "Registrar Contenedor",
-                                "icono": "fa-flus",
-                                "link": "general/RegistrarC/....."
+                                "titulo": "Etapa",
+                                "icono": "fa fa-genderless",
+                                "link": "general/RegistrarEt/templateEt"
                             }
                         ]
                     
                     }
+
+                    
 
 
                 ]

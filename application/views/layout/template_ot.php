@@ -1,7 +1,13 @@
+
+
+
+
+
+
 <!--  Box 1-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
-        <h3>Template de Orden de Transporte</h3>
+        <h4>Template de Orden de Transporte</h4>
     </div>
     <div class="box-body">
         <div class="row">
@@ -14,10 +20,12 @@
         </div>
     </div>
 </div>
+
+
 <!--  Box 2-->
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
-        <h4>Informacion</h4>
+        <h5>Informacion</h5>
         <div class="box-tools pull-right">
             <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
                 data-toggle="tooltip" title="" data-original-title="Remove">
@@ -93,9 +101,16 @@
             <br>
             <hr>
 
+
+
+            <!---//////////////////////////////////////--- TRANSPORTISTA ---///////////////////////////////////////////////////////----->
+
             <div class="row">
-                <div class="box-header with-border">
+
+            <div class="col-md-12">
+                <div class="box-header bg-blue">
                     <h4>Transportistas</h4>
+                </div>
                 </div>
                 <br>
                 <div class="col-md-6 col-xs-12">
@@ -995,4 +1010,25 @@ function guardar() {
     }
 
 }
+</script>
+
+<script>
+  $(function () {
+    
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true,
+      'autoFill'    : true,
+      'buttons'     :true,
+      'fixedHeader': true,
+        dom: 'Bfrtip',
+        buttons: [
+             'excel', 'pdf', 'print'
+        ]
+    })
+  })
 </script>
