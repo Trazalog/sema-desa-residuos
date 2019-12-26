@@ -20,8 +20,7 @@
 
 <!--//////////////////////////////Box2//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
-    <div class="box-body">
-        <form class="formZonas" id="formZonas">
+    <div class="box-header with-border">
 
         <!--Boton de cerrar-->
         <div class="box-tools pull-right">
@@ -31,9 +30,10 @@
                 </button>
             </div>
         <!--_____________________________________________-->
+    <div class="box-body">        
+        <form class="formZonas" id="formZonas" method="POST" autocomplete="off" class="registerForm">
 
                 <div class="col-md-6">
-                <br>
                 <!--Nombre-->
                 <div class="form-group">
                     <label for="Nombre" style="width: 200px; font-weight: lighter;">Nombre:</label>
@@ -92,7 +92,7 @@
                 </div>
             </div>
         </div>
-
+    </div>
             <!--//////////////////////////////Box3//////////////////////////////-->
             <!--Datatable Registrar Generadores-->
             <div class="box box-primary animated fadeInLeft">
@@ -128,6 +128,7 @@
 
         </form>
     </div>
+</div>
 </div>
 <!--_____________________________________________________________-->
 

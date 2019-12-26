@@ -85,7 +85,7 @@
                             {
                                 "titulo": "Registrar Chofer",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
+                                "link": "general/RegistrarCh/templateCh"
                             },
                             {
                                 "titulo": "Registrar Vehiculo",
@@ -203,11 +203,7 @@
                                 "icono": "fa fa-map-marker",
                                 "link": "general/Registrar_inspector/.."
                             }
-                            
-                            
-                            
-                            
-                            
+                        
                         ]
                     
                     },

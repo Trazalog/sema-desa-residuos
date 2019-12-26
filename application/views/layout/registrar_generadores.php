@@ -29,9 +29,9 @@
                     <i class="fa fa-times"></i>
                 </button>
             </div>
-        <!--_____________________________________________-->
+        <!--_____________________________________________________________-->
     <div class="box-body">
-        <form class="formInspectores" id="formInspectores"  method="POST" autocomplete="off" class="registerForm">
+        <form class="formGeneradores" id="formGeneradores"  method="POST" autocomplete="off" class="registerForm">
 
             <!--Nombre / Razon social-->
         <div class="col-md-6">
@@ -39,14 +39,14 @@
                 <label for="Nombre/Razon social" style="width: 200px; font-weight: lighter;">Nombre / Razon social:</label>
                 <input type="text" class="form-control" id="Nombre/Razon social" name="Nombre_razon" style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+            <!--_____________________________________________________________-->
 
             <!--CUIT-->
             <div class="form-group">
                 <label for="CUIT" style="width: 200px; font-weight: lighter;">CUIT:</label>
                 <input type="text" class="form-control" id="CUIT" name="Cuit" style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+            <!--_____________________________________________________________-->
 
             <!--Zona-->
             <div class="form-group">
@@ -60,14 +60,14 @@
                     ?>
                 </select>
             </div>
-            <!--_____________________________________________-->
+            <!--_____________________________________________________________-->
 
             <!--Rubro-->
             <div class="form-group">
                 <label for="Rubro" style="width: 200px; font-weight: lighter;">Rubro:</label>
                 <input type="text" class="form-control" id="Rubro" name="Rubro" style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+            <!--_____________________________________________________________-->
 
             <!--Tipo-->  
             <div class="form-group">
@@ -82,7 +82,7 @@
                 </select>
             </div>
         </div>
-            <!--_____________________________________________-->
+            <!--_____________________________________________________________-->
 
             <!--Domicilio-->
         <div class="col-md-6">
@@ -90,7 +90,7 @@
                 <label for="Domicilio" style="width: 200px; font-weight: lighter;">Domicilio:</label>
                 <input type="text" class="form-control" id="Domicilio" name="Domicilio" style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+            <!--_____________________________________________________________-->
 
             <!--Departamento-->
             <div class="form-group">
@@ -104,26 +104,26 @@
                     ?>
                 </select>
             </div>
-            <!--_____________________________________________-->
+            <!--_____________________________________________________________-->
 
             <!--Numero de registro-->
             <div class="form-group">
                 <label for="Numero de registro" style="width: 200px; font-weight: lighter;">Numero de registro:</label>
                 <input type="text" class="form-control" id="Numero de registro" name="Numero_registro" style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+            <!--_____________________________________________________________-->
 
             <!--Tipo de residuos-->
             <div class="form-group">
                 <label for="Tipo de residuos" style="width: 200px; font-weight: lighter;">Tipo de residuos:</label>
                 <input type="text" class="form-control" id="Tipo de residuos" name="Tipo_Residuo" style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+            <!--_____________________________________________________________-->
 
             <!--Boton de guardado-->
             <br>
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-            <!--_____________________________________________-->
+            <!--_____________________________________________________________-->
         </div>
         </div>
     </div>
@@ -150,7 +150,7 @@
                                 <th id="Tipo_Residuo" class="Tipo_Residuo" style="width: 200px; font-weight: lighter;">Tipo de residuos</th>
                             </tr>
                         </thead>
-                    <!--_____________________________________________-->
+                    <!--_____________________________________________________________-->
 
                     <!--Cuerpo del Datatable-->
                         <tbody>
@@ -166,12 +166,12 @@
                                 <td id="Tipo_Residuo" class="Tipo_Residuo">X</td>
                             </tr>
                         </tbody>
-                    <!--_____________________________________________-->
+                    <!--_____________________________________________________________-->
 
                     </table>
                 </div>
             </div>
-<!--_____________________________________________________________-->
+            <!--_____________________________________________________________-->
 
         </form>
         </div>
@@ -205,9 +205,9 @@
         $('#chofer').find('option').remove();
         });
 </script>
+<!--_____________________________________________________________-->
 
 <!-- Script Data-Tables-->
-
 <!-- script que muestra box de datos al dar click en boton agregar -->
 
 <script>
@@ -227,196 +227,197 @@
 
 <!-- Script Agregar datos de registrar_generadores-->
 <script>
-function agregarDato(){
-    console.log("entro a agregar datos");
-    $('#formGeneradores').on('submit', function(e){
-    e.preventDefault();
-    var me = $(this);
-    if ( me.data('requestRunning') ) {return;}
-    me.data('requestRunning', true);
-    datos=$('#formGeneradores').serialize();
-    console.log(datos);
-        //--------------------------------------------------------------
-    $.ajax({
-                type:"POST",
-                data:datos,
-                url:"ajax/Registrargenerador/guardarDato",
-                success:function(r){
-                    if(r == "ok"){
-                        //console.log(datos);
-                        $('#formGeneradores')[0].reset();
-                        alertify.success("Agregado con exito");
+    function agregarDato(){
+        console.log("entro a agregar datos");
+        $('#formGeneradores').on('submit', function(e){
+        e.preventDefault();
+        var me = $(this);
+        if ( me.data('requestRunning') ) {return;}
+        me.data('requestRunning', true);
+        datos=$('#formGeneradores').serialize();
+        console.log(datos);
+            //--------------------------------------------------------------
+        $.ajax({
+                    type:"POST",
+                    data:datos,
+                    url:"ajax/Registrargenerador/guardarDato",
+                    success:function(r){
+                        if(r == "ok"){
+                            //console.log(datos);
+                            $('#formGeneradores')[0].reset();
+                            alertify.success("Agregado con exito");
+                        }
+                        else{
+                            console.log(r);
+                            $('#formGeneradores')[0].reset();
+                            alertify.error("error al agregar");
+                        }
+                    },
+                    complete: function() {
+                        me.data('requestRunning', false);
                     }
-                    else{
-                        console.log(r);
-                        $('#formGeneradores')[0].reset();
-                        alertify.error("error al agregar");
-                    }
-                },
-                complete: function() {
-                    me.data('requestRunning', false);
-                }
-            });
-    });
-}
+                });
+        });
+    }
 </script>
+<!--_____________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
-  $('#formGeneradores').bootstrapValidator({
-      message: 'This value is not valid',
-      /*feedbackIcons: {
-          valid: 'glyphicon glyphicon-ok',
-          invalid: 'glyphicon glyphicon-remove',
-          validating: 'glyphicon glyphicon-refresh'
-      },*/
-      //excluded: ':disabled',
-      fields: {
-        Nombre_razon: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
+    $('#formGeneradores').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            Nombre_razon: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          Cuit: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Cuit: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-          Zona: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  }
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Zona: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-              }
-          },
-          Rubro: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
+                }
+            },
+            Rubro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          Tipo: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  }
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Tipo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-              }
-          },
-          Domicilio: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
+                }
+            },
+            Domicilio: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          Departamento: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  }
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Departamento: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-              }
-          },
-          Numero_registro: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
+                }
+            },
+            Numero_registro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-          Tipo_Residuo: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Tipo_Residuo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          }
-      }
-  }).on('success.form.bv', function (e) {
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            }
+        }
+}).on('success.form.bv', function (e) {
       e.preventDefault();
       //guardar();
   });
 </script>
-<!--_____________________________________________-->
+<!--_____________________________________________________________-->
