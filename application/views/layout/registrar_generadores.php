@@ -264,16 +264,16 @@
 
 <!--Script Bootstrap Validacion.-->
 <script>
-  $('#formGeneradores').bootstrapValidator({
-      message: 'This value is not valid',
-      /*feedbackIcons: {
-          valid: 'glyphicon glyphicon-ok',
-          invalid: 'glyphicon glyphicon-remove',
-          validating: 'glyphicon glyphicon-refresh'
-      },*/
-      //excluded: ':disabled',
-      fields: {
-        Nombre_razon: {
+    $('#formGeneradores').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            Nombre_razon: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
