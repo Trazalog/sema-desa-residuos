@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 /* Hecha por Jose Roberto el mas vergas */
 
+/*Ajax Pantalla Registrar Chofer*/
 class Registrarchofer extends CI_Controller {
     function __construct()
     {
@@ -18,3 +19,4 @@ class Registrarchofer extends CI_Controller {
         }
     }
 }
+/*_____________________________________________________________*/

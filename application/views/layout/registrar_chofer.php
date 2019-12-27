@@ -22,6 +22,7 @@
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
         <div class="box-tittle">
+        <!--_____________________________________________________________-->
 
         <!--Boton de cerrar-->
         <div class="box-tools pull-right">
@@ -34,8 +35,8 @@
 
     </div>
     <div class="box-body">
-        <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
-    
+    <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
+
     <div class="col-md-6">
 
         <!--COMIENZO DE LOS CAMPOS DEL FORMULARIO-->
@@ -156,6 +157,7 @@
         </div>
     </div>
 </div>
+<!--_____________________________________________________________-->
 
 <!--//////////////////////////////Box3//////////////////////////////-->
     <!--Datatable Registrar Generadores-->
@@ -216,12 +218,10 @@
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
-
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").focus();
         $("#boxDatos").show();
-
     });
 </script>
 ​<!--_____________________________________________________________-->
@@ -245,12 +245,10 @@
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
-
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").focus();
         $("#boxDatos").show();
-
     });
 </script>
 ​<!--_____________________________________________________________-->
