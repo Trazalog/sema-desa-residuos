@@ -157,7 +157,7 @@
                     </div>
                     <div class="form-group text-center">
                         <h4 for="nro" class="form-label">Incidencia</h4>
-                        <button type="button" class="btn btn-primary btn-circle" aria-label="Left Align"
+                        <button type="button" class="btn btn-default btn-circle" aria-label="Left Align"
                             data-toggle="modal" data-target="#modalIncidencia">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </button><br>
@@ -173,19 +173,13 @@
                     </div>
                 </div>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-md-10 col-lg-11 col-xs-12"></div>
-                <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" aria-label="Left Align">
-                            Guardar
-                        </button><br>
-                    </div>
-                </div>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
 
 <!-- Modal incidencia-->
@@ -199,8 +193,9 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel">Registrar incidencia</h5>
             </div>
-            <div class="modal-body">
-                <form id="formIncidencia" method="POST" autocomplete="off" class="registerForm">
+            <form id="formIncidencia" method="POST" autocomplete="off" class="registerForm">
+                <div class="modal-body">
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -239,7 +234,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="fechahora" class="form-label">Fecha y hora:</label>
-                                <input type="datetime-local" name="fechahora" id="fechahora" class="form-control" required>
+                                <input type="datetime-local" name="fechahora" id="fechahora" class="form-control"
+                                    required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -259,14 +255,14 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="form-group text-right">
-                            <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
-                            <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
-                        </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                        <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -399,135 +395,134 @@
 
 <!-- script bootstrap validator modal incidencia -->
 <script>
-        $('#formIncidencia').bootstrapValidator({
-            message: 'This value is not valid',
-            /*feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },*/
-            excluded: ':disabled',
-            fields: {
-                numorden: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                        regexp: {
-                            regexp: /^(0|[1-9][0-9]*)$/,
-                            message: 'la entrada debe ser un numero entero'
-                        }
+    $('#formIncidencia').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        excluded: ':disabled',
+        fields: {
+            numorden: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
                     }
-                },
-                tiporesid: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
+                }
+            },
+            tiporesid: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
                     }
-                },
-                fechaa: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            fechaa: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
                     }
-                },
-                dfinal: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            dfinal: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
                     }
-                },
-                desc: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            desc: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
                     }
-                },
-                tipincid: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'seleccione una opcion'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            tipincid: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'seleccione una opcion'
                     }
-                },
-                fechahora: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'seleccione una opcion'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            fechahora: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'seleccione una opcion'
                     }
-                },
-                inspector: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            inspector: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
                     }
-                },
-                numacta: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                }
+            },
+            numacta: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
                     }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
                 }
             }
         }).on('success.form.bv', function (e) {

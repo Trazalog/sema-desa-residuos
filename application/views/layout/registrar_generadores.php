@@ -392,7 +392,6 @@ $("#btnadd").on("click", function() {
 </script>
 
 <!--_____________________________________________________________-->
-<!-- Script Agregar datos de registrar_generadores-->
 
             <script>
             function agregarDato() {

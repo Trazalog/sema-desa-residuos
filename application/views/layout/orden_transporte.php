@@ -1,3 +1,4 @@
+<!-- Hecha por Fer Guardia-->
 <!--  Box 1-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
@@ -36,11 +37,9 @@
                 </div>
             </div>
         </div>
-
         <br>
         <hr>
         <br>
-
         <form autocomplete="off" id="formDatos" method="POST">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
@@ -318,22 +317,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     <tr role="row" class="even" id="primero">
                                         <td>residuo radioactivo</td>
                                         <td>3</td>
                                         <td>23</td>
                                         <td>1.5</td>
                                     </tr>
-
                                 </tbody>
-
                             </table><br>
                         </div>
                     </div>
 
                 </div>
-
             </div>
         </div>
 
@@ -551,9 +546,7 @@ $("#selecmov").on('change', function() {
 
 });
 </script>
-
 <!-- script bootstrap validator -->
-
 <script>
 $('#formDatos').bootstrapValidator({
     message: 'This value is not valid',
@@ -633,9 +626,7 @@ $('#formDatos').bootstrapValidator({
     guardar();
 });
 </script>
-
 <!-- Script Agregar datos -->
-
 <script>
 function guardar() {
 
@@ -681,10 +672,7 @@ function guardar() {
     }
 }
 </script>
-
-
 <!-- Script Agregar Residuo -->
-
 <script>
 function agregarResiduo() {
 

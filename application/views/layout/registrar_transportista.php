@@ -161,6 +161,12 @@
 </div>
 </div>
 
+<!--//////////////////////////////Box3//////////////////////////////-->
+            <!--Datatable Registrar Generadores-->
+            <div class="box box-primary animated fadeInLeft">
+                <div class="box-body table-scroll">
+                    <table id="example2" class="table table-bordered table-hover table-responsive">
+​                    <!--_____________________________________________________________-->
 
 
 

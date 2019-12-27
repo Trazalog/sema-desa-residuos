@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 if(!function_exists('choferes')){
-
     function choferes($json)
     {
         $array =  $json;
@@ -10,7 +9,6 @@ if(!function_exists('choferes')){
         foreach ($array->choferes->chofer as $i) {
             $html .= '<option>'.$i->nombre.'</option>';
         }
-        
         return $html;
     }
 }

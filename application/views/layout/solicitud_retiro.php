@@ -83,8 +83,7 @@
                                             echo '<option>'.$i->nombre.'</option>';
                                         }
                                 ?>
-                        </select>
-                    </div>
+                    </select>
                 </div>
 
                 <!--_____________________________________________-->
@@ -159,14 +158,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    ​
                                     <tr role="row" class="even" id="primero">
                                         <td>residuo radioactivo</td>
                                         <td>3</td>
                                     </tr>
-
                                 </tbody>
-
                             </table><br>
 
 
@@ -749,6 +745,7 @@
 </div>
 
 <!--script close modal entrega -->
+
 <script>
 $("#modalEntrega").on("hidden.bs.modal", function(e) {
     //console.log("se cerro el modal");
@@ -758,6 +755,7 @@ $("#modalEntrega").on("hidden.bs.modal", function(e) {
 </script>
 
 <!--script close modal rectificativa -->
+
 <script>
 $("#modalRectificar").on("hidden.bs.modal", function(e) {
     //console.log("se cerro el modal");
@@ -765,7 +763,9 @@ $("#modalRectificar").on("hidden.bs.modal", function(e) {
     $("#frmrect")[0].reset();
 });
 </script>
+
 <!-- script modal -->
+
 <script>
 $("#btnview").on("click", function() {
     $("#btnadd").removeClass("active");
@@ -797,6 +797,7 @@ $("#btnclose").on("click", function() {
 </script>
 
 <!-- script bootstrap validator -->
+
 <script>
 $('#frmentrega').bootstrapValidator({
     message: 'This value is not valid',
@@ -909,7 +910,10 @@ $('#frmentrega').bootstrapValidator({
 });
 </script>
 
+</script>
+
 <!-- script bootstrap validator -->
+
 <script>
 $('#frmrect').bootstrapValidator({
     message: 'This value is not valid',
@@ -993,7 +997,10 @@ $('#frmrect').bootstrapValidator({
 });
 </script>
 
+</script>
+
 <!-- script que muestra box de datos al dar click en boton agregar -->
+
 <script>
 $("#botonAgregar").on("click", function() {
 
@@ -1004,8 +1011,8 @@ $("#botonAgregar").on("click", function() {
 });
 </script>
 
-
 <!-- script bootstrap validator -->
+
 <script>
 $('#formDatos').bootstrapValidator({
     message: 'This value is not valid',

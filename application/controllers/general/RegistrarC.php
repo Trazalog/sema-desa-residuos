@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+/* Hecha por Jose Roberto el mas vergas */
 class RegistrarC extends CI_Controller {
     function __construct(){
 
@@ -14,6 +15,7 @@ class RegistrarC extends CI_Controller {
        $data['Estados'] = $this->Estados->obtener();
        $this->load->view('layout/registrar_contenedor', $data);
    }
+   
    function templateRc()
    {
        $data['Estados'] = $this->Estados->obtener();

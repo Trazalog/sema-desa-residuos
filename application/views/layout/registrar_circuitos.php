@@ -1,3 +1,4 @@
+                    }
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
 <div class="box box-primary animated fadeInLeft">

@@ -13,12 +13,23 @@ class Ordentrabajos extends CI_Model
         return $aux;
     }
 
+    public function guardarRecepciones($datos){
+        $aux = $this->rest->callAPI("POST",REST."ordenrecepcion", $datos);
+        $aux =json_decode($aux["status"]);
+        return $aux;
+    }
+
+    public function guardarIncidencias($datos){
+        $aux = $this->rest->callAPI("POST",REST."incidencias", $datos);
+        $aux =json_decode($aux["status"]);
+        return $aux;
+    }
+
     public function guardarResiduos($datos){
         $aux = $this->rest->callAPI("POST",REST."tablaresiduos", $datos);
         $aux =json_decode($aux["status"]);
         return $aux;
     }
-
     public function guardarRess($datos){
         $aux = $this->rest->callAPI("POST",REST."tablares", $datos);
         $aux =json_decode($aux["status"]);

@@ -555,9 +555,7 @@ function agregarDato() {
                 me.data('requestRunning', false);
             }
         });
-
     });
-
 }
 </script>
 

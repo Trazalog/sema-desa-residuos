@@ -40,46 +40,47 @@
     </div>
 
     <!--_____________________________________________-->
+
     <div class="box-body">
         <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
 
             <div class="col-md-6">
                 <!--Codigo / Registro-->
                 <div class="form-group">
-                    <label for="Codigo/Registro" name="Codigo_registro">Codigo / Registro:</label>
-                    <input type="text" class="form-control" id="Codigo/Registro">
+                    <label for="Codigo/Registro">Codigo / Registro:</label>
+                    <input type="text" class="form-control" id="Codigo/Registro" name="Codigo_registro">
                 </div>
                 <!--_____________________________________________-->
                 <!--Descripcion-->
                 <div class="form-group">
-                    <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                    <input type="text" class="form-control" id="Descripcion">
+                    <label for="Descripcion">Descripcion:</label>
+                    <input type="text" class="form-control" id="Descripcion" name="Descripcion">
                 </div>
                 <!--_____________________________________________-->
                 <!--Capacidad-->
                 <div class="form-group">
-                    <label for="Capacidad" name="Capacidad">Capacidad:</label>
-                    <input type="text" class="form-control" id="Capacidad">
+                    <label for="Capacidad">Capacidad:</label>
+                    <input type="text" class="form-control" id="Capacidad" name="Capacidad">
                 </div>
                 <!--_____________________________________________-->
                 <!--Año de elaboracion-->
                 <div class="form-group">
-                    <label for="Añoelab" name="Añoelab">Año de elaboracion:</label>
-                    <input type="text" class="form-control" id="Añoelab">
+                    <label for="Añoelab">Año de elaboracion:</label>
+                    <input type="text" class="form-control" id="Añoelab" name="Añoelab">
                 </div>
                 <!--_____________________________________________-->
             </div>
             <div class="col-md-6">
                 <!--Tara-->
                 <div class="form-group">
-                    <label for="Tara" name="Tara">Tara:</label>
-                    <input type="text" class="form-control" id="Tara">
+                    <label for="Tara">Tara:</label>
+                    <input type="text" class="form-control" id="Tara" name="Tara">
                 </div>
                 <!--_____________________________________________-->
                 <!--Estado-->
                 <div class="form-group">
-                    <label for="Estados" name="Estados">Estado:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Estados">
+                    <label for="Estados">Estado:</label>
+                    <select class="form-control select2 select2-hidden-accesible" id="Estados" name="Estados">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Estados as $i) {
@@ -91,8 +92,8 @@
                 <!--_____________________________________________-->
                 <!--Habilitacion-->
                 <div class="form-group">
-                    <label for="Habilitacion" name="Habilitacion">Habilitacion:</label>
-                    <input type="text" class="form-control" id="Habilitacion">
+                    <label for="Habilitacion">Habilitacion:</label>
+                    <input type="text" class="form-control" id="Habilitacion" name="Habilitacion">
                 </div>
 
 
@@ -104,6 +105,7 @@
             </div>
 
             <!--_____________________________________________-->
+
             <!--Boton de guardado-->
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>

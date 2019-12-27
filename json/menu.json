@@ -69,6 +69,12 @@
                                 "link": "general/Orden/ordenT"                                
                             },
                             {
+                                "titulo": "Registrar Inspectores",
+                                "icono": "fa fa-genderless",
+                                "link": "general/RegistrarIn/templateIn"
+                                
+                            },
+                            {
                                 "titulo": "Template OT",
                                 "icono": "fa fa-genderless",
                                 "link": "general/Orden/templateOt"
