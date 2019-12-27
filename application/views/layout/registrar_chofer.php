@@ -268,7 +268,7 @@ function agregarDato(){
     $.ajax({
                 type:"POST",
                 data:datos,
-                url:"ajax/Registrargenerador/guardarDato",
+                url:"ajax/Registrarchofer/guardarDato",
                 success:function(r){
                     if(r == "ok"){
                         //console.log(datos);
@@ -330,8 +330,8 @@ function agregarDato(){
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
                   regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
                   }
               }
           },
@@ -340,12 +340,16 @@ function agregarDato(){
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
-                  }
+                  },
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
               }
           },
           fecha_nacimiento: {
@@ -360,8 +364,8 @@ function agregarDato(){
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
                   regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
                   }
               }
           },
@@ -370,12 +374,16 @@ function agregarDato(){
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
-                  }
+                  },
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
               }
           },
           celular: {
@@ -390,7 +398,7 @@ function agregarDato(){
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
                   regexp: {
-                      regexp: /[A-Za-z]/,
+                      regexp: /^(0|[1-9][0-9]*)$/,
                       message: 'la entrada no debe ser un numero entero'
                   }
               }
@@ -400,12 +408,16 @@ function agregarDato(){
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
-                  }
+                  },
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
               }
           },
           empresa: {
@@ -420,8 +432,8 @@ function agregarDato(){
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
                   regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
                   }
               }
           },
@@ -471,7 +483,7 @@ function agregarDato(){
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
                   regexp: {
-                      regexp: /[A-Za-z]/,
+                      regexp: /^(0|[1-9][0-9]*)$/,
                       message: 'la entrada no debe ser un numero entero'
                   }
               }
