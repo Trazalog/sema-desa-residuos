@@ -32,8 +32,8 @@
 -- zonaSet
   insert into 
    core.zonas(nombre, descripción, imagen,usuario_app, depa_id)
-   values(:nombre, :descripción, :imagen, :usuario_app, CAST(:depa_id AS INTEGER))
-    returning zona_id
+  values(:nombre, :descripción, :imagen, :usuario_app, CAST(:depa_id AS INTEGER))
+  returning zona_id
   {
     "zona":{
       "nombre": "Concepción", 
@@ -48,6 +48,41 @@
      "zona_id": "$zona_id"
     }
   }
+
+
+
+-- zonaUpdate
+
+  update 
+   core.zonas
+  set nombre=:nombre, descripcion=:descripcion, usuario_app=:usuario_app, depa_id=CAST(:depa_id AS INTEGER)
+  where zona_id = CAST(:zona_id AS INTEGER)
+
+  {
+    "zona":{
+      "zona_id": "7",
+      "nombre": "Concepción", 
+      "descripcion": "Zona Norte",       
+      "usuario_app": "hugoDS", 
+      "depa_id": "1"
+    }
+  }
+
+-- zonaUpdateImagen
+
+  update 
+   core.zonas
+  set imagen = :imagen
+  where zona_id = CAST(:zona_id AS INTEGER)
+
+  {
+    "zona":{
+      "zona_id": "7",
+      "imagen": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN"
+    }
+  }
+
+
 
 -- transportistasSet
 
@@ -100,7 +135,30 @@
     }
 
   }
+-- transportistaUpdate
+  update log.transportistas set razon_social=:razon_social, descripcion=:descripcion, direccion=:direccion, telefono=:telefono,  contacto=:contacto, resolucion=:resolucion, registro=:registro, fec_alta_efectiva=TO_DATE(:fec_alta_efectiva,'YYYY-MM-DD'), fec_baja_efectiva=TO_DATE(:fec_baja_efectiva,'YYYY-MM-DD'), usuario_app=:usuario_app
+  where tran_id = CAST(:tran_id AS INTEGER)
 
+  {
+   "transportista":{
+      "tran_id":"1",
+      "razon_social":"Razon transportista",
+      "descripcion":"decripcion transportista",
+      "direccion":"calle gral acha 123",
+      "telefono":"1555555",
+      "contacto":"hongo, pepe",
+      "resolucion":"123rh4",
+      "registro":"registro test",
+      "fec_alta_efectiva":"2019-08-20",
+      "fec_baja_efectiva":"2019-12-20",
+      "usuario_app":"hugoDS"
+   }
+  }
+-- transportistasEstado
+  update 
+  log.transportistas 
+  set eliminado = CAST(:eliminado AS INTEGER)
+  where tran_id = CAST(:tran_id AS INTEGER)
 -- circuitosGet
   select circ_id, codigo, descripcion, imagen, chof_id, vehi_id, zona_id from log.circuitos 
   
@@ -179,6 +237,12 @@
     }
   }
 
+-- choferesUpdate
+
+   update log.choferes
+   set nombre=:nombre, apellido=:apellido, documento=:documento, fec_nacimiento=TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), direccion=:direccion, celular=CAST(:celular AS INTEGER), codigo=CAST(:codigo AS INTEGER), carnet=:carnet, vencimiento=TO_DATE(:vencimiento,'YYYY-MM-DD'), habilitacion=:habilitacion, tran_id=CAST(:tran_id AS INTEGER), cach_id=:cach_id 
+   where chof_id = CAST(:chof_id AS INTEGER) 
+
 -- getEstados
   select tabl_id, valor, valor2, valor3 from core.tablas where tabla = 'esco' and eliminado = 'false'
 
@@ -244,7 +308,7 @@
 
   {"respuesta": {"cont_id": "8"}}
 
--- generadoresGet(cambiados solicitantes_transportes)
+-- (generadores)solicitanteTransporteGet(cambiados solicitantes_transportes)
 
   select sotr_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tist_id, tica_id
   from log.solicitantes_transporte
@@ -269,7 +333,7 @@
     }
   }
 
--- generadoresSet(cambiados solicitantes_transportes)
+-- (generadores)solicitanteTransporteSet(cambiados solicitantes_transportes)
 
   insert into log.solicitantes_transporte(razon_social, cuit, domicilio, num_registro, lat, lng, usuario_app, zona_id, rubr_id, tist_id, tica_id)
   values(:razon_social, :cuit, :domicilio, :num_registro, :lat, :lng, :usuario_app, :zona_id, :rubr_id, :tist_id, :tica_id)
@@ -289,7 +353,7 @@
         "tica_id": "tipos_cargaResiduos Tecnologicos"
 	   }
 	}
--- generadoresUpdate
+-- (generadores)solicitanteTransporteUpdate
 
   update 
   log.solicitantes_transporte 
@@ -314,7 +378,7 @@
    }
   }
 
--- solicitanteTransporteEstado (habilitar/deshabilitar)
+-- (generadores)solicitanteTransporteEstado (habilitar/deshabilitar)
 
   update 
   log.solicitantes_transporte 
