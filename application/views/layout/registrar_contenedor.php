@@ -205,7 +205,7 @@ function agregarDato(){
     $.ajax({
                 type:"POST",
                 data:datos,
-                url:"ajax/Registrargenerador/guardarDato",
+                url:"ajax/Registrarcontenedor/guardarDato",
                 success:function(r){
                     if(r == "ok"){
                         //console.log(datos);
