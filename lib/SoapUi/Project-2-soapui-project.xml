@@ -1896,7 +1896,26 @@ if( requestBody.contains("some data") )
     return "Response N"
 }
 */
-</con:dispatchPath><con:response name="/tablachofer" id="759c30b3-feb5-4068-ad62-370013505699" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/carnet" method="GET" resourcePath="/carnet" id="88ddf163-0a04-4351-b87c-4f39423c01dc"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+</con:dispatchPath><con:response name="/tablachofer" id="759c30b3-feb5-4068-ad62-370013505699" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "nombre": "",
+                        "apellido": "",
+                        "dni": "",
+                        "fecha_nacimiento": "",
+                        "direccion": "",
+                        "celular": "",
+                        "codigo": "",
+                        "empresa": "",
+                        "carnet": "",
+                        "categoria": "",
+                        "vencimiento": "",
+                        "habilitacion": "",
+                    }
+                ]
+    }
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/carnet" method="GET" resourcePath="/carnet" id="88ddf163-0a04-4351-b87c-4f39423c01dc"><con:settings/><con:defaultResponse>/carnet</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Script dispatcher is used to select a response based on the incoming request.
 // Here are few examples showing how to match based on path, query param, header and body
 

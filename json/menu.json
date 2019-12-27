@@ -44,8 +44,7 @@
                                 "link": "almacen/Notapedido"
                             }
                         ]
-                    },
-                                     
+                    },                                     
                     {
                         "titulo": "Registros",
                         "icono": "fa fa-circle",
@@ -101,10 +100,8 @@
                                 "titulo": "Registrar Proceso Productivo",
                                 "icono": "fa fa-genderless",
                                 "link": "general/RegistrarPp/templatePp"
-                            }
-                            
-                        ]
-                    
+                            }                            
+                        ]                    
                     },
                     {
                         "titulo": "Ordenes",
@@ -202,10 +199,8 @@
                                 "titulo": "Mapas",
                                 "icono": "fa fa-map-marker",
                                 "link": "general/Registrar_inspector/.."
-                            }
-                        
-                        ]
-                    
+                            }                        
+                        ]                    
                     },
                     {
                         "titulo": "Etapas de tratamiento",
@@ -263,8 +258,7 @@
                                 "icono": "fa-flus",
                                 "link": "general/RegistrarPp/templatePp"
                             }
-                        ]
-                    
+                        ]                    
                     }
                 ]
     }

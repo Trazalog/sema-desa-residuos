@@ -21,20 +21,23 @@
 <!--//////////////////////////////Box2//////////////////////////////-->
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
-    <div class="box-tittle">
+        <div class="box-tittle">
+        <!--_____________________________________________________________-->
 
-            <!--Boton de cerrar-->
-            <div class="box-tools pull-right">
-                <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
-                    data-toggle="tooltip" title="" data-original-title="Remove">
-                    <i class="fa fa-times"></i>
-                </button>
-            </div>
-        <!--_____________________________________________-->
+        <!--Boton de cerrar-->
+        <div class="box-tools pull-right">
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+​        <!--_____________________________________________________________-->
+
     </div>
     <div class="box-body">
-        <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
-        <div class="col-md-6">
+    <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
+
+    <div class="col-md-6">
 
         <!--COMIENZO DE LOS CAMPOS DEL FORMULARIO-->
             <!--Nombre-->
@@ -42,56 +45,59 @@
                     <label for="Nombre"  style="width: 200px; font-weight: lighter;">Nombre:</label>
                     <input type="text" class="form-control" id="Nombre" name="nombre"  style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
             <!--Apellido-->
             <div class="form-group">
                     <label for="Apellido"  style="width: 200px; font-weight: lighter;">Apellido:</label>
                     <input type="text" class="form-control" id="Apellido" name="apellido"  style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
             <!--DNI-->
             <div class="form-group">
                     <label for="DNI"  style="width: 200px; font-weight: lighter;">DNI:</label>
                     <input type="text" class="form-control" id="DNI" name="dni"  style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
             <!--Fecha de nacimiento-->
             <div class="form-group">
                     <label for="FechaNacimiento"  style="width: 200px; font-weight: lighter;">Fecha de nacimiento:</label>
                     <input type="text" class="form-control" id="FechaNacimiento" name="fecha_nacimiento"  style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
             <!--Direccion-->
             <div class="form-group">
                     <label for="Direccion"  style="width: 200px; font-weight: lighter;">Direccion:</label>
                     <input type="text" class="form-control" id="Direccion" name="direccion"  style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________--> 
+​            <!--_____________________________________________________________-->
 
             <!--Celular-->
             <div class="form-group">
                     <label for="Celular"  style="width: 200px; font-weight: lighter;">Celular:</label>
                     <input type="text" class="form-control" id="Celular" name="celular"  style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
             <!--Codigo-->
             <div class="form-group">
                     <label for="Codigo"  style="width: 200px; font-weight: lighter;">Codigo:</label>
                     <input type="text" class="form-control" id="Codigo" name="codigo"  style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
+
+        </div>
+        <div class="col-md-6">
 
             <!--Empresa-->
             <div class="form-group">
                     <label for="Empresa"  style="width: 200px; font-weight: lighter;">Empresa:</label>
                     <input type="text" class="form-control" id="Empresa" name="empresa"  style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
             <!--Carnet-->
             <div class="form-group">
@@ -105,14 +111,14 @@
                     ?>
                 </select>
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
             <!--Categoria-->
             <div class="form-group">
                     <label for="Categoria"  style="width: 200px; font-weight: lighter;">Categoria:</label>
                     <input type="text" class="form-control" id="Categoria" name="categoria"  style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
             <!--Vencimiento-->
             <div class="form-group" style="width: 200px; font-weight: lighter;">
@@ -125,85 +131,86 @@
                 </div>
                 <!-- /.input group -->
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
             <!--Habilitacion-->
             <div class="form-group">
                     <label for="Habilitacion"  style="width: 200px; font-weight: lighter;">Habilitacion:</label>
                     <input type="text" class="form-control" id="Habilitacion" name="habilitacion"  style="width: 200px; font-weight: lighter;">
             </div>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
             <!--Adjuntador de imagenes-->
             <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
                 <input  type="file"  id="imgarch" name="upload" data-required="true">
             </form>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
+
+        </div>
 
             <!--Boton de guardado-->
+            <br>
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-            <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
+
             </div>
         </div>
-        </div>
     </div>
+</div>
+<!--_____________________________________________________________-->
 
 <!--//////////////////////////////Box3//////////////////////////////-->
-            <!--Datatable Registrar Generadores-->
-            <div class="box box-primary animated fadeInLeft">
-                <div class="box-body table-scroll">
-                    <table id="example2" class="table table-bordered table-hover table-responsive">
+    <!--Datatable Registrar Generadores-->
+    <div class="box box-primary animated fadeInLeft">
+        <div class="box-body table-scroll">
+            <table id="example2" class="table table-bordered table-hover table-responsive">
 
-                    <!--Cabecera del Datatable-->
-                    <thead>
-                            <tr>
-                                <th id="Nombre" class="Nombre" style="width: 200px; font-weight: lighter;">Nombre</th>
-                                <th id="Apellido" class="Apellido" style="width: 200px; font-weight: lighter;">Apellido</th>
-                                <th id="DNI" class="DNI" style="width: 200px; font-weight: lighter;">DNI</th>
-                                <th id="FechaNacimiento" class="FechaNacimiento" style="width: 200px; font-weight: lighter;">Fecha de nacimiento</th>
-                                <th id="Direccion" class="Direccion" style="width: 200px; font-weight: lighter;">Direccion</th>
-                                <th id="Celular" class="Celular" style="width: 200px; font-weight: lighter;">Celular</th>
-                                <th id="Codigo" class="Codigo" style="width: 200px; font-weight: lighter;">Codigo</th>
-                                <th id="Empresa" class="Empresa" style="width: 200px; font-weight: lighter;">Empresa</th>
-                                <th id="Carnet" class="Carnet" style="width: 200px; font-weight: lighter;">Carnet</th>
-                                <th id="Categoria" class="Categoria" style="width: 200px; font-weight: lighter;">Categoria</th>
-                                <th id="Vencimiento" class="Vencimiento" style="width: 200px; font-weight: lighter;">Vencimiento</th>
-                                <th id="Habilitacion" class="Habilitacion" style="width: 200px; font-weight: lighter;">Habilitacion</th>
-                            </tr>
-                        </thead>
-                    <!--_____________________________________________-->
+            <!--Cabecera del Datatable-->
+                <thead>
+                    <tr>
+                        <th id="Nombre" class="Nombre" style="width: 200px; font-weight: lighter;">Nombre</th>
+                        <th id="Apellido" class="Apellido" style="width: 200px; font-weight: lighter;">Apellido</th>
+                        <th id="DNI" class="DNI" style="width: 200px; font-weight: lighter;">DNI</th>
+                        <th id="FechaNacimiento" class="FechaNacimiento" style="width: 200px; font-weight: lighter;">Fecha de nacimiento</th>
+                        <th id="Direccion" class="Direccion" style="width: 200px; font-weight: lighter;">Direccion</th>
+                        <th id="Celular" class="Celular" style="width: 200px; font-weight: lighter;">Celular</th>
+                        <th id="Codigo" class="Codigo" style="width: 200px; font-weight: lighter;">Codigo</th>
+                        <th id="Empresa" class="Empresa" style="width: 200px; font-weight: lighter;">Empresa</th>
+                        <th id="Carnet" class="Carnet" style="width: 200px; font-weight: lighter;">Carnet</th>
+                        <th id="Categoria" class="Categoria" style="width: 200px; font-weight: lighter;">Categoria</th>
+                        <th id="Vencimiento" class="Vencimiento" style="width: 200px; font-weight: lighter;">Vencimiento</th>
+                        <th id="Habilitacion" class="Habilitacion" style="width: 200px; font-weight: lighter;">Habilitacion</th>
+                    </tr>
+                </thead>
+​            <!--_____________________________________________________________-->
 
-                    <!--Cuerpo del Datatable-->
-                        <tbody>
-                            <tr style="width: 200px; font-weight: lighter;">
-                                <td id="Nombre" class="Nombre">Trident</td>
-                                <td id="Apellido" class="Apellido">Internet Explorer 4.0</td>
-                                <td id="DNI" class="DNI">Win 95+</td>
-                                <td id="FechaNacimiento" class="FechaNacimiento">4</td>
-                                <td id="Direccion" class="Direccion">X</td>
-                                <td id="Celular" class="Celular">X</td>
-                                <td id="Codigo" class="Codigo">X</td>
-                                <td id="Empresa" class="Empresa">X</td>
-                                <td id="Carnet" class="Carnet">X</td>
-                                <td id="Categoria" class="Categoria">X</td>
-                                <td id="Categoria" class="Categoria">X</td>
-                                <td id="Habilitacion" class="Habilitacion">X</td>
-
-                            </tr>
-                        </tbody>
-                    <!--_____________________________________________-->
-
-                    </table>
-                </div>
-            </div>
-<!--_____________________________________________________________-->
-
-</form>
+            <!--Cuerpo del Datatable-->
+                <tbody>
+                    <tr style="width: 200px; font-weight: lighter;">
+                        <td id="Nombre" class="Nombre">Trident</td>
+                        <td id="Apellido" class="Apellido">Internet Explorer 4.0</td>
+                        <td id="DNI" class="DNI">Win 95+</td>
+                        <td id="FechaNacimiento" class="FechaNacimiento">4</td>
+                        <td id="Direccion" class="Direccion">X</td>
+                        <td id="Celular" class="Celular">X</td>
+                        <td id="Codigo" class="Codigo">X</td>
+                        <td id="Empresa" class="Empresa">X</td>
+                        <td id="Carnet" class="Carnet">X</td>
+                        <td id="Categoria" class="Categoria">X</td>
+                        <td id="Categoria" class="Categoria">X</td>
+                        <td id="Habilitacion" class="Habilitacion">X</td>
+                    </tr>
+                </tbody>
+​            <!--_____________________________________________________________-->
+            </table>
+        </div>
     </div>
+<!--_____________________________________________________________-->
+</form>
+</div>
 </div>
 </div>
 <!--_____________________________________________________________-->
-
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
@@ -211,15 +218,15 @@
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
-
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").focus();
         $("#boxDatos").show();
-
     });
 </script>
+​<!--_____________________________________________________________-->
 
+<!-- Script Data-Tables-->
 <script>
         $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
@@ -230,22 +237,18 @@
         $('#chofer').find('option').remove();
         });
 </script>
-
-<!-- Script Data-Tables-->
+​<!--_____________________________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
-
 <script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
-
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").focus();
         $("#boxDatos").show();
-
     });
 </script>
 ​<!--_____________________________________________________________-->
@@ -285,6 +288,7 @@ function agregarDato(){
     });
 }
 </script>
+​<!--_____________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
@@ -495,4 +499,4 @@ function agregarDato(){
       //guardar();
   });
 </script>
-<!--_____________________________________________-->
+​<!--_____________________________________________________________-->
