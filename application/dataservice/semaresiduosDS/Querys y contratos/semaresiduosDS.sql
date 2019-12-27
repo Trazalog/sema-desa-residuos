@@ -1,63 +1,3 @@
--- generadoresGet
-	
-  select gene_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tige_id, tire_id from sma.generadores
-	
-	{
-	 "generadores": {
-	    "generador": [
-	          {
-	          	"gene_id": "$gene_id",
-	            "razon_social": "$razon_social",
-	            "cuit": "$cuit",
-	            "domicilio": "$domicilio",
-	            "num_registro": "$num_registro",
-	            "lat": "$lat",
-	            "lng": "$lng",
-	            "zona_id": "$zona_id",
-	            "rubr_id": "$rubr_id",
-	            "tige_id": "$tige_id",
-	            "tire_id": "$tire_id"	            
-	          }
-	    ]
-	 }
-	}
-
--- generadoresSet
-	        
-  insert into sma.generadores(razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tige_id, tire_id)
-  values(:razon_social, :cuit, :domicilio, :num_registro, :lat, :lng, :zona_id, :rubr_id, :tige_id, :tire_id)
-
-	{
-	   "generador":{
-	      "razon_social":"Residuos Caballo Salvaje",
-	      "cuit":"2022222229",
-	      "domicilio":"Calle Mr. ED 45",
-	      "num_registro":"123456",
-	      "lat":"0.456",
-	      "lng":"0.789",
-	      "usuario_app": "hugoDS",
-	      "zona_id":"4",
-	      "rubr_id":"PRUEBATITOte",
-	      "tige_id":"PRUEBATITOte",
-	      "tire_id":"PRUEBATITOte"
-	   }
-	}	
-
--- departamentosGet
-  select * from core.departamentos 
-
-  select depa_id, nombre from core.departamentos 
-
-  {
-    "departamentos":{
-        "departamento":[
-          {
-              "depa_id":"$depa_id",
-              "nombre":"$nombre"
-          }
-        ]
-    }
-  }  
 	
 -- departamentosSet
 	
@@ -238,6 +178,169 @@
       "chof_id": "$chof_id"
     }
   }
+
+-- getEstados
+  select tabl_id, valor, valor2, valor3 from core.tablas where tabla = 'esco' and eliminado = 'false'
+
+  {
+    "estados":{
+      "estado": 
+      [
+        {
+          "tabl_id": "$tabl_id",
+          "valor": "$valor",
+          "valor2": "$valor2",
+          "valor3": "$valor3"
+        }
+
+      ]
+    }
+  }
+
+-- contenedoresGet
+
+  select cont_id, codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, esco_id, reci_id from log.contenedores
+
+  {
+    "contenedores":{
+      "contenedor":
+          [
+            {
+              "cont_id": "$cont_id",
+              "codigo": "$codigo",
+              "descripcion": "$descripcion",
+              "capacidad": "$capacidad",
+              "anio_elaboracion": "$anio_elaboracion",
+              "tara": "$tara",
+              "habilitacion": "$habilitacion",
+              "fec_alta": "$fec_alta",
+              "esco_id": "$esco_id",
+              "reci_id": "$reci_id"
+            }
+          ]
+    }
+  }
+
+-- contenedoresSet
+
+  insert into log.contenedores(codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, usuario_app, esco_id, reci_id)
+  values(CAST(:codigo as INTEGER), :descripcion, CAST(:capacidad as float8), CAST(:anio_elaboracion as INTEGER), CAST(:tara as float8), :habilitacion, TO_DATE(:fec_alta,'YYYY-MM-DD'), :usuario_app, :esco_id, CAST(:reci_id as INTEGER))
+
+  {
+    "contenedores":
+      {
+        "codigo": "56789",
+        "descripcion": "contenedor 2",
+        "capacidad": "56.89",
+        "anio_elaboracion": "2010",
+        "tara": "200.75",
+        "habilitacion": "habilitacion 234h",
+        "fec_alta": "2019-10-11",
+        "usuario_app": "hugoDS",
+        "esco_id": "escoActivo",
+        "reci_id": "100"
+      }
+  }
+
+  {"respuesta": {"cont_id": "8"}}
+
+-- generadoresGet(cambiados solicitantes_transportes)
+
+  select sotr_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tist_id, tica_id
+  from log.solicitantes_transporte
+
+  {
+    "solicitantes_transporte": {
+        "solicitante": [
+          {
+            "sotr_id": "$sotr_id",
+            "razon_social": "$razon_social",
+            "cuit": "$cuit",
+            "domicilio": "$domicilio",
+            "num_registro": "$num_registro",
+            "lat": "$lat",
+            "lng": "$lng",
+            "zona_id": "$zona_id",
+            "rubr_id": "$rubr_id",
+            "tist_id": "$tist_id",
+            "tica_id": "$tica_id"	            
+          }
+        ]
+    }
+  }
+
+-- generadoresSet(cambiados solicitantes_transportes)
+
+  insert into log.solicitantes_transporte(razon_social, cuit, domicilio, num_registro, lat, lng, usuario_app, zona_id, rubr_id, tist_id, tica_id)
+  values(:razon_social, :cuit, :domicilio, :num_registro, :lat, :lng, :usuario_app, :zona_id, :rubr_id, :tist_id, :tica_id)
+
+	{
+	   "solicitante_transporte":{
+	      "razon_social":"Residuos Caballo Salvaje",
+	      "cuit":"2022222229",
+	      "domicilio":"Calle Mr. ED 45",
+	      "num_registro":"123456",
+	      "lat":"0.456",
+	      "lng":"0.789",
+	      "usuario_app": "hugoDS",
+	      "zona_id":"4",
+	      "rubr_id":"PRUEBATITOte",
+	      "tist_id": "tipos_solicitantes_transporteMunicipio",
+        "tica_id": "tipos_cargaResiduos Tecnologicos"
+	   }
+	}
+-- generadoresUpdate
+
+  update 
+  log.solicitantes_transporte 
+  set 
+  razon_social=:razon_social, cuit=:cuit, domicilio = :domicilio, num_registro=:num_registro, lat=:lat, lng=:lng, usuario_app=:usuario_app, zona_id=CAST(:zona_id AS INTEGER), rubr_id=:rubr_id, tist_id=:tist_id, tica_id=:tica_id
+  where (sotr_id=CAST(:sotr_id AS INTEGER))
+
+  {
+   "solicitante_transporte":{
+      "sotr_id":"1",
+      "razon_social":"Residuos Caballos Salvajes",
+      "cuit":"2022222229",
+      "domicilio":"Calle Mr. ED 45",
+      "num_registro":"123456",
+      "lat":"0.456",
+      "lng":"0.789",
+      "usuario_app":"hugoDS",
+      "zona_id":"4",
+      "rubr_id":"PRUEBATITOte",
+      "tist_id":"tipos_solicitantes_transporteMunicipio",
+      "tica_id":"tipos_cargaResiduos Tecnologicos"
+   }
+  }
+
+-- solicitanteTransporteEstado (habilitar/deshabilitar)
+
+  update 
+  log.solicitantes_transporte 
+  set eliminado = CAST(:eliminado AS INTEGER)
+  where sotr_id = CAST(:sotr_id AS INTEGER)
+
+  {
+    "estado_nuevo":{
+        "sotr_id":"1",
+        "eliminado": "0"
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
