@@ -43,22 +43,22 @@
 
             <!--Descripcion-->
             <div class="form-group">
-                    <label for="Descripcion"  style="width: 200px; font-weight: lighter;">Descripcion:</label>
-                    <input type="text" class="form-control" id="Descripcion" name="descripcion"  style="width: 200px; font-weight: lighter;">
+                    <label for="Descripcion" style="width: 200px; font-weight: lighter;">Descripcion:</label>
+                    <input type="text" class="form-control" id="Descripcion" name="descripcion" style="width: 200px; font-weight: lighter;">
             </div>
 ​            <!--_____________________________________________________________-->
 
             <!--Dominio-->
             <div class="form-group">
-                    <label for="Dominio"  style="width: 200px; font-weight: lighter;">Dominio:</label>
-                    <input type="text" class="form-control" id="Dominio" name="dominio"  style="width: 200px; font-weight: lighter;">
+                    <label for="Dominio" style="width: 200px; font-weight: lighter;">Dominio:</label>
+                    <input type="text" class="form-control" id="Dominio" name="dominio" style="width: 200px; font-weight: lighter;">
             </div>
 ​            <!--_____________________________________________________________-->
 
             <!--Marca-->
             <div class="form-group">
-                    <label for="Marca"  style="width: 200px; font-weight: lighter;">Marca:</label>
-                    <input type="text" class="form-control" id="Marca" name="marca"  style="width: 200px; font-weight: lighter;">
+                    <label for="Marca" style="width: 200px; font-weight: lighter;">Marca:</label>
+                    <input type="text" class="form-control" id="Marca" name="marca" style="width: 200px; font-weight: lighter;">
             </div>
 ​            <!--_____________________________________________________________-->
 
@@ -78,8 +78,8 @@
 
             <!--Modelo-->
             <div class="form-group">
-                    <label for="Modelo"  style="width: 200px; font-weight: lighter;">Modelo:</label>
-                    <input type="text" class="form-control" id="Modelo" name="modelo"  style="width: 200px; font-weight: lighter;">
+                    <label for="Modelo" style="width: 200px; font-weight: lighter;">Modelo:</label>
+                    <input type="text" class="form-control" id="Modelo" name="modelo" style="width: 200px; font-weight: lighter;">
             </div>
 ​            <!--_____________________________________________________________-->
 
@@ -88,29 +88,29 @@
 
             <!--Capacidad-->
             <div class="form-group">
-                    <label for="Capacidad"  style="width: 200px; font-weight: lighter;">Capacidad:</label>
-                    <input type="text" class="form-control" id="Capacidad" name="capacidad"  style="width: 200px; font-weight: lighter;">
+                    <label for="Capacidad" style="width: 200px; font-weight: lighter;">Capacidad:</label>
+                    <input type="text" class="form-control" id="Capacidad" name="capacidad" style="width: 200px; font-weight: lighter;">
             </div>
 ​            <!--_____________________________________________________________-->
 
             <!--Tara-->
             <div class="form-group">
-                    <label for="Tara"  style="width: 200px; font-weight: lighter;">Tara:</label>
-                    <input type="text" class="form-control" id="Tara" name="tara"  style="width: 200px; font-weight: lighter;">
+                    <label for="Tara" style="width: 200px; font-weight: lighter;">Tara:</label>
+                    <input type="text" class="form-control" id="Tara" name="tara" style="width: 200px; font-weight: lighter;">
             </div>
 ​            <!--_____________________________________________________________-->    
 
             <!--Habilitacion-->
             <div class="form-group">
-                    <label for="Habilitacion"  style="width: 200px; font-weight: lighter;">Habilitacion:</label>
-                    <input type="text" class="form-control" id="Habilitacion" name="habilitacion"  style="width: 200px; font-weight: lighter;">
+                    <label for="Habilitacion" style="width: 200px; font-weight: lighter;">Habilitacion:</label>
+                    <input type="text" class="form-control" id="Habilitacion" name="habilitacion" style="width: 200px; font-weight: lighter;">
             </div>
 ​            <!--_____________________________________________________________-->    
 
             <!--Registro-->
             <div class="form-group">
-                    <label for="Registro"  style="width: 200px; font-weight: lighter;">Registro:</label>
-                    <input type="text" class="form-control" id="Registro" name="registro"  style="width: 200px; font-weight: lighter;">
+                    <label for="Registro" style="width: 200px; font-weight: lighter;">Registro:</label>
+                    <input type="text" class="form-control" id="Registro" name="registro" style="width: 200px; font-weight: lighter;">
             </div>
 ​            <!--_____________________________________________________________--> 
 
