@@ -89,7 +89,7 @@
                             {
                                 "titulo": "Registrar Vehiculo",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Registrar_inspector/.."
+                                "link": "general/RegistrarVehi/templateVehi"
                             },                        
                             {
                                 "titulo": "Solicitud de retiro",
