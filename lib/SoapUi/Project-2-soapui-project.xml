@@ -1967,4 +1967,24 @@ if( requestBody.contains("some data") )
     return "Response N"
 }
 */
-</con:dispatchPath><con:response name="/carnet" id="e0485960-95ac-4104-815f-b6d6e74170e3" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</con:dispatchPath><con:response name="/carnet" id="e0485960-95ac-4104-815f-b6d6e74170e3" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+    "carnet" : {
+                "carnet" : [
+                    {
+                        "nombre": "carnet A"
+                    },
+                    {
+                        "nombre": "carnet B"
+                    },
+                    {
+                        "nombre": "carnet C"
+                    },
+                    {
+                        "nombre": "carnet D"
+                    },
+                    {
+                        "nombre": "carnet E"
+                    }
+                ]
+    }
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

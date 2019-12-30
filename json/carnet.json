@@ -1,6 +1,6 @@
 {
-    "chofer" : {
-                "chofer" : [
+    "carnet" : {
+                "carnet" : [
                     {
                         "nombre": "carnet A"
                     },
