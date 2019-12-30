@@ -19,7 +19,7 @@
 <!--_____________________________________________________________-->
 
 <!--//////////////////////////////Box2//////////////////////////////-->
-<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
+<div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
     <div class="box-header with-border">
         <div class="box-tittle">
         <!--_____________________________________________________________-->
@@ -152,7 +152,8 @@
             <br>
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
 ​            <!--_____________________________________________________________-->
-
+        <!--FIN DE LOS CAMPOS DEL FORMULARIO-->
+        
             </div>
         </div>
     </div>
@@ -301,7 +302,7 @@ function agregarDato(){
       },*/
       //excluded: ':disabled',
       fields: {
-        nombre: {
+          nombre: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -442,16 +443,12 @@ function agregarDato(){
               validators: {
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
-                  },
+                  }
                     /*stringLength: {
                         min: 6,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
               }
           },
           categoria: {
@@ -504,7 +501,7 @@ function agregarDato(){
                       message: 'la entrada no debe ser un numero entero'
                   }
               }
-          },
+          }
       }
   }).on('success.form.bv', function (e) {
       e.preventDefault();
