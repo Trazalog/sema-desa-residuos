@@ -244,6 +244,21 @@
       <result outputType="json">{&#xd;    "vehiculos":{&#xd;      "vehiculo":[&#xd;          {&#xd;            "equi_id": "$equi_id",&#xd;            "descripcion": "$descripcion",&#xd;            "marca": "$marca",&#xd;            "dominio": "$dominio"&#xd;          }&#xd;      ]&#xd;    }&#xd;  }</result>
       <param name="tran_id" sqlType="STRING"/>
    </query>
+   <query id="vehiculosSet" useConfig="semaresiduosDS">
+      <sql>insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio)&#xd;  values(:descripcion, :marca, :codigo, :ubicacion, CAST(:tran_id AS INTEGER), :dominio)&#xd;  returning equi_id</sql>
+      <result outputType="json">{&#xd;  "respuesta":{&#xd;     "equi_id": "$equi_id"&#xd;  }&#xd;}</result>
+      <param name="descripcion" sqlType="STRING"/>
+      <param name="marca" sqlType="STRING"/>
+      <param name="codigo" sqlType="STRING"/>
+      <param name="ubicacion" sqlType="STRING"/>
+      <param name="tran_id" sqlType="STRING"/>
+      <param name="dominio" sqlType="STRING"/>
+   </query>
+   <query id="transportistasSetTipoCarga" useConfig="semaresiduosDS">
+      <sql>insert into log.tipos_carga_transportistas(tran_id, tica_id) values(CAST(:tran_id AS INTEGER), :tica_id)</sql>
+      <param name="tran_id" sqlType="STRING"/>
+      <param name="tica_id" sqlType="STRING"/>
+   </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
          <with-param name="nombre" query-param="nombre"/>
@@ -487,6 +502,22 @@
    <resource method="GET" path="/vehiculos/transp/{tran_id}">
       <call-query href="vehiculosGetPorTransportistas">
          <with-param name="tran_id" query-param="tran_id"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="/vehiculos">
+      <call-query href="vehiculosSet">
+         <with-param name="descripcion" query-param="descripcion"/>
+         <with-param name="marca" query-param="marca"/>
+         <with-param name="codigo" query-param="codigo"/>
+         <with-param name="ubicacion" query-param="ubicacion"/>
+         <with-param name="tran_id" query-param="tran_id"/>
+         <with-param name="dominio" query-param="dominio"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="/transportistas/tipo/carga">
+      <call-query href="transportistasSetTipoCarga">
+         <with-param name="tran_id" query-param="tran_id"/>
+         <with-param name="tica_id" query-param="tica_id"/>
       </call-query>
    </resource>
 </data>

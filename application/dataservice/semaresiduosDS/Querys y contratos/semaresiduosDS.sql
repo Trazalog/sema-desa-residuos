@@ -65,6 +65,33 @@
     }
   }
 
+-- zonaSetCircuitos   /zonas/circuitos
+
+  insert into log.zonas_circuitos(zona_id, circ_id) values(CAST(:zona_id as INTEGER), CAST(:circ_id AS INTEGER))
+
+  {
+    "circuitos":{
+      "zona_id": "5",
+      "circ_id": "1"
+    }
+  }
+
+  {
+    "_post_zonas_circuitos_batch_req":{
+        "circuitos":[
+          {
+            "zona_id": "5",
+            "circ_id": "1"
+          },
+          {
+            "zona_id": "4",
+            "circ_id": "2"
+          }
+        ]
+    }
+
+  }
+
 
 
 -- zonaUpdate
@@ -192,6 +219,36 @@
   set eliminado = CAST(:eliminado AS INTEGER)
   where tran_id = CAST(:tran_id AS INTEGER)
 
+-- transportistasSetTipoCarga
+
+  insert into log.tipos_carga_transportistas(tran_id, tica_id) values(CAST(:tran_id AS INTEGER), :tica_id)
+
+  {
+    "tipo_carga":{
+        "tran_id": "3",
+        "tica_id": "tipo_cargaEscombros"
+    }
+  }
+
+  {
+    "_post_transportistas_tipo_carga_batch_req":{
+        "cargas":[
+          {
+              "tran_id":"3",
+              "tica_id":"tipo_cargaEscombros"
+          },
+          {
+              "tran_id":"3",
+              "tica_id":"tipo_cargaResiduos Patologicos"
+          }
+        ]
+    }
+  }
+
+
+
+
+
 -- vehiculosGetPorTransportistas
 
   select equi_id, descripcion, marca, dominio from core.equipos where tran_id = :tran_id and estado = 'AC'
@@ -252,6 +309,17 @@
 -- circuitosSet
   insert into log.circuitos(circ_id, codigo, descripcion, imagen, chof_id, vehi_id, zona_id)
   values(:circ_id, :codigo, :descripcion, :imagen, :chof_id, :vehi_id, :zona_id)
+
+  -- hacer batch request oara usar en zona set
+
+
+
+
+-- circuitosSetTiposCarga (ejecutar tablasSet como batch_request) 
+ -- 
+
+
+
 
 -- choferesGet
   select chof_id, nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id  
@@ -642,8 +710,7 @@
    }
 
 
--- cargasSet
-   --(guardar en tipos_carga_transportistas y en tablas)    
+ 
 
 
 
