@@ -307,10 +307,48 @@
   }  
 
 -- circuitosSet
-  insert into log.circuitos(circ_id, codigo, descripcion, imagen, chof_id, vehi_id, zona_id)
+  insert into log.circuitos(codigo, descripcion, imagen, chof_id, vehi_id, zona_id)
   values(:circ_id, :codigo, :descripcion, :imagen, :chof_id, :vehi_id, :zona_id)
 
-  -- hacer batch request oara usar en zona set
+  {
+   "circuito":{     
+      "codigo":"Circ AA-00",
+      "descripcion":"desc circuito",
+      "imagen":"",
+      "usuario_app": "hugoDS",
+      "chof_id":"2",
+      "vehi_id":"21",
+      "zona_id":"5"
+   }
+  }
+
+ 
+
+  -- batch request para usar en zona set Probar no funciona en SoapUI
+  {
+    "_post_circuitos_batch_request":{
+        "circuito":[
+          {
+              "codigo":"Circ AA-00",
+              "descripcion":"desc circuito",
+              "imagen":"",
+              "usuario_app":"hugoDS",
+              "chof_id":"4",
+              "vehi_id":"22",
+              "zona_id":"5"
+          },
+          {
+              "codigo":"Circ BB-00",
+              "descripcion":"desc circuito",
+              "imagen":"",
+              "usuario_app":"hugoDS",
+              "chof_id":"6",
+              "vehi_id":"23",
+              "zona_id":"5"
+          }
+        ]
+    }
+  }
 
 
 

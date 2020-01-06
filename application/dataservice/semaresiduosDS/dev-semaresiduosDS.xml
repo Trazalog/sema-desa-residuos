@@ -259,6 +259,17 @@
       <param name="tran_id" sqlType="STRING"/>
       <param name="tica_id" sqlType="STRING"/>
    </query>
+   <query id="circuitosSet" useConfig="semaresiduosDS">
+      <sql>insert into &#xd;  log.circuitos(codigo, descripcion, imagen, usuario_app, chof_id, vehi_id, zona_id)&#xd;  values(:codigo, :descripcion, :imagen, :usuario_app, CAST(:chof_id AS INTEGER), CAST(:vehi_id AS INTEGER), CAST(:zona_id AS INTEGER))&#xd;returning circ_id</sql>
+      <result outputType="json">{&#xd; "respuesta": {&#xd;   "circ_id": "$circ_id"&#xd; }&#xd;}</result>
+      <param name="codigo" sqlType="STRING"/>
+      <param name="descripcion" sqlType="STRING"/>
+      <param name="imagen" optional="false" sqlType="BINARY"/>
+      <param name="chof_id" sqlType="STRING"/>
+      <param name="vehi_id" sqlType="STRING"/>
+      <param name="zona_id" sqlType="STRING"/>
+      <param name="usuario_app" sqlType="STRING"/>
+   </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
          <with-param name="nombre" query-param="nombre"/>
@@ -520,4 +531,16 @@
          <with-param name="tica_id" query-param="tica_id"/>
       </call-query>
    </resource>
+   <resource method="POST" path="/circuitos">
+      <call-query href="circuitosSet">
+         <with-param name="codigo" query-param="codigo"/>
+         <with-param name="descripcion" query-param="descripcion"/>
+         <with-param name="imagen" query-param="imagen"/>
+         <with-param name="chof_id" query-param="chof_id"/>
+         <with-param name="vehi_id" query-param="vehi_id"/>
+         <with-param name="zona_id" query-param="zona_id"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
+      </call-query>
+   </resource>
 </data>
+
