@@ -16,7 +16,7 @@
         </div>
     </div>
 </div>
-<!--_____________________________________________________________-->
+<!--_____________________________________________-->
 
 <!--//////////////////////////////Box2//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
@@ -33,7 +33,7 @@
     <div class="box-body">        
         <form class="formZonas" id="formZonas" method="POST" autocomplete="off" class="registerForm">
 
-                <div class="col-md-6">
+            <div class="col-md-6">
                 <!--Nombre-->
                 <div class="form-group">
                     <label for="Nombre" style="width: 200px; font-weight: lighter;">Nombre:</label>
@@ -75,8 +75,8 @@
                 </form>
                 <!--_____________________________________________-->
 
-                </div>
-                <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
 
                 <!--Descripcion-->
                 <div class="form-group">
@@ -89,7 +89,7 @@
                 <br>
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
                 <!--_____________________________________________-->
-                </div>
+            </div>
             </div>
         </div>
     </div>
@@ -124,14 +124,13 @@
                     </table>
                 </div>
             </div>
-<!--_____________________________________________________________-->
+            <!--_____________________________________________-->
 
         </form>
     </div>
 </div>
 </div>
-<!--_____________________________________________________________-->
-
+<!--_____________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
@@ -158,11 +157,10 @@
         $('#chofer').find('option').remove();
         });
 </script>
+<!--_____________________________________________-->
 
 <!-- Script Data-Tables-->
-
 <!-- script que muestra box de datos al dar click en boton agregar -->
-
 <script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
@@ -176,7 +174,7 @@
 
     });
 </script>
-​<!--_____________________________________________________________-->
+​<!--_____________________________________________-->
 
 <!-- Script Agregar datos de registrar_zona-->
 <script>
@@ -215,6 +213,7 @@ function agregarDato(){
     });
 }
 </script>
+<!--_____________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
@@ -227,7 +226,7 @@ function agregarDato(){
       },*/
       //excluded: ':disabled',
       fields: {
-        Nombre: {
+          Nombre: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -273,7 +272,7 @@ function agregarDato(){
       //guardar();
   });
 </script>
-<!--_____________________________________________________________-->
+<!--_____________________________________________-->
 
 <!--Script validador de campo de imagenes-->
 <script>
@@ -285,4 +284,4 @@ else {
     document.getElementById('imgarch').setAttribute("data-required","false");
 }
 </script>
-<!--_____________________________________________________________-->
+<!--_____________________________________________-->
