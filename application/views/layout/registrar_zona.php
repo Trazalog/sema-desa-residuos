@@ -55,6 +55,9 @@
                 </div>
                 <!--_____________________________________________-->
 
+            </div>
+            <div class="col-md-6">
+
                 <!--Circuito / Recorrido-->
                 <div class="form-group">
                     <label for="CircR" style="width: 200px; font-weight: lighter;">Circuito / Recorrido:</label>
@@ -69,20 +72,17 @@
                 </div>
                 <!--_____________________________________________-->
 
-                <!--Adjuntador de imagenes-->
-                <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
-                <input  type="file"  id="imgarch" name="upload" data-required="true">
-                </form>
-                <!--_____________________________________________-->
-
-            </div>
-            <div class="col-md-6">
-
                 <!--Descripcion-->
                 <div class="form-group">
                     <label for="Descripcion" style="width: 200px; font-weight: lighter;">Descripcion:</label>
                     <input type="text" class="form-control" id="Descripcion" name="Descripcion" style="width: 200px; font-weight: lighter;">
                 </div>
+                <!--_____________________________________________-->
+
+                <!--Adjuntador de imagenes-->
+                <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
+                    <input  type="file"  id="imgarch" name="upload" data-required="true">
+                </form>
                 <!--_____________________________________________-->
 
                 <!--Boton de guardado-->
