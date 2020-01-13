@@ -34,7 +34,7 @@ class RegistrarZ extends CI_Controller {
     $config['allowed_types'] = "*";
     $config['max_height'] = "*";
     $this->load->library('upload', $config);
-   
+
     if (!$this->upload->do_upload($upload)) {
         //*** ocurrio un error
         //$data['uploadError'] = $this->upload->display_errors();
