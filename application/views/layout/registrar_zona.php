@@ -93,6 +93,7 @@
             </div>
         </div>
     </div>
+
             <!--//////////////////////////////Box3//////////////////////////////-->
             <!--Datatable Registrar Generadores-->
             <div class="box box-primary animated fadeInLeft">

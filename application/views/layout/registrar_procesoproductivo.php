@@ -2,109 +2,183 @@
 
 <!--//////////////////////////////Box1//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft">
-    <div class="box-header">
-        <div class="box-tittle">
-            <h3>Proceso Productivo</h3> 
-        </div>
+    <div class="box-header with-border">
+        <h3 style="font-weight: lighter;">Registrar Proceso Productivo</h3>
     </div>
-
-    <!--_____________________________________________-->
-
     <div class="box-body">
-        <form class="formProcesoProductivo" id="formProcesoProductivo">
-            <div class="col-md-12">
-
-                <!--Nombre-->
-                <div class="form-group">
-                    <label for="Nomb">Nombre:</label>
-                    <input type="text" class="form-control" id="Nomb" name="Nomb">
-                </div>
-                <!--_____________________________________________-->
-
+        <div class="row">
+            <div class="col-md-2 col-lg-1 col-xs-12">
+                <button type="button" id="botonAgregar" class="btn btn-primary" aria-label="Left Align">
+                    Agregar
+                </button><br>
             </div>
-            <div class="col-md-5">
-
-                <!--Nombre-->
-                <div class="form-group">
-                    <label for="Nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="Nombre" name="Nombre">
-                </div>
-                <!--_____________________________________________-->
-
-            </div>
-            <div class="col-md-5">
-
-                <!--Recipiente-->
-                <div class="form-group">
-                    <label for="Recipiente">Recipiente:</label>
-                    <input type="text" class="form-control" id="Recipiente" name="Recipiente">
-                </div>
-                <!--_____________________________________________-->
-
-            </div>
-            <div class="col-md-2">
-
-                <!--Orden-->
-                <div class="form-group">
-                    <label for="Orden">Orden:</label>
-                    <input type="text" class="form-control" id="Orden" name="Orden">
-                </div>
-                <!--_____________________________________________-->
-                
-            </div>
-            <div class="col-md-12">
-
-                <!--Boton de guardado-->
-                <br>
-                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
-                <!--_____________________________________________-->
-
-            </div>
-
-        </form>
+            <div class="col-md-10 col-lg-11 col-xs-12"></div>
+        </div>
     </div>
 </div>
+<!--_____________________________________________________________-->
 
+<!--//////////////////////////////Box2//////////////////////////////-->
+<div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
+    <div class="box-header with-border">
+        <!--_____________________________________________________________-->
 
-<div class="box box-primary animated fadeInLeft">
-    <div class="box-header">
+        <!--Boton de cerrar-->
+        <div class="box-tools pull-right">
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+​        <!--_____________________________________________________________-->
+
     </div>
+    <div class="box-body">
+    <form class="formProcesoProductivo" id="formProcesoProductivo"  method="POST" autocomplete="off" class="registerForm">
 
-    <!--Tabla de informacion de proceso productivo-->
-        
-    <section class="content">
-            <div class="row">
-                <em class="fas fa-ad"></em>
+        <!--COMIENZO DE LOS CAMPOS DEL FORMULARIO-->
+
+        <div class="col-md-12">
+
+            <!--Nombre-->
+            <div class="form-group">
+                <label for="Nombre" style="width: 200px; font-weight: lighter;">Nombre:</label>
+                <input type="text" class="form-control" id="Nombre" name="nomb">
             </div>
-            <div class="row">
-        <div class="col-xs-12">
-        <div class="box-body">
-        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-        <thead>
-            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nombre</th><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Recipiente</th><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Orden</th></tr>
-        </thead>
-        <!--_____________________________________________-->
+​            <!--_____________________________________________________________-->
 
-        <tbody id="tabadd">
-            <tr role="row" class="even" id="primero">
-            <!--<td>Roberto Basañes</td>
-            <td>Desarrollador</td>-->
-            <!--<td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
-            -->
-            </tr>
-        </tbody>
-        </table></div></div><br><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="example2_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div></div></div>
         </div>
+        <div class="col-md-5">
+
+            <!--Nombre-->
+            <div class="form-group">
+                <label for="Nombre" style="width: 200px; font-weight: lighter;">Nombre:</label>
+                <input type="text" class="form-control" id="Nombre" name="nombre">
+            </div>
+​            <!--_____________________________________________________________-->
+
+        </div>
+        <div class="col-md-5">
+
+            <!--Recipiente-->
+            <div class="form-group">
+                <label for="Recipiente" style="width: 200px; font-weight: lighter;">Recipiente:</label>
+                <input type="text" class="form-control" id="Recipiente" name="recipiente">
+            </div>
+​            <!--_____________________________________________________________-->
+
+        </div>
+        <div class="col-md-2">
+
+            <!--Orden-->
+            <div class="form-group">
+                <label for="Orden" style="width: 200px; font-weight: lighter;">Orden:</label>
+                <input type="text" class="form-control" id="Orden" name="orden">
+            </div>
+​            <!--_____________________________________________________________-->
+
         </div>
 
-        </section>
+            <!--Boton de guardado-->
+            <br>
+            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+​            <!--_____________________________________________________________-->
 
-    <!--_____________________________________________________________-->
-    
+        <!--FIN DE LOS CAMPOS DEL FORMULARIO-->
+
+    </div>
+    </div>
 </div>
-
+</div>
 
 <!--_____________________________________________________________-->
+
+<!--//////////////////////////////Box3//////////////////////////////-->
+
+    <!--Datatable Registrar Generadores-->
+    <div class="box box-primary animated fadeInLeft">
+        <div class="box-body table-scroll">
+            <table id="example2" class="table table-bordered table-hover table-responsive">
+
+            <!--Cabecera del Datatable-->
+                <thead>
+                    <tr>
+                        <th id="Nombre" class="Nombre" style="width: 200px; font-weight: lighter;">Nombre</th>
+                        <th id="Nombre" class="Nombre" style="width: 200px; font-weight: lighter;">Apellido</th>
+                        <th id="Recipiente" class="Recipiente" style="width: 200px; font-weight: lighter;">DNI</th>
+                        <th id="Orden" class="Orden" style="width: 200px; font-weight: lighter;">Fecha de nacimiento</th>
+                    </tr>
+                </thead>
+​            <!--_____________________________________________________________-->
+
+            <!--Cuerpo del Datatable-->
+                <tbody>
+                    <tr style="width: 200px; font-weight: lighter;">
+                        <td id="Nombre" class="Nombre">Trident</td>
+                        <td id="Nombre" class="Nombre">Internet Explorer 4.0</td>
+                        <td id="Recipiente" class="Recipiente">Win 95+</td>
+                        <td id="Orden" class="Orden">4</td>
+                    </tr>
+                </tbody>
+​            <!--_____________________________________________________________-->
+
+            </table>
+        </div>
+    </div>
+
+<!--_____________________________________________________________-->  
+
+</div>
+
+<!--_____________________________________________________________-->
+
+</form>
+</div>
+</div>
+</div>
+
+<!--_____________________________________________________________-->
+
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+    });
+</script>
+​<!--_____________________________________________________________-->
+
+<!-- Script Data-Tables-->
+<script>
+        $("#btnclose").on("click", function() {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+        });
+</script>
+​<!--_____________________________________________________________-->
+
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+    });
+</script>
+​<!--_____________________________________________________________-->
 
 <!-- Script Agregar datos de proceso_productivo-->
 <script>
@@ -156,7 +230,7 @@ function agregarDato(){
       },*/
 
       fields: {
-          Nomb: {
+          nomb: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -168,7 +242,7 @@ function agregarDato(){
                   }
               }
           },
-          Nombre: {
+          nombre: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -180,7 +254,7 @@ function agregarDato(){
                   }
               }
           },
-          Recipiente: {
+          recipiente: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -188,7 +262,7 @@ function agregarDato(){
                   },
               }
           },
-          Orden: {
+          orden: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
