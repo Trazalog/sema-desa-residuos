@@ -1,9 +1,8 @@
-<!-- Hecha por Jose Roberto el mas vergas -->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-<!--//////////////////////////////Box1//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
-        <h3 style="font-weight: lighter;">Registrar Contenedor</h3>
+        <h4>Registrar Contenedor</h4>
     </div>
     <div class="box-body">
         <div class="row">
@@ -16,68 +15,71 @@
         </div>
     </div>
 </div>
-<!--_____________________________________________________________-->
 
-<!--//////////////////////////////Box2//////////////////////////////-->
-<div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+
+
+
+<!---//////////////////////////////////////---BOX 1---///////////////////////////////////////////////////////----->
+
+
+<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
-        <!--_____________________________________________________________-->
-
-        <!--Boton de cerrar-->
+        <div class="box-tittle">
+            <h5>Informacion</h5>
+        </div>
         <div class="box-tools pull-right">
             <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
                 data-toggle="tooltip" title="" data-original-title="Remove">
                 <i class="fa fa-times"></i>
             </button>
         </div>
-​        <!--_____________________________________________________________-->
+
     </div>
+
+    <!--_____________________________________________-->
     <div class="box-body">
         <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
-        <div class="col-md-6">
 
-            <!--Codigo / Registro-->
+            <div class="col-md-6">
+                <!--Codigo / Registro-->
                 <div class="form-group">
-                    <label for="Codigo/Registro" style="width: 200px; font-weight: lighter;">Codigo / Registro:</label>
-                    <input type="text" class="form-control" id="Codigo/Registro" name="Codigo_registro" style="width: 200px; font-weight: lighter;">
+                    <label for="Codigo/Registro" >Codigo / Registro:</label>
+                    <input type="text" class="form-control" name="Codigo_registro" id="Codigo/Registro">
                 </div>
-            <!--_____________________________________________________________-->
-
-            <!--Descripcion-->
+                <!--_____________________________________________-->
+                <!--Descripcion-->
                 <div class="form-group">
-                    <label for="Descripcion" style="width: 200px; font-weight: lighter;">Descripcion:</label>
-                    <input type="text" class="form-control" id="Descripcion" name="Descripcion" style="width: 200px; font-weight: lighter;">
+                    <label for="Descripcion" >Descripcion:</label>
+                    <input type="text" class="form-control" name="Descripcion" id="Descripcion">
                 </div>
-            <!--_____________________________________________________________-->
-
-            <!--Capacidad-->
+                <!--_____________________________________________-->
+                <!--Capacidad-->
                 <div class="form-group">
-                    <label for="Capacidad" style="width: 200px; font-weight: lighter;">Capacidad:</label>
-                    <input type="text" class="form-control" id="Capacidad" name="Capacidad" style="width: 200px; font-weight: lighter;">
+                    <label for="Capacidad" >Capacidad:</label>
+                    <input type="text" class="form-control" name="Capacidad" id="Capacidad">
                 </div>
-            <!--_____________________________________________________________-->
-
-            <!--Año de elaboracion-->
+                <!--_____________________________________________-->
+                <!--Año de elaboracion-->
                 <div class="form-group">
-                    <label for="Añoelab" style="width: 200px; font-weight: lighter;">Año de elaboracion:</label>
-                    <input type="text" class="form-control" id="Añoelab" name="Añoelab" style="width: 200px; font-weight: lighter;">
+                    <label for="Añoelab">Año de elaboracion:</label>
+                    <input type="text" class="form-control"  name="Añoelab" id="Añoelab">
                 </div>
-            <!--_____________________________________________________________-->
-
-        </div>
-        <div class="col-md-6">
-
-            <!--Tara-->
+                <!--_____________________________________________-->
+            </div>
+            <div class="col-md-6">
+                <!--Tara-->
                 <div class="form-group">
-                    <label for="Tara" style="width: 200px; font-weight: lighter;">Tara:</label>
-                    <input type="text" class="form-control" id="Tara" name="Tara" style="width: 200px; font-weight: lighter;">
+                    <label for="Tara" >Tara:</label>
+                    <input type="text" class="form-control" name="Tara" id="Tara">
                 </div>
-            <!--_____________________________________________________________-->
-
-            <!--Estado-->
+                <!--_____________________________________________-->
+                <!--Estado-->
                 <div class="form-group">
-                    <label for="Estados" style="width: 200px; font-weight: lighter;">Estado:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Estados" name="Estados" style="width: 200px; font-weight: lighter;">
+                    <label for="Estados">Estado:</label>
+                    <select class="form-control select2 select2-hidden-accesible"  name="Estados" id="Estados">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Estados as $i) {
@@ -86,66 +88,407 @@
                         ?>
                     </select>
                 </div>
-            <!--_____________________________________________________________-->
-
-            <!--Habilitacion-->
+                <!--_____________________________________________-->
+                <!--Habilitacion-->
                 <div class="form-group">
-                    <label for="Habilitacion" style="width: 200px; font-weight: lighter;">Habilitacion:</label>
-                    <input type="text" class="form-control" id="Habilitacion" name="Habilitacion" style="width: 200px; font-weight: lighter;">
+                    <label for="Habilitacion" >Habilitacion:</label>
+                    <input type="text" class="form-control" name="Habilitacion" id="Habilitacion">
                 </div>
-            <!--_____________________________________________________________-->
 
+                <!--_____________________________________________-->
+                <!--Adjuntador de imagenes-->  
+
+                <div class="col-md-6">
+                
+
+                <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                </button>
+                <small for="agregar" class="form-label">Adjuntar imagen</small>
+        
+                </div>             
+               
+              
+
+                
+
+
+                <!--_____________________________________________-->
+            </div>
+
+            <div class="col-md-12">
+                <hr>
+            </div>
+
+            <!--_____________________________________________-->
             <!--Boton de guardado-->
+            <div class="col-md-12">
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-            <!--_____________________________________________________________-->
+            </div>
+            <!--_____________________________________________-->
+        </form>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
+
+
+
+<!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
+
+
+
+<div class="box box-primary">
+
+<!--__________________TABLA___________________________-->
+
+
+<div class="box-body">
+    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+        <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6"></div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-12 table-scroll">
+
+            <!--__________________HEADER TABLA___________________________-->
+
+
+                <!--__________________HEADER TABLA___________________________-->
+                <table id="tabla_contenedores" class="table table-bordered table-striped">
+                    <thead class="thead-dark" bgcolor="#eeeeee">
+
+                        <th>Acciones</th>
+                        <th>Codigo / Registro</th>
+                        <th>Estado</th>
+                        <th>Capacidad</th>
+                        <th>Habilitacion</th>
+                        
+
+                    </thead>
+
+                    <!--__________________BODY TABLA___________________________-->
+
+                    <tbody>
+                    <tr>
+                        <td>
+                        <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                        <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                        <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                        
+                        </td>
+                        <td>DATO</td>
+                        <td> DATO</td>
+                        <td>DATO</td>
+                        <td>DATO</td>
+                    </tr>
+
+                       
+                    </tbody>
+                </table>
+                
+                <!--__________________FIN TABLA___________________________-->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
+
+
+
+
+
+
+<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Contenedor</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+
+
+            <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
+
+            <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <!--Codigo / Registro-->
+                    <div class="form-group">
+                        <label for="Codigo/Registro" >Codigo / Registro:</label>
+                        <input type="text" class="form-control"  name="" id="Codigo/Registro">
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Descripcion-->
+                    <div class="form-group">
+                        <label for="Descripcion" >Descripcion:</label>
+                        <input type="text" class="form-control"  name="" id="Descripcion">
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Capacidad-->
+                    <div class="form-group">
+                        <label for="Capacidad" >Capacidad:</label>
+                        <input type="text" class="form-control" name="" id="Capacidad">
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Año de elaboracion-->
+                    <div class="form-group">
+                        <label for="Añoelab" >Año de elaboracion:</label>
+                        <input type="text" class="form-control" name="" id="Añoelab">
+                    </div>
+
+                </div>
+                
+                <div class="col-md-6">
+                    <!--_____________________________________________--> 
+                    <!--Tara-->
+                    <div class="form-group">
+                        <label for="Tara" >Tara:</label>
+                        <input type="text" class="form-control" name="" id="Tara">
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Estado-->
+                    
+                    <div class="form-group">
+                        <label for="Estados">Estado:</label>
+                        <select class="form-control select2 select2-hidden-accesible"  name="" id="Estados">
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
+                            foreach ($Estados as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Habilitacion-->
+                    <div class="form-group">
+                        <label for="Habilitacion">Habilitacion:</label>
+                        <input type="text" class="form-control"  name="" id="Habilitacion">
+                    </div>
+                </div>
+
+                </div>    
+                
+            </div>
+            <div class="col-md-12">
+                <hr>
+            </div>
+
+            
+        </form>
+
+                
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!--//////////////////////////////Box3//////////////////////////////-->
-    <!--Datatable Registrar Generadores-->
-    <div class="box box-primary animated fadeInLeft">
-        <div class="box-body table-scroll">
-            <table id="example2" class="table table-bordered table-hover table-responsive">
 
-            <!--Cabecera del Datatable-->
-                <thead>
-                    <tr>
-                        <th id="Codigo_registro" class="Codigo_registro" style="width: 200px; font-weight: lighter;">Codigo Registro</th>
-                        <th id="Descripcion" class="Descripcion" style="width: 200px; font-weight: lighter;">Descripcion</th>
-                        <th id="Capacidad" class="Capacidad" style="width: 200px; font-weight: lighter;">Capacidad</th>
-                        <th id="Añoelab" class="Añoelab" style="width: 200px; font-weight: lighter;">Año de elaboracion</th>
-                        <th id="Tara" class="Tara" style="width: 200px; font-weight: lighter;">Tara</th>
-                        <th id="Estados" class="Estados" style="width: 200px; font-weight: lighter;">Estados</th>
-                        <th id="Habilitacion" class="Habilitacion" style="width: 200px; font-weight: lighter;">Habilitacion</th>
-                    </tr>
-                </thead>
-​            <!--_____________________________________________________________-->
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-            <!--Cuerpo del Datatable-->
-                <tbody>
-                    <tr style="width: 200px; font-weight: lighter;">
-                        <td id="Codigo_registro" class="Codigo_registro">Trident</td>
-                        <td id="Descripcion" class="Descripcion">Internet Explorer 4.0</td>
-                        <td id="Capacidad" class="Capacidad">Win 95+</td>
-                        <td id="Añoelab" class="Añoelab">4</td>
-                        <td id="Tara" class="Tara">X</td>
-                        <td id="Estados" class="Estados">X</td>
-                        <td id="Habilitacion" class="Habilitacion">X</td>
-                    </tr>
-                </tbody>
-​            <!--_____________________________________________________________-->
-            </table>
+
+
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+    
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Informacion Contenedor</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+
+
+            <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
+
+            <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <!--Codigo / Registro-->
+                    <div class="form-group">
+                        <label for="Codigo/Registro" >Codigo / Registro:</label>
+                        <input type="text" class="form-control" name="E_Codigo_registro" id="Codigo/Registro" readonly>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Descripcion-->
+                    <div class="form-group">
+                        <label for="Descripcion" >Descripcion:</label>
+                        <input type="text" class="form-control" name="E_Descripcion" id="Descripcion" readonly>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Capacidad-->
+                    <div class="form-group">
+                        <label for="Capacidad">Capacidad:</label>
+                        <input type="text" class="form-control"  name="E_Capacidad" id="Capacidad" readonly>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Año de elaboracion-->
+                    <div class="form-group">
+                        <label for="Añoelab">Año de elaboracion:</label>
+                        <input type="text" class="form-control"  name="E_Añoelab" id="Añoelab" readonly>
+                    </div>
+
+                </div>
+                
+                <div class="col-md-6">
+                    <!--_____________________________________________--> 
+                    <!--Tara-->
+                    <div class="form-group">
+                        <label for="Tara" >Tara:</label>
+                        <input type="text" class="form-control"  name="E_Tara" id="Tara" readonly>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Estado-->
+                    
+                    <div class="form-group">
+                        <label for="Estados" >Estado:</label>
+                        <input type="text" class="form-control" name="E_Estados" id="" readonly>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Habilitacion-->
+                    <div class="form-group">
+                        <label for="Habilitacion" >Habilitacion:</label>
+                        <input type="text" class="form-control" name="E_Habilitacion" id="Habilitacion" readonly>
+                    </div>
+                </div>
+
+                </div>    
+                
+            </div>
+            <div class="col-md-12">
+                <hr>
+            </div>
+
+            
+        </form>
+
+                
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>
-    <!--_____________________________________________________________-->
-    </div>
-    <!--_____________________________________________________________-->
-</form>
 </div>
-</div>
-</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+ <!---//////////////////////////////////////--- FUNCIONES ---///////////////////////////////////////////////////////----->
+
+
+<!--________________________________________ AGREGAR EN TABLA ________________________________________-->
+
+<!-- <script>
+
+function guardarDato()
+
+{
+
+    // Variables de datos de los campos a listar
+
+    var data = {};
+    data.codigo = $('#Codigo/Registro').val();
+    data.descripcion = $('#Descripcion').val();
+    data.capacidad = $('#Capacidad').val();
+    data.elaboracion = $('#Añoelab').val();
+    data.tara = $('#Tara').val();
+    data.capacidad = $('#Capacidad').val();
+    data.estados = $('#Estados').find('option:selected').html();
+    data.habilitacion = $('#Habilitacion').val();
+    
+
+    //console.log(data);
+    
+    tr="";
+    tr+="<tr data-json='"+JSON.stringify(data)+"' data-contenedores=''>";
+    tr+="<td><i class='fa fa-fw fa-minus text-light-blue manzanas_asignadas_borrar' style='cursor: pointer; margin-left: 15px;' title='Eliminar'></i>";
+    tr+="<i class='fa fa-fw fa-plus text-light-blue manzanas_asignadas_calle' style='cursor: pointer; margin-left: 15px;' title='Asignar Calles'></i>";
+    tr+="<i class='fa fa-fw fa-search text-light-blue manzanas_asignadas_ver' style='cursor: pointer; margin-left: 15px;' title='Ver Calles'></i></td>";
+    tr+="<td>"+data.area+"</td><td>"+data.departamento+"</td></tr>";
+    manzanasAsignadas.row.add($(tr)).draw();
+
+    // Limpiar Campos
+
+    data.codigo = $('#Codigo/Registro').val('');
+    data.descripcion = $('#Descripcion').val('');
+    data.capacidad = $('#Capacidad').val('');
+    data.elaboracion = $('#Añoelab').val('');
+    data.tara = $('#Tara').val('');
+    data.capacidad = $('#Capacidad').val('');
+    data.estados = $('#Estados').find('option:selected').html('');
+    data.habilitacion = $('#Habilitacion').val('');
+
+
+
+   
+}
+
+
+
+</script> -->
+
+ <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
+
 <!--_____________________________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
@@ -317,3 +660,11 @@ function agregarDato(){
   });
 </script>
 <!--_____________________________________________________________-->
+
+<!--_____________________________________________________________-->
+ <!-- script Datatables -->
+ <script>
+
+DataTable($('#tabla_contenedores'))
+
+</script>

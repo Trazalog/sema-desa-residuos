@@ -1,9 +1,8 @@
-<!-- Hecha por Jose Roberto el mas vergas -->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-<!--//////////////////////////////Box1//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
-        <h3 style="font-weight: lighter;">Registrar Proceso Productivo</h3>
+        <h4>Registrar Proceso Productivo</h4>
     </div>
     <div class="box-body">
         <div class="row">
@@ -16,126 +15,268 @@
         </div>
     </div>
 </div>
-<!--_____________________________________________________________-->
 
-<!--//////////////////////////////Box2//////////////////////////////-->
-<div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+
+
+ 
+ <!---//////////////////////////////////////--- BOX 1---///////////////////////////////////////////////////////----->
+
+
+
+<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
-        <!--_____________________________________________________________-->
-
-        <!--Boton de cerrar-->
+        <div class="box-tittle">
+            <h5>Informacion</h5>  
+        </div>
         <div class="box-tools pull-right">
             <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
                 data-toggle="tooltip" title="" data-original-title="Remove">
                 <i class="fa fa-times"></i>
             </button>
         </div>
-​        <!--_____________________________________________________________-->
-
+        
     </div>
+    <!--_____________________________________________-->
+
     <div class="box-body">
-    <form class="formProcesoProductivo" id="formProcesoProductivo"  method="POST" autocomplete="off" class="registerForm">
+        <form class="formProcesoProductivo" id="formProcesoProductivo">
+            
+            <div class="col-md-12">
+                <div class="col-md-4">
 
-        <!--COMIENZO DE LOS CAMPOS DEL FORMULARIO-->
+                    <!--Nombre-->
+                    <div class="form-group">
+                        <label for="Nomb">Nombre:</label>
+                        <input type="text" class="form-control" id="Nomb" name="Nomb">
+                    </div>
+                    <!--_____________________________________________-->
 
-        <div class="col-md-12">
-
-            <!--Nombre-->
-            <div class="form-group">
-                <label for="Nombre" style="width: 200px; font-weight: lighter;">Nombre:</label>
-                <input type="text" class="form-control" id="Nombre" name="nomb">
+                </div>
             </div>
-​            <!--_____________________________________________________________-->
+            <div class="col-md-12">
+                <div class="col-md-4 col-sm-4 col-xs-12">
 
-        </div>
-        <div class="col-md-5">
+                    <!--Nombre-->
+                    <div class="form-group">
+                        <label for="Nombre">Nombre etapa:</label>
+                        <input type="text" class="form-control" name="Nombre" id="Nombre" >
+                    </div>
+                    <!--_____________________________________________-->
 
-            <!--Nombre-->
-            <div class="form-group">
-                <label for="Nombre" style="width: 200px; font-weight: lighter;">Nombre:</label>
-                <input type="text" class="form-control" id="Nombre" name="nombre">
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+
+                    <!--Recipiente-->
+                    <div class="form-group">
+                        <label for="Recipiente">Recipiente:</label>
+                        <input type="text" class="form-control" id="Recipiente" name="Recipiente">
+                    </div>
+                    <!--_____________________________________________-->
+
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+
+                    <!--Orden-->
+                    <div class="form-group">
+                        <label for="Orden">Orden:</label>
+                        <input type="number" class="form-control" id="Orden" name="Orden">
+                    </div>
+                    <!--_____________________________________________-->
+                    
+                </div>
             </div>
-​            <!--_____________________________________________________________-->
+            <!--__________________SEPARADOR___________________________-->
 
-        </div>
-        <div class="col-md-5">
+    <div class="col-md-12 col-sm-12 col-xs-12"> <hr></div>
 
-            <!--Recipiente-->
-            <div class="form-group">
-                <label for="Recipiente" style="width: 200px; font-weight: lighter;">Recipiente:</label>
-                <input type="text" class="form-control" id="Recipiente" name="recipiente">
+<!--________________SEPARADOR_____________________________-->
+            <div class="col-md-12">
+
+                <!--Boton de guardado-->
+              
+                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
+                <!--_____________________________________________-->
+
             </div>
-​            <!--_____________________________________________________________-->
 
-        </div>
-        <div class="col-md-2">
-
-            <!--Orden-->
-            <div class="form-group">
-                <label for="Orden" style="width: 200px; font-weight: lighter;">Orden:</label>
-                <input type="text" class="form-control" id="Orden" name="orden">
-            </div>
-​            <!--_____________________________________________________________-->
-
-        </div>
-
-            <!--Boton de guardado-->
-            <br>
-            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-​            <!--_____________________________________________________________-->
-
-        <!--FIN DE LOS CAMPOS DEL FORMULARIO-->
-
-    </div>
+        </form>
     </div>
 </div>
-</div>
 
-<!--_____________________________________________________________-->
+<!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
 
-<!--//////////////////////////////Box3//////////////////////////////-->
 
-    <!--Datatable Registrar Generadores-->
-    <div class="box box-primary animated fadeInLeft">
-        <div class="box-body table-scroll">
-            <table id="example2" class="table table-bordered table-hover table-responsive">
 
-            <!--Cabecera del Datatable-->
-                <thead>
+<!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
+
+
+
+<div class="box box-primary">
+
+<!--__________________TABLA___________________________-->
+
+
+<div class="box-body">
+    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+        <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6"></div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-12 table-scroll">
+
+            <!--__________________HEADER TABLA___________________________-->
+
+
+                <!--__________________HEADER TABLA___________________________-->
+                <table id="tabla_procesos_productivos" class="table table-bordered table-striped">
+                    <thead class="thead-dark" bgcolor="#eeeeee">
+
+                        <th>Acciones</th>
+                        <th>Nombre de Etapa</th>
+                        <th>Recipiente</th>
+                        <th>Orden</th>
+                        
+                        
+
+                    </thead>
+
+                    <!--__________________BODY TABLA___________________________-->
+
+                    <tbody>
                     <tr>
-                        <th id="Nombre" class="Nombre" style="width: 200px; font-weight: lighter;">Nombre</th>
-                        <th id="Nombre" class="Nombre" style="width: 200px; font-weight: lighter;">Apellido</th>
-                        <th id="Recipiente" class="Recipiente" style="width: 200px; font-weight: lighter;">DNI</th>
-                        <th id="Orden" class="Orden" style="width: 200px; font-weight: lighter;">Fecha de nacimiento</th>
+                        <td>
+                        <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                        <!-- <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp -->
+                        <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                        
+                        </td>
+                        <td>DATO</td>
+                        <td> DATO</td>
+                        <td>DATO</td>
+                        
                     </tr>
-                </thead>
-​            <!--_____________________________________________________________-->
 
-            <!--Cuerpo del Datatable-->
-                <tbody>
-                    <tr style="width: 200px; font-weight: lighter;">
-                        <td id="Nombre" class="Nombre">Trident</td>
-                        <td id="Nombre" class="Nombre">Internet Explorer 4.0</td>
-                        <td id="Recipiente" class="Recipiente">Win 95+</td>
-                        <td id="Orden" class="Orden">4</td>
-                    </tr>
-                </tbody>
-​            <!--_____________________________________________________________-->
+                       
+                    </tbody>
+                </table>
+                
+                <!--__________________FIN TABLA___________________________-->
+            </div>
+        </div>
 
-            </table>
+    </div>
+</div>
+
+<!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
+
+<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Proceso productivo</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                <form class="formProcesoProductivo" id="formProcesoProductivo">
+            
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+
+                            <!--Nombre-->
+                            <div class="form-group">
+                                <label for="Nomb">Nombre:</label>
+                                <input type="text" class="form-control" id="Nomb" name="Nomb">
+                            </div>
+                            <!--_____________________________________________-->
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4 ">
+
+                            <!--Nombre-->
+                            <div class="form-group">
+                                <label for="Nombre">Nombre etapa:</label>
+                                <input type="text" class="form-control" id="Nombre" name="Nombre">
+                            </div>
+                            <!--_____________________________________________-->
+
+                        </div>
+                        <div class="col-md-4 ">
+
+                            <!--Recipiente-->
+                            <div class="form-group">
+                                <label for="Recipiente">Recipiente:</label>
+                                <input type="text" class="form-control" id="Recipiente" name="Recipiente">
+                            </div>
+                            <!--_____________________________________________-->
+
+                        </div>
+                        <div class="col-md-4 ">
+
+                            <!--Orden-->
+                            <div class="form-group">
+                                <label for="Orden">Orden:</label>
+                                <input type="number" class="form-control" id="Orden" name="Orden">
+                            </div>
+                            <!--_____________________________________________-->
+                            
+                        </div>
+                    </div>
+            
+
+                </form>
+
+                
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+
+            <div class="modal-footer">
+
+            <div class="col-md-12"><hr></div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>
-
-<!--_____________________________________________________________-->  
-
 </div>
 
 <!--_____________________________________________________________-->
 
-</form>
-</div>
-</div>
-</div>
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+
+
+
+
+<!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
 <!--_____________________________________________________________-->
 
@@ -217,6 +358,8 @@ function agregarDato(){
     });
 }
 </script>
+
+
 <!--_____________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
@@ -230,7 +373,7 @@ function agregarDato(){
       },*/
 
       fields: {
-          nomb: {
+            Nomb: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -242,7 +385,7 @@ function agregarDato(){
                   }
               }
           },
-          nombre: {
+          Nombre: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -254,7 +397,7 @@ function agregarDato(){
                   }
               }
           },
-          recipiente: {
+          Recipiente: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -262,7 +405,7 @@ function agregarDato(){
                   },
               }
           },
-          orden: {
+          Orden: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -280,4 +423,41 @@ function agregarDato(){
     //guardar();
 });
 </script>
+
+
 <!--_____________________________________________________________-->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+            
+
+<script>
+$("#botonAgregar").on("click", function() {
+    //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+    var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+    $("#nro").val(aleatorio);
+
+    $("#botonAgregar").attr("disabled", "");
+    //$("#boxDatos").removeAttr("hidden");
+    $("#boxDatos").focus();
+    $("#boxDatos").show();
+
+});
+</script>
+
+<script>
+$("#btnclose").on("click", function() {
+    $("#boxDatos").hide(500);
+    $("#botonAgregar").removeAttr("disabled");
+    $('#formDatos').data('bootstrapValidator').resetForm();
+    $("#formDatos")[0].reset();
+    $('#selecmov').find('option').remove();
+    $('#chofer').find('option').remove();
+});
+</script>
+
+<!--_____________________________________________________________-->
+ <!-- script Datatables -->
+ <script>
+
+DataTable($('#tabla_procesos_productivos'))
+
+</script>
