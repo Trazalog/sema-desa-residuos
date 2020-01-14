@@ -4,7 +4,7 @@ if(!function_exists('zonas')){
     function zonas($json)
     {
         $array =  $json;
-       // var_dump($array->menu);die;
+        // var_dump($array->menu);die;
         $html = '';
         foreach ($array->zonas->zona as $i) {
             $html .= '<option>'.$i->nombre.'</option>';

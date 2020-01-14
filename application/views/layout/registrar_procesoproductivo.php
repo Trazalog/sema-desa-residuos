@@ -40,6 +40,16 @@
     </div>
     <!--_____________________________________________-->
 
+        <!--Boton de cerrar-->
+        <div class="box-tools pull-right">
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+​        <!--_____________________________________________________________-->
+
+    </div>
     <div class="box-body">
         <form class="formProcesoProductivo" id="formProcesoProductivo">
             
@@ -99,10 +109,16 @@
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
                 <!--_____________________________________________-->
 
-            </div>
+            <!--Boton de guardado-->
+            <br>
+            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+​            <!--_____________________________________________________________-->
 
-        </form>
+        <!--FIN DE LOS CAMPOS DEL FORMULARIO-->
+
     </div>
+    </div>
+</div>
 </div>
 
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
@@ -267,6 +283,7 @@
     </div>
 </div>
 
+<!--_____________________________________________________________-->
 
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
@@ -277,6 +294,47 @@
 <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
 <!--_____________________________________________________________-->
+
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+    });
+</script>
+​<!--_____________________________________________________________-->
+
+<!-- Script Data-Tables-->
+<script>
+        $("#btnclose").on("click", function() {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+        });
+</script>
+​<!--_____________________________________________________________-->
+
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+    });
+</script>
+​<!--_____________________________________________________________-->
 
 <!-- Script Agregar datos de proceso_productivo-->
 <script>
@@ -330,7 +388,7 @@ function agregarDato(){
       },*/
 
       fields: {
-          Nomb: {
+          nomb: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -342,7 +400,7 @@ function agregarDato(){
                   }
               }
           },
-          Nombre: {
+          nombre: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -354,7 +412,7 @@ function agregarDato(){
                   }
               }
           },
-          Recipiente: {
+          recipiente: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -362,7 +420,7 @@ function agregarDato(){
                   },
               }
           },
-          Orden: {
+          orden: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
