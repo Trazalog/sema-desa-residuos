@@ -14,54 +14,89 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 table-scroll">
-                        <table id="tabla_control_descarga" class="table table-bordered table-striped">
-                        <thead class="thead-dark" bgcolor="#eeeeee">
+                            <table id="example2" class="table table-condensed table-bordered table-hover dataTable"
+                                role="grid" aria-describedby="example2_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-sort="ascending"
+                                            aria-label="Rendering engine: activate to sort column descending">Acciones
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Browser: activate to sort column ascending">Nro
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Platform(s): activate to sort column ascending">
+                                            Patente</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Engine version: activate to sort column ascending">
+                                            Tipo</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Browser: activate to sort column ascending">Fecha y
+                                            hora
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Browser: activate to sort column ascending">Orden de
+                                            transp
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Browser: activate to sort column ascending">
+                                            Valorizado
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabadd">
 
-                            <th>Acciones</th>
-                            <th>Nro</th>
-                            <th>Patente</th>
-                            <th>Tipo</th>
-                            <th>Fecha y hora</th>
-                            <th>Orden de transp</th>
-                            <th>Valorizado</th>
-                            
+                                    
+                                    <tr role="row" class="even">
+                                        <td>
+                                            <button type="button" title="vuelco"
+                                                class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in"
+                                                    aria-hidden="true"></span></button>&nbsp
+                                            <button type="button"        title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span
+                                                    class="glyphicon glyphicon-paperclip"
+                                                    aria-hidden="true"></span></button>
+                                            <button type="button"  title="Cerrar sector" class="btn btn-primary btn-circle btnadjuntar"><span
+                                                    class="glyphicon glyphicon-lock"
+                                                    aria-hidden="true"></span></button>
+                                        </td>
+                                        <td>8</td>
+                                        <td>dsa 213</td>
+                                        <td>Generador 4</td>
+                                        <td>4/10/2019</td>
+                                        <td>4/10/2019</td>
+                                        <td>4/10/2019</td>
+                                    </tr>
+                                    <tr role="row" class="even">
+                                        <td>
+                                            <button type="button" title="vuelco"
+                                                class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in"
+                                                    aria-hidden="true"></span></button>&nbsp
+                                            <button type="button"        title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span
+                                                    class="glyphicon glyphicon-paperclip"
+                                                    aria-hidden="true"></span></button>
 
-                        </thead>
-
-                        <!--__________________BODY TABLA___________________________-->
-
-                        <tbody>
-                        <tr>
-                            <td>
-                            <button type="button" title="vuelco" class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>&nbsp
-                            <button type="button"        title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span aria-hidden="true"></span></button>
-                            <button type="button"  title="Cerrar sector" class="btn btn-primary btn-circle btnadjuntar"><span class="glyphicon glyphicon-lock"aria-hidden="true"></span></button>
-                            </td>
-                            <td>8</td>
-                            <td>dsa 213</td>
-                            <td>Generador 4</td>
-                            <td>4/10/2019</td>
-                            <td>4/10/2019</td>
-                            <td>4/10/2019</td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                            <button type="button" title="vuelco" class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>&nbsp
-                            <button type="button"  title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span aria-hidden="true"></span></button>
-                            <button type="button"  title="Cerrar sector" class="btn btn-primary btn-circle btnadjuntar"><span class="glyphicon glyphicon-lock"aria-hidden="true"></span></button>
-                            </td>
-                            <td>8</td>
-                            <td>dsa 213</td>
-                            <td>Generador 4</td>
-                            <td>4/10/2019</td>
-                            <td>4/10/2019</td>
-                            <td>4/10/2019</td>
-                        </tr>
-
-                           
-                        </tbody>
-                    </table>
+                                            <button type="button"  title="Cerrar sector" class="btn btn-primary btn-circle btnadjuntar"><span
+                                                    class="glyphicon glyphicon-lock"
+                                                    aria-hidden="true"></span></button>
+                                        </td>
+                                        <td>8</td>
+                                        <td>dsa 213</td>
+                                        <td>Generador 4</td>
+                                        <td>4/10/2019</td>
+                                        <td>4/10/2019</td>
+                                        <td>4/10/2019</td>
+                                    </tr>
+                                    <!--
+                        <tr role="row" class="even">
+                        <td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
+                        <td>Zona 5</td>
+                        <td>Circuito 11</td>
+                        <td>Transp 8</td>
+                        <td>Asd 347</td>
+                        <td>Fernando Leiva</td>
+                        </tr> -->
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -345,14 +380,19 @@
     }
 </script>
 
-<!--_____________________________________________________________-->
- <!-- script Datatables -->
- <script>
-
-    DataTable($('#tabla_control_descarga'))
-
+<script>
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': true
+        })
+    })
 </script>
-
 
 <!-- script que cierra box con boton (x) -->
 

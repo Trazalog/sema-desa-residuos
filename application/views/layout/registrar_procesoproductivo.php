@@ -21,6 +21,7 @@
 
 
 
+ 
  <!---//////////////////////////////////////--- BOX 1---///////////////////////////////////////////////////////----->
 
 
@@ -40,16 +41,6 @@
     </div>
     <!--_____________________________________________-->
 
-        <!--Boton de cerrar-->
-        <div class="box-tools pull-right">
-            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
-                data-toggle="tooltip" title="" data-original-title="Remove">
-                <i class="fa fa-times"></i>
-            </button>
-        </div>
-​        <!--_____________________________________________________________-->
-
-    </div>
     <div class="box-body">
         <form class="formProcesoProductivo" id="formProcesoProductivo">
             
@@ -71,7 +62,7 @@
                     <!--Nombre-->
                     <div class="form-group">
                         <label for="Nombre">Nombre etapa:</label>
-                        <input type="text" class="form-control" id="Nombre" name="Nombre">
+                        <input type="text" class="form-control" name="Nombre" id="Nombre" >
                     </div>
                     <!--_____________________________________________-->
 
@@ -109,16 +100,10 @@
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
                 <!--_____________________________________________-->
 
-            <!--Boton de guardado-->
-            <br>
-            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-​            <!--_____________________________________________________________-->
+            </div>
 
-        <!--FIN DE LOS CAMPOS DEL FORMULARIO-->
-
+        </form>
     </div>
-    </div>
-</div>
 </div>
 
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
@@ -388,7 +373,7 @@ function agregarDato(){
       },*/
 
       fields: {
-          nomb: {
+            Nomb: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -400,7 +385,7 @@ function agregarDato(){
                   }
               }
           },
-          nombre: {
+          Nombre: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -412,7 +397,7 @@ function agregarDato(){
                   }
               }
           },
-          recipiente: {
+          Recipiente: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -420,7 +405,7 @@ function agregarDato(){
                   },
               }
           },
-          orden: {
+          Orden: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
