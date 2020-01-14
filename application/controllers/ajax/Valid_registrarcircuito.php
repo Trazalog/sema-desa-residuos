@@ -2,11 +2,11 @@
 
     /* Hecha por Jose Roberto el mas vergas */
         function guardar(){
- 
+
             datos=$('#formCircuitos').serialize();
- 
+
             if($("#formCircuitos").data('bootstrapValidator').isValid()){
- 
+
                 $.ajax({
                 type:"POST",
                 data:datos,
@@ -25,5 +25,5 @@
                 console.log("la entrada no puede ser vacia");
             }
         }
-    
+
 </script>
