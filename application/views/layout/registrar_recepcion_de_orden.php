@@ -1,20 +1,68 @@
-<!-- Hecha por Fer Guardia-->
-<!--  Box 1-->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
         <h3>Registrar recepción de orden</h3>
     </div>
-    <form id="formRecepcion" method="POST" autocomplete="off" class="registerForm">
-        <div class="box-body">
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-2 col-lg-1 col-xs-12">
+                <button type="button" id="botonAgregar" class="btn btn-primary" aria-label="Left Align">
+                    Agregar
+                </button><br>
+            </div>
+            <div class="col-md-10 col-lg-11 col-xs-12"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+
+
+
+
+
+<!--  Box 1-->
+<div class="box box-primary animated animated bounceInDown" id="boxDatos" hidden>
+    <div class="box-header with-border">
+       
+    </div>
+
+
+    <div class="box-header with-border">
+        <div class="box-tittle">
+        <h5>Informacion</h5>  
+        </div>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+    </div>
+    
+    <div class="box-body">
+        <form id="formRecepcion" method="POST" autocomplete="off" class="registerForm">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="nrodom" class="form-label">Numero de dom:</label>
-                        <input type="text" name="nrodom" id="nrodom" class="form-control" required>
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="nrodom" class="form-label">Numero de dom:</label>
+                            <input type="text" name="nrodom" id="nrodom" class="form-control" required>
+                        </div>
                     </div>
                 </div>
             </div>
+
+<!-- _____________GRUPO FORMULARIO________________ -->
+
+
             <div class="row">
+                <div class="col-md-12">
+
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="nroot" class="">Nro OT:</label>
@@ -53,49 +101,65 @@
                         <input type="text" name="tipores" id="tipores" class="form-control" readonly>
                     </div>
                 </div>
-            </div>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="imgchof" class="form-label">Chofer:</label>
-                        <img src="<?php base_url() ?>files/chofer2.png" id="imgchof" height="60" width="60">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="imgmovil" class="form-label">Vehiculo:</label>
-                        <img src="<?php base_url() ?>files/vehiculo.png" id="imgmovil" height="60" width="60">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="cont" class="form-label">Contenedor:</label>
-                        <input type="number" size="10" name="cont" id="cont" min="0" class="form-control" required>
-                    </div>
                 </div>
             </div>
 
+
+<!-- _____________ FIN FORMULARIO________________ -->
+
+
             <hr>
 
+
+<!-- _____________ IMAGENES ________________ -->
+
             <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="imgchof" class="form-label">Chofer:</label>
+                            <img src="<?php base_url() ?>files/" id="imgchof" height="60" width="60">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="imgmovil" class="form-label">Vehiculo:</label>
+                            <img src="<?php //base_url() ?>files/" id="imgmovil" height="60" width="60">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="cont" class="form-label">Contenedor:</label>
+                            <img src="<?php //base_url() ?>files/" id="imgmovil" height="60" width="60">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!-- _____________ IMAGENES ________________ -->
+
+
+            <hr>
+
+<!-- _____________ GRUPO FORMULARIO ________________ -->
+
+        <div class="row">
+            <div class="col-md-12">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="peso" class="form-label">Peso:</label>
-                        <input type="number" step="0.0001" id="peso" name="peso" class="form-control" required>
+                        <input type="number" step="0.0001" id="peso" name="peso" class="form-control" required readonly>
                     </div>
                     <div class="form-group">
                         <label for="conten2" class="form-label">Contenedor:</label>
                         <input type="number" size="10" type="text" name="conten2" id="conten2" min="0"
-                            class="form-control" required>
+                            class="form-control" required readonly>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="tara" class="form-label">Tara:</label>
-                        <input type="text" name="tara" id="tara" class="form-control" required>
+                        <input type="text" name="tara" id="tara" class="form-control" required readonly>
                     </div>
                     <div class="form-group">
                         <label for="sectdesc" class="form-label">Sector de descarga:</label>
@@ -113,19 +177,28 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="neto" class="form-label">Neto:</label>
-                        <input type="number" step="0.0001" id="neto" name="neto" class="form-control" required>
+                        <input type="number" step="0.0001" id="neto" name="neto" class="form-control" required readonly>
                     </div>
+                    <div class="col-md-4">
                     <div class="form-group text-center">
-                        <h4 for="nro" class="form-label">Incidencia</h4>
-                        <button type="button" class="btn btn-default btn-circle" aria-label="Left Align"
+                        <label> Incidencia:</label>
+                        <button type="button" class="btn btn-primary btn-circle" aria-label="Left Align"
                             data-toggle="modal" data-target="#modalIncidencia">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </button><br>
+                         
+                        </button>
+
+                       
+                        </div> 
                     </div>
                 </div>
             </div>
+        </div>
+
+<!-- _____________ FIN  FORMULARIO ________________ -->
+
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="observ" class="form-label">Observaciones:</label>
                         <textarea style="resize: none;" type="text" class="form-control input-sm" rows="5" id="observ"
@@ -133,13 +206,21 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <div class="form-group text-right">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+
+            <div class="col-md-12 "><hr></div>
+            
+
+            <div class="row">                
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-right" aria-label="Left Align">
+                            Guardar
+                        </button><br>
+                    </div>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 <!-- Modal incidencia-->
@@ -147,15 +228,14 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-blue">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel">Registrar incidencia</h5>
             </div>
-            <form id="formIncidencia" method="POST" autocomplete="off" class="registerForm">
-                <div class="modal-body">
-
+            <div class="modal-body">
+                <form id="formIncidencia" method="POST" autocomplete="off" class="registerForm">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -194,8 +274,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="fechahora" class="form-label">Fecha y hora:</label>
-                                <input type="datetime-local" name="fechahora" id="fechahora" class="form-control"
-                                    required>
+                                <input type="datetime-local" name="fechahora" id="fechahora" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -215,14 +294,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
-                        <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
+                    <div>
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                            <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -355,217 +434,171 @@
 
 <!-- script bootstrap validator modal incidencia -->
 <script>
-    $('#formIncidencia').bootstrapValidator({
-        message: 'This value is not valid',
-        /*feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },*/
-        excluded: ':disabled',
-        fields: {
-            numorden: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada debe ser un numero entero'
+        $('#formIncidencia').bootstrapValidator({
+            message: 'This value is not valid',
+            /*feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },*/
+            excluded: ':disabled',
+            fields: {
+                numorden: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        },
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
+                        regexp: {
+                            regexp: /^(0|[1-9][0-9]*)$/,
+                            message: 'la entrada debe ser un numero entero'
+                        }
                     }
-                }
-            },
-            tiporesid: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
+                },
+                tiporesid: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
                     }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                }
-            },
-            fechaa: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
+                },
+                fechaa: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
                     }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                }
-            },
-            dfinal: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
+                },
+                dfinal: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
                     }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                }
-            },
-            desc: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
+                },
+                desc: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
                     }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                }
-            },
-            tipincid: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'seleccione una opcion'
+                },
+                tipincid: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'seleccione una opcion'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
                     }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                }
-            },
-            fechahora: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'seleccione una opcion'
+                },
+                fechahora: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'seleccione una opcion'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
                     }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                }
-            },
-            inspector: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
+                },
+                inspector: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
                     }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                }
-            },
-            numacta: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
+                },
+                numacta: {
+                    message: 'la entrada no es valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'la entrada no puede ser vacia'
+                        }
+                        /*stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The username must be more than 6 and less than 30 characters long'
+                        },*/
                     }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
                 }
             }
-        }
-    }).on('success.form.bv', function (e) {
-        e.preventDefault();
-        guardarIncidencia();
-    });
-</script>
+        }).on('success.form.bv', function (e) {
+            e.preventDefault();
+            guardarIncidencia();
+        });
+    </script>
 
-<!--script close modal incidencia -->
-<script>
-    $("#modalIncidencia").on("hidden.bs.modal", function (e) {
-        //console.log("se cerro el modal");
-        $("#formIncidencia").data('bootstrapValidator').resetForm(true);
-        $("#formIncidencia")[0].reset();
-    });
-</script>
-
-<!-- script box guardarRecepcion -->
+    <!--_____________________________________________________________-->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+            
 
 <script>
+            $("#botonAgregar").on("click", function() {
+                //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+                var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+                $("#nro").val(aleatorio);
 
-    function guardarRecepcion() {
+                $("#botonAgregar").attr("disabled", "");
+                //$("#boxDatos").removeAttr("hidden");
+                $("#boxDatos").focus();
+                $("#boxDatos").show();
 
-        datos = $('#formRecepcion').serialize();
-
-        //--------------------------------------------------------------
-        if ($("#formRecepcion").data('bootstrapValidator').isValid()) {
-
-            $.ajax({
-                type: "POST",
-                data: datos,
-                url: "ajax/Ordentrabajo/guardarRecepcion",
-                success: function (r) {
-                    if (r === "ok") {
-                        console.log(r);
-                        $('#formRecepcion').data('bootstrapValidator').resetForm(true);
-                        alertify.success("Agregado con exito");
-                    }
-                    else {
-                        console.log(r);
-                        alertify.error("error al agregar");
-                    }
-                }
             });
-        } else {
-            console.log("la entrada no puede ser vacia");
-        }
-    };
+            </script>
 
-</script>
+<!--_____________________________________________________________-->
+<!-- script close box de datos al dar click en cerrar -->
 
-<!-- script guardar incidencia modal -->
-
-<script>
-
-    function guardarIncidencia() {
-
-        datos = $('#formIncidencia').serialize();
-
-        //--------------------------------------------------------------
-        if ($("#formIncidencia").data('bootstrapValidator').isValid()) {
-
-            $.ajax({
-                type: "POST",
-                data: datos,
-                url: "ajax/Ordentrabajo/guardarIncidencia",
-                success: function (r) {
-                    if (r === "ok") {
-                        console.log(r);
-                        $('#formIncidencia').data('bootstrapValidator').resetForm(true);
-                        $('#modalIncidencia').modal('toggle');
-                        alertify.success("Agregado con exito");
-                    }
-                    else {
-                        console.log(r);
-                        alertify.error("error al agregar");
-                    }
-                }
+            <script>
+            $("#btnclose").on("click", function() {
+                $("#boxDatos").hide(500);
+                $("#botonAgregar").removeAttr("disabled");
+                $('#formDatos').data('bootstrapValidator').resetForm();
+                $("#formDatos")[0].reset();
+                $('#selecmov').find('option').remove();
+                $('#chofer').find('option').remove();
             });
-        } else {
-            console.log("la entrada no puede ser vacia");
-        }
-    };
-
-</script>
+            </script>

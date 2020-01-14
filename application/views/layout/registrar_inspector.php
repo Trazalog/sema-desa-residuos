@@ -1,9 +1,8 @@
-<!-- Hecha por Jose Roberto el mas vergas -->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-<!--//////////////////////////////Box1//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
-        <h3 style="font-weight: lighter;">Registrar Inspector</h3>
+        <h4>Registrar Inspectores</h4>
     </div>
     <div class="box-body">
         <div class="row">
@@ -16,178 +15,564 @@
         </div>
     </div>
 </div>
-<!--_____________________________________________________________--> 
 
 
-<!--//////////////////////////////Box2//////////////////////////////-->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+ <!---//////////////////////////////////////--- BOX 1---///////////////////////////////////////////////////////----->
+
+
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
-    <div class="box-tittle">
-        
-        <!--Boton de cerrar-->
+        <div class="box-tittle">
+            <h5>Informacion</h5>  
+        </div>
         <div class="box-tools pull-right">
-                <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
-                    data-toggle="tooltip" title="" data-original-title="Remove">
-                    <i class="fa fa-times"></i>
-                </button>
-            </div>
-        <!--_____________________________________________-->
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        
     </div>
+
+    <!--_____________________________________________-->
+
     <div class="box-body">
-        <form class="formInspectores" id="formInspectores"  method="POST" autocomplete="off" class="registerForm">
+        <form class="formInspectores" id="formInspectores">
         <div class="col-md-6">
-            <br>
+
+            <!--_____________________________________________-->
             <!--Nombre-->
                 <div class="form-group">
-                    <label for="Nombre"  style="width: 200px; font-weight: lighter;">Nombre:</label>
-                    <input type="text" class="form-control" id="Nombre" name="nombre"  style="width: 200px; font-weight: lighter;">
+                    <label for="Nombre">Nombre:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </div>
+                    <input type="text" class="form-control" id="Nombre" name="nombre">
+                    </div>
                 </div>
             <!--_____________________________________________-->
 
             <!--Apellido-->
                 <div class="form-group">
-                    <label for="Apellido"  style="width: 200px; font-weight: lighter;">Apellido:</label>
-                    <input type="text" class="form-control" id="Apellido" name="apellido"  style="width: 200px; font-weight: lighter;">
+                    <label for="Apellido">Apellido:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </div>
+                    <input type="text" class="form-control" id="Apellido" name="apellido">
+                    </div>
                 </div>
             <!--_____________________________________________-->
-
             <!--Direccion-->
+
+                <div class="form-group">                    
+                    <label for="Direccion">Direccion:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa  fa-map-marker"></i>
+                        </div>                    
+                    <input type="text" class="form-control" id="Direccion" name="descripcion">
+                    </div>
+                </div>
+            <!--_____________________________________________-->
+            <!--Email-->
+
                 <div class="form-group">
-                    <label for="Direccion" style="width: 200px; font-weight: lighter;">Direccion:</label>
-                    <input type="text" class="form-control" id="Direccion" name="descripcion" style="width: 200px; font-weight: lighter;">
+                    <label for="Email">Email:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                        </div> 
+                    <input type="text" class="form-control" id="Email" name="email">
+                    </div>
                 </div>
             <!--_____________________________________________-->
 
-            <!--Email-->
-                <div class="form-group">
-                    <label for="Email" style="width: 200px; font-weight: lighter;">Email:</label>
-                    <input type="text" class="form-control" id="Email" name="email" style="width: 200px; font-weight: lighter;">
-                </div>
-            <!--_____________________________________________-->
+            
 
         </div>
         <div class="col-md-6">
 
             <!--DNI-->
                 <div class="form-group">
-                    <label for="DNI" style="width: 200px; font-weight: lighter;">DNI:</label>
-                    <input type="text" class="form-control" id="DNI" name="dni" style="width: 200px; font-weight: lighter;">
+                    <label for="DNI">DNI:</label>
+                    <input type="text" class="form-control" id="DNI" name="dni">
                 </div>
             <!--_____________________________________________-->
 
             <!--Departamento-->
                 <div class="form-group">
-                    <label for="Departamento" style="width: 200px; font-weight: lighter;">Departamento:</label>
-                    <input type="text" class="form-control" id="Departamento" name="departamento" style="width: 200px; font-weight: lighter;">
+                    <label for="Departamento">Departamento:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa  fa-map-marker"></i>
+                        </div> 
+                    <input type="text" class="form-control" id="Departamento" name="departamento">
+                    </div>
                 </div>
             <!--_____________________________________________-->
 
             <!--Movilidad Asignada-->
                 <div class="form-group">
-                    <label for="MovAsignada" style="width: 200px; font-weight: lighter;">Movilidad Asignada:</label>
-                    <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada" style="width: 200px; font-weight: lighter;">
+                    <label for="MovAsignada">Movilidad Asignada:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-bus"></i>
+                        </div> 
+                    <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada">
+                    </div>
                 </div>
-            <!--_____________________________________________-->
+            
 
-            <!--Boton de guardado-->
-            <br>
-            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-            <!--_____________________________________________-->
+            
+            
+
         </div>
+
+        <!--___________________SEPARADOR__________________________-->
+
+        <div class="col-md-12"><hr> </div>
+
+<!--___________________SEPARADOR__________________________-->
+
+        <!--_____________________________________________-->
+        <!--Boton de guardado-->
+        <div class="col-md-12">
+        <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
         </div>
-        </div>
+        </form>
     </div>
+</div>
 
 
-<!--//////////////////////////////Box3//////////////////////////////-->
-            <!--Datatable Registrar Generadores-->
-            <div class="box box-primary animated fadeInLeft">
-                <div class="box-body table-scroll">
-                    <table id="example2" class="table table-bordered table-hover table-responsive">
+<!---//////////////////////////////////////--- FIN BOX 1---///////////////////////////////////////////////////////----->
 
-                    <!--Cabecera del Datatable-->
-                        <thead>
-                            <tr>
-                                <th id="Nombre" class="Nombre" style="width: 200px; font-weight: lighter;">Nombre</th>
-                                <th id="Apellido" class="Apellido" style="width: 200px; font-weight: lighter;">Apellido</th>
-                                <th id="Direccion" class="Direccion" style="width: 200px; font-weight: lighter;">Direccion</th>
-                                <th id="Email" class="Email" style="width: 200px; font-weight: lighter;">Email</th>
-                                <th id="DNI" class="DNI" style="width: 200px; font-weight: lighter;">DNI</th>
-                                <th id="Departamento" class="Departamento" style="width: 200px; font-weight: lighter;">Departamento</th>
-                                <th id="MovAsignada" class="MovAsignada" style="width: 200px; font-weight: lighter;">Movilidad Asignada</th>
-                            </tr>
+<!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
+
+
+
+
+
+<div class="box box-primary">
+
+    <!--__________________TABLA___________________________-->
+
+
+    <div class="box-body">
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6"></div>
+            </div>
+
+
+
+
+
+            <div class="row">
+                <div class="col-sm-12 table-scroll">
+
+                    <!--__________________HEADER TABLA___________________________-->
+                    <table id="tabla_inspectores" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+
+                            <th>Acciones</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Movilidad Asignada</th>
+
                         </thead>
-                    <!--_____________________________________________-->
 
-                    <!--Cuerpo del Datatable-->
+                        <!--__________________BODY TABLA___________________________-->
+
                         <tbody>
-                            <tr style="width: 200px; font-weight: lighter;">
-                                <td id="Nombre" class="Nombre">Trident</td>
-                                <td id="Apellido" class="Apellido">Internet Explorer 4.0</td>
-                                <td id="Direccion" class="Direccion">Win 95+</td>
-                                <td id="Email" class="Email">4</td>
-                                <td id="DNI" class="DNI">X</td>
-                                <td id="Departamento" class="Departamento">X</td>
-                                <td id="MovAsignada" class="MovAsignada">X</td>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            
+                            </td>
+                            <td>DATO</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                        </tr>
 
-                            </tr>
+                           
                         </tbody>
-                    <!--_____________________________________________-->
-
                     </table>
+
+                    <!--__________________FIN TABLA___________________________-->
+
                 </div>
             </div>
-<!--_____________________________________________________________-->
 
-</form>
+<!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
+
+    
+
+<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Inspector</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                
+
+                    <div class="row">                        
+
+                            <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Nombre-->
+
+                                <div class="form-group">
+                                    <label for="Nombre">Nombre:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="Nombre" name="nombre">
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Descripcion-->
+
+                                <div class="form-group">
+                                    <label for="Apellido">Apellido:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="Apellido" name="apellido">
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Direccion-->
+
+                                <div class="form-group">
+                                    <label for="Direccion">Direccion:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-map-marker"></i>
+                                        </div>                    
+                                    <input type="text" class="form-control" id="Direccion" name="descripcion">
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Telefono-->
+
+                                <div class="form-group">
+                                    <label for="Email">Email:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="Email" name="email">
+                                    </div>
+                                </div>
+
+                                
+
+
+                            </div>
+
+                            <!--**************************************************-->
+                    
+
+                            <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Resolucion-->
+
+                                <div class="form-group">
+                                    <label for="Departamento">Departamento:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-map-marker"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="Departamento" name="departamento">
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Registro-->                
+
+                                <div class="form-group">
+                                     <label for="MovAsignada">Movilidad Asignada:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-bus"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada">
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--DNI--> 
+
+                                <div class="form-group">
+                                    <label for="DNI">DNI:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-credit-card"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="DNI" name="dni">
+                                    </div>                                
+                                </div>
+
+                                
+                                
+                            </div>
+
+                                
+                        </div>
+                    
+
+                    
+                    
+                    
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Informacion Inspector</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                
+
+                    <div class="row">                        
+
+                            <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Nombre-->
+
+                                <div class="form-group">
+                                    <label for="Nombre">Nombre:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="Nombre" name="nombre" readonly>
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Descripcion-->
+
+                                <div class="form-group">
+                                    <label for="Apellido">Apellido:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="Apellido" name="apellido" readonly>
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Direccion-->
+
+                                <div class="form-group">
+                                    <label for="Direccion">Direccion:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-map-marker"></i>
+                                        </div>                    
+                                    <input type="text" class="form-control" id="Direccion" name="descripcion" readonly>
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Telefono-->
+
+                                <div class="form-group">
+                                    <label for="Email">Email:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="Email" name="email" readonly>
+                                    </div>
+                                </div>
+
+                                
+
+
+                            </div>
+
+                            <!--**************************************************-->
+                    
+
+                            <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Resolucion-->
+
+                                <div class="form-group">
+                                    <label for="Departamento">Departamento:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-map-marker"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="Departamento" name="departamento" readonly>
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Registro-->                
+
+                                <div class="form-group">
+                                     <label for="MovAsignada">Movilidad Asignada:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-bus"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada" readonly>
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--DNI--> 
+
+                                <div class="form-group">
+                                    <label for="DNI">DNI:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-credit-card"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="DNI" name="dni" readonly>
+                                    </div>                                
+                                </div>
+
+                                
+                                
+                            </div>
+
+                                
+                        </div>
+                    
+
+                    
+                    
+                    
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- script que muestra box de datos al dar click en boton agregar -->
-<script>
-    $("#botonAgregar").on("click", function() {
-        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-        $("#nro").val(aleatorio);
 
-        $("#botonAgregar").attr("disabled", "");
-        //$("#boxDatos").removeAttr("hidden");
-        $("#boxDatos").focus();
-        $("#boxDatos").show();
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-    });
-</script>
+
+
+<!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
+
+<!--_____________________________________________________________-->
+<!-- script modal -->
 
 <script>
-        $("#btnclose").on("click", function() {
-        $("#boxDatos").hide(500);
-        $("#botonAgregar").removeAttr("disabled");
-        $('#formDatos').data('bootstrapValidator').resetForm();
-        $("#formDatos")[0].reset();
-        $('#selecmov').find('option').remove();
-        $('#chofer').find('option').remove();
-        });
+$("#btnview").on("click", function() {
+    $("#btnadd").removeClass("active");
+    $("#btnview").addClass("active");
+    $("#tablamodal").show();
+    $("#formadd").hide();
+    $("#btnsave").hide();
+});
+
+$("#btnadd").on("click", function() {
+    $("#btnadd").addClass("active");
+    $("#btnview").removeClass("active");
+    $("#formadd").show();
+    $("#tablamodal").hide();
+    $("#btnsave").show();
+});
 </script>
 
-<!-- Script Data-Tables-->
-<!-- script que muestra box de datos al dar click en boton agregar -->
-<script>
-    $("#botonAgregar").on("click", function() {
-        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-        $("#nro").val(aleatorio);
 
-        $("#botonAgregar").attr("disabled", "");
-        //$("#boxDatos").removeAttr("hidden");
-        $("#boxDatos").focus();
-        $("#boxDatos").show();
 
-    });
-</script>
-​<!--_____________________________________________________________-->
-
+<!--_____________________________________________________________-->
 <!-- Script Agregar datos de registrar_inspector-->
+
 <script>
 function agregarDato(){
     console.log("entro a agregar datos");
@@ -224,7 +609,9 @@ function agregarDato(){
 }
 </script>
 
-    <!--Script Bootstrap Validacion.-->
+<!--_____________________________________________________________-->
+<!--Script Bootstrap Validacion.-->
+
 <script>
       $('#formInspectores').bootstrapValidator({
       message: 'This value is not valid',
@@ -313,6 +700,55 @@ function agregarDato(){
         }
   }).on('success.form.bv', function(e){
       e.preventDefault();
-      //guardar();
+      guardar();
   });
 </script>
+
+
+
+
+
+<!--_____________________________________________________________-->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+            
+
+<script>
+$("#botonAgregar").on("click", function() {
+    //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+    var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+    $("#nro").val(aleatorio);
+
+    $("#botonAgregar").attr("disabled", "");
+    //$("#boxDatos").removeAttr("hidden");
+    $("#boxDatos").focus();
+    $("#boxDatos").show();
+
+});
+</script>
+
+<script>
+$("#btnclose").on("click", function() {
+    $("#boxDatos").hide(500);
+    $("#botonAgregar").removeAttr("disabled");
+    $('#formDatos').data('bootstrapValidator').resetForm();
+    $("#formDatos")[0].reset();
+    $('#selecmov').find('option').remove();
+    $('#chofer').find('option').remove();
+});
+</script>
+
+
+
+ <!--_____________________________________________________________-->
+<!-- script Datatables -->
+
+
+<script>
+    
+    DataTable($('#tabla_inspectores'))
+
+</script>
+
+
+
+            
