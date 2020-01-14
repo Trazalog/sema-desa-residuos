@@ -16,11 +16,7 @@
     </div>
 </div>
 
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
-
-
-
 
 <!---//////////////////////////////////////---BOX 1---///////////////////////////////////////////////////////----->
 
@@ -35,7 +31,6 @@
                 <i class="fa fa-times"></i>
             </button>
         </div>
-
     </div>
 
     <!--_____________________________________________-->
@@ -49,9 +44,7 @@
                         <label for="Nombre" >Nombre:</label>
                         <input type="text" name="Nombre" class="form-control" id="Nombre">
                     </div>
-
                     <!--_____________________________________________-->
-
                     <div class="form-group">
                         <label for="Dpto" >Departamento:</label>
                         <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
@@ -63,13 +56,9 @@
                         ?>
                         </select>
                     </div>
-
                 </div>
-
                 <div class="col-md-6">
-
                     <!--_____________________________________________-->
-
                     <div class="form-group">
                         <label for="CircR" >Circuito / Recorrido:</label>
                         <select class="form-control select2 select2-hidden-accesible" name="Circuito_Recorrido" id="CircR">
@@ -81,118 +70,79 @@
                         ?>
                         </select>
                     </div>
-
                     <!--_____________________________________________-->
-
                     <div class="form-group">
                         <label for="Descripcion" >Descripcion:</label>
                         <input type="text" name="Descripcion" class="form-control" id="Descripcion">
                     </div>
-                </div>
-
-                <!--_____________________________________________-->
-                <div class="col-md-12">
+                    </div>
+                    <!--_____________________________________________-->
+                    <div class="col-md-12">
                     <hr>
-                </div>
-                <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
 
-                    <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                        <input type="file" name="upload">
-                    </form>
+                        <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+                            <input type="file" name="upload">
+                        </form>
+                    </div>
+                    <!--_____________________________________________-->
                 </div>
-                <!--_____________________________________________-->
+
+                <div class="col-md-12"><hr></div>
+                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             </div>
+            <!--_____________________________________________-->
 
-
-
-
-            <div class="col-md-12"><hr></div>
-
-
-            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-
-
+            </div>
+        </form>
     </div>
-
-    <!--_____________________________________________-->
 </div>
-</form>
-</div>
-</div>
-
-
 
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
-
-
-
-
-
 <div class="box box-primary">
-
     <!--__________________TABLA___________________________-->
-
-
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6"></div>
             </div>
-
-
-
-
-
             <div class="row">
                 <div class="col-sm-12 table-scroll">
-
                     <!--__________________HEADER TABLA___________________________-->
                     <table id="tabla_zonas" class="table table-bordered table-striped">
                         <thead class="thead-dark" bgcolor="#eeeeee">
-
                             <th>Acciones</th>
                             <th>Nombre</th>
                             <th>Departamento</th>
                             <th>Circuito</th>
                             <th>Descripcion</th>
-                            
-
                         </thead>
-
                         <!--__________________BODY TABLA___________________________-->
-
                         <tbody>
                         <tr>
                             <td>
                             <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                             <!-- <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp -->
                             <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                            
                             </td>
                             <td>DATO</td>
                             <td> DATO</td>
                             <td>DATO</td>
                             <td>DATO</td>
                         </tr>
-                        
-                           
                         </tbody>
                     </table>
-
                     <!--__________________FIN TABLA___________________________-->
-
                 </div>
             </div>
-
 <!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
 
+<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
- <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
-    
  <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -203,32 +153,22 @@
                 <h5 class="modal-title" id="exampleModalLabel">Editar Zona</h5>
             </div>
 
-
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="" class="registerForm">
-
-
                 <div class="modal-body">
-
-                
-
-                    <div class="row"> 
-
-                        <div class="col-md-12 "> 
-
-                                               
-
+                    <div class="row">
+                        <div class="col-md-12"> 
                             <div class="col-md-6 col-sm-6">
 
                                 <!--_____________________________________________-->
                                 <!--Nombre-->
 
                                 <div class="form-group">
-                                 <label for="Nombre" name="">Nombre:</label>
-                                 <input type="text" class="form-control" id="">
+                                    <label for="Nombre" name="">Nombre:</label>
+                                    <input type="text" class="form-control" id="">
                                 </div>
 
                                 <!--_____________________________________________-->
@@ -236,16 +176,11 @@
 
                                 <div class="form-group">
                                     <label for="Descripcion" name="">Descripcion:</label>
-                                     <input type="text" class="form-control" id="">
+                                    <input type="text" class="form-control" id="">
                                 </div>
-
                             </div>
 
-                            
-
                             <!--**************************************************-->
-                            
-                            
 
                             <div class="col-md-6 col-sm-6">
 
@@ -278,26 +213,10 @@
                                     ?>
                                     </select>
                                 </div>
-
                             </div>
-
-                            
-
-
-
-
                         </div>
-                                
                     </div>
-                    
-
-                    
-                    
-                    
-                    
-                    
                 </div>
-                
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
@@ -313,206 +232,167 @@
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
-
-
-
-
-
-
 
             <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 
+<!--_____________________________________________-->
 
-            <!--_____________________________________________________________-->
-            <!-- script modal -->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
 
-            <script>
-            $("#btnview").on("click", function() {
-                $("#btnadd").removeClass("active");
-                $("#btnview").addClass("active");
-                $("#tablamodal").show();
-                $("#formadd").hide();
-                $("#btnsave").hide();
-            });
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
 
-            $("#btnadd").on("click", function() {
-                $("#btnadd").addClass("active");
-                $("#btnview").removeClass("active");
-                $("#formadd").show();
-                $("#tablamodal").hide();
-                $("#btnsave").show();
-            });
-            </script>
+    });
+</script>
 
+<script>
+        $("#btnclose").on("click", function() {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+        });
+</script>
+<!--_____________________________________________-->
 
-            <!--_____________________________________________________________-->
-            <!-- Script Agregar datos de registrar_zona-->
+<!-- Script Data-Tables-->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
 
-            <script>
-            function agregarDato() {
-                console.log("entro a agregar datos");
-                $('#formZonas').on('submit', function(e) {
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
 
-                    e.preventDefault();
-                    var me = $(this);
-                    if (me.data('requestRunning')) {
-                        return;
+    });
+</script>
+​<!--_____________________________________________-->
+
+<!-- Script Agregar datos de registrar_zona-->
+<script>
+function agregarDato(){
+    console.log("entro a agregar datos");
+    $('#formZonas').on('submit', function(e){
+    e.preventDefault();
+    var me = $(this);
+    if ( me.data('requestRunning') ) {return;}
+    me.data('requestRunning', true);
+    datos=$('#formZonas').serialize();
+    console.log(datos);
+
+        //--------------------------------------------------------------
+
+    $.ajax({
+                type:"POST",
+                data:datos,
+                url:"ajax/Registrarzona/guardarDato",
+                success:function(r){
+                    if(r == "ok"){
+                        //console.log(datos);
+                        $('#formZonas')[0].reset();
+                        alertify.success("Agregado con exito");
                     }
-                    me.data('requestRunning', true);
-
-                    datos = $('#formZonas').serialize();
-                    console.log(datos);
-                    //--------------------------------------------------------------
-
-
-                    $.ajax({
-                        type: "POST",
-                        data: datos,
-                        url: "ajax/Registrarzona/guardarDato",
-                        success: function(r) {
-                            if (r == "ok") {
-                                //console.log(datos);
-                                $('#formZonas')[0].reset();
-                                alertify.success("Agregado con exito");
-                            } else {
-                                console.log(r);
-                                $('#formZonas')[0].reset();
-                                alertify.error("error al agregar");
-                            }
-                        },
-                        complete: function() {
-                            me.data('requestRunning', false);
-                        }
-                    });
-
-                });
-
-            }
-            </script>
-
-            <!--_____________________________________________________________-->
-            <!-- Script Boostrap Validator-->
-
-            <script>
-            $('#formZonas').bootstrapValidator({
-                message: 'This value is not valid',
-                /*feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },*/
-                fields: {
-                    Nombre: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-                    Departamento: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-                    CircR: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
-                    },
-                    Descripcion: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
+                    else{
+                        console.log(r);
+                        $('#formZonas')[0].reset();
+                        alertify.error("error al agregar");
                     }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
                 }
-            }).on('success.form.bv', function(e) {
-                e.preventDefault();
-                guardar();
             });
-            </script>
+    });
+}
+</script>
+<!--_____________________________________________-->
 
-            <!--_____________________________________________________________-->
-            <!-- script que muestra box de datos al dar click en boton agregar -->
+<!--Script Bootstrap Validacion.-->
+<script>
+  $('#formZonas').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      //excluded: ':disabled',
+      fields: {
+          Nombre: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+          Departamento: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+          Circuito_Recorrido: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'   
+                  }
+              }
+          },
+          Descripcion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+              }
+          }
+      }
+  }).on('success.form.bv', function (e) {
+      e.preventDefault();
+      //guardar();
+  });
+</script>
+<!--_____________________________________________-->
 
+<!--Script validador de campo de imagenes-->
+<script>
+var value = $("#imgarch").val();
+if (value == "1") {
+    document.getElementById('imgarch').setAttribute("data-required","true");
+}
+else {
+    document.getElementById('imgarch').setAttribute("data-required","false");
+}
+</script>
+<!--_____________________________________________-->
 
-            <script>
-            $("#botonAgregar").on("click", function() {
-                //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-                var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-                $("#nro").val(aleatorio);
-
-                $("#botonAgregar").attr("disabled", "");
-                //$("#boxDatos").removeAttr("hidden");
-                $("#boxDatos").focus();
-                $("#boxDatos").show();
-
-            });
-            </script>
-
-            <!--_____________________________________________________________-->
-            <!-- script cerrar box -->
-
-            <script>
-            $("#btnclose").on("click", function() {
-                $("#boxDatos").hide(500);
-                $("#botonAgregar").removeAttr("disabled");
-                $('#formDatos').data('bootstrapValidator').resetForm();
-                $("#formDatos")[0].reset();
-                $('#selecmov').find('option').remove();
-                $('#chofer').find('option').remove();
-            });
-            </script>
-
-            <!--_____________________________________________________________-->
-            <!-- script Datatables -->
-
-            <!-- <script>
-            $(function() {
-
-                $('#example2').DataTable({
-                    'paging': true,
-                    'lengthChange': true,
-                    'searching': true,
-                    'ordering': true,
-                    'info': true,
-                    'autoWidth': true,
-                    'autoFill': true,
-                    'buttons': true,
-                    'fixedHeader': true,
-                    'colReorder': true,
-                    'scroller': true,
-                    'keytable': true,
-                    
-                })
-            })
-
-
-
-            
-            </script> -->
-
-            <script>
-            DataTable($('#tabla_zonas'))
-            </script>
-            </body>
+<script>
+DataTable($('#tabla_zonas'))
+</script>
+</body>
