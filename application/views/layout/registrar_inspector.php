@@ -42,33 +42,56 @@
         <form class="formInspectores" id="formInspectores">
         <div class="col-md-6">
 
+            <!--_____________________________________________-->
             <!--Nombre-->
                 <div class="form-group">
                     <label for="Nombre">Nombre:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </div>
                     <input type="text" class="form-control" id="Nombre" name="nombre">
+                    </div>
                 </div>
             <!--_____________________________________________-->
 
             <!--Apellido-->
                 <div class="form-group">
                     <label for="Apellido">Apellido:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </div>
                     <input type="text" class="form-control" id="Apellido" name="apellido">
+                    </div>
                 </div>
             <!--_____________________________________________-->
-
             <!--Direccion-->
-                <div class="form-group">
+
+                <div class="form-group">                    
                     <label for="Direccion">Direccion:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa  fa-map-marker"></i>
+                        </div>                    
                     <input type="text" class="form-control" id="Direccion" name="descripcion">
+                    </div>
                 </div>
             <!--_____________________________________________-->
-
             <!--Email-->
+
                 <div class="form-group">
                     <label for="Email">Email:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                        </div> 
                     <input type="text" class="form-control" id="Email" name="email">
+                    </div>
                 </div>
             <!--_____________________________________________-->
+
+            
 
         </div>
         <div class="col-md-6">
@@ -83,14 +106,24 @@
             <!--Departamento-->
                 <div class="form-group">
                     <label for="Departamento">Departamento:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa  fa-map-marker"></i>
+                        </div> 
                     <input type="text" class="form-control" id="Departamento" name="departamento">
+                    </div>
                 </div>
             <!--_____________________________________________-->
 
             <!--Movilidad Asignada-->
                 <div class="form-group">
                     <label for="MovAsignada">Movilidad Asignada:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-bus"></i>
+                        </div> 
                     <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada">
+                    </div>
                 </div>
             
 
@@ -117,17 +150,16 @@
 
 <!---//////////////////////////////////////--- FIN BOX 1---///////////////////////////////////////////////////////----->
 
-<!---//////////////////////////////////////---BOX 2---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
+
 
 
 
 
 <div class="box box-primary">
 
-
-
-
     <!--__________________TABLA___________________________-->
+
 
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -135,80 +167,50 @@
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6"></div>
             </div>
+
+
+
+
+
             <div class="row">
                 <div class="col-sm-12 table-scroll">
 
-                <!--__________________HEADER TABLA___________________________-->
+                    <!--__________________HEADER TABLA___________________________-->
+                    <table id="tabla_inspectores" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
 
-                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Acciones</th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Nombre
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending">
-                                    Apellido</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Departamento
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Movilidad asignada
-                                </th>                               
-                            </tr>
+                            <th>Acciones</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Movilidad Asignada</th>
+
                         </thead>
 
                         <!--__________________BODY TABLA___________________________-->
 
-                        <tbody id="tabadd">
-                            <tr role="row" class="even" id="primero" hidden>
-                                <td class="sorting_1">
-                                <button type="button" title="editar"  class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>                         
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            
+                            </td>
+                            <td>DATO</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                        </tr>
 
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Inspector 1</td>
-                                <td>Inspector 1</td>
-                                <td>Rivadavia</td>
-                                <td>Movil 1</td>
-
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Inspector 2</td>
-                                <td>Inspector 2</td>
-                                <td>Santa Lucia</td>
-                                <td>Movil 2</td>
-
-                            </tr>
+                           
                         </tbody>
                     </table>
+
+                    <!--__________________FIN TABLA___________________________-->
+
                 </div>
-            </div><br>
+            </div>
 
-        </div>
-    </div>
-
-    <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
 
     
 
@@ -237,51 +239,124 @@
 
                 
 
-                    <div class="row">
+                    <div class="row">                        
 
-                <!--_____________________________________________-->
-                <!--Nombre-->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="nro" class="form-label label-sm">Nombre:</label>
-                                <input type="text" id="" name="" class="form-control input-sm" required>
+                            <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Nombre-->
+
+                                <div class="form-group">
+                                    <label for="Nombre">Nombre:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="Nombre" name="nombre">
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Descripcion-->
+
+                                <div class="form-group">
+                                    <label for="Apellido">Apellido:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="Apellido" name="apellido">
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Direccion-->
+
+                                <div class="form-group">
+                                    <label for="Direccion">Direccion:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-map-marker"></i>
+                                        </div>                    
+                                    <input type="text" class="form-control" id="Direccion" name="descripcion">
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Telefono-->
+
+                                <div class="form-group">
+                                    <label for="Email">Email:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="Email" name="email">
+                                    </div>
+                                </div>
+
+                                
+
+
                             </div>
-                        </div> 
 
-                <!--_____________________________________________-->
-                <!--Apellido-->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="nro" class="form-label label-sm">Apellido</label>
-                                <input type="text" id="" name="" class="form-control input-sm" required>
+                            <!--**************************************************-->
+                    
+
+                            <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Resolucion-->
+
+                                <div class="form-group">
+                                    <label for="Departamento">Departamento:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-map-marker"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="Departamento" name="departamento">
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Registro-->                
+
+                                <div class="form-group">
+                                     <label for="MovAsignada">Movilidad Asignada:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-bus"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada">
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--DNI--> 
+
+                                <div class="form-group">
+                                    <label for="DNI">DNI:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-credit-card"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="DNI" name="dni">
+                                    </div>                                
+                                </div>
+
+                                
+                                
                             </div>
-                        </div>                       
-                    </div>
 
-                <!--_____________________________________________-->
-                <!--Departamento-->
-
-                <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="" name="Depto">Departamento:</label>
-                            <input type="text" id="" name="" class="form-control input-sm" required>
+                                
                         </div>
-               
-                            
-                 </div>
+                    
 
-                <!--_____________________________________________-->
-                <!--Movilidad asignada-->
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Dpto" name="Departamento">Movilidad asignada:</label>
-                                <input type="text" id="" required name="" class="form-control input-sm">
-                            </div>           
-                            
-                        </div>
-                 </div> 
+                    
+                    
+                    
+                    
+                    
                 </div>
                 
             </form>
@@ -302,6 +377,173 @@
 
 
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Informacion Inspector</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                
+
+                    <div class="row">                        
+
+                            <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Nombre-->
+
+                                <div class="form-group">
+                                    <label for="Nombre">Nombre:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="Nombre" name="nombre" readonly>
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Descripcion-->
+
+                                <div class="form-group">
+                                    <label for="Apellido">Apellido:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="Apellido" name="apellido" readonly>
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Direccion-->
+
+                                <div class="form-group">
+                                    <label for="Direccion">Direccion:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-map-marker"></i>
+                                        </div>                    
+                                    <input type="text" class="form-control" id="Direccion" name="descripcion" readonly>
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Telefono-->
+
+                                <div class="form-group">
+                                    <label for="Email">Email:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="Email" name="email" readonly>
+                                    </div>
+                                </div>
+
+                                
+
+
+                            </div>
+
+                            <!--**************************************************-->
+                    
+
+                            <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Resolucion-->
+
+                                <div class="form-group">
+                                    <label for="Departamento">Departamento:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-map-marker"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="Departamento" name="departamento" readonly>
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Registro-->                
+
+                                <div class="form-group">
+                                     <label for="MovAsignada">Movilidad Asignada:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-bus"></i>
+                                        </div> 
+                                    <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada" readonly>
+                                    </div>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--DNI--> 
+
+                                <div class="form-group">
+                                    <label for="DNI">DNI:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-credit-card"></i>
+                                        </div>
+                                    <input type="text" class="form-control" id="DNI" name="dni" readonly>
+                                    </div>                                
+                                </div>
+
+                                
+                                
+                            </div>
+
+                                
+                        </div>
+                    
+
+                    
+                    
+                    
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+
 
 <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
@@ -328,8 +570,9 @@ $("#btnadd").on("click", function() {
 
 
 
-
+<!--_____________________________________________________________-->
 <!-- Script Agregar datos de registrar_inspector-->
+
 <script>
 function agregarDato(){
     console.log("entro a agregar datos");
@@ -496,26 +739,16 @@ $("#btnclose").on("click", function() {
 
 
 
-  <!--_____________________________________________________________-->
- <!-- script Datatables -->
+ <!--_____________________________________________________________-->
+<!-- script Datatables -->
 
- <script>
-            $(function() {
-                
-                $('#example2').DataTable({
-                    'paging': true,
-                    'lengthChange': true,
-                    'searching': true,
-                    'ordering': true,
-                    'info': true,
-                    'autoWidth': true,
-                    'autoFill': true,
-                    'buttons': true,
-                    'fixedHeader': true,
-                    'colReorder': true,
-                    'scroller': true,
-                    'keytable': true
-                })
-            })
-            </script>
+
+<script>
+    
+    DataTable($('#tabla_inspectores'))
+
+</script>
+
+
+
             

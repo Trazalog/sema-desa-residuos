@@ -1639,14 +1639,14 @@ $('#example1').DataTable({
 
 <!-- Script Data-Tables-->
 
-<script>
+<!-- <script>
 a=jQuery.noConflict();
 a(document).ready(function(){
 a("button").click(function(){
 a("p").text("jQuery continua funcionando!");
 });
 });
-</script>
+</script> -->
 
 <!---//////////////////////////////////////---DATA TABLES SCRIPT---///////////////////////////////////////////////////////----->
 

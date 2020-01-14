@@ -1,11 +1,48 @@
-<!-- Hecha por Fer Guardia-->
-<!--  Box 1-->
+
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
-        <div class="box-tittle">
-            <h4>Orden de Transporte</h4>
+        <h4>Orden de Transporte</h4>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-2 col-lg-1 col-xs-12">
+                <button type="button" id="botonAgregar" class="btn btn-primary" aria-label="Left Align">
+                    Agregar
+                </button><br>
+            </div>
+            <div class="col-md-10 col-lg-11 col-xs-12"></div>
         </div>
     </div>
+</div>
+
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+
+
+
+ <!---//////////////////////////////////////--- BOX 1---///////////////////////////////////////////////////////----->
+
+
+<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
+    <div class="box-header with-border">
+        <div class="box-tittle">
+            <h5>Informacion</h5>  
+        </div>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        
+    </div>
+
+     <!--_____________________________________________-->
+
     <div class="box-body">
         <br>
         <div class="row">
@@ -37,9 +74,11 @@
                 </div>
             </div>
         </div>
+
         <br>
         <hr>
         <br>
+
         <form autocomplete="off" id="formDatos" method="POST">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
@@ -94,33 +133,97 @@
         </form>
 
         <!--SPARADOR-->
-        <br>
+       
         <hr>
 
         <!--SPARADOR-->
 
         
         
+<!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
+
+
+
+
+ <div class="row">
+                <div class="col-sm-12 table-scroll">
+
+        <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+            <thead>
+                <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"                                            colspan="1" aria-sort="ascending"
+                        aria-label="Rendering engine: activate to sort column descending">Tipo de residuo</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                        colspan="1" aria-label="Browser: activate to sort column ascending">Contenedor</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                        colspan="1" aria-label="Platform(s): activate to sort column ascending">% de llenado</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                        colspan="1" aria-label="Engine version: activate to sort column ascending"> Metros cubicos</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr role="row" class="even" id="primero">
+                    <td>residuo radioactivo</td>
+                    <td>3</td>
+                    <td>23</td>
+                    <td>1.215</td>
+                </tr>
+                <tr role="row" class="even" id="primero">
+                    <td>residuo radioactivo</td>
+                    <td>3</td>
+                    <td>23</td>
+                    <td>1.215</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--__________________SEPARADOR__________________-->
+
+        <div class="col-md-12"><br></div>
+
+        <div class="col-md-12"><hr></div>
+
+        <!--_____________________________________________-->
+        <!--Boton de guardado-->
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary pull-right" onclick="Agregar_Contenedor()">Guardar</button>
+        </div>
+
+        <div class="col-md-12"><br><br></div>
+    </div>
+  
+</div>
+
+
+                  
+<!---//////////////////////////////////////--- FIN TABLA ---///////////////////////////////////////////////////////----->
+
+
+        
 <!---//////////////////////////////////////--- BOX ACORDION ---///////////////////////////////////////////////////////----->
 
 
 
-<div class="accordion" id="">
-
-    
+<div class="accordion" id="">   
 
 
 
         <!--_______________header ACORDION 1_______________-->
 
+       
+
         <div class="card z-depth-0 bordered">
 
-        <div class="card-header  bg-blue" id="headingOne2" data-toggle="collapse" data-target="#collapseOne2" >
-        <h5 class="mb-0">
-            <button class="btn  collapsed box-header bg-blue" type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">
-            <h5>Generadoresewgasgs</h5>
-            </button>
-        </h5>
+        <div class="card-header  " id="headingOne2" data-toggle="collapse" data-target="#collapseOne2" >
+            <div class="box box-primary animated fadeInLeft">
+                <div class="box-header with-border">
+                    <h4>Generadores</h4>
+                </div>
+            </div>
+        
+            
+       
         </div>
 
         <!--_______________BODY ACORDION 1_______________-->
@@ -129,7 +232,8 @@
         
             <div class="card-body">
 
-                    <div class="col-md-12">
+                    <div class="row">
+                    <div class="col-md-12 ">
 
                         <div class="col-md-6 ">
                             <div class="form-group">
@@ -153,24 +257,33 @@
                                 <input type="text" name="circuito" id="circuito" readonly class="form-control">
                             </div>
                         </div>
-
                     </div>
+                    <div class="col-md-12"><br></div>
+                    </div>
+                    
             </div>
+
+            
+            
 
         </div>
 
 
 
+
     <!--_______________header ACORDION 2_______________-->
+
+   
 
         <div class="card z-depth-0 bordered">
 
             <div class="card-header  bg-blue" id="headingTwo2" data-toggle="collapse" data-target="#collapseTwo2">
-            <h5 class="mb-0">
-                <button class="btn  collapsed box-header bg-blue" type="button" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
-                <h5>Transportistas</h5>
-                </button>
-            </h5>
+            <div class="box box-primary animated fadeInLeft">
+                <div class="box-header with-border">
+                    <h4>Transportistas</h4>
+                </div>
+            </div>
+           
             </div>
 
 
@@ -230,30 +343,40 @@
         </div>
 
     
-<div class="col-md-12">
+    <div class="col-md-16">
 
-    <div class="col-md-6">            
+    <div class="col-md-3">            
         <div class="form-group">
             <label for="fecha" class="form-label">Fecha de retiro:</label>
+            <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
             <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
+            </div>
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-3 ">
         <div class="form-group">
             <label for="hora" class="form-label">Hora:</label>
+            <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-clock-o"></i>
+                        </div>
             <input type="number" id="hora" value="1" class="form-control" min="1">
+            </div>
         </div>
     </div>
 </div>
 
-<br>
+<div class="col-md-12"><hr></div>
 
 <div class="col-md-12">
     <div class="form-group">
         <button type="submit" class="btn btn-primary pull-right" aria-label="Left Align">
             Guardar
-        </button><br>
+        </button>
     </div>
 </div>
 </div>
@@ -264,7 +387,7 @@
 
 </div>  
 
-<div class="col-md-12"><hr><br></div>
+
 
         
 <!---//////////////////////////////////////--- FIN BOX ACORDION ---///////////////////////////////////////////////////////----->
@@ -281,56 +404,6 @@
 
 
 
-        <!-- *************** BOX REGISTRAR FORMULARIO *************** -->
-
-        <div class="row">
-            <em class="fas fa-ad"></em>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-
-                    <div class="row">
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-6"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 table-scroll">
-                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
-                                aria-describedby="example2_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Rendering engine: activate to sort column descending">Tipo de
-                                            residuo</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">
-                                            Contenedor</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Platform(s): activate to sort column ascending">% de
-                                            llenado</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Engine version: activate to sort column ascending">
-                                            Metros cubicos</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr role="row" class="even" id="primero">
-                                        <td>residuo radioactivo</td>
-                                        <td>3</td>
-                                        <td>23</td>
-                                        <td>1.5</td>
-                                    </tr>
-                                </tbody>
-                            </table><br>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
 
 
@@ -546,7 +619,9 @@ $("#selecmov").on('change', function() {
 
 });
 </script>
+
 <!-- script bootstrap validator -->
+
 <script>
 $('#formDatos').bootstrapValidator({
     message: 'This value is not valid',
@@ -626,7 +701,9 @@ $('#formDatos').bootstrapValidator({
     guardar();
 });
 </script>
+
 <!-- Script Agregar datos -->
+
 <script>
 function guardar() {
 
@@ -672,7 +749,10 @@ function guardar() {
     }
 }
 </script>
+
+
 <!-- Script Agregar Residuo -->
+
 <script>
 function agregarResiduo() {
 
@@ -707,23 +787,58 @@ function agregarResiduo() {
 }
 </script>
 
+
+<!--_____________________________________________________________-->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+            
+
 <script>
-$(function() {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-        'paging': true,
-        'lengthChange': true,
-        'searching': true,
-        'ordering': true,
-        'info': true,
-        'autoWidth': true,
-        'autoFill': true,
-        'buttons': true,
-        'fixedHeader': true,
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
-        ]
-    })
-})
+$("#botonAgregar").on("click", function() {
+    //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+    var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+    $("#nro").val(aleatorio);
+
+    $("#botonAgregar").attr("disabled", "");
+    //$("#boxDatos").removeAttr("hidden");
+    $("#boxDatos").focus();
+    $("#boxDatos").show();
+
+});
 </script>
+
+<script>
+$("#btnclose").on("click", function() {
+    $("#boxDatos").hide(500);
+    $("#botonAgregar").removeAttr("disabled");
+    $('#formDatos').data('bootstrapValidator').resetForm();
+    $("#formDatos")[0].reset();
+    $('#selecmov').find('option').remove();
+    $('#chofer').find('option').remove();
+});
+</script>
+
+
+<!--_____________________________________________________________-->
+<!-- script datatables -->
+            
+<script>
+            $(function() {
+                
+                $('#example2').DataTable({
+                    'paging': true,
+                    'lengthChange': true,
+                    'searching': true,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': true,
+                    'autoFill': true,
+                    'buttons': true,
+                    'fixedHeader': true,
+                    'colReorder': true,
+                    'scroller': true,
+                    'keytable': true
+                })
+            })
+            </script>
+
+

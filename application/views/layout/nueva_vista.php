@@ -1,64 +1,120 @@
-<!-- Hecha por Fer Guardia-->
-<!--  Box 1-->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
 <div class="box box-primary animated fadeInLeft">
-<div class="box-header with-border">
-        <h3>Establecimiento</h3>
+    <div class="box-header with-border">
+        <h4>ABM Establecimiento</h4>
     </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-2 col-lg-1 col-xs-12">
+                <button type="button" id="botonAgregar" class="btn btn-primary" aria-label="Left Align">
+                    Agregar
+                </button><br>
+            </div>
+            <div class="col-md-10 col-lg-11 col-xs-12"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+<!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
+
+
+<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
+    <div class="box-header with-border">
+        <div class="box-tittle">
+        <h5>Informacion</h5>
+        </div>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+    </div>
+
+<!--_________________________________________________-->
+
     <div class="box-body">
         <br>
         <div class="row">
-            <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                    <label for="establecimiento" class="form-label">Establecimiento:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="establecimiento"
-                        name="establecimiento" required>
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
-                                            foreach ($tipoResiduo as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
-                                            }
-                                    ?>
-                    </select>
+        <div class="col-md-12">    
+
+        <!--_____________________________________________-->
+                <!--Disposicion final-->
+
+           
+
+                
+
+        
+                <div class="col-md-6 ">
+                    <div class="form-group">
+                        <label for="establecimiento" class="form-label">Establecimiento:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="establecimiento"
+                            name="establecimiento" required>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
+                                                foreach ($tipoResiduo as $i) {
+                                                    echo '<option>'.$i->nombre.'</option>';
+                                                }
+                                        ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="deposito" class="form-label">Deposito:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="deposito" name="deposito"
+                            required>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
+                                                foreach ($tipoResiduo as $i) {
+                                                    echo '<option>'.$i->nombre.'</option>';
+                                                }
+                                        ?>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="deposito" class="form-label">Deposito:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="deposito" name="deposito"
-                        required>
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
-                                            foreach ($tipoResiduo as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
-                                            }
-                                    ?>
-                    </select>
+
+                <div class="col-md-6">
+
+                    <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="addEstablecimiento" style="visibility:hidden;">Agregar:</label>
+                        <button type="button" class="btn btn-primary form-control" data-toggle="modal"
+                            data-target="#modalEstablecimiento" id="addEstablecimiento"><span>Agregar
+                            </span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <label for="addDeposito" style="visibility:hidden;">Agregar:</label>
+                        <button type="button" id="addDeposito" class="btn btn-primary form-control" data-toggle="modal"
+                            data-target="#modalDeposito"><span>Agregar
+                            </span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-2 col-xs-12">
-                <div class="form-group">
-                    <label for="addEstablecimiento" style="visibility:hidden;">Agregar:</label>
-                    <button type="button" class="btn btn-primary form-control" data-toggle="modal"
-                        data-target="#modalEstablecimiento" id="addEstablecimiento"><span>Agregar
-                        </span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                </div>
-                <div class="form-group">
-                    <label for="addDeposito" style="visibility:hidden;">Agregar:</label>
-                    <button type="button" id="addDeposito" class="btn btn-primary form-control" data-toggle="modal"
-                        data-target="#modalDeposito"><span>Agregar
-                        </span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                </div>
-            </div>
         </div>
 
         <br>
         <hr>
 
 
+<div class="col-md-12">
         <form autocomplete="off" id="formDatos" method="POST">
             <div class="row">
+
+            <div class="col-md-12">
                 <div class="box-header with-border">
-                    <h3>Recipientes:</h3>
+                    <h4>Recipientes:</h4>
                 </div>
-                <br>
+                </div>
+
+                <div class="col-md-12"><br></div>
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label for="tipores" class="form-label">Tipo:</label>
@@ -93,19 +149,15 @@
                 </div>
             </div>
         </form>
-        <div class="row">
-            <em class="fas fa-ad"></em>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                    <div class="row">
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-6"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 table-scroll">
+
+</div>
+
+                
+        
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    
                             <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
                                 aria-describedby="example2_info">
                                 <thead>
@@ -122,6 +174,7 @@
                                             Nombre</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
 
                                     <tr role="row" class="even" id="primero">
@@ -132,41 +185,12 @@
 
                                 </tbody>
 
-                            </table><br>
+                            </table>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1
-                                to 10 of 57 entries</div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button previous disabled" id="example2_previous"><a href="#"
-                                            aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a></li>
-                                    <li class="paginate_button active"><a href="#" aria-controls="example2"
-                                            data-dt-idx="1" tabindex="0">1</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="2"
-                                            tabindex="0">2</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3"
-                                            tabindex="0">3</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="4"
-                                            tabindex="0">4</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="5"
-                                            tabindex="0">5</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="6"
-                                            tabindex="0">6</a></li>
-                                    <li class="paginate_button next" id="example2_next"><a href="#"
-                                            aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-        </div>
+                </div>
+      
         <br>
         <div class="modal-footer">
             <div class="form-group text-right">
@@ -609,3 +633,54 @@
         agregarDato();
     });
 </script>
+
+<!--_____________________________________________________________-->
+    <!-- script que muestra box de datos al dar click en boton agregar -->
+
+    <script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+
+    });
+    </script>
+
+    <script>
+    $("#btnclose").on("click", function() {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+    });
+    </script>
+
+     <!--_____________________________________________________________-->
+ <!-- script Datatables -->
+
+ <script>
+            $(function() {
+                
+                $('#example2').DataTable({
+                    'paging': true,
+                    'lengthChange': true,
+                    'searching': true,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': true,
+                    'autoFill': true,
+                    'buttons': true,
+                    'fixedHeader': true,
+                    'colReorder': true,
+                    'scroller': true,
+                    'keytable': true
+                })
+            })
+            </script>

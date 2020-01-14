@@ -57,9 +57,9 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_alta">
+                  <input type="date" class="form-control pull-right" id="datepicker" name="Fecha_de_alta">
                 </div>
-                <!-- /.input group -->
+                
             </div>
             <!--_____________________________________________-->
 
@@ -71,9 +71,9 @@
                  <label for="NombreRecipiente">Nombre Recipiente:</label>
                 <input type="text" class="form-control" id="NombreRecipiente" name="NombreRecipiente">
             </div>
-            <!--_____________________________________________-->
-                    
+            <!--_____________________________________________-->                    
             <!--Usuario-->
+            
             <div class="form-group">
                 <label for="Usuario">Usuario:</label>
                 <input type="text" class="form-control" id="Usuario" name="Usuario" disabled>
@@ -115,82 +115,38 @@
              <div class="col-md-12 table-scroll">
 
                 <!--__________________HEADER TABLA___________________________-->
-                <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Acciones</th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Nombre
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending">
-                                    Recipiente</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Fecha de Alta
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Usuario
-                                </th>
-                            </tr>
+                <table id="tabla_etapa" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+
+                            <th>Acciones</th>
+                            <th>Nombre</th>
+                            <th>Nombre Recipiente</th>
+                            <th>Fecha de alta</th>
+                                                        
+
                         </thead>
 
                         <!--__________________BODY TABLA___________________________-->
 
-                        <tbody id="tablaGeneradores">
-                            <tr role="row" class="even" id="primero" hidden>
-                                <td class="sorting_1">
-                                <button type="button" title="editar"  class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-
-                            </tr>
-
-                            <tr role="row" class="even" >
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Nombre 1</td>
-                                <td>Recipiente 1</td>
-                                <td>--/--/--</td>
-                                <td>Usuario 1</td>
-
-                            </tr>
-
-                            <tr role="row" class="even" >
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Nombre 2</td>
-                                <td>Recipiente 2</td>
-                                <td>--/--/--</td>
-                                <td>Usuario 2</td>
-                            </tr>
-
-                            <tr role="row" class="even" >
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <<td>Nombre 3</td>
-                                <td>Recipiente 3</td>
-                                <td>--/--/--</td>
-                                <td>Usuario 3</td>
-
-                            </tr>
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <!-- <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp -->
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            
+                            </td>
+                            <td>DATO</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                            
+                        </tr>
+                        
+                           
                         </tbody>
                     </table>
-                    
-                    <!--__________________FIN TABLA___________________________-->
 
+                    <!--__________________FIN TABLA___________________________-->
                     </div>
             </div>
 
@@ -209,7 +165,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title" id="exampleModalLabel">Editar Transportista</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Etapa</h5>
             </div>
 
 
@@ -227,19 +183,20 @@
                 <div class="row">
 
                     <!--_____________________________________________-->
-                    <!--Registro-->
+                    <!--Nombre-->
 
 
                         <div class="col-md-6">
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="generador" class="form-label label-sm">Registro</label>
+                                    <label for="generador" class="form-label label-sm">Nombre</label>
                                     <input type="text" id="" name="" required class="form-control input-sm">
                                 </div>
                             </div>
                     <!--_____________________________________________-->
                     <!--Usuario-->
+
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="Usuario">Usuario:</label>
@@ -248,26 +205,27 @@
                              </div>
                         </div>
                     <!--_____________________________________________-->
-                    <!--Fecha de alta-->
+                    <!--Nombre Recipiente-->
 
                     <div class="col-md-6">
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="Fechalta">Fecha de alta:</label>
-                                <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_alta">
+                                <label for="NombreRecipiente">Nombre Recipiente:</label>
+                                <input type="text" class="form-control" id="NombreRecipiente" name="NombreRecipiente">
                             </div>
                         </div>
                     <!--_____________________________________________-->
-                    <!--Nombre Recipiente-->
+                    <!--Fecha de alta-->
+
                         <div class="col-md-12">
                             <div class="form-group">
-                            <label for="NombreRecipiente">Nombre Recipiente:</label>
-                            <input type="text" id="" name="" required class="form-control input-sm">
+                            <label for="Fechalta">Fecha de alta:</label>
+                            <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="date" class="form-control pull-right" id="datepicker" name="Fecha_de_alta">
                             </div>
 
                         </div>
@@ -460,26 +418,12 @@ function agregarDato(){
 </script>
 
 
- <!--_____________________________________________________________-->
- <!-- script Datatables -->
+<!--_____________________________________________--> 
+<!-- Script Data-Tables-->
 
- <script>
-            $(function() {
-                
-                $('#example2').DataTable({
-                    'paging': true,
-                    'lengthChange': true,
-                    'searching': true,
-                    'ordering': true,
-                    'info': true,
-                    'autoWidth': true,
-                    'autoFill': true,
-                    'buttons': true,
-                    'fixedHeader': true,
-                    'colReorder': true,
-                    'scroller': true,
-                    'keytable': true
-                })
-            })
-            </script>
-            
+
+
+<script>
+DataTable($('#tabla_etapa'))
+</script>
+

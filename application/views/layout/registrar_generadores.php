@@ -23,6 +23,10 @@
 
 
 
+<!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
+
+
+
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
         <div class="box-tittle">
@@ -49,20 +53,20 @@
             <div class="col-md-6">
                 <!--Nombre / Razon social-->
                 <div class="form-group">
-                    <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
-                    <input type="text" class="form-control" id="Nombre/Razon social">
+                    <label for="Nombre/Razon social"> Nombre / Razon social:</label>
+                    <input type="text" class="form-control" name="Nombre_razon" id="Nombre/Razon social">
                 </div>
                 <!--_____________________________________________-->
                 <!--CUIT-->
                 <div class="form-group">
-                    <label for="CUIT" name="Cuit">CUIT:</label>
-                    <input type="text" class="form-control" id="CUIT">
+                    <label for="CUIT">CUIT:</label>
+                    <input type="text" class="form-control"  name="Cuit" id="CUIT">
                 </div>
                 <!--_____________________________________________-->
                 <!--Zona-->
                 <div class="form-group">
-                    <label for="Zonag" name="Zona">Zona:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Zonag">
+                    <label for="Zonag">Zona:</label>
+                    <select class="form-control select2 select2-hidden-accesible"  name="Zona" id="Zonag">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Zonag as $i) {
@@ -74,14 +78,14 @@
                 <!--_____________________________________________-->
                 <!--Rubro-->
                 <div class="form-group">
-                    <label for="Rubro" name="Rubro">Rubro:</label>
-                    <input type="text" class="form-control" id="Rubro">
+                    <label for="Rubro" >Rubro:</label>
+                    <input type="text" class="form-control"  name="Rubro" id="Rubro">
                 </div>
                 <!--_____________________________________________-->
                 <!--Tipo-->
                 <div class="form-group">
                     <label for="TipoG" name="Tipo">Tipo:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="TipoG">
+                    <select class="form-control select2 select2-hidden-accesible"name="Tipo" id="TipoG">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($TipoG as $i) {
@@ -95,14 +99,14 @@
             <!--Domicilio-->
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="Domicilio" name="Domicilio">Domicilio:</label>
-                    <input type="text" class="form-control" id="Domicilio">
+                    <label for="Domicilio" >Domicilio:</label>
+                    <input type="text" class="form-control"  name="Domicilio" id="Domicilio">
                 </div>
                 <!--_____________________________________________-->
                 <!--Departamento-->
                 <div class="form-group">
-                    <label for="Dpto" name="Departamento">Departamento:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Dpto">
+                    <label for="Dpto" >Departamento:</label>
+                    <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Dpto as $i) {
@@ -114,14 +118,14 @@
                 <!--_____________________________________________-->
                 <!--Numero de registro-->
                 <div class="form-group">
-                    <label for="Numero de registro" name="Numero_registro">Numero de registro:</label>
-                    <input type="text" class="form-control" id="Numero de registro">
+                    <label for="Numero de registro">Numero de registro:</label>
+                    <input type="text" class="form-control" name="Numero_registro" id="Numero de registro">
                 </div>
                 <!--_____________________________________________-->
                 <!--Tipo de residuos-->
                 <div class="form-group">
-                    <label for="Tipo de residuos" name="Tipo_Residuo">Tipo de residuos:</label>
-                    <input type="text" class="form-control" id="Tipo de residuos">
+                    <label for="Tipo de residuos">Tipo de residuos:</label>
+                    <input type="text" class="form-control"   name="Tipo_Residuo" id="Tipo de residuos">
                 </div>
                 <!--_____________________________________________-->
                 <!--Boton de guardado-->
@@ -142,16 +146,11 @@
 
 
 
-
-
-<!---//////////////////////////////////////---BOX 2---///////////////////////////////////////////////////////----->
-
-
+<!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
 
 
 
 <div class="box box-primary">
-
 
     <!--__________________TABLA___________________________-->
 
@@ -169,95 +168,56 @@
                 <!--__________________HEADER TABLA___________________________-->
 
 
-                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Acciones</th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Nombre/Razon Social
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending">
-                                    Zona</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Departamento
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Tipo
-                                </th>
-                            </tr>
+                    <!--__________________HEADER TABLA___________________________-->
+                    <table id="tabla_generadores" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+
+                            <th>Acciones</th>
+                            <th>Nombre / Razon social</th>
+                            <th>Zona</th>
+                            <th>Departamento</th>
+                            <th>Tipo</th>
+                            
+
                         </thead>
 
                         <!--__________________BODY TABLA___________________________-->
 
-                        <tbody id="tablaGeneradores">
-                            <tr role="row" class="even" id="primero" hidden>
-                                <td class="sorting_1">
-                                <button type="button" title="editar"  class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            
+                            </td>
+                            <td>DATO</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                        </tr>
 
-                            </tr>
-
-                            <tr role="row" class="even" >
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Generador 1</td>
-                                <td>Zona 1</td>
-                                <td>Rivadavia</td>
-                                <td>Eventual</td>
-
-                            </tr>
-
-                            <tr role="row" class="even" >
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Generador 2</td>
-                                <td>Zona 3</td>
-                                <td>Santa Lucia</td>
-                                <td>Regular</td>
-                            </tr>
-
-                            <tr role="row" class="even" >
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Generador 12</td>
-                                <td>Zona 21</td>
-                                <td>Chimbas</td>
-                                <td>Eventual</td>
-
-                            </tr>
+                           
                         </tbody>
                     </table>
                     
                     <!--__________________FIN TABLA___________________________-->
-
-                    </div>
+                </div>
             </div>
 
         </div>
     </div>
- <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
 
- 
+    <!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
 
-<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+
+
+
+    <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
     
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
@@ -283,8 +243,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="nro" class="form-label label-sm">Nombre/Razon social</label>
-                                <input type="text" id="" name="" class="form-control input-sm" required>
+                                <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
+                                <input type="text" class="form-control" id="Nombre/Razon social">
                             </div>
                         </div>                        
                     </div>
@@ -295,7 +255,39 @@
                 <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="Zonag" name="Zona">Zona:</label>
+                                <label for="CUIT" name="Cuit">CUIT:</label>
+                                <input type="text" class="form-control" id="CUIT">
+                            </div>
+                <!--_____________________________________________-->
+                <!--Tipo de residuo-->
+
+                            <div class="form-group">
+                            <label for="Dpto" name="Departamento">Departamento:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="Dpto">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($Dpto as $i) {
+                                    echo '<option>'.$i->nombre.'</option>';
+                                }
+                                ?>
+                            </select>
+                            </div>
+                         </div>
+
+                <!--_____________________________________________-->
+                <!--Descripcion-->
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Domicilio" name="Domicilio">Domicilio:</label>
+                                <input type="text" class="form-control" id="Domicilio">
+                            </div>
+
+                <!--_____________________________________________-->
+                <!--Resolucion-->
+
+                            <div class="form-group">
+                                <label for="Zonag" name="Zona">Zona:</label>
                                 <select class="form-control select2 select2-hidden-accesible" id="Zonag">
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
@@ -304,48 +296,48 @@
                                     }
                                     ?>
                                 </select>
-                        </div>
-                <!--_____________________________________________-->
-                <!--Tipo de residuo-->
-
-                            <div class="form-group">
-                                <label for="" name="N-registro">N° Registro:</label>
-                                <input type="text" id="" required name="" class="form-control input-sm">
                             </div>
-                         </div>
+                        </div>
+                </div>
 
                 <!--_____________________________________________-->
-                <!--Departamento-->
+                <!--Fecha de Alta-->
+
+                <div class="row">                        
+                    <div class="col-md-6">
+                        <label for="Numero de registro" name="Numero_registro">Numero de registro:</label>
+                        <input type="text" class="form-control" id="Numero de registro">
+                            
+                        </div>
 
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Dpto" name="Departamento">Departamento:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="">
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                    foreach ($Dpto as $i) {
-                                        echo '<option>'.$i->nombre.'</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
+                            <label for="Rubro" name="Rubro">Rubro:</label>
+                            <input type="text" class="form-control" id="Rubro">
+                        </div>
 
                 <!--_____________________________________________-->
-                <!--Tipo-->
+                <!--Fecha de Baja-->
 
-                            <div class="form-group">
-                                <label for="TipoG" name="Tipo">Tipo:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="">
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                    foreach ($TipoG as $i) {
-                                        echo '<option>'.$i->nombre.'</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
+
+                        <div class="col-md-6">
+                            <label for="TipoG" name="Tipo">Tipo:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="TipoG">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($TipoG as $i) {
+                                    echo '<option>'.$i->nombre.'</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
-                 </div> 
+
+                        <div class="col-md-6">
+                            <label for="Tipo de residuos" name="Tipo_Residuo">Tipo de residuos:</label>
+                            <input type="text" class="form-control" id="Tipo de residuos">
+                        </div>
+                    </div>
+                    
+                    
                 </div>
                 
             </form>
@@ -353,7 +345,6 @@
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
             </div>
-
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
@@ -368,6 +359,141 @@
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
 
+
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+    
+    <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Informacion Generador</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                <!--_____________________________________________-->
+                <!--Nombre/Razon social-->
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
+                                <input type="text" class="form-control" id="Nombre/Razon social" readonly>
+                            </div>
+                        </div>                        
+                    </div>
+
+                <!--_____________________________________________-->
+                <!--Registro-->
+
+                <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="CUIT" name="Cuit">CUIT:</label>
+                                <input type="text" class="form-control" id="CUIT" readonly>
+                            </div>
+                <!--_____________________________________________-->
+                <!--Tipo de residuo-->
+
+                            <div class="form-group">
+                            <label for="Dpto" name="Departamento">Departamento:</label>
+                            <input type="text" class="form-control" id="Dpto" readonly>
+                            </div>
+                         </div>
+
+                <!--_____________________________________________-->
+                <!--Descripcion-->
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Domicilio" name="Domicilio">Domicilio:</label>
+                                <input type="text" class="form-control" id="Domicilio" readonly>
+                            </div>
+
+                <!--_____________________________________________-->
+                <!--Resolucion-->
+
+                            <div class="form-group">
+                                <label for="Zonag" name="Zona">Zona:</label>
+                                <input type="text" class="form-control" id="zonaG" readonly>
+                            </div>
+                        </div>
+                </div>
+
+                <!--_____________________________________________-->
+                
+
+                <div class="row"> 
+
+                        <!--_____________________________________________-->
+                        <!--Numero de registro-->
+
+                        <div class="col-md-6">
+                            <label for="Numero de registro" name="Numero_registro">Numero de registro:</label>
+                            <input type="text" class="form-control" id="Numero de registro" readonly>                            
+                        </div>
+
+                        <!--_____________________________________________-->
+                        <!--Rubro-->
+
+                        <div class="col-md-6">
+                            <label for="Rubro" name="Rubro">Rubro:</label>
+                            <input type="text" class="form-control" id="Rubro" readonly>
+                        </div>                
+
+                        <!--_____________________________________________-->
+                        <!--Tipo-->
+
+                        <div class="col-md-6">
+                            <label for="TipoG" name="Tipo">Tipo:</label>
+                            <input type="text" class="form-control" id="TipoG" readonly>
+                        </div>
+
+                        <!--_____________________________________________-->
+                        <!--Tipo de residuos-->
+
+                        <div class="col-md-6">
+                            <label for="Tipo de residuos" name="Tipo_Residuo">Tipo de residuos:</label>
+                            <input type="text" class="form-control" id="Tipo de residuos" >
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+
+
+  
  <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
  <!--_____________________________________________________________-->
@@ -392,6 +518,7 @@ $("#btnadd").on("click", function() {
 </script>
 
 <!--_____________________________________________________________-->
+<!-- Script Agregar datos de registrar_generadores-->
 
             <script>
             function agregarDato() {
@@ -597,26 +724,10 @@ $("#btnadd").on("click", function() {
  
  <!--_____________________________________________________________-->
  <!-- script Datatables -->
+ <script>
 
-            <script>
-            $(function() {
-                
-                $('#example2').DataTable({
-                    'paging': true,
-                    'lengthChange': true,
-                    'searching': true,
-                    'ordering': true,
-                    'info': true,
-                    'autoWidth': true,
-                    'autoFill': true,
-                    'buttons': true,
-                    'fixedHeader': true,
-                    'colReorder': true,
-                    'scroller': true,
-                    'keytable': true
-                })
-            })
-            </script>
-            
+    DataTable($('#tabla_generadores'))
+
+</script>
+
  
-<!---//////////////////////////////////////---DATA TABLES SCRIPT---///////////////////////////////////////////////////////----->

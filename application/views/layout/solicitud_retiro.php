@@ -45,17 +45,27 @@
         <div class="formulario">
             <div class="col-md-12">
 
-                <div class="form-group">
-                    <div class="col-md-6">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">                    
                         <label for="Nro" class="form-label">Nro:</label>
+                         <div class="input-group date">
+                        <div class="input-group-addon">
+                            <i class="fa fa-"></i>
+                        </div>
                         <input type="text" name="nro" id="Nro" value="<?php echo rand(1,30);?>" class="form-control">
+                        </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-md-6">
+                
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">                    
                         <label for="fecha" class="form-label">Fecha:</label>
+                        <div class="input-group date">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
                         <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,7 +74,7 @@
 
         <!--_________________SEPARADOR____________________________-->
 
-
+        <div class="col-md-12 col-xs-12"><hr></div>
 
         <!--_________________SEPARADOR____________________________-->
 
@@ -72,7 +82,7 @@
 
             <div class="col-md-12">
 
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label for="tipores" class="form-label">Tipo residuo:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="tipores" name="tipo_residuo"
@@ -83,21 +93,32 @@
                                             echo '<option>'.$i->nombre.'</option>';
                                         }
                                 ?>
-                    </select>
-                </div>
-
-                <!--_____________________________________________-->
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="contenedor" class="control-label">Contenedor:</label>
-                        <input type="text" id="contenedor" name="contenedor" class="form-control" required>
+                        </select>
                     </div>
                 </div>
 
                 <!--_____________________________________________-->
 
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="contenedor" class="control-label">Contenedor:</label>
+                        
+                        
+                        <select class="form-control select2 select2-hidden-accesible" id="contenedores" name="Contenedores"
+                            required>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
+                                        foreach ($contenedor as $i) {
+                                            echo '<option>'.$i->nombre.'</option>';
+                                        }
+                                ?>
+                        </select>
+                    </div>
+                </div>
+
+                <!--_____________________________________________-->
+
+                <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label for="Nro" class="form-label">Otro:</label>
                         <input type="text" id="otro" name="otro" class="form-control">
@@ -144,59 +165,37 @@
                     <div class="row">
 
                         <div class="col-md-12">
-                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
-                                aria-describedby="example2_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Rendering engine: activate to sort column descending">Tipo de
-                                            residuo</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">Cantidad
-                                            de contenedores</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr role="row" class="even" id="primero">
-                                        <td>residuo radioactivo</td>
-                                        <td>3</td>
-                                    </tr>
-                                </tbody>
-                            </table><br>
+
+                        <!--__________________HEADER TABLA___________________________-->
+                        <table id="tipo_residuos" class="table table-bordered table-striped">
+                            <thead class="thead-dark" bgcolor="#eeeeee">
+
+                                <th>Tipo de residuo</th>
+                                <th>Cantidad de contenedores</th>
+                                                                
+
+                            </thead>
+
+                        <!--__________________BODY TABLA___________________________-->
+
+                        <tbody>
+                        <tr>
+                            <td>residuo radioactivo</td>
+                            <td>3</td>
+                        </tr>
+
+                           
+                        </tbody>
+                    </table>
+                    
+                    <!--__________________FIN TABLA___________________________-->
+                           
+                            
 
 
                         </div>
                     </div>
-                    <div class="row">
-
-                        <div class="col-sm-5">
-                            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1
-                                to 10 of 57 entries</div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button previous disabled" id="example2_previous"><a href="#"
-                                            aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a></li>
-                                    <li class="paginate_button active"><a href="#" aria-controls="example2"
-                                            data-dt-idx="1" tabindex="0">1</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="2"
-                                            tabindex="0">2</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3"
-                                            tabindex="0">3</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="4"
-                                            tabindex="0">4</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="5"
-                                            tabindex="0">5</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="6"
-                                            tabindex="0">6</a></li>
-                                    <li class="paginate_button next" id="example2_next"><a href="#"
-                                            aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -218,25 +217,25 @@
         
         
         <!---//////////////////////////////////////--- BOX ACORDION ---///////////////////////////////////////////////////////----->
-
+<!-- 
 
         <div class="col-md-12">
 
         <div class="box box-primary"></div>
 
-        <!--_____________________________________________-->
+        <!-_____________________________________________-->
         
 
-        <div class="accordion" id="accordion1" >
+        <!-- <div class="accordion" id="accordion1" >
   
     
 
 
   <div class="card z-depth-0 bordered">
 
-    <div class="card-header bg-blue" id="colapse1"data-toggle="collapse" data-target="#collapseThree2"  >
+    <div class="card-header  bg-blue" id="colapse1"data-toggle="collapse" data-target="#collapseThree2"  >
       <h5 class="md-0">
-        <button class="btn  collapsed box-header bg-blue" type="button" data-toggle="collapse" data-target="#collapseThree2"  aria-label="Left Align" aria-expanded="false" aria-controls="colapse1" >
+        <button class="btn  collapsed box-header  bg-blue type="button" data-toggle="collapse" data-target="#collapseThree2"  aria-label="Left Align" aria-expanded="false" aria-controls="colapse1" >
         <h5>Transportistas</h5>
         </button>
      </h5>
@@ -273,15 +272,15 @@
             </div>
         </div>
 
-        <!--_________________SEPARADOR____________________________-->
-
+        <!_________________SEPARADOR____________________________-->
+<!-- 
         <div class="col-md-12">
             <hr>
-        </div>
+        </div> -->
 
         <!--_________________SEPARADOR____________________________-->
 
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <div class="form-group">
                 <button type="submit" class="btn btn-primary pull-right" aria-label="Left Align">
                     Guardar
@@ -311,26 +310,27 @@
         
 
 
-</div>
+</div> --> 
 
 
 
  <!---//////////////////////////////////////--- FIN BOX ACORDION ---///////////////////////////////////////////////////////----->
 
+
 <!---//////////////////////////////////////--- BOX 3 ---///////////////////////////////////////////////////////----->
 
 
-        <!-- <div class="row">
-            <div class="col-md-12">
+<div class="row">
 
-           <div class="box box-primary"></div>
+        <div class="col-md-12">
+
+            <div class="box box-primary animated fadeInLeft">
                 <div class="box-header with-border">
                     <h4>Transportistas</h4>
                 </div>
-
-                <br>
             </div>
-            <br>
+            
+            
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="selecemp" class="form-label">Empresa:</label>
@@ -347,18 +347,29 @@
         </div>
 
 
-        <div class="col-md-12">
-            <div class="col-md-6">
+        <div class="col-md-12 ">
+            <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="form-group">
                     <label for="fecha" class="form-label">Fecha de retiro:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
                     <input type="date" id="fecha" value="<?php echo $fecha;?>" class="form-control">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="form-group">
                     <label for="hora" class="form-label">Hora:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-clock-o"></i>
+                        </div>
                     <input type="number" id="hora" value="1" class="form-control" min="1">
+                    </div>
                 </div>
+            </div>
             </div>
         </div>
 
@@ -378,7 +389,7 @@
             </div>
         </div>
     </div>
- -->
+
 
  <!---//////////////////////////////////////--- BOX 3 ---///////////////////////////////////////////////////////----->
 
@@ -395,17 +406,16 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                    <div class="row">
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-6"></div>
-                    </div>
+                    
 
                     <div class="row">
-                        <div class="col-sm-12 table-scroll">
-                            <table id="example2" class="table table-condensed table-bordered table-hover dataTable"
-                                role="grid" aria-describedby="example2_info">
+                        <div class="col-md-12 table-scroll">
+                        <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                 <thead>
                                     <tr role="row">
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Browser: activate to sort column ascending">Acciones
+                                        </th>
                                         <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Rendering engine: activate to sort column descending">Nro de
@@ -420,23 +430,22 @@
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="Engine version: activate to sort column ascending">
                                             Fecha</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">Acciones
-                                        </th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody id="tabadd">
 
                                     <tr role="row" class="even" id="primero">
-                                        <td>7</td>
-                                        <td>Residuo solido urbano</td>
-                                        <td>Generador 2</td>
-                                        <td>4/10/2019</td>
-                                        <td class="sorting_1">
+                                    <td class="sorting_1">
                                         <button type="button" id="btnrectificar" data-toggle="modal" data-target="#modalRectificar" title="rectificar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                                         <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
                                         <button type="button" id="btnentrega" title="entregar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEntrega"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
                                         </td>
+                                        <td>7</td>
+                                        <td>Residuo solido urbano</td>
+                                        <td>Generador 2</td>
+                                        <td>4/10/2019</td>
+                                        
                                     </tr>
                                     <!--
                         <tr role="row" class="even">
@@ -451,34 +460,7 @@
                             </table>
                         </div>
                     </div><br>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1
-                                to 10 of 57 entries</div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button previous disabled" id="example2_previous"><a href="#"
-                                            aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a></li>
-                                    <li class="paginate_button active"><a href="#" aria-controls="example2"
-                                            data-dt-idx="1" tabindex="0">1</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="2"
-                                            tabindex="0">2</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3"
-                                            tabindex="0">3</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="4"
-                                            tabindex="0">4</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="5"
-                                            tabindex="0">5</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="6"
-                                            tabindex="0">6</a></li>
-                                    <li class="paginate_button next" id="example2_next"><a href="#"
-                                            aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
             <!-- /.box-body -->
@@ -487,12 +469,17 @@
     </div>
 </div>
 
+
+
+
+
+
 <!-- Modal rectificativa-->
 <div class="modal fade" id="modalRectificar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header with-border">
+        <div class="modal-header bg-blue">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -557,8 +544,7 @@
                     <br>
                     <div class="row">
                         <div class="col-sm-12 table-scroll">
-                            <table id="tablamodal" class="table table-condensed table-bordered table-hover" role="grid"
-                                aria-describedby="example2_info">
+                             <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
@@ -640,7 +626,7 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-header bg-blue">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -745,7 +731,6 @@
 </div>
 
 <!--script close modal entrega -->
-
 <script>
 $("#modalEntrega").on("hidden.bs.modal", function(e) {
     //console.log("se cerro el modal");
@@ -755,7 +740,6 @@ $("#modalEntrega").on("hidden.bs.modal", function(e) {
 </script>
 
 <!--script close modal rectificativa -->
-
 <script>
 $("#modalRectificar").on("hidden.bs.modal", function(e) {
     //console.log("se cerro el modal");
@@ -763,9 +747,7 @@ $("#modalRectificar").on("hidden.bs.modal", function(e) {
     $("#frmrect")[0].reset();
 });
 </script>
-
 <!-- script modal -->
-
 <script>
 $("#btnview").on("click", function() {
     $("#btnadd").removeClass("active");
@@ -797,7 +779,6 @@ $("#btnclose").on("click", function() {
 </script>
 
 <!-- script bootstrap validator -->
-
 <script>
 $('#frmentrega').bootstrapValidator({
     message: 'This value is not valid',
@@ -910,10 +891,7 @@ $('#frmentrega').bootstrapValidator({
 });
 </script>
 
-</script>
-
 <!-- script bootstrap validator -->
-
 <script>
 $('#frmrect').bootstrapValidator({
     message: 'This value is not valid',
@@ -997,10 +975,7 @@ $('#frmrect').bootstrapValidator({
 });
 </script>
 
-</script>
-
 <!-- script que muestra box de datos al dar click en boton agregar -->
-
 <script>
 $("#botonAgregar").on("click", function() {
 
@@ -1011,8 +986,8 @@ $("#botonAgregar").on("click", function() {
 });
 </script>
 
-<!-- script bootstrap validator -->
 
+<!-- script bootstrap validator -->
 <script>
 $('#formDatos').bootstrapValidator({
     message: 'This value is not valid',
@@ -1106,3 +1081,37 @@ function guardar() {
     }
 };
 </script>
+<!--_____________________________________________________________-->
+
+ <!-- Script Data-Tables-->
+ <script>
+        $(function() {
+
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                'autoFill': true,
+                'buttons': true,
+                'fixedHeader': true,
+                'colReorder': true,
+                'scroller': true,
+                'keytable': true
+            })
+        })
+        </script>
+
+<!-- ______________________________ -->
+<!-- script Datatables -->
+<script>
+
+DataTable($('#tabla2'))
+
+DataTable($('#tipo_residuos'))
+
+</script>
+
+    

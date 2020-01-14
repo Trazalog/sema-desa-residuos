@@ -38,104 +38,136 @@
         </div>
         
     </div>
-    <!--_____________________________________________-->
+    
+    <!--____________________BOX BODY____________________-->
 
     <div class="box-body">
+
+        <!--/////////////////////// FORMULARIO ///////////////////////-->
+
+
         <form class="formEstablecimiento" id="formEstablecimiento">
+
         
         <div class="col-md-6">
-
+            
+            <!--_____________________________________________-->
             <!--Nombre-->
+
             <div class="form-group">
                 <label for="Nombre">Nombre:</label>
                 <input type="text" class="form-control" id="Nombre" name="Nombre">
             </div>
+
             <!--_____________________________________________-->
+            <!--Estado-->
 
-            <!--Ubicacion-->
-            <div class="col-md-12">
-
-                <div class="col-md-6">
-
-                    <div class="form-group">            
-                    <label for="Ubicacion">Latitud:</label>
-                    <input type="number" class="form-control" id="latitud" name="latitud">
-                    </div>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <div class="form-group">
-                    <label for="Ubicacion">Longitud:</label>
-                    <input type="number" class="form-control" id="Ubicacion" name="Ubicacion">
-                    </div>
-                    
-                </div>
-
-            </div>
-            
+            <div class="form-group">
+                <label for="Estado">Estado:</label>
+                <input type="text" class="form-control" id="Estado" name="Estado">
+            </div>            
             
             <!--_____________________________________________-->
-
             <!--Pais-->
             
             <div class="form-group">
                 <label for="Pais">Pais:</label>
                 <input type="text" class="form-control" id="Pais" name="Pais">
             </div>
-            <!--_____________________________________________-->
 
+            <!--_____________________________________________-->
             <!--Fecha de alta-->
+
             <div class="form-group">
                 <label for="Fechalta">Fecha de alta:</label>
                 <div class="input-group date">
-                <div class="input-group-addon">
+                        <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </div>
                         <input type="date" class="form-control pull-right" id="fecha-baja">
                 </div>
-                <!-- /.input group -->
+             </div>
 
-                
-            </div>
             <!--_____________________________________________-->
-
             <!--Usuario-->
+
             <div class="form-group">
                 <label for="Usuario">Usuario:</label>
                 <input type="text" class="form-control" id="Usuario" name="Usuario" disabled>
             </div>
-            <!--_____________________________________________-->
+
+            
 
         </div>
+
+         <!--***********************************************-->
+
         <div class="col-md-6">
 
+            <!--_____________________________________________-->
             <!--Calles-->
+            
             <div class="form-group">
                 <label for="Calles">Calles:</label>
                 <input type="text" class="form-control" id="Calles" name="Calles">
             </div>
-            <!--_____________________________________________-->
 
+            <!--_____________________________________________-->
             <!--Altura-->
+
             <div class="form-group">
                 <label for="Altura">Altura:</label>
                 <input type="text" class="form-control" id="Altura" name="Altura">
             </div>
-            <!--_____________________________________________-->
 
+            <!--_____________________________________________-->
             <!--Localidad-->
+
             <div class="form-group">
                 <label for="Localidad">Localidad:</label>
                 <input type="text" class="form-control" id="Localidad" name="Localidad">
             </div>
-            <!--_____________________________________________-->
 
-            <!--Estado-->
-            <div class="form-group">
-                <label for="Estado">Estado:</label>
-                <input type="text" class="form-control" id="Estado" name="Estado">
+            <!--_____________________________________________-->
+            <!--Ubicacion-->
+
+            <div class="col-md-12">
+
+                <!--_____________________________________________-->
+                <!--Latitud-->
+
+                <div class="col-md-6">
+
+                    <div class="form-group">            
+                    <label for="Ubicacion">Latitud:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                    <input type="number" class="form-control" id="latitud" name="latitud">
+                    </div>
+                    </div>
+
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Longitud-->
+
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                    <label for="Ubicacion">Longitud:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                    <input type="number" class="form-control" id="Longitud" name="Longitud">
+                    </div>
+                    </div>
+                    
+                </div>
+           
+
             </div>
             <!--_____________________________________________-->
 
@@ -179,69 +211,39 @@
                 <div class="col-sm-12 table-scroll">
 
                 <!--__________________HEADER TABLA___________________________-->
+                <table id="tabla_establecimiento" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
 
-                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Acciones</th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Dato
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending">
-                                    Dato</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Dato
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Dato
-                                </th>                               
-                            </tr>
+                            <th>Acciones</th>
+                            <th>Nombre</th>
+                            <th>Estado</th>
+                            <th>Localidad</th>
+                            <th>Fecha de alta</th>
+                            
+
                         </thead>
 
                         <!--__________________BODY TABLA___________________________-->
 
-                        <tbody id="tabadd">
-                            <tr role="row" class="even" id="primero" hidden>
-                                <td class="sorting_1">
-                                <button type="button" title="editar"  class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>                         
-
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Inspector 1</td>
-                                <td>Inspector 1</td>
-                                <td>Rivadavia</td>
-                                <td>Movil 1</td>
-
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Inspector 2</td>
-                                <td>Inspector 2</td>
-                                <td>Santa Lucia</td>
-                                <td>Movil 2</td>
-
-                            </tr>
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            
+                            </td>
+                            <td>DATO</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                        </tr>
+                        
+                           
                         </tbody>
                     </table>
+
+                    <!--__________________FIN TABLA___________________________-->
                 </div>
             </div><br>
 
@@ -249,6 +251,335 @@
     </div>
 
     <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
+
+    <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Establecimiento</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+        <form class="formEstablecimiento" id="formEstablecimiento">
+        
+            <div class="col-md-6">
+
+                <!--_____________________________________________-->
+                <!--Nombre-->
+
+                <div class="form-group">
+                    <label for="Nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="Nombre" name="Nombre">
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Localidad-->
+
+                <div class="form-group">
+                    <label for="Localidad">Localidad:</label>
+                    <input type="text" class="form-control" id="Localidad" name="Localidad">
+                </div>          
+                
+                <!--_____________________________________________-->
+                <!--Pais-->
+                
+                <div class="form-group">
+                    <label for="Pais">Pais:</label>
+                    <input type="text" class="form-control" id="Pais" name="Pais">
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Fecha de alta-->
+
+                <div class="form-group">
+                    <label for="Fechalta">Fecha de alta:</label>
+                    <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="date" class="form-control pull-right" id="fecha-baja">
+                    </div>
+                </div>
+                <!--_____________________________________________-->
+                <!--Usuario-->
+
+                <div class="form-group">
+                    <label for="Usuario">Usuario:</label>
+                    <input type="text" class="form-control" id="Usuario" name="Usuario">
+                </div>
+           
+
+            </div>
+
+            <!--***********************************************-->
+
+            <div class="col-md-6">
+
+                <!--_____________________________________________-->
+                <!--Calles-->
+
+                <div class="form-group">
+                    <label for="Calles">Calles:</label>
+                    <input type="text" class="form-control" id="Calles" name="Calles">
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Altura-->
+
+                <div class="form-group">
+                    <label for="Altura">Altura:</label>
+                    <input type="text" class="form-control" id="Altura" name="Altura">
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Ubicacion-->
+                
+                <div class="col-md-12">            
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">            
+                        <label for="Ubicacion">Latitud:</label>
+                        <input type="number" class="form-control" id="latitud" name="latitud">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                        <label for="Ubicacion">Longitud:</label>
+                        <input type="number" class="form-control" id="Ubicacion" name="Ubicacion">
+                        </div>
+                        
+                    </div>
+            
+
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Estado-->
+
+                <div class="form-group">
+                    <label for="Estado">Estado:</label>
+                    <input type="text" class="form-control" id="Estado" name="Estado">
+                </div>
+                
+
+            </div>
+
+        <!--***********************************************-->
+        
+        
+        <div class="col-md-12"><hr> </div>
+            <!--_____________________________________________-->
+       
+        
+    </form>
+
+                
+               
+
+        <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+
+            <div class="modal-footer">
+            <div class="col-md-12">
+                <div class="form-group text-right">                    
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+
+
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+    
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Informacion Establecimiento</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+        <form class="formEstablecimiento" id="formEstablecimiento">
+        
+            <div class="col-md-6">
+
+                <!--_____________________________________________-->
+                <!--Nombre-->
+
+                <div class="form-group">
+                    <label for="Nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="Nombre" name="Nombre" readonly>
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Localidad-->
+
+                <div class="form-group">
+                    <label for="Localidad">Localidad:</label>
+                    <input type="text" class="form-control" id="Localidad" name="Localidad" readonly>
+                </div>          
+                
+                <!--_____________________________________________-->
+                <!--Pais-->
+                
+                <div class="form-group">
+                    <label for="Pais">Pais:</label>
+                    <input type="text" class="form-control" id="Pais" name="Pais" readonly>
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Fecha de alta-->
+
+                <div class="form-group">
+                    <label for="Fechalta">Fecha de alta:</label>
+                    <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="date" class="form-control pull-right" id="fecha-baja" readonly>
+                    </div>
+                </div>
+                <!--_____________________________________________-->
+                <!--Usuario-->
+
+                <div class="form-group">
+                    <label for="Usuario">Usuario:</label>
+                    <input type="text" class="form-control" id="Usuario" name="Usuario" readonly>
+                </div>
+           
+
+            </div>
+
+            <!--***********************************************-->
+
+            <div class="col-md-6">
+
+                <!--_____________________________________________-->
+                <!--Calles-->
+
+                <div class="form-group">
+                    <label for="Calles">Calles:</label>
+                    <input type="text" class="form-control" id="Calles" name="Calles" readonly>
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Altura-->
+
+                <div class="form-group">
+                    <label for="Altura">Altura:</label>
+                    <input type="text" class="form-control" id="Altura" name="Altura" readonly>
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Ubicacion-->
+                
+                <div class="col-md-12">            
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">            
+                        <label for="Ubicacion">Latitud:</label>
+                        <input type="number" class="form-control" id="latitud" name="latitud" readonly>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                        <label for="Ubicacion">Longitud:</label>
+                        <input type="number" class="form-control" id="Ubicacion" name="Ubicacion" readonly>
+                        </div>
+                        
+                    </div>
+            
+
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Estado-->
+
+                <div class="form-group">
+                    <label for="Estado">Estado:</label>
+                    <input type="text" class="form-control" id="Estado" name="Estado" readonly>
+                </div>
+                
+
+            </div>
+
+        <!--***********************************************-->
+        
+        
+        <div class="col-md-12"><hr> </div>
+            <!--_____________________________________________-->
+       
+        
+    </form>
+
+                
+               
+
+        <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+
+            <div class="modal-footer">
+            <div class="col-md-12">
+                <div class="form-group text-right">                    
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
     
 
@@ -444,3 +775,15 @@ $("#btnclose").on("click", function() {
     $('#chofer').find('option').remove();
 });
 </script>
+
+
+<!--_____________________________________________--> 
+<!-- Script Data-Tables-->
+
+
+
+<script>
+DataTable($('#tabla_establecimiento'))
+</script>
+
+

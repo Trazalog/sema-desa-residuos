@@ -109,14 +109,13 @@
 
             <!--_____________________________________________-->
             <!--Boton de guardado-->
-            <div class="col-md-12">
+            <!-- <div class="col-md-12">
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-            </div>
+            </div> -->
             <!--_____________________________________________-->
         </form>
 
-        <div class="col-md-12"><br></div>
-
+        
 
 
          <!-- *************** BOX 1.1 *************** -->
@@ -129,13 +128,9 @@
 
             <div class="col-md-12">
 
-                <div class="box box-primary"></div>
+               
 
-                <div class="box-header bg-blue">
-                    <div class="box-tittle">
-                        <h5>Titulo</h5>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
@@ -177,6 +172,7 @@
         </div>
 
         <div class="col-md-12">
+
             <div class="col-md-6">
 
             <!--_____________________________________________-->
@@ -191,24 +187,54 @@
             <!--Inspector-->
 
                 <div class="form-group">
-                    <label for="Descripcion" name="Descripcion">Inspector:</label>
-                    <input type="text" class="form-control" id="descripcion">
+                    <label for="Inspector" name="Inspector">Inspector:</label>
+                    <input type="text" class="form-control" id="inspector">
                 </div>
                 
             </div>
+
+            <!--*********************************************-->
 
             <div class="col-md-6">
 
-                <div class="form-group">
-                    <label for="Descripcion" name="Descripcion">Fecha:</label>
-                    <input type="text" class="form-control" id="descripcion">
-                </div>
-                <div class="form-group">
-                    <label for="Descripcion" name="Descripcion">Hora:</label>
-                    <input type="text" class="form-control" id="descripcion">
+                <!--_____________________________________________-->
+                <!--Fecha-->
+
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="Descripcion" name="Descripcion">Fecha:</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa  fa-calendar"></i>
+                            </div>
+                        <input type="date" class="form-control" id="descripcion">
+                        </div>
+                    </div>
+
+                    </div>
+
+                <!--_____________________________________________-->
+                <!--Hora-->
+
+                    <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="Hora" name="Hora">Hora:</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                        <input type="number" class="form-control" id="hora">
+                        </div>
+                    </div>
+                    
+
+                    </div>
+
                 </div>
                 
-            </div>
+          
         </div>
 
         <div class="col-md-12">
@@ -227,6 +253,73 @@
 
 
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
+
+<!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
+
+
+
+<div class="box box-primary">
+
+
+<div class="col-md-1"><br></div>
+
+    <!--__________________TABLA___________________________-->
+
+
+    <div class="box-body">
+
+
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            
+            <div class="row">
+                <div class="col-sm-12 table-scroll">
+
+                    <!--__________________HEADER TABLA___________________________-->
+
+                    <table id="tabla_incidencias" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+
+                            <th>Acciones</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Movilidad Asignada</th>
+
+                        </thead>
+
+                        <!--__________________BODY TABLA___________________________-->
+
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            
+                            </td>
+                            <td>DATO</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                        </tr>
+
+                           
+                        </tbody>
+                    </table>
+
+                    <!--__________________FIN TABLA___________________________-->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
+
+
 
 
 <!---//////////////////////////////////////---BOX 2---///////////////////////////////////////////////////////----->
@@ -319,43 +412,21 @@
 
                   
 
-                    <table id="example2" class="table table-bordered table-hover dataTable table-responsive">
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Acciones</th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Descripcion
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending">
-                                    Tipo de incidencia</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Fecha y Hora
-                                </th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Inspector
-                                </th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Generador
-                                </th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Transportista
-                                </th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">N° Acta
-                                </th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Foto
-                                </th>
-                            </tr>
+                    <table id="tabla_reportes_incidencia" class="table table-bordered table-striped">
+                        
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+
+                            <th>Acciones</th>
+                            <th>Descripcion</th>
+                            <th>Tipo de incidencia</th>
+                            <th>fecha y hora</th>
+                            <th>Inspector</th>
+                            <th>Generador</th>
+                            <th>Transportista</th>
+                            <th>N° Acta</th>
+                            <th>Foto</th>
+
+                        
                         </thead>
 
                         <!--__________________BODY TABLA___________________________-->
@@ -703,33 +774,19 @@ $("#btnclose").on("click", function() {
 
 
 
+<!--_____________________________________________________________-->
+<!-- script Datatables -->
 
 
+<script>
+    
+    DataTable($('#tabla_incidencias'))
 
-        <!---//////////////////////////////////////---DATA TABLES SCRIPT---///////////////////////////////////////////////////////----->
-        <!-- Script Data-Tables-->
-        <script>
-        $(function() {
+    DataTable($('#tabla_reportes_incidencia'))
 
-            $('#example2').DataTable({
-                'paging': true,
-                'lengthChange': true,
-                'searching': true,
-                'ordering': true,
-                'info': true,
-                'autoWidth': true,
-                'autoFill': true,
-                'buttons': true,
-                'fixedHeader': true,
-                'colReorder': true,
-                'scroller': true,
-                'keytable': true
-            })
-        })
-        </script>
+    
 
-        <!-- Script Data-Tables-->
-
+</script>
 
         <!---//////////////////////////////////////---DATA TABLES SCRIPT---///////////////////////////////////////////////////////----->
 

@@ -40,7 +40,6 @@
     </div>
 
     <!--_____________________________________________-->
-
     <div class="box-body">
         <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
 
@@ -48,39 +47,39 @@
                 <!--Codigo / Registro-->
                 <div class="form-group">
                     <label for="Codigo/Registro">Codigo / Registro:</label>
-                    <input type="text" class="form-control" id="Codigo/Registro" name="Codigo_registro">
+                    <input type="text" class="form-control"  name="Codigo_registro" id="Codigo/Registro">
                 </div>
                 <!--_____________________________________________-->
                 <!--Descripcion-->
                 <div class="form-group">
-                    <label for="Descripcion">Descripcion:</label>
-                    <input type="text" class="form-control" id="Descripcion" name="Descripcion">
+                    <label for="Descripcion" >Descripcion:</label>
+                    <input type="text" class="form-control" name="Descripcion" id="Descripcion">
                 </div>
                 <!--_____________________________________________-->
                 <!--Capacidad-->
                 <div class="form-group">
-                    <label for="Capacidad">Capacidad:</label>
-                    <input type="text" class="form-control" id="Capacidad" name="Capacidad">
+                    <label for="Capacidad" >Capacidad:</label>
+                    <input type="text" class="form-control" name="Capacidad" id="Capacidad">
                 </div>
                 <!--_____________________________________________-->
                 <!--Año de elaboracion-->
                 <div class="form-group">
                     <label for="Añoelab">Año de elaboracion:</label>
-                    <input type="text" class="form-control" id="Añoelab" name="Añoelab">
+                    <input type="text" class="form-control"  name="Añoelab" id="Añoelab">
                 </div>
                 <!--_____________________________________________-->
             </div>
             <div class="col-md-6">
                 <!--Tara-->
                 <div class="form-group">
-                    <label for="Tara">Tara:</label>
-                    <input type="text" class="form-control" id="Tara" name="Tara">
+                    <label for="Tara" >Tara:</label>
+                    <input type="text" class="form-control"  name="Tara" id="Tara">
                 </div>
                 <!--_____________________________________________-->
                 <!--Estado-->
                 <div class="form-group">
-                    <label for="Estados">Estado:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Estados" name="Estados">
+                    <label for="Estados" >Estado:</label>
+                    <select class="form-control select2 select2-hidden-accesible" name="Estados" id="Estados">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Estados as $i) {
@@ -92,9 +91,26 @@
                 <!--_____________________________________________-->
                 <!--Habilitacion-->
                 <div class="form-group">
-                    <label for="Habilitacion">Habilitacion:</label>
-                    <input type="text" class="form-control" id="Habilitacion" name="Habilitacion">
+                    <label for="Habilitacion" >Habilitacion:</label>
+                    <input type="text" class="form-control" name="Habilitacion"id="Habilitacion">
                 </div>
+
+                <!--_____________________________________________-->
+                <!--Adjuntador de imagenes-->  
+
+                <div class="col-md-6">
+                
+
+                <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                </button>
+                <small for="agregar" class="form-label">Adjuntar imagen</small>
+        
+                </div>             
+               
+              
+
+                
 
 
                 <!--_____________________________________________-->
@@ -105,10 +121,9 @@
             </div>
 
             <!--_____________________________________________-->
-
             <!--Boton de guardado-->
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+                <button type="submit" class="btn btn-primary pull-right" onclick="Agregar_Contenedor()">Guardar</button>
             </div>
             <!--_____________________________________________-->
         </form>
@@ -119,141 +134,73 @@
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
 
 
-<!---//////////////////////////////////////---BOX 2---///////////////////////////////////////////////////////----->
+
+<!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
 
 
 
 <div class="box box-primary">
 
-
-    <!--__________________TABLA___________________________-->
-
-
-    <div class="box-body">
-        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-
-            <div class="row">
+<!--__________________TABLA___________________________-->
 
 
-                <!--__________________BOTONES EXPORTACION___________________________-->
+<div class="box-body">
+    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+        <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6"></div>
+        </div>
+        <div class="row">
 
-                <div class="col-md-12">
+            <div class="col-sm-12 table-scroll">
 
-                    <div class="dt-buttons btn-group  pull-right">
-                        <button class="btn btn-default  buttons-excel buttons-html5" tabindex="0"
-                            aria-controls="example2" type="button " aria-label="Left Align"><span>Excel</span></button>
-                        <button class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="example2"
-                            type="button"><span>PDF</span></button>
-                        <button class="btn btn-default buttons-print" tabindex="0" aria-controls="example2"
-                            type="button"><span>Print</span></button> </div>
-
-                </div>
-
-                <!--__________________BOTONES EXPORTACION___________________________-->
-
-                <br>
-
-                <br>
+            <!--__________________HEADER TABLA___________________________-->
 
 
+                <!--__________________HEADER TABLA___________________________-->
+                <table id="tabla_contenedores" class="table table-bordered table-striped">
+                    <thead class="thead-dark" bgcolor="#eeeeee">
 
-                <div class="col-sm-12 table-scroll">
+                        <th>Acciones</th>
+                        <th>Codigo / Registro</th>
+                        <th>Estado</th>
+                        <th>Capacidad</th>
+                        <th>Habilitacion</th>
+                        
 
-                    <!--__________________HEADER TABLA___________________________-->
+                    </thead>
 
-                    <table id="example2" class="table table-bordered table-hover dataTable">
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Acciones</th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Codigo/Registro
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending">
-                                    Descripcion</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Estado
-                                </th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Habilitacion
-                                </th>
-                            </tr>
-                        </thead>
+                    <!--__________________BODY TABLA___________________________-->
 
-                        <!--__________________BODY TABLA___________________________-->
+                    <tbody>
+                    <tr>
+                        <td>
+                        <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                        <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                        <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                        
+                        </td>
+                        <td>DATO</td>
+                        <td> DATO</td>
+                        <td>DATO</td>
+                        <td>DATO</td>
+                    </tr>
 
-
-                        <tbody id="tablaContenedor">
-                            <tr role="row" class="even" id="primero" hidden>
-                                <td class="sorting_1">
-                                    <button type="button" title="editar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle"
-                                        data-toggle="modal" data-target="#modalEdit"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Contenedor 1</td>
-                                <td>------</td>
-                                <td>Optimo</td>
-                                <td>Habilitado</td>
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle"
-                                        data-toggle="modal" data-target="#modalEdit"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Contenedor 1</td>
-                                <td>------</td>
-                                <td>Optimo</td>
-                                <td>Habilitado</td>
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle"
-                                        data-toggle="modal" data-target="#modalEdit"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Contenedor 1</td>
-                                <td>------</td>
-                                <td>Optimo</td>
-                                <td>Habilitado</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <!--__________________FIN TABLA___________________________-->
-
-                </div>
+                       
+                    </tbody>
+                </table>
+                
+                <!--__________________FIN TABLA___________________________-->
             </div>
+        </div>
+
+    </div>
+</div>
+
+<!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
 
 
 
-
-            <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
 
 
 
@@ -267,7 +214,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title" id="exampleModalLabel">Editar Generador</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Contenedor</h5>
             </div>
 
 
@@ -279,6 +226,78 @@
 
 
                 <div class="modal-body">
+
+
+
+            <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
+
+            <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <!--Codigo / Registro-->
+                    <div class="form-group">
+                        <label for="Codigo/Registro" name="Codigo_registro">Codigo / Registro:</label>
+                        <input type="text" class="form-control" id="Codigo/Registro">
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Descripcion-->
+                    <div class="form-group">
+                        <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                        <input type="text" class="form-control" id="Descripcion">
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Capacidad-->
+                    <div class="form-group">
+                        <label for="Capacidad" name="Capacidad">Capacidad:</label>
+                        <input type="text" class="form-control" id="Capacidad">
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Año de elaboracion-->
+                    <div class="form-group">
+                        <label for="Añoelab" name="Añoelab">Año de elaboracion:</label>
+                        <input type="text" class="form-control" id="Añoelab">
+                    </div>
+
+                </div>
+                
+                <div class="col-md-6">
+                    <!--_____________________________________________--> 
+                    <!--Tara-->
+                    <div class="form-group">
+                        <label for="Tara" name="Tara">Tara:</label>
+                        <input type="text" class="form-control" id="Tara">
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Estado-->
+                    
+                    <div class="form-group">
+                        <label for="Estados" name="Estados">Estado:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="Estados">
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
+                            foreach ($Estados as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Habilitacion-->
+                    <div class="form-group">
+                        <label for="Habilitacion" name="Habilitacion">Habilitacion:</label>
+                        <input type="text" class="form-control" id="Habilitacion">
+                    </div>
+                </div>
+
+                </div>    
+                
+            </div>
+            <div class="col-md-12">
+                <hr>
+            </div>
+
+            
+        </form>
 
                 
                 </div>
@@ -304,9 +323,171 @@
 
 
 
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+    
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Informacion Contenedor</h5>
+            </div>
 
 
-        <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+
+
+            <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
+
+            <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <!--Codigo / Registro-->
+                    <div class="form-group">
+                        <label for="Codigo/Registro" name="Codigo_registro">Codigo / Registro:</label>
+                        <input type="text" class="form-control" id="Codigo/Registro" readonly>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Descripcion-->
+                    <div class="form-group">
+                        <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                        <input type="text" class="form-control" id="Descripcion" readonly>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Capacidad-->
+                    <div class="form-group">
+                        <label for="Capacidad" name="Capacidad">Capacidad:</label>
+                        <input type="text" class="form-control" id="Capacidad" readonly>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Año de elaboracion-->
+                    <div class="form-group">
+                        <label for="Añoelab" name="Añoelab">Año de elaboracion:</label>
+                        <input type="text" class="form-control" id="Añoelab" readonly>
+                    </div>
+
+                </div>
+                
+                <div class="col-md-6">
+                    <!--_____________________________________________--> 
+                    <!--Tara-->
+                    <div class="form-group">
+                        <label for="Tara" name="Tara">Tara:</label>
+                        <input type="text" class="form-control" id="Tara" readonly>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Estado-->
+                    
+                    <div class="form-group">
+                        <label for="Estados" name="Estados">Estado:</label>
+                        <input type="text" class="form-control" id="" readonly>
+                    </div>
+                    <!--_____________________________________________-->
+                    <!--Habilitacion-->
+                    <div class="form-group">
+                        <label for="Habilitacion" name="Habilitacion">Habilitacion:</label>
+                        <input type="text" class="form-control" id="Habilitacion" readonly>
+                    </div>
+                </div>
+
+                </div>    
+                
+            </div>
+            <div class="col-md-12">
+                <hr>
+            </div>
+
+            
+        </form>
+
+                
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+ <!---//////////////////////////////////////--- FUNCIONES ---///////////////////////////////////////////////////////----->
+
+
+<!--________________________________________ AGREGAR EN TABLA ________________________________________-->
+
+<script>
+
+function Agregar_Contenedor()
+
+{
+
+    // Variables de datos de los campos a listar
+
+    var data = {};
+    data.codigo = $('#Codigo/Registro').val();
+    data.descripcion = $('#Descripcion').val();
+    data.capacidad = $('#Capacidad').val();
+    data.elaboracion = $('#Añoelab').val();
+    data.tara = $('#Tara').val();
+    data.capacidad = $('#Capacidad').val();
+    data.estados = $('#Estados').find('option:selected').html();
+    data.habilitacion = $('#Habilitacion').val();
+    
+
+    //console.log(data);
+    
+    tr="";
+    tr+="<tr data-json='"+JSON.stringify(data)+"' data-contenedores=''>";
+    tr+="<td><i class='fa fa-fw fa-minus text-light-blue manzanas_asignadas_borrar' style='cursor: pointer; margin-left: 15px;' title='Eliminar'></i>";
+    tr+="<i class='fa fa-fw fa-plus text-light-blue manzanas_asignadas_calle' style='cursor: pointer; margin-left: 15px;' title='Asignar Calles'></i>";
+    tr+="<i class='fa fa-fw fa-search text-light-blue manzanas_asignadas_ver' style='cursor: pointer; margin-left: 15px;' title='Ver Calles'></i></td>";
+    tr+="<td>"+data.area+"</td><td>"+data.departamento+"</td></tr>";
+    manzanasAsignadas.row.add($(tr)).draw();
+
+    // Limpiar Campos
+
+    data.codigo = $('#Codigo/Registro').val('');
+    data.descripcion = $('#Descripcion').val('');
+    data.capacidad = $('#Capacidad').val('');
+    data.elaboracion = $('#Añoelab').val('');
+    data.tara = $('#Tara').val('');
+    data.capacidad = $('#Capacidad').val('');
+    data.estados = $('#Estados').find('option:selected').html('');
+    data.habilitacion = $('#Habilitacion').val('');
+
+
+
+   
+}
+
+
+
+</script>
+
+ <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 
 
         <!--_____________________________________________________________-->
@@ -449,22 +630,22 @@
                     validators: {
                         notEmpty: {
                             message: 'la entrada no puede ser vacia'
+                        },
+                        regexp: {
+                            regexp: /[A-Za-z]/,
+                            message: 'la entrada debe ser un numero entero'
                         }
                     }
                 },
-                Descripcion: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        }
-                    }
-                };
                 Añoelab: {
                     message: 'la entrada no es valida',
                     validators: {
                         notEmpty: {
                             message: 'la entrada no puede ser vacia'
+                        },
+                        regexp: {
+                            regexp: /[A-Za-z]/,
+                            message: 'la entrada debe ser un numero entero'
                         }
                     }
                 };
@@ -473,6 +654,10 @@
                     validators: {
                         notEmpty: {
                             message: 'la entrada no puede ser vacia'
+                        },
+                        regexp: {
+                            regexp: /[A-Za-z]/,
+                            message: 'la entrada debe ser un numero entero'
                         }
                     }
                 };
@@ -481,6 +666,10 @@
                     validators: {
                         notEmpty: {
                             message: 'la entrada no puede ser vacia'
+                        },
+                        regexp: {
+                            regexp: /[A-Za-z]/,
+                            message: 'la entrada debe ser un numero entero'
                         }
                     }
                 };
@@ -489,6 +678,10 @@
                     validators: {
                         notEmpty: {
                             message: 'la entrada no puede ser vacia'
+                        },
+                        regexp: {
+                            regexp: /[A-Za-z]/,
+                            message: 'la entrada debe ser un numero entero'
                         }
                     }
                 }
@@ -502,70 +695,10 @@
 
 
 
+<!--_____________________________________________________________-->
+ <!-- script Datatables -->
+ <script>
 
+DataTable($('#tabla_contenedores'))
 
-        <!---//////////////////////////////////////---DATA TABLES SCRIPT---///////////////////////////////////////////////////////----->
-        <!-- Script Data-Tables-->
-        <script>
-        $(function() {
-
-            $('#example2').DataTable({
-                'paging': true,
-                'lengthChange': true,
-                'searching': true,
-                'ordering': true,
-                'info': true,
-                'autoWidth': true,
-                'autoFill': true,
-                'buttons': true,
-                'fixedHeader': true,
-                'colReorder': true,
-                'scroller': true,
-                'keytable': true
-            })
-        })
-        </script>
-
-        <!-- Script Data-Tables-->
-
-
-        <!---//////////////////////////////////////---DATA TABLES SCRIPT---///////////////////////////////////////////////////////----->
-
-
-
-
-
-
-        <!-- <script>
-            $(document).ready(function() {
-                var table = $('#example1').DataTable({
-                    fixedHeader: true,
-                    colReorder: true
-                });
-            });
-            </script>
-
-            <script>
-            $(document).ready(function() {
-                $('#example1').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [{
-                            extend: 'print',
-                            text: 'Print all',
-                            exportOptions: {
-                                modifier: {
-                                    selected: null
-                                }
-                            }
-                        },
-                        {
-                            extend: 'print',
-                            text: 'Print selected'
-                        }
-                    ],
-                    select: true
-                });
-            });
-            </script> -->
-
-        <!---//////////////////////////////////////---DATA TABLES SCRIPT---///////////////////////////////////////////////////////----->
+</script>

@@ -14,79 +14,54 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 table-scroll">
-                            <table id="example2" class="table table-condensed table-bordered table-hover dataTable"
-                                role="grid" aria-describedby="example2_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Rendering engine: activate to sort column descending">Acciones
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">Nro
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Platform(s): activate to sort column ascending">
-                                            Patente</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Engine version: activate to sort column ascending">
-                                            Tipo</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">Fecha y
-                                            hora
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">Orden de
-                                            transp
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">
-                                            Valorizado
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tabadd">
+                        <table id="tabla_control_descarga" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
 
-                                    <tr role="row" class="even">
-                                        <td>
-                                            <button type="button" title="vuelco"
-                                                class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in"
-                                                    aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"
-                                                ><span class="glyphicon glyphicon-paperclip"
-                                                    aria-hidden="true"></span></button></td>
-                                        <td>7</td>
-                                        <td>asd 234</td>
-                                        <td>Generador 2</td>
-                                        <td>4/10/2019</td>
-                                        <td>4/10/2019</td>
-                                        <td>4/10/2019</td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td>
-                                            <button type="button" title="vuelco"
-                                                class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in"
-                                                    aria-hidden="true"></span></button>&nbsp<button type="button"
-                                                title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span
-                                                    class="glyphicon glyphicon-paperclip"
-                                                    aria-hidden="true"></span></button></td>
-                                        <td>8</td>
-                                        <td>dsa 213</td>
-                                        <td>Generador 4</td>
-                                        <td>4/10/2019</td>
-                                        <td>4/10/2019</td>
-                                        <td>4/10/2019</td>
-                                    </tr>
-                                    <!--
-                        <tr role="row" class="even">
-                        <td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
-                        <td>Zona 5</td>
-                        <td>Circuito 11</td>
-                        <td>Transp 8</td>
-                        <td>Asd 347</td>
-                        <td>Fernando Leiva</td>
-                        </tr> -->
-                                </tbody>
+                            <th>Acciones</th>
+                            <th>Nro</th>
+                            <th>Patente</th>
+                            <th>Tipo</th>
+                            <th>Fecha y hora</th>
+                            <th>Orden de transp</th>
+                            <th>Valorizado</th>
+                            
+
+                        </thead>
+
+                        <!--__________________BODY TABLA___________________________-->
+
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="vuelco" class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>&nbsp
+                            <button type="button"        title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span aria-hidden="true"></span></button>
+                            <button type="button"  title="Cerrar sector" class="btn btn-primary btn-circle btnadjuntar"><span class="glyphicon glyphicon-lock"aria-hidden="true"></span></button>
+                            </td>
+                            <td>8</td>
+                            <td>dsa 213</td>
+                            <td>Generador 4</td>
+                            <td>4/10/2019</td>
+                            <td>4/10/2019</td>
+                            <td>4/10/2019</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                            <button type="button" title="vuelco" class="btn btn-primary btn-circle btnvuelco"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>&nbsp
+                            <button type="button"  title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span aria-hidden="true"></span></button>
+                            <button type="button"  title="Cerrar sector" class="btn btn-primary btn-circle btnadjuntar"><span class="glyphicon glyphicon-lock"aria-hidden="true"></span></button>
+                            </td>
+                            <td>8</td>
+                            <td>dsa 213</td>
+                            <td>Generador 4</td>
+                            <td>4/10/2019</td>
+                            <td>4/10/2019</td>
+                            <td>4/10/2019</td>
+                        </tr>
+
+                           
+                        </tbody>
+                    </table>
                             </table>
                         </div>
                     </div>
@@ -139,8 +114,10 @@
         <br>
         <div class="col-md-12"><hr></div>
 
+<!-- _____________ BOTONES ________________ -->
+
         <div class="col-md-12">
-            <div class="col-md-3 col-xs-4 text-center">
+            <div class="col-md-4 col-xs-4 text-center">
                 <div class="form-group">
                     <button type="submit" class="btn btn-default btn-circle" aria-label="Left Align">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -148,7 +125,7 @@
                     <small for="agregar" class="form-label">Incidencia</small>
                 </div>
             </div>
-            <div class="col-md-3 col-xs-4 text-center">
+            <div class="col-md-4 col-xs-4 text-center">
                 <div class="form-group">
                     <button type="submit" class="btn btn-default btn-circle" aria-label="Left Align">
                         <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
@@ -156,15 +133,8 @@
                     <small for="agregar" class="form-label">Adjuntar imagen</small>
                 </div>
             </div>
-            <div class="col-md-3 col-xs-4 text-center">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default btn-circle" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                    </button><br>
-                    <small for="agregar" class="form-label">Cerrar sector</small>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-12 text-center">
+            
+            <div class="col-md-4 col-xs-4 text-center">
                 <div class="form-group">
                     <button type="submit" class="btn btn-default btn-circle" aria-label="Left Align">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
@@ -174,11 +144,17 @@
             </div>
         </div>
 
+
+<!-- _____________ BOTONES ________________ -->
+
         <div class="col-md-12"><hr></div>
 
+<!-- _____________ THUMBAILS________________ -->
 
+<div class="row">
 
-        <div class="col-md-12">
+     <div class="col-md-12">
+     
             <div class="col-md-3">
                 <div class="thumbnail">
                     <div class="caption">
@@ -197,6 +173,9 @@
                     </div>
                 </div>
             </div>
+
+            <!-- _____________________________ -->
+
             <div class="col-md-3">
                 <div class="thumbnail">
                     <div class="caption">
@@ -233,6 +212,8 @@
                     </div>
                 </div>
             </div>
+
+           
             <div class="col-md-3">
                 <div class="thumbnail">
                     <div class="caption">
@@ -364,19 +345,14 @@
     }
 </script>
 
-<script>
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging': true,
-            'lengthChange': true,
-            'searching': true,
-            'ordering': true,
-            'info': true,
-            'autoWidth': true
-        })
-    })
+<!--_____________________________________________________________-->
+ <!-- script Datatables -->
+ <script>
+
+    DataTable($('#tabla_control_descarga'))
+
 </script>
+
 
 <!-- script que cierra box con boton (x) -->
 

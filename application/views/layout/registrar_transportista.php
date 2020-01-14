@@ -28,7 +28,7 @@
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
         <div class="box-tittle">
-        <h5>Informacion</h5>
+        <h5>Informacion</h5>  
         </div>
         <div class="box-tools pull-right">
             <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
@@ -38,136 +38,134 @@
         </div>
 
     </div>
-    <!--_________________________________________________-->
+
+
+
+    <!--_____________________________________________-->
+
 
     <div class="box-body">
 
-        <!--__________________ FORMULARIO  ___________________________-->
-
         <form class="formTransportistas" id="formTransportistas">
 
-            <!--***************************************-->
             <div class="col-md-6">
+
                 <!--_____________________________________________-->
                 <!--Nombre / Razon social-->
+
                 <div class="form-group">
-                    <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
-                    <input type="text" class="form-control" id="Nombre/Razon social">
+                    <label for="Nombre/Razon social" >Nombre / Razon social:</label>
+                    <input type="text" class="form-control" name="Nombre_razon" id="Nombre/Razon social">
                 </div>
                 <!--_____________________________________________-->
                 <!--Descripcion-->
+
                 <div class="form-group">
-                    <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                    <input type="text" class="form-control" id="Descripcion">
+                    <label for="Descripcion" >Descripcion:</label>
+                    <input type="text" class="form-control"  name="Descripcion" id="Descripcion">
                 </div>
+
                 <!--_____________________________________________-->
                 <!--Direccion-->
+
                 <div class="form-group">
-                    <label for="Direccion" name="Direccion">Direccion:</label>
-                    <input type="text" class="form-control" id="Direccion">
+                    <label for="Direccion">Direccion:</label>
+                    <input type="text" class="form-control"   name="Direccion" id="Direccion">
                 </div>
                 <!--_____________________________________________-->
                 <!--Telefono-->
+
                 <div class="form-group">
-                    <label for="Telefono" name="Telefono">Telefono:</label>
-                    <input type="text" class="form-control" id="Telefono">
+                    <label for="Telefono" >Telefono:</label>
+                    <input type="text" class="form-control"  name="Telefono" id="Telefono">
                 </div>
                 <!--_____________________________________________-->
-                <!--Contacto-->
+                <!--contacto-->
+
                 <div class="form-group">
-                    <label for="Contacto" name="Contacto">Contacto:</label>
-                    <input type="text" class="form-control" id="Contacto">
+                    <label for="Contacto" >Contacto:</label>
+                    <input type="text" class="form-control" name="Contacto" id="Contacto">
                 </div>
-                
             </div>
 
-            <!--***************************************-->
+             <!--***************************************-->
             
-            <div class="col-md-6 ">
+            <div class="col-md-6">
+             
                 <!--_____________________________________________-->
                 <!--Resolucion-->
+
                 <div class="form-group">
-                    <label for="Resolucion" name="Resolucion">Resolucion:</label>
-                    <input type="text" class="form-control" id="Resolucion">
+                    <label for="Resolucion" >Resolucion:</label>
+                    <input type="text" class="form-control"  name="Resolucion" id="Resolucion">
                 </div>
+
                 <!--_____________________________________________-->
                 <!--Registro-->
+
                 <div class="form-group">
-                    <label for="Registro" name="Registro">Registro:</label>
-                    <input type="text" class="form-control" id="Registro">
+                    <label for="Registro" >Registro:</label>
+                    <input type="text" class="form-control" name="Registro" id="Registro">
                 </div>
                 <!--_____________________________________________-->
                 <!--Fecha de alta-->
+
                 <div class="form-group">
-                    <label for="Fechalta" name="Fecha_de_alta" class="form-label label-sm">Fecha de alta:</label>                                              
+                    <label for="Fechalta"class="form-label label-sm">Fecha de alta:</label>                                              
                     <div class="input-group date">
                          <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="date" class="form-control pull-right" id="fecha-alta">
-                    </div>               
+                        <input type="date" class="form-control pull-right"  name="Fecha_de_alta"  id="fecha-alta">
+                    </div>  
+                </div>
+                <!--_____________________________________________-->
+                <!--Fecha de baja-->
+
+                <div class="form-group">
+                    <label for="Fechabaja" >Fecha de baja:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="date" class="form-control pull-right" name="Fecha_de_baja" id="fecha-baja">
+                    </div>
                 </div>
 
                 <!--_____________________________________________-->
-                <!--Fecha de baja-->
-                <div class="form-group">
-                    <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
-                    <div class="input-group date">
-                         <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="date" class="form-control pull-right" id="fecha-baja">
-                    </div>
-                </div>
-                <!--_____________________________________________-->
                 <!--Tipo de RSU autorizado-->
+
                 <div class="form-group">
-                    <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Rsu">
+                    <label for="Rsu" >Tipo de RSU autorizado:</label>
+                    <select class="form-control select2 select2-hidden-accesible" name="Rsu" id="Rsu">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
-                    foreach ($Rsu as $i) {
-                        echo '<option>'.$i->nombre.'</option>';
-                    }
-                ?>
-                    </select>
+                            foreach ($Rsu as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                        ?>
+                        </select>
                 </div>
+
             </div>
 
             <!--***************************************-->
 
-            <!--_______________SEPARADOR_______________ -->
 
             <div class="col-md-12"><hr></div>
 
-            <!--_______________SEPARADOR_______________ -->
-
-            
-            <!--_______________ GUARDAR _______________ -->
-
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-            </div>
-
-            <!--_______________ GUARDAR _______________ -->
-
-
+            <!--___________________BOTON GUARDAR__________________________-->
+            <br>
+            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+            <br>
         </form>
-
-        <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
     </div>
-
 </div>
 </div>
 
-<!--//////////////////////////////Box3//////////////////////////////-->
-            <!--Datatable Registrar Generadores-->
-            <div class="box box-primary animated fadeInLeft">
-                <div class="box-body table-scroll">
-                    <table id="example2" class="table table-bordered table-hover table-responsive">
-​                    <!--_____________________________________________________________-->
 
+
+<!---//////////////////////////////////////--- FIN BOX 1 ---///////////////////////////////////////////////////////----->
 
 
 <!---//////////////////////////////////////---BOX 2---///////////////////////////////////////////////////////----->
@@ -192,75 +190,48 @@
                 <!--__________________HEADER TABLA___________________________-->
 
 
-                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
-                        aria-describedby="example2_info">
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Acciones</th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Nombre/Razon Social
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending">
-                                    Registro</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Tipo RSU
-                                </th>
-                                
-                            </tr>
+                    <!--__________________HEADER TABLA___________________________-->
+                    <table id="tabla_transportistas" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+
+                            <th>Acciones</th>
+                            <th>Nombre / Razon social</th>
+                            <th>Zona</th>
+                            <th>Departamento</th>
+                            <th>Tipo</th>
+                            
+
                         </thead>
 
                         <!--__________________BODY TABLA___________________________-->
 
-                        <tbody id="tablaTransportista">
-                            <tr role="row" class="even" id="primero">
-                                <td class="sorting_1">
-                                <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td> 
-                            </tr>
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            </td>
+                            <td>DATO2</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                        </tr>
 
-                            <tr role="row" class="even" >
-                                <td class="sorting_1">
-                                <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Transportista 1</td>
-                                <td>------</td>
-                                <td>Escombro</td>                           
-                            </tr>
-
-                            <tr role="row" class="even" >
-                                <td class="sorting_1">
-                                <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Transportista 1</td>
-                                <td>------</td>
-                                <td>Escombro</td> 
-                            </tr>
-
-                            <tr role="row" class="even" >
-                                <td class="sorting_1">
-                                <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                </td>
-                                <td>Transportista 1</td>
-                                <td>------</td>
-                                <td>Escombro</td> 
-
-                            </tr>
+                           
                         </tbody>
                     </table>
                     
                     <!--__________________FIN TABLA___________________________-->
+
+
+
+
+                    
+
+
+
+
                 </div>
             </div>
 
@@ -271,10 +242,13 @@
 
 
 
+
+
+
     <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
     
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
@@ -294,90 +268,143 @@
 
                 <div class="modal-body">
 
-                <!--_____________________________________________-->
-                <!--Nombre/Razon social-->
+                
 
                     <div class="row">
                         <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                             <!--Nombre/Razon social-->
+
                             <div class="form-group">
-                                <label for="nro" class="form-label label-sm">Nombre/Razon social</label>
-                                <input type="text" id="" name="" class="form-control input-sm" required>
+                                <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
+                                <input type="text" class="form-control" id="Nombre/Razon social">
                             </div>
-                        </div>                        
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                             <!--Registro-->
+
+                            <div class="form-group">
+                                <label for="Registro" name="Registro">Registro:</label>
+                                <input type="text" class="form-control" id="Registro">
+                            </div>
+                        </div>                         
                     </div>
 
-                <!--_____________________________________________-->
-                <!--Registro-->
+                
 
                 <div class="row">
+
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="generador" class="form-label label-sm">Registro</label>
-                                <input type="text" id="" name="" required class="form-control input-sm">
-                            </div>
-                <!--_____________________________________________-->
-                <!--Tipo de residuo-->
+
+                            <!--_____________________________________________-->
+                            <!--Direccion-->
 
                             <div class="form-group">
-                                <label for="tipores" class="form-label label-sm">Tipo RSU</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="">
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
-                    foreach ($Rsu as $i) {
-                        echo '<option>'.$i->nombre.'</option>';
-                    }
-                ?>
-                    </select>
+                                <label for="Direccion" name="Direccion">Direccion:</label>
+                                <input type="text" class="form-control" id="Direccion">
+                            </div>
+
+                            <!--_____________________________________________-->
+                            <!--Telefono-->
+
+                            <div class="form-group">
+                                 <label for="Telefono" name="Telefono">Telefono:</label>
+                                 <input type="text" class="form-control" id="Telefono">
                             </div>
                          </div>
 
-                <!--_____________________________________________-->
-                <!--Descripcion-->
+                
 
                         <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                            <!--Zona-->
+
                             <div class="form-group">
-                                <label for="rectificatoria" class="form-label label-sm">Descripcion</label>
-                                <input type="text" id="" required name=""
-                                    class="form-control input-sm">
+                            <label for="Zonag" name="Zona">Zona:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="Zonag">
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                    foreach ($Zonag as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                                    ?>
+                                </select>
                             </div>
 
-                <!--_____________________________________________-->
-                <!--Resolucion-->
+                            <!--_____________________________________________-->
+                            <!--Fecha de alta-->                
 
                             <div class="form-group">
-                            <label for="cont" class="form-label label-sm">Resolucion</label>
-                                <input type="text" id="" required name="" class="form-control input-sm">
+                                <label for="Fechalta" name="Fecha_de_alta" class="form-label label-sm">Fecha de alta:</label>                                              
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control pull-right" id="fecha-alta">
+                                </div>
+                                
                             </div>
                         </div>
                 </div>
 
-                <!--_____________________________________________-->
-                <!--Fecha de Alta-->
+                
 
-                <div class="row">                        
-                    <div class="col-md-6">
-                                <label for="Fechabaja" name="Fecha_de_baja">Fecha de Alta:</label>
-                             <div class="input-group date">
+                <div class="row">
+
+                    <div class="col-md-6"> 
+                        <!--_____________________________________________-->
+                        <!--Descripcion-->
+
+                            <div class="form-group">
+                                <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                                <input type="text" class="form-control" id="Descripcion">                                                               
+                            </div>
+
+                        <!--_____________________________________________-->
+                        <!--Contacto-->
+
+                            <div class="form-group">
+                                <label for="Contacto" name="Contacto">Contacto:</label>
+                                <input type="text" class="form-control" id="Contacto">
+                                
+                            </div>
+                    </div>
+
+                    <div class="col-md-6"> 
+
+                            <!--_____________________________________________-->
+                            <!--Fecha baja-->
+
+                            <div class="form-group">
+                                <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
+                                <div class="input-group date">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                <input type="date" class="form-control pull-right" id="fecha-alta">
-                             </div>
-                        </div>
+                                    <input type="date" class="form-control pull-right" id="fecha-baja">
+                                </div>
+                            </div>
 
-                <!--_____________________________________________-->
-                <!--Fecha de Baja-->
+                            <!--_____________________________________________-->
+                            <!--Tipo RSU autorizado-->
 
-
-                        <div class="col-md-6">
-                                <label for="Fechabaja" name="Fecha_de_baja">Fecha de Baja:</label>
-                             <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                <input type="date" class="form-control pull-right" id="fecha-baja">
-                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="Rsu">
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                        foreach ($Rsu as $i) {
+                                            echo '<option>'.$i->nombre.'</option>';
+                                        }
+                                    ?>
+                                    </select>
+                            </div>
+                            </div>
                     </div>
                     
                     
@@ -400,6 +427,179 @@
 
 
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+
+
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+    
+    <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Informacion Transportista</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                
+                <div class="row">
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                             <!--Nombre/Razon social-->
+
+                            <div class="form-group">
+                                <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                             <!--Registro-->
+
+                            <div class="form-group">
+                                <label for="Registro" name="Registro">Registro:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+                        </div>                         
+                    </div>
+
+                
+
+                <div class="row">
+
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                            <!--Direccion-->
+
+                            <div class="form-group">
+                                <label for="Direccion" name="Direccion">Direccion:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+
+                            <!--_____________________________________________-->
+                            <!--Telefono-->
+
+                            <div class="form-group">
+                                 <label for="Telefono" name="Telefono">Telefono:</label>
+                                 <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+                         </div>
+
+                
+
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                            <!--Zona-->
+
+                            <div class="form-group">
+                                <label for="Zonag" name="Zona">Zona:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+
+                            <!--_____________________________________________-->
+                            <!--Fecha de alta-->                
+
+                            <div class="form-group">
+                                <label for="Fechalta" name="Fecha_de_alta" class="form-label label-sm">Fecha de alta:</label>                                              
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control pull-right" id="" readonly>
+                                </div>
+                                
+                            </div>
+                        </div>
+                </div>
+
+                
+
+                <div class="row">
+
+                    <div class="col-md-6"> 
+                        <!--_____________________________________________-->
+                        <!--Descripcion-->
+
+                            <div class="form-group">
+                                <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>                                                              
+                            </div>
+
+                        <!--_____________________________________________-->
+                        <!--Contacto-->
+
+                            <div class="form-group">
+                                <label for="Contacto" name="Contacto">Contacto:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                                
+                            </div>
+                    </div>
+
+                    <div class="col-md-6"> 
+
+                            <!--_____________________________________________-->
+                            <!--Fecha baja-->
+
+                            <div class="form-group">
+                                <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control pull-right" id="" readonly>
+                                </div>
+                            </div>
+
+                            <!--_____________________________________________-->
+                            <!--Tipo RSU autorizado-->
+
+                            <div class="form-group">
+                                <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+                            </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+
+
 
  <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
@@ -496,32 +696,13 @@ $("#btnadd").on("click", function() {
     });
     </script>
 
-
 <!--_____________________________________________________________-->
-            <!-- script Datatables -->
+ <!-- script Datatables -->
+ <script>
 
-            <script>
-            $(function() {
-                
-                $('#example2').DataTable({
-                    'paging': true,
-                    'lengthChange': true,
-                    'searching': true,
-                    'ordering': true,
-                    'info': true,
-                    'autoWidth': true,
-                    'autoFill': true,
-                    'buttons': true,
-                    'fixedHeader': true,
-                    'colReorder': true,
-                    'scroller': true,
-                    'keytable': true
-                })
-            })
-            </script>
+    DataTable($('#tabla_transportistas'))
 
-    
-
+</script>
 
 
    <!--_____________________________________________________________-->
@@ -662,3 +843,10 @@ $("#btnadd").on("click", function() {
         //guardar();
     });
     </script>
+
+
+
+
+
+
+    

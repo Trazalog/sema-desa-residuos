@@ -1,4 +1,3 @@
-                    }
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
 <div class="box box-primary animated fadeInLeft">
@@ -44,23 +43,26 @@
     <!--_____________________________________________-->
 
     <div class="box-body">
+
     <form class="formCircuitos" id="formCircuitos">
-    <div class="col-md-6">
 
-            <!--Codigo-->
-                <div class="form-group">
-                    <label for="Codigo" name="Codigo">Codigo:</label>
-                    <input type="text" class="form-control" id="Codigo">
-                </div>
             <!--_____________________________________________-->
+            <!--Codigo-->
 
-    </div>        
-    <div class="col-md-6">
+            <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Codigo">Codigo:</label>
+                            <input type="text" class="form-control"  name="Codigo" id="Codigo">
+                        </div>
+            </div>
 
-            <!--Chofer-->
-                <div class="form-group">
-                    <label for="Chofer" name="Chofer">Chofer:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Chofer">
+            <!--_____________________________________________--> 
+             <!--Chofer-->
+
+            <div class="col-md-6">
+                 <div class="form-group">
+                    <label for="Chofer" >Chofer:</label>
+                    <select class="form-control select2 select2-hidden-accesible" name="Chofer" id="Chofer">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Chofer as $i) {
@@ -69,25 +71,25 @@
                         ?>
                     </select>
                 </div>
+            </div>
+
             <!--_____________________________________________-->
-
-    </div>
-    <div class="col-md-12">
-
             <!--Descripcion-->
+
+            <div class="col-md-12">
                 <div class="form-group">
-                    <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                    <textarea style="resize: none;" type="text" class="form-control" id="Descripcion"></textarea>
+                    <label for="Descripcion" >Descripcion:</label>
+                    <textarea style="resize: none;" type="text" class="form-control" name="Descripcion" id="Descripcion"></textarea>
                 </div>
+            </div>
+
             <!--_____________________________________________-->
+            <!--vehiculo-->
 
-    </div>
-    <div class="col-md-6">
-
-            <!--Vehiculo-->
+            <div class="col-md-6">          
                 <div class="form-group">
-                    <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Vehiculo">
+                    <label for="Vehiculo">Vehiculo:</label>
+                    <select class="form-control select2 select2-hidden-accesible"  name="Vehiculo" id="Vehiculo">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Vehiculo as $i) {
@@ -96,15 +98,16 @@
                         ?>
                     </select>
                 </div>
+            </div>
+
             <!--_____________________________________________-->
-
-    </div>
-    <div class="col-md-6">
-
             <!--Tipo de residuo-->
+
+
+            <div class="col-md-6">            
                 <div class="form-group">
-                    <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="tipoResiduos">
+                    <label for="tipoResiduos" >Tipo de residuo:</label>
+                    <select class="form-control select2 select2-hidden-accesible" name="tipoResiduos" id="tipoResiduos">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($tipoResiduos as $i) {
@@ -113,74 +116,45 @@
                         ?>
                     </select>
                 </div>
-            <!--_____________________________________________-->
-
-    </div>
-
-    <div class="col-md-12"> <hr></div>
-
-    <div class="col-md-6">
-
-            <!--Adjuntador de imagenes-->
-                <br>
-                <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                    <input  type="file" name="upload">
-                </form>
-            <!--_____________________________________________-->
-
-    </div>
-
-    <div class="col-md-12"> <hr></div>
-    <div class="col-md-12">
-    <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
-    </div>
-
-
-    <!--__________________SEPARADOR___________________________-->
-
-    <div class="col-md-12"> <br></div>
-
-    <!--________________SEPARADOR_____________________________-->
-
-    <div class="col-md-12">
-    <div class="box-header bg-blue">
-                <h5>Registrar Punto Critico</h5>
             </div>
-        </div>
 
-        <!--__________________SEPARADOR___________________________-->
+            <!--_________________SEPARADOR_________________-->
 
-        <div class="col-md-12"> <br></div>
+            <div class="col-md-12"> <hr></div>
 
-        <!--________________SEPARADOR_____________________________-->
-        <div class="col-md-12">
-    <div class="col-md-6">
+            <!--_________________SEPARADOR_________________-->
 
-            <!--Nombre-->
-                <div class="form-group">
-                    <label for="Nombre" name="Nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="Nombre">
-                </div>
             <!--_____________________________________________-->
+            <!--Adjuntador de imagenes-->
 
-    </div>
-    <div class="col-md-6">
+            <div class="col-md-6">     
+                
+                <form action="cargar_archivo" method="post" enctype="multipart/form-data">
 
-            <!--Descripcion-->
-                <div class="form-group">
-                    <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                    <input type="text" class="form-control" id="Descripcion">
-                </div>     
+                    <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                    </button>
+                    <small for="agregar" class="form-label">Adjuntar imagen</small>
+                    
+                </form>
+            </div>
 
-    </div>
-    </div>
+            <!--_________________SEPARADOR_________________-->
 
-    <div class="col-md-12"> <hr></div>
-    <!--_____________________________________________-->    
-    <!--Boton de guardado-->
-    <div class="col-md-12">
-    <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
-    </div>
+            <div class="col-md-12"> <hr></div>
+
+            <!--_________________SEPARADOR_________________-->
+
+  
+                <div class="col-md-12">
+                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
+                </div>
+
+   
+
+
+    
+    
     
     
     </div>
@@ -190,19 +164,72 @@
 </div>
 
 
+  <!--____________________________________________________________________________________________-->
+
+    <!-- <div class="col-md-12">
+
+        <div class="box box-primary animated fadeInLeft">
+            <div class="box-header with-border">
+                    <h5>Registrar Punto Critico</h5>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-12">
+
+            <!--_____________________________________________--> 
+            <!--Nombre-->
+
+            <!-- <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Nombre" name="Nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="Nombre">
+                </div>
+            </div> -->
+
+            <!--_____________________________________________-->
+            <!--Descripcion--> 
+     
+            <!-- <div class="col-md-6">            
+                <div class="form-group">
+                    <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                    <input type="text" class="form-control" id="Descripcion">
+                </div>     
+
+            </div>
+        </div> -->
+
+        <!--_________________SEPARADOR_________________-->
+
+          <!-- <div class="col-md-12"> <hr></div> -->
+
+        <!--_________________SEPARADOR_________________-->
+
+
+            <!--_____________________________________________-->    
+            <!--Boton de guardado-->
+            
+            <!-- <div class="col-md-12">
+                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
+            </div>
+
+    </div> -->
+
+    
+  <!--____________________________________________________________________________________________-->
+
+
 
 
 <!---//////////////////////////////////////--- FIN BOX 1---///////////////////////////////////////////////////////----->
 
 
 
-<!---//////////////////////////////////////---BOX 2---///////////////////////////////////////////////////////----->
-
-
-
+<!---//////////////////////////////////////---BOX TABLA---///////////////////////////////////////////////////////----->
 
  
-<div class="box box-primary animated fadeInLeft">
+<div class="box box-primary ">
     
 
     <!--__________________TABLA___________________________-->
@@ -214,50 +241,41 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 table-scroll">
-                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
-                                aria-describedby="example2_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Rendering engine: activate to sort column descending">Acciones</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">Codigo
-                                        </th>                                        
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Engine version: activate to sort column ascending">
-                                            Chofer</th>
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Rendering engine: activate to sort column descending">Vehiculo
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">Tipo de residuo
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tabadd">
-                                    <tr role="row" class="even" id="primero" hidden>
-                                        <td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
-                                        <td>Circuito 5</td>
-                                        <td>Transp 1</td>
-                                        <td>Asd 345</td>
-                                        <td>Hugo Gallardo</td>
-                                        
-                                    </tr>
-                                    
-                    <tr role="row" class="even">
-                    <td class="sorting_1">
-                    <button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp</td>
-                    <td>Zona 5</td>
-                    <td>Circuito 11</td>
-                    <td>Transp 8</td>
-                    <td>Asd 347</td>
-                    
-                    </tr>
-                                </tbody>
-                            </table>
+                             <!--__________________HEADER TABLA___________________________-->
+                    <table id="tabla_circuitos" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+
+                            <th>Acciones</th>
+                            <th>Codigo</th>
+                            <th>Chofer</th>
+                            <th>Vehiculo</th>
+                            <th>Tipo de residuo</th>
+                            
+
+                        </thead>
+
+                        <!--__________________BODY TABLA___________________________-->
+
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalPunto"><span class="glyphicon glyphicon-record" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            
+                            </td>
+                            <td>DATO</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                        </tr>
+                        
+                           
+                        </tbody>
+                    </table>
+
+                    <!--__________________FIN TABLAa___________________________-->
                         </div>
                     </div><br>
                     
@@ -270,9 +288,443 @@
 
 
             
-<!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- FIN BOX TABLA---///////////////////////////////////////////////////////----->
 
 
+
+
+    <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Circuito</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                        <!--_____________________________________________-->
+                        <!--Codigo-->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Codigo" name="Codigo">Codigo:</label>
+                                        <input type="text" class="form-control" id="Codigo">
+                                    </div>
+                                </div>                        
+                            </div>
+
+                        
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="Chofer" name="Chofer">Chofer:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="Chofer">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($Chofer as $i) {
+                                    echo '<option>'.$i->nombre.'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <!--_____________________________________________-->
+                        <!--Tipo de residuo-->
+
+                        <div class="form-group">
+                            <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="tipoResiduos">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($tipoResiduos as $i) {
+                                    echo '<option>'.$i->nombre.'</option>';
+                                }
+                                ?>
+                            </select>
+                            </div>
+                         </div>
+
+                        <!--_____________________________________________-->
+                        <!--Vehiculo-->
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="Vehiculo">
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                    foreach ($Vehiculo as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                        <!--_____________________________________________-->
+                        <!--Descripcion-->
+
+                    <div class="row">                        
+                        <div class="col-md-12">
+                            <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                            <textarea style="resize: none;" type="text" class="form-control" id="Descripcion"></textarea>
+                                    
+                        </div>         
+                    </div>
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+
+    <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+    
+    <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Informacion Circuito</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                        <!--_____________________________________________-->
+                        <!--Codigo-->
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Codigo-->
+
+                                    <div class="form-group">
+                                        <label for="Codigo" name="Codigo">Codigo:</label>
+                                        <input type="text" class="form-control" id="Codigo" readonly>
+                                    </div>
+                                </div> 
+
+                                <!--_____________________________________________-->
+                                <!--Vehiculo-->
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
+                                        <input type="text" class="form-control" id="Vehiculo" readonly>                                
+                                    </div>
+                                </div>                       
+                            </div>
+
+                        
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                        <!--_____________________________________________-->
+                        <!--Chofer-->
+
+                            <div class="form-group">
+                                <label for="Chofer" name="Chofer">Chofer:</label>
+                                <input type="text" class="form-control" id="Chofer" readonly>
+                            
+                            </div>
+
+                        </div>
+
+                        <!--_____________________________________________-->
+                        <!--Tipo de residuo-->
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
+                            <input type="text" class="form-control" id="tipoResiduos" readonly>                               
+                            </div>
+                        </div>
+                    </div>
+
+                        <!--_____________________________________________-->
+                        <!--Descripcion-->
+
+                    <div class="row">                        
+                        <div class="col-md-12">
+                            <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                            <textarea style="resize: none;" type="text" class="form-control" id="Descripcion" readonly></textarea>
+                                    
+                        </div>         
+                    </div>
+
+                    <!--_______________________SEPARADOR______________________-->    
+
+                    <div class="col-md-12"><br><hr><br></div>
+
+                    <!--_______________________SEPARADOR______________________-->   
+
+                    <div class="row"> 
+
+                         <div class="col-md-12">
+
+                            <div class="box-header bg-blue">
+                                <h5>Punto Critico</h5>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+
+                    <!--_______________________SEPARADOR______________________-->    
+
+                    <div class="col-md-12"><br></div>
+
+                    <!--_______________________SEPARADOR______________________--> 
+                    
+
+                   <!--*******************************************-->
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="row"> 
+                        
+                                <div class="col-md-6">
+
+                                    <!--_____________________________________________-->
+                                    <!--Nombre-->
+                            
+                                    <div class="form-group">
+                                        <label for="Nombre" name="Nombre">Nombre:</label>
+                                        <input type="text" class="form-control" id="Nombre"readonly>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <!--_____________________________________________-->
+                                    <!--Descripcion-->
+
+                                    <div class="form-group">
+                                        <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                                        <input type="text" class="form-control" id="Descripcion" readonly>
+                                    </div>
+
+                                </div>
+                                    
+                        
+                            </div>
+
+                            <div class="col-md-12"><br><hr><br></div>
+
+                            <div class="row">                        
+                                <div class="col-md-12">
+
+                                     <!--__________________HEADER TABLA___________________________-->
+
+                                    <table id="tabla_puntos_criticos" class="table table-bordered table-striped">
+                                        <thead class="thead-dark" bgcolor="#eeeeee">
+
+                                            
+                                            <th>Nombre</th>
+                                            <th>Descripcion</th>
+                                            <th>Ubicacion</th>
+                                            
+                                            
+
+                                        </thead>
+
+                                        <!--__________________BODY TABLA___________________________-->
+
+                                        <tbody>
+                                        <tr>
+                                            
+                                            <td>DATO</td>
+                                            <td> DATO</td>
+                                            <td>DATO</td>
+                                            
+
+                                        </tr>
+                                        
+                                        
+                                        </tbody>
+                                    </table>
+
+                                     <!--__________________FIN TABLA___________________________-->
+                                </div>         
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+ <!---//////////////////////////////////////--- MODAL PUNTO CRITICO ---///////////////////////////////////////////////////////----->
+
+    
+ <div class="modal fade" id="modalPunto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Registrar punto critico</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="" class="registerForm">
+
+
+                <div class="modal-body">
+
+                
+
+                    <div class="row"> 
+
+                        <div class="col-md-12 "> 
+
+                                               
+
+                            <div class="col-md-6 col-sm-6">
+
+                                <!--_____________________________________________-->
+                                <!--Nombre-->
+
+                                <div class="form-group">
+                                    <label for="Nombre" name="Nombre">Nombre:</label>
+                                     <input type="text" class="form-control" id="Nombre">
+                                </div>                            
+
+                            </div>
+                            
+
+                            <!--**************************************************-->
+                            
+                            
+
+                            <div class="col-md-6 col-sm-6">
+
+                                <!--_____________________________________________-->
+                                <!--Descripcion-->
+
+                                <div class="form-group">
+                                    <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                                     <input type="text" class="form-control" id="Descripcion">
+                                </div>                                          
+
+                                
+
+                            </div>                          
+
+
+
+
+                        </div>
+                                
+                    </div>                
+
+                    
+                    
+                    
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL PUNTO CRITICO ---///////////////////////////////////////////////////////----->
+
+
+
+<!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
+
+
+
+<!--_____________________________________________--> 
 <!-- Script Agregar datos -->
 <script>
 function agregarDato(){
@@ -326,6 +778,7 @@ function agregarDato(){
 }
 </script>
 
+<!--_____________________________________________--> 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 
 <script>
@@ -353,26 +806,16 @@ $("#btnclose").on("click", function() {
 });
 </script>
 
+<!--_____________________________________________--> 
 <!-- Script Data-Tables-->
 
+
+
 <script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': true,
-      'searching'   : true,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : true,
-      'autoFill'    : true,
-      'buttons'     :true,
-      'fixedHeader': true,
-        dom: 'Bfrtip',
-        buttons: [
-             'excel', 'pdf', 'print'
-        ]
-    })
-  })
+DataTable($('#tabla_circuitos'))
+
+DataTable($('#tabla_puntos_criticos'))
+
+
 </script>
 

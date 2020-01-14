@@ -46,15 +46,15 @@
                 <div class="col-md-6">
 
                     <div class="form-group">
-                        <label for="Nombre" name="Nombre">Nombre:</label>
-                        <input type="text" class="form-control" id="Nombre">
+                        <label for="Nombre" >Nombre:</label>
+                        <input type="text" name="Nombre" class="form-control" id="Nombre">
                     </div>
 
                     <!--_____________________________________________-->
 
                     <div class="form-group">
-                        <label for="Dpto" name="Departamento">Departamento:</label>
-                        <select class="form-control select2 select2-hidden-accesible" id="Dpto">
+                        <label for="Dpto" >Departamento:</label>
+                        <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                         foreach ($Dpto as $i) {
@@ -71,8 +71,8 @@
                     <!--_____________________________________________-->
 
                     <div class="form-group">
-                        <label for="CircR" name="Circuito_Recorrido">Circuito / Recorrido:</label>
-                        <select class="form-control select2 select2-hidden-accesible" id="CircR">
+                        <label for="CircR" >Circuito / Recorrido:</label>
+                        <select class="form-control select2 select2-hidden-accesible" name="Circuito_Recorrido" id="CircR">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                         foreach ($CircR as $i) {
@@ -85,8 +85,8 @@
                     <!--_____________________________________________-->
 
                     <div class="form-group">
-                        <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                        <input type="text" class="form-control" id="Descripcion">
+                        <label for="Descripcion" >Descripcion:</label>
+                        <input type="text" name="Descripcion" class="form-control" id="Descripcion">
                     </div>
                 </div>
 
@@ -106,9 +106,7 @@
 
 
 
-            <div class="col-md-12">
-                <hr>
-            </div>
+            <div class="col-md-12"><hr></div>
 
 
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
@@ -126,7 +124,7 @@
 
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
 
-<!---//////////////////////////////////////---BOX 2---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
 
 
 
@@ -143,72 +141,44 @@
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6"></div>
             </div>
+
+
+
+
+
             <div class="row">
                 <div class="col-sm-12 table-scroll">
 
                     <!--__________________HEADER TABLA___________________________-->
-                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
-                        aria-describedby="example2_info">
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Acciones</th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending">Nombre
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending">
-                                    Circuito</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending">Departamento
-                                </th>
+                    <table id="tabla_zonas" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
 
-                            </tr>
+                            <th>Acciones</th>
+                            <th>Nombre</th>
+                            <th>Departamento</th>
+                            <th>Circuito</th>
+                            <th>Descripcion</th>
+                            
+
                         </thead>
 
                         <!--__________________BODY TABLA___________________________-->
 
-                        <tbody id="tablazonas">
-                            <tr role="row" class="even" id="primero" hidden>
-                                <td class="sorting_1">
-                                    <<button type="button" title="editar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                        <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                                class="glyphicon glyphicon-trash"
-                                                aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle"
-                                        data-toggle="modal" data-target="#modalEdit"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Zona 2</td>
-                                <td>Circuito 9</td>
-                                <td>Rivadavia</td>
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle"
-                                        data-toggle="modal" data-target="#modalEdit"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td>Zona 22</td>
-                                <td>Circuito 19</td>
-                                <td>RSanta Lucia</td>
-                            </tr>
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <!-- <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp -->
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            
+                            </td>
+                            <td>DATO</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                        </tr>
+                        
+                           
                         </tbody>
                     </table>
 
@@ -217,104 +187,138 @@
                 </div>
             </div>
 
-            <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
 
 
-            <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+ <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-
-            <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-blue">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 class="modal-title" id="exampleModalLabel">Editar Generador</h5>
-                        </div>
-
-
-                        <div class="modal-body">
-
-                            <!--__________________ FORMULARIO MODAL ___________________________-->
-
-                            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
-
-                                <div class="modal-body">
-
-                                    <!--_____________________________________________-->
-                                    <!--Nombre/Razon social-->
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="nro" class="form-label label-sm">Nombre/Razon social</label>
-                                                <input type="text" id="" name="" class="form-control input-sm" required>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--_____________________________________________-->
-                                    <!--Registro-->
-
-                                    <div class="row">
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="CircR" name="Circuito_Recorrido">Circuito /
-                                                    Recorrido:</label>
-                                                <select class="form-control select2 select2-hidden-accesible"
-                                                    id="CircR">
-                                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                                    <?php
-                                                        foreach ($CircR as $i) {
-                                                            echo '<option>'.$i->nombre.'</option>';
-                                                        }
-                                                        ?>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-
-                                            <div class="form-group">
-                                                <label for="Dpto" name="Departamento">Departamento:</label>
-                                                <select class="form-control select2 select2-hidden-accesible" id="">
-                                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                                    <?php
-                                                        foreach ($Dpto as $i) {
-                                                            echo '<option>'.$i->nombre.'</option>';
-                                                        }
-                                                        ?>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                            </form>
-
-                            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
-                        </div>
-
-                        <div class="modal-footer">
-                            <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
-                                <button type="submit" class="btn btn-default" id="btnsave"
-                                    data-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    
+ <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Zona</h5>
             </div>
 
 
-            <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="" class="registerForm">
+
+
+                <div class="modal-body">
+
+                
+
+                    <div class="row"> 
+
+                        <div class="col-md-12 "> 
+
+                                               
+
+                            <div class="col-md-6 col-sm-6">
+
+                                <!--_____________________________________________-->
+                                <!--Nombre-->
+
+                                <div class="form-group">
+                                 <label for="Nombre" name="">Nombre:</label>
+                                 <input type="text" class="form-control" id="">
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Descripcion-->
+
+                                <div class="form-group">
+                                    <label for="Descripcion" name="">Descripcion:</label>
+                                     <input type="text" class="form-control" id="">
+                                </div>
+
+                            </div>
+
+                            
+
+                            <!--**************************************************-->
+                            
+                            
+
+                            <div class="col-md-6 col-sm-6">
+
+                                <!--_____________________________________________-->
+                                <!--Circuito-->
+
+                                <div class="form-group">
+                                    <label for="CircR" name="">Circuito / Recorrido:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="">
+                                        <option value="" disabled selected>-Seleccione opcion-</option>
+                                        <?php
+                                    foreach ($CircR as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                                    ?>
+                                    </select>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Departamento-->                
+
+                                <div class="form-group">
+                                    <label for="Dpto" name="">Departamento:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="">
+                                        <option value="" disabled selected>-Seleccione opcion-</option>
+                                        <?php
+                                    foreach ($Dpto as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                                    ?>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            
+
+
+
+
+                        </div>
+                                
+                    </div>
+                    
+
+                    
+                    
+                    
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+
+
+
 
 
 
@@ -483,7 +487,7 @@
             <!--_____________________________________________________________-->
             <!-- script Datatables -->
 
-            <script>
+            <!-- <script>
             $(function() {
 
                 $('#example2').DataTable({
@@ -498,7 +502,17 @@
                     'fixedHeader': true,
                     'colReorder': true,
                     'scroller': true,
-                    'keytable': true
+                    'keytable': true,
+                    
                 })
             })
+
+
+
+            
+            </script> -->
+
+            <script>
+            DataTable($('#tabla_zonas'))
             </script>
+            </body>
