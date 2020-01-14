@@ -6,7 +6,7 @@ if(!function_exists('menu')){
         $array =  $json;
        // var_dump($array->menu);die;
         $html = '<ul class="sidebar-menu tree menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>';
+        <li class="header">Menu Navegacion</li>';
         foreach ($array->menuP->menuH as $i) {
             switch ($i->nivel) {
                 case 1:
@@ -15,7 +15,7 @@ if(!function_exists('menu')){
                 case 2:
                     $html .= '<li class="treeview">
                                 <a href="#">
-                                    <i class="fa fa-fw fa-check"></i> <span>'.$i->titulo.'</span>
+                                    <i class="fa fa-fw fa-dot-circle-o"></i> <span>'.$i->titulo.'</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>

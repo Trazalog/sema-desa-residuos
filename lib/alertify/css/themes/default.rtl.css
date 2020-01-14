@@ -60,7 +60,7 @@
 }
 .alertify-notifier .ajs-message.ajs-error {
   color: #fff;
-  background: rgba(217, 92, 92, 0.95);
+  background: rgba(55, 171, 222, 0.95);
   text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.5);
 }
 .alertify-notifier .ajs-message.ajs-warning {

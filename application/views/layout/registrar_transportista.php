@@ -1,9 +1,8 @@
-<!-- Hecha por Jose Roberto el mas virgo -->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-<!--//////////////////////////////Box1//////////////////////////////-->
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
-        <h3 style="font-weight: lighter;">Registrar Transportista</h3>
+        <h4>Registrar Transportista</h4>
     </div>
     <div class="box-body">
         <div class="row">
@@ -16,182 +15,663 @@
         </div>
     </div>
 </div>
-<!--_____________________________________________________________--> 
 
-<!--//////////////////////////////Box2//////////////////////////////-->
-<div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+
+
+<!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
+
+
+
+<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
-
-        <!--Boton de cerrar-->
+        <div class="box-tittle">
+        <h5>Informacion</h5>  
+        </div>
         <div class="box-tools pull-right">
-                <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
-                    data-toggle="tooltip" title="" data-original-title="Remove">
-                    <i class="fa fa-times"></i>
-                </button>
-            </div>
-​        <!--_____________________________________________________________-->
-
-<div class="box-body">
-<form class="formTransportista" id="formTransportista"  method="POST" autocomplete="off" class="registerForm">
-<div class="col-md-6">
-
-    <!--Nombre / Razon social-->
-    <div class="form-group">
-        <label for="Nombre/Razon social" style="width: 200px; font-weight: lighter;">Nombre / Razon social:</label>
-        <input type="text" class="form-control" id="Nombre/Razon social" name="Nombre_razon" style="width: 200px; font-weight: lighter;">
-    </div>
-​    <!--_____________________________________________________________-->
-
-    <!--Descripcion-->
-    <div class="form-group">
-        <label for="Descripcion" style="width: 200px; font-weight: lighter;">Descripcion:</label>
-        <input type="text" class="form-control" id="Descripcion" name="Descripcion" style="width: 200px; font-weight: lighter;">
-    </div>
-​    <!--_____________________________________________________________-->
-
-    <!--Direccion-->
-    <div class="form-group">
-        <label for="Direccion" style="width: 200px; font-weight: lighter;">Direccion:</label>
-        <input type="text" class="form-control" id="Direccion" name="Direccion" style="width: 200px; font-weight: lighter;">
-    </div>
-​    <!--_____________________________________________________________-->
-
-    <!--Telefono-->
-    <div class="form-group">
-        <label for="Telefono" style="width: 200px; font-weight: lighter;">Telefono:</label>
-        <input type="text" class="form-control" id="Telefono" name="Telefono" style="width: 200px; font-weight: lighter;">
-    </div>
-​    <!--_____________________________________________________________-->
-
-    <!--Contacto-->
-    <div class="form-group">
-        <label for="Contacto" style="width: 200px; font-weight: lighter;">Contacto:</label>
-        <input type="text" class="form-control" id="Contacto" name="Contacto" style="width: 200px; font-weight: lighter;">
-    </div>
-​    <!--_____________________________________________________________-->
-
-</div>
-<div class="col-md-6">
-
-    <!--Resolucion-->
-    <div class="form-group">
-        <label for="Resolucion" style="width: 200px; font-weight: lighter;">Resolucion:</label>
-        <input type="text" class="form-control" id="Resolucion" name="Resolucion" style="width: 200px; font-weight: lighter;">
-    </div>
-​    <!--_____________________________________________________________-->
-
-    <!--Registro-->
-    <div class="form-group">
-        <label for="Registro" style="width: 200px; font-weight: lighter;">Registro:</label>
-        <input type="text" class="form-control" id="Registro" name="Registro" style="width: 200px; font-weight: lighter;">
-    </div>
-​    <!--_____________________________________________________________-->
-
-    <!--Fecha de alta-->
-    <div class="form-group" style="width: 200px; font-weight: lighter;">
-            <label for="Fechalta" style="width: 200px; font-weight: lighter;">Fecha de alta:</label>
-        <div class="input-group date">
-            <div class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-            </div>
-            <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_alta" >
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
         </div>
-    <!-- /.input group -->
+
     </div>
-​    <!--_____________________________________________________________-->
 
-    <!--Fecha de baja-->
-    <div class="form-group" style="width: 200px; font-weight: lighter;">
-            <label for="Fechabaja" style="width: 200px; font-weight: lighter;">Fecha de baja:</label>
-        <div class="input-group date">
-            <div class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-            </div>
-            <input type="text" class="form-control pull-right" id="datepicker" name="Fecha_de_baja" >
-        </div>
-    <!-- /.input group -->
-    </div>
-​    <!--_____________________________________________________________-->
 
-    <!--Tipo de RSU autorizado-->
-    <div class="form-group">
-    <label for="Rsu" style="width: 200px; font-weight: lighter;">Tipo de RSU autorizado:</label>
-        <select class="form-control select2 select2-hidden-accesible" id="Rsu" name="Rsu" style="width: 200px; font-weight: lighter;">
-            <option value="" disabled selected style="width: 200px; font-weight: lighter;">-Seleccione opcion-</option>
-                <?php
-                    foreach ($Rsu as $i) {
-                        echo '<option>'.$i->nombre.'</option>';
-                    }
-                ?>
-        </select>
-    </div>
-​    <!--_____________________________________________________________-->
 
-    <!--Boton de guardado-->
-    <br>
-    <button type="submit" class="btn btn-primary pull-right" style="width: 200px; font-weight: lighter;" onclick="agregarDato()">Guardar</button>
-​    <!--_____________________________________________________________-->
+    <!--_____________________________________________-->
 
-</div>
-</div>
-</div>
-</div>
-​<!--_____________________________________________________________-->
 
-<!--//////////////////////////////Box3//////////////////////////////-->
-            <!--Datatable Registrar Generadores-->
-            <div class="box box-primary animated fadeInLeft">
-                <div class="box-body table-scroll">
-                    <table id="example2" class="table table-bordered table-hover table-responsive">
-​                    <!--_____________________________________________________________-->
+    <div class="box-body">
 
-                    <!--Cabecera del Datatable-->
-                        <thead>
-                            <tr>
-                                <th id="Nombre_razon" class="Nombre_razon" style="width: 200px; font-weight: lighter;">Nombre / Razon social</th>
-                                <th id="Descripcion" class="Descripcion" style="width: 200px; font-weight: lighter;">Descripcion</th>
-                                <th id="Direccion" class="Direccion" style="width: 200px; font-weight: lighter;">Direccion</th>
-                                <th id="Telefono" class="Telefono" style="width: 200px; font-weight: lighter;">Telefono</th>
-                                <th id="Contacto" class="Contacto" style="width: 200px; font-weight: lighter;">Contacto</th>
-                                <th id="Resolucion" class="Resolucion" style="width: 200px; font-weight: lighter;">Resolucion</th>
-                                <th id="Registro" class="Registro" style="width: 200px; font-weight: lighter;">Registro</th>
-                                <th id="Fechalta" class="Fechalta" style="width: 200px; font-weight: lighter;">Fecha de alta</th>
-                                <th id="Fechabaja" class="Fechabaja" style="width: 200px; font-weight: lighter;">Fecha de baja</th>
-                                <th id="Rsu" class="Rsu" style="width: 200px; font-weight: lighter;">Tipo de RSU autorizado</th>
-                            </tr>
-                        </thead>
-​                        <!--_____________________________________________________________-->
+        <form class="formTransportistas" id="formTransportistas">
 
-                    <!--Cuerpo del Datatable-->
-                        <tbody>
-                            <tr style="width: 200px; font-weight: lighter;">
-                                <td id="Nombre_razon" class="Nombre_razon">Trident</td>
-                                <td id="Descripcion" class="Descripcion">Internet Explorer 4.0</td>
-                                <td id="Direccion" class="Direccion">Win 95+</td>
-                                <td id="Telefono" class="Telefono">4</td>
-                                <td id="Contacto" class="Contacto">X</td>
-                                <td id="Resolucion" class="Resolucion">X</td>
-                                <td id="Registro" class="Registro">X</td>
-                                <td id="Fechalta" class="Fechalta">X</td>
-                                <td id="Fechabaja" class="Fechabaja">X</td>
-                                <td id="Rsu" class="Rsu">X</td>
-                            </tr>
-                        </tbody>
-​                        <!--_____________________________________________________________-->
+            <div class="col-md-6">
 
-                    </table>
+                <!--_____________________________________________-->
+                <!--Nombre / Razon social-->
+
+                <div class="form-group">
+                    <label for="Nombre/Razon social" >Nombre / Razon social:</label>
+                    <input type="text" class="form-control" name="Nombre_razon" id="Nombre/Razon social">
+                </div>
+                <!--_____________________________________________-->
+                <!--Descripcion-->
+
+                <div class="form-group">
+                    <label for="Descripcion" >Descripcion:</label>
+                    <input type="text" class="form-control"  name="Descripcion" id="Descripcion">
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Direccion-->
+
+                <div class="form-group">
+                    <label for="Direccion">Direccion:</label>
+                    <input type="text" class="form-control"   name="Direccion" id="Direccion">
+                </div>
+                <!--_____________________________________________-->
+                <!--Telefono-->
+
+                <div class="form-group">
+                    <label for="Telefono" >Telefono:</label>
+                    <input type="text" class="form-control"  name="Telefono" id="Telefono">
+                </div>
+                <!--_____________________________________________-->
+                <!--contacto-->
+
+                <div class="form-group">
+                    <label for="Contacto" >Contacto:</label>
+                    <input type="text" class="form-control" name="Contacto" id="Contacto">
                 </div>
             </div>
-<!--_____________________________________________________________-->
 
-    </form>
+             <!--***************************************-->
+            
+            <div class="col-md-6">
+             
+                <!--_____________________________________________-->
+                <!--Resolucion-->
+
+                <div class="form-group">
+                    <label for="Resolucion" >Resolucion:</label>
+                    <input type="text" class="form-control"  name="Resolucion" id="Resolucion">
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Registro-->
+
+                <div class="form-group">
+                    <label for="Registro" >Registro:</label>
+                    <input type="text" class="form-control" name="Registro" id="Registro">
+                </div>
+                <!--_____________________________________________-->
+                <!--Fecha de alta-->
+
+                <div class="form-group">
+                    <label for="Fechalta"class="form-label label-sm">Fecha de alta:</label>                                              
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="date" class="form-control pull-right"  name="Fecha_de_alta"  id="fecha-alta">
+                    </div>  
+                </div>
+                <!--_____________________________________________-->
+                <!--Fecha de baja-->
+
+                <div class="form-group">
+                    <label for="Fechabaja" >Fecha de baja:</label>
+                    <div class="input-group date">
+                         <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="date" class="form-control pull-right" name="Fecha_de_baja" id="fecha-baja">
+                    </div>
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Tipo de RSU autorizado-->
+
+                <div class="form-group">
+                    <label for="Rsu" >Tipo de RSU autorizado:</label>
+                    <select class="form-control select2 select2-hidden-accesible" name="Rsu" id="Rsu">
+                        <option value="" disabled selected>-Seleccione opcion-</option>
+                        <?php
+                            foreach ($Rsu as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                        ?>
+                        </select>
+                </div>
+
+            </div>
+
+            <!--***************************************-->
+
+
+            <div class="col-md-12"><hr></div>
+
+            <!--___________________BOTON GUARDAR__________________________-->
+            <br>
+            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+            <br>
+        </form>
     </div>
 </div>
 </div>
-​<!--_____________________________________________________________-->
 
-<!-- script que muestra box de datos al dar click en boton agregar -->
+
+
+<!---//////////////////////////////////////--- FIN BOX 1 ---///////////////////////////////////////////////////////----->
+
+
+<!---//////////////////////////////////////---BOX 2---///////////////////////////////////////////////////////----->
+
+
+
+<div class="box box-primary">
+
+    <!--__________________TABLA___________________________-->
+
+
+    <div class="box-body">
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6"></div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-12 table-scroll">
+
+                <!--__________________HEADER TABLA___________________________-->
+
+
+                    <!--__________________HEADER TABLA___________________________-->
+                    <table id="tabla_transportistas" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+
+                            <th>Acciones</th>
+                            <th>Nombre / Razon social</th>
+                            <th>Zona</th>
+                            <th>Departamento</th>
+                            <th>Tipo</th>
+                            
+
+                        </thead>
+
+                        <!--__________________BODY TABLA___________________________-->
+
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            </td>
+                            <td>DATO2</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                        </tr>
+
+                           
+                        </tbody>
+                    </table>
+                    
+                    <!--__________________FIN TABLA___________________________-->
+
+
+
+
+                    
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
+
+
+
+
+
+
+    <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Transportista</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                             <!--Nombre/Razon social-->
+
+                            <div class="form-group">
+                                <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
+                                <input type="text" class="form-control" id="Nombre/Razon social">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                             <!--Registro-->
+
+                            <div class="form-group">
+                                <label for="Registro" name="Registro">Registro:</label>
+                                <input type="text" class="form-control" id="Registro">
+                            </div>
+                        </div>                         
+                    </div>
+
+                
+
+                <div class="row">
+
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                            <!--Direccion-->
+
+                            <div class="form-group">
+                                <label for="Direccion" name="Direccion">Direccion:</label>
+                                <input type="text" class="form-control" id="Direccion">
+                            </div>
+
+                            <!--_____________________________________________-->
+                            <!--Telefono-->
+
+                            <div class="form-group">
+                                 <label for="Telefono" name="Telefono">Telefono:</label>
+                                 <input type="text" class="form-control" id="Telefono">
+                            </div>
+                         </div>
+
+                
+
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                            <!--Zona-->
+
+                            <div class="form-group">
+                            <label for="Zonag" name="Zona">Zona:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="Zonag">
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                    foreach ($Zonag as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <!--_____________________________________________-->
+                            <!--Fecha de alta-->                
+
+                            <div class="form-group">
+                                <label for="Fechalta" name="Fecha_de_alta" class="form-label label-sm">Fecha de alta:</label>                                              
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control pull-right" id="fecha-alta">
+                                </div>
+                                
+                            </div>
+                        </div>
+                </div>
+
+                
+
+                <div class="row">
+
+                    <div class="col-md-6"> 
+                        <!--_____________________________________________-->
+                        <!--Descripcion-->
+
+                            <div class="form-group">
+                                <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                                <input type="text" class="form-control" id="Descripcion">                                                               
+                            </div>
+
+                        <!--_____________________________________________-->
+                        <!--Contacto-->
+
+                            <div class="form-group">
+                                <label for="Contacto" name="Contacto">Contacto:</label>
+                                <input type="text" class="form-control" id="Contacto">
+                                
+                            </div>
+                    </div>
+
+                    <div class="col-md-6"> 
+
+                            <!--_____________________________________________-->
+                            <!--Fecha baja-->
+
+                            <div class="form-group">
+                                <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control pull-right" id="fecha-baja">
+                                </div>
+                            </div>
+
+                            <!--_____________________________________________-->
+                            <!--Tipo RSU autorizado-->
+
+                            <div class="form-group">
+                                <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="Rsu">
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                        foreach ($Rsu as $i) {
+                                            echo '<option>'.$i->nombre.'</option>';
+                                        }
+                                    ?>
+                                    </select>
+                            </div>
+                            </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+
+
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+    
+    <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Informacion Transportista</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                
+                <div class="row">
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                             <!--Nombre/Razon social-->
+
+                            <div class="form-group">
+                                <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                             <!--Registro-->
+
+                            <div class="form-group">
+                                <label for="Registro" name="Registro">Registro:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+                        </div>                         
+                    </div>
+
+                
+
+                <div class="row">
+
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                            <!--Direccion-->
+
+                            <div class="form-group">
+                                <label for="Direccion" name="Direccion">Direccion:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+
+                            <!--_____________________________________________-->
+                            <!--Telefono-->
+
+                            <div class="form-group">
+                                 <label for="Telefono" name="Telefono">Telefono:</label>
+                                 <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+                         </div>
+
+                
+
+                        <div class="col-md-6">
+
+                            <!--_____________________________________________-->
+                            <!--Zona-->
+
+                            <div class="form-group">
+                                <label for="Zonag" name="Zona">Zona:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+
+                            <!--_____________________________________________-->
+                            <!--Fecha de alta-->                
+
+                            <div class="form-group">
+                                <label for="Fechalta" name="Fecha_de_alta" class="form-label label-sm">Fecha de alta:</label>                                              
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control pull-right" id="" readonly>
+                                </div>
+                                
+                            </div>
+                        </div>
+                </div>
+
+                
+
+                <div class="row">
+
+                    <div class="col-md-6"> 
+                        <!--_____________________________________________-->
+                        <!--Descripcion-->
+
+                            <div class="form-group">
+                                <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>                                                              
+                            </div>
+
+                        <!--_____________________________________________-->
+                        <!--Contacto-->
+
+                            <div class="form-group">
+                                <label for="Contacto" name="Contacto">Contacto:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                                
+                            </div>
+                    </div>
+
+                    <div class="col-md-6"> 
+
+                            <!--_____________________________________________-->
+                            <!--Fecha baja-->
+
+                            <div class="form-group">
+                                <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control pull-right" id="" readonly>
+                                </div>
+                            </div>
+
+                            <!--_____________________________________________-->
+                            <!--Tipo RSU autorizado-->
+
+                            <div class="form-group">
+                                <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
+                                <input type="date" class="form-control pull-right" id="" readonly>
+                            </div>
+                            </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+
+
+
+ <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
+
+<!--_____________________________________________________________-->
+<!-- script modal -->
 <script>
+$("#btnview").on("click", function() {
+    $("#btnadd").removeClass("active");
+    $("#btnview").addClass("active");
+    $("#tablamodal").show();
+    $("#formadd").hide();
+    $("#btnsave").hide();
+});
+
+$("#btnadd").on("click", function() {
+    $("#btnadd").addClass("active");
+    $("#btnview").removeClass("active");
+    $("#formadd").show();
+    $("#tablamodal").hide();
+    $("#btnsave").show();
+});
+</script>
+
+<!--_____________________________________________________________-->
+<!-- Script Agregar datos de registrar_transportista-->
+
+    <script>
+    function agregarDato() {
+        console.log("entro a agregar datos");
+        $('#formTransportistas').on('submit', function(e) {
+
+            e.preventDefault();
+            var me = $(this);
+            if (me.data('requestRunning')) {
+                return;
+            }
+            me.data('requestRunning', true);
+
+            datos = $('#formTransportistas').serialize();
+            console.log(datos);
+            //--------------------------------------------------------------
+
+
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "ajax/Registrartransportista/guardarDato",
+                success: function(r) {
+                    if (r == "ok") {
+                        //console.log(datos);
+                        $('#formTransportistas')[0].reset();
+                        alertify.success("Agregado con exito");
+                    } else {
+                        console.log(r);
+                        $('#formTransportistas')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
+                }
+            });
+
+        });
+
+    }
+    </script>
+
+<!--_____________________________________________________________-->
+    <!-- script que muestra box de datos al dar click en boton agregar -->
+
+    <script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
@@ -203,75 +683,31 @@
         $("#boxDatos").show();
 
     });
-</script>
+    </script>
 
-<script>
-        $("#btnclose").on("click", function() {
+    <script>
+    $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
         $('#formDatos').data('bootstrapValidator').resetForm();
         $("#formDatos")[0].reset();
         $('#selecmov').find('option').remove();
         $('#chofer').find('option').remove();
-        });
-</script>
-​<!--_____________________________________________________________-->
-
-<!-- script que muestra box de datos al dar click en boton agregar -->
-<script>
-    $("#botonAgregar").on("click", function() {
-        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-        $("#nro").val(aleatorio);
-
-        $("#botonAgregar").attr("disabled", "");
-        //$("#boxDatos").removeAttr("hidden");
-        $("#boxDatos").focus();
-        $("#boxDatos").show();
-
     });
-</script>
-​<!--_____________________________________________________________-->
+    </script>
 
-<!-- Script Agregar datos de registrar_transportista-->
-<script>
-    function agregarDato(){
-        console.log("entro a agregar datos");
-        $('#formTransportistas').on('submit', function(e){
-        e.preventDefault();
-        var me = $(this);
-        if ( me.data('requestRunning') ) {return;}
-        me.data('requestRunning', true);
-        datos=$('#formTransportistas').serialize();
-        console.log(datos);
-            //--------------------------------------------------------------
-        $.ajax({
-                    type:"POST",
-                    data:datos,
-                    url:"ajax/Registrartransportista/guardarDato",
-                    success:function(r){
-                        if(r == "ok"){
-                            //console.log(datos);
-                            $('#formTransportistas')[0].reset();
-                            alertify.success("Agregado con exito");
-                        }
-                        else{
-                            console.log(r);
-                            $('#formTransportistas')[0].reset();
-                            alertify.error("error al agregar");
-                        }
-                    },
-                    complete: function() {
-                        me.data('requestRunning', false);
-                    }
-                });
-        });
-    }
-</script>
-​<!--_____________________________________________________________-->
+<!--_____________________________________________________________-->
+ <!-- script Datatables -->
+ <script>
 
-<!--Script Bootstrap Validacion.-->
-<script>
+    DataTable($('#tabla_transportistas'))
+
+</script>
+
+
+   <!--_____________________________________________________________-->
+    <!--Script Bootstrap Validacion.-->
+    <script>
     $('#formTransportistas').bootstrapValidator({
         message: 'This value is not valid',
         /*feedbackIcons: {
@@ -402,9 +838,15 @@
                 }
             }
         }
-    }).on('success.form.bv', function(e){
+    }).on('success.form.bv', function(e) {
         e.preventDefault();
         //guardar();
     });
-</script>
-​<!--_____________________________________________________________-->
+    </script>
+
+
+
+
+
+
+    
