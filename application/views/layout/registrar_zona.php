@@ -37,10 +37,12 @@
         </div>
 
     </div>
+    
 
     <!--_____________________________________________-->
+    
     <div class="box-body">
-        <form class="formZonas" id="formZonas">
+        <form class="formZonas" id="formZonas" method="POST" autocomplete="off" class="registerForm">
             <div class="col-md-12">
 
                 <div class="col-md-6">
@@ -324,193 +326,161 @@
 
 
             <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
+<!--_____________________________________________-->
 
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
 
-            <!--_____________________________________________________________-->
-            <!-- script modal -->
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
 
-            <script>
-            $("#btnview").on("click", function() {
-                $("#btnadd").removeClass("active");
-                $("#btnview").addClass("active");
-                $("#tablamodal").show();
-                $("#formadd").hide();
-                $("#btnsave").hide();
-            });
+    });
+</script>
 
-            $("#btnadd").on("click", function() {
-                $("#btnadd").addClass("active");
-                $("#btnview").removeClass("active");
-                $("#formadd").show();
-                $("#tablamodal").hide();
-                $("#btnsave").show();
-            });
-            </script>
+<script>
+        $("#btnclose").on("click", function() {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+        });
+</script>
+<!--_____________________________________________-->
 
+<!-- Script Data-Tables-->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
 
-            <!--_____________________________________________________________-->
-            <!-- Script Agregar datos de registrar_zona-->
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
 
-            <script>
-            function agregarDato() {
-                console.log("entro a agregar datos");
-                $('#formZonas').on('submit', function(e) {
+    });
+</script>
+​<!--_____________________________________________-->
 
-                    e.preventDefault();
-                    var me = $(this);
-                    if (me.data('requestRunning')) {
-                        return;
+<!-- Script Agregar datos de registrar_zona-->
+<script>
+function agregarDato(){
+    console.log("entro a agregar datos");
+    $('#formZonas').on('submit', function(e){
+    e.preventDefault();
+    var me = $(this);
+    if ( me.data('requestRunning') ) {return;}
+    me.data('requestRunning', true);
+    datos=$('#formZonas').serialize();
+    console.log(datos);
+
+        //--------------------------------------------------------------
+
+    $.ajax({
+                type:"POST",
+                data:datos,
+                url:"ajax/Registrarzona/guardarDato",
+                success:function(r){
+                    if(r == "ok"){
+                        //console.log(datos);
+                        $('#formZonas')[0].reset();
+                        alertify.success("Agregado con exito");
                     }
-                    me.data('requestRunning', true);
-
-                    datos = $('#formZonas').serialize();
-                    console.log(datos);
-                    //--------------------------------------------------------------
-
-
-                    $.ajax({
-                        type: "POST",
-                        data: datos,
-                        url: "ajax/Registrarzona/guardarDato",
-                        success: function(r) {
-                            if (r == "ok") {
-                                //console.log(datos);
-                                $('#formZonas')[0].reset();
-                                alertify.success("Agregado con exito");
-                            } else {
-                                console.log(r);
-                                $('#formZonas')[0].reset();
-                                alertify.error("error al agregar");
-                            }
-                        },
-                        complete: function() {
-                            me.data('requestRunning', false);
-                        }
-                    });
-
-                });
-
-            }
-            </script>
-
-            <!--_____________________________________________________________-->
-            <!-- Script Boostrap Validator-->
-
-            <script>
-            $('#formZonas').bootstrapValidator({
-                message: 'This value is not valid',
-                /*feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },*/
-                fields: {
-                    Nombre: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-                    Departamento: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-                    CircR: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
-                    },
-                    Descripcion: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
+                    else{
+                        console.log(r);
+                        $('#formZonas')[0].reset();
+                        alertify.error("error al agregar");
                     }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
                 }
-            }).on('success.form.bv', function(e) {
-                e.preventDefault();
-                guardar();
             });
-            </script>
+    });
+}
+</script>
+<!--_____________________________________________-->
 
-            <!--_____________________________________________________________-->
-            <!-- script que muestra box de datos al dar click en boton agregar -->
+<!--Script Bootstrap Validacion.-->
+<script>
+  $('#formZonas').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      //excluded: ':disabled',
+      fields: {
+          Nombre: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+          Departamento: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+          Circuito_Recorrido: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'   
+                  }
+              }
+          },
+          Descripcion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+              }
+          }
+      }
+  }).on('success.form.bv', function (e) {
+      e.preventDefault();
+      //guardar();
+  });
+</script>
+<!--_____________________________________________-->
 
-
-            <script>
-            $("#botonAgregar").on("click", function() {
-                //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-                var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-                $("#nro").val(aleatorio);
-
-                $("#botonAgregar").attr("disabled", "");
-                //$("#boxDatos").removeAttr("hidden");
-                $("#boxDatos").focus();
-                $("#boxDatos").show();
-
-            });
-            </script>
-
-            <!--_____________________________________________________________-->
-            <!-- script cerrar box -->
-
-            <script>
-            $("#btnclose").on("click", function() {
-                $("#boxDatos").hide(500);
-                $("#botonAgregar").removeAttr("disabled");
-                $('#formDatos').data('bootstrapValidator').resetForm();
-                $("#formDatos")[0].reset();
-                $('#selecmov').find('option').remove();
-                $('#chofer').find('option').remove();
-            });
-            </script>
-
-            <!--_____________________________________________________________-->
-            <!-- script Datatables -->
-
-            <!-- <script>
-            $(function() {
-
-                $('#example2').DataTable({
-                    'paging': true,
-                    'lengthChange': true,
-                    'searching': true,
-                    'ordering': true,
-                    'info': true,
-                    'autoWidth': true,
-                    'autoFill': true,
-                    'buttons': true,
-                    'fixedHeader': true,
-                    'colReorder': true,
-                    'scroller': true,
-                    'keytable': true,
-                    
-                })
-            })
-
-
-
-            
-            </script> -->
+<!--Script validador de campo de imagenes-->
+<script>
+var value = $("#imgarch").val();
+if (value == "1") {
+    document.getElementById('imgarch').setAttribute("data-required","true");
+}
+else {
+    document.getElementById('imgarch').setAttribute("data-required","false");
+}
+</script>
+<!--_____________________________________________-->
 
             <script>
             DataTable($('#tabla_zonas'))

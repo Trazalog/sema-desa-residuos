@@ -322,8 +322,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Codigo" name="Codigo">Codigo:</label>
-                                        <input type="text" class="form-control" id="Codigo">
+                                        <label for="Codigo">Codigo:</label>
+                                        <input type="text" class="form-control" name="Codigo" id="Codigo"  >
                                     </div>
                                 </div>                        
                             </div>
@@ -334,8 +334,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="Chofer" name="Chofer">Chofer:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="Chofer">
+                            <label for="Chofer" >Chofer:</label>
+                            <select class="form-control select2 select2-hidden-accesible" name="Chofer" id="Chofer">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                 foreach ($Chofer as $i) {
@@ -349,8 +349,8 @@
                         <!--Tipo de residuo-->
 
                         <div class="form-group">
-                            <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="tipoResiduos">
+                            <label for="tipoResiduos" >Tipo de residuo:</label>
+                            <select class="form-control select2 select2-hidden-accesible" name="tipoResiduos" id="tipoResiduos">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                 foreach ($tipoResiduos as $i) {
@@ -366,8 +366,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="Vehiculo">
+                                <label for="Vehiculo">Vehiculo:</label>
+                                <select class="form-control select2 select2-hidden-accesible"  name="Vehiculo" id="Vehiculo">
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
                                     foreach ($Vehiculo as $i) {

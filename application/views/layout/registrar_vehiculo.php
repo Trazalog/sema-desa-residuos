@@ -1,9 +1,10 @@
-<!-- Hecha por Jose Roberto el mas vergas -->
+<!-- Hecha por Jose Roberto el mas VIRGO -->
 
-<!--//////////////////////////////Box1//////////////////////////////-->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
-        <h3 style="font-weight: lighter;">Registrar Vehiculo</h3>
+        <h4>Registrar Vehiculo</h4>
     </div>
     <div class="box-body">
         <div class="row">
@@ -16,184 +17,522 @@
         </div>
     </div>
 </div>
-<!--_____________________________________________________________-->
 
-<!--//////////////////////////////Box2//////////////////////////////-->
-<div class="box box-primary animated fadeInLeft" id="boxDatos" hidden>
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+
+<!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
+
+
+
+<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
         <div class="box-tittle">
-        <!--_____________________________________________________________-->
-
-        <!--Boton de cerrar-->
+        <h5>Informacion</h5>  
+        </div>
         <div class="box-tools pull-right">
             <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
                 data-toggle="tooltip" title="" data-original-title="Remove">
                 <i class="fa fa-times"></i>
             </button>
         </div>
+
+    </div>
+
 ​        <!--_____________________________________________________________-->
 
-    </div>
-    <div class="box-body">
-    <form class="formVehiculo" id="formVehiculo"  method="POST" autocomplete="off" class="registerForm">
 
-    <div class="col-md-6">
+<div class="box-body">
 
-        <!--COMIENZO DE LOS CAMPOS DEL FORMULARIO-->
+<form class="formVehiculo" id="formVehiculo"  method="POST" autocomplete="off" class="registerForm">
 
-            <!--Descripcion-->
-            <div class="form-group">
-                    <label for="Descripcion" style="width: 200px; font-weight: lighter;">Descripcion:</label>
-                    <input type="text" class="form-control" id="Descripcion" name="descripcion" style="width: 200px; font-weight: lighter;">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+        
+                        <!--Descripcion-->
+                        <div class="form-group">
+                                <label for="Descripcion" >Descripcion:</label>
+                                <input type="text" class="form-control" id="Descripcion" name="descripcion">
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Dominio-->
+                        <div class="form-group">
+                                <label for="Dominio">Dominio:</label>
+                                <input type="text" class="form-control" id="Dominio" name="dominio">
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Marca-->
+                        <div class="form-group">
+                                <label for="Marca" >Marca:</label>
+                                <input type="text" class="form-control" id="Marca" name="marca">
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Condicion-->
+                        <div class="form-group">
+                            <label for="condicion" >Condicion:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="condicion" name="condicion" >
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($condicion as $i) {
+                                    echo '<option>'.$i->nombre.'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Modelo-->
+                        <div class="form-group">
+                                <label for="Modelo" >Modelo:</label>
+                                <input type="text" class="form-control" id="Modelo" name="modelo">
+                        </div>
+            ​            <!--_____________________________________________________________-->
+        </div>
+        
+        <div class="col-md-6 col-sm-6 col-xs-12">
+        
+                        <!--Capacidad-->
+                        <div class="form-group">
+                                <label for="Capacidad" >Capacidad:</label>
+                                <input type="text" class="form-control" id="Capacidad" name="capacidad">
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Tara-->
+                        <div class="form-group">
+                                <label for="Tara" >Tara:</label>
+                                <input type="text" class="form-control" id="Tara" name="tara" >
+                        </div>
+            ​            <!--_____________________________________________________________-->    
+
+                        <!--Habilitacion-->
+                        <div class="form-group">
+                                <label for="Habilitacion" >Habilitacion:</label>
+                                <input type="text" class="form-control" id="Habilitacion" name="habilitacion" >
+                        </div>
+            ​            <!--_____________________________________________________________-->    
+
+                        <!--Registro-->
+                        <div class="form-group">
+                                <label for="Registro" >Registro:</label>
+                                <input type="text" class="form-control" id="Registro" name="registro" >
+                        </div>
+            ​            <!--_____________________________________________________________--> 
+
+                        <!--Fecha de habilitacion-->
+                        <div class="form-group" >
+                            <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="date" class="form-control pull-right" id="datepicker" name="fechahabilitacion">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Adjuntador de imagenes-->
+                        <!-- <div class="form-group">
+                            <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
+                                <input  type="file"  id="imgarch" name="upload" data-required="true">
+                            </form>
+                        </div> -->
+            ​            <!--_____________________________________________________________-->
+
+        
+        </div>
+
+            <!--_______________________SEPARADOR______________________________________-->            
+            
+            <div class="col-md-12"><hr></div>
+
+            <!--_______________________SEPARADOR______________________________________-->
+            
+            <div class="col-md-6">
+                
+
+                <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                </button>
+                <small for="agregar" class="form-label">Adjuntar imagen</small>
+        
             </div>
-​            <!--_____________________________________________________________-->
 
-            <!--Dominio-->
-            <div class="form-group">
-                    <label for="Dominio" style="width: 200px; font-weight: lighter;">Dominio:</label>
-                    <input type="text" class="form-control" id="Dominio" name="dominio" style="width: 200px; font-weight: lighter;">
-            </div>
-​            <!--_____________________________________________________________-->
-
-            <!--Marca-->
-            <div class="form-group">
-                    <label for="Marca" style="width: 200px; font-weight: lighter;">Marca:</label>
-                    <input type="text" class="form-control" id="Marca" name="marca" style="width: 200px; font-weight: lighter;">
-            </div>
-​            <!--_____________________________________________________________-->
-
-            <!--Condicion-->
-            <div class="form-group">
-                <label for="condicion" style="width: 200px; font-weight: lighter;">Condicion:</label>
-                <select class="form-control select2 select2-hidden-accesible" id="condicion" name="condicion" style="width: 200px; font-weight: lighter;">
-                    <option value="" disabled selected>-Seleccione opcion-</option>
-                    <?php
-                    foreach ($condicion as $i) {
-                        echo '<option>'.$i->nombre.'</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-​            <!--_____________________________________________________________-->
-
-            <!--Modelo-->
-            <div class="form-group">
-                    <label for="Modelo" style="width: 200px; font-weight: lighter;">Modelo:</label>
-                    <input type="text" class="form-control" id="Modelo" name="modelo" style="width: 200px; font-weight: lighter;">
-            </div>
-​            <!--_____________________________________________________________-->
-
-    </div>
-    <div class="col-md-6">
-
-            <!--Capacidad-->
-            <div class="form-group">
-                    <label for="Capacidad" style="width: 200px; font-weight: lighter;">Capacidad:</label>
-                    <input type="text" class="form-control" id="Capacidad" name="capacidad" style="width: 200px; font-weight: lighter;">
-            </div>
-​            <!--_____________________________________________________________-->
-
-            <!--Tara-->
-            <div class="form-group">
-                    <label for="Tara" style="width: 200px; font-weight: lighter;">Tara:</label>
-                    <input type="text" class="form-control" id="Tara" name="tara" style="width: 200px; font-weight: lighter;">
-            </div>
-​            <!--_____________________________________________________________-->    
-
-            <!--Habilitacion-->
-            <div class="form-group">
-                    <label for="Habilitacion" style="width: 200px; font-weight: lighter;">Habilitacion:</label>
-                    <input type="text" class="form-control" id="Habilitacion" name="habilitacion" style="width: 200px; font-weight: lighter;">
-            </div>
-​            <!--_____________________________________________________________-->    
-
-            <!--Registro-->
-            <div class="form-group">
-                    <label for="Registro" style="width: 200px; font-weight: lighter;">Registro:</label>
-                    <input type="text" class="form-control" id="Registro" name="registro" style="width: 200px; font-weight: lighter;">
-            </div>
-​            <!--_____________________________________________________________--> 
-
-            <!--Fecha de habilitacion-->
-            <div class="form-group" style="width: 200px; font-weight: lighter;">
-                <label for="Fechahabilitacion" style="width: 200px; font-weight: lighter;">Fecha de habilitacion:</label>
-                <div class="input-group date">
-                    <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                    </div>
-                    <input type="text" class="form-control pull-right" id="datepicker" name="fechahabilitacion">
-                </div>
-                <!-- /.input group -->
-            </div>
-​            <!--_____________________________________________________________-->
-
-            <!--Adjuntador de imagenes-->
-            <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
-                <input  type="file"  id="imgarch" name="upload" data-required="true">
-            </form>
-​            <!--_____________________________________________________________-->
-
-    </div>
-
-            <!--Boton de guardado-->
-            <br>
+            <!--_____________________________________________________________-->            
+            <!--Boton de guardado--> 
+                    <div class="col-md-12"><hr></div><br>
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-​            <!--_____________________________________________________________-->
-        <!--FIN DE LOS CAMPOS DEL FORMULARIO-->
 
-            </div>
-        </div>
-    </div>
-</div>
-<!--_____________________________________________________________-->
-
-<!--//////////////////////////////Box3//////////////////////////////-->
-    <!--Datatable Registrar Generadores-->
-    <div class="box box-primary animated fadeInLeft">
-        <div class="box-body table-scroll">
-            <table id="example2" class="table table-bordered table-hover table-responsive">
-
-            <!--Cabecera del Datatable-->
-                <thead>
-                    <tr>
-                        <th id="Descripcion" class="Descripcion" style="width: 200px; font-weight: lighter;">Descripcion</th>
-                        <th id="Dominio" class="Dominio" style="width: 200px; font-weight: lighter;">Dominio</th>
-                        <th id="Marca" class="Marca" style="width: 200px; font-weight: lighter;">Marca</th>
-                        <th id="Condicion" class="Condicion" style="width: 200px; font-weight: lighter;">Condicion</th>
-                        <th id="Modelo" class="Modelo" style="width: 200px; font-weight: lighter;">Modelo</th>
-                        <th id="Capacidad" class="Capacidad" style="width: 200px; font-weight: lighter;">Capacidad</th>
-                        <th id="Tara" class="Tara" style="width: 200px; font-weight: lighter;">Tara</th>
-                        <th id="Habilitacion" class="Habilitacion" style="width: 200px; font-weight: lighter;">Habilitacion</th>
-                        <th id="Registro" class="Registro" style="width: 200px; font-weight: lighter;">Registro</th>
-                        <th id="Fechahabilitacion" class="Fechahabilitacion" style="width: 200px; font-weight: lighter;">Fecha de Habilitacion</th>
-                    </tr>
-                </thead>
-​            <!--_____________________________________________________________-->
-
-            <!--Cuerpo del Datatable-->
-                <tbody>
-                    <tr style="width: 200px; font-weight: lighter;">
-                        <td id="Descripcion" class="Descripcion">Trident</td>
-                        <td id="Dominio" class="Dominio">Internet Explorer 4.0</td>
-                        <td id="Marca" class="Marca">Win 95+</td>
-                        <td id="Condicion" class="Condicion">4</td>
-                        <td id="Modelo" class="Modelo">X</td>
-                        <td id="Capacidad" class="Capacidad">X</td>
-                        <td id="Tara" class="Tara">X</td>
-                        <td id="Habilitacion" class="Habilitacion">X</td>
-                        <td id="Registro" class="Registro">X</td>
-                        <td id="Fechahabilitacion" class="Fechahabilitacion">X</td>
-                    </tr>
-                </tbody>
-​            <!--_____________________________________________________________-->
-            </table>
-        </div>
-    </div>
-<!--_____________________________________________________________-->
+            <!--_____________________________________________________________--> 
 </form>
 </div>
 </div>
 </div>
+
+<!---//////////////////////////////////////--- FIN BOX---///////////////////////////////////////////////////////----->
+
+
+<!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
+
+
+
+<div class="box box-primary">
+
+    <!--__________________TABLA___________________________-->
+
+
+    <div class="box-body">
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6"></div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-12 table-scroll">
+
+                <!--__________________HEADER TABLA___________________________-->
+
+
+                    <!--__________________HEADER TABLA___________________________-->
+                    <table id="tabla_vehiculos" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+
+                            <th>Acciones</th>
+                            <th>Dominio</th>
+                            <th>Condicion</th>
+                            <th>Capacidad</th>
+                            <th>Tara</th>
+                            <th>habilitacion</th>
+                            <th>Registro</th>
+                            
+
+                        </thead>
+
+                        <!--__________________BODY TABLA___________________________-->
+
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            
+                            </td>
+                            <td>DATO</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                        </tr>
+
+                           
+                        </tbody>
+                    </table>
+                    
+                    <!--__________________FIN TABLA___________________________-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
+
+
+    <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Vehiculo</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                <!--_____________________________________________-->
+                <!--Nombre/Razon social-->
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
+                                <input type="text" class="form-control" id="Nombre/Razon social">
+                            </div>
+                        </div>                        
+                    </div>
+
+                <!--_____________________________________________-->
+                <!--Registro-->
+
+                <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="CUIT" name="Cuit">CUIT:</label>
+                                <input type="text" class="form-control" id="CUIT">
+                            </div>
+                <!--_____________________________________________-->
+                <!--Tipo de residuo-->
+
+                            <div class="form-group">
+                            <label for="Dpto" name="Departamento">Departamento:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="Dpto">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($Dpto as $i) {
+                                    echo '<option>'.$i->nombre.'</option>';
+                                }
+                                ?>
+                            </select>
+                            </div>
+                         </div>
+
+                <!--_____________________________________________-->
+                <!--Descripcion-->
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Domicilio" name="Domicilio">Domicilio:</label>
+                                <input type="text" class="form-control" id="Domicilio">
+                            </div>
+
+                <!--_____________________________________________-->
+                <!--Resolucion-->
+
+                            <div class="form-group">
+                                <label for="Zonag" name="Zona">Zona:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="Zonag">
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                    foreach ($Zonag as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                </div>
+
+                <!--_____________________________________________-->
+                <!--Fecha de Alta-->
+
+                <div class="row">                        
+                    <div class="col-md-6">
+                        <label for="Numero de registro" name="Numero_registro">Numero de registro:</label>
+                        <input type="text" class="form-control" id="Numero de registro">
+                            
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Rubro" name="Rubro">Rubro:</label>
+                            <input type="text" class="form-control" id="Rubro">
+                        </div>
+
+                <!--_____________________________________________-->
+                <!--Fecha de Baja-->
+
+
+                        <div class="col-md-6">
+                            <label for="TipoG" name="Tipo">Tipo:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="TipoG">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($TipoG as $i) {
+                                    echo '<option>'.$i->nombre.'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Tipo de residuos" name="Tipo_Residuo">Tipo de residuos:</label>
+                            <input type="text" class="form-control" id="Tipo de residuos">
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+
+
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+    
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Informacion Vehiculo</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+
+
+                <div class="modal-body">
+
+                <!--_____________________________________________-->
+                <!--Nombre/Razon social-->
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
+                                <input type="text" class="form-control" id="Nombre/Razon social" readonly>
+                            </div>
+                        </div>                        
+                    </div>
+
+                <!--_____________________________________________-->
+                <!--Registro-->
+
+                <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="CUIT" name="Cuit">CUIT:</label>
+                                <input type="text" class="form-control" id="CUIT" readonly>
+                            </div>
+                <!--_____________________________________________-->
+                <!--Tipo de residuo-->
+
+                            <div class="form-group">
+                            <label for="Dpto" name="Departamento">Departamento:</label>
+                            <input type="text" class="form-control" id="Dpto" readonly>
+                            </div>
+                         </div>
+
+                <!--_____________________________________________-->
+                <!--Descripcion-->
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Domicilio" name="Domicilio">Domicilio:</label>
+                                <input type="text" class="form-control" id="Domicilio" readonly>
+                            </div>
+
+                <!--_____________________________________________-->
+                <!--Resolucion-->
+
+                            <div class="form-group">
+                                <label for="Zonag" name="Zona">Zona:</label>
+                                <input type="text" class="form-control" id="zonaG" readonly>
+                            </div>
+                        </div>
+                </div>
+
+                <!--_____________________________________________-->
+                
+
+                <div class="row"> 
+
+                        <!--_____________________________________________-->
+                        <!--Numero de registro-->
+
+                        <div class="col-md-6">
+                            <label for="Numero de registro" name="Numero_registro">Numero de registro:</label>
+                            <input type="text" class="form-control" id="Numero de registro" readonly>                            
+                        </div>
+
+                        <!--_____________________________________________-->
+                        <!--Rubro-->
+
+                        <div class="col-md-6">
+                            <label for="Rubro" name="Rubro">Rubro:</label>
+                            <input type="text" class="form-control" id="Rubro" readonly>
+                        </div>                
+
+                        <!--_____________________________________________-->
+                        <!--Tipo-->
+
+                        <div class="col-md-6">
+                            <label for="TipoG" name="Tipo">Tipo:</label>
+                            <input type="text" class="form-control" id="TipoG" readonly>
+                        </div>
+
+                        <!--_____________________________________________-->
+                        <!--Tipo de residuos-->
+
+                        <div class="col-md-6">
+                            <label for="Tipo de residuos" name="Tipo_Residuo">Tipo de residuos:</label>
+                            <input type="text" class="form-control" id="Tipo de residuos" >
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
+
+
+
+
+</div>
+</div>
+
+
+  
+ <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
+
 <!--_____________________________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
@@ -448,4 +787,11 @@ function agregarDato(){
       //guardar();
   });
 </script>
-​<!--_____________________________________________________________-->
+
+<!--_____________________________________________________________-->
+ <!-- script Datatables -->
+ <script>
+
+    DataTable($('#tabla_vehiculos'))
+
+</script>

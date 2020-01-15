@@ -462,7 +462,7 @@
 
                             <div class="form-group">
                                 <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
-                                <input type="date" class="form-control pull-right" id="" readonly>
+                                <input type="text" class="form-control pull-right" id="" readonly>
                             </div>
                         </div>
 
@@ -473,7 +473,7 @@
 
                             <div class="form-group">
                                 <label for="Registro" name="Registro">Registro:</label>
-                                <input type="date" class="form-control pull-right" id="" readonly>
+                                <input type="text" class="form-control pull-right" id="" readonly>
                             </div>
                         </div>                         
                     </div>
@@ -489,7 +489,7 @@
 
                             <div class="form-group">
                                 <label for="Direccion" name="Direccion">Direccion:</label>
-                                <input type="date" class="form-control pull-right" id="" readonly>
+                                <input type="text" class="form-control pull-right" id="" readonly>
                             </div>
 
                             <!--_____________________________________________-->
@@ -497,7 +497,7 @@
 
                             <div class="form-group">
                                  <label for="Telefono" name="Telefono">Telefono:</label>
-                                 <input type="date" class="form-control pull-right" id="" readonly>
+                                 <input type="text" class="form-control pull-right" id="" readonly>
                             </div>
                          </div>
 
@@ -510,7 +510,7 @@
 
                             <div class="form-group">
                                 <label for="Zonag" name="Zona">Zona:</label>
-                                <input type="date" class="form-control pull-right" id="" readonly>
+                                <input type="text" class="form-control pull-right" id="" readonly>
                             </div>
 
                             <!--_____________________________________________-->
@@ -522,7 +522,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" class="form-control pull-right" id="" readonly>
+                                    <input type="text" class="form-control pull-right" id="" readonly>
                                 </div>
                                 
                             </div>
@@ -539,7 +539,7 @@
 
                             <div class="form-group">
                                 <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                                <input type="date" class="form-control pull-right" id="" readonly>                                                              
+                                <input type="text" class="form-control pull-right" id="" readonly>                                                              
                             </div>
 
                         <!--_____________________________________________-->
@@ -547,8 +547,7 @@
 
                             <div class="form-group">
                                 <label for="Contacto" name="Contacto">Contacto:</label>
-                                <input type="date" class="form-control pull-right" id="" readonly>
-                                
+                                <input type="text" class="form-control pull-right" id="" readonly>                                
                             </div>
                     </div>
 
@@ -563,7 +562,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" class="form-control pull-right" id="" readonly>
+                                    <input type="text" class="form-control pull-right" id="" readonly>
                                 </div>
                             </div>
 
@@ -572,7 +571,7 @@
 
                             <div class="form-group">
                                 <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
-                                <input type="date" class="form-control pull-right" id="" readonly>
+                                <input type="text" class="form-control pull-right" id="" readonly>
                             </div>
                             </div>
                     </div>

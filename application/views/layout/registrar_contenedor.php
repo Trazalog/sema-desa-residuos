@@ -38,8 +38,6 @@
         </div>
 
     </div>
-</div>
-<!--_____________________________________________________________-->
 
     <!--_____________________________________________-->
     <div class="box-body">
@@ -48,8 +46,8 @@
             <div class="col-md-6">
                 <!--Codigo / Registro-->
                 <div class="form-group">
-                    <label for="Codigo/Registro">Codigo / Registro:</label>
-                    <input type="text" class="form-control"  name="Codigo_registro" id="Codigo/Registro">
+                    <label for="Codigo/Registro" >Codigo / Registro:</label>
+                    <input type="text" class="form-control" name="Codigo_registro" id="Codigo/Registro">
                 </div>
                 <!--_____________________________________________-->
                 <!--Descripcion-->
@@ -75,13 +73,13 @@
                 <!--Tara-->
                 <div class="form-group">
                     <label for="Tara" >Tara:</label>
-                    <input type="text" class="form-control"  name="Tara" id="Tara">
+                    <input type="text" class="form-control" name="Tara" id="Tara">
                 </div>
                 <!--_____________________________________________-->
                 <!--Estado-->
                 <div class="form-group">
-                    <label for="Estados" >Estado:</label>
-                    <select class="form-control select2 select2-hidden-accesible" name="Estados" id="Estados">
+                    <label for="Estados">Estado:</label>
+                    <select class="form-control select2 select2-hidden-accesible"  name="Estados" id="Estados">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Estados as $i) {
@@ -94,7 +92,7 @@
                 <!--Habilitacion-->
                 <div class="form-group">
                     <label for="Habilitacion" >Habilitacion:</label>
-                    <input type="text" class="form-control" name="Habilitacion"id="Habilitacion">
+                    <input type="text" class="form-control" name="Habilitacion" id="Habilitacion">
                 </div>
 
                 <!--_____________________________________________-->
@@ -125,7 +123,7 @@
             <!--_____________________________________________-->
             <!--Boton de guardado-->
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary pull-right" onclick="Agregar_Contenedor()">Guardar</button>
+                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             </div>
             <!--_____________________________________________-->
         </form>
@@ -238,26 +236,26 @@
                 <div class="col-md-6">
                     <!--Codigo / Registro-->
                     <div class="form-group">
-                        <label for="Codigo/Registro" name="Codigo_registro">Codigo / Registro:</label>
-                        <input type="text" class="form-control" id="Codigo/Registro">
+                        <label for="Codigo/Registro" >Codigo / Registro:</label>
+                        <input type="text" class="form-control"  name="" id="Codigo/Registro">
                     </div>
                     <!--_____________________________________________-->
                     <!--Descripcion-->
                     <div class="form-group">
-                        <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                        <input type="text" class="form-control" id="Descripcion">
+                        <label for="Descripcion" >Descripcion:</label>
+                        <input type="text" class="form-control"  name="" id="Descripcion">
                     </div>
                     <!--_____________________________________________-->
                     <!--Capacidad-->
                     <div class="form-group">
-                        <label for="Capacidad" name="Capacidad">Capacidad:</label>
-                        <input type="text" class="form-control" id="Capacidad">
+                        <label for="Capacidad" >Capacidad:</label>
+                        <input type="text" class="form-control" name="" id="Capacidad">
                     </div>
                     <!--_____________________________________________-->
                     <!--Año de elaboracion-->
                     <div class="form-group">
-                        <label for="Añoelab" name="Añoelab">Año de elaboracion:</label>
-                        <input type="text" class="form-control" id="Añoelab">
+                        <label for="Añoelab" >Año de elaboracion:</label>
+                        <input type="text" class="form-control" name="" id="Añoelab">
                     </div>
 
                 </div>
@@ -266,15 +264,15 @@
                     <!--_____________________________________________--> 
                     <!--Tara-->
                     <div class="form-group">
-                        <label for="Tara" name="Tara">Tara:</label>
-                        <input type="text" class="form-control" id="Tara">
+                        <label for="Tara" >Tara:</label>
+                        <input type="text" class="form-control" name="" id="Tara">
                     </div>
                     <!--_____________________________________________-->
                     <!--Estado-->
                     
                     <div class="form-group">
-                        <label for="Estados" name="Estados">Estado:</label>
-                        <select class="form-control select2 select2-hidden-accesible" id="Estados">
+                        <label for="Estados">Estado:</label>
+                        <select class="form-control select2 select2-hidden-accesible"  name="" id="Estados">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                             foreach ($Estados as $i) {
@@ -286,8 +284,8 @@
                     <!--_____________________________________________-->
                     <!--Habilitacion-->
                     <div class="form-group">
-                        <label for="Habilitacion" name="Habilitacion">Habilitacion:</label>
-                        <input type="text" class="form-control" id="Habilitacion">
+                        <label for="Habilitacion">Habilitacion:</label>
+                        <input type="text" class="form-control"  name="" id="Habilitacion">
                     </div>
                 </div>
 
@@ -318,14 +316,7 @@
             </div>
         </div>
     </div>
-    <!--_____________________________________________________________-->
-    </div>
-    <!--_____________________________________________________________-->
-</form>
 </div>
-</div>
-</div>
-<!--_____________________________________________________________-->
 
 
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
@@ -364,26 +355,26 @@
                 <div class="col-md-6">
                     <!--Codigo / Registro-->
                     <div class="form-group">
-                        <label for="Codigo/Registro" name="Codigo_registro">Codigo / Registro:</label>
-                        <input type="text" class="form-control" id="Codigo/Registro" readonly>
+                        <label for="Codigo/Registro" >Codigo / Registro:</label>
+                        <input type="text" class="form-control" name="E_Codigo_registro" id="Codigo/Registro" readonly>
                     </div>
                     <!--_____________________________________________-->
                     <!--Descripcion-->
                     <div class="form-group">
-                        <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                        <input type="text" class="form-control" id="Descripcion" readonly>
+                        <label for="Descripcion" >Descripcion:</label>
+                        <input type="text" class="form-control" name="E_Descripcion" id="Descripcion" readonly>
                     </div>
                     <!--_____________________________________________-->
                     <!--Capacidad-->
                     <div class="form-group">
-                        <label for="Capacidad" name="Capacidad">Capacidad:</label>
-                        <input type="text" class="form-control" id="Capacidad" readonly>
+                        <label for="Capacidad">Capacidad:</label>
+                        <input type="text" class="form-control"  name="E_Capacidad" id="Capacidad" readonly>
                     </div>
                     <!--_____________________________________________-->
                     <!--Año de elaboracion-->
                     <div class="form-group">
-                        <label for="Añoelab" name="Añoelab">Año de elaboracion:</label>
-                        <input type="text" class="form-control" id="Añoelab" readonly>
+                        <label for="Añoelab">Año de elaboracion:</label>
+                        <input type="text" class="form-control"  name="E_Añoelab" id="Añoelab" readonly>
                     </div>
 
                 </div>
@@ -392,21 +383,21 @@
                     <!--_____________________________________________--> 
                     <!--Tara-->
                     <div class="form-group">
-                        <label for="Tara" name="Tara">Tara:</label>
-                        <input type="text" class="form-control" id="Tara" readonly>
+                        <label for="Tara" >Tara:</label>
+                        <input type="text" class="form-control"  name="E_Tara" id="Tara" readonly>
                     </div>
                     <!--_____________________________________________-->
                     <!--Estado-->
                     
                     <div class="form-group">
-                        <label for="Estados" name="Estados">Estado:</label>
-                        <input type="text" class="form-control" id="" readonly>
+                        <label for="Estados" >Estado:</label>
+                        <input type="text" class="form-control" name="E_Estados" id="" readonly>
                     </div>
                     <!--_____________________________________________-->
                     <!--Habilitacion-->
                     <div class="form-group">
-                        <label for="Habilitacion" name="Habilitacion">Habilitacion:</label>
-                        <input type="text" class="form-control" id="Habilitacion" readonly>
+                        <label for="Habilitacion" >Habilitacion:</label>
+                        <input type="text" class="form-control" name="E_Habilitacion" id="Habilitacion" readonly>
                     </div>
                 </div>
 
@@ -447,9 +438,9 @@
 
 <!--________________________________________ AGREGAR EN TABLA ________________________________________-->
 
-<script>
+<!-- <script>
 
-function Agregar_Contenedor()
+function guardarDato()
 
 {
 
@@ -494,214 +485,180 @@ function Agregar_Contenedor()
 
 
 
-</script>
+</script> -->
 
  <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 
+<!--_____________________________________________________________-->
 
-        <!--_____________________________________________________________-->
-        <!-- script modal -->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+    });
+</script>
+​<!--_____________________________________________________________-->
 
-        <script>
-        $("#btnview").on("click", function() {
-            $("#btnadd").removeClass("active");
-            $("#btnview").addClass("active");
-            $("#tablamodal").show();
-            $("#formadd").hide();
-            $("#btnsave").hide();
-        });
-
-        $("#btnadd").on("click", function() {
-            $("#btnadd").addClass("active");
-            $("#btnview").removeClass("active");
-            $("#formadd").show();
-            $("#tablamodal").hide();
-            $("#btnsave").show();
-        });
-        </script>
-
-
-        <!--_____________________________________________________________-->
-        <!-- script que muestra box de datos al dar click en boton agregar -->
-
-        <script>
-        $("#botonAgregar").on("click", function() {
-            //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-            var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-            $("#nro").val(aleatorio);
-
-            $("#botonAgregar").attr("disabled", "");
-            //$("#boxDatos").removeAttr("hidden");
-            $("#boxDatos").focus();
-            $("#boxDatos").show();
-
-        });
-        </script>
-
-        <script>
+<!-- Script Data-Tables-->
+<script>
         $("#btnclose").on("click", function() {
-            $("#boxDatos").hide(500);
-            $("#botonAgregar").removeAttr("disabled");
-            $('#formDatos').data('bootstrapValidator').resetForm();
-            $("#formDatos")[0].reset();
-            $('#selecmov').find('option').remove();
-            $('#chofer').find('option').remove();
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
         });
-        </script>
+</script>
+​<!--_____________________________________________________________-->
 
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+    });
+</script>
+​<!--_____________________________________________________________-->
 
-
-        <!--_____________________________________________________________-->
-        <!-- Script Agregar datos de registrar_generadores-->
-
-        <script>
-        function agregarDato() {
-            console.log("entro a agregar datos");
-            $('#formContenedores').on('submit', function(e) {
-
-                e.preventDefault();
-                var me = $(this);
-                if (me.data('requestRunning')) {
-                    return;
-                }
-                me.data('requestRunning', true);
-
-                datos = $('#formContenedores').serialize();
-                console.log(datos);
-
-
-                //--------------------------------------------------------------
-
-
-                $.ajax({
-                    type: "POST",
-                    data: datos,
-                    url: "ajax/Registrargenerador/guardarDato",
-                    success: function(r) {
-                        if (r == "ok") {
-                            //console.log(datos);
-                            $('#formContenedores')[0].reset();
-                            alertify.success("Agregado con exito");
-                        } else {
-                            console.log(r);
-                            $('#formContenedores')[0].reset();
-                            alertify.error("error al agregar");
-                        }
-                    },
-                    complete: function() {
-                        me.data('requestRunning', false);
+<!-- Script Agregar datos de registrar_generadores-->
+<script>
+function agregarDato(){
+    console.log("entro a agregar datos");
+    $('#formContenedores').on('submit', function(e){
+    e.preventDefault();
+    var me = $(this);
+    if ( me.data('requestRunning') ) {return;}
+    me.data('requestRunning', true);
+    datos=$('#formContenedores').serialize();
+    console.log(datos);
+        //--------------------------------------------------------------
+        
+    $.ajax({
+                type:"POST",
+                data:datos,
+                url:"ajax/Registrarcontenedor/guardarDato",
+                success:function(r){
+                    if(r == "ok"){
+                        //console.log(datos);
+                        $('#formContenedores')[0].reset();
+                        alertify.success("Agregado con exito");
                     }
-                });
-
+                    else{
+                        console.log(r);
+                        $('#formContenedores')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
+                }
             });
+    });
+}
+</script>
+<!--_____________________________________________________________-->
 
-        }
-        </script>
-
-        <!--_____________________________________________________________-->
-        <!-- Script Boostrap Validator-->
-
-        <script>
-        $('#formContenedores').bootstrapValidator({
-            message: 'This value is not valid',
-            /*feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },*/
-            fields: {
-                Codigo_registro: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /[A-Za-z]/,
-                            message: 'la entrada debe ser un numero entero'
-                        }
-                    }
-                },
-                Descripcion: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /[A-Za-z]/,
-                            message: 'la entrada debe ser un numero entero'
-                        }
-                    }
-                },
-                Capacidad: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /[A-Za-z]/,
-                            message: 'la entrada debe ser un numero entero'
-                        }
-                    }
-                },
-                Añoelab: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /[A-Za-z]/,
-                            message: 'la entrada debe ser un numero entero'
-                        }
-                    }
-                };
-                Tara: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /[A-Za-z]/,
-                            message: 'la entrada debe ser un numero entero'
-                        }
-                    }
-                };
-                Estados: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /[A-Za-z]/,
-                            message: 'la entrada debe ser un numero entero'
-                        }
-                    }
-                };
-                Habilitacion: {
-                    message: 'la entrada no es valida',
-                    validators: {
-                        notEmpty: {
-                            message: 'la entrada no puede ser vacia'
-                        },
-                        regexp: {
-                            regexp: /[A-Za-z]/,
-                            message: 'la entrada debe ser un numero entero'
-                        }
-                    }
-                }
-            }
-        }).on('success.form.bv', function(e) {
-            e.preventDefault();
-            // guardar();
-        });
-        </script>
-
-
+<!--Script Bootstrap Validacion.-->
+<script>
+  $('#formContenedores').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      //excluded: ':disabled',
+      fields: {
+        Codigo_registro: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+        Descripcion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+              }
+          },
+        Capacidad: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+        Añoelab: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+        Tara: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada debe ser un numero entero'
+                  }
+              }
+          },
+        Estados: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+              }
+          },
+        Habilitacion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+              }
+          },
+      }
+  }).on('success.form.bv', function(e){
+      e.preventDefault();
+      //guardar();
+  });
+</script>
 
 
 <!--_____________________________________________________________-->
@@ -711,4 +668,3 @@ function Agregar_Contenedor()
 DataTable($('#tabla_contenedores'))
 
 </script>
-<!--_____________________________________________________________-->
