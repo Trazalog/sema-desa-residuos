@@ -113,6 +113,16 @@
                                 "titulo": "Etapa",
                                 "icono": "fa fa-genderless",
                                 "link": "general/RegistrarEt/templateEt"
+                            },
+                            {
+                                "titulo": "Chofer",
+                                "icono": "fa fa-genderless",
+                                "link": "general/RegistrarCh/templateCh"
+                            },
+                            {
+                                "titulo": "Vehiculo",
+                                "icono": "fa fa-genderless",
+                                "link": "general/RegistrarVehi/templateVehi"
                             }
                         ]                    
                     }
