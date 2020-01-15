@@ -40,107 +40,107 @@
 
     <form class="formCircuitos" id="formCircuitos">
 
-            <!--_____________________________________________-->
-            <!--Codigo-->
+        <!--_____________________________________________-->
+        <!--Codigo-->
 
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="Codigo">Codigo:</label>
-                    <input type="text" class="form-control"  name="Codigo" id="Codigo">
-                </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Codigo">Codigo:</label>
+                <input type="text" class="form-control"  name="Codigo" id="Codigo">
             </div>
+        </div>
 
-            <!--_____________________________________________--> 
-             <!--Chofer-->
+        <!--_____________________________________________--> 
+        <!--Chofer-->
 
-            <div class="col-md-6">
-                 <div class="form-group">
-                    <label for="Chofer" >Chofer:</label>
-                    <select class="form-control select2 select2-hidden-accesible" name="Chofer" id="Chofer">
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
-                        foreach ($Chofer as $i) {
-                            echo '<option>'.$i->nombre.'</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Chofer" >Chofer:</label>
+                <select class="form-control select2 select2-hidden-accesible" name="Chofer" id="Chofer">
+                    <option value="" disabled selected>-Seleccione opcion-</option>
+                    <?php
+                    foreach ($Chofer as $i) {
+                        echo '<option>'.$i->nombre.'</option>';
+                    }
+                    ?>
+                </select>
             </div>
+        </div>
 
-            <!--_____________________________________________-->
-            <!--Descripcion-->
+        <!--_____________________________________________-->
+        <!--Descripcion-->
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="Descripcion" >Descripcion:</label>
+                <textarea style="resize: none;" type="text" class="form-control" name="Descripcion" id="Descripcion"></textarea>
+            </div>
+        </div>
+
+        <!--_____________________________________________-->
+        <!--vehiculo-->
+
+        <div class="col-md-6">          
+            <div class="form-group">
+                <label for="Vehiculo">Vehiculo:</label>
+                <select class="form-control select2 select2-hidden-accesible"  name="Vehiculo" id="Vehiculo">
+                    <option value="" disabled selected>-Seleccione opcion-</option>
+                    <?php
+                    foreach ($Vehiculo as $i) {
+                        echo '<option>'.$i->nombre.'</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+
+        <!--_____________________________________________-->
+        <!--Tipo de residuo-->
+
+        <div class="col-md-6">            
+            <div class="form-group">
+                <label for="tipoResiduos" >Tipo de residuo:</label>
+                <select class="form-control select2 select2-hidden-accesible" name="tipoResiduos" id="tipoResiduos">
+                    <option value="" disabled selected>-Seleccione opcion-</option>
+                    <?php
+                    foreach ($tipoResiduos as $i) {
+                        echo '<option>'.$i->nombre.'</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+
+        <!--_________________SEPARADOR_________________-->
+
+        <div class="col-md-12"> <hr></div>
+
+        <!--_________________SEPARADOR_________________-->
+
+        <!--_____________________________________________-->
+        <!--Adjuntador de imagenes-->
+
+        <div class="col-md-6">     
+
+            <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+
+                <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                </button>
+                <small for="agregar" class="form-label">Adjuntar imagen</small>
+
+            </form>
+        </div>
+
+        <!--_________________SEPARADOR_________________-->
+
+        <div class="col-md-12"> <hr></div>
+
+        <!--_________________SEPARADOR_________________-->
 
             <div class="col-md-12">
-                <div class="form-group">
-                    <label for="Descripcion" >Descripcion:</label>
-                    <textarea style="resize: none;" type="text" class="form-control" name="Descripcion" id="Descripcion"></textarea>
-                </div>
+            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
             </div>
-
-            <!--_____________________________________________-->
-            <!--vehiculo-->
-
-            <div class="col-md-6">          
-                <div class="form-group">
-                    <label for="Vehiculo">Vehiculo:</label>
-                    <select class="form-control select2 select2-hidden-accesible"  name="Vehiculo" id="Vehiculo">
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
-                        foreach ($Vehiculo as $i) {
-                            echo '<option>'.$i->nombre.'</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
-            </div>
-
-            <!--_____________________________________________-->
-            <!--Tipo de residuo-->
-
-            <div class="col-md-6">            
-                <div class="form-group">
-                    <label for="tipoResiduos" >Tipo de residuo:</label>
-                    <select class="form-control select2 select2-hidden-accesible" name="tipoResiduos" id="tipoResiduos">
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
-                        foreach ($tipoResiduos as $i) {
-                            echo '<option>'.$i->nombre.'</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
-            </div>
-
-            <!--_________________SEPARADOR_________________-->
-
-            <div class="col-md-12"> <hr></div>
-
-            <!--_________________SEPARADOR_________________-->
-
-            <!--_____________________________________________-->
-            <!--Adjuntador de imagenes-->
-
-            <div class="col-md-6">     
-
-                <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-
-                    <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                    </button>
-                    <small for="agregar" class="form-label">Adjuntar imagen</small>
-
-                </form>
-            </div>
-
-            <!--_________________SEPARADOR_________________-->
-
-            <div class="col-md-12"> <hr></div>
-
-            <!--_________________SEPARADOR_________________-->
-
-                <div class="col-md-12">
-                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
-                </div>
 
         </div>
     </form>
