@@ -1,78 +1,286 @@
-<!-- Hecha por Jose Roberto el mas virgo -->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
 <div class="box box-primary animated fadeInLeft">
-    <div class="box-header">
+    <div class="box-header with-border">
+        <h4>Registrar Zona</h4>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-2 col-lg-1 col-xs-12">
+                <button type="button" id="botonAgregar" class="btn btn-primary" aria-label="Left Align">
+                    Agregar
+                </button><br>
+            </div>
+            <div class="col-md-10 col-lg-11 col-xs-12"></div>
+        </div>
+    </div>
+</div>
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+<!---//////////////////////////////////////---BOX 1---///////////////////////////////////////////////////////----->
+
+<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
+    <div class="box-header with-border">
         <div class="box-tittle">
-            <h3>Registrar Zona</h3>  
+            <h5>Informacion</h5>
+        </div>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
         </div>
     </div>
 
     <!--_____________________________________________-->
-
     <div class="box-body">
         <form class="formZonas" id="formZonas">
+            <div class="col-md-12">
+
                 <div class="col-md-6">
 
-                <!--Nombre-->
-                <div class="form-group">
-                    <label for="Nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="Nombre" name="Nombre">
-                </div>
-                <!--_____________________________________________-->
-
-                <!--Departamento-->
-                <div class="form-group">
-                    <label for="Dpto">Departamento:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="Dpto" name="Departamento">
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
+                    <div class="form-group">
+                        <label for="Nombre" >Nombre:</label>
+                        <input type="text" name="Nombre" class="form-control" id="Nombre">
+                    </div>
+                    <!--_____________________________________________-->
+                    <div class="form-group">
+                        <label for="Dpto" >Departamento:</label>
+                        <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
                         foreach ($Dpto as $i) {
                             echo '<option>'.$i->nombre.'</option>';
                         }
                         ?>
-                    </select>
+                        </select>
+                    </div>
                 </div>
-                <!--_____________________________________________-->
-
-                <!--Circuito / Recorrido-->
-                <div class="form-group">
-                    <label for="CircR">Circuito / Recorrido:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="CircR" name="Circuito_Recorrido">
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
+                <div class="col-md-6">
+                    <!--_____________________________________________-->
+                    <div class="form-group">
+                        <label for="CircR" >Circuito / Recorrido:</label>
+                        <select class="form-control select2 select2-hidden-accesible" name="Circuito_Recorrido" id="CircR">
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
                         foreach ($CircR as $i) {
                             echo '<option>'.$i->nombre.'</option>';
                         }
                         ?>
-                    </select>
+                        </select>
+                    </div>
+                    <!--_____________________________________________-->
+                    <div class="form-group">
+                        <label for="Descripcion" >Descripcion:</label>
+                        <input type="text" name="Descripcion" class="form-control" id="Descripcion">
+                    </div>
+                    </div>
+                    <!--_____________________________________________-->
+                    <div class="col-md-12">
+                    <hr>
+                    </div>
+                    <div class="col-md-6">
+
+                        <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+                            <input type="file" name="upload">
+                        </form>
+                    </div>
+                    <!--_____________________________________________-->
                 </div>
-                <!--_____________________________________________-->
 
-                <!--Adjuntador de imagenes-->
-                <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                <input  type="file"  id="imgarch" name="upload" data-required="true">
-                </form>
-                <!--_____________________________________________-->
-
-                </div>
-                <div class="col-md-6">
-
-                <!--Descripcion-->
-                <div class="form-group">
-                    <label for="Descripcion">Descripcion:</label>
-                    <input type="text" class="form-control" id="Descripcion" name="Descripcion">
-                </div>
-                <!--_____________________________________________-->
-
-                <!--Boton de guardado-->
-                <br>
+                <div class="col-md-12"><hr></div>
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-                <!--_____________________________________________-->
+            </div>
+            <!--_____________________________________________-->
 
             </div>
         </form>
     </div>
 </div>
-<!--_____________________________________________________________-->
+
+<!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
+
+<!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
+<div class="box box-primary">
+    <!--__________________TABLA___________________________-->
+    <div class="box-body">
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 table-scroll">
+                    <!--__________________HEADER TABLA___________________________-->
+                    <table id="tabla_zonas" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+                            <th>Acciones</th>
+                            <th>Nombre</th>
+                            <th>Departamento</th>
+                            <th>Circuito</th>
+                            <th>Descripcion</th>
+                        </thead>
+                        <!--__________________BODY TABLA___________________________-->
+                        <tbody>
+                        <tr>
+                            <td>
+                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <!-- <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp -->
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                            </td>
+                            <td>DATO</td>
+                            <td> DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--__________________FIN TABLA___________________________-->
+                </div>
+            </div>
+<!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
+
+<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+ <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Zona</h5>
+            </div>
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="" class="registerForm">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12"> 
+                            <div class="col-md-6 col-sm-6">
+
+                                <!--_____________________________________________-->
+                                <!--Nombre-->
+
+                                <div class="form-group">
+                                    <label for="Nombre" name="">Nombre:</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Descripcion-->
+
+                                <div class="form-group">
+                                    <label for="Descripcion" name="">Descripcion:</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+
+                            <!--**************************************************-->
+
+                            <div class="col-md-6 col-sm-6">
+
+                                <!--_____________________________________________-->
+                                <!--Circuito-->
+
+                                <div class="form-group">
+                                    <label for="CircR" name="">Circuito / Recorrido:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="">
+                                        <option value="" disabled selected>-Seleccione opcion-</option>
+                                        <?php
+                                    foreach ($CircR as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                                    ?>
+                                    </select>
+                                </div>
+
+                                <!--_____________________________________________-->
+                                <!--Departamento-->                
+
+                                <div class="form-group">
+                                    <label for="Dpto" name="">Departamento:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="">
+                                        <option value="" disabled selected>-Seleccione opcion-</option>
+                                        <?php
+                                    foreach ($Dpto as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                                    ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+            <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
+
+<!--_____________________________________________-->
+
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+
+    });
+</script>
+
+<script>
+        $("#btnclose").on("click", function() {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+        });
+</script>
+<!--_____________________________________________-->
+
+<!-- Script Data-Tables-->
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+
+    });
+</script>
+​<!--_____________________________________________-->
 
 <!-- Script Agregar datos de registrar_zona-->
 <script>
@@ -85,7 +293,7 @@ function agregarDato(){
     me.data('requestRunning', true);
     datos=$('#formZonas').serialize();
     console.log(datos);
-    
+
         //--------------------------------------------------------------
 
     $.ajax({
@@ -111,6 +319,7 @@ function agregarDato(){
     });
 }
 </script>
+<!--_____________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
@@ -123,7 +332,7 @@ function agregarDato(){
       },*/
       //excluded: ':disabled',
       fields: {
-        Nombre: {
+          Nombre: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -169,7 +378,7 @@ function agregarDato(){
       //guardar();
   });
 </script>
-<!--_____________________________________________________________-->
+<!--_____________________________________________-->
 
 <!--Script validador de campo de imagenes-->
 <script>
@@ -181,4 +390,9 @@ else {
     document.getElementById('imgarch').setAttribute("data-required","false");
 }
 </script>
-<!--_____________________________________________________________-->
+<!--_____________________________________________-->
+
+<script>
+DataTable($('#tabla_zonas'))
+</script>
+</body>

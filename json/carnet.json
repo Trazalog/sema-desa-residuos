@@ -1,0 +1,21 @@
+{
+    "carnet" : {
+                "carnet" : [
+                    {
+                        "nombre": "carnet A"
+                    },
+                    {
+                        "nombre": "carnet B"
+                    },
+                    {
+                        "nombre": "carnet C"
+                    },
+                    {
+                        "nombre": "carnet D"
+                    },
+                    {
+                        "nombre": "carnet E"
+                    }
+                ]
+    }
+}

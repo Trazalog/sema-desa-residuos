@@ -24,3 +24,5 @@ class RegistrarC extends CI_Controller {
    }
 }
 ?>
+
+

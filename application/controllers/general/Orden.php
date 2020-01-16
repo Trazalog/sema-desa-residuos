@@ -36,9 +36,8 @@ class Orden extends CI_Controller {
        $data['zona'] = $this->Zonas->obtener();
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/template_ot',$data);
-       
    }
-   
+
    function solicitudRetiro()
    {
        $data['empresa'] = $this->Empresas->obtener();
@@ -47,18 +46,30 @@ class Orden extends CI_Controller {
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/solicitud_retiro',$data);
    }
+
    function registrarRecepcionDeOrden()
    {
        $data['zonaDescarga'] = $this->Sectoresdescarga->obtener();
        $this->load->view('layout/registrar_recepcion_de_orden', $data);
    }
-
-   function controlDeDescarga(){
-        $this->load->view('layout/control_descarga');
+   function Controldedescarga()
+   {
+    
+    $this->load->view('layout/control_descarga', $data);
    }
 
-   function nueva(){
-       $this->load->view('layout/nueva_vista');
+   function nueva()
+   {
+    
+    $this->load->view('layout/nueva_vista', $data);
    }
+
+   
+   function nueva2()
+   {
+    
+    $this->load->view('layout/registrar_incidencia', $data);
+   }
+   
 }
 ?>
