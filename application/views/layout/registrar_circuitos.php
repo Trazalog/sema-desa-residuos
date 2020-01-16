@@ -32,7 +32,6 @@
                 <i class="fa fa-times"></i>
             </button>
         </div>
-        
     </div>
     <!--_____________________________________________-->
 
@@ -121,14 +120,11 @@
         <!--Adjuntador de imagenes-->
 
         <div class="col-md-6">     
-
             <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-
                 <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
                     <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
                 </button>
                 <small for="agregar" class="form-label">Adjuntar imagen</small>
-
             </form>
         </div>
 
@@ -141,7 +137,6 @@
             <div class="col-md-12">
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
             </div>
-
         </div>
     </form>
 </div>
@@ -188,7 +183,6 @@
 
         <!--_________________SEPARADOR_________________-->
 
-
             <!--_____________________________________________-->    
             <!--Boton de guardado-->
             
@@ -198,21 +192,13 @@
 
     </div> -->
 
-    
   <!--____________________________________________________________________________________________-->
-
-
-
 
 <!---//////////////////////////////////////--- FIN BOX 1---///////////////////////////////////////////////////////----->
 
-
-
 <!---//////////////////////////////////////---BOX TABLA---///////////////////////////////////////////////////////----->
 
- 
 <div class="box box-primary ">
-    
 
     <!--__________________TABLA___________________________-->
     <div class="box-body">
@@ -239,19 +225,20 @@
 
                         <tbody>
                         <tr>
+
                             <td>
                             <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                             <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
                             <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalPunto"><span class="glyphicon glyphicon-record" aria-hidden="true"></span></button>&nbsp
                             <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-
                             </td>
-                            <td>DATO</td>
-                            <td>DATO</td>
-                            <td>DATO</td>
-                            <td>DATO</td>
-                        </tr>
 
+                            <td>DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+                            <td>DATO</td>
+
+                        </tr>
                         </tbody>
                     </table>
 
@@ -297,7 +284,6 @@
                             </div>
 
                     <div class="row">
-
                         <div class="col-md-6">
                             <div class="form-group">
                             <label for="Chofer" name="Chofer">Chofer:</label>
@@ -352,7 +338,6 @@
                             <div class="col-md-12">
                                 <label for="Descripcion" name="Descripcion">Descripcion:</label>
                                 <textarea style="resize: none;" type="text" class="form-control" id="Descripcion"></textarea>
-
                             </div>         
                         </div>
                     </div>
@@ -390,7 +375,6 @@
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
                 <div class="modal-body">
 
                         <!--_____________________________________________-->
@@ -420,7 +404,6 @@
                             </div>
 
                     <div class="row">
-
                         <div class="col-md-6">
 
                                 <!--_____________________________________________-->
@@ -430,7 +413,6 @@
                                         <label for="Chofer" name="Chofer">Chofer:</label>
                                         <input type="text" class="form-control" id="Chofer" readonly>
                                     </div>
-
                         </div>
 
                                 <!--_____________________________________________-->
@@ -459,19 +441,13 @@
                     <div class="col-md-12"><br><hr><br></div>
 
                     <!--_______________________SEPARADOR______________________-->   
-
                     <div class="row"> 
-
                          <div class="col-md-12">
-
                             <div class="box-header bg-blue">
                                 <h5>Punto Critico</h5>
                             </div>
-
                         </div>
-
                     </div>
-
                     <!--_______________________SEPARADOR______________________-->    
 
                     <div class="col-md-12"><br></div>
@@ -479,15 +455,10 @@
                     <!--_______________________SEPARADOR______________________--> 
 
                    <!--*******************************************-->
-
                     <div class="row">
-
                         <div class="col-md-12">
-
                             <div class="row"> 
-
                                 <div class="col-md-6">
-
                                     <!--_____________________________________________-->
                                     <!--Nombre-->
 
@@ -520,22 +491,18 @@
 
                                     <table id="tabla_puntos_criticos" class="table table-bordered table-striped">
                                         <thead class="thead-dark" bgcolor="#eeeeee">
-
                                             <th>Nombre</th>
                                             <th>Descripcion</th>
                                             <th>Ubicacion</th>
-
                                         </thead>
 
                                         <!--__________________BODY TABLA___________________________-->
 
                                         <tbody>
                                         <tr>
-
                                             <td>DATO</td>
                                             <td> DATO</td>
                                             <td>DATO</td>
-
                                         </tr>
 
                                         </tbody>
@@ -592,7 +559,6 @@
                                     <label for="Nombre" name="Nombre">Nombre:</label>
                                      <input type="text" class="form-control" id="Nombre">
                                 </div>                            
-
                             </div>
 
                             <!--**************************************************-->
@@ -606,7 +572,6 @@
                                     <label for="Descripcion" name="Descripcion">Descripcion:</label>
                                      <input type="text" class="form-control" id="Descripcion">
                                 </div>                                          
-
                             </div>
                         </div>
                     </div>
@@ -615,7 +580,7 @@
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
-            </div>
+        </div>
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>

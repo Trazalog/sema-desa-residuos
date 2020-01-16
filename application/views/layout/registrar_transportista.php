@@ -443,79 +443,57 @@
                 <h5 class="modal-title" id="exampleModalLabel">Informacion Transportista</h5>
             </div>
 
-
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
-
                 <div class="modal-body">
-
-                
-                <div class="row">
+                    <div class="row">
                         <div class="col-md-6">
+                        <!--_____________________________________________-->
 
-                            <!--_____________________________________________-->
-                             <!--Nombre/Razon social-->
-
+                        <!--Nombre/Razon social-->
                             <div class="form-group">
                                 <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
                                 <input type="date" class="form-control pull-right" id="" readonly>
                             </div>
+                        <!--_____________________________________________-->
                         </div>
-
                         <div class="col-md-6">
-
-                            <!--_____________________________________________-->
-                             <!--Registro-->
-
+                        <!--Registro-->
                             <div class="form-group">
                                 <label for="Registro" name="Registro">Registro:</label>
                                 <input type="date" class="form-control pull-right" id="" readonly>
                             </div>
-                        </div>                         
-                    </div>
-
-                
-
-                <div class="row">
-
+                            </div>                         
+                            </div>
+                        <!--_____________________________________________-->
+                        <div class="row">
                         <div class="col-md-6">
-
-                            <!--_____________________________________________-->
-                            <!--Direccion-->
-
+                        <!--Direccion-->
                             <div class="form-group">
                                 <label for="Direccion" name="Direccion">Direccion:</label>
                                 <input type="date" class="form-control pull-right" id="" readonly>
                             </div>
+                        <!--_____________________________________________-->
 
-                            <!--_____________________________________________-->
-                            <!--Telefono-->
-
+                        <!--Telefono-->
                             <div class="form-group">
                                  <label for="Telefono" name="Telefono">Telefono:</label>
                                  <input type="date" class="form-control pull-right" id="" readonly>
                             </div>
-                         </div>
-
-                
-
+                        <!--_____________________________________________-->
+                        </div>
                         <div class="col-md-6">
-
-                            <!--_____________________________________________-->
-                            <!--Zona-->
-
+                        <!--Zona-->
                             <div class="form-group">
                                 <label for="Zonag" name="Zona">Zona:</label>
                                 <input type="date" class="form-control pull-right" id="" readonly>
                             </div>
+                        <!--_____________________________________________-->
 
-                            <!--_____________________________________________-->
-                            <!--Fecha de alta-->                
-
+                        <!--Fecha de alta-->
                             <div class="form-group">
                                 <label for="Fechalta" name="Fecha_de_alta" class="form-label label-sm">Fecha de alta:</label>                                              
                                 <div class="input-group date">
@@ -524,39 +502,28 @@
                                     </div>
                                     <input type="date" class="form-control pull-right" id="" readonly>
                                 </div>
-                                
                             </div>
-                        </div>
-                </div>
-
-                
-
-                <div class="row">
-
-                    <div class="col-md-6"> 
+                            </div>
+                            </div>
                         <!--_____________________________________________-->
+                            <div class="row">
+                            <div class="col-md-6">
                         <!--Descripcion-->
-
                             <div class="form-group">
                                 <label for="Descripcion" name="Descripcion">Descripcion:</label>
                                 <input type="date" class="form-control pull-right" id="" readonly>                                                              
                             </div>
-
                         <!--_____________________________________________-->
-                        <!--Contacto-->
 
+                        <!--Contacto-->
                             <div class="form-group">
                                 <label for="Contacto" name="Contacto">Contacto:</label>
                                 <input type="date" class="form-control pull-right" id="" readonly>
-                                
                             </div>
-                    </div>
-
-                    <div class="col-md-6"> 
-
-                            <!--_____________________________________________-->
-                            <!--Fecha baja-->
-
+                        <!--_____________________________________________-->
+                        </div>
+                        <div class="col-md-6"> 
+                        <!--Fecha baja-->
                             <div class="form-group">
                                 <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
                                 <div class="input-group date">
@@ -566,20 +533,16 @@
                                     <input type="date" class="form-control pull-right" id="" readonly>
                                 </div>
                             </div>
+                        <!--_____________________________________________-->
 
-                            <!--_____________________________________________-->
-                            <!--Tipo RSU autorizado-->
-
+                        <!--Tipo RSU autorizado-->
                             <div class="form-group">
                                 <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
                                 <input type="date" class="form-control pull-right" id="" readonly>
                             </div>
-                            </div>
+                        </div>
                     </div>
-                    
-                    
                 </div>
-                
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
@@ -587,23 +550,19 @@
             </div>
             <div class="modal-footer">
                 <div class="form-group text-right">
-                    <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
+                    <!--<button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>-->
                     <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-
-
-
- <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
 <!--_____________________________________________________________-->
+
 <!-- script modal -->
 <script>
 $("#btnview").on("click", function() {
@@ -613,7 +572,6 @@ $("#btnview").on("click", function() {
     $("#formadd").hide();
     $("#btnsave").hide();
 });
-
 $("#btnadd").on("click", function() {
     $("#btnadd").addClass("active");
     $("#btnview").removeClass("active");
@@ -622,26 +580,23 @@ $("#btnadd").on("click", function() {
     $("#btnsave").show();
 });
 </script>
-
 <!--_____________________________________________________________-->
-<!-- Script Agregar datos de registrar_transportista-->
 
-    <script>
+<!-- Script Agregar datos de registrar_transportista-->
+<script>
     function agregarDato() {
         console.log("entro a agregar datos");
         $('#formTransportistas').on('submit', function(e) {
-
             e.preventDefault();
             var me = $(this);
             if (me.data('requestRunning')) {
                 return;
             }
             me.data('requestRunning', true);
-
             datos = $('#formTransportistas').serialize();
             console.log(datos);
-            //--------------------------------------------------------------
 
+            //--------------------------------------------------------------
 
             $.ajax({
                 type: "POST",
@@ -662,30 +617,25 @@ $("#btnadd").on("click", function() {
                     me.data('requestRunning', false);
                 }
             });
-
         });
-
     }
-    </script>
-
+</script>
 <!--_____________________________________________________________-->
-    <!-- script que muestra box de datos al dar click en boton agregar -->
 
-    <script>
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
-
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").focus();
         $("#boxDatos").show();
-
     });
-    </script>
+</script>
 
-    <script>
+<script>
     $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
@@ -694,20 +644,17 @@ $("#btnadd").on("click", function() {
         $('#selecmov').find('option').remove();
         $('#chofer').find('option').remove();
     });
-    </script>
-
-<!--_____________________________________________________________-->
- <!-- script Datatables -->
- <script>
-
-    DataTable($('#tabla_transportistas'))
-
 </script>
+<!--_____________________________________________________________-->
 
+<!-- script Datatables -->
+<script>
+    DataTable($('#tabla_transportistas'))
+</script>
+<!--_____________________________________________________________-->
 
-   <!--_____________________________________________________________-->
-    <!--Script Bootstrap Validacion.-->
-    <script>
+<!--Script Bootstrap Validacion.-->
+<script>
     $('#formTransportistas').bootstrapValidator({
         message: 'This value is not valid',
         /*feedbackIcons: {
@@ -842,7 +789,7 @@ $("#btnadd").on("click", function() {
         e.preventDefault();
         //guardar();
     });
-    </script>
+</script>
 
 
 
