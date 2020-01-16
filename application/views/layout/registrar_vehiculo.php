@@ -263,110 +263,109 @@
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+            <form class="formVehiculoEdit" id="formVehiculoEdit"  method="POST" autocomplete="off" class="registerForm">
 
 
                 <div class="modal-body">
 
-                <!--_____________________________________________-->
-                <!--Nombre/Razon social-->
+                <div class="col-md-6 col-sm-6 col-xs-12">
+        
+                        <!--Descripcion-->
+                        <div class="form-group">
+                                <label for="Descripcion" >Descripcion:</label>
+                                <input type="text" class="form-control" id="" name="e_descripcion">
+                        </div>
+            ​            <!--_____________________________________________________________-->
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
-                                <input type="text" class="form-control" id="Nombre/Razon social">
-                            </div>
-                        </div>                        
-                    </div>
+                        <!--Dominio-->
+                        <div class="form-group">
+                                <label for="Dominio">Dominio:</label>
+                                <input type="text" class="form-control" id="" name="e_dominio">
+                        </div>
+            ​            <!--_____________________________________________________________-->
 
-                <!--_____________________________________________-->
-                <!--Registro-->
+                        <!--Marca-->
+                        <div class="form-group">
+                                <label for="Marca" >Marca:</label>
+                                <input type="text" class="form-control" id="" name="e_marca">
+                        </div>
+            ​            <!--_____________________________________________________________-->
 
-                <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="CUIT" name="Cuit">CUIT:</label>
-                                <input type="text" class="form-control" id="CUIT">
-                            </div>
-                <!--_____________________________________________-->
-                <!--Tipo de residuo-->
-
-                            <div class="form-group">
-                            <label for="Dpto" name="Departamento">Departamento:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="Dpto">
+                        <!--Condicion-->
+                        <div class="form-group">
+                            <label for="condicion" >Condicion:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="" name="e_condicion" >
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
-                                foreach ($Dpto as $i) {
-                                    echo '<option>'.$i->nombre.'</option>';
-                                }
-                                ?>
-                            </select>
-                            </div>
-                         </div>
-
-                <!--_____________________________________________-->
-                <!--Descripcion-->
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Domicilio" name="Domicilio">Domicilio:</label>
-                                <input type="text" class="form-control" id="Domicilio">
-                            </div>
-
-                <!--_____________________________________________-->
-                <!--Resolucion-->
-
-                            <div class="form-group">
-                                <label for="Zonag" name="Zona">Zona:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="Zonag">
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                    foreach ($Zonag as $i) {
-                                        echo '<option>'.$i->nombre.'</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                </div>
-
-                <!--_____________________________________________-->
-                <!--Fecha de Alta-->
-
-                <div class="row">                        
-                    <div class="col-md-6">
-                        <label for="Numero de registro" name="Numero_registro">Numero de registro:</label>
-                        <input type="text" class="form-control" id="Numero de registro">
-                            
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="Rubro" name="Rubro">Rubro:</label>
-                            <input type="text" class="form-control" id="Rubro">
-                        </div>
-
-                <!--_____________________________________________-->
-                <!--Fecha de Baja-->
-
-
-                        <div class="col-md-6">
-                            <label for="TipoG" name="Tipo">Tipo:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="TipoG">
-                                <option value="" disabled selected>-Seleccione opcion-</option>
-                                <?php
-                                foreach ($TipoG as $i) {
+                                foreach ($condicion as $i) {
                                     echo '<option>'.$i->nombre.'</option>';
                                 }
                                 ?>
                             </select>
                         </div>
+            ​            <!--_____________________________________________________________-->
 
-                        <div class="col-md-6">
-                            <label for="Tipo de residuos" name="Tipo_Residuo">Tipo de residuos:</label>
-                            <input type="text" class="form-control" id="Tipo de residuos">
+                        <!--Modelo-->
+                        <div class="form-group">
+                                <label for="Modelo" >Modelo:</label>
+                                <input type="text" class="form-control" id="" name="e_modelo">
                         </div>
-                    </div>
+            ​            <!--_____________________________________________________________-->
+        </div>
+        
+        <div class="col-md-6 col-sm-6 col-xs-12">
+        
+                        <!--Capacidad-->
+                        <div class="form-group">
+                                <label for="Capacidad" >Capacidad:</label>
+                                <input type="text" class="form-control" id="" name="e_capacidad">
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Tara-->
+                        <div class="form-group">
+                                <label for="Tara" >Tara:</label>
+                                <input type="text" class="form-control" id="" name="e_tara" >
+                        </div>
+            ​            <!--_____________________________________________________________-->    
+
+                        <!--Habilitacion-->
+                        <div class="form-group">
+                                <label for="Habilitacion" >Habilitacion:</label>
+                                <input type="text" class="form-control" id="" name="e_habilitacion" >
+                        </div>
+            ​            <!--_____________________________________________________________-->    
+
+                        <!--Registro-->
+                        <div class="form-group">
+                                <label for="Registro" >Registro:</label>
+                                <input type="text" class="form-control" id="" name="e_registro" >
+                        </div>
+            ​            <!--_____________________________________________________________--> 
+
+                        <!--Fecha de habilitacion-->
+                        <div class="form-group" >
+                            <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="date" class="form-control pull-right" id="" name="e_fechahabilitacion">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Adjuntador de imagenes-->
+                        <!-- <div class="form-group">
+                            <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
+                                <input  type="file"  id="imgarch" name="upload" data-required="true">
+                            </form>
+                        </div> -->
+            ​            <!--_____________________________________________________________-->
+
+        
+        </div>
                     
                     
                 </div>
@@ -376,6 +375,8 @@
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
             </div>
+
+            <div class="col-md-12"><hr></div>
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
@@ -414,94 +415,97 @@
 
                 <div class="modal-body">
 
-                <!--_____________________________________________-->
-                <!--Nombre/Razon social-->
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
-                                <input type="text" class="form-control" id="Nombre/Razon social" readonly>
-                            </div>
-                        </div>                        
-                    </div>
-
-                <!--_____________________________________________-->
-                <!--Registro-->
-
-                <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="CUIT" name="Cuit">CUIT:</label>
-                                <input type="text" class="form-control" id="CUIT" readonly>
-                            </div>
-                <!--_____________________________________________-->
-                <!--Tipo de residuo-->
-
-                            <div class="form-group">
-                            <label for="Dpto" name="Departamento">Departamento:</label>
-                            <input type="text" class="form-control" id="Dpto" readonly>
-                            </div>
-                         </div>
-
-                <!--_____________________________________________-->
-                <!--Descripcion-->
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Domicilio" name="Domicilio">Domicilio:</label>
-                                <input type="text" class="form-control" id="Domicilio" readonly>
-                            </div>
-
-                <!--_____________________________________________-->
-                <!--Resolucion-->
-
-                            <div class="form-group">
-                                <label for="Zonag" name="Zona">Zona:</label>
-                                <input type="text" class="form-control" id="zonaG" readonly>
-                            </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+        
+                        <!--Descripcion-->
+                        <div class="form-group">
+                                <label for="Descripcion" >Descripcion:</label>
+                                <input type="text" class="form-control" id="Descripcion" name="descripcion" readonly>
                         </div>
-                </div>
+            ​            <!--_____________________________________________________________-->
 
-                <!--_____________________________________________-->
+                        <!--Dominio-->
+                        <div class="form-group">
+                                <label for="Dominio">Dominio:</label>
+                                <input type="text" class="form-control" id="Dominio" name="dominio"readonly>
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Marca-->
+                        <div class="form-group">
+                                <label for="Marca" >Marca:</label>
+                                <input type="text" class="form-control" id="Marca" name="marca"readonly>
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Condicion-->
+                        <div class="form-group">
+                            <label for="condicion" >Condicion:</label>
+                            <input type="text" class="form-control" id="condicion" name="condicion"readonly >                            
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Modelo-->
+                        <div class="form-group">
+                                <label for="Modelo" >Modelo:</label>
+                                <input type="text" class="form-control" id="Modelo" name="modelo"readonly >
+                        </div>
+            ​            <!--_____________________________________________________________-->
+                    </div>
                 
-
-                <div class="row"> 
-
-                        <!--_____________________________________________-->
-                        <!--Numero de registro-->
-
-                        <div class="col-md-6">
-                            <label for="Numero de registro" name="Numero_registro">Numero de registro:</label>
-                            <input type="text" class="form-control" id="Numero de registro" readonly>                            
+                <div class="col-md-6 col-sm-6 col-xs-12">
+        
+                        <!--Capacidad-->
+                        <div class="form-group">
+                                <label for="Capacidad" >Capacidad:</label>
+                                <input type="text" class="form-control" id="Capacidad" name="capacidad"readonly >
                         </div>
+            ​            <!--_____________________________________________________________-->
 
-                        <!--_____________________________________________-->
-                        <!--Rubro-->
-
-                        <div class="col-md-6">
-                            <label for="Rubro" name="Rubro">Rubro:</label>
-                            <input type="text" class="form-control" id="Rubro" readonly>
-                        </div>                
-
-                        <!--_____________________________________________-->
-                        <!--Tipo-->
-
-                        <div class="col-md-6">
-                            <label for="TipoG" name="Tipo">Tipo:</label>
-                            <input type="text" class="form-control" id="TipoG" readonly>
+                        <!--Tara-->
+                        <div class="form-group">
+                                <label for="Tara" >Tara:</label>
+                                <input type="text" class="form-control" id="Tara" name="tara"readonly  >
                         </div>
+            ​            <!--_____________________________________________________________-->    
 
-                        <!--_____________________________________________-->
-                        <!--Tipo de residuos-->
-
-                        <div class="col-md-6">
-                            <label for="Tipo de residuos" name="Tipo_Residuo">Tipo de residuos:</label>
-                            <input type="text" class="form-control" id="Tipo de residuos" >
+                        <!--Habilitacion-->
+                        <div class="form-group">
+                                <label for="Habilitacion" >Habilitacion:</label>
+                                <input type="text" class="form-control" id="Habilitacion" name="habilitacion" readonly >
                         </div>
-                    </div>
-                    
-                    
+            ​            <!--_____________________________________________________________-->    
+
+                        <!--Registro-->
+                        <div class="form-group">
+                                <label for="Registro" >Registro:</label>
+                                <input type="text" class="form-control" id="Registro" name="registro" readonly >
+                        </div>
+            ​            <!--_____________________________________________________________--> 
+
+                        <!--Fecha de habilitacion-->
+                        <div class="form-group" >
+                            <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="date" class="form-control pull-right" id="datepicker" name="fechahabilitacion" readonly >
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+            ​            <!--_____________________________________________________________-->
+
+                        <!--Adjuntador de imagenes-->
+                        <!-- <div class="form-group">
+                            <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
+                                <input  type="file"  id="imgarch" name="upload" data-required="true">
+                            </form>
+                        </div> -->
+            ​            <!--_____________________________________________________________-->
+
+        
+        </div>
                 </div>
                 
             </form>
@@ -509,6 +513,8 @@
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
             </div>
+
+            <div class="col-md-12"><hr></div>
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
@@ -526,8 +532,6 @@
 
 
 
-</div>
-</div>
 
 
   
@@ -787,6 +791,186 @@ function agregarDato(){
       //guardar();
   });
 </script>
+
+​<!--_____________________________________________________________-->
+
+<!--Script Bootstrap Validacion.MODAL EDITAR -->
+<script>
+  $('#formVehiculoEdit').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      //excluded: ':disabled',
+      fields: {
+         e_descripcion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+          e_dominio: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+          e_marca: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+          e_condicion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+              }
+          },
+          e_modelo: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                  regexp: {
+                      regexp: /[A-Za-z]/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+          e_capacidad: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+          e_tara: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+          e_habilitacion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          },
+          e_registro: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+              }
+          },
+          e_fechahabilitacion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  },
+                    /*stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },*/
+                  regexp: {
+                      regexp: /^(0|[1-9][0-9]*)$/,
+                      message: 'la entrada no debe ser un numero entero'
+                  }
+              }
+          }
+      }
+  }).on('success.form.bv', function (e) {
+      e.preventDefault();
+      //guardar();
+  });
+</script>
+
+
+
 
 <!--_____________________________________________________________-->
  <!-- script Datatables -->

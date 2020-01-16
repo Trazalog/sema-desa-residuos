@@ -172,12 +172,16 @@
             
             <div class="col-md-6">
                 
-
-                <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
+<!-- 
+                <button type="file" name="upload" class="btn btn-default btn-circle" id="file" name="file" accept=".jpg, .jpeg, .png" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                </button> -->
+                
+                <button type="file" class=" btn btn-default btn-circle pull-left" id="file" name="file" accept=".jpg, .jpeg, .png" >
                     <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
                 </button>
                 <small for="agregar" class="form-label">Adjuntar imagen</small>
-        
+
             </div>
 
             <!--_____________________________________________________________-->            
@@ -413,6 +417,8 @@
 
             </div>
 
+            <div class="col-md-12"><hr></div>
+
             <div class="modal-footer">
             <div class="col-md-12">
                 <div class="form-group text-right">
@@ -573,6 +579,7 @@
         <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
             </div>
+            <div class="col-md-12"><hr></div>
 
             <div class="modal-footer">
             <div class="col-md-12">

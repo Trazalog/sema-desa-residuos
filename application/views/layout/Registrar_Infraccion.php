@@ -40,6 +40,7 @@
     <!--_____________________________________________-->
 
     <div class="box-body">
+
         <form class="formInfracciones" id="formInfracciones">
 
         <div class="col-md-6">
@@ -229,7 +230,7 @@
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-            <form method="POST" autocomplete="off" id="" class="registerForm">
+            <form class="formInfracciones" id="formInfraccionesEdit">
 
 
                 <div class="modal-body">
@@ -245,7 +246,7 @@
 
                                 <div class="form-group">
                                     <label for="Nombre">N° :</label>
-                                    <input type="text" class="form-control" id="Numero" name="numero" readonly>
+                                    <input type="text" class="form-control" id="" name="e_numero" readonly>
                                 </div>
 
                                 <!--_____________________________________________-->
@@ -253,15 +254,15 @@
 
                                 <div class="form-group">
                                     <label for="Apellido">Descripcion:</label>
-                                    <input type="text" class="form-control" id="Descripcion" name="descripcion">
+                                    <input type="text" class="form-control" id="" name="e_descripcion">
                                 </div>
 
                                 <!--_____________________________________________-->
                                 <!--Generador-->
 
                                 <div class="form-group">
-                                    <label for="TipoInfraccion" name="tipo_infraccion">Generador:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                                    <label for="TipoInfraccion" >Generador:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="Generador" name="e_generador">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         
                                     </select>
@@ -271,8 +272,8 @@
                                 <!--Transportista-->
 
                                 <div class="form-group">
-                                    <label for="TipoInfraccion" name="tipo_infraccion">Transportista:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                                    <label for="TipoInfraccion" >Transportista:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="Transportista" name="e_transportista">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         
                                     </select>
@@ -290,8 +291,8 @@
                                 <!--Tipo de Infraccion-->
 
                                 <div class="form-group">
-                                    <label for="TipoInfraccion" name="tipo_infraccion">Tipo de Infraccion:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                                    <label for="TipoInfraccion" >Tipo de Infraccion:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion" name="tipo_infraccion">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         
                                     </select>
@@ -302,15 +303,15 @@
 
                                 <div class="form-group">
                                     <label for="Direccion">N° Acta:</label>
-                                    <input type="text" class="form-control" id="Acta" name="acta">
+                                    <input type="text" class="form-control" id="Acta" name="e_acta">
                                 </div>
 
                                 <!--_____________________________________________-->
                                 <!--Inspector--> 
 
                                 <div class="form-group">
-                                    <label for="TipoInfraccion" name="tipo_infraccion">Inspector:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                                    <label for="TipoInfraccion" >Inspector:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="Inspector"name="e_inspector">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         
                                     </select>
@@ -320,8 +321,8 @@
                                 <!--Destino de acta--> 
 
                                 <div class="form-group">
-                                    <label for="TipoInfraccion" name="tipo_infraccion">Destino de acta:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                                    <label for="TipoInfraccion">Destino de acta:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="Destino"  name="e_destino">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         
                                     </select>
@@ -649,6 +650,7 @@ $("#btnadd").on("click", function() {
   });
 </script>
 
+formInfraccionesEdit
 
 
 <!--_____________________________________________--> 
