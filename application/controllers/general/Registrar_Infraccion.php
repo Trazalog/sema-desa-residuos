@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Registrar_Infraccion extends CI_Controller {
     function __construct(){
 
@@ -15,11 +14,11 @@ class Registrar_Infraccion extends CI_Controller {
    }
 
    // ---------------- Funcion Cargar vista Infracciones
-   
+
    function templateInf()
    {
        $this->load->view('layout/registrar_infraccion');
-       
+
    }
 }
 ?>

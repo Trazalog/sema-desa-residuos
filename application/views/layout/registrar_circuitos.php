@@ -36,22 +36,19 @@
     <!--_____________________________________________-->
 
     <div class="box-body">
-
     <form class="formCircuitos" id="formCircuitos">
-
         <!--_____________________________________________-->
-        <!--Codigo-->
 
+        <!--Codigo-->
         <div class="col-md-6">
             <div class="form-group">
                 <label for="Codigo">Codigo:</label>
                 <input type="text" class="form-control"  name="Codigo" id="Codigo">
             </div>
         </div>
+        <!--_____________________________________________-->
 
-        <!--_____________________________________________--> 
         <!--Chofer-->
-
         <div class="col-md-6">
             <div class="form-group">
                 <label for="Chofer" >Chofer:</label>
@@ -65,20 +62,18 @@
                 </select>
             </div>
         </div>
-
         <!--_____________________________________________-->
-        <!--Descripcion-->
 
+        <!--Descripcion-->
         <div class="col-md-12">
             <div class="form-group">
                 <label for="Descripcion" >Descripcion:</label>
                 <textarea style="resize: none;" type="text" class="form-control" name="Descripcion" id="Descripcion"></textarea>
             </div>
         </div>
-
         <!--_____________________________________________-->
-        <!--vehiculo-->
 
+        <!--vehiculo-->
         <div class="col-md-6">          
             <div class="form-group">
                 <label for="Vehiculo">Vehiculo:</label>
@@ -92,10 +87,9 @@
                 </select>
             </div>
         </div>
-
         <!--_____________________________________________-->
-        <!--Tipo de residuo-->
 
+        <!--Tipo de residuo-->
         <div class="col-md-6">            
             <div class="form-group">
                 <label for="tipoResiduos" >Tipo de residuo:</label>
@@ -115,10 +109,9 @@
         <div class="col-md-12"> <hr></div>
 
         <!--_________________SEPARADOR_________________-->
-
         <!--_____________________________________________-->
-        <!--Adjuntador de imagenes-->
 
+        <!--Adjuntador de imagenes-->
         <div class="col-md-6">     
             <form action="cargar_archivo" method="post" enctype="multipart/form-data">
                 <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
@@ -154,20 +147,18 @@
 
         
         <div class="col-md-12">
+            <!--_____________________________________________-->
 
-            <!--_____________________________________________--> 
             <!--Nombre-->
-
             <!-- <div class="col-md-6">
                 <div class="form-group">
                     <label for="Nombre" name="Nombre">Nombre:</label>
                     <input type="text" class="form-control" id="Nombre">
                 </div>
             </div> -->
-
             <!--_____________________________________________-->
-            <!--Descripcion--> 
-     
+
+            <!--Descripcion-->
             <!-- <div class="col-md-6">            
                 <div class="form-group">
                     <label for="Descripcion" name="Descripcion">Descripcion:</label>
@@ -182,10 +173,9 @@
           <!-- <div class="col-md-12"> <hr></div> -->
 
         <!--_________________SEPARADOR_________________-->
-
-            <!--_____________________________________________-->    
+            <!--_____________________________________________-->
+    
             <!--Boton de guardado-->
-            
             <!-- <div class="col-md-12">
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
             </div>
@@ -268,12 +258,10 @@
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
                 <div class="modal-body">
-
                         <!--_____________________________________________-->
-                        <!--Codigo-->
 
+                        <!--Codigo-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -296,10 +284,9 @@
                                 ?>
                             </select>
                         </div>
-
                         <!--_____________________________________________-->
-                        <!--Tipo de residuo-->
 
+                        <!--Tipo de residuo-->
                         <div class="form-group">
                             <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
                             <select class="form-control select2 select2-hidden-accesible" id="tipoResiduos">
@@ -312,10 +299,9 @@
                             </select>
                             </div>
                          </div>
-
                         <!--_____________________________________________-->
-                        <!--Vehiculo-->
 
+                        <!--Vehiculo-->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
@@ -330,10 +316,9 @@
                             </div>
                         </div>
                     </div>
-
                         <!--_____________________________________________-->
-                        <!--Descripcion-->
 
+                        <!--Descripcion-->
                         <div class="row">                        
                             <div class="col-md-12">
                                 <label for="Descripcion" name="Descripcion">Descripcion:</label>
@@ -358,7 +343,7 @@
 
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-    <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
     <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -376,25 +361,22 @@
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
                 <div class="modal-body">
-
                         <!--_____________________________________________-->
-                        <!--Codigo-->
 
+                        <!--Codigo-->
                             <div class="row">
                                 <div class="col-md-6">
-
                                 <!--_____________________________________________-->
-                                <!--Codigo-->
 
+                                <!--Codigo-->
                                     <div class="form-group">
                                         <label for="Codigo" name="Codigo">Codigo:</label>
                                         <input type="text" class="form-control" id="Codigo" readonly>
                                     </div>
                                 </div> 
-
                                 <!--_____________________________________________-->
-                                <!--Vehiculo-->
 
+                                <!--Vehiculo-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
@@ -405,19 +387,17 @@
 
                     <div class="row">
                         <div class="col-md-6">
-
                                 <!--_____________________________________________-->
-                                <!--Chofer-->
 
+                                <!--Chofer-->
                                     <div class="form-group">
                                         <label for="Chofer" name="Chofer">Chofer:</label>
                                         <input type="text" class="form-control" id="Chofer" readonly>
                                     </div>
                         </div>
-
                                 <!--_____________________________________________-->
-                                <!--Tipo de residuo-->
 
+                                <!--Tipo de residuo-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
@@ -425,10 +405,9 @@
                                     </div>
                                 </div>
                             </div>
-
                                 <!--_____________________________________________-->
-                                <!--Descripcion-->
 
+                                <!--Descripcion-->
                                 <div class="row">                        
                                     <div class="col-md-12">
                                         <label for="Descripcion" name="Descripcion">Descripcion:</label>
@@ -551,10 +530,9 @@
                     <div class="row">
                         <div class="col-md-12 "> 
                             <div class="col-md-6 col-sm-6">
-
                                 <!--_____________________________________________-->
-                                <!--Nombre-->
 
+                                <!--Nombre-->
                                 <div class="form-group">
                                     <label for="Nombre" name="Nombre">Nombre:</label>
                                      <input type="text" class="form-control" id="Nombre">
@@ -564,10 +542,9 @@
                             <!--**************************************************-->
 
                             <div class="col-md-6 col-sm-6">
-
                                 <!--_____________________________________________-->
-                                <!--Descripcion-->
 
+                                <!--Descripcion-->
                                 <div class="form-group">
                                     <label for="Descripcion" name="Descripcion">Descripcion:</label>
                                      <input type="text" class="form-control" id="Descripcion">
@@ -595,8 +572,10 @@
 
 <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 
-<!--_____________________________________________--> 
+<!--_____________________________________________-->
+
 <!-- Script Agregar datos -->
+
 <script>
 function agregarDato(){
     $('#formCircuitos').on('submit', function(e){
@@ -650,10 +629,9 @@ function agregarDato(){
     });
 }
 </script>
+<!--_____________________________________________-->
 
-<!--_____________________________________________--> 
 <!-- script que muestra box de datos al dar click en boton agregar -->
-
 <script>
 $("#botonAgregar").on("click", function() {
     //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
@@ -678,10 +656,9 @@ $("#btnclose").on("click", function() {
     $('#chofer').find('option').remove();
 });
 </script>
+<!--_____________________________________________-->
 
-<!--_____________________________________________--> 
 <!-- Script Data-Tables-->
-
 <script>
 DataTable($('#tabla_circuitos'))
 
