@@ -55,7 +55,13 @@
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
                                                 title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span
                                                     class="glyphicon glyphicon-paperclip"
-                                                    aria-hidden="true"></span></button></td>
+                                                    aria-hidden="true"></span></button>
+                                            <button type="button" title="cerrar sector" class="btn btn-default btn-circle" >
+                                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                            </button>
+                                            
+               
+                                        </td>
                                         <td>7</td>
                                         <td id="patente0">asd 234</td>
                                         <td>Generador 2</td>
@@ -71,7 +77,11 @@
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
                                                 title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span
                                                     class="glyphicon glyphicon-paperclip"
-                                                    aria-hidden="true"></span></button></td>
+                                                    aria-hidden="true"></span></button>
+                                                    <button type="button" title="cerrar sector" class="btn btn-default btn-circle" >
+                                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                            </button>
+                                        </td>
                                         <td>8</td>
                                         <td id="patente1">dsa 213</td>
                                         <td>Generador 4</td>
@@ -161,14 +171,7 @@
                     <small for="agregar" class="form-label">Adjuntar imagen</small>
                 </div>
             </div>
-            <div class="col-md-3 div-xs-12 text-center">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default btn-circle" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                    </button><br>
-                    <small for="agregar" class="form-label">Cerrar sector</small>
-                </div>
-            </div>
+            
             <div class="col-md-3 div-xs-12 text-center">
                 <div class="form-group">
                     <button type="submit" class="btn btn-default btn-circle" aria-label="Left Align">
@@ -261,7 +264,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-blue">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -306,7 +309,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-blue">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

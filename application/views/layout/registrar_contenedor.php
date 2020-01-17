@@ -43,42 +43,53 @@
     <div class="box-body">
         <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
 
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6 col-xs-12">
                 <!--Codigo / Registro-->
                 <div class="form-group">
                     <label for="Codigo/Registro" >Codigo / Registro:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Codigo_registro" id="Codigo/Registro">
+                    </div>
                 </div>
                 <!--_____________________________________________-->
                 <!--Descripcion-->
                 <div class="form-group">
                     <label for="Descripcion" >Descripcion:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Descripcion" id="Descripcion">
+                    </div>
                 </div>
                 <!--_____________________________________________-->
                 <!--Capacidad-->
                 <div class="form-group">
                     <label for="Capacidad" >Capacidad:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Capacidad" id="Capacidad">
+                    </div>
                 </div>
                 <!--_____________________________________________-->
                 <!--Año de elaboracion-->
                 <div class="form-group">
                     <label for="Añoelab">Año de elaboracion:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control"  name="Añoelab" id="Añoelab">
+                    </div>
                 </div>
                 <!--_____________________________________________-->
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6 col-xs-12">
                 <!--Tara-->
                 <div class="form-group">
                     <label for="Tara" >Tara:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Tara" id="Tara">
+                    </div>
                 </div>
                 <!--_____________________________________________-->
                 <!--Estado-->
                 <div class="form-group">
                     <label for="Estados">Estado:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <select class="form-control select2 select2-hidden-accesible"  name="Estados" id="Estados">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
@@ -87,12 +98,15 @@
                         }
                         ?>
                     </select>
+                    </div>
                 </div>
                 <!--_____________________________________________-->
                 <!--Habilitacion-->
                 <div class="form-group">
                     <label for="Habilitacion" >Habilitacion:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Habilitacion" id="Habilitacion">
+                    </div>
                 </div>
 
                 <!--_____________________________________________-->
@@ -101,24 +115,19 @@
                 <div class="col-md-6">
                 
 
-                <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                </button>
-                <small for="agregar" class="form-label">Adjuntar imagen</small>
+                    <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                    </button>
+                    <small for="agregar" class="form-label">Adjuntar imagen</small>
         
                 </div>             
                
-              
-
-                
-
-
-                <!--_____________________________________________-->
             </div>
 
-            <div class="col-md-12">
-                <hr>
-            </div>
+
+            <!--_____________________________________________-->
+
+            <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 
             <!--_____________________________________________-->
             <!--Boton de guardado-->

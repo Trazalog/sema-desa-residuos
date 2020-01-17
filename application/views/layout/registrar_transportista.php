@@ -48,21 +48,26 @@
 
         <form class="formTransportistas" id="formTransportistas">
 
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6 col-xs-12">
 
                 <!--_____________________________________________-->
                 <!--Nombre / Razon social-->
 
                 <div class="form-group">
                     <label for="Nombre/Razon social" >Nombre / Razon social:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Nombre_razon" id="Nombre/Razon social">
+                    </div>
+                    
                 </div>
                 <!--_____________________________________________-->
                 <!--Descripcion-->
 
                 <div class="form-group">
                     <label for="Descripcion" >Descripcion:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control"  name="Descripcion" id="Descripcion">
+                    </div>
                 </div>
 
                 <!--_____________________________________________-->
@@ -70,34 +75,42 @@
 
                 <div class="form-group">
                     <label for="Direccion">Direccion:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control"   name="Direccion" id="Direccion">
+                    </div>
                 </div>
                 <!--_____________________________________________-->
                 <!--Telefono-->
 
                 <div class="form-group">
                     <label for="Telefono" >Telefono:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control"  name="Telefono" id="Telefono">
+                    </div>
                 </div>
                 <!--_____________________________________________-->
                 <!--contacto-->
 
                 <div class="form-group">
                     <label for="Contacto" >Contacto:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Contacto" id="Contacto">
+                    </div>
                 </div>
             </div>
 
              <!--***************************************-->
             
-            <div class="col-md-6">
+             <div class="col-md-6 col-sm-6 col-xs-12">
              
                 <!--_____________________________________________-->
                 <!--Resolucion-->
 
                 <div class="form-group">
                     <label for="Resolucion" >Resolucion:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control"  name="Resolucion" id="Resolucion">
+                    </div>
                 </div>
 
                 <!--_____________________________________________-->
@@ -105,7 +118,9 @@
 
                 <div class="form-group">
                     <label for="Registro" >Registro:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Registro" id="Registro">
+                    </div>
                 </div>
                 <!--_____________________________________________-->
                 <!--Fecha de alta-->
@@ -137,6 +152,7 @@
 
                 <div class="form-group">
                     <label for="Rsu" >Tipo de RSU autorizado:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <select class="form-control select2 select2-hidden-accesible" name="Rsu" id="Rsu">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
@@ -145,6 +161,7 @@
                             }
                         ?>
                         </select>
+                        </div>
                 </div>
 
             </div>
@@ -152,11 +169,13 @@
             <!--***************************************-->
 
 
-            <div class="col-md-12"><hr></div>
+            <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 
             <!--___________________BOTON GUARDAR__________________________-->
             <br>
+            
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+           
             <br>
         </form>
     </div>
@@ -648,7 +667,7 @@ $("#btnadd").on("click", function() {
                 url: "ajax/Registrartransportista/guardarDato",
                 success: function(r) {
                     if (r == "ok") {
-                        //console.log(datos);
+                        console.log(datos);
                         $('#formTransportistas')[0].reset();
                         alertify.success("Agregado con exito");
                     } else {
