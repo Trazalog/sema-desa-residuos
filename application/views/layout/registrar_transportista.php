@@ -264,29 +264,21 @@
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
-
                 <div class="modal-body">
-
-                
-
                     <div class="row">
                         <div class="col-md-6">
-
                             <!--_____________________________________________-->
-                             <!--Nombre/Razon social-->
 
+                            <!--Nombre/Razon social-->
                             <div class="form-group">
                                 <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
                                 <input type="text" class="form-control" id="Nombre/Razon social">
                             </div>
                         </div>
-
                         <div class="col-md-6">
-
                             <!--_____________________________________________-->
-                             <!--Registro-->
 
+                            <!--Registro-->
                             <div class="form-group">
                                 <label for="Registro" name="Registro">Registro:</label>
                                 <input type="text" class="form-control" id="Registro">
@@ -294,36 +286,28 @@
                         </div>                         
                     </div>
 
-                
-
-                <div class="row">
-
+                    <div class="row">
                         <div class="col-md-6">
-
                             <!--_____________________________________________-->
-                            <!--Direccion-->
 
+                            <!--Direccion-->
                             <div class="form-group">
                                 <label for="Direccion" name="Direccion">Direccion:</label>
                                 <input type="text" class="form-control" id="Direccion">
                             </div>
-
                             <!--_____________________________________________-->
-                            <!--Telefono-->
 
+                            <!--Telefono-->
                             <div class="form-group">
                                  <label for="Telefono" name="Telefono">Telefono:</label>
                                  <input type="text" class="form-control" id="Telefono">
                             </div>
                          </div>
 
-                
-
                         <div class="col-md-6">
-
                             <!--_____________________________________________-->
-                            <!--Zona-->
 
+                            <!--Zona-->
                             <div class="form-group">
                             <label for="Zonag" name="Zona">Zona:</label>
                                 <select class="form-control select2 select2-hidden-accesible" id="Zonag">
@@ -335,10 +319,9 @@
                                     ?>
                                 </select>
                             </div>
-
                             <!--_____________________________________________-->
-                            <!--Fecha de alta-->                
 
+                            <!--Fecha de alta-->
                             <div class="form-group">
                                 <label for="Fechalta" name="Fecha_de_alta" class="form-label label-sm">Fecha de alta:</label>                                              
                                 <div class="input-group date">
@@ -347,39 +330,32 @@
                                     </div>
                                     <input type="date" class="form-control pull-right" id="fecha-alta">
                                 </div>
-                                
                             </div>
                         </div>
-                </div>
-
-                
+                    </div>
 
                 <div class="row">
-
                     <div class="col-md-6"> 
                         <!--_____________________________________________-->
-                        <!--Descripcion-->
 
+                        <!--Descripcion-->
                             <div class="form-group">
                                 <label for="Descripcion" name="Descripcion">Descripcion:</label>
                                 <input type="text" class="form-control" id="Descripcion">                                                               
                             </div>
-
                         <!--_____________________________________________-->
-                        <!--Contacto-->
 
+                        <!--Contacto-->
                             <div class="form-group">
                                 <label for="Contacto" name="Contacto">Contacto:</label>
                                 <input type="text" class="form-control" id="Contacto">
                                 
                             </div>
                     </div>
-
                     <div class="col-md-6"> 
-
                             <!--_____________________________________________-->
-                            <!--Fecha baja-->
 
+                            <!--Fecha baja-->
                             <div class="form-group">
                                 <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
                                 <div class="input-group date">
@@ -389,10 +365,9 @@
                                     <input type="date" class="form-control pull-right" id="fecha-baja">
                                 </div>
                             </div>
-
                             <!--_____________________________________________-->
-                            <!--Tipo RSU autorizado-->
 
+                            <!--Tipo RSU autorizado-->
                             <div class="form-group">
                                 <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
                                 <select class="form-control select2 select2-hidden-accesible" id="Rsu">
@@ -404,12 +379,9 @@
                                     ?>
                                     </select>
                             </div>
-                            </div>
+                        </div>
                     </div>
-                    
-                    
                 </div>
-                
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
@@ -425,14 +397,10 @@
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
-
 
 <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-    
     <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -459,8 +427,10 @@
                                 <input type="date" class="form-control pull-right" id="" readonly>
                             </div>
                         <!--_____________________________________________-->
+
                         </div>
                         <div class="col-md-6">
+
                         <!--Registro-->
                             <div class="form-group">
                                 <label for="Registro" name="Registro">Registro:</label>
@@ -469,8 +439,10 @@
                             </div>                         
                             </div>
                         <!--_____________________________________________-->
+
                         <div class="row">
                         <div class="col-md-6">
+
                         <!--Direccion-->
                             <div class="form-group">
                                 <label for="Direccion" name="Direccion">Direccion:</label>
@@ -484,8 +456,10 @@
                                  <input type="date" class="form-control pull-right" id="" readonly>
                             </div>
                         <!--_____________________________________________-->
+
                         </div>
                         <div class="col-md-6">
+
                         <!--Zona-->
                             <div class="form-group">
                                 <label for="Zonag" name="Zona">Zona:</label>
@@ -506,8 +480,10 @@
                             </div>
                             </div>
                         <!--_____________________________________________-->
-                            <div class="row">
-                            <div class="col-md-6">
+
+                        <div class="row">
+                        <div class="col-md-6">
+
                         <!--Descripcion-->
                             <div class="form-group">
                                 <label for="Descripcion" name="Descripcion">Descripcion:</label>
@@ -521,8 +497,10 @@
                                 <input type="date" class="form-control pull-right" id="" readonly>
                             </div>
                         <!--_____________________________________________-->
+
                         </div>
-                        <div class="col-md-6"> 
+                        <div class="col-md-6">
+
                         <!--Fecha baja-->
                             <div class="form-group">
                                 <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
@@ -540,10 +518,11 @@
                                 <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
                                 <input type="date" class="form-control pull-right" id="" readonly>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
+                            </div>
+                            </div>
+                            </div>
+                            </form>
+                        <!--_____________________________________________-->
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
@@ -557,6 +536,7 @@
         </div>
     </div>
 </div>
+
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
@@ -564,6 +544,7 @@
 <!--_____________________________________________________________-->
 
 <!-- script modal -->
+
 <script>
 $("#btnview").on("click", function() {
     $("#btnadd").removeClass("active");
@@ -634,7 +615,7 @@ $("#btnadd").on("click", function() {
         $("#boxDatos").show();
     });
 </script>
-
+<!--_____________________________________________________________-->
 <script>
     $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
@@ -790,10 +771,4 @@ $("#btnadd").on("click", function() {
         //guardar();
     });
 </script>
-
-
-
-
-
-
-    
+<!--_____________________________________________________________-->
