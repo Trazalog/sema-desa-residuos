@@ -16,7 +16,9 @@
     </div>
 </div>
 
-<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+<!--__________________________________________________________________________________________-->
+
+<!-- /// ----------------------------------- BODY ----------------------------------- /// -->
 
 <!---//////////////////////////////////////---BOX 1---///////////////////////////////////////////////////////----->
 
@@ -39,16 +41,18 @@
         <form class="formZonas" id="formZonas">
             <div class="col-md-12">
                 <div class="col-md-6">
+
+                    <!--Campo Nombre-->
                     <div class="form-group">
                         <label for="Nombre" >Nombre:</label>
                         <input type="text" name="Nombre" class="form-control" id="Nombre">
                     </div>
-
                     <!--__________________________________________________________________________________________-->
 
+                    <!--Campo Departamento-->
                     <div class="form-group">
                         <label for="Dpto" >Departamento:</label>
-                        <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
+                        <select class="form-control select2 select2-hidden-accesible" name="Dpto" id="Dpto">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                         foreach ($Dpto as $i) {
@@ -57,17 +61,15 @@
                         ?>
                         </select>
                     </div>
-
                     <!--__________________________________________________________________________________________-->
 
                 </div>
                 <div class="col-md-6">
 
-                    <!--__________________________________________________________________________________________-->
-
+                    <!--Campo Circuito - Recorrido-->
                     <div class="form-group">
                         <label for="CircR" >Circuito / Recorrido:</label>
-                        <select class="form-control select2 select2-hidden-accesible" name="Circuito_Recorrido" id="CircR">
+                        <select class="form-control select2 select2-hidden-accesible" name="CircR" id="CircR">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                         foreach ($CircR as $i) {
@@ -76,41 +78,40 @@
                         ?>
                         </select>
                     </div>
-
                     <!--__________________________________________________________________________________________-->
 
+                    <!--Campo Descripcion-->
                     <div class="form-group">
                         <label for="Descripcion" >Descripcion:</label>
                         <input type="text" name="Descripcion" class="form-control" id="Descripcion">
                     </div>
                     </div>
-
                     <!--__________________________________________________________________________________________-->
 
-                    <div class="col-md-12">
-                    <hr>
-                    </div>
+                    <div class="col-md-12"><hr></div>
                     <div class="col-md-6">
 
-                        <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                            <input type="file" name="upload">
-                        </form>
-                    </div>
-
+                    <!--Campo Cargar Archivo-->
+                    <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upload">
+                    </form>
                     <!--__________________________________________________________________________________________-->
 
+                    </div>
+                    </div>
+                    <div class="col-md-12"><hr></div>
+
+                    <!--Boton de Guardado-->
+                    <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+                    <!--__________________________________________________________________________________________-->
+                
                 </div>
-
-                <div class="col-md-12"><hr></div>
-                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-            </div>
-
-            <!--__________________________________________________________________________________________-->
-
             </div>
         </form>
     </div>
 </div>
+
+<!--__________________________________________________________________________________________-->
 
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
 
@@ -161,12 +162,12 @@
 
                 </div>
             </div>
+<!--__________________________________________________________________________________________-->
 
 <!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
- <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
@@ -189,20 +190,19 @@
                                 <!--__________________________________________________________________________________________-->
 
                                 <!--Nombre-->
-
                                 <div class="form-group">
                                     <label for="Nombre" name="">Nombre:</label>
                                     <input type="text" class="form-control" id="">
                                 </div>
-
                                 <!--__________________________________________________________________________________________-->
 
                                 <!--Descripcion-->
-
                                 <div class="form-group">
                                     <label for="Descripcion" name="">Descripcion:</label>
                                     <input type="text" class="form-control" id="">
                                 </div>
+                                <!--__________________________________________________________________________________________-->
+
                             </div>
 
                             <!--**************************************************-->
@@ -212,7 +212,6 @@
                                 <!--__________________________________________________________________________________________-->
 
                                 <!--Circuito-->
-
                                 <div class="form-group">
                                     <label for="CircR" name="">Circuito / Recorrido:</label>
                                     <select class="form-control select2 select2-hidden-accesible" id="">
@@ -224,11 +223,9 @@
                                     ?>
                                     </select>
                                 </div>
-
                                 <!--__________________________________________________________________________________________-->
 
-                                <!--Departamento-->                
-
+                                <!--Departamento-->
                                 <div class="form-group">
                                     <label for="Dpto" name="">Departamento:</label>
                                     <select class="form-control select2 select2-hidden-accesible" id="">
@@ -240,7 +237,6 @@
                                     ?>
                                     </select>
                                 </div>
-
                                 <!--__________________________________________________________________________________________-->
 
                             </div>
@@ -261,7 +257,6 @@
         </div>
     </div>
 </div>
-
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
@@ -269,7 +264,6 @@
 <!--__________________________________________________________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
-
 <script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
@@ -281,6 +275,8 @@
         $("#boxDatos").show();
     });
 </script>
+
+<!--__________________________________________________________________________________________-->
 
 <script>
     $("#btnclose").on("click", function() {
@@ -292,13 +288,11 @@
     $('#chofer').find('option').remove();
     });
 </script>
-
 <!--__________________________________________________________________________________________-->
 
 <!-- Script Data-Tables-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
-
 <script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
@@ -311,11 +305,9 @@
 
     });
 </script>
-
 ​<!--__________________________________________________________________________________________-->
 
 <!-- Script Agregar datos de registrar_zona-->
-
 <script>
     function agregarDato(){
         console.log("entro a agregar datos");
@@ -352,11 +344,9 @@
         });
     }
 </script>
-
 <!--__________________________________________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
-
 <script>
     $('#formZonas').bootstrapValidator({
         message: 'This value is not valid',
@@ -379,7 +369,7 @@
                     }
                 }
             },
-            Departamento: {
+            Dpto: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -391,7 +381,7 @@
                     }
                 }
             },
-            Circuito_Recorrido: {
+            CircR: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -413,11 +403,9 @@
         //guardar();
     });
 </script>
-
 <!--__________________________________________________________________________________________-->
 
 <!--Script validador de campo de imagenes-->
-
 <script>
     var value = $("#imgarch").val();
     if (value == "1") {
@@ -433,4 +421,7 @@
 <script>
     DataTable($('#tabla_zonas'))
 </script>
+
+<!--__________________________________________________________________________________________-->
+
 </body>
