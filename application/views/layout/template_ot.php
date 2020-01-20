@@ -540,6 +540,7 @@
             });
     }
 </script>
+
 <!-- script bootstrap validator -->
 <script>
     $('#formDatos').bootstrapValidator({

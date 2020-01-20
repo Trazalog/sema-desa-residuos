@@ -862,6 +862,13 @@ $("#btnadd").on("click", function() {
     });
     </script>
 
+<script>
+    //este script me permite limpiar la validacion una vez cerrado el modal
+    $("#modalEdit").on("hidden.bs.modal", function (e) {
+        $("#formEditDatos").data('bootstrapValidator').resetForm();
+    });
+</script>
+
 
 
 
