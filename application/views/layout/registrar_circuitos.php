@@ -147,17 +147,21 @@
 
                 <div class="col-md-6 col-sm-6 col-xs-12">     
                     
-                    <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+                    <!-- <form action="cargar_archivo" method="post" enctype="multipart/form-data">
 
                         <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
                             <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
                         </button>
                         <small for="agregar" class="form-label">Adjuntar imagen</small>
                         
-                    </form>
+                    </form> -->
+                    <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+                    <input  type="file" name="upload">
+                </form>
+
                 </div>
 
-            
+
 
                 <div class="col-md-6 col-sm-6 col-xs-12">  
                     
@@ -181,13 +185,11 @@
 
   
                 <div class="col-md-12">
-                <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
+                <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Circuito()">Agregar</button>
                 </div>
 
    
-
-
-    
+               
     
     
     
@@ -326,8 +328,7 @@
 
 
 
-
-    <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
     
     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -445,8 +446,7 @@
 
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-
-    <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
     
     <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -658,7 +658,7 @@
 
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
- <!---//////////////////////////////////////--- MODAL PUNTO CRITICO ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL PUNTO CRITICO ---///////////////////////////////////////////////////////----->
 
     
  <div class="modal fade" id="modalPunto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -754,7 +754,7 @@
 
 
 
- <!---//////////////////////////////////////--- MODAL ZONA ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL ZONA ---///////////////////////////////////////////////////////----->
 
     
  <div class="modal fade" id="modalZona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -867,8 +867,9 @@
 
 <!--_____________________________________________--> 
 <!-- Script Agregar datos -->
+
 <script>
-function agregarDato(){
+function Guardar_Circuito(){
     $('#formCircuitos').on('submit', function(e){
     e.preventDefault();
     var me = $(this);
@@ -918,6 +919,11 @@ function agregarDato(){
     });
 }
 </script>
+
+
+
+
+formCircuitos
 
 <!--_____________________________________________--> 
 <!-- script que muestra box de datos al dar click en boton agregar -->
