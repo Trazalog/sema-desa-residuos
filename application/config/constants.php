@@ -88,12 +88,29 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 define('MNOM', 'RSD');
 define('NOM', 'Residuos');
 
+
+
 //Vista por Defecto
 define('DEF_VIEW','Test');
+
+/*
+|--------------------------------------------------------------------------
+| Variables HOST y REST
+|--------------------------------------------------------------------------
+|
+| Variables Locales
+|
+*/
+//define('REST', 'http://localhost:8080/');
+define('REST', 'http://pc-pc:8280/services/semaresiduosDS');
+//define('RESTLOCAL', 'http://pc-pc:8280/services/arboladoDS');
+//define('REST', 'http://dev-trazalog.com.ar:8280/services/arboladoDS');
+define('HOST', 'http://localhost/');
+
 
 //Componentes Formularios
 define('FRM','traz-comp-form/');
 
 define('PORT', ':3000/');
 
-define('REST', 'http://localhost'.PORT);
+// define('REST', 'http://localhost'.PORT);

@@ -61,6 +61,13 @@ class OrdenTransporte extends CI_Controller {
            
            
        }
+
+       
+      // ---------------- Funciones Solicitudes --------------------------------//
+
+
+
+      
    
        
    

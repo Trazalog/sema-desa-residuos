@@ -8,40 +8,23 @@ class Contenedores extends CI_Model
 		parent::__construct();
     }
 
-// Funcion Listar Contenedores
+// Funcion Listar Contenedores (MODIFICAR)
 
     function Listar_Contenedor()
     {
         
-        $parametros["http"]["method"] = "GET";
-        $parametros["http"]["header"] = "Accept: application/json";	 		 
-        $param = stream_context_create($parametros);
-        $resource = '';	 	
-        $url = REST.$resource;
-        $array = file_get_contents($url, false, $param);
-        return json_decode($array);
+        $aux = $this->rest->callAPI("GET",REST."/contenedores");
+        $aux =json_decode($aux["data"]);       
+        // return $aux->Rsu->Rsu;
     }
     
 // Funcion Guardar Contenedor
 
 function Guardar_Contenedor($data){
 
-    $_post_setContenedor = array(
-        "nombre"=> $data["nombre"]				
-    );
-
-    $datos ['_post_setContenedor'] = $_post_setContenedor;
-    $data = json_encode($datos);
-
-    $parametros["http"]["method"] = "POST";
-    $parametros["http"]["header"] = "Accept: application/json";	
-    $parametros["http"]["header"] = "Content-Type: application/json";	
-    $parametros["http"]["content"] = $data;	
-    $param = stream_context_create($parametros);
-    $resource = '/';	 				
-    $url = REST.$resource;
-    $array = file_get_contents($url, false, $param);
-    return json_decode($array);	
+    $aux = $this->rest->callAPI("POST",REST."tabladatos", $datos);
+        $aux =json_decode($aux["status"]);
+        return $aux;	
 
 }
 }
