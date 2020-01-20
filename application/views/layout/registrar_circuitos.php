@@ -548,15 +548,16 @@
                                 <!--Descripcion-->
                                 <div class="form-group">
                                     <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                                     <input type="text" class="form-control" id="Descripcion">
-                                </div>                                          
-                            </div>
+                                    <input type="text" class="form-control" id="Descripcion">
+                                <!--_____________________________________________-->
+                            </div>                                          
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
+        </form>
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+        <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
         </div>
             <div class="modal-footer">
@@ -568,6 +569,7 @@
         </div>
     </div>
 </div>
+
 <!---//////////////////////////////////////--- FIN MODAL PUNTO CRITICO ---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
