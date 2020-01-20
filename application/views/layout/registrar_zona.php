@@ -317,40 +317,40 @@
 <!-- Script Agregar datos de registrar_zona-->
 
 <script>
-function agregarDato(){
-    console.log("entro a agregar datos");
-    $('#formZonas').on('submit', function(e){
-    e.preventDefault();
-    var me = $(this);
-    if ( me.data('requestRunning') ) {return;}
-    me.data('requestRunning', true);
-    datos=$('#formZonas').serialize();
-    console.log(datos);
+    function agregarDato(){
+        console.log("entro a agregar datos");
+        $('#formZonas').on('submit', function(e){
+        e.preventDefault();
+        var me = $(this);
+        if ( me.data('requestRunning') ) {return;}
+        me.data('requestRunning', true);
+        datos=$('#formZonas').serialize();
+        console.log(datos);
 
-        //--------------------------------------------------------------
+            //--------------------------------------------------------------
 
-    $.ajax({
-                type:"POST",
-                data:datos,
-                url:"ajax/Registrarzona/guardarDato",
-                success:function(r){
-                    if(r == "ok"){
-                        //console.log(datos);
-                        $('#formZonas')[0].reset();
-                        alertify.success("Agregado con exito");
+        $.ajax({
+                    type:"POST",
+                    data:datos,
+                    url:"ajax/Registrarzona/guardarDato",
+                    success:function(r){
+                        if(r == "ok"){
+                            //console.log(datos);
+                            $('#formZonas')[0].reset();
+                            alertify.success("Agregado con exito");
+                        }
+                        else{
+                            console.log(r);
+                            $('#formZonas')[0].reset();
+                            alertify.error("error al agregar");
+                        }
+                    },
+                    complete: function() {
+                        me.data('requestRunning', false);
                     }
-                    else{
-                        console.log(r);
-                        $('#formZonas')[0].reset();
-                        alertify.error("error al agregar");
-                    }
-                },
-                complete: function() {
-                    me.data('requestRunning', false);
-                }
-            });
-    });
-}
+                });
+        });
+    }
 </script>
 
 <!--__________________________________________________________________________________________-->
