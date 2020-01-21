@@ -425,6 +425,7 @@
         </div>
     </div>
 </div>
+
 <!-- script que muestra datos en modal edit -->
 <script>
     function clickedit(aux) {

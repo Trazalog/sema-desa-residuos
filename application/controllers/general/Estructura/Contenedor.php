@@ -7,18 +7,21 @@ class Contenedor extends CI_Controller {
     function __construct(){
 
       parent::__construct();
+
+            $this->load->model('general/Estructura/Contenedores');
+    
+
+
+
    }
-
-
-
-
   
 
       // ---------------- Funcion Cargar vista Contenedores y Datos
 
-      function template()
+      function templateContenedores()
       {
-       //    $this->load->view('layout/registrar_infraccion');
+          $data = null;
+        $this->load->view('layout/registrar_contenedor',$data);
           
       }
    
@@ -26,8 +29,14 @@ class Contenedor extends CI_Controller {
    
        function Guardar_Contenedor()
        {
-           // $this->load->view('layout/registrar_infraccion');
-       }
+            $datos =  $this->input->post();
+            $resp = $this->Contenedores->Guardar_Contenedor($datos);
+            if($resp){
+            echo "ok";
+            }else{
+            echo "error";
+            }
+        }
    
        // ---------------- Funcion Crear Contenedor
    
@@ -104,3 +113,50 @@ class Contenedor extends CI_Controller {
 
 }
 ?>
+
+
+<!-- 
+
+/* Hecha por Jose Roberto el mas vergas */
+class RegistrarC extends CI_Controller {
+    function __construct(){
+
+      parent::__construct();
+      $this->load->helper('estado_helper');
+
+      $this->load->model('general/Estados');
+   }
+
+   function registrarC()
+   {
+       $data['Estados'] = $this->Estados->obtener();
+       $this->load->view('layout/registrar_contenedor', $data);
+   }
+   
+   function templateRc()
+   {
+       $data['Estados'] = $this->Estados->obtener();
+       $this->load->view('layout/registrar_contenedor',$data);
+       
+   }
+}
+?>
+
+
+class Registrarcontenedor  extends CI_Controller {
+    function __construct()
+    {
+      parent::__construct();
+      $this->load->model('general/Registrarcontenedores');
+    }
+    public function guardarDato()
+    {
+        $datos =  $this->input->post();
+        $resp = $this->Registrarcontenedores->guardarDatos($datos);
+        if($resp){
+          echo "ok";
+        }else{
+          echo "error";
+        }
+    }
+} -->

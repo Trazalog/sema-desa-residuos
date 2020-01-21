@@ -385,7 +385,7 @@
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-            <form method="POST" autocomplete="off" id="" class="registerForm">
+            <form method="POST" autocomplete="off" id="FormInfraccion" class="registerForm">
 
 
                 <div class="modal-body">
@@ -514,33 +514,31 @@
 
 <!--_____________________________________________________________-->
 <!-- FUNCIONES-->
-
 <script>
+    function Guardar_Infraccion() {
 
-    function guardar() {
-
-        datos = $('#formDatos').serialize();
+        datos = $('#FormInfraccion').serialize();
 
         
 
         //--------------------------------------------------------------
 
-        if ($("#formDatos").data('bootstrapValidator').isValid()) {
+        if ($("#FormInfraccion").data('bootstrapValidator').isValid()) {
             $.ajax({
                 type: "POST",
                 data: datos,
-                url: "ajax/Ordentrabajo/guardarDato",
+                url: "general/Estructura/Infraccion/Guardar_Infraccion",
                 success: function (r) {
                     if (r == "ok") {
                         
                         //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
-                        var t = $('#example2').DataTable();
+                        var t = $('#tabla_infracciones').DataTable();
                         var fila = t.row.add([
-                            zona,
-                            circuito,
-                            empresa,
-                            movilidad,
-                            chofer,
+                            N° Acta,
+                            Tipo de infraccion,
+                            Inspector,
+                            Destino,
+                    
                             //agrega los iconos correspondientes
                             '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
                         ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
@@ -549,14 +547,14 @@
                         aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
                         localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
 
-                        $('#formDatos').data('bootstrapValidator').resetForm();
-                        $("#formDatos")[0].reset();
-                        $('#selecmov').find('option').remove();
-                        $('#chofer').find('option').remove();
-                        $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
-                        $("#boxDatos").hide(500);
-                        $("#botonAgregar").removeAttr("disabled");
-                        alertify.success("Agregado con exito");
+                        // $('#FormInfraccion').data('bootstrapValidator').resetForm();
+                        // $("#FormInfraccion")[0].reset();
+                        // $('#selecmov').find('option').remove();
+                        // $('#chofer').find('option').remove();
+                        // $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
+                        // $("#boxDatos").hide(500);
+                        // $("#botonAgregar").removeAttr("disabled");
+                        // alertify.success("Agregado con exito");
                     } else {
                         //console.log(r);
                         alertify.error("error al agregar");

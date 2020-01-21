@@ -101,8 +101,8 @@ define('DEF_VIEW','Test');
 | Variables Locales
 |
 */
-//define('REST', 'http://localhost:8080/');
-define('REST', 'http://pc-pc:8280/services/semaresiduosDS');
+define('REST', 'http://localhost:3000/');
+//define('REST', 'http://pc-pc:8280/services/semaresiduosDS');
 //define('RESTLOCAL', 'http://pc-pc:8280/services/arboladoDS');
 //define('REST', 'http://dev-trazalog.com.ar:8280/services/arboladoDS');
 define('HOST', 'http://localhost/');

@@ -1,28 +1,28 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Contenedores extends CI_Model
+class Infracciones extends CI_Model
 {
 	function __construct()
 	{
 		parent::__construct();
     }
 
-// Funcion Listar Contenedores (MODIFICAR)
+// Funcion Listar Infraccion (MODIFICAR)
 
-    function Listar_Contenedor()
+    function Listar_Infraccion()
     {
         
         $aux = $this->rest->callAPI("GET",REST."/contenedores");
         $aux =json_decode($aux["data"]);       
-        // return $aux->Rsu->Rsu;
+        return $aux-Infracciones->Infraccion;
     }
     
-// Funcion Guardar Contenedor
+// Funcion Guardar Infraccion
 
-function Guardar_Contenedor($data){
+function Guardar_Infraccion($data){
 
-    $aux = $this->rest->callAPI("POST",REST."tabladatos", $datos);
+    $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
         $aux =json_decode($aux["status"]);
         return $aux;	
 
