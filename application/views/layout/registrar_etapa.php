@@ -2,7 +2,7 @@
 
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
-        <h3>Registrar Etapa</h3>
+        <h4>Registrar Etapa</h4>
     </div>
     <div class="box-body">
         <div class="row">

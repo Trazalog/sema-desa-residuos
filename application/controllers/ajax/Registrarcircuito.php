@@ -7,7 +7,10 @@ class Registrarcircuito  extends CI_Controller {
       parent::__construct();
       $this->load->model('general/Registrarcircuitos');
     }
-    public function guardarDato()
+
+    // ------------------FUNCION GUARDAR - POST
+    
+    public function Guardar_Circuito()
     {
         $datos =  $this->input->post();
         $resp = $this->Registrarcircuitos->guardarDatos($datos);
@@ -18,15 +21,17 @@ class Registrarcircuito  extends CI_Controller {
         }
     }
 
+    // ------------------FUNCION OBTENER DATOS EN TABLA
+
     public function guardarCircuito()
     {
-      $datos =  $this->input->post();
-      $resp = $this->Registrarcircuitos->guardarCircuito($datos);
-      if($resp){
-        echo "ok";
-      }else{
-        echo "error";
-      }
+      // $datos =  $this->input->post();
+      // $resp = $this->Registrarcircuitos->guardarCircuito($datos);
+      // if($resp){
+      //   echo "ok";
+      // }else{
+      //   echo "error";
+      // }
     }
 
 }

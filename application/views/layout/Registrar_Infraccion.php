@@ -40,6 +40,7 @@
     <!--_____________________________________________-->
 
     <div class="box-body">
+
         <form class="formInfracciones" id="formInfracciones">
 
         <div class="col-md-6">
@@ -49,7 +50,7 @@
 
                 <div class="form-group">
                     <label for="Nombre">N° :</label>
-                    <input type="text" class="form-control" id="Numero" name="numero" readonly>
+                    <input type="text" class="form-control" id="Numero" name="numero" >
                 </div>
             <!--_____________________________________________-->
             <!--Descripcion-->
@@ -62,8 +63,8 @@
             <!--Generador-->
 
                 <div class="form-group">
-                        <label for="TipoInfraccion" name="tipo_infraccion">Generador:</label>
-                        <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                        <label for="TipoInfraccion" >Generador:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="Generador" name="generador">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             
                         </select>
@@ -73,8 +74,8 @@
             <!--Transportista-->
 
             <div class="form-group">
-                        <label for="TipoInfraccion" name="tipo_infraccion">Transportista:</label>
-                        <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                        <label for="TipoInfraccion">Transportista:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="Transportista" name="transportista">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             
                         </select>
@@ -90,8 +91,8 @@
             <!--Tipo de Infraccion-->
             
                 <div class="form-group">
-                        <label for="TipoInfraccion" name="tipo_infraccion">Tipo de Infraccion:</label>
-                        <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                        <label for="TipoInfraccion">Tipo de Infraccion:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion"  name="tipo_infraccion">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             
                         </select>
@@ -107,8 +108,8 @@
             <!--Inspector-->
 
                 <div class="form-group">
-                <label for="TipoInfraccion" name="tipo_infraccion">Inspector:</label>
-                        <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                <label for="TipoInfraccion" >Inspector:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="Inspector" name="inspector">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             
                         </select>
@@ -118,8 +119,8 @@
             <!--Destino de acta-->
 
                 <div class="form-group">
-                <label for="TipoInfraccion" name="tipo_infraccion">Destino de acta:</label>
-                        <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                <label for="TipoInfraccion" >Destino de acta:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="Destino" name="destino">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             
                         </select>
@@ -140,7 +141,7 @@
         <!--_____________________________________________-->
         <!--Boton de guardado-->
         <div class="col-md-12">
-        <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+        <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Infraccion()">Guardar</button>
         </div>
         </form>
     </div>
@@ -148,13 +149,14 @@
 
 
 <!---//////////////////////////////////////--- FIN BOX 1---///////////////////////////////////////////////////////----->
+
 <!---//////////////////////////////////////---BOX 2---///////////////////////////////////////////////////////----->
 
 
 
 
 
-<div class="box box-primary">
+    <div class="box box-primary">
 
 
     <!--__________________TABLA___________________________-->
@@ -197,6 +199,13 @@
                             <td>DATO</td>
                             <td>DATO</td>
                             <td>DATO</td>
+
+
+
+
+                            
+
+
                         </tr>
 
                            
@@ -209,9 +218,9 @@
 
         </div>
     </div>
- <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
 
- <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
     
  <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -229,7 +238,7 @@
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-            <form method="POST" autocomplete="off" id="" class="registerForm">
+            <form class="formInfracciones" id="formInfraccionesEdit">
 
 
                 <div class="modal-body">
@@ -245,7 +254,7 @@
 
                                 <div class="form-group">
                                     <label for="Nombre">N° :</label>
-                                    <input type="text" class="form-control" id="Numero" name="numero" readonly>
+                                    <input type="text" class="form-control" id="" name="e_numero" readonly>
                                 </div>
 
                                 <!--_____________________________________________-->
@@ -253,15 +262,15 @@
 
                                 <div class="form-group">
                                     <label for="Apellido">Descripcion:</label>
-                                    <input type="text" class="form-control" id="Descripcion" name="descripcion">
+                                    <input type="text" class="form-control" id="" name="e_descripcion">
                                 </div>
 
                                 <!--_____________________________________________-->
                                 <!--Generador-->
 
                                 <div class="form-group">
-                                    <label for="TipoInfraccion" name="tipo_infraccion">Generador:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                                    <label for="TipoInfraccion" >Generador:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="Generador" name="e_generador">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         
                                     </select>
@@ -271,8 +280,8 @@
                                 <!--Transportista-->
 
                                 <div class="form-group">
-                                    <label for="TipoInfraccion" name="tipo_infraccion">Transportista:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                                    <label for="TipoInfraccion" >Transportista:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="Transportista" name="e_transportista">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         
                                     </select>
@@ -290,8 +299,8 @@
                                 <!--Tipo de Infraccion-->
 
                                 <div class="form-group">
-                                    <label for="TipoInfraccion" name="tipo_infraccion">Tipo de Infraccion:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                                    <label for="TipoInfraccion" >Tipo de Infraccion:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion" name="tipo_infraccion">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         
                                     </select>
@@ -302,15 +311,15 @@
 
                                 <div class="form-group">
                                     <label for="Direccion">N° Acta:</label>
-                                    <input type="text" class="form-control" id="Acta" name="acta">
+                                    <input type="text" class="form-control" id="Acta" name="e_acta">
                                 </div>
 
                                 <!--_____________________________________________-->
                                 <!--Inspector--> 
 
                                 <div class="form-group">
-                                    <label for="TipoInfraccion" name="tipo_infraccion">Inspector:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                                    <label for="TipoInfraccion" >Inspector:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="Inspector"name="e_inspector">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         
                                     </select>
@@ -320,8 +329,8 @@
                                 <!--Destino de acta--> 
 
                                 <div class="form-group">
-                                    <label for="TipoInfraccion" name="tipo_infraccion">Destino de acta:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion">
+                                    <label for="TipoInfraccion">Destino de acta:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="Destino"  name="e_destino">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         
                                     </select>
@@ -358,8 +367,7 @@
 
 
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
- <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
     
  <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -377,7 +385,7 @@
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-            <form method="POST" autocomplete="off" id="" class="registerForm">
+            <form method="POST" autocomplete="off" id="FormInfraccion" class="registerForm">
 
 
                 <div class="modal-body">
@@ -505,6 +513,61 @@
 <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
 <!--_____________________________________________________________-->
+<!-- FUNCIONES-->
+<script>
+    function Guardar_Infraccion() {
+
+        datos = $('#FormInfraccion').serialize();
+
+        
+
+        //--------------------------------------------------------------
+
+        if ($("#FormInfraccion").data('bootstrapValidator').isValid()) {
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "general/Estructura/Infraccion/Guardar_Infraccion",
+                success: function (r) {
+                    if (r == "ok") {
+                        
+                        //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
+                        var t = $('#tabla_infracciones').DataTable();
+                        var fila = t.row.add([
+                            N° Acta,
+                            Tipo de infraccion,
+                            Inspector,
+                            Destino,
+                    
+                            //agrega los iconos correspondientes
+                            '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
+                        ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
+                        t.draw(false);
+
+                        aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
+                        localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
+
+                        // $('#FormInfraccion').data('bootstrapValidator').resetForm();
+                        // $("#FormInfraccion")[0].reset();
+                        // $('#selecmov').find('option').remove();
+                        // $('#chofer').find('option').remove();
+                        // $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
+                        // $("#boxDatos").hide(500);
+                        // $("#botonAgregar").removeAttr("disabled");
+                        // alertify.success("Agregado con exito");
+                    } else {
+                        //console.log(r);
+                        alertify.error("error al agregar");
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+
+
+<!--_____________________________________________________________-->
 <!-- script modal -->
 <script>
 $("#btnview").on("click", function() {
@@ -578,7 +641,7 @@ $("#btnadd").on("click", function() {
                     }
                 }
             },
-            apellido: {
+            descripcion: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -590,7 +653,7 @@ $("#btnadd").on("click", function() {
                     }
                 }
             },
-            descripcion: {
+            generador: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -598,7 +661,15 @@ $("#btnadd").on("click", function() {
                     },
                 }
             },
-            email: {
+            transportista: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            tipo_infraccion: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -618,7 +689,7 @@ $("#btnadd").on("click", function() {
                     }
                 }
             },
-            departamento: {
+            inspector: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -630,7 +701,7 @@ $("#btnadd").on("click", function() {
                     }
                 }
             },
-            movilidadasignada: {
+            destino: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -648,6 +719,112 @@ $("#btnadd").on("click", function() {
       guardar();
   });
 </script>
+
+
+<!--_____________________________________________________________-->
+<!--Script Bootstrap Validacion.-->
+
+<script>
+      $('#formInfraccionesEdit').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      fields: {
+            e_numero: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            e_descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            e_generador: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            e_transportista: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            e_tipo_infraccion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            e_acta: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            e_inspector: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_destino: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+        }
+  }).on('success.form.bv', function(e){
+      e.preventDefault();
+      //guardar();
+  });
+</script>
+
+
 
 
 

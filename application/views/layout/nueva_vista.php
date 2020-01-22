@@ -19,7 +19,11 @@
 
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-<!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
+
+        
+<!---//////////////////////////////////////--- BOX ESTABLECIMIENTO ---///////////////////////////////////////////////////////----->
+
+
 
 
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
@@ -38,20 +42,22 @@
 
 <!--_________________________________________________-->
 
-    <div class="box-body">
-        <br>
-        <div class="row">
+<div class="box-body">
+    <br>
+    <div class="row">
         <div class="col-md-12">    
 
-        <!--_____________________________________________-->
-                <!--Disposicion final-->
-
+        
            
 
                 
 
         
-                <div class="col-md-6 ">
+                <div class="col-md-3 ">
+
+                    <!--_____________________________________________-->
+                    <!--Establecimiento-->
+
                     <div class="form-group">
                         <label for="establecimiento" class="form-label">Establecimiento:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="establecimiento"
@@ -63,7 +69,17 @@
                                                 }
                                         ?>
                         </select>
+
+                        
+                        
+                       
                     </div>
+                </div>
+
+                <div class="col-md-3 ">
+
+                    <!--_____________________________________________-->
+                    <!--Deposito-->
                     <div class="form-group">
                         <label for="deposito" class="form-label">Deposito:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="deposito" name="deposito"
@@ -75,6 +91,7 @@
                                                 }
                                         ?>
                         </select>
+                        
                     </div>
                 </div>
 
@@ -82,12 +99,14 @@
 
                     <div class="col-md-3">
                     <div class="form-group">
-                        <label for="addEstablecimiento" style="visibility:hidden;">Agregar:</label>
+                        <label for="addEstableciminto" style="visibility:hidden;">Agregar:</label>
                         <button type="button" class="btn btn-primary form-control" data-toggle="modal"
                             data-target="#modalEstablecimiento" id="addEstablecimiento"><span>Agregar
-                            </span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                            </span><span class="glyephicon glyphicon-plus" aria-hidden="true"></span></button>
                     
                     </div>
+
+                    
 
                     
                     <div class="form-group">
@@ -101,7 +120,18 @@
         </div>
 
         <br>
-        <hr>
+
+        
+        
+
+
+        
+<!---//////////////////////////////////////--- BOX ESTABLECIMIENTO ---///////////////////////////////////////////////////////----->
+
+
+
+<!---//////////////////////////////////////--- RECIPIENTES---///////////////////////////////////////////////////////----->
+
 
 
 <div class="col-md-12">
@@ -137,6 +167,8 @@
                 </div>
             </div>
             <br>
+
+            <div class="col-md-12"><hr></div>
             <div class="row">
                 <div class="col-md-10 col-lg-11 col-xs-12"></div>
                 <div class="col-md-2 col-lg-1 col-xs-12 text-center">
@@ -148,59 +180,90 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-12"><hr></div>
         </form>
 
 </div>
 
+        
+<!---//////////////////////////////////////--- FIN BOX RECIPIENTES ---///////////////////////////////////////////////////////----->
+
+
+<!---//////////////////////////////////////--- TABLA---///////////////////////////////////////////////////////----->
+
+
+
+
                 
         
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-sm-12 table-scroll">
                     
-                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
-                                aria-describedby="example2_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Rendering engine: activate to sort column descending">Acciones
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">
-                                            Tipo</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Platform(s): activate to sort column ascending">
-                                            Nombre</th>
-                                    </tr>
-                                </thead>
 
-                                <tbody>
+                        <!--__________________HEADER TABLA___________________________-->
 
-                                    <tr role="row" class="even" id="primero">
-                                        <td>residuo radioactivo</td>
-                                        <td>3</td>
-                                        <td>23</td>
-                                    </tr>
+                        <table id="tabla_recipientes" class="table table-bordered table-striped">
+                            <thead class="thead-dark" bgcolor="#eeeeee">
 
-                                </tbody>
+                                <th>Acciones</th>
+                                <th>Dato</th>
+                                <th>Tipo</th>
+                                <th>Nombre</th>
+                                
+                                
 
-                            </table>
-                        </div>
+                            </thead>
+
+                            <!--__________________BODY TABLA___________________________-->
+
+                            <tbody>
+                            <tr>
+                                <td>
+                                <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                                <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                                
+                                </td>
+                                <td>residuo radioactivo</td>
+                                <td>3</td>
+                                <td>23</td>
+                                
+                            </tr>
+
+                            
+                            </tbody>
+                        </table>
+                    
+                        <!--__________________FIN TABLA___________________________-->
+
                     </div>
-
                 </div>
+
+            </div>
       
         <br>
-        <div class="modal-footer">
+
+        
+<!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
+
+
+
+        <div class="col-md-12">
+        <hr>
             <div class="form-group text-right">
-                <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                <button type="submit" class="btn btn-primary pull-right" id="btnsave">Guardar</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal establecimiento-->
+
+
+        
+<!---//////////////////////////////////////--- Modal Establecimiento---///////////////////////////////////////////////////////----->
+
+
 <div class="modal fade" id="modalEstablecimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -310,7 +373,15 @@
     </div>
 </div>
 
-<!-- Modal deposito-->
+
+        
+<!---//////////////////////////////////////--- FIN Modal Establecimiento---///////////////////////////////////////////////////////----->
+
+
+
+        
+<!---//////////////////////////////////////--- Modal Deposito---///////////////////////////////////////////////////////----->
+
 <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -355,7 +426,17 @@
     </div>
 </div>
 
-<!-- script bootstrap validator -->
+      
+<!---//////////////////////////////////////--- FIN Modal Deposito---///////////////////////////////////////////////////////----->
+
+
+
+  
+ <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
+
+
+<!--_____________________________________________________________-->
+<!-- script bootstrap validator FORMULARIO DATOS -->
 
 <script>
     $('#formDatos').bootstrapValidator({
@@ -437,83 +518,10 @@
     });
 </script>
 
-<!-- Script Agregar datos -->
 
-<script>
-    function guardar() {
+<!--_____________________________________________________________-->
+<!-- script bootstrap validator FORMULARIO ESTABLECIMIENTO -->
 
-        datos = $('#formDatos').serialize();
-
-        //datos para mostrar a modo de ejemplo para DEMO---------------
-        //Serialize the Form
-        var values = {};
-        $.each($("#formDatos").serializeArray(), function (i, field) {
-            values[field.name] = field.value;
-        });
-        //Value Retrieval Function
-        var getValue = function (valueName) {
-            return values[valueName];
-        };
-        //Retrieve the Values
-        var tipo_residuo = getValue("tipo_residuo");
-        var contenedor = getValue("contenedor");
-        var porcent_llenado = getValue("porcent_llenado");
-        var metroscubicos = getValue("metroscubicos");
-        //--------------------------------------------------------------
-
-        if ($("#formDatos").data('bootstrapValidator').isValid()) {
-
-            $.ajax({
-                type: "POST",
-                data: datos,
-                url: "ajax/Ordentrabajo/guardarResiduo",
-                success: function (r) {
-                    if (r == "ok") {
-                        //console.log(datos);
-                        html = '<tr role="row" class="even"><td>' + tipo_residuo + '</td><td>' + contenedor +
-                            '</td><td>' + porcent_llenado + '</td><td>' + metroscubicos + '</td></tr>';
-                        $('#primero').after(html);
-                        $('#formDatos').data('bootstrapValidator').resetForm(true);
-                        alertify.success("Agregado con exito");
-                    } else {
-                        //console.log(r);
-                        alertify.error("error al agregar");
-                    }
-                }
-            });
-        }
-    }
-</script>
-
-<!-- Script Agregar datos de registrar_inspector-->
-<script>
-    function agregarDato() {
-        datos = $('#formEstablecimiento').serialize();
-        //console.log(datos);
-        //--------------------------------------------------------------
-        if ($("#formEstablecimiento").data('bootstrapValidator').isValid()) {
-            $.ajax({
-                type: "POST",
-                data: datos,
-                url: "ajax/Registrarinspector/guardarDato",
-                success: function (r) {
-                    if (r == "ok") {
-                        //console.log(datos);
-                        $('#formEstablecimiento')[0].reset();
-                        alertify.success("Agregado con exito");
-                    }
-                    else {
-                        console.log(r);
-                        $('#formEstablecimiento')[0].reset();
-                        alertify.error("error al agregar");
-                    }
-                }
-            });
-        }
-    }
-</script>
-
-<!--Script Bootstrap Validacion.-->
 <script>
     $('#formEstablecimiento').bootstrapValidator({
         message: 'This value is not valid',
@@ -634,6 +642,91 @@
     });
 </script>
 
+
+
+
+
+<!--_____________________________________________________________-->
+<!-- FUNCION AGREGAR DATOS -->
+
+
+<script>
+    function guardar() {
+
+        datos = $('#formDatos').serialize();
+
+        //datos para mostrar a modo de ejemplo para DEMO---------------
+        //Serialize the Form
+        var values = {};
+        $.each($("#formDatos").serializeArray(), function (i, field) {
+            values[field.name] = field.value;
+        });
+        //Value Retrieval Function
+        var getValue = function (valueName) {
+            return values[valueName];
+        };
+        //Retrieve the Values
+        var tipo_residuo = getValue("tipo_residuo");
+        var contenedor = getValue("contenedor");
+        var porcent_llenado = getValue("porcent_llenado");
+        var metroscubicos = getValue("metroscubicos");
+        //--------------------------------------------------------------
+
+        if ($("#formDatos").data('bootstrapValidator').isValid()) {
+
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "ajax/Ordentrabajo/guardarResiduo",
+                success: function (r) {
+                    if (r == "ok") {
+                        //console.log(datos);
+                        html = '<tr role="row" class="even"><td>' + tipo_residuo + '</td><td>' + contenedor +
+                            '</td><td>' + porcent_llenado + '</td><td>' + metroscubicos + '</td></tr>';
+                        $('#primero').after(html);
+                        $('#formDatos').data('bootstrapValidator').resetForm(true);
+                        alertify.success("Agregado con exito");
+                    } else {
+                        //console.log(r);
+                        alertify.error("error al agregar");
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+<!--_____________________________________________________________-->
+<!-- Script Agregar datos de FORMULARIO ESTABLECIMIENTO-->
+
+<script>
+    function agregarDato() {
+        datos = $('#formEstablecimiento').serialize();
+        //console.log(datos);
+        //--------------------------------------------------------------
+        if ($("#formEstablecimiento").data('bootstrapValidator').isValid()) {
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "ajax/Registrarinspector/guardarDato",
+                success: function (r) {
+                    if (r == "ok") {
+                        //console.log(datos);
+                        $('#formEstablecimiento')[0].reset();
+                        alertify.success("Agregado con exito");
+                    }
+                    else {
+                        console.log(r);
+                        $('#formEstablecimiento')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+
 <!--_____________________________________________________________-->
     <!-- script que muestra box de datos al dar click en boton agregar -->
 
@@ -662,25 +755,13 @@
     });
     </script>
 
-     <!--_____________________________________________________________-->
- <!-- script Datatables -->
 
+ <!--_____________________________________________________________-->
+ <!-- script Datatables -->
  <script>
-            $(function() {
-                
-                $('#example2').DataTable({
-                    'paging': true,
-                    'lengthChange': true,
-                    'searching': true,
-                    'ordering': true,
-                    'info': true,
-                    'autoWidth': true,
-                    'autoFill': true,
-                    'buttons': true,
-                    'fixedHeader': true,
-                    'colReorder': true,
-                    'scroller': true,
-                    'keytable': true
-                })
-            })
-            </script>
+
+    DataTable($('#tabla_recipientes'))
+
+</script>
+
+ 
