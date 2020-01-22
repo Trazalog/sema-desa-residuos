@@ -44,7 +44,7 @@
                             {
                                 "titulo": "Registrar Contenedor",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarC/templateRc"
+                                "link": "general/Estructura/Contenedor/templateContenedores" 
                             },
                             
                             
@@ -106,7 +106,15 @@
 
                                 "icono": "fa fa-genderless",
 
-                                "link": "general/Registrar_Infraccion/templateInf"
+                                "link": "general/Estructura/Infraccion/templateInfracciones"
+
+                            },
+                            {
+                                "titulo": "Solicitud de pedido ",
+
+                                "icono": "fa fa-genderless",
+
+                                "link": "general/Solicitud_Pedido/templateSolicitudPedidos"
 
                             },
                             {

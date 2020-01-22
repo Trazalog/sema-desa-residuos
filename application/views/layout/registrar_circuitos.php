@@ -39,27 +39,40 @@
     <form class="formCircuitos" id="formCircuitos">
         <!--_____________________________________________-->
 
-        <!--Codigo-->
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="Codigo">Codigo:</label>
-                <input type="text" class="form-control"  name="Codigo" id="Codigo">
+            <!--_____________________________________________-->
+            <!--Codigo-->
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                        
+                            <label for="Codigo">Codigo:</label>
+                            <div class="input-group date">
+                            <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                            <input type="number" class="form-control"  name="Codigo" id="Codigo">
+                            </div>
+                        </div>
             </div>
         </div>
         <!--_____________________________________________-->
 
-        <!--Chofer-->
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="Chofer" >Chofer:</label>
-                <select class="form-control select2 select2-hidden-accesible" name="Chofer" id="Chofer">
-                    <option value="" disabled selected>-Seleccione opcion-</option>
-                    <?php
-                    foreach ($Chofer as $i) {
-                        echo '<option>'.$i->nombre.'</option>';
-                    }
-                    ?>
-                </select>
+            <!--_____________________________________________--> 
+             <!--Chofer-->
+
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                 <div class="form-group">
+                    <label for="tipoResiduos" >Tipo de residuo:</label>
+                    <div class="input-group date">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                    <select class="form-control select2 select2-hidden-accesible" name="tipoResiduos" id="tipoResiduos">
+                        <option value="" disabled selected>-Seleccione opcion-</option>
+                        <?php
+                        foreach ($tipoResiduos as $i) {
+                            echo '<option>'.$i->nombre.'</option>';
+                        }
+                        ?>
+                    </select>
+                    </div>
+                </div>
             </div>
         </div>
         <!--_____________________________________________-->
@@ -73,65 +86,115 @@
         </div>
         <!--_____________________________________________-->
 
-        <!--vehiculo-->
-        <div class="col-md-6">          
-            <div class="form-group">
-                <label for="Vehiculo">Vehiculo:</label>
-                <select class="form-control select2 select2-hidden-accesible"  name="Vehiculo" id="Vehiculo">
-                    <option value="" disabled selected>-Seleccione opcion-</option>
-                    <?php
-                    foreach ($Vehiculo as $i) {
-                        echo '<option>'.$i->nombre.'</option>';
-                    }
-                    ?>
-                </select>
+            <!--_____________________________________________-->
+            <!--vehiculo-->
+
+            <div class="col-md-6 col-sm-6 col-xs-12">          
+                <div class="form-group">
+                    <label for="Vehiculo">Vehiculo:</label>
+                    <div class="input-group date">
+                            <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                    <select class="form-control select2 select2-hidden-accesible"  name="Vehiculo" id="Vehiculo">
+                        <option value="" disabled selected>-Seleccione opcion-</option>
+                        <?php
+                        foreach ($Vehiculo as $i) {
+                            echo '<option>'.$i->nombre.'</option>';
+                        }
+                        ?>
+                    </select>
+                    </div>
+                </div>
             </div>
         </div>
         <!--_____________________________________________-->
 
-        <!--Tipo de residuo-->
-        <div class="col-md-6">            
-            <div class="form-group">
-                <label for="tipoResiduos" >Tipo de residuo:</label>
-                <select class="form-control select2 select2-hidden-accesible" name="tipoResiduos" id="tipoResiduos">
-                    <option value="" disabled selected>-Seleccione opcion-</option>
-                    <?php
-                    foreach ($tipoResiduos as $i) {
-                        echo '<option>'.$i->nombre.'</option>';
-                    }
-                    ?>
-                </select>
+            <!--_____________________________________________-->
+            <!--Tipo de residuo-->
+
+
+            <div class="col-md-6 col-sm-6 col-xs-12">            
+                <div class="form-group">
+                    <label for="Chofer" >Chofer:</label>
+                    <div class="input-group date">
+                            <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                    <select class="form-control select2 select2-hidden-accesible" name="Chofer" id="Chofer">
+                        <option value="" disabled selected>-Seleccione opcion-</option>
+                        <?php
+                        foreach ($Chofer as $i) {
+                            echo '<option>'.$i->nombre.'</option>';
+                        }
+                        ?>
+                    </select>
+                    </div>                    
+                </div>
+                
             </div>
         </div>
 
-        <!--_________________SEPARADOR_________________-->
+             <!--_________________SEPARADOR_________________-->
 
-        <div class="col-md-12"> <hr></div>
+             <div class="col-md-12"> <hr></div>
 
         <!--_____________________SEPARADOR_____________________-->
 
-        <!--_____________________________________________-->
+            
 
-        <!--Adjuntador de imagenes-->
-        <div class="col-md-6">     
-            <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                </button>
-                <small for="agregar" class="form-label">Adjuntar imagen</small>
-            </form>
-        </div>
+            <!--_____________________________________________-->
+            <!--Adjuntador de imagenes-->
 
-        <!--_________________SEPARADOR_________________-->
+            <div class="col-md-12"> 
+
+                <div class="col-md-6 col-sm-6 col-xs-12">     
+                    
+                    <!-- <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+
+                        <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                        </button>
+                        <small for="agregar" class="form-label">Adjuntar imagen</small>
+                        
+                    </form> -->
+                    <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+                    <input  type="file" name="upload">
+                </form>
+
+                </div>
+
+
+
+                <div class="col-md-6 col-sm-6 col-xs-12">  
+                    
+
+                    <button type="button" class="btn btn-default btn-circle" aria-label="Left Align" data-toggle="modal"
+                        data-target="#modalZona">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                        <small for="agregar" class="form-label">Asignar zona</small>
+                        
+                    
+                </div>
+
+            </div>
 
         <div class="col-md-12"> <hr></div>
 
         <!--_________________SEPARADOR_________________-->
 
-            <div class="col-md-12">
-            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Agregar</button>
-            </div>
-        </div>
+            <!--_________________SEPARADOR_________________-->
+
+  
+                <div class="col-md-12">
+                <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Circuito()">Agregar</button>
+                </div>
+
+   
+               
+    
+    
+    
+    </div>
+
+    
     </form>
 </div>
 
@@ -242,8 +305,11 @@
 
 <!---//////////////////////////////////////--- FIN BOX TABLA---///////////////////////////////////////////////////////----->
 
-    <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
+
+<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -266,8 +332,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Codigo" name="Codigo">Codigo:</label>
-                                        <input type="text" class="form-control" id="Codigo">
+                                        <label for="Codigo">Codigo:</label>
+                                        <input type="text" class="form-control" name="Codigo" id="Codigo"  >
                                     </div>
                                 </div>                        
                             </div>
@@ -275,8 +341,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="Chofer" name="Chofer">Chofer:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="Chofer">
+                            <label for="Chofer" >Chofer:</label>
+                            <select class="form-control select2 select2-hidden-accesible" name="Chofer" id="Chofer">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                 foreach ($Chofer as $i) {
@@ -289,8 +355,8 @@
 
                         <!--Tipo de residuo-->
                         <div class="form-group">
-                            <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="tipoResiduos">
+                            <label for="tipoResiduos" >Tipo de residuo:</label>
+                            <select class="form-control select2 select2-hidden-accesible" name="tipoResiduos" id="tipoResiduos">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                 foreach ($tipoResiduos as $i) {
@@ -305,8 +371,8 @@
                         <!--Vehiculo-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="Vehiculo">
+                                <label for="Vehiculo">Vehiculo:</label>
+                                <select class="form-control select2 select2-hidden-accesible"  name="Vehiculo" id="Vehiculo">
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
                                     foreach ($Vehiculo as $i) {
@@ -346,6 +412,7 @@
 
 <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
+    
     <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -572,23 +639,133 @@
 
 <!---//////////////////////////////////////--- FIN MODAL PUNTO CRITICO ---///////////////////////////////////////////////////////----->
 
+
+
+<!---//////////////////////////////////////--- MODAL ZONA ---///////////////////////////////////////////////////////----->
+
+    
+ <div class="modal fade" id="modalZona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Asignar Zona</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form method="POST" autocomplete="off" id="" class="registerForm">
+
+
+                <div class="modal-body">
+                
+                    <div class="col-md-12 ">                                                
+                       
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Departamento-->
+
+                                <div class="form-group">
+                                    <label for="Dpto" >Departamento:</label>
+                                    <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-"></i>
+                                    </div>
+                                    <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
+                                        <option value="" disabled selected>-Seleccione opcion-</option>                                      
+                                    
+                                    </select>
+                                </div>                                                        
+
+                            </div>
+
+                        </div>
+                            
+
+                        <!--_____________________________________________-->     
+                            
+                            
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <!--_____________________________________________-->
+                                <!--Zona-->
+
+                                <div class="form-group">
+                                        <label for="Dpto" >Zona:</label>
+                                        <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-"></i>
+                                        </div>
+                                        <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
+                                            <option value="" disabled selected>-Seleccione opcion-</option>
+                                        
+                                        
+                                        </select>
+                                </div> 
+
+                                    
+                            </div>
+                        
+                        </div>
+
+                        <!--_____________________________________________-->  
+
+                               
+                    </div>        
+   
+                </div>
+                
+            </form>
+
+            <div class="col-md-12"><hr><br></div>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL ZONA ---///////////////////////////////////////////////////////----->
+
+
+
 <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 
 <!--_____________________________________________-->
 
 <!-- Script Agregar datos -->
+
 <script>
-    function agregarDato(){
-        $('#formCircuitos').on('submit', function(e){
-        e.preventDefault();
-        var me = $(this);
-        if ( me.data('requestRunning') ) {return;}
-        me.data('requestRunning', true);
-        datos=$('#formCircuitos').serialize();
-            //datos para mostrar a modo de ejemplo para DEMO---------------
-            //Serialize the Form
-            var values = {};
-            $.each($("#formCircuitos").serializeArray(), function (i, field) {
+function Guardar_Circuito(){
+    $('#formCircuitos').on('submit', function(e){
+    e.preventDefault();
+    var me = $(this);
+    if ( me.data('requestRunning') ) {return;}
+    me.data('requestRunning', true);
+    datos=$('#formCircuitos').serialize();
+        //datos para mostrar a modo de ejemplo para DEMO---------------
+        //Serialize the Form
+        var values = {};
+        $.each($("#formCircuitos").serializeArray(), function (i, field) {
             values[field.name] = field.value;
             });
             //Value Retrieval Function
@@ -630,6 +807,12 @@
 </script>
 <!--_____________________________________________-->
 
+
+
+
+formCircuitos
+
+<!--_____________________________________________--> 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
     $("#botonAgregar").on("click", function() {
