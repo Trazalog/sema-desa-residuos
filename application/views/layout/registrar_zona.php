@@ -78,7 +78,7 @@
                             <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
-                            foreach ($Dpto as $i) {
+                            foreach ($Departamento as $i) {
                                 echo '<option>'.$i->nombre.'</option>';
                             }
                             ?>

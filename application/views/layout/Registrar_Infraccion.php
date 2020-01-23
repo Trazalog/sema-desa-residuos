@@ -66,7 +66,11 @@
                         <label for="TipoInfraccion" >Generador:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="Generador" name="generador">
                             <option value="" disabled selected>-Seleccione opcion-</option>
-                            
+                            <?php
+                            foreach ($Generador as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                        ?>   
                         </select>
                 </div>
             
@@ -76,7 +80,13 @@
             <div class="form-group">
                         <label for="TipoInfraccion">Transportista:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="Transportista" name="transportista">
-                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <option value="" disabled selected>-Seleccione opcion-</option>                            
+                        <?php
+                            foreach ($Transportista as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                        ?>                      
+
                             
                         </select>
             </div>
@@ -94,7 +104,11 @@
                         <label for="TipoInfraccion">Tipo de Infraccion:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="TipoInfraccion"  name="tipo_infraccion">
                             <option value="" disabled selected>-Seleccione opcion-</option>
-                            
+                            <?php
+                            foreach ($Tipoinfraccion as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                        ?>   
                         </select>
                 </div>
             <!--_____________________________________________-->
@@ -111,7 +125,11 @@
                 <label for="TipoInfraccion" >Inspector:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="Inspector" name="inspector">
                             <option value="" disabled selected>-Seleccione opcion-</option>
-                            
+                            <?php
+                            foreach ($Inspector as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                        ?>   
                         </select>
                 </div>
 
@@ -122,7 +140,11 @@
                 <label for="TipoInfraccion" >Destino de acta:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="Destino" name="destino">
                             <option value="" disabled selected>-Seleccione opcion-</option>
-                            
+                            <?php
+                            foreach ($Destino as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                        ?>   
                         </select>
                 </div>
             
@@ -170,7 +192,9 @@
             </div>
             <div class="row">
 
-                <div class="col-sm-12 table-scroll">
+            <div class="col-sm-12 table-scroll" id="box-tabla" >
+
+             
 
                 <!--__________________HEADER TABLA___________________________-->
 
@@ -722,7 +746,7 @@ $("#btnadd").on("click", function() {
 
 
 <!--_____________________________________________________________-->
-<!--Script Bootstrap Validacion.-->
+<!--Script Bootstrap Validacion MODAL EDITAR.-->
 
 <script>
       $('#formInfraccionesEdit').bootstrapValidator({
@@ -836,6 +860,60 @@ $("#btnadd").on("click", function() {
 <script>
 DataTable($('#tabla_infracciones'))
 </script>
+
+
+<script>
+function agregar() {
+    $('#box-tabla').show();
+
+    var data = new FormData($('#formInfracciones')[0]);
+    data = formToObject(data);
+
+    $('#datos tbody').append(
+        `<tr data-json='${JSON.stringify(data)}'>
+            <td><button class="btn btn-link" onclick="$(this).closest('tr').remove();"><i class="fa fa-times"></i></button></td>
+            <td>${$('option[value="'+data.recu_id+'"]').html()}</td>
+            <td>${$('option[value="'+data.arti_id+'"]').html()}</td>
+            <td>${data.cantidad}</td>
+            <td>${data.lote}</td>
+            <td>${$('option[value="'+data.destino+'"]').html()}</td>
+        </tr>`
+    );
+
+    $('#formInfracciones')[0].reset();
+    $('select').select2().trigger('change');
+}
+
+function Guardar_Infraccion() {
+    var data = [];
+    $('#datos tbody tr').each(function() {
+        data.push(getJson(this));
+    });
+
+    if (!data.lenght) {
+        alert('Sin Datos para Registrar.');
+        return;
+    }
+
+    wo();
+    $.ajax({
+        type: 'POST',
+        dataType: 'JSON',
+        url: 'general/Estructura/Infraccion/Guardar_Infraccion', 
+        data: {
+            data
+        },
+        success: function(rsp) {
+
+        },
+        error: function(rsp) {
+            alert('Error');
+        },
+        complete: function() {
+            wc();
+        }
+    });
+}
 
 
 

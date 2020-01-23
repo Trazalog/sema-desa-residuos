@@ -9,16 +9,21 @@ class OrdenTransporte extends CI_Controller {
       parent::__construct();
    }
 
-
+  
 
 
   
 
       // ---------------- Funcion Cargar vista Orden de transporte y Datos
 
-      function template()
+      function templateOrdentransporte()
       {
-       //    $this->load->view('layout/registrar_infraccion');
+          
+        $data['empresa'] = $this->Empresas->obtener();
+        $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
+        $data['tipoResiduo'] = $this->TipoResiduos->obtener();
+        $data['fecha'] = date('Y-m-d');
+        $this->load->view('layout/orden_transporte', $data);
           
       }
    

@@ -7,6 +7,10 @@ class Zona extends CI_Controller {
     function __construct(){
 
       parent::__construct();
+
+      $this->load->model('general/Estructura/Zonas');
+      
+      
    }
 
 
@@ -16,17 +20,38 @@ class Zona extends CI_Controller {
 
       // ---------------- Funcion Cargar vista Zonas y Datos
 
-      function template()
+      function templateCircuitos()
+      
       {
-       //    $this->load->view('layout/registrar_infraccion');
+         
+         // $data[''] = $this->Zonas->obtener_Transportista();
+         // $data[''] = $this->Zonas->obtener_Transportista();
+         // $data[''] = $this->Zonas->obtener_Transportista();
+         // $data[''] = $this->Zonas->obtener_Transportista();
+         $this->load->view('layout/registrar_circuitos',$data);
           
       }
+      function templateZonas()
+      
+      {
+         $data['Departamento'] = $this->Zonas->obtener_Departamentos();
+         $this->load->view('layout/registrar_zona',$data);
+          
+      }
+
+
    
        // ---------------- Funcion Registrar Zona
    
        function Guardar_Zona()
        {
-           // $this->load->view('layout/registrar_infraccion');
+            $datos =  $this->input->post();
+            $resp = $this->Zonas->Guardar_Zona($datos);
+            if($resp){
+            echo "ok";
+            }else{
+            echo "error";
+            }
        }
    
        // ---------------- Funcion Crear Zona

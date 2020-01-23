@@ -27,19 +27,24 @@ function Guardar_Contenedor($data){
         return $aux;	
 
 }
+
+
+// ---------------------- FUNCIONES OBTENER ----------------------
+
+// Funcion Obtener Estados
+
+public function obtener_Estados(){
+    $aux = $this->rest->callAPI("GET",REST."/RECURSO");
+    $aux =json_decode($aux["data"]);
+    return $aux->Estados->Estado;
+}
+
+
+// ---------------------- FUNCIONES SOLICITUDES ----------------------
+
+
+
 }
 
 
 
-// class Registrarcontenedores extends CI_Model
-
-// 	function __construct()
-// 	{
-// 		parent::__construct();
-//     }
-    
-//     public function guardarDatos($datos){
-//         $aux = $this->rest->callAPI("POST","http://localhost:3000/tablacontenedores", $datos);
-//         $aux =json_decode($aux["status"]);
-//         return $aux;
-//     }

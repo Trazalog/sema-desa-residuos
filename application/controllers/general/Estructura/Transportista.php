@@ -7,6 +7,9 @@ class Transportista extends CI_Controller {
     function __construct(){
 
       parent::__construct();
+
+
+      $this->load->model('general/Estructura/Transportistas');
    }
 
 
@@ -18,7 +21,7 @@ class Transportista extends CI_Controller {
 
       function template()
       {
-       //    $this->load->view('layout/registrar_infraccion');
+        $this->load->view('layout/registrar_transportista', $data);
           
       }
    

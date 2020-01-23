@@ -9,6 +9,8 @@ class Contenedor extends CI_Controller {
       parent::__construct();
 
             $this->load->model('general/Estructura/Contenedores');
+
+            
     
 
 
@@ -20,7 +22,7 @@ class Contenedor extends CI_Controller {
 
       function templateContenedores()
       {
-          $data = null;
+          
         $this->load->view('layout/registrar_contenedor',$data);
           
       }
@@ -115,10 +117,8 @@ class Contenedor extends CI_Controller {
 ?>
 
 
-<!-- 
 
-/* Hecha por Jose Roberto el mas vergas */
-class RegistrarC extends CI_Controller {
+<!-- class RegistrarC extends CI_Controller {
     function __construct(){
 
       parent::__construct();
@@ -139,10 +139,11 @@ class RegistrarC extends CI_Controller {
        $this->load->view('layout/registrar_contenedor',$data);
        
    }
-}
-?>
+} -->
 
 
+
+<!-- 
 class Registrarcontenedor  extends CI_Controller {
     function __construct()
     {
