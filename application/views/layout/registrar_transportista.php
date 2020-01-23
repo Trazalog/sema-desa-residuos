@@ -1,5 +1,4 @@
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
-
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
         <h4>Registrar Transportista</h4>
@@ -19,7 +18,6 @@
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
 <!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
-
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
         <div class="box-tittle">
@@ -32,7 +30,6 @@
             </button>
         </div>
     </div>
-
     <!--_____________________________________________-->
 
     <div class="box-body">
@@ -83,12 +80,10 @@
                     <input type="text" class="form-control" name="Contacto" id="Contacto">
                     </div>
                 </div>
-            </div>
-
-             <!--***************************************-->
-
-             <div class="col-md-6 col-sm-6 col-xs-12">
                 <!--_____________________________________________-->
+
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
 
                 <!--Resolucion-->
                 <div class="form-group">
@@ -149,19 +144,17 @@
                 </div>
                 <!--_____________________________________________-->
 
-            <!--***************************************-->
-
             <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 
-            <!--___________________BOTON GUARDAR__________________________-->
+            <!--__________________________BOTON GUARDAR__________________________-->
             <br>
-
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-
             <br>
-        </form>
+            <!--_____________________________________________-->
+
+            </form>
+        </div>
     </div>
-</div>
 </div>
 
 <!---//////////////////////////////////////--- FIN BOX 1 ---///////////////////////////////////////////////////////----->
@@ -170,8 +163,7 @@
 
 <div class="box box-primary">
 
-    <!--__________________TABLA___________________________-->
-
+<!--___________________________TABLA___________________________-->
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">
@@ -179,27 +171,21 @@
                 <div class="col-sm-6"></div>
             </div>
             <div class="row">
-
                 <div class="col-sm-12 table-scroll">
 
-                <!--__________________HEADER TABLA___________________________-->
-
-                    <!--__________________HEADER TABLA___________________________-->
+                <!--___________________________HEADER TABLA___________________________-->
                     <table id="tabla_transportistas" class="table table-bordered table-striped">
                         <thead class="thead-dark" bgcolor="#eeeeee">
-
                             <th>Acciones</th>
                             <th>Nombre / Razon social</th>
                             <th>Zona</th>
                             <th>Departamento</th>
                             <th>Tipo</th>
-
                         </thead>
+                    <!--___________________________FIN HEADER TABLA___________________________-->
 
-                        <!--__________________BODY TABLA___________________________-->
-
+                    <!--___________________________BODY TABLA___________________________-->
                         <tbody>
-
                         <tr>
                             <td>
                             <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
@@ -207,15 +193,13 @@
                             <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
                             </td>
                             <td>DATO2</td>
-                            <td> DATO</td>
+                            <td>DATO</td>
                             <td>DATO</td>
                             <td>DATO</td>
                         </tr>
-
                         </tbody>
                     </table>
-
-                    <!--__________________FIN TABLA___________________________-->
+                <!--___________________________FIN TABLA___________________________-->
 
                 </div>
             </div>
@@ -237,8 +221,7 @@
             </div>
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
-
+        <!--___________________________FORMULARIO MODAL___________________________-->
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
                 <div class="modal-body">
                     <div class="row">
@@ -249,7 +232,6 @@
                                 <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
                                 <input type="text" class="form-control" id="Nombre/Razon social">
                             </div>
-                        
                         <!--_____________________________________________-->
 
                     </div>
@@ -260,7 +242,6 @@
                                 <label for="Registro" name="Registro">Registro:</label>
                                 <input type="text" class="form-control" id="Registro">
                             </div>
-                        
                         <!--_____________________________________________-->
 
                     </div>
@@ -281,10 +262,9 @@
                                 <input type="text" class="form-control" id="Telefono">
                             </div>
                         <!--_____________________________________________-->
-                        
+
                     </div>
                     <div class="col-md-6">
-                        <!--_____________________________________________-->
 
                         <!--Zona-->
                             <div class="form-group">
@@ -365,7 +345,7 @@
                 </div>
             </form>
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+        <!--___________________________FIN FORMULARIO MODAL___________________________-->
 
             </div>
             <div class="modal-footer">
@@ -382,7 +362,7 @@
 
 <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-    <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
@@ -394,7 +374,7 @@
 
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+        <!--___________________________FORMULARIO MODAL___________________________-->
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
                 <div class="modal-body">
@@ -506,7 +486,7 @@
                             </form>
                         <!--_____________________________________________-->
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <!--___________________________FIN FORMULARIO MODAL___________________________-->
 
             </div>
             <div class="modal-footer">

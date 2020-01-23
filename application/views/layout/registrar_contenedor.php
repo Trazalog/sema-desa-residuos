@@ -137,20 +137,13 @@
         </form>
     </div>
 </div>
-
-
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
-
-
 
 <!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
 
-
-
 <div class="box box-primary">
 
-<!--__________________TABLA___________________________-->
-
+<!--___________________________TABLA___________________________-->
 
 <div class="box-body">
     <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -162,10 +155,10 @@
 
             <div class="col-sm-12 table-scroll">
 
-            <!--__________________HEADER TABLA___________________________-->
+            <!--___________________________HEADER TABLA___________________________-->
 
 
-                <!--__________________HEADER TABLA___________________________-->
+                <!--___________________________HEADER TABLA___________________________-->
                 <table id="tabla_contenedores" class="table table-bordered table-striped">
                     <thead class="thead-dark" bgcolor="#eeeeee">
 
@@ -178,7 +171,7 @@
 
                     </thead>
 
-                    <!--__________________BODY TABLA___________________________-->
+                    <!--___________________________BODY TABLA___________________________-->
 
                     <tbody>
                     <tr>
@@ -198,7 +191,7 @@
                     </tbody>
                 </table>
                 
-                <!--__________________FIN TABLA___________________________-->
+                <!--___________________________FIN TABLA___________________________-->
             </div>
         </div>
 
@@ -228,7 +221,7 @@
 
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+            <!--___________________________FORMULARIO MODAL___________________________-->
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
 
@@ -312,7 +305,7 @@
                 
             </form>
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <!--___________________________FIN FORMULARIO MODAL___________________________-->
 
             </div>
 
@@ -347,7 +340,7 @@
 
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+            <!--___________________________FORMULARIO MODAL___________________________-->
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
 
@@ -424,7 +417,7 @@
                 
             </form>
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <!--___________________________FIN FORMULARIO MODAL___________________________-->
 
             </div>
 
@@ -618,91 +611,89 @@ function Guardar_Contenedor(){
       //excluded: ':disabled',
       fields: {
         Codigo_registro: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                },
+                regexp: {
+                    regexp: /[A-Za-z]/,
+                    message: 'la entrada no debe ser un numero entero'
+                }
+            }
+        },
         Descripcion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                },
+            }
+        },
         Capacidad: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                },
+                regexp: {
+                    regexp: /^(0|[1-9][0-9]*)$/,
+                    message: 'la entrada debe ser un numero entero'
+                }
+            }
+        },
         Añoelab: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                },
+                regexp: {
+                    regexp: /^(0|[1-9][0-9]*)$/,
+                    message: 'la entrada debe ser un numero entero'
+                }
+            }
+        },
         Tara: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                },
+                regexp: {
+                    regexp: /^(0|[1-9][0-9]*)$/,
+                    message: 'la entrada debe ser un numero entero'
+                }
+            }
+        },
         Estados: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                },
+            }
+        },
         Habilitacion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
-      }
-  }).on('success.form.bv', function(e){
-      e.preventDefault();
-      //guardar();
-  });
+            message: 'la entrada no es valida',
+            validators: {
+                notEmpty: {
+                    message: 'la entrada no puede ser vacia'
+                },
+            }
+        },
+    }
+}).on('success.form.bv', function(e){
+    e.preventDefault();
+    //guardar();
+});
 </script>
 
 
 <!--_____________________________________________________________-->
- <!-- script Datatables -->
- <script>
-
-DataTable($('#tabla_contenedores'))
-
+<!-- script Datatables -->
+<script>
+    DataTable($('#tabla_contenedores'))
 </script>
 
 
@@ -712,8 +703,7 @@ DataTable($('#tabla_contenedores'))
 <!-- 
 <script>
 
-
-   listarContenedores()
+listarContenedores()
 
     function listarContenedores(){
         alert('hola');
@@ -742,117 +732,98 @@ DataTable($('#tabla_contenedores'))
 
 <!--Script Bootstrap Validacion.-->
 <script>
-  $('#formContenedores').bootstrapValidator({
-      message: 'This value is not valid',
-      /*feedbackIcons: {
-          valid: 'glyphicon glyphicon-ok',
-          invalid: 'glyphicon glyphicon-remove',
-          validating: 'glyphicon glyphicon-refresh'
-      },*/
-      //excluded: ':disabled',
-      fields: {
-        Codigo_registro: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-        Descripcion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
-        Capacidad: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-        Añoelab: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-        Tara: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-        Estados: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
-        Habilitacion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
-      }
-  }).on('success.form.bv', function(e){
-      e.preventDefault();
-      //guardar();
-  });
+    $('#formContenedores').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            Codigo_registro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            Capacidad: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Añoelab: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Tara: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Estados: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            Habilitacion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+        }
+    }).on('success.form.bv', function(e){
+        e.preventDefault();
+        //guardar();
+    });
 </script>
 <!--_____________________________________________________________-->
+</script>
 
-    
-
-</script> -->
-
-
-
-
-
-
-
-
-
-<!-- 
-'<div class="text-center">
+<!--'<div class="text-center">
 <button type="button" title="Editar"  onclick="clickedit('+aux+')" class="btn btn-primary btn-circle"  data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-
 <button type="button" title="Info" onclick="clickinfo('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
-
 <button type="button" title="eliminar" onclick="borrar('+aux+')" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-
-
 </div>', -->
-
-                     
-
