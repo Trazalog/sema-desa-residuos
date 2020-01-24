@@ -208,61 +208,43 @@
                 <div class="col-sm-6"></div>
             </div>
             <div class="row">
-
                 <div class="col-sm-12 table-scroll">
-
                 <!--__________________HEADER TABLA___________________________-->
-
 
                     <!--__________________HEADER TABLA___________________________-->
                     <table id="tabla_generadores" class="table table-bordered table-striped">
                         <thead class="thead-dark" bgcolor="#eeeeee">
-
                             <th>Acciones</th>
                             <th>Nombre / Razon social</th>
                             <th>Zona</th>
                             <th>Departamento</th>
                             <th>Tipo</th>
-                            
-
                         </thead>
-
                         <!--__________________BODY TABLA___________________________-->
-
                         <tbody>
                         <tr>
                             <td>
                             <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                             <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
                             <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                            
                             </td>
                             <td>DATO</td>
                             <td> DATO</td>
                             <td>DATO</td>
                             <td>DATO</td>
                         </tr>
-
-                           
                         </tbody>
                     </table>
-                    
+
                     <!--__________________FIN TABLA___________________________-->
                 </div>
             </div>
-
         </div>
     </div>
 
     <!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
 
-
-
-
-
     <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
-    
     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -272,20 +254,13 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel">Editar Generador</h5>
             </div>
-
-
             <div class="modal-body">
-
             <!--__________________ FORMULARIO MODAL ___________________________-->
-
             <form method="POST" autocomplete="off" id="formGeneradoresEdit" class="registerForm">
-
-
                 <div class="modal-body">
-
                 <!--_____________________________________________-->
-                <!--Nombre/Razon social-->
 
+                <!--Nombre/Razon social-->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -294,10 +269,9 @@
                             </div>
                         </div>                        
                     </div>
-
                 <!--_____________________________________________-->
-                <!--Registro-->
 
+                <!--Registro-->
                 <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -305,8 +279,8 @@
                                 <input type="text" class="form-control" id="E_CUIT" name="e_cuit">
                             </div>
                 <!--_____________________________________________-->
-                <!--Tipo de residuo-->
 
+                <!--Tipo de residuo-->
                             <div class="form-group">
                             <label for="Dpto" >Departamento:</label>
                             <select class="form-control select2 select2-hidden-accesible" id="E_Dpto" name="e_departamento">
@@ -319,19 +293,17 @@
                             </select>
                             </div>
                          </div>
-
                 <!--_____________________________________________-->
-                <!--Descripcion-->
 
+                <!--Descripcion-->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="Domicilio" >Domicilio:</label>
                                 <input type="text" class="form-control" id="E_Domicilio" name="e_omicilio">
                             </div>
-
                 <!--_____________________________________________-->
-                <!--Resolucion-->
 
+                <!--Resolucion-->
                             <div class="form-group">
                                 <label for="Zonag" >Zona:</label>
                                 <select class="form-control select2 select2-hidden-accesible" id="E_Zonag" name="e_zonag">
@@ -345,26 +317,21 @@
                             </div>
                         </div>
                 </div>
-
                 <!--_____________________________________________-->
-                <!--Fecha de Alta-->
 
+                <!--Fecha de Alta-->
                 <div class="row">                        
                     <div class="col-md-6">
                         <label for="Numero de registro" >Numero de registro:</label>
-                        <input type="text" class="form-control" id="E_Numero de registro" name="e_numero_registro">
-                            
+                        <input type="text" class="form-control" id="E_Numero de registro" name="e_numero_registro">  
                         </div>
-
                         <div class="col-md-6">
                             <label for="Rubro" >Rubro:</label>
                             <input type="text" class="form-control" id="E_Rubro" name="e_rubro">
                         </div>
-
                 <!--_____________________________________________-->
+
                 <!--Fecha de Baja-->
-
-
                         <div class="col-md-6">
                             <label for="TipoG" >Tipo:</label>
                             <select class="form-control select2 select2-hidden-accesible" id="E_TipoG"name="e_tipo">
@@ -376,16 +343,12 @@
                                 ?>
                             </select>
                         </div>
-
                         <div class="col-md-6">
                             <label for="Tipo de residuos" >Tipo de residuos:</label>
                             <input type="text" class="form-control" id="E_Tipo de residuos" name="e_tipo_Residuo">
                         </div>
                     </div>
-                    
-                    
                 </div>
-                
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
