@@ -83,7 +83,8 @@
                             <option value="" disabled selected>-Seleccione opcion-</option>                            
                         <?php
                             foreach ($Transportista as $i) {
-                                echo '<option>'.$i->nombre.'</option>';
+                                // echo '<option value="'.$fila->id.'">'.$fila->tran_id.'</option>' ;
+                                echo '<option>'.$i->contacto.'</option>';
                             }
                         ?>                      
 
@@ -538,6 +539,10 @@
 
 <!--_____________________________________________________________-->
 <!-- FUNCIONES-->
+
+
+
+<!-- 
 <script>
     function Guardar_Infraccion() {
 
@@ -587,7 +592,7 @@
             });
         }
     }
-</script>
+</script> -->
 
 
 
@@ -860,7 +865,7 @@ $("#btnadd").on("click", function() {
 <script>
 DataTable($('#tabla_infracciones'))
 </script>
-
+<!-- 
 
 <script>
 function agregar() {
@@ -913,7 +918,7 @@ function Guardar_Infraccion() {
             wc();
         }
     });
-}
+} -->
 
 
 

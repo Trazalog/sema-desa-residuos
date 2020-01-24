@@ -16,9 +16,15 @@ class Generador extends CI_Controller {
 
    // ---------------- Funcion Cargar vista Generadores y Datos
 
-   function template()
+   function templateGeneradores()
    {
-    //    $this->load->view('layout/registrar_infraccion');
+    
+          // $data['Departamento'] = $this->Infracciones->obtener_Departamento();
+          // $data['Tipogenerador'] = $this->Infracciones->obtener_Tipo_Generador();
+          // $data['Zonagenerador'] = $this->Infracciones->obtener_Zonas();
+          // $data['Tiporesiduo'] = $this->Infracciones->obtener_Tipo_residuo();
+    
+          $this->load->view('layout/registrar_generadores');
        
    }
 

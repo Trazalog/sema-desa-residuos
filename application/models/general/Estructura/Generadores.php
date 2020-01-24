@@ -15,7 +15,7 @@ class Generadores extends CI_Model
         
         $aux = $this->rest->callAPI("GET",REST."/RECURSO");
         $aux =json_decode($aux["data"]);       
-        return $aux->Generadores->Generador;
+        return $aux->generadores->generador;
     }
     
 // Funcion Guardar Generador
@@ -33,7 +33,7 @@ function Guardar_Generadores($data){
 // Funcion Obtener Zona
 
 public function obtener_Zonas(){
-    $aux = $this->rest->callAPI("GET",REST."RECURSO");
+    $aux = $this->rest->callAPI("GET",REST."http://localhost:3000/zonas");
     $aux =json_decode($aux["data"]);
     return $aux->zonas->zona;
 }
@@ -51,7 +51,7 @@ public function obtener_Tipo_Generador(){
 public function obtener_Departamento(){
     $aux = $this->rest->callAPI("GET",REST."http://localhost:3000/tipo");
     $aux =json_decode($aux["data"]);
-    return $aux->Departamentos->Departamento;
+    return $aux->departamentos->departamento;
 }
 
 // Funcion Obtener Tipo Residuo

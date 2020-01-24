@@ -32,7 +32,7 @@ function Guardar_Transportista($data){
 
 // Funcion Obtener RSU
 
-    public function obtener(){
+    public function obtener_RSU(){
     $aux = $this->rest->callAPI("GET","http://localhost:3000/rsu");
     $aux =json_decode($aux["data"]);
     return $aux->Rsu->Rsu;

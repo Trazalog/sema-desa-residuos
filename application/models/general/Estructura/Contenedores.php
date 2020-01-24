@@ -15,7 +15,7 @@ class Contenedores extends CI_Model
         
         $aux = $this->rest->callAPI("GET",REST."/RECURSO");
         $aux =json_decode($aux["data"]);       
-        return $aux->Contenedores->Contenedor;
+        return $aux->contenedores->contenedor;
     }
     
 // Funcion Guardar Contenedor
@@ -36,7 +36,7 @@ function Guardar_Contenedor($data){
 public function obtener_Estados(){
     $aux = $this->rest->callAPI("GET",REST."/RECURSO");
     $aux =json_decode($aux["data"]);
-    return $aux->Estados->Estado;
+    return $aux->estados->estado;
 }
 
 

@@ -15,7 +15,7 @@ class Infracciones extends CI_Model
         
     //     $aux = $this->rest->callAPI("GET",REST."RECURSO");
     //     $aux =json_decode($aux["data"]);       
-    //     return $aux-Infracciones->Infraccion;
+    //     return $aux-infracciones->infraccion;
     // }
     
 // Funcion Guardar Infraccion
