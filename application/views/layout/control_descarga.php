@@ -120,21 +120,23 @@
                         readonly>
                 </div>
                 <div class="form-group">
-                    <label for="nro" class="form-label">Deposito:</label>
-                    <input size="10" type="text" name="depoform" id="depoform" min="0" class="form-control"
-                        required>
+                    <label for="deposito" class="form-label">Deposito:</label>
+                    <select class="form-control select2 select2-hidden-accesible" id="depositoform" name="valorizadoform"
+                    required>
+                    <option value="" disabled selected>-Seleccione opcion-</option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                    <label for="valorizado" class="form-label">Valorizado:</label>
+                    <label for="valorizadoform" class="form-label">Valorizado:</label>
                     <select class="form-control select2 select2-hidden-accesible" id="valorizadoform" name="valorizadoform"
                         required>
                         <option value="" disabled selected>-Seleccione opcion-</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="nro" class="form-label">Observacion:</label>
+                    <label for="obsform" class="form-label">Observacion:</label>
                     <input size="10" type="text" name="obsform" id="obsform" min="0" class="form-control"
                         required>
                 </div>

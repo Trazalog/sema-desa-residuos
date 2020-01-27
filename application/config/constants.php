@@ -97,3 +97,5 @@ define('FRM','traz-comp-form/');
 define('PORT', ':3000/');
 
 define('REST', 'http://localhost'.PORT);
+
+define('REST2', 'http://PC-PC:8280/services/semaresiduosDS/');
