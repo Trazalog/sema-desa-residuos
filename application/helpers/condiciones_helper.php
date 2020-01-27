@@ -6,7 +6,7 @@ if(!function_exists('condicion')){
         $array =  $json;
        // var_dump($array->menu);die;
         $html = '';
-        foreach ($array->condicion->condicion as $i) {
+        foreach ($array->condiciones->condicion as $i) {
             $html .= '<option>'.$i->nombre.'</option>';
         }
         return $html;

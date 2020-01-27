@@ -9,6 +9,6 @@ class Vehiculos extends CI_Model {
     public function obtener(){
         $aux = $this->rest->callAPI("GET","http://localhost:3000/vehiculos");
         $aux =json_decode($aux["data"]);
-        return $aux->Vehiculos->Vehiculos;
+        return $aux->vehiculos->vehiculo;
    }
 }
