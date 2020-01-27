@@ -83,7 +83,7 @@
                     <select class="form-control select2 select2-hidden-accesible"  name="Zona" id="Zonag">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
-                        foreach ($Zonag as $i) {
+                        foreach ($Zonagenerador as $i) {
                             echo '<option>'.$i->nombre.'</option>';
                         }
                         ?>
@@ -112,7 +112,7 @@
                     <select class="form-control select2 select2-hidden-accesible"name="Tipo" id="TipoG">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
-                        foreach ($TipoG as $i) {
+                        foreach ($Tipogenerador as $i) {
                             echo '<option>'.$i->nombre.'</option>';
                         }
                         ?>
@@ -144,7 +144,7 @@
                     <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
-                        foreach ($Dpto as $i) {
+                        foreach ($Departamento as $i) {
                             echo '<option>'.$i->nombre.'</option>';
                         }
                         ?>
@@ -170,6 +170,14 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
+                            <select class="form-control select2 select2-hidden-accesible" name="Tipo_Residuo" id="Tipo de residuos">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($Tiporesiduo as $i) {
+                                    echo '<option>'.$i->nombre.'</option>';
+                                }
+                                ?>
+                            </select>
                     <input type="text" class="form-control"   name="Tipo_Residuo" id="Tipo de residuos">
                     </div>
                 </div>
