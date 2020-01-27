@@ -9,6 +9,9 @@ class Contenedor extends CI_Controller {
       parent::__construct();
 
             $this->load->model('general/Estructura/Contenedores');
+            $this->load->model('general/Estructura/Contenedores');
+
+            
     
 
 
@@ -20,7 +23,11 @@ class Contenedor extends CI_Controller {
 
       function templateContenedores()
       {
-          $data = null;
+        // $data['Estado'] = $this->Contenedores->obtener_();
+        // $data[''] = $this->Contenedores->obtener_();
+        // $data[''] = $this->Contenedores->obtener_();
+        // $data[''] = $this->Contenedores->obtener_();
+        // $data[''] = $this->Contenedores->obtener_();
         $this->load->view('layout/registrar_contenedor',$data);
           
       }
@@ -114,49 +121,3 @@ class Contenedor extends CI_Controller {
 }
 ?>
 
-
-<!-- 
-
-/* Hecha por Jose Roberto el mas vergas */
-class RegistrarC extends CI_Controller {
-    function __construct(){
-
-      parent::__construct();
-      $this->load->helper('estado_helper');
-
-      $this->load->model('general/Estados');
-   }
-
-   function registrarC()
-   {
-       $data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/registrar_contenedor', $data);
-   }
-   
-   function templateRc()
-   {
-       $data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/registrar_contenedor',$data);
-       
-   }
-}
-?>
-
-
-class Registrarcontenedor  extends CI_Controller {
-    function __construct()
-    {
-      parent::__construct();
-      $this->load->model('general/Registrarcontenedores');
-    }
-    public function guardarDato()
-    {
-        $datos =  $this->input->post();
-        $resp = $this->Registrarcontenedores->guardarDatos($datos);
-        if($resp){
-          echo "ok";
-        }else{
-          echo "error";
-        }
-    }
-} -->

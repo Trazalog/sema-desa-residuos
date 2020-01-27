@@ -16,9 +16,16 @@ class Etapa extends CI_Controller {
 
       // ---------------- Funcion Cargar vista Etapas y Datos
 
-      function template()
+      function templateEtapas()
+      
       {
-       //    $this->load->view('layout/registrar_infraccion');
+
+          // $data[''] = $this->Infracciones->obtener_();
+          // $data[''] = $this->Infracciones->obtener_();
+          // $data[''] = $this->Infracciones->obtener_();
+          // $data[''] = $this->Infracciones->obtener_();
+       
+         $this->load->view('layout/registrar_etapa');
           
       }
    

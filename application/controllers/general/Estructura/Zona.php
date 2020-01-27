@@ -7,26 +7,41 @@ class Zona extends CI_Controller {
     function __construct(){
 
       parent::__construct();
+
+      $this->load->model('general/Estructura/Zonas');
+      
+      
    }
 
 
 
-
+// --------------------------------- ZONAS ----------------------------------
   
-
-      // ---------------- Funcion Cargar vista Zonas y Datos
-
-      function template()
+// ---------------- Funcion Cargar vista Zonas y Datos
+      
+      function templateZonas()
+      
       {
-       //    $this->load->view('layout/registrar_infraccion');
+         $data['Departamentos'] = $this->Zonas->obtener_Departamentos();
+         // $data['CircuitosAsignados'] = $this->Zonas->obtener_Circuitos_Asignados();
+         // $this->load->view('layout/Zonas/Lista_zona',$data);
+         $this->load->view('layout/Zonas/registrar_zona',$data);
           
       }
+
+
    
        // ---------------- Funcion Registrar Zona
    
        function Guardar_Zona()
        {
-           // $this->load->view('layout/registrar_infraccion');
+            $datos =  $this->input->post('datos');
+            $resp = $this->Zonas->Guardar_Zona($datos);
+            if($resp){
+            echo "ok";
+            }else{
+            echo "error";
+            }
        }
    
        // ---------------- Funcion Crear Zona
@@ -41,7 +56,8 @@ class Zona extends CI_Controller {
    
       function Listar_Zona()
       {
-          
+         $data["zonas"] = $this->Zonas->Listar_Zonas();         
+         $this->load->view('layout/Zonas/Lista_Zona',$data);
           
       }
 
@@ -71,7 +87,51 @@ class Zona extends CI_Controller {
        }
    
        
+
+
+    // --------------------------------- CIRCUITOS ----------------------------------
+
+
+   // ---------------- Funcion Cargar vista CIRCUITOS y Datos
+
+   function templateCircuitos()
+      
+   {
+      
+      // $data['tipoResiduos'] = $this->Zonas->obtener_RSU();
+      // data['Vehiculo'] = $this->Zonas->obtener_Vehiculo();      
+      $data['Chofer'] = $this->Zonas->obtener_Chofer();
+
+      
+      
+      
+      $this->load->view('layout/Zonas/registrar_circuitos',$data);
+       
+   }
+
+   // ---------------- Funcion Registrar Circuito
    
+   function Guardar_Circuito()
+   {
+        $datos =  $this->input->post('datos');
+        $resp = $this->Zonas->Guardar_Circuito($datos);
+        if($resp){
+        echo "ok";
+        }else{
+        echo "error";
+        }
+   }
+
+   // ---------------- Funcion Listar Zona
+   
+   function Listar_Circuitos()
+   {
+      $data["circuitos"] = $this->Zonas->Listar_Circuitos();
+      
+      $this->load->view('layout/Zonas/Lista_Circuitos',$data);
+       
+   }
+
 
       // ---------------- Funciones Obtener --------------------------------//
       
