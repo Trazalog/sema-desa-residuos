@@ -22,9 +22,13 @@ class OrdenTransportes extends CI_Model
 
 function Guardar_OrdenT($data){
 
-        $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
+        $post["post_ordenT"] = $data;
+        log_message('DEBUG','#OrdenTransporte/Guardar_OrdenTransporte: '.json_encode($post))
+        $aux = $this->rest->callAPI("POST",REST."/RECURSO", $post);
         $aux =json_decode($aux["status"]);
         return $aux;	
+
+        
 
 }
 
@@ -92,6 +96,8 @@ function Listar_OrdenesT()
     $aux = $this->rest->callAPI("GET",REST."/RECURSO");
     $aux =json_decode($aux["data"]);       
     return $aux->Ordenes->Orden;
+
+    
 }
 
 // Funcion Guardar Orden

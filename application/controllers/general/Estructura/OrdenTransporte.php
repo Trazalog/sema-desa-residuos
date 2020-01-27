@@ -41,6 +41,14 @@ class OrdenTransporte extends CI_Controller {
    
        function Guardar_OrdenTransporte()
        {
+
+        $datos =  $this->input->post('datos');
+        $resp = $this->OrdenTransportes->Guardar_OrdenT($datos);
+        if($resp){
+        echo "ok";
+        }else{
+        echo "error";
+        }
            
        }
    
