@@ -24,7 +24,7 @@
                             {
                                 "titulo": "Registrar Generadores ",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Registrar/templateRg"
+                                "link": "general/Estructura/Generador/templateGeneradores"
                             },
                             {
                                 "titulo": "Registrar Transportista",

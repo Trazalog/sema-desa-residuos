@@ -7,9 +7,12 @@ class Generador extends CI_Controller {
     function __construct(){
 
       parent::__construct();
+
+
+      $this->load->model('general/Estructura/Generadores');
    }
 
-
+ 
 
 
   
@@ -19,12 +22,12 @@ class Generador extends CI_Controller {
    function templateGeneradores()
    {
     
-          // $data['Departamento'] = $this->Infracciones->obtener_Departamento();
-          // $data['Tipogenerador'] = $this->Infracciones->obtener_Tipo_Generador();
+          $data['Departamentos'] = $this->Generadores->obtener_Departamento();
+          // $data['Zonas'] = $this->Generadores->obtener_Zonas();
           // $data['Zonagenerador'] = $this->Infracciones->obtener_Zonas();
           // $data['Tiporesiduo'] = $this->Infracciones->obtener_Tipo_residuo();
     
-          $this->load->view('layout/registrar_generadores');
+          $this->load->view('layout/registrar_generadores', $data);
        
    }
 
