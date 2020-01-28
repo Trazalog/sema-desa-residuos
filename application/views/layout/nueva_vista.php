@@ -1,61 +1,150 @@
-<!-- Hecha por Fer Guardia-->
-<!--  Box 1-->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
 <div class="box box-primary animated fadeInLeft">
+    <div class="box-header with-border">
+        <h4>ABM Establecimiento</h4>
+    </div>
     <div class="box-body">
-        <br>
         <div class="row">
-            <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                    <label for="establecimiento" class="form-label">Establecimiento:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="establecimiento"
-                        name="establecimiento" required>
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
-                                            foreach ($tipoResiduo as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
-                                            }
-                                    ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="deposito" class="form-label">Deposito:</label>
-                    <select class="form-control select2 select2-hidden-accesible" id="deposito" name="deposito"
-                        required>
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
-                                            foreach ($tipoResiduo as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
-                                            }
-                                    ?>
-                    </select>
-                </div>
+            <div class="col-md-2 col-lg-1 col-xs-12">
+                <button type="button" id="botonAgregar" class="btn btn-primary" aria-label="Left Align">
+                    Agregar
+                </button><br>
             </div>
-            <div class="col-md-2 col-xs-12">
-                <div class="form-group">
-                    <label for="addEstablecimiento" style="visibility:hidden;">Agregar:</label>
-                    <button type="button" class="btn btn-primary form-control" data-toggle="modal"
-                        data-target="#modalEstablecimiento" id="addEstablecimiento"><span>Agregar
-                        </span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            <div class="col-md-10 col-lg-11 col-xs-12"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+
+        
+<!---//////////////////////////////////////--- BOX ESTABLECIMIENTO ---///////////////////////////////////////////////////////----->
+
+
+
+
+<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
+    <div class="box-header with-border">
+        <div class="box-tittle">
+        <h5>Informacion</h5>
+        </div>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+    </div>
+
+<!--_________________________________________________-->
+
+<div class="box-body">
+    <br>
+    <div class="row">
+        <div class="col-md-12">    
+
+        
+           
+
+                
+
+        
+                <div class="col-md-3 ">
+
+                    <!--_____________________________________________-->
+                    <!--Establecimiento-->
+
+                    <div class="form-group">
+                        <label for="establecimiento" class="form-label">Establecimiento:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="establecimiento"
+                            name="establecimiento" required>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
+                                                foreach ($tipoResiduo as $i) {
+                                                    echo '<option>'.$i->nombre.'</option>';
+                                                }
+                                        ?>
+                        </select>
+
+                        
+                        
+                       
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="addDeposito" style="visibility:hidden;">Agregar:</label>
-                    <button type="button" id="addDeposito" class="btn btn-primary form-control" data-toggle="modal"
-                        data-target="#modalDeposito"><span>Agregar
-                        </span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+
+                <div class="col-md-3 ">
+
+                    <!--_____________________________________________-->
+                    <!--Deposito-->
+                    <div class="form-group">
+                        <label for="deposito" class="form-label">Deposito:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="deposito" name="deposito"
+                            required>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
+                                                foreach ($tipoResiduo as $i) {
+                                                    echo '<option>'.$i->nombre.'</option>';
+                                                }
+                                        ?>
+                        </select>
+                        
+                    </div>
                 </div>
-            </div>
+
+                <div class="col-md-6">
+
+                    <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="addEstableciminto" style="visibility:hidden;">Agregar:</label>
+                        <button type="button" class="btn btn-primary form-control" data-toggle="modal"
+                            data-target="#modalEstablecimiento" id="addEstablecimiento"><span>Agregar
+                            </span><span class="glyephicon glyphicon-plus" aria-hidden="true"></span></button>
+                    
+                    </div>
+
+                    
+
+                    
+                    <div class="form-group">
+                        <label for="addDeposito" style="visibility:hidden;">Agregar:</label>
+                        <button type="button" id="addDeposito" class="btn btn-primary form-control" data-toggle="modal"
+                            data-target="#modalDeposito"><span>Agregar
+                            </span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    </div>
+                    </div>
+                </div>
         </div>
 
         <br>
-        <hr>
+
+        
+        
 
 
+        
+<!---//////////////////////////////////////--- BOX ESTABLECIMIENTO ---///////////////////////////////////////////////////////----->
+
+
+
+<!---//////////////////////////////////////--- RECIPIENTES---///////////////////////////////////////////////////////----->
+
+
+
+<div class="col-md-12">
         <form autocomplete="off" id="formDatos" method="POST">
             <div class="row">
+
+            <div class="col-md-12">
                 <div class="box-header with-border">
-                    <h3>Recipientes:</h3>
+                    <h4>Recipientes:</h4>
                 </div>
-                <br>
+                </div>
+
+                <div class="col-md-12"><br></div>
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label for="tipores" class="form-label">Tipo:</label>
@@ -78,6 +167,8 @@
                 </div>
             </div>
             <br>
+
+            <div class="col-md-12"><hr></div>
             <div class="row">
                 <div class="col-md-10 col-lg-11 col-xs-12"></div>
                 <div class="col-md-2 col-lg-1 col-xs-12 text-center">
@@ -89,91 +180,90 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-12"><hr></div>
         </form>
-        <div class="row">
-            <em class="fas fa-ad"></em>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                    <div class="row">
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-6"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 table-scroll">
-                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
-                                aria-describedby="example2_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Rendering engine: activate to sort column descending">Acciones
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">
-                                            Tipo</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Platform(s): activate to sort column ascending">
-                                            Nombre</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
 
-                                    <tr role="row" class="even" id="primero">
-                                        <td>residuo radioactivo</td>
-                                        <td>3</td>
-                                        <td>23</td>
-                                    </tr>
+</div>
 
-                                </tbody>
+        
+<!---//////////////////////////////////////--- FIN BOX RECIPIENTES ---///////////////////////////////////////////////////////----->
 
-                            </table><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1
-                                to 10 of 57 entries</div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button previous disabled" id="example2_previous"><a href="#"
-                                            aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a></li>
-                                    <li class="paginate_button active"><a href="#" aria-controls="example2"
-                                            data-dt-idx="1" tabindex="0">1</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="2"
-                                            tabindex="0">2</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3"
-                                            tabindex="0">3</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="4"
-                                            tabindex="0">4</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="5"
-                                            tabindex="0">5</a></li>
-                                    <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="6"
-                                            tabindex="0">6</a></li>
-                                    <li class="paginate_button next" id="example2_next"><a href="#"
-                                            aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
+
+<!---//////////////////////////////////////--- TABLA---///////////////////////////////////////////////////////----->
+
+
+
+
+                
+        
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-sm-12 table-scroll">
+                    
+
+                        <!--__________________HEADER TABLA___________________________-->
+
+                        <table id="tabla_recipientes" class="table table-bordered table-striped">
+                            <thead class="thead-dark" bgcolor="#eeeeee">
+
+                                <th>Acciones</th>
+                                <th>Dato</th>
+                                <th>Tipo</th>
+                                <th>Nombre</th>
+                                
+                                
+
+                            </thead>
+
+                            <!--__________________BODY TABLA___________________________-->
+
+                            <tbody>
+                            <tr>
+                                <td>
+                                <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                                <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                                
+                                </td>
+                                <td>residuo radioactivo</td>
+                                <td>3</td>
+                                <td>23</td>
+                                
+                            </tr>
+
+                            
+                            </tbody>
+                        </table>
+                    
+                        <!--__________________FIN TABLA___________________________-->
+
                     </div>
                 </div>
 
             </div>
-        </div>
+      
         <br>
-        <div class="modal-footer">
+
+        
+<!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
+
+
+
+        <div class="col-md-12">
+        <hr>
             <div class="form-group text-right">
-                <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                <button type="submit" class="btn btn-primary pull-right" id="btnsave">Guardar</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal establecimiento-->
+
+
+        
+<!---//////////////////////////////////////--- Modal Establecimiento---///////////////////////////////////////////////////////----->
+
+
 <div class="modal fade" id="modalEstablecimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -283,7 +373,15 @@
     </div>
 </div>
 
-<!-- Modal deposito-->
+
+        
+<!---//////////////////////////////////////--- FIN Modal Establecimiento---///////////////////////////////////////////////////////----->
+
+
+
+        
+<!---//////////////////////////////////////--- Modal Deposito---///////////////////////////////////////////////////////----->
+
 <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -328,7 +426,17 @@
     </div>
 </div>
 
-<!-- script bootstrap validator -->
+      
+<!---//////////////////////////////////////--- FIN Modal Deposito---///////////////////////////////////////////////////////----->
+
+
+
+  
+ <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
+
+
+<!--_____________________________________________________________-->
+<!-- script bootstrap validator FORMULARIO DATOS -->
 
 <script>
     $('#formDatos').bootstrapValidator({
@@ -410,83 +518,10 @@
     });
 </script>
 
-<!-- Script Agregar datos -->
 
-<script>
-    function guardar() {
+<!--_____________________________________________________________-->
+<!-- script bootstrap validator FORMULARIO ESTABLECIMIENTO -->
 
-        datos = $('#formDatos').serialize();
-
-        //datos para mostrar a modo de ejemplo para DEMO---------------
-        //Serialize the Form
-        var values = {};
-        $.each($("#formDatos").serializeArray(), function (i, field) {
-            values[field.name] = field.value;
-        });
-        //Value Retrieval Function
-        var getValue = function (valueName) {
-            return values[valueName];
-        };
-        //Retrieve the Values
-        var tipo_residuo = getValue("tipo_residuo");
-        var contenedor = getValue("contenedor");
-        var porcent_llenado = getValue("porcent_llenado");
-        var metroscubicos = getValue("metroscubicos");
-        //--------------------------------------------------------------
-
-        if ($("#formDatos").data('bootstrapValidator').isValid()) {
-
-            $.ajax({
-                type: "POST",
-                data: datos,
-                url: "ajax/Ordentrabajo/guardarResiduo",
-                success: function (r) {
-                    if (r == "ok") {
-                        //console.log(datos);
-                        html = '<tr role="row" class="even"><td>' + tipo_residuo + '</td><td>' + contenedor +
-                            '</td><td>' + porcent_llenado + '</td><td>' + metroscubicos + '</td></tr>';
-                        $('#primero').after(html);
-                        $('#formDatos').data('bootstrapValidator').resetForm(true);
-                        alertify.success("Agregado con exito");
-                    } else {
-                        //console.log(r);
-                        alertify.error("error al agregar");
-                    }
-                }
-            });
-        }
-    }
-</script>
-
-<!-- Script Agregar datos de registrar_inspector-->
-<script>
-    function agregarDato() {
-        datos = $('#formEstablecimiento').serialize();
-        //console.log(datos);
-        //--------------------------------------------------------------
-        if ($("#formEstablecimiento").data('bootstrapValidator').isValid()) {
-            $.ajax({
-                type: "POST",
-                data: datos,
-                url: "ajax/Registrarinspector/guardarDato",
-                success: function (r) {
-                    if (r == "ok") {
-                        //console.log(datos);
-                        $('#formEstablecimiento')[0].reset();
-                        alertify.success("Agregado con exito");
-                    }
-                    else {
-                        console.log(r);
-                        $('#formEstablecimiento')[0].reset();
-                        alertify.error("error al agregar");
-                    }
-                }
-            });
-        }
-    }
-</script>
-
-<!--Script Bootstrap Validacion.-->
 <script>
     $('#formEstablecimiento').bootstrapValidator({
         message: 'This value is not valid',
@@ -606,3 +641,127 @@
         agregarDato();
     });
 </script>
+
+
+
+
+
+<!--_____________________________________________________________-->
+<!-- FUNCION AGREGAR DATOS -->
+
+
+<script>
+    function guardar() {
+
+        datos = $('#formDatos').serialize();
+
+        //datos para mostrar a modo de ejemplo para DEMO---------------
+        //Serialize the Form
+        var values = {};
+        $.each($("#formDatos").serializeArray(), function (i, field) {
+            values[field.name] = field.value;
+        });
+        //Value Retrieval Function
+        var getValue = function (valueName) {
+            return values[valueName];
+        };
+        //Retrieve the Values
+        var tipo_residuo = getValue("tipo_residuo");
+        var contenedor = getValue("contenedor");
+        var porcent_llenado = getValue("porcent_llenado");
+        var metroscubicos = getValue("metroscubicos");
+        //--------------------------------------------------------------
+
+        if ($("#formDatos").data('bootstrapValidator').isValid()) {
+
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "ajax/Ordentrabajo/guardarResiduo",
+                success: function (r) {
+                    if (r == "ok") {
+                        //console.log(datos);
+                        html = '<tr role="row" class="even"><td>' + tipo_residuo + '</td><td>' + contenedor +
+                            '</td><td>' + porcent_llenado + '</td><td>' + metroscubicos + '</td></tr>';
+                        $('#primero').after(html);
+                        $('#formDatos').data('bootstrapValidator').resetForm(true);
+                        alertify.success("Agregado con exito");
+                    } else {
+                        //console.log(r);
+                        alertify.error("error al agregar");
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+<!--_____________________________________________________________-->
+<!-- Script Agregar datos de FORMULARIO ESTABLECIMIENTO-->
+
+<script>
+    function agregarDato() {
+        datos = $('#formEstablecimiento').serialize();
+        //console.log(datos);
+        //--------------------------------------------------------------
+        if ($("#formEstablecimiento").data('bootstrapValidator').isValid()) {
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "ajax/Registrarinspector/guardarDato",
+                success: function (r) {
+                    if (r == "ok") {
+                        //console.log(datos);
+                        $('#formEstablecimiento')[0].reset();
+                        alertify.success("Agregado con exito");
+                    }
+                    else {
+                        console.log(r);
+                        $('#formEstablecimiento')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+
+<!--_____________________________________________________________-->
+    <!-- script que muestra box de datos al dar click en boton agregar -->
+
+    <script>
+    $("#botonAgregar").on("click", function() {
+        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+        $("#nro").val(aleatorio);
+
+        $("#botonAgregar").attr("disabled", "");
+        //$("#boxDatos").removeAttr("hidden");
+        $("#boxDatos").focus();
+        $("#boxDatos").show();
+
+    });
+    </script>
+
+    <script>
+    $("#btnclose").on("click", function() {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+    });
+    </script>
+
+
+ <!--_____________________________________________________________-->
+ <!-- script Datatables -->
+ <script>
+
+    DataTable($('#tabla_recipientes'))
+
+</script>
+
+ 

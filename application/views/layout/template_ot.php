@@ -1,8 +1,9 @@
 <!-- Hecha por Fer Guardia-->
-<!--  Box 1-->
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
-        <h3>Template de Orden de Transporte</h3>
+        <h4>Template Orden de Transporte</h4>
     </div>
     <div class="box-body">
         <div class="row">
@@ -15,10 +16,19 @@
         </div>
     </div>
 </div>
-<!--  Box 2-->
+
+
+<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
+
+
+
+<!---//////////////////////////////////////--- FIN BOX 1 ---///////////////////////////////////////////////////////----->
+
+
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
-        <h4>Informacion</h4>
+    <h5>Informacion</h5> 
         <div class="box-tools pull-right">
             <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
                 data-toggle="tooltip" title="" data-original-title="Remove">
@@ -93,10 +103,26 @@
             </div>
             <br>
             <hr>
+
+
+
+
+
+<!---//////////////////////////////////////--- FIN BOX 1 ---///////////////////////////////////////////////////////----->
+
+
+<!---//////////////////////////////////////--- BOX 2 ---///////////////////////////////////////////////////////----->
+
+
+
             <div class="row">
-                <div class="box-header with-border">
-                    <h4>Transportistas</h4>
-                </div>
+                    <div class="col-md-12">
+                        <div class="box box-primary ">
+                            <div class="box-header with-border">
+                                <h4>Transportistas</h4>
+                            </div>
+                        </div>
+                    </div>
                 <br>
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
@@ -104,7 +130,7 @@
                         <select size="3" class="form-control" id="selecemp" name="empresa" required>
                             <?php
                             foreach ($empresa as $i) {
-                                echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                                echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->razon_social.'</option>';
                             }
                             ?>
                         </select>
@@ -133,6 +159,8 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-12"><hr></div>
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
@@ -284,7 +312,7 @@
                                 <select size="3" class="form-control" id="selecempp" name="empresa" required>
                                     <?php                                               
                                                 foreach ($empresa as $i) {
-                                                    echo '<option value="'.$i->nom->nom_emp.'" class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                                                    echo '<option value="'.$i->razon_social.'" class="emp" data-json=\''.json_encode($i).'\'>'.$i->razon_social.'</option>';
                                                     
                                                 }
                                                 ?>
@@ -397,6 +425,7 @@
         </div>
     </div>
 </div>
+
 <!-- script que muestra datos en modal edit -->
 <script>
     function clickedit(aux) {
@@ -423,15 +452,16 @@
         //se trae el json de la opcion seleccionada
         var json = $('#selecempp').find(':selected').data('json');
 
+        console.log(json);
         //json = JSON.parse(json);
         //se inicializa las variables
         var html_mov = " ",
             html_chof = "";
 
         //carga la variable html_mov con las movilidades disponibles de la empresa seleccionada
-        json.movilidades.movilidad.forEach(function (valor) {
-            html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
-                .dominio + "'>" + valor.nom_movil + "</option>"
+        json.vehiculos.vehiculo.forEach(function (valor) {
+            html_mov += "<option class='movilito' data-reg='" + valor.marca + "' data-dom='" + valor
+                .dominio + "'>" + valor.descripcion + "</option>"
         });
 
         //idem anterior pero con los choferes de la empresa
@@ -512,6 +542,7 @@
             });
     }
 </script>
+
 <!-- script bootstrap validator -->
 <script>
     $('#formDatos').bootstrapValidator({
@@ -754,39 +785,6 @@
 
     });
 </script>
-<!-- Script modal para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
-<script>
-    $(".emp").on('click', function () {
-
-        var json = this.dataset.json;
-
-        json = JSON.parse(json);
-
-        var html_mov = " ",
-            html_chof = "";
-
-        json.movilidades.movilidad.forEach(function (valor) {
-            html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
-                .dominio + "'>" + valor.nom_movil + "</option>"
-        });
-
-        json.choferes.chofer.forEach(function (valor) {
-            html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
-        });
-
-        $('#selecmovv').html(html_mov);
-        $("#choferr").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-
-        $("#registronn").val("");
-        $("#dominioo").val("");
-    });
-
-    $("#selecmovv").on('change', function () {
-        var sel = $(this).find(":selected");
-        $("#registronn").val(sel.data('reg'));
-        $("#dominioo").val(sel.data('dom'));
-    });
-</script>
 <!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
     $(".emp").on('click', function () {
@@ -798,10 +796,18 @@
         var html_mov = " ",
             html_chof = "";
 
-        json.movilidades.movilidad.forEach(function (valor) {
-            html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
-                .dominio + "'>" + valor.nom_movil + "</option>"
-        });
+        if(json.vehiculos.vehiculo == undefined){
+        
+            html_mov += "<option disabled class='movilito' data-reg='' data-dom=''>Sin movilidades</option>";
+            $("#registron").val("-");
+            $("#dominio").val("-");
+        }else{
+            json.vehiculos.vehiculo.forEach(function (valor) {
+                html_mov += "<option class='movilito' data-reg='" + valor.marca + "' data-dom='" + valor
+                .dominio + "'>" + valor.descripcion + "</option>";
+            });
+            
+        }
 
         json.choferes.chofer.forEach(function (valor) {
             html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"

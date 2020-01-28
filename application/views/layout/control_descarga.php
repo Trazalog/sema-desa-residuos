@@ -4,7 +4,7 @@
     <div class="col-xs-12">
         <div class="box box-primary animated fadeInLeft">
             <div class="box-header with-border">
-                <h3>Control de descarga</h3>
+                <h4>Control de descarga</h4>
             </div>
             <div class="box-body">
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -55,7 +55,13 @@
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
                                                 title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span
                                                     class="glyphicon glyphicon-paperclip"
-                                                    aria-hidden="true"></span></button></td>
+                                                    aria-hidden="true"></span></button>
+                                            <button type="button" title="cerrar sector" class="btn btn-default btn-circle" >
+                                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                            </button>
+                                            
+               
+                                        </td>
                                         <td>7</td>
                                         <td id="patente0">asd 234</td>
                                         <td>Generador 2</td>
@@ -71,7 +77,11 @@
                                                     aria-hidden="true"></span></button>&nbsp<button type="button"
                                                 title="adjuntar" class="btn btn-primary btn-circle btnadjuntar"><span
                                                     class="glyphicon glyphicon-paperclip"
-                                                    aria-hidden="true"></span></button></td>
+                                                    aria-hidden="true"></span></button>
+                                                    <button type="button" title="cerrar sector" class="btn btn-default btn-circle" >
+                                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                            </button>
+                                        </td>
                                         <td>8</td>
                                         <td id="patente1">dsa 213</td>
                                         <td>Generador 4</td>
@@ -103,7 +113,7 @@
 <!--  Box 2 accion click boton vuelco-->
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
-        <h4>Certificado de vuelco</h4>
+        <h5>Certificado de vuelco</h5>
         <div class="box-tools pull-right">
             <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
                 data-toggle="tooltip" title="" data-original-title="Remove">
@@ -163,14 +173,7 @@
                     <small for="agregar" class="form-label">Adjuntar imagen</small>
                 </div>
             </div>
-            <div class="col-md-3 div-xs-12 text-center">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default btn-circle" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                    </button><br>
-                    <small for="agregar" class="form-label">Cerrar sector</small>
-                </div>
-            </div>
+            
             <div class="col-md-3 div-xs-12 text-center">
                 <div class="form-group">
                     <button type="submit" class="btn btn-default btn-circle" aria-label="Left Align">
@@ -263,7 +266,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-blue">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -308,7 +311,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-blue">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
