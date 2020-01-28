@@ -27,10 +27,10 @@
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="lib/dist/css/skins/_all-skins.min.css">
 
-    <link rel="stylesheet" href="<?php base_url();?>lib/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>lib/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css">
 
     <link rel="stylesheet"
-        href="<?php base_url()?>lib/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        href="<?php echo base_url();?>lib/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
         <!-- <link rel="stylesheet"
         href="<?php //base_url()?>lib/bower_components/datatables1/datatables.css"> -->
@@ -44,26 +44,26 @@
         
 
 
-    <link rel="stylesheet" href="<?php base_url()?>lib/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>lib/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-    <link rel="stylesheet" href="<?php base_url()?>lib/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>lib/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 
     <!-- Bootstrap datetimepicker -->
-    <link rel="stylesheet" href="<?php base_url();?>lib/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>lib/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css">
 
     <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="<?php base_url();?>lib/plugins/iCheck/all.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>lib/plugins/iCheck/all.css">
 
     <link rel="stylesheet" href="<?php echo base_url();?>lib/bootstrapValidator/bootstrapValidator.min.css" />
 
     <!-- alertifyjs -->
 
-    <link rel="stylesheet" href="<?php base_url();?>lib/alertify/css/alertify.css">
-    <link rel="stylesheet" href="<?php base_url();?>lib/alertify/css/themes/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>lib/alertify/css/alertify.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>lib/alertify/css/themes/bootstrap.css">
 
     <!-- animate.css -->
 
-    <link rel="stylesheet" href="<?php base_url();?>lib/animate/animate.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>lib/animate/animate.css">
 
     <!-- Google Font -->
     <link rel="stylesheet"
@@ -100,7 +100,7 @@
 
                             <?php
 
-                #$this->load->view('layout/perfil');
+                $this->load->view('layout/perfil');
 
                 ?>
 

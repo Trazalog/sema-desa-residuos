@@ -9,6 +9,9 @@ class Dash extends CI_Controller {
    }
    function index(){
      
+
+     # var_dump($this->session->userdata());die;
+
       $data['menu'] = menu(getJson("menu"));
     
       $this->load->view('layout/Admin',$data);
