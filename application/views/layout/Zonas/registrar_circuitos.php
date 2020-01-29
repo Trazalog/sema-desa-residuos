@@ -191,7 +191,7 @@
 
   
                 <div class="col-md-12">
-                <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Circuito()">Agregar</button>
+                <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Circuito()">GUARDAR</button>
                 </div>
 
    
@@ -780,60 +780,6 @@
 
 
 
-<!--_____________________________________________--> 
-<!-- Script Agregar datos -->
-<!-- 
-<script>
-function Guardar_Circuito(){
-    $('#formCircuitos').on('submit', function(e){
-    e.preventDefault();
-    var me = $(this);
-    if ( me.data('requestRunning') ) {return;}
-    me.data('requestRunning', true);
-    datos=$('#formCircuitos').serialize();
-        //datos para mostrar a modo de ejemplo para DEMO---------------
-        //Serialize the Form
-        var values = {};
-        $.each($("#formCircuitos").serializeArray(), function (i, field) {
-            values[field.name] = field.value;
-        });
-        //Value Retrieval Function
-        var getValue = function (valueName) {
-            return values[valueName];
-        };
-        //Retrieve the Values
-        var nombre = getValue("nombre");
-        var descripcion = getValue("descripcion");
-        //--------------------------------------------------------------
-    $.ajax({
-                type:"POST",
-                data:datos,
-                url:"ajax/Registrarcircuito/guardarDato",
-                success:function(r){
-                    if(r == "ok"){
-                        //console.log(datos);
-                        html = '<tr role="row" class="even"><td>'+nombre+'</td><td>'+descripcion+'</td><td class="sorting_1"><button type="button" title="ok" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td></tr>';
-                        $('#primero').after(html);
-                        $('#formCircuitos')[0].reset();
-                        $('#selecmov').find('option').remove();
-                        $("#boxDatos").hide();
-                        $("#botonAgregar").removeAttr("disabled");
-                        alertify.success("Agregado con exito");
-                    }
-                    else{
-                        console.log(r);
-                        $('#formCircuitos')[0].reset();
-                        $('#selecmov').find('option').remove();
-                        alertify.error("error al agregar");
-                    }
-                },
-                complete: function() {
-                    me.data('requestRunning', false);
-                }
-            });
-    });
-}
-</script> -->
 
 
 

@@ -102,15 +102,17 @@ function Listar_OrdenesT()
 
 // Funcion Guardar Orden
 
-function Guardar_OrdenT($data){
+function Guardar_SolicitudOrden($data){
 
+    $post["post_solicitudorden"] = $data;
+        log_message('DEBUG','#: '.json_encode($post))
     $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
     $aux =json_decode($aux["status"]);
     return $aux;	
 
 }
 
-function Asignar_Transportista($data){
+function Asignar_($data){
 
 $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
 $aux =json_decode($aux["status"]);

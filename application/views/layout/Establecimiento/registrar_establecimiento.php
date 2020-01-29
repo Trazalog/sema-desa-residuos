@@ -196,10 +196,8 @@
 
 <div class="box box-primary">
 
+    
 
-
-
-    <!--__________________TABLA___________________________-->
 
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -207,48 +205,15 @@
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6"></div>
             </div>
-            <div class="row">
-                <div class="col-sm-12 table-scroll">
 
-                <!--__________________HEADER TABLA___________________________-->
-                <table id="tabla_establecimiento" class="table table-bordered table-striped">
-                        <thead class="thead-dark" bgcolor="#eeeeee">
 
-                            <th>Acciones</th>
-                            <th>Nombre</th>
-                            <th>Estado</th>
-                            <th>Localidad</th>
-                            <th>Fecha de alta</th>
-                            
 
-                        </thead>
+            <div class="row"><div class="col-sm-12 table-scroll" id="cargar_tabla">
 
-                        <!--__________________BODY TABLA___________________________-->
 
-                        <tbody>
-                        <tr>
-                            <td>
-                            <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
-                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                            
-                            </td>
-                            <td>DATO</td>
-                            <td> DATO</td>
-                            <td>DATO</td>
-                            <td>DATO</td>
-                        </tr>
-                        
-                           
-                        </tbody>
-                    </table>
 
-                    <!--__________________FIN TABLA___________________________-->
                 </div>
-            </div><br>
-
-        </div>
-    </div>
+            </div>
 
     <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
 
@@ -587,44 +552,69 @@
 
 <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
-
-<!-- Script Agregar datos de registrar_inspector-->
+<!--_____________________________________________________________-->
+<!--GUARDAR.-->
 <script>
-function agregarDato(){
-    console.log("entro a agregar datos");
-    $('#formEstablecimiento').on('submit', function(e){
-    e.preventDefault();
-    var me = $(this);
-    if ( me.data('requestRunning') ) {return;}
-    me.data('requestRunning', true);
-    datos=$('#formEstablecimiento').serialize();
-    console.log(datos);
+    $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Establecimiento/Lista_establecimientos");
+    function Guardar_Zona() {
+
+        // datos = $('#formZonas').serialize();
+
+        var datos = new FormData($('#formEstablecimiento')[0]);
+        datos = formToObject(datos);
+        datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
+        datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
+        console.log(datos);
+        
+        
+        
+
         //--------------------------------------------------------------
 
-    $.ajax({
-                type:"POST",
-                data:datos,
-                url:"ajax/Registrarinspector/guardarDato",
-                success:function(r){
-                    if(r == "ok"){
-                        //console.log(datos);
-                        $('#formEstablecimiento')[0].reset();
+        if ($("#formEstablecimiento").data('bootstrapValidator').isValid()) {
+            $.ajax({
+                type: "POST",
+                data: {datos},
+                url: "general/Estructura/Establecimiento/Guardar_Establecimiento",
+                success: function (r) {
+                    console.log(r);
+                    if (r == "ok") {
+                        // //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
+                        // var t = $('#tabla_infracciones').DataTable();
+                        // var fila = t.row.add([
+                        //     N° Acta,
+                        //     Tipo de infraccion,
+                        //     Inspector,
+                        //     Destino,
+                    
+                        //     //agrega los iconos correspondientes
+                        //     '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
+                        // ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
+                        // t.draw(false);
+
+                        // aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
+                        // localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
+
+                        // $('#FormInfraccion').data('bootstrapValidator').resetForm();
+                        // $("#FormInfraccion")[0].reset();
+                        // $('#selecmov').find('option').remove();
+                        // $('#chofer').find('option').remove();
+                        // $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
+                        // $("#boxDatos").hide(500);
+                        // $("#botonAgregar").removeAttr("disabled");
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Establecimiento/Lista_establecimientos");
                         alertify.success("Agregado con exito");
-                    }
-                    else{
-                        console.log(r);
-                        $('#formEstablecimiento')[0].reset();
+                    } else {
+                        //console.log(r);
                         alertify.error("error al agregar");
                     }
-                },
-                complete: function() {
-                    me.data('requestRunning', false);
                 }
-            });            
-    });    
-}
+            });
+        }
+    }
 </script>
 
+<!--_____________________________________________________________-->
 <!--Script Bootstrap Validacion.-->
  <script>
       $('#formEstablecimiento').bootstrapValidator({
@@ -782,8 +772,5 @@ $("#btnclose").on("click", function() {
 
 
 
-<script>
-DataTable($('#tabla_establecimiento'))
-</script>
 
 
