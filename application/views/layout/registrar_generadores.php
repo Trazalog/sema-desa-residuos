@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <!--_____________________________________________-->
+    <!--____________________________________________________________________-->
 
     <div class="box-body">
         <form class="formGeneradores" id="formGeneradores"method="POST" autocomplete="off" >
@@ -48,7 +48,7 @@
                     <input type="text" class="form-control" name="Nombre_razon" id="Nombre/Razon social">
                     </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--CUIT-->
                 <div class="form-group">
@@ -60,7 +60,7 @@
                     <input type="text" class="form-control"  name="Cuit" id="CUIT">
                     </div>  
                 </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Zona-->
                 <div class="form-group">
@@ -79,7 +79,7 @@
                     </select>
                     </div>  
                 </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Rubro-->
                 <div class="form-group">
@@ -91,7 +91,7 @@
                     <input type="text" class="form-control"  name="Rubro" id="Rubro">
                     </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Tipo-->
                 <div class="form-group">
@@ -110,7 +110,7 @@
                     </select>
                     </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -125,7 +125,7 @@
                     <input type="text" class="form-control"  name="Domicilio" id="Domicilio">
                     </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Departamento-->
                 <div class="form-group">
@@ -146,7 +146,7 @@
                         </select>
                     </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Numero de registro-->
                 <div class="form-group">
@@ -158,7 +158,7 @@
                     <input type="text" class="form-control" name="Numero_registro" id="Numero de registro">
                     </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Tipo de residuos-->
                 <div class="form-group">
@@ -177,7 +177,7 @@
                             </select>
                         </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
@@ -185,7 +185,7 @@
                 <!--Boton de guardado-->
                 <br>
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
             </form>
         </div>
@@ -232,7 +232,7 @@
                             <td>DATO</td>
                         </tr>
                         </tbody>
-                    <!--_____________________________________________________________-->
+                    <!--____________________________________________________________________-->
                     </table>
                     <!--__________________FIN TABLA___________________________-->
 
@@ -257,7 +257,7 @@
             <!--__________________ FORMULARIO MODAL ___________________________-->
             <form method="POST" autocomplete="off" id="formGeneradoresEdit" class="registerForm">
                 <div class="modal-body">
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Nombre/Razon social-->
                     <div class="row">
@@ -268,7 +268,7 @@
                             </div>
                         </div>                        
                     </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Registro-->
                 <div class="row">
@@ -277,7 +277,7 @@
                                 <label for="CUIT">CUIT:</label>
                                 <input type="text" class="form-control" id="E_CUIT" name="e_cuit">
                             </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Tipo de residuo-->
                             <div class="form-group">
@@ -292,7 +292,7 @@
                             </select>
                             </div>
                          </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Descripcion-->
                         <div class="col-md-6">
@@ -300,7 +300,7 @@
                                 <label for="Domicilio" >Domicilio:</label>
                                 <input type="text" class="form-control" id="E_Domicilio" name="e_omicilio">
                             </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Resolucion-->
                             <div class="form-group">
@@ -316,7 +316,7 @@
                             </div>
                         </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Fecha de Alta-->
                 <div class="row">                        
@@ -328,7 +328,7 @@
                             <label for="Rubro" >Rubro:</label>
                             <input type="text" class="form-control" id="E_Rubro" name="e_rubro">
                         </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Fecha de Baja-->
                         <div class="col-md-6">
@@ -384,7 +384,7 @@
             <form method="GET" autocomplete="off" id="formGeneradoresInfo" class="registerForm">
 
                 <div class="modal-body">
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Nombre/Razon social-->
                     <div class="row">
@@ -395,7 +395,7 @@
                             </div>
                         </div>                        
                     </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Registro-->
                 <div class="row">
@@ -404,7 +404,7 @@
                                 <label for="CUIT" name="Cuit">CUIT:</label>
                                 <input type="text" class="form-control" id="CUIT" name="Cuit" readonly>
                             </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Tipo de residuo-->
                             <div class="form-group">
@@ -412,7 +412,7 @@
                             <input type="text" class="form-control" id="Dpto" readonly>
                             </div>
                          </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Descripcion-->
                         <div class="col-md-6">
@@ -420,7 +420,7 @@
                                 <label for="Domicilio" name="Domicilio">Domicilio:</label>
                                 <input type="text" class="form-control" id="Domicilio" readonly>
                             </div>
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <!--Resolucion-->
                             <div class="form-group">
@@ -430,39 +430,39 @@
                         </div>
                 </div>
 
-                <!--_____________________________________________-->
+                <!--____________________________________________________________________-->
 
                 <div class="row"> 
 
-                        <!--_____________________________________________-->
+                        <!--____________________________________________________________________-->
 
                         <!--Numero de registro-->
                         <div class="col-md-6">
                             <label for="Numero de registro" name="Numero_registro">Numero de registro:</label>
                             <input type="text" class="form-control" id="Numero de registro" readonly>                            
                         </div>
-                        <!--_____________________________________________-->
+                        <!--____________________________________________________________________-->
 
                         <!--Rubro-->
                         <div class="col-md-6">
                             <label for="Rubro" name="Rubro">Rubro:</label>
                             <input type="text" class="form-control" id="Rubro" readonly>
                         </div>                
-                        <!--_____________________________________________-->
+                        <!--____________________________________________________________________-->
 
                         <!--Tipo-->
                         <div class="col-md-6">
                             <label for="TipoG" name="Tipo">Tipo:</label>
                             <input type="text" class="form-control" id="TipoG" readonly>
                         </div>
-                        <!--_____________________________________________-->
+                        <!--____________________________________________________________________-->
 
                         <!--Tipo de residuos-->
                         <div class="col-md-6">
                             <label for="Tipo de residuos" name="Tipo_Residuo">Tipo de residuos:</label>
                             <input type="text" class="form-control" id="Tipo de residuos"readonly >
                         </div>
-                        <!--_____________________________________________-->
+                        <!--____________________________________________________________________-->
 
                     </div>
                 </div>
@@ -485,202 +485,192 @@
 
 <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
-<!--_____________________________________________________________-->
+<!--____________________________________________________________________-->
 
 <!-- script modal -->
 <script>
-$("#btnview").on("click", function() {
-    $("#btnadd").removeClass("active");
-    $("#btnview").addClass("active");
-    $("#tablamodal").show();
-    $("#formadd").hide();
-    $("#btnsave").hide();
-});
+    $("#btnview").on("click", function() {
+        $("#btnadd").removeClass("active");
+        $("#btnview").addClass("active");
+        $("#tablamodal").show();
+        $("#formadd").hide();
+        $("#btnsave").hide();
+    });
 
-$("#btnadd").on("click", function() {
-    $("#btnadd").addClass("active");
-    $("#btnview").removeClass("active");
-    $("#formadd").show();
-    $("#tablamodal").hide();
-    $("#btnsave").show();
-});
+    $("#btnadd").on("click", function() {
+        $("#btnadd").addClass("active");
+        $("#btnview").removeClass("active");
+        $("#formadd").show();
+        $("#tablamodal").hide();
+        $("#btnsave").show();
+    });
 </script>
 
 <!---/////////////////////////--- FUNCIONES - AJAX ---/////////////////////////----->
 
-<!--_____________________________________________________________-->
+<!--____________________________________________________________________-->
 
 <!-- Script Agregar datos de registrar_generadores-->
-            <script>
-            function agregarDato() {
-                console.log("entro a agregar datos");
-                $('#formGeneradores').on('submit', function(e) {
+<script>
+    function agregarDato() {
+        console.log("entro a agregar datos");
+        $('#formGeneradores').on('submit', function(e) {
 
-                    e.preventDefault();
-                    var me = $(this);
-                    if (me.data('requestRunning')) {
-                        return;
-                    }
-                    me.data('requestRunning', true);
-
-                    datos = $('#formGeneradores').serialize();
-                    console.log(datos);
-                    //--------------------------------------------------------------
-
-
-                    $.ajax({
-                        type: "POST",
-                        data: datos,
-                        url: "ajax/Registrargenerador/guardarDato",
-                        success: function(r) {
-                            if (r == "ok") {
-                                //console.log(datos);
-                                $('#formGeneradores')[0].reset();
-                                alertify.success("Agregado con exito");
-                            } else {
-                                console.log(r);
-                                $('#formGeneradores')[0].reset();
-                                alertify.error("error al agregar");
-                            }
-                        },
-                        complete: function() {
-                            me.data('requestRunning', false);
-                        }
-                    });
-
-                });
-
+            e.preventDefault();
+            var me = $(this);
+            if (me.data('requestRunning')) {
+                return;
             }
-            </script>
+            me.data('requestRunning', true);
+
+            datos = $('#formGeneradores').serialize();
+            console.log(datos);
+
+            //--------------------------------------------------------------
+
+            $.ajax({
+                type: "POST",
+                data: datos,
+                url: "ajax/Registrargenerador/guardarDato",
+                success: function(r) {
+                    if (r == "ok") {
+                        //console.log(datos);
+                        $('#formGeneradores')[0].reset();
+                        alertify.success("Agregado con exito");
+                    } else {
+                        console.log(r);
+                        $('#formGeneradores')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
+                }
+            });
+        });
+    }
+</script>
 
 <!---/////////////////////////--- FIN FUNCIONES - AJAX ---/////////////////////////----->
 
 <!---/////////////////////////--- BOOTSRAP VALIDATOR---/////////////////////////----->
 
-<!--_____________________________________________________________-->
+<!--____________________________________________________________________-->
 
 <!--Script Bootstrap Validacion.FORMULARIO GENERAL -->
-            <script>
-            $('#formGeneradores').bootstrapValidator({
-                message: 'This value is not valid',
-                /*feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },*/
-                //excluded: ':disabled',
-                fields: {
-                    Nombre_razon: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
+<script>
+    $('#formGeneradores').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            Nombre_razon: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
                     },
-
-                    Cuit: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /^(0|[1-9][0-9]*)$/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    Zona: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
-                    },
-
-                    Rubro: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    Tipo: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
-                    },
-
-                    Domicilio: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    Departamento: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
-                    },
-
-                    Numero_registro: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /^(0|[1-9][0-9]*)$/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    Tipo_Residuo: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
                     }
                 }
-            }).on('success.form.bv', function(e) {
-                e.preventDefault();
-                //guardar();
-            });
-            </script>
-<!--_____________________________________________________________-->
+            },
+            Cuit: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Zona: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            Rubro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Tipo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            Domicilio: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Departamento: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            Numero_registro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Tipo_Residuo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            }
+        }
+    }).on('success.form.bv', function(e) {
+        e.preventDefault();
+        //guardar();
+    });
+</script>
+<!--____________________________________________________________________-->
 
 <!--Script Bootstrap Validacion.FORMULARIO MODAL EDITAR -->
 <script>
@@ -797,7 +787,7 @@ $("#btnadd").on("click", function() {
 </script>
 <!---/////////////////////////--- FIN BOOTSRAP VALIDATOR---/////////////////////////----->
 
-<!--_____________________________________________________________-->
+<!--____________________________________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
@@ -822,11 +812,10 @@ $("#btnadd").on("click", function() {
         $('#chofer').find('option').remove();
     });
 </script>
-<!--_____________________________________________________________-->
+<!--____________________________________________________________________-->
 
 <!-- script Datatables -->
 <script>
     DataTable($('#tabla_generadores'))
 </script>
-
- 
+<!--____________________________________________________________________-->
