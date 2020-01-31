@@ -34,80 +34,140 @@
             </button>
         </div>
     </div>
+    
 
-    <!--__________________________________________________________________________________________-->
-
+    <!--_____________________________________________-->
+    
     <div class="box-body">
-        <form class="formZonas" id="formZonas">
-            <div class="col-md-12">
-                <div class="col-md-6">
+    
+        <form class="formZonas" id="formZonas" method="POST" autocomplete="off" class="registerForm">
+           
+                <div class="col-md-12">
 
-                    <!--Campo Nombre-->
-                    <div class="form-group">
-                        <label for="Nombre" >Nombre:</label>
-                        <input type="text" name="Nombre" class="form-control" id="Nombre">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                        <!--_____________________________________________-->
+                        <!--Nombre-->
+
+                        <div class="form-group">
+                            <label for="Nombre" >Nombre:</label>
+                            <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-check"></i>
+                            </div>
+                            <input type="text" name="Nombre" class="form-control" id="Nombre">
+                            </div>
+                        </div>
+
                     </div>
                     <!--__________________________________________________________________________________________-->
 
-                    <!--Campo Departamento-->
-                    <div class="form-group">
-                        <label for="Dpto" >Departamento:</label>
-                        <select class="form-control select2 select2-hidden-accesible" name="Dpto" id="Dpto">
-                            <option value="" disabled selected>-Seleccione opcion-</option>
-                            <?php
-                        foreach ($Dpto as $i) {
-                            echo '<option>'.$i->nombre.'</option>';
-                        }
-                        ?>
-                        </select>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                        <!--_____________________________________________-->
+                        <!--Departamento-->
+
+                        <div class="form-group">
+                            <label for="Dpto" >Departamento:</label>
+                            <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-check"></i>
+                            </div>
+                            <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                            foreach ($Dpto as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                            ?>
+                            </select>
+                            </div>
+                        </div>
+
                     </div>
                     <!--__________________________________________________________________________________________-->
+
 
                 </div>
-                <div class="col-md-6">
 
-                    <!--Campo Circuito - Recorrido-->
-                    <div class="form-group">
+                
+
+                    <!--_____________________________________________-->
+                    <!--Circuito-->
+
+                    <!-- <div class="form-group">
                         <label for="CircR" >Circuito / Recorrido:</label>
-                        <select class="form-control select2 select2-hidden-accesible" name="CircR" id="CircR">
+                        <div class="input-group date">                        
+                        <select class="form-control select2 select2-hidden-accesible" name="Circuito_Recorrido" id="CircR">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                         foreach ($CircR as $i) {
                             echo '<option>'.$i->nombre.'</option>';
                         }
                         ?>
+                        
                         </select>
-                    </div>
-                    <!--__________________________________________________________________________________________-->
+                        <span class="input-group-btn">
+                            <button class='btn btn-primary' data-toggle="modal" data-target="#modalCircuito">
+                                <i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                        </div>
+                        
+                    </div> -->
 
-                    <!--Campo Descripcion-->
+                    <!--_____________________________________________-->
+
+                <div class="col-md-12"> 
+
+                    <!--_____________________________________________-->
+                    <!--Descripcion--> 
+
                     <div class="form-group">
                         <label for="Descripcion" >Descripcion:</label>
-                        <input type="text" name="Descripcion" class="form-control" id="Descripcion">
+                        <textarea style="resize: none;" type="text" class="form-control input-sm" rows="5" id="Descripcion"
+                            name="descripcion" required></textarea>
+                        
                     </div>
                     </div>
                     <!--__________________________________________________________________________________________-->
 
-                    <div class="col-md-12"><hr></div>
-                    <div class="col-md-6">
+                <!--_____________________________________________-->
+            
+            <div class="col-md-12"><hr></div>
+
+                <!--_____________________________________________-->
+                <!--Adjuntar imagen--> 
+
+                <div class="col-md-6">
 
                     <!--Campo Cargar Archivo-->
                     <form action="cargar_archivo" method="post" enctype="multipart/form-data">
                         <input type="file" name="upload">
                     </form>
-                    <!--__________________________________________________________________________________________-->
-
-                    </div>
-                    </div>
-                    <div class="col-md-12"><hr></div>
-
-                    <!--Boton de Guardado-->
-                    <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-                    <!--__________________________________________________________________________________________-->
-                
                 </div>
+
+                <!--_____________________________________________-->
+
+                <div class="col-md-12"><hr></div>
+
+                <!--_____________________________________________-->
+                <!--Boton Guardar--> 
+            
+            <div class="col-md-12">
+
+            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+            
             </div>
-        </form>
+                
+        </div>
+
+            
+
+            
+
+            
+
+
     </div>
 </div>
 
@@ -147,7 +207,7 @@
                         <tr>
                             <td>
                             <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                            <!-- <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp -->
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
                             <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
                             </td>
                             <td>DATO</td>
@@ -261,6 +321,106 @@
 
 <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 
+ <!---//////////////////////////////////////--- MODAL CIRCUITOS ---///////////////////////////////////////////////////////----->
+
+    
+ <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Circuitos Asignados</h5>
+            </div>
+
+<!--__________________________________________________________________________________________-->
+
+            <div class="modal-body">
+
+            <!--___________________________FORMULARIO MODAL___________________________-->
+
+            <form method="POST" autocomplete="off" id="" class="registerForm">
+
+
+                <div class="modal-body">                
+
+                    <div class="row">
+                
+                        <div class="col-sm-12 ">
+
+                            <!--___________________________HEADER TABLA___________________________-->
+
+
+                            <table id="tabla_circuitos" class="table table-bordered table-striped table-scroll">
+                                <thead class="thead-dark" bgcolor="#eeeeee">
+
+                                    
+                                    <th>Codigo</th>
+                                    <th>Chofer</th>
+                                    <th>Vehiculo</th>
+                                    <th>Tipo de residuo</th>
+                                    
+
+                                </thead>
+
+                                <!--___________________________BODY TABLA___________________________-->
+
+                                <tbody>
+                                <tr>
+                                    <!-- <td>
+                                    <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                                    <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                                    <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalPunto"><span class="glyphicon glyphicon-record" aria-hidden="true"></span></button>&nbsp
+                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                                    
+                                    </td> -->
+                                    <td>DATO</td>
+                                    <td> DATO</td>
+                                    <td>DATO</td>
+                                    <td>DATO</td>
+                                </tr>
+                                
+                                
+                                </tbody>
+                            </table>
+
+                            <!--___________________________FIN TABLAa___________________________-->
+
+                        </div>
+                    </div>
+                
+                     <br>          
+                   
+                </div>
+                
+            </form>
+
+            <!--___________________________FIN FORMULARIO MODAL___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL CIRCUITOS ---///////////////////////////////////////////////////////----->
+
+
+<!--__________________________________________________________________________________________-->
+
+
+
+
+
+
+            <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 <!--__________________________________________________________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
@@ -269,24 +429,24 @@
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
+
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").focus();
         $("#boxDatos").show();
+
     });
 </script>
 
-<!--__________________________________________________________________________________________-->
-
 <script>
-    $("#btnclose").on("click", function() {
-    $("#boxDatos").hide(500);
-    $("#botonAgregar").removeAttr("disabled");
-    $('#formDatos').data('bootstrapValidator').resetForm();
-    $("#formDatos")[0].reset();
-    $('#selecmov').find('option').remove();
-    $('#chofer').find('option').remove();
-    });
+        $("#btnclose").on("click", function() {
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formDatos').data('bootstrapValidator').resetForm();
+        $("#formDatos")[0].reset();
+        $('#selecmov').find('option').remove();
+        $('#chofer').find('option').remove();
+        });
 </script>
 <!--__________________________________________________________________________________________-->
 
@@ -302,7 +462,6 @@
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").focus();
         $("#boxDatos").show();
-
     });
 </script>
 ​<!--__________________________________________________________________________________________-->
@@ -321,7 +480,7 @@
 
             //--------------------------------------------------------------
 
-        $.ajax({
+            $.ajax({
                     type:"POST",
                     data:datos,
                     url:"ajax/Registrarzona/guardarDato",
@@ -369,7 +528,7 @@
                     }
                 }
             },
-            Dpto: {
+            Departamento: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -381,7 +540,7 @@
                     }
                 }
             },
-            CircR: {
+            Circuito_Recorrido: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -415,13 +574,12 @@
         document.getElementById('imgarch').setAttribute("data-required","false");
     }
 </script>
-
 <!--__________________________________________________________________________________________-->
 
+<!--DataTable script-->
 <script>
     DataTable($('#tabla_zonas'))
+    DataTable($('#tabla_circuitos'))
+    tabla_circuitos
 </script>
-
 <!--__________________________________________________________________________________________-->
-
-</body>

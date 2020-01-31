@@ -1114,4 +1114,9 @@ DataTable($('#tipo_residuos'))
 
 </script>
 
+<script>
+
+
+
+
     

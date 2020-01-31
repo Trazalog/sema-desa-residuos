@@ -40,7 +40,8 @@
 
     <div class="box-body">
         <form class="formInspectores" id="formInspectores">
-        <div class="col-md-6">
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
 
             <!--_____________________________________________-->
             <!--Nombre-->
@@ -94,7 +95,7 @@
             
 
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-6 col-xs-12">
 
             <!--DNI-->
                 <div class="form-group">
@@ -232,7 +233,7 @@
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+            <form method="POST" autocomplete="off" id="frmInspecotresEdit" class="registerForm">
 
 
                 <div class="modal-body">
@@ -241,7 +242,7 @@
 
                     <div class="row">                        
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
 
                                 <!--_____________________________________________-->
                                 <!--Nombre-->
@@ -252,7 +253,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </div>
-                                    <input type="text" class="form-control" id="Nombre" name="nombre">
+                                    <input type="text" class="form-control" id="E_Nombre" name="e_nombre">
                                     </div>
                                 </div>
 
@@ -265,7 +266,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </div>
-                                    <input type="text" class="form-control" id="Apellido" name="apellido">
+                                    <input type="text" class="form-control" id="E_Apellido" name="e_apellido">
                                     </div>
                                 </div>
 
@@ -278,7 +279,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa  fa-map-marker"></i>
                                         </div>                    
-                                    <input type="text" class="form-control" id="Direccion" name="descripcion">
+                                    <input type="text" class="form-control" id="E_Direccion" name="e_descripcion">
                                     </div>
                                 </div>
 
@@ -291,7 +292,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </div> 
-                                    <input type="text" class="form-control" id="Email" name="email">
+                                    <input type="text" class="form-control" id="E_Email" name="e_email">
                                     </div>
                                 </div>
 
@@ -303,7 +304,7 @@
                             <!--**************************************************-->
                     
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
 
                                 <!--_____________________________________________-->
                                 <!--Resolucion-->
@@ -314,7 +315,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa  fa-map-marker"></i>
                                         </div> 
-                                    <input type="text" class="form-control" id="Departamento" name="departamento">
+                                    <input type="text" class="form-control" id="E_Departamento" name="e_departamento">
                                     </div>
                                 </div>
 
@@ -327,7 +328,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-bus"></i>
                                         </div> 
-                                    <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada">
+                                    <input type="text" class="form-control" id="E_MovAsignada" name="e_movilidadasignada">
                                     </div>
                                 </div>
 
@@ -340,7 +341,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa  fa-credit-card"></i>
                                         </div>
-                                    <input type="text" class="form-control" id="DNI" name="dni">
+                                    <input type="text" class="form-control" id="E_DNI" name="e_dni">
                                     </div>                                
                                 </div>
 
@@ -397,7 +398,7 @@
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+            <form method="POST" autocomplete="off" id="frmInspecotresInfo" class="registerForm">
 
 
                 <div class="modal-body">
@@ -406,7 +407,7 @@
 
                     <div class="row">                        
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
 
                                 <!--_____________________________________________-->
                                 <!--Nombre-->
@@ -417,7 +418,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </div>
-                                    <input type="text" class="form-control" id="Nombre" name="nombre" readonly>
+                                    <input type="text" class="form-control" id="I_Nombre" name="i_nombre" readonly>
                                     </div>
                                 </div>
 
@@ -430,7 +431,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </div>
-                                    <input type="text" class="form-control" id="Apellido" name="apellido" readonly>
+                                    <input type="text" class="form-control" id="I_Apellido" name="i_apellido" readonly>
                                     </div>
                                 </div>
 
@@ -443,7 +444,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa  fa-map-marker"></i>
                                         </div>                    
-                                    <input type="text" class="form-control" id="Direccion" name="descripcion" readonly>
+                                    <input type="text" class="form-control" id="I_Direccion" name="i_descripcion" readonly>
                                     </div>
                                 </div>
 
@@ -456,7 +457,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </div> 
-                                    <input type="text" class="form-control" id="Email" name="email" readonly>
+                                    <input type="text" class="form-control" id="I_Email" name="i_email" readonly>
                                     </div>
                                 </div>
 
@@ -468,7 +469,7 @@
                             <!--**************************************************-->
                     
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
 
                                 <!--_____________________________________________-->
                                 <!--Resolucion-->
@@ -479,7 +480,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa  fa-map-marker"></i>
                                         </div> 
-                                    <input type="text" class="form-control" id="Departamento" name="departamento" readonly>
+                                    <input type="text" class="form-control" id="I_Departamento" name="i_departamento" readonly>
                                     </div>
                                 </div>
 
@@ -492,7 +493,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-bus"></i>
                                         </div> 
-                                    <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada" readonly>
+                                    <input type="text" class="form-control" id="I_MovAsignada" name="i_movilidadasignada" readonly>
                                     </div>
                                 </div>
 
@@ -505,7 +506,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-credit-card"></i>
                                         </div>
-                                    <input type="text" class="form-control" id="DNI" name="dni" readonly>
+                                    <input type="text" class="form-control" id="I_DNI" name="i_dni" readonly>
                                     </div>                                
                                 </div>
 
@@ -515,12 +516,7 @@
 
                                 
                         </div>
-                    
-
-                    
-                    
-                    
-                    
+                 
                     
                 </div>
                 
@@ -569,6 +565,7 @@ $("#btnadd").on("click", function() {
 </script>
 
 
+<!---/////////////////////////--- FUNCIONES - AJAX ---/////////////////////////----->
 
 <!--_____________________________________________________________-->
 <!-- Script Agregar datos de registrar_inspector-->
@@ -609,8 +606,15 @@ function agregarDato(){
 }
 </script>
 
+
+<!---/////////////////////////--- FUNCIONES - FIN AJAX ---/////////////////////////----->
+
+
+<!---/////////////////////////--- BOOTSRAP VALIDATOR---/////////////////////////----->
+
+
 <!--_____________________________________________________________-->
-<!--Script Bootstrap Validacion.-->
+<!--Script Bootstrap Validacion. FORMULARIO GENERAl-->
 
 <script>
       $('#formInspectores').bootstrapValidator({
@@ -704,6 +708,104 @@ function agregarDato(){
   });
 </script>
 
+<!--_____________________________________________________________-->
+<!--Script Bootstrap Validacion. MODAL EDITAR-->
+
+<script>
+      $('#frmInspecotresEdit').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      fields: {
+            e_nombre: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            e_apellido: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            e_descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            e_email: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            e_dni: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            e_departamento: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_movilidadasignada: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+        }
+  }).on('success.form.bv', function(e){
+      e.preventDefault();
+      guardar();
+  });
+</script>
+
+
+
+<!---/////////////////////////--- FIN BOOTSRAP VALIDATOR---/////////////////////////----->
 
 
 

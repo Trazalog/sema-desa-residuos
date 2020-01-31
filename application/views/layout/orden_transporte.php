@@ -215,7 +215,7 @@
 
         <div class="card z-depth-0 bordered">
 
-        <div class="card-header  " id="headingOne2" data-toggle="collapse" data-target="#collapseOne2" >
+        <div class="card-header  " id="headingOne2" data-toggle="collapse" data-target="#collapseOne2"  >
             <div class="box box-primary animated fadeInLeft">
                 <div class="box-header with-border">
                     <h4>Generadores</h4>
@@ -225,6 +225,8 @@
             
        
         </div>
+
+        
 
         <!--_______________BODY ACORDION 1_______________-->
 
@@ -277,7 +279,7 @@
 
         <div class="card z-depth-0 bordered">
 
-            <div class="card-header  bg-blue" id="headingTwo2" data-toggle="collapse" data-target="#collapseTwo2">
+            <div class="card-header  bg-blue" id="headingTwo2" data-toggle="collapse" data-target="#collapseTwo2" >
             <div class="box box-primary animated fadeInLeft">
                 <div class="box-header with-border">
                     <h4>Transportistas</h4>
