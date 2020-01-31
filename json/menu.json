@@ -133,10 +133,21 @@
                                 "link": "general/RegistrarVehi/templateVehi"
                             }
                         ]                    
+                    },
+
+                    {
+                        "titulo": "Reportes",
+                        "icono": "fa fa-flus",
+                        "link": "",
+                        "nivel": 2,
+                        "submenu":[
+                            {
+                                "titulo": "Reporte de Camiones",
+                                "icono": "fa fa-genderless",
+                                "link": "general/Reportes/reporteCamiones"
+                            }
+                        ]
                     }
-
-                    
-
 
                 ]
     }
