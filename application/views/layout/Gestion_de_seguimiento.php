@@ -85,8 +85,8 @@
         <div class="box-body">
             <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                 <div class="row">
-                    <div class="col-sm-6"></div>
-                    <div class="col-sm-6"></div>
+                    <!--<div class="col-sm-6"></div>
+                    <div class="col-sm-6"></div>-->
                 </div>
                 <div class="row">
                     <div class="col-sm-12 table-scroll">
@@ -154,26 +154,26 @@
 <!--____________________________________________________________________-->
 
 <!-- script modal -->
-    <script>
-        $("#btnview").on("click", function() {
-            $("#btnadd").removeClass("active");
-            $("#btnview").addClass("active");
-            $("#tablamodal").show();
-            $("#formadd").hide();
-            $("#btnsave").hide();
-        });
-    </script>
+<script>
+    $("#btnview").on("click", function() {
+        $("#btnadd").removeClass("active");
+        $("#btnview").addClass("active");
+        $("#tablamodal").show();
+        $("#formadd").hide();
+        $("#btnsave").hide();
+    });
+</script>
 
 <!--____________________________________________________________________-->
 
-    <script>
-        $("#btnadd").on("click", function() {
-            $("#btnadd").addClass("active");
-            $("#btnview").removeClass("active");
-            $("#formadd").show();
-            $("#tablamodal").hide();
-            $("#btnsave").show();
-        });
-    </script>
+<script>
+    $("#btnadd").on("click", function() {
+        $("#btnadd").addClass("active");
+        $("#btnview").removeClass("active");
+        $("#formadd").show();
+        $("#tablamodal").hide();
+        $("#btnsave").show();
+    });
+</script>
 
 <!--____________________________________________________________________-->

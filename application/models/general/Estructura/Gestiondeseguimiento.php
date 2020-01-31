@@ -12,7 +12,7 @@ class Gestiondeseguimiento extends CI_Model
     function Listar_Gestion()
     {
         $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-        $aux =json_decode($aux["data"]);       
+        $aux =json_decode($aux["data"]);
         return $aux->gestiondeseguimientos->gestiondeseguimiento;
     }
     // ----------------------------------------------------------------
@@ -26,18 +26,18 @@ class Gestiondeseguimiento extends CI_Model
     }
     // ----------------------------------------------------------------
 
-// ________________________________________________________________
+  // ________________________________________________________________
 
-// ---------------------- FUNCIONES OBTENER ----------------------
+  // ---------------------- FUNCIONES OBTENER ----------------------
 
-// Funcion Obtener Zona
-public function obtener_Zonas()
-{
-    $aux = $this->rest->callAPI("GET",REST."/zonas");
-    $aux =json_decode($aux["data"]);
-    return $aux->zonas->zona;
-}
-// ----------------------------------------------------------------
+  // Funcion Obtener Zona
+  public function obtener_Zonas()
+  {
+      $aux = $this->rest->callAPI("GET",REST."/zonas");
+      $aux =json_decode($aux["data"]);
+      return $aux->zonas->zona;
+  }
+  // ----------------------------------------------------------------
 
 }
 // ________________________________________________________________
