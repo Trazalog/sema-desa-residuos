@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-/* Hecha por Jose Roberto el mas vergas */
 class RegistrarT extends CI_Controller {
     function __construct(){
 

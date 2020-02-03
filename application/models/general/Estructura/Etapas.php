@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Etapas extends CI_Model
 {
 	function __construct()
@@ -17,15 +16,14 @@ class Etapas extends CI_Model
         $aux =json_decode($aux["data"]);       
         return $aux->Etapas->Etapa;
     }
-    
+
 // Funcion Guardar Etapa
 
-function Guardar_Etapa($data){
-
+    function Guardar_Etapa($data)
+    {
         $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
         $aux =json_decode($aux["status"]);
-        return $aux;	
-
-}
+        return $aux;
+    }
 }
 

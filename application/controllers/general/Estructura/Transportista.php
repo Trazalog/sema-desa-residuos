@@ -12,11 +12,6 @@ class Transportista extends CI_Controller {
       $this->load->model('general/Estructura/Transportistas');
    }
 
-
-
-
-  
-
       // ---------------- Funcion Cargar vista Transportistas y Datos
 
       function templateTransportistas()
@@ -104,9 +99,6 @@ class Transportista extends CI_Controller {
            
            
        }
-
-       
-   
 
 }
 ?>
