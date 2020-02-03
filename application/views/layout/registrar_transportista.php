@@ -475,15 +475,36 @@
                             </div>
                         <!--_____________________________________________-->
 
+                <!--Tipo RSU autorizado-->
+                <div class="form-group">
+                    <label for="Rsu">Tipo RSU autorizado:</label>
+                    <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-check"></i>
+                            </div>
+                        <select class="form-control select2 select2-hidden-accesible" name="Rsu" id="Rsu">
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($tiporesiduo as $i) {
+                                    echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+
+                                
+                                }
+                                ?>
+                        </select>
+                    </div>
+                </div>
+                <!--____________________________________________________________________-->
+
                         <!--Tipo RSU autorizado-->
-                            <div class="form-group">
+                           <!-- <div class="form-group">
                                 <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
                                 <input type="text" class="form-control pull-right" id="" readonly>
                             </div>
                             </div>
                             </div>
                             </div>
-                            </form>
+                            </form>-->
                         <!--_____________________________________________-->
 
             <!--___________________________FIN FORMULARIO MODAL___________________________-->

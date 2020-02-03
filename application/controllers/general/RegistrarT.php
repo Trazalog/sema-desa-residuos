@@ -16,10 +16,12 @@ class RegistrarT extends CI_Controller {
        $this->load->view('layout/registrar_transportista', $data);
    }
    
-   function templateRt()
+   function templateTransportistas()
    {
-       $data['Rsu'] = $this->Rsu->obtener();
-       $this->load->view('layout/registrar_transportista', $data);
+
+     $data['tiporesiduo'] = $this->Transportistas->obtener_RSU();
+   
+     $this->load->view('layout/registrar_transportista', $data);
        
    }
 }

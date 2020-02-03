@@ -33,9 +33,9 @@ function Guardar_Transportista($data){
 // Funcion Obtener RSU
 
     public function obtener_RSU(){
-    $aux = $this->rest->callAPI("GET","http://localhost:3000/rsu");
+    $aux = $this->rest->callAPI("GET","/tablas/tipo_carga");
     $aux =json_decode($aux["data"]);
-    return $aux->Rsu->Rsu;
+    return $aux->valores->valor;
 }
 
 
