@@ -30,12 +30,12 @@ class Gestiondeseguimiento extends CI_Model
 
   // ---------------------- FUNCIONES OBTENER ----------------------
 
-  // Funcion Obtener Zona
-  public function obtener_Zonas()
+  // Funcion Obtener Estado
+  public function obtener_Estados()
   {
-      $aux = $this->rest->callAPI("GET",REST."/zonas");
+      $aux = $this->rest->callAPI("GET",REST."/estados");
       $aux =json_decode($aux["data"]);
-      return $aux->zonas->zona;
+      return $aux->estados->estado;
   }
   // ----------------------------------------------------------------
 
