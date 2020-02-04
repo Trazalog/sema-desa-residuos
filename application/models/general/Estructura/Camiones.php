@@ -8,9 +8,6 @@ class Camiones extends CI_Model
 		parent::__construct();
     }
 
-
-
-
     // ----------------------- VEHICULOS ------------------------------------
 
 // Funcion Listar Vehiculos (MODIFICAR)
@@ -33,7 +30,6 @@ function Guardar_Vehiculo($data){
 
 }
 
-
 // ---------------------- FUNCIONES OBTENER ----------------------
 
 // Funcion Obtener condicion vehiculo
@@ -43,7 +39,6 @@ public function obtener_Condicion(){
     $aux =json_decode($aux["data"]);    
     return $aux->condiciones->condicion;
 }
-
 
     // ----------------------- CHOFERES ------------------------------------
 
@@ -67,7 +62,6 @@ $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
 
 }
 
-
 // ---------------------- FUNCIONES OBTENER ----------------------
 
 // Funcion Obtener condicion vehiculo
@@ -77,6 +71,5 @@ $aux = $this->rest->callAPI("GET",REST."/transportistas");
 $aux =json_decode($aux["data"]);    
 return $aux->carnets->carnet;
 }
-
 
 }

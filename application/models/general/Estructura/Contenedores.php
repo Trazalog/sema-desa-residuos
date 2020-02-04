@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Contenedores extends CI_Model
 {
 	function __construct()
@@ -28,7 +27,6 @@ function Guardar_Contenedor($data){
 
 }
 
-
 // ---------------------- FUNCIONES OBTENER ----------------------
 
 // Funcion Obtener Estados
@@ -39,12 +37,6 @@ public function obtener_Estados(){
     return $aux->estados->estado;
 }
 
-
 // ---------------------- FUNCIONES SOLICITUDES ----------------------
 
-
-
 }
-
-
-

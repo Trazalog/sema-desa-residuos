@@ -1,5 +1,3 @@
-<!-- Hecha por Jose Roberto el mas VIRGO -->
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
 <div class="box box-primary animated fadeInLeft">

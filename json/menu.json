@@ -20,7 +20,7 @@
                             {
                                 "titulo": "Registrar Transportista",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarT/templateRt"
+                                "link": "general/RegistrarT/templateTransportistas"
                             },
                             {
                                 "titulo": "Registrar Zona",

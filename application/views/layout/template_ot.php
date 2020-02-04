@@ -1,4 +1,3 @@
-<!-- Hecha por Fer Guardia-->
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
 <div class="box box-primary animated fadeInLeft">

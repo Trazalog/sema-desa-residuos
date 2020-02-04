@@ -1,7 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*----------- CONTROLADOR REGISTRAR CIRCUITOS -----------*/
-/* Hecha por Jose Roberto el mas vergas */
 class RegistrarCi extends CI_Controller {
     function __construct(){
 

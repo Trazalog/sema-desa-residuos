@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-// HECHA POR SORETE PROGRAMER
 
 class Generadores extends CI_Model
 {
