@@ -35,20 +35,17 @@
     <!--_____________________________________________-->
 
     <div class="box-body">
-
-    <form class="formCircuitos" id="formCircuitos">
-            <!--_____________________________________________-->
+        <form class="formCircuitos" id="formCircuitos">
 
             <!--Codigo-->
             <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                        
-                            <label for="Codigo">Codigo:</label>
-                            <div class="input-group date">
-                            <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                            <input type="number" class="form-control"  name="Codigo" id="Codigo">
-                            </div>
-                        </div>
+                <div class="form-group">
+                    <label for="Codigo">Codigo:</label>
+                    <div class="input-group date">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                    <input type="number" class="form-control"  name="Codigo" id="Codigo">
+                    </div>
+                </div>
             </div>
             <!--_____________________________________________--> 
 
@@ -114,27 +111,23 @@
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Chofer as $i) {
-                            
                             echo '<option  value="'.$i->chof_id.'">'.$i->nombre.'</option>';
                         }
                         ?>
                     </select>
                     </div>                    
                 </div>
-                
             </div>
-
-             <!--_________________SEPARADOR_________________-->
-
-             <div class="col-md-12"> <hr></div>
+            <!--_____________________________________________-->
 
             <!--_________________SEPARADOR_________________-->
 
-            <!--_____________________________________________-->
+            <div class="col-md-12"> <hr></div>
+
+            <!--_________________SEPARADOR_________________-->
 
             <!--Adjuntador de imagenes-->
-            <div class="col-md-12"> 
-
+            <div class="col-md-12">
                 <div class="col-md-6 col-sm-6 col-xs-12">     
                     
                     <!-- <form action="cargar_archivo" method="post" enctype="multipart/form-data">
@@ -152,15 +145,12 @@
                 </div>
 
                 <div class="col-md-6 col-sm-6 col-xs-12">  
-
                     <button type="button" class="btn btn-default btn-circle" aria-label="Left Align" data-toggle="modal"
                         data-target="#modalZona">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button>
                         <small for="agregar" class="form-label">Asignar zona</small>
-
                 </div>
-
             </div>
 
             <!--_________________SEPARADOR_________________-->
@@ -168,14 +158,14 @@
             <div class="col-md-12"> <hr></div>
 
             <!--_________________SEPARADOR_________________-->
-  
+
                 <div class="col-md-12">
                 <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Circuito()">Agregar</button>
                 </div>
 
-        </div>
-    </form>
-</div>
+            </div>
+        </form>
+    </div>
 
 <!---//////////////////////////////////////--- FIN BOX 1---///////////////////////////////////////////////////////----->
 
