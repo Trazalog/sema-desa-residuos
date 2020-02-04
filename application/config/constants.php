@@ -84,12 +84,51 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
+#TRAZ-COMP-BPM
+define('BPM', 'traz-comp-bpm/');
+
+define('BONITA_URL', 'http://35.243.231.36:8080/bonita/');
+
+define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '6352939331165329370');
+
+define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '6013058915384903051');
+
+define('BPM_PROCESS', json_encode(array(
+    '6352939331165329370' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12'],
+    '6013058915384903051' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12'],
+    '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A'],
+)));
+
+define('BPM_ADMIN_USER', 'almacen.tools');
+define('BPM_ADMIN_PASS', 'bpm');
+define('BPM_USER_PASS', 'bpm');
+
+#ERRORES DE BONITA
+define('ASP_100', 'Fallo Conexión BPM');
+define('ASP_101', 'Error al Inciar Proceso');
+define('ASP_102', 'Error al Tomar Tarea');
+define('ASP_103', 'Error al Soltar Tarea');
+define('ASP_104', 'Error al Cerrar Tarea');
+define('ASP_105', 'Error al Obtener Vista Global');
+define('ASP_106', 'Error al Obtener Usuarios');
+define('ASP_107', 'Error al Asignar Usuario');
+define('ASP_108', 'Error al Guardar Comentarios');
+define('ASP_109', 'Error de Loggin');
+define('ASP_110', 'Error al Obtener Detalle Tarea');
+define('ASP_111', 'Error al Obtener Bandeja de Tareas');
+define('ASP_112', 'Error al Obtener Comentarios');
+define('ASP_113', 'Usuario No Encontrado');
+define('ASP_114', 'Error al Actualizar Variable');
+define('ASP_115', 'Error al Leer Variable');
+
+
+
 //Nombre de Prouyecto
 define('MNOM', 'RSD');
 define('NOM', 'Residuos');
 
 //Vista por Defecto
-define('DEF_VIEW','Test');
+define('DEF_VIEW','traz-comp-bpm/Tarea');
 
 /*
 |--------------------------------------------------------------------------
@@ -100,13 +139,24 @@ define('DEF_VIEW','Test');
 |
 */
 //define('REST', 'http://localhost:3000/');
-define('REST', 'http://pc-pc:8280/services/semaresiduosDS');
-//define('RESTLOCAL', 'http://pc-pc:8280/services/arboladoDS');
-//define('REST', 'http://dev-trazalog.com.ar:8280/services/arboladoDS');
+define('RESt1', 'http://pc-pc:8280/services/semaresiduosDS');
+define('REST', 'http://dev-trazalog.com.ar:8280/services/ProduccionDataService/');
+define('RESTPT', 'http://dev-trazalog.com.ar:8280/services/produccionTest/');
+define('REST_TDS', 'http://dev-trazalog.com.ar:8280/services/TrazabilidadDataService/');
+define('REST2', 'http://dev-trazalog.com.ar:8280/services/ProduccionDataService');
+define('REST3', 'http://dev-trazalog.com.ar:8280/services/produccionTest');
+define('REST4', 'http://dev-trazalog.com.ar:8280/services/TrazabilidadDataService');
+
 define('HOST', 'http://localhost/');
 
-//Componentes Formularios
-define('FRM','traz-comp-form/');
+#COMPONENTE ALMACENES
+define('ALM', 'traz-comp-almacen/');
+define('viewOT', false);
+
+#COMPONENTE FORMULARIOS
+define('FRM', 'traz-comp-form/');
+define('FILES', 'files/');
+
 
 define('PORT', ':3000/');
 
