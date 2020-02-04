@@ -114,9 +114,9 @@ function Asignar_Zona($data){
 // Funcion Obtener Circuitos
 
 public function obtener_Circuitos(){
-    $aux = $this->rest->callAPI("GET",REST."/RECURSO");
+    $aux = $this->rest->callAPI("GET",REST."/circuitos/5");
     $aux =json_decode($aux["data"]);
-    return $aux->Ciruitos->Circuito;
+    return $aux->zonas->zona;
 }
 
 // Funcion Obtener Punto Critico
@@ -130,9 +130,9 @@ public function obtener_Punto_Critico(){
 // Funcion Obtener Tipo RSU
 
 public function obtener_RSU(){
-    $aux = $this->rest->callAPI("GET",REST."/RECURSO");
+    $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
     $aux =json_decode($aux["data"]);
-    return $aux->Rsu->Rsu;
+    return $aux->valores->valor;
 }
 
 // Funcion Obtener Vehiculo
