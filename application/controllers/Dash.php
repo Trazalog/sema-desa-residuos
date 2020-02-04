@@ -9,7 +9,7 @@ class Dash extends CI_Controller {
    }
    function index(){
      
-      $data['menu'] = menu(getJson("menu"));
+      $data['menu'] = menu(getJson("menu"), $this->load->view('layout/menu/aux_menu_alm', null, true));
     
       $this->load->view('layout/Admin',$data);
    }
