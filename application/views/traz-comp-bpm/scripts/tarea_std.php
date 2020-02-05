@@ -25,6 +25,8 @@ function deshabilitar() {
 }
 
 function tomarTarea() {
+    wo();
+
     $.ajax({
         type: 'POST',
         data: {
@@ -43,11 +45,17 @@ function tomarTarea() {
         error: function(result) {
             alert('Error');
         },
-        dataType: 'json'
+        dataType: 'json',
+         complete:function(){
+            wc();
+        }
     });
 }
 // Soltar tarea en BPM
 function soltarTarea() {
+
+    alert('Soltar');
+    wo();
     $.ajax({
         type: 'POST',
         data: {
@@ -64,7 +72,10 @@ function soltarTarea() {
         error: function(result) {
             console.log(result);
         },
-        dataType: 'json'
+        dataType: 'json',
+         complete:function(){
+            wc();
+        }
     });
 }
 
@@ -72,7 +83,7 @@ function cerrar() {
     if ($('#miniView').length == 0) {
         linkTo('<?php echo BPM ?>Tarea');
     } else {
-        existFunction('closeView');
+        if(existFunction('closeView')) closeView();
     }
 }
 
@@ -80,7 +91,7 @@ function guardarComentario() {
     var nombUsr = $('#usrName').val();
     var apellUsr = $('#usrLastName').val();
     var comentario = $('#comentario').val();
-
+    wo();
     $.ajax({
         type: 'POST',
         data: {
@@ -100,6 +111,9 @@ function guardarComentario() {
         },
         error: function(result) {
             console.log("Error");
+        },
+        complete:function(){
+            wc();
         }
     });
 }

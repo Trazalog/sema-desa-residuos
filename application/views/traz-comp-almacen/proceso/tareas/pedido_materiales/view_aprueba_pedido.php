@@ -80,26 +80,30 @@ function cerrarTarea() {
         return;
     }
 
-    var id = $('#idTarBonita').val();
+    var id = $('#taskId').val();
 
     var dataForm = new FormData($('#generic_form')[0]);
 
     dataForm.append('pema_id', $('#pemaId').val());
 
+    wo();
     $.ajax({
         type: 'POST',
         data: dataForm,
         cache: false,
         contentType: false,
         processData: false,
-        url: '<?php base_url() ?>index.php/<?php echo ALM ?>Proceso/cerrarTarea/' + id,
+        url: '<?php echo base_url(ALM) ?>Proceso/cerrarTarea/' + id,
         success: function(data) {
-            //wc();
-            back();
+            
+            cerrar();
 
         },
         error: function(data) {
             alert("Error");
+        },
+        complete:function(){
+            wc();
         }
     });
 
