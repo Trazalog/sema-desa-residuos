@@ -7,7 +7,7 @@ class Inspector extends CI_Controller {
         $this->load->model('general/Estructura/Inspectores');
     }
 
-    // ---------------- Funcion Cargar vista Inspector y Datos
+    // ---------------- Funcion Cargar vista Inspector
     function templateInspectores()
     {
         // $data['Departamentos'] = $this->Generadores->obtener_Departamento();

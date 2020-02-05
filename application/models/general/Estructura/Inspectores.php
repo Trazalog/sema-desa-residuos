@@ -17,7 +17,7 @@ class Inspectores extends CI_Model
         return $aux->inspectores->inspector;
     }
     
-// Funcion Guardar Contenedor
+// Funcion Guardar Inspector
 
 function Guardar_Inspector($data){
 
