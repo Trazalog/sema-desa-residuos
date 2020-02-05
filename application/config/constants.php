@@ -139,8 +139,8 @@ define('DEF_VIEW','traz-comp-bpm/Tarea');
 |
 */
 //define('REST', 'http://localhost:3000/');
-define('RESt1', 'http://pc-pc:8280/services/semaresiduosDS');
-define('REST', 'http://dev-trazalog.com.ar:8280/services/ProduccionDataService/');
+define('REST', 'http://pc-pc:8280/services/semaresiduosDS');
+//define('REST', 'http://dev-trazalog.com.ar:8280/services/ProduccionDataService/');
 define('RESTPT', 'http://dev-trazalog.com.ar:8280/services/produccionTest/');
 define('REST_TDS', 'http://dev-trazalog.com.ar:8280/services/TrazabilidadDataService/');
 define('REST2', 'http://dev-trazalog.com.ar:8280/services/ProduccionDataService');

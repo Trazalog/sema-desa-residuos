@@ -31,7 +31,7 @@ class Dash extends CI_Controller {
                             {
                                 "titulo": "Registrar Transportista",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarT/templateTransportistas"
+                                "link": "general/Estructura/Transportista/templateTransportistas"
                             },
                             {
                                 "titulo": "Registrar Zona",

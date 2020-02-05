@@ -15,7 +15,7 @@ class Inspector extends CI_Controller {
         // $data['Zonagenerador'] = $this->Infracciones->obtener_Zonas();
         // $data['Tiporesiduo'] = $this->Infracciones->obtener_Tipo_residuo();
 
-        $this->load->view('layout/registrar_inspectores');
+        $this->load->view('layout/registrar_inspector');
     }
     // _________________________________________________________
 

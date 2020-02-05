@@ -168,24 +168,20 @@
                             <th>Apellido</th>
                             <th>Movilidad Asignada</th>
                         </thead>
-
                         <!--__________________BODY TABLA___________________________-->
-
                         <tbody>
                         <tr>
                             <td>
                             <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                             <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
                             <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                            
                             </td>
                             <td>DATO</td>
-                            <td> DATO</td>
+                            <td>DATO</td>
                             <td>DATO</td>
                         </tr>
                         </tbody>
                     </table>
-
                     <!--__________________FIN TABLA___________________________-->
 
                 </div>
@@ -648,7 +644,7 @@ function agregarDato(){
         }
   }).on('success.form.bv', function(e){
       e.preventDefault();
-      guardar();
+      //guardar();
   });
 </script>
 
@@ -743,7 +739,7 @@ function agregarDato(){
         }
   }).on('success.form.bv', function(e){
       e.preventDefault();
-      guardar();
+      //guardar();
   });
 </script>
 

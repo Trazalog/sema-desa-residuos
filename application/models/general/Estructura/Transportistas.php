@@ -17,9 +17,9 @@ class Transportistas extends CI_Model
     }
     
     // Funcion Guardar Municipio
-    function Guardar_Transportista($data)
+    function Guardar_Transportista()
     {
-        $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
+        $aux = $this->rest->callAPI("POST",REST."/RECURSO");
         $aux =json_decode($aux["status"]);
         return $aux;	
     }
@@ -29,7 +29,7 @@ class Transportistas extends CI_Model
     // Funcion Obtener RSU
     public function obtener_RSU()
     {
-        $aux = $this->rest->callAPI("GET","/tablas/tipo_carga");
+        $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
         $aux =json_decode($aux["data"]);
         return $aux->valores->valor;
     }
