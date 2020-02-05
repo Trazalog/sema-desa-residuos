@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Solicitud_Pedido extends CI_Controller {
     function __construct(){
 

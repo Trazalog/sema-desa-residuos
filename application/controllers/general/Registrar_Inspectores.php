@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*----------- CONTROLADOR REGISTRAR Inspectores -----------*/
-/* Hecha por Jose Roberto el mas vergas */
 class RegistrarInspectores extends CI_Controller {
     function __construct(){
 

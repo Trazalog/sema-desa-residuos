@@ -37,11 +37,9 @@
 
     <div class="box-body">
     <form class="formCircuitos" id="formCircuitos">
-        <!--_____________________________________________-->
+    <!--_____________________________________________-->
 
-            <!--_____________________________________________-->
-            <!--Codigo-->
-
+        <!--Codigo-->
             <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                         
@@ -55,18 +53,16 @@
         </div>
         <!--_____________________________________________-->
 
-            <!--_____________________________________________--> 
-             <!--Chofer-->
-
-             <div class="col-md-6 col-sm-6 col-xs-12">
-                 <div class="form-group">
+        <!--Chofer-->
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="form-group">
                     <label for="tipoResiduos" >Tipo de residuo:</label>
                     <div class="input-group date">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <select class="form-control select2 select2-hidden-accesible" name="tipoResiduos" id="tipoResiduos">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
-                        foreach ($tipoResiduos as $i) {
+                        foreach ($Rsu as $i) {
                             echo '<option>'.$i->nombre.'</option>';
                         }
                         ?>
@@ -86,9 +82,7 @@
         </div>
         <!--_____________________________________________-->
 
-            <!--_____________________________________________-->
-            <!--vehiculo-->
-
+        <!--vehiculo-->
             <div class="col-md-6 col-sm-6 col-xs-12">          
                 <div class="form-group">
                     <label for="Vehiculo">Vehiculo:</label>
@@ -108,10 +102,7 @@
         </div>
         <!--_____________________________________________-->
 
-            <!--_____________________________________________-->
-            <!--Tipo de residuo-->
-
-
+        <!--Tipo de residuo-->
             <div class="col-md-6 col-sm-6 col-xs-12">            
                 <div class="form-group">
                     <label for="Chofer" >Chofer:</label>
@@ -130,18 +121,15 @@
                 
             </div>
         </div>
+        <!--_____________________________________________-->
 
-             <!--_________________SEPARADOR_________________-->
+            <!--_________________SEPARADOR_________________-->
 
-             <div class="col-md-12"> <hr></div>
+            <div class="col-md-12"> <hr></div>
 
         <!--_____________________SEPARADOR_____________________-->
 
-            
-
-            <!--_____________________________________________-->
             <!--Adjuntador de imagenes-->
-
             <div class="col-md-12"> 
 
                 <div class="col-md-6 col-sm-6 col-xs-12">     
