@@ -32,7 +32,7 @@ function Guardar_Contenedor($data){
 // Funcion Obtener Estados
 
 public function obtener_Estados(){
-    $aux = $this->rest->callAPI("GET",REST."/RECURSO");
+    $aux = $this->rest->callAPI("GET",REST."/tablas/estado_contenedor");
     $aux =json_decode($aux["data"]);
     return $aux->estados->estado;
 }

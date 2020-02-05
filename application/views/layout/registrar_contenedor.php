@@ -93,7 +93,7 @@
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Estados as $i) {
-                            echo '<option>'.$i->nombre.'</option>';
+                            echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
                         }
                         ?>
                     </select>

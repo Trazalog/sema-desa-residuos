@@ -18,12 +18,12 @@ class Transportista extends CI_Controller {
         $this->load->view('layout/registrar_transportista', $data);
       }
 
-       // ---------------- Funcion Registrar Transportista
+      // ---------------- Funcion Registrar Transportista
 
-       function Guardar_Transportista()
-       {
-           // $this->load->view('layout/registrar_infraccion');
-       }
+      function Guardar_Transportista()
+      {
+        $this->load->view('layout/registrar_transportista');
+      }
 
        // ---------------- Funcion Crear Transportista
 
