@@ -85,7 +85,8 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 # DNATO
-define('LOGIN', true);
+// define('LOGIN', true);
+define('LOGIN', false);
 define('DNATO', 'http://localhost/traz-comp-dnato/');
 
 //Nombre de Prouyecto
@@ -118,3 +119,51 @@ define('FRM','traz-comp-form/');
 define('PORT', ':3000/');
 
 // define('REST', 'http://localhost'.PORT);
+
+/*
+|--------------------------------------------------------------------------
+| Bonita url
+|--------------------------------------------------------------------------
+|
+| Url base to Bonita
+|
+*/
+
+// define('BONITA_URL', 'http://localhost:8080/bonita/');
+// define('BONITA_URL', 'http://192.168.0.118:8080/bonita/');//(fguardia)
+define('BONITA_URL', 'http://localhost:8080/bonita/');//(fleiva)
+
+define('BPM_ADMIN_USER', 'admin');
+define('BPM_ADMIN_PASS', 'bpm');
+define('BPM_USER_PASS', 'bpm');
+
+
+/*
+|--------------------------------------------------------------------------
+| Bonita Process ID ()
+|--------------------------------------------------------------------------
+|
+| Id de proceso productivo (se usa para lanzar proceso)
+|
+*/
+
+
+//? PEDIDOS NORMALES
+ 
+define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '6911486128031023313'); 
+
+//? PEDIDOS EXTRAORDINATIOS
+
+define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '8026690512058828779');
+
+
+/*
+|--------------------------------------------------------------------------
+| Bonita Process ID ()
+|--------------------------------------------------------------------------
+|
+| Id de proceso productivo (se usa para lanzar proceso)
+|
+*/
+ 
+define('BPM_PROCESS_ID', '5851349397648544013'); // localhost -
