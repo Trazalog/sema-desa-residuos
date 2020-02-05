@@ -126,41 +126,30 @@
                     <input type="text" class="form-control" id="MovAsignada" name="movilidadasignada">
                     </div>
                 </div>
-            
-
-            
-            
-
-        </div>
 
         <!--___________________SEPARADOR__________________________-->
 
+        </div>
         <div class="col-md-12"><hr> </div>
 
 <!--___________________SEPARADOR__________________________-->
 
-        <!--_____________________________________________-->
         <!--Boton de guardado-->
         <div class="col-md-12">
         <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
         </div>
+        <!--_____________________________________________-->
         </form>
     </div>
 </div>
-
 
 <!---//////////////////////////////////////--- FIN BOX 1---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
 
-
-
-
-
 <div class="box box-primary">
 
     <!--__________________TABLA___________________________-->
-
 
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -168,23 +157,16 @@
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6"></div>
             </div>
-
-
-
-
-
             <div class="row">
                 <div class="col-sm-12 table-scroll">
 
                     <!--__________________HEADER TABLA___________________________-->
                     <table id="tabla_inspectores" class="table table-bordered table-striped">
                         <thead class="thead-dark" bgcolor="#eeeeee">
-
                             <th>Acciones</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Movilidad Asignada</th>
-
                         </thead>
 
                         <!--__________________BODY TABLA___________________________-->
@@ -201,8 +183,6 @@
                             <td> DATO</td>
                             <td>DATO</td>
                         </tr>
-
-                           
                         </tbody>
                     </table>
 
@@ -213,11 +193,8 @@
 
 <!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
 
-    
-
 <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-    
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -227,26 +204,18 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel">Editar Inspector</h5>
             </div>
-
-
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="frmInspecotresEdit" class="registerForm">
-
-
                 <div class="modal-body">
-
-                
-
-                    <div class="row">                        
-
+                    <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
                                 <!--_____________________________________________-->
-                                <!--Nombre-->
 
+                                <!--Nombre-->
                                 <div class="form-group">
                                     <label for="Nombre">Nombre:</label>
                                     <div class="input-group date">
@@ -256,10 +225,9 @@
                                     <input type="text" class="form-control" id="E_Nombre" name="e_nombre">
                                     </div>
                                 </div>
-
                                 <!--_____________________________________________-->
-                                <!--Descripcion-->
 
+                                <!--Descripcion-->
                                 <div class="form-group">
                                     <label for="Apellido">Apellido:</label>
                                     <div class="input-group date">
@@ -269,10 +237,9 @@
                                     <input type="text" class="form-control" id="E_Apellido" name="e_apellido">
                                     </div>
                                 </div>
-
                                 <!--_____________________________________________-->
-                                <!--Direccion-->
 
+                                <!--Direccion-->
                                 <div class="form-group">
                                     <label for="Direccion">Direccion:</label>
                                     <div class="input-group date">
@@ -282,10 +249,9 @@
                                     <input type="text" class="form-control" id="E_Direccion" name="e_descripcion">
                                     </div>
                                 </div>
-
                                 <!--_____________________________________________-->
-                                <!--Telefono-->
 
+                                <!--Telefono-->
                                 <div class="form-group">
                                     <label for="Email">Email:</label>
                                     <div class="input-group date">
@@ -295,20 +261,12 @@
                                     <input type="text" class="form-control" id="E_Email" name="e_email">
                                     </div>
                                 </div>
-
-                                
-
+                                <!--_____________________________________________-->
 
                             </div>
-
-                            <!--**************************************************-->
-                    
-
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                <!--_____________________________________________-->
                                 <!--Resolucion-->
-
                                 <div class="form-group">
                                     <label for="Departamento">Departamento:</label>
                                     <div class="input-group date">
@@ -318,10 +276,9 @@
                                     <input type="text" class="form-control" id="E_Departamento" name="e_departamento">
                                     </div>
                                 </div>
-
                                 <!--_____________________________________________-->
-                                <!--Registro-->                
 
+                                <!--Registro-->
                                 <div class="form-group">
                                      <label for="MovAsignada">Movilidad Asignada:</label>
                                     <div class="input-group date">
@@ -331,10 +288,9 @@
                                     <input type="text" class="form-control" id="E_MovAsignada" name="e_movilidadasignada">
                                     </div>
                                 </div>
-
                                 <!--_____________________________________________-->
-                                <!--DNI--> 
 
+                                <!--DNI--> 
                                 <div class="form-group">
                                     <label for="DNI">DNI:</label>
                                     <div class="input-group date">
@@ -344,22 +300,10 @@
                                     <input type="text" class="form-control" id="E_DNI" name="e_dni">
                                     </div>                                
                                 </div>
-
-                                
-                                
-                            </div>
-
-                                
+                                <!--_____________________________________________-->
                         </div>
-                    
-
-                    
-                    
-                    
-                    
-                    
+                    </div>
                 </div>
-                
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
@@ -803,16 +747,11 @@ function agregarDato(){
   });
 </script>
 
-
-
 <!---/////////////////////////--- FIN BOOTSRAP VALIDATOR---/////////////////////////----->
 
-
-
-
 <!--_____________________________________________________________-->
+
 <!-- script que muestra box de datos al dar click en boton agregar -->
-            
 
 <script>
 $("#botonAgregar").on("click", function() {
@@ -839,18 +778,12 @@ $("#btnclose").on("click", function() {
 });
 </script>
 
+<!--_____________________________________________________________-->
 
-
- <!--_____________________________________________________________-->
 <!-- script Datatables -->
-
 
 <script>
     
     DataTable($('#tabla_inspectores'))
 
-</script>
-
-
-
-            
+</script>          
