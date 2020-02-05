@@ -49,6 +49,8 @@ class Form extends CI_Controller
         
         $html = form($form, $modal);
 
+        $info = 0;
+
         if ($modal) {
             $modal = new StdClass();
             $modal->id = "frm-modal-$info";

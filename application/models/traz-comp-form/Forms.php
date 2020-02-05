@@ -103,7 +103,7 @@ class Forms extends CI_Model
         $aux = new StdClass();
         $aux->info_id = false;
         $aux->form_id = $id;
-        $aux->nombre = $res->row()->nombre;
+        $aux->nombre = '';#$res->row()->nombre;
         $aux->id = $newInfo; 
         $aux->items = $res->result();
 
