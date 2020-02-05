@@ -13,16 +13,14 @@ class Zonas extends CI_Model
 // ---------------------- FUNCIONES ZONAS ----------------------
 
 // Funcion Listar Zonas (MODIFICAR)
-
-function Listar_Zonas(){
-        
-        $aux = $this->rest->callAPI("GET",REST."/zonas");
-        $aux =json_decode($aux["data"]);       
-        return $aux->zonas->zona;
-    }
+function Listar_Zonas()
+{
+    $aux = $this->rest->callAPI("GET",REST."/zonas");
+    $aux =json_decode($aux["data"]);       
+    return $aux->zonas->zona;
+}
 
 // Funcion Guardar Zona
-
 function Guardar_Zona($data){
 
     // var_dump($data);
@@ -50,7 +48,6 @@ function Guardar_Zona($data){
 // ---------------------- FUNCIONES CIRCUITOS ----------------------
 
 // Funcion Listar Circuitos (MODIFICAR)
-
 function Listar_Circuitos()
 {
     $aux = $this->rest->callAPI("GET",REST."/circuitos");
@@ -59,7 +56,6 @@ function Listar_Circuitos()
 }
 
 // Funcion Guardar Circuito
-
 function Guardar_Circuito($data){
 
 $post["post_circuito"] = $data;
@@ -70,7 +66,6 @@ return $aux;
 }
 
 // Funcion Guardar Zona
-
 function Guardar_Punto_Critico($data){
     $aux = $this->rest->callAPI("POST",REST."/RECURSO",$data);
     $aux =json_decode($aux["status"]);
@@ -78,7 +73,6 @@ function Guardar_Punto_Critico($data){
 }
 
 // Funcion Guardar Zona
-
 function Asignar_Zona($data){
     $aux = $this->rest->callAPI("POST",REST."/RECURSO", $data);
     $aux =json_decode($aux["status"]);
@@ -88,7 +82,6 @@ function Asignar_Zona($data){
 // ---------------------- FUNCIONES OBTENER ----------------------
 
 // Funcion Obtener Circuitos
-
 public function obtener_Circuitos(){
     $aux = $this->rest->callAPI("GET",REST."/circuitos/5");
     $aux =json_decode($aux["data"]);
@@ -96,7 +89,6 @@ public function obtener_Circuitos(){
 }
 
 // Funcion Obtener Punto Critico
-
 public function obtener_Punto_Critico(){
     $aux = $this->rest->callAPI("GET",REST."/RECURSO");
     $aux =json_decode($aux["data"]);
@@ -104,7 +96,6 @@ public function obtener_Punto_Critico(){
 }
 
 // Funcion Obtener Tipo RSU
-
 public function obtener_RSU(){
     $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
     $aux =json_decode($aux["data"]);
@@ -112,7 +103,6 @@ public function obtener_RSU(){
 }
 
 // Funcion Obtener Vehiculo
-
 public function obtener_Vehiculo(){
     $aux = $this->rest->callAPI("GET",REST."/RECURSO");
     $aux =json_decode($aux["data"]);
@@ -120,7 +110,6 @@ public function obtener_Vehiculo(){
 }
 
 // Funcion Obtener Chofer
-
 public function obtener_Chofer(){
     $aux = $this->rest->callAPI("GET",REST."/choferes");
     $aux =json_decode($aux["data"]);
@@ -128,7 +117,6 @@ public function obtener_Chofer(){
 }
 
 // Funcion Obtener Departamentos
-
 public function obtener_Departamentos(){
     $aux = $this->rest->callAPI("GET",REST."/departamentos");
     $aux =json_decode($aux["data"]);
@@ -136,7 +124,6 @@ public function obtener_Departamentos(){
 }
 
 // Funcion Obtener Zona
-
 public function obtener_Zona(){
     $aux = $this->rest->callAPI("GET",REST."/zonas");
     $aux =json_decode($aux["data"]);
@@ -144,7 +131,6 @@ public function obtener_Zona(){
 }
 
 // Funcion Obtener Circuitos Asignados
-
 public function obtener_Circuitos_Asignados(){
     $aux = $this->rest->callAPI("GET",REST."/circuitos/5");
     $aux =json_decode($aux["data"]);

@@ -49,7 +49,7 @@
             </div>
             <!--_____________________________________________--> 
 
-            <!--Chofer-->
+            <!--Tipo de residuo-->
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label for="tipoResiduos" >Tipo de residuo:</label>
@@ -101,7 +101,7 @@
             </div>
             <!--_____________________________________________-->
 
-            <!--Tipo de residuo-->
+            <!--Chofer-->
             <div class="col-md-6 col-sm-6 col-xs-12">            
                 <div class="form-group">
                     <label for="Chofer" >Chofer:</label>
