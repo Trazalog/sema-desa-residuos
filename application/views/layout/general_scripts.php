@@ -52,22 +52,6 @@
         <!-- Datatables 1  -->
 
         <script src="<?php base_url() ?>lib\props\tabla.js"></script>
-
-        
-
-
-
-
-
-
-
-
-
-       
-       
-
-  
-
    
        
        <!-- alertifyjs  -->
@@ -91,7 +75,9 @@
        <script src="<?php base_url() ?>lib/sweetalert/sweetalert.js"></script>
 
        <!-- props   -->
-       <script src="<?php base_url() ?>lib/props/forms.js"></script>
+       
+       <?php $this->load->view(FRM.'scripts') ?>
+       <!-- <script src="<?php #base_url() ?>lib/props/forms.js"></script> -->
 
        <!-- iCheck 1.0.1 -->
        <script src="<?php base_url();?>lib/plugins/iCheck/icheck.min.js"></script>
