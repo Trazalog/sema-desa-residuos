@@ -11,32 +11,28 @@ class Inspectores extends CI_Model
 
     function Listar_Inspector()
     {
-        
         $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-        $aux =json_decode($aux["data"]);       
+        $aux =json_decode($aux["data"]);
         return $aux->inspectores->inspector;
     }
-    
+
 // Funcion Guardar Inspector
 
-function Guardar_Inspector($data){
-
+    function Guardar_Inspector($data)
+    {
         $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
         $aux =json_decode($aux["status"]);
-        return $aux;	
-
-}
+        return $aux;
+    }
 
 // ---------------------- FUNCIONES OBTENER ----------------------
 
-// Funcion Obtener Estados
+// Funcion Obtener Vehiculos
 
-//public function obtener_Estados(){
-//    $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-//    $aux =json_decode($aux["data"]);
-//    return $aux->estados->estado;
-//}
-
-// ---------------------- FUNCIONES SOLICITUDES ----------------------
-
+    public function obtener_Movilidad()
+    {
+        $aux = $this->rest->callAPI("GET",REST."/vehiculos");
+        $aux =json_decode($aux["data"]);
+        return $aux->vehiculos->vehiculo;
+    }
 }

@@ -14,6 +14,7 @@ class Transportista extends CI_Controller {
       function templateTransportistas()
       {
         $data['tiporesiduo'] = $this->Transportistas->obtener_RSU();
+        $data['Zonas'] = $this->Transportistas->obtener_Zonas();
 
         $this->load->view('layout/registrar_transportista', $data);
       }
