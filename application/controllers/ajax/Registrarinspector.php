@@ -3,17 +3,18 @@
 class Registrarinspector  extends CI_Controller {
     function __construct()
     {
-      parent::__construct();
-      $this->load->model('general/Estructura/Inspectores');
+        parent::__construct();
+        $this->load->model('general/Estructura/Inspectores');
     }
     public function guardarDato()
     {
         $datos =  $this->input->post();
         $resp = $this->Inspectores->guardarDatos($datos);
         if($resp){
-          echo "ok";
-        }else{
-          echo "error";
+            echo "ok";
+        }
+        else{
+            echo "error";
         }
     }
 }

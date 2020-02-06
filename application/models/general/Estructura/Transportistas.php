@@ -11,15 +11,15 @@ class Transportistas extends CI_Model
     // Funcion Listar Transportistas (MODIFICAR)
     function Listar_Transportistas()
     {
-        $aux = $this->rest->callAPI("GET",REST."/RECURSO");
+        $aux = $this->rest->callAPI("GET",REST."/transportista");
         $aux =json_decode($aux["data"]);       
         return $aux->Transportistas->Transportista;
     }
     
     // Funcion Guardar Municipio
-    function Guardar_Transportista()
+    function Guardar_Transportista($data)
     {
-        $aux = $this->rest->callAPI("POST",REST."/RECURSO");
+        $aux = $this->rest->callAPI("POST",REST."/RECURSO", $data);
         $aux =json_decode($aux["status"]);
         return $aux;	
     }
@@ -33,4 +33,13 @@ class Transportistas extends CI_Model
         $aux =json_decode($aux["data"]);
         return $aux->valores->valor;
     }
+
+    // Funcion Obtener Zona
+    public function obtener_Zonas()
+    {
+        $aux = $this->rest->callAPI("GET",REST."/zonas");
+        $aux =json_decode($aux["data"]);
+        return $aux->zonas->zona;
+    }
+    // ----------------------------------------------------------------
 }

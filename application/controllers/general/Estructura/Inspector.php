@@ -10,12 +10,9 @@ class Inspector extends CI_Controller {
     // ---------------- Funcion Cargar vista Inspector
     function templateInspectores()
     {
-        // $data['Departamentos'] = $this->Generadores->obtener_Departamento();
-        // $data['Zonas'] = $this->Generadores->obtener_Zonas();
-        // $data['Zonagenerador'] = $this->Infracciones->obtener_Zonas();
-        // $data['Tiporesiduo'] = $this->Infracciones->obtener_Tipo_residuo();
+        $data['vehiculo'] = $this->Inspectores->obtener_Movilidad();
 
-        $this->load->view('layout/registrar_inspector');
+        $this->load->view('layout/registrar_inspector', $data);
     }
     // _________________________________________________________
 
