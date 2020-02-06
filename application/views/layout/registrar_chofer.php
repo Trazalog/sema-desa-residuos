@@ -1,5 +1,3 @@
-<!-- Hecha por Jose Roberto el mas vergas -->
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
 <div class="box box-primary animated fadeInLeft">
@@ -750,15 +748,6 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
               }
           },
           direccion: {
@@ -865,15 +854,6 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
               }
           },
           habilitacion: {

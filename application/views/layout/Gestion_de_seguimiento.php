@@ -18,7 +18,7 @@
 
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-<!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
+<!--- ////////////////////////////////////// --- BOX 1 --- ////////////////////////////////////// ----->
 
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
@@ -33,54 +33,54 @@
         </div>
     </div>
 
-    <!--____________________________________________________________________-->
+    <!-- ____________________________________________________________________ -->
 
     <div class="box-body">
         <form class="formGestionSeguimiento" id="formGestionSeguimiento" method="POST" autocomplete="off">
             <div class="col-md-6 col-sm-6 col-xs-12">
 
                 <!--Estado-->
-                <div class="form-group">
-                    <label for="Estado">Estado:</label>
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="glyphicon glyphicon-check"></i>
+                    <div class="form-group">
+                        <label for="Estado">Estado:</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="glyphicon glyphicon-check"></i>
+                                </div>
+                                <select class="form-control select2 select2-hidden-accesible"  name="Estado" id="Estado">
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                    foreach ($Estado as $i) {
+                                        echo '<option value="'.$i->depa_id.'">'.$i->nombre.'</option>';
+                                    }
+                                    ?>
+                                </select>
                             </div>
-                            <select class="form-control select2 select2-hidden-accesible"  name="Estado" id="Estado">
-                                <option value="" disabled selected>-Seleccione opcion-</option>
-                                <?php
-                                foreach ($Estado as $i) {
-                                    echo '<option value="'.$i->depa_id.'">'.$i->nombre.'</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                </div>
-                <!--____________________________________________________________________-->
+                    </div>
+                <!-- ____________________________________________________________________ -->
 
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
 
                 <!--Buscador-->
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search">
-                        <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
-                </div>
-                <!--____________________________________________________________________-->
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search">
+                            <span class="input-group-btn">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                    </div>
+                <!-- ____________________________________________________________________ -->
 
             </div>
         </form>
     </div>
 
-    <!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
+    <!--- ////////////////////////////////////// --- TABLA --- ////////////////////////////////////// ----->
 
     <div class="box box-primary">
 
-        <!--__________________TABLA___________________________-->
+        <!--___________________________ TABLA ___________________________-->
 
         <div class="box-body">
             <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -91,11 +91,11 @@
                 <div class="row">
                     <div class="col-sm-12 table-scroll">
 
-                        <!--__________________HEADER TABLA___________________________-->
+                        <!--___________________________ HEADER TABLA ___________________________-->
 
                         <table id="tabla_generadores" class="table table-bordered table-striped">
 
-                        <!--_____________________________________________________________-->
+                        <!-- _____________________________________________________________ -->
 
                             <thead class="thead-dark" bgcolor="#eeeeee">
                                 <th>Numero de OT</th>
@@ -110,10 +110,10 @@
                                 <th>Disposición final</th>
                             </thead>
 
-                            <!--__________________BODY TABLA___________________________-->
+                            <!--___________________________ BODY TABLA ___________________________-->
 
                             <tbody>
-                            <tr>
+                              <tr>
                                 <td>
                                 <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                                 <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
@@ -129,14 +129,14 @@
                                 <td>DATO</td>
                                 <td>DATO</td>
                                 <td>DATO</td>
-                            </tr>
+                              </tr>
                             </tbody>
 
-                        <!--____________________________________________________________________-->
+                        <!-- ____________________________________________________________________ -->
 
                         </table>
 
-                        <!--__________________FIN TABLA___________________________-->
+                        <!--___________________________ FIN TABLA ___________________________-->
 
                     </div>
                 </div>
@@ -145,13 +145,13 @@
     </div>
 </div>
 
-<!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
+<!--- ////////////////////////////////////// --- FIN TABLA --- ////////////////////////////////////// ----->
 
-<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+<!--- ////////////////////////////////////// --- FIN MODAL INFORMACION --- ////////////////////////////////////// ----->
 
-<!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
+<!--- ////////////////////////////////////// --- SCRIPTS --- ////////////////////////////////////// ----->
 
-<!--____________________________________________________________________-->
+<!-- ____________________________________________________________________ -->
 
 <!-- script modal -->
 <script>
@@ -164,7 +164,7 @@
     });
 </script>
 
-<!--____________________________________________________________________-->
+<!-- ____________________________________________________________________ -->
 
 <script>
     $("#btnadd").on("click", function() {
@@ -176,4 +176,4 @@
     });
 </script>
 
-<!--____________________________________________________________________-->
+<!-- ____________________________________________________________________ -->

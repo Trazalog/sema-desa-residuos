@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-// HECHA POR SORETE PROGRAMER
 
 class Gestiondeseguimiento extends CI_Model
 {
@@ -30,12 +29,12 @@ class Gestiondeseguimiento extends CI_Model
 
   // ---------------------- FUNCIONES OBTENER ----------------------
 
-  // Funcion Obtener Zona
-  public function obtener_Zonas()
+  // Funcion Obtener Estado
+  public function obtener_Estados()
   {
-      $aux = $this->rest->callAPI("GET",REST."/zonas");
+      $aux = $this->rest->callAPI("GET",REST."/estados");
       $aux =json_decode($aux["data"]);
-      return $aux->zonas->zona;
+      return $aux->estados->estado;
   }
   // ----------------------------------------------------------------
 

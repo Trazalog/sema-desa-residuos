@@ -10,7 +10,7 @@
                             {
                                 "titulo": "Registrar Inspectores",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarIn/templateIn"
+                                "link": "general/Estructura/Inspector/templateInspectores"
                             },
                             {
                                 "titulo": "Registrar Generadores ",
@@ -20,7 +20,7 @@
                             {
                                 "titulo": "Registrar Transportista",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarT/templateRt"
+                                "link": "general/Estructura/Transportista/templateTransportistas"
                             },
                             {
                                 "titulo": "Registrar Zona",

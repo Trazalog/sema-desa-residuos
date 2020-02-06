@@ -516,7 +516,7 @@
         },*/
         //excluded: ':disabled',
         fields: {
-            Nombre: {
+            nombre: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -528,7 +528,7 @@
                     }
                 }
             },
-            Departamento: {
+            depa_nom: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {

@@ -73,7 +73,7 @@
 
 </head>
 
-
+<?php $this->load->view('layout/wait') ?>
 
 <body class="hold-transition skin-blue sidebar-mini"></body>
 <div class="wrapper">
@@ -371,6 +371,15 @@ function WaitingOpen(texto) {
 /* Cierra cuadro cargando ajax */
 function WaitingClose() {
     $('#waiting').fadeOut('slow');
+}
+
+/* Abre cuadro cargando ajax */
+function wo(texto) {
+   WaitingOpen(texto);
+}
+/* Cierra cuadro cargando ajax */
+function wc() {
+    WaitingClose();
 }
 </script>
 

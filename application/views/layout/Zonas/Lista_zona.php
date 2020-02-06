@@ -5,7 +5,7 @@
                             <th>Acciones</th>
                             <th>Nombre</th>
                             <th>Departamento</th>
-                            <th>Circuito</th>
+                            <!--<th>Circuito</th>-->
                             <th>Descripcion</th>
                             
 
@@ -27,8 +27,8 @@
                             
                         echo   '</td>';
                         echo    '<td>'.$fila->nombre.'</td>';
-                        echo    '<td>'.$fila->depa_id.'</td>';
-                        echo    '<td>circuito</td>';
+                        echo    '<td>'.$fila->depa_nom.'</td>';
+                        //echo    '<td>circuito</td>';
                         echo    '<td>'.$fila->descripción.'</td>';
                         echo '</tr>';
                     }
@@ -44,11 +44,6 @@
 <script>
 
 DataTable($('#tabla_zonas'))
-
-
-
-
-
 
 </script>
            
