@@ -15,15 +15,9 @@
         </div>
     </div>
 </div>
-
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-
-
-
-<!---//////////////////////////////////////---BOX 1---///////////////////////////////////////////////////////----->
-
+<!---//////////////////////////////////////---BOX 1---//////////////////////////////////////----->
 
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
@@ -36,57 +30,62 @@
                 <i class="fa fa-times"></i>
             </button>
         </div>
-
     </div>
 
-    <!--_____________________________________________-->
+<!--__________________________________________________________________________________________-->
     <div class="box-body">
         <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
-
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <!--Codigo / Registro-->
+
+            <!--Codigo / Registro-->
                 <div class="form-group">
                     <label for="Codigo/Registro" >Codigo / Registro:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Codigo_registro" id="Codigo/Registro">
                     </div>
                 </div>
-                <!--_____________________________________________-->
-                <!--Descripcion-->
+            <!--__________________________________________________________________________________________-->
+
+            <!--Descripcion-->
                 <div class="form-group">
                     <label for="Descripcion" >Descripcion:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Descripcion" id="Descripcion">
                     </div>
                 </div>
-                <!--_____________________________________________-->
-                <!--Capacidad-->
+            <!--__________________________________________________________________________________________-->
+
+            <!--Capacidad-->
                 <div class="form-group">
                     <label for="Capacidad" >Capacidad:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Capacidad" id="Capacidad">
                     </div>
                 </div>
-                <!--_____________________________________________-->
-                <!--Año de elaboracion-->
+            <!--__________________________________________________________________________________________-->
+
+            <!--Año de elaboracion-->
                 <div class="form-group">
                     <label for="Añoelab">Año de elaboracion:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control"  name="Añoelab" id="Añoelab">
                     </div>
                 </div>
-                <!--_____________________________________________-->
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <!--Tara-->
+            <!--__________________________________________________________________________________________-->
+
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+
+            <!--Tara-->
                 <div class="form-group">
                     <label for="Tara" >Tara:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Tara" id="Tara">
                     </div>
                 </div>
-                <!--_____________________________________________-->
-                <!--Estado-->
+            <!--__________________________________________________________________________________________-->
+
+            <!--Estado-->
                 <div class="form-group">
                     <label for="Estados">Estado:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -94,63 +93,47 @@
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Estados as $i) {
-                            echo '<option>'.$i->nombre.'</option>';
+                            echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
                         }
                         ?>
                     </select>
                     </div>
                 </div>
-                <!--_____________________________________________-->
-                <!--Habilitacion-->
+            <!--__________________________________________________________________________________________-->
+
+            <!--Habilitacion-->
                 <div class="form-group">
                     <label for="Habilitacion" >Habilitacion:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Habilitacion" id="Habilitacion">
                     </div>
                 </div>
+            <!--__________________________________________________________________________________________-->
 
-                <!--_____________________________________________-->
-                <!--Adjuntador de imagenes-->  
+            <!--Adjuntador de imagenes-->  
+                <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+                    <input type="file" name="upload">
+                </form>
+            <!--__________________________________________________________________________________________-->
 
-                
-                
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 
-                    <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                        <input type="file" name="upload">
-                    </form>
-        
-                          
-               
-            </div>
-
-
-            <!--_____________________________________________-->
-
-            <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
-
-            <!--_____________________________________________-->
             <!--Boton de guardado-->
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Contenedor()">Guardar</button>
-            </div>
-            <!--_____________________________________________-->
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Contenedor()">Guardar</button>
+                </div>
+            <!--__________________________________________________________________________________________-->
         </form>
     </div>
 </div>
+<!---//////////////////////////////////////---FIN BOX 1---//////////////////////////////////////----->
 
-
-<!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
-
-
-
-<!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
-
-
+<!---//////////////////////////////////////--- TABLA ---//////////////////////////////////////----->
 
 <div class="box box-primary">
 
-<!--__________________TABLA___________________________-->
-
+<!--___________________________TABLA___________________________-->
 
 <div class="box-body">
     <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -159,26 +142,22 @@
             <div class="col-sm-6"></div>
         </div>
         <div class="row">
-
             <div class="col-sm-12 table-scroll">
 
-            <!--__________________HEADER TABLA___________________________-->
+            <!--___________________________HEADER TABLA___________________________-->
 
+                <!--___________________________HEADER TABLA___________________________-->
 
-                <!--__________________HEADER TABLA___________________________-->
                 <table id="tabla_contenedores" class="table table-bordered table-striped">
                     <thead class="thead-dark" bgcolor="#eeeeee">
-
                         <th>Acciones</th>
                         <th>Codigo / Registro</th>
                         <th>Estado</th>
                         <th>Capacidad</th>
                         <th>Habilitacion</th>
-                        
-
                     </thead>
 
-                    <!--__________________BODY TABLA___________________________-->
+                    <!--___________________________BODY TABLA___________________________-->
 
                     <tbody>
                     <tr>
@@ -186,35 +165,26 @@
                         <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                         <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
                         <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                        
                         </td>
                         <td>DATO</td>
                         <td> DATO</td>
                         <td>DATO</td>
                         <td>DATO</td>
                     </tr>
-
-                       
                     </tbody>
                 </table>
-                
-                <!--__________________FIN TABLA___________________________-->
+
+                <!--___________________________FIN TABLA___________________________-->
+
             </div>
         </div>
-
     </div>
 </div>
 
-<!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- FIN TABLA---//////////////////////////////////////----->
 
+<!---//////////////////////////////////////--- MODAL EDITAR ---//////////////////////////////////////----->
 
-
-
-
-
-<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
-    
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -224,60 +194,56 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel">Editar Contenedor</h5>
             </div>
-
-
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+            <!--___________________________FORMULARIO MODAL___________________________-->
 
-            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
-
-                <div class="modal-body">
-
-
-
-            <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
-
+<form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+    <div class="modal-body">
+        <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
             <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-6">
-                    <!--Codigo / Registro-->
+                <div class="row">
+                    <div class="col-md-6">
+
+                <!--Codigo / Registro-->
                     <div class="form-group">
                         <label for="Codigo/Registro" >Codigo / Registro:</label>
                         <input type="text" class="form-control"  name="" id="Codigo/Registro">
                     </div>
-                    <!--_____________________________________________-->
-                    <!--Descripcion-->
+                <!--__________________________________________________________________________________________-->
+
+                <!--Descripcion-->
                     <div class="form-group">
                         <label for="Descripcion" >Descripcion:</label>
                         <input type="text" class="form-control"  name="" id="Descripcion">
                     </div>
-                    <!--_____________________________________________-->
-                    <!--Capacidad-->
+                <!--__________________________________________________________________________________________-->
+
+                <!--Capacidad-->
                     <div class="form-group">
                         <label for="Capacidad" >Capacidad:</label>
                         <input type="text" class="form-control" name="" id="Capacidad">
                     </div>
-                    <!--_____________________________________________-->
-                    <!--Año de elaboracion-->
+                <!--__________________________________________________________________________________________-->
+
+                <!--Año de elaboracion-->
                     <div class="form-group">
                         <label for="Añoelab" >Año de elaboracion:</label>
                         <input type="text" class="form-control" name="" id="Añoelab">
                     </div>
+                <!--__________________________________________________________________________________________-->
 
-                </div>
-                
-                <div class="col-md-6">
-                    <!--_____________________________________________--> 
-                    <!--Tara-->
+            </div>
+            <div class="col-md-6">
+
+                <!--Tara-->
                     <div class="form-group">
                         <label for="Tara" >Tara:</label>
                         <input type="text" class="form-control" name="" id="Tara">
                     </div>
-                    <!--_____________________________________________-->
-                    <!--Estado-->
-                    
+                <!--__________________________________________________________________________________________-->
+
+                <!--Estado-->
                     <div class="form-group">
                         <label for="Estados">Estado:</label>
                         <select class="form-control select2 select2-hidden-accesible"  name="" id="Estados">
@@ -289,33 +255,26 @@
                             ?>
                         </select>
                     </div>
-                    <!--_____________________________________________-->
-                    <!--Habilitacion-->
+                <!--__________________________________________________________________________________________-->
+
+                <!--Habilitacion-->
                     <div class="form-group">
                         <label for="Habilitacion">Habilitacion:</label>
                         <input type="text" class="form-control"  name="" id="Habilitacion">
                     </div>
+                <!--__________________________________________________________________________________________-->
+
+                        </div>
+                    </div>
                 </div>
-
-                </div>    
-                
-            </div>
-            <div class="col-md-12">
-                <hr>
-            </div>
-
-            
+            <div class="col-md-12"><hr></div>
         </form>
+    </div>
+</form>
 
-                
-                </div>
-                
-            </form>
-
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <!--___________________________FIN FORMULARIO MODAL___________________________-->
 
             </div>
-
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
@@ -326,14 +285,10 @@
     </div>
 </div>
 
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---//////////////////////////////////////----->
 
-<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL INFORMACION ---//////////////////////////////////////----->
 
-
-
-<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
-
-    
 <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -343,91 +298,79 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel">Informacion Contenedor</h5>
             </div>
-
-
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+            <!--___________________________FORMULARIO MODAL___________________________-->
 
-            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
-
-                <div class="modal-body">
-
-
-
-            <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
-
+<form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+    <div class="modal-body">
+        <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
             <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+
                     <!--Codigo / Registro-->
-                    <div class="form-group">
-                        <label for="Codigo/Registro" >Codigo / Registro:</label>
-                        <input type="text" class="form-control" name="E_Codigo_registro" id="Codigo/Registro" readonly>
-                    </div>
-                    <!--_____________________________________________-->
+                        <div class="form-group">
+                            <label for="Codigo/Registro" >Codigo / Registro:</label>
+                            <input type="text" class="form-control" name="E_Codigo_registro" id="Codigo/Registro" readonly>
+                        </div>
+                    <!--__________________________________________________________________________________________-->
+
                     <!--Descripcion-->
-                    <div class="form-group">
-                        <label for="Descripcion" >Descripcion:</label>
-                        <input type="text" class="form-control" name="E_Descripcion" id="Descripcion" readonly>
-                    </div>
-                    <!--_____________________________________________-->
+                        <div class="form-group">
+                            <label for="Descripcion" >Descripcion:</label>
+                            <input type="text" class="form-control" name="E_Descripcion" id="Descripcion" readonly>
+                        </div>
+                    <!--__________________________________________________________________________________________-->
+
                     <!--Capacidad-->
-                    <div class="form-group">
-                        <label for="Capacidad">Capacidad:</label>
-                        <input type="text" class="form-control"  name="E_Capacidad" id="Capacidad" readonly>
-                    </div>
-                    <!--_____________________________________________-->
+                        <div class="form-group">
+                            <label for="Capacidad">Capacidad:</label>
+                            <input type="text" class="form-control"  name="E_Capacidad" id="Capacidad" readonly>
+                        </div>
+                    <!--__________________________________________________________________________________________-->
+
                     <!--Año de elaboracion-->
-                    <div class="form-group">
-                        <label for="Añoelab">Año de elaboracion:</label>
-                        <input type="text" class="form-control"  name="E_Añoelab" id="Añoelab" readonly>
-                    </div>
+                        <div class="form-group">
+                            <label for="Añoelab">Año de elaboracion:</label>
+                            <input type="text" class="form-control"  name="E_Añoelab" id="Añoelab" readonly>
+                        </div>
+                    <!--__________________________________________________________________________________________--> 
 
                 </div>
-                
                 <div class="col-md-6">
-                    <!--_____________________________________________--> 
+
                     <!--Tara-->
-                    <div class="form-group">
-                        <label for="Tara" >Tara:</label>
-                        <input type="text" class="form-control"  name="E_Tara" id="Tara" readonly>
-                    </div>
-                    <!--_____________________________________________-->
+                        <div class="form-group">
+                            <label for="Tara" >Tara:</label>
+                            <input type="text" class="form-control"  name="E_Tara" id="Tara" readonly>
+                        </div>
+                    <!--__________________________________________________________________________________________-->
+
                     <!--Estado-->
-                    
-                    <div class="form-group">
-                        <label for="Estados" >Estado:</label>
-                        <input type="text" class="form-control" name="E_Estados" id="" readonly>
-                    </div>
-                    <!--_____________________________________________-->
+                        <div class="form-group">
+                            <label for="Estados" >Estado:</label>
+                            <input type="text" class="form-control" name="E_Estados" id="" readonly>
+                        </div>
+                    <!--__________________________________________________________________________________________-->
+
                     <!--Habilitacion-->
-                    <div class="form-group">
-                        <label for="Habilitacion" >Habilitacion:</label>
-                        <input type="text" class="form-control" name="E_Habilitacion" id="Habilitacion" readonly>
+                        <div class="form-group">
+                            <label for="Habilitacion" >Habilitacion:</label>
+                            <input type="text" class="form-control" name="E_Habilitacion" id="Habilitacion" readonly>
+                        </div>
+                    <!--__________________________________________________________________________________________-->
+
                     </div>
                 </div>
-
-                </div>    
-                
             </div>
-            <div class="col-md-12">
-                <hr>
-            </div>
-
-            
+            <div class="col-md-12"><hr></div>
         </form>
+    </div>
+</form>
 
-                
-                </div>
-                
-            </form>
-
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
+        <!--___________________________FIN FORMULARIO MODAL___________________________-->
             </div>
-
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
@@ -438,21 +381,16 @@
     </div>
 </div>
 
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---//////////////////////////////////////----->
 
-<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- FUNCIONES ---//////////////////////////////////////----->
 
- <!---//////////////////////////////////////--- FUNCIONES ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- SCRIPTS ---//////////////////////////////////////----->
 
-
-
- <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
-
-<!--_____________________________________________________________-->
+<!--__________________________________________________________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
-
-
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
@@ -463,91 +401,75 @@
         $("#boxDatos").show();
     });
 </script>
-​<!--_____________________________________________________________-->
+​<!--__________________________________________________________________________________________-->
 
 <!-- Script Data-Tables-->
 <script>
-        $("#btnclose").on("click", function() {
-        $("#boxDatos").hide(500);
-        $("#botonAgregar").removeAttr("disabled");
-        $('#formDatos').data('bootstrapValidator').resetForm();
-        $("#formDatos")[0].reset();
-        $('#selecmov').find('option').remove();
-        $('#chofer').find('option').remove();
-        });
+    $("#btnclose").on("click", function() {
+    $("#boxDatos").hide(500);
+    $("#botonAgregar").removeAttr("disabled");
+    $('#formDatos').data('bootstrapValidator').resetForm();
+    $("#formDatos")[0].reset();
+    $('#selecmov').find('option').remove();
+    $('#chofer').find('option').remove();
+    });
 </script>
-
-
-
-​<!--_____________________________________________________________-->
+​<!--__________________________________________________________________________________________-->
 
 <!-- Script Agregar datos de registrar_generadores-->
 
 <!-- <script>
-function Guardar_Contenedor(){
-    console.log("entro a agregar datos");
-    $('#formContenedores').on('submit', function(e){
-    e.preventDefault();
-    var me = $(this);
-    if ( me.data('requestRunning') ) {return;}
-    me.data('requestRunning', true);
-    datos=$('#formContenedores').serialize();
-    console.log(datos);
-        //--------------------------------------------------------------
+    function Guardar_Contenedor(){
+        console.log("entro a agregar datos");
+        $('#formContenedores').on('submit', function(e){
+        e.preventDefault();
+        var me = $(this);
+        if ( me.data('requestRunning') ) {return;}
+        me.data('requestRunning', true);
+        datos=$('#formContenedores').serialize();
+        console.log(datos);
+            //--------------------------------------------------------------
         
-    $.ajax({
-                type:"POST",
-                data:datos,
-                url:"ajax/Registrarcontenedor/guardarDato",
-                success:function(r){
-                    if(r == "ok"){
-                        //console.log(datos);
-                        $('#formContenedores')[0].reset();
-                        alertify.success("Agregado con exito");
+        $.ajax({
+                    type:"POST",
+                    data:datos,
+                    url:"ajax/Registrarcontenedor/guardarDato",
+                    success:function(r){
+                        if(r == "ok"){
+                            //console.log(datos);
+                            $('#formContenedores')[0].reset();
+                            alertify.success("Agregado con exito");
+                        }
+                        else{
+                            console.log(r);
+                            $('#formContenedores')[0].reset();
+                            alertify.error("error al agregar");
+                        }
+                    },
+                    complete: function() {
+                        me.data('requestRunning', false);
                     }
-                    else{
-                        console.log(r);
-                        $('#formContenedores')[0].reset();
-                        alertify.error("error al agregar");
-                    }
-                },
-                complete: function() {
-                    me.data('requestRunning', false);
-                }
-            });
-    });
-}
+                });
+        });
+    }
 </script> -->
+<!--__________________________________________________________________________________________-->
 
-
-<!--_____________________________________________________________-->
 <!-- REGISTRAR CONTENEDORES-->
-
-
 <script>
-
     function Guardar_Contenedor() {
-
         datos = $('#formContenedores').serialize();
-
         //datos para mostrar a modo de ejemplo para DEMO---------------
-
         //Serialize the Form
-
         var values = {};
         $.each($("#formContenedores").serializeArray(), function (i, field) {
             values[field.name] = field.value;
         });
-
         //Value Retrieval Function
-
         var getValue = function (valueName) {
             return values[valueName];
         };
-
-
         //Variables DATOS de los INPUT
-
         var Codigo_registro = getValue("Codigo_registro");
         var Descripcion = getValue("Descripcion");
         var Capacidad = getValue("Capacidad");
@@ -555,7 +477,6 @@ function Guardar_Contenedor(){
         var Tara = getValue("Tara");
         var Estados = getValue("Estados");
         var Habilitacion = getValue("Habilitacion");
-
 
         //--------------------------------------------------------------
 
@@ -566,28 +487,18 @@ function Guardar_Contenedor(){
                 url: "general/Estructura/Contenedor/Guardar_Contenedor",
                 success: function (r) {
                     if (r == "ok") {
-
                         //console.log(datos);
-
-                         //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
-                       
+                        //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
                         var t = $('#tabla_contenedores').DataTable();
                         var fila = t.row.add([
-
                             //agrega los iconos correspondientes
-
                             '<div class="text-center"><button type="button" title="Editar"  onclick="clickedit('+aux+')" class="btn btn-primary btn-circle"  data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="Info" onclick="clickinfo('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp</div>',
-                            
                             Codigo / Registro,
                             Estado,
                             Capacidad,
                             Habilitacion
-                    
-                            
-                            
                         ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
                         t.draw(false);
-
                         aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
                         $('#formContenedores').data('bootstrapValidator').resetForm(true);
                         alertify.success("Agregado con exito");
@@ -601,239 +512,229 @@ function Guardar_Contenedor(){
         }
     }
 </script>
-
-
-
-<!--_____________________________________________________________-->
+<!--__________________________________________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
-  $('#formContenedores').bootstrapValidator({
-      message: 'This value is not valid',
-      /*feedbackIcons: {
-          valid: 'glyphicon glyphicon-ok',
-          invalid: 'glyphicon glyphicon-remove',
-          validating: 'glyphicon glyphicon-refresh'
-      },*/
-      //excluded: ':disabled',
-      fields: {
-        Codigo_registro: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-        Descripcion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
-        Capacidad: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-        Añoelab: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-        Tara: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-        Estados: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
-        Habilitacion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
-      }
-  }).on('success.form.bv', function(e){
-      e.preventDefault();
-      //guardar();
-  });
+    $('#formContenedores').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            Codigo_registro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            Capacidad: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Añoelab: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Tara: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Estados: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            Habilitacion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+        }
+    }).on('success.form.bv', function(e){
+        e.preventDefault();
+        //guardar();
+    });
 </script>
+<!--__________________________________________________________________________________________-->
 
-
-<!--_____________________________________________________________-->
- <!-- script Datatables -->
- <script>
-
-DataTable($('#tabla_contenedores'))
-
+<!-- script Datatables -->
+<script>
+    DataTable($('#tabla_contenedores'))
 </script>
-
-
-<!--_____________________________________________________________-->
- <!-- script Listar Datos -->
-
+<!--__________________________________________________________________________________________-->
+<!-- script Listar Datos -->
 <!-- 
 <script>
-
-
-   listarContenedores()
-
-    function listarContenedores(){
-        alert('hola');
-
-        $.ajax({
-                type:"GET",
-                data:datos,
-                url:"general/Estructura/Contenedores/Listar_Contenedor",
-                success:function(r){
-                    if(r == "ok"){
-                        //console.log(datos);
-                        $('#formContenedores')[0].reset();
-                        alertify.success("Agregado con exito");
+    listarContenedores()
+        function listarContenedores(){
+            alert('hola');
+            $.ajax({
+                    type:"GET",
+                    data:datos,
+                    url:"general/Estructura/Contenedores/Listar_Contenedor",
+                    success:function(r){
+                        if(r == "ok"){
+                            //console.log(datos);
+                            $('#formContenedores')[0].reset();
+                            alertify.success("Agregado con exito");
+                        }
+                        else{
+                            console.log(r);
+                            $('#formContenedores')[0].reset();
+                            alertify.error("error al agregar");
+                        }
+                    },
+                    complete: function() {
+                        me.data('requestRunning', false);
                     }
-                    else{
-                        console.log(r);
-                        $('#formContenedores')[0].reset();
-                        alertify.error("error al agregar");
-                    }
-                },
-                complete: function() {
-                    me.data('requestRunning', false);
-                }
-            });
-    }
+                });
+        }
+</script>
+-->
+<!--__________________________________________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
-  $('#formContenedores').bootstrapValidator({
-      message: 'This value is not valid',
-      /*feedbackIcons: {
-          valid: 'glyphicon glyphicon-ok',
-          invalid: 'glyphicon glyphicon-remove',
-          validating: 'glyphicon glyphicon-refresh'
-      },*/
-      //excluded: ':disabled',
-      fields: {
-        Codigo_registro: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-        Descripcion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
-        Capacidad: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-        Añoelab: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-        Tara: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-        Estados: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
-        Habilitacion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-              }
-          },
-      }
-  }).on('success.form.bv', function(e){
-      e.preventDefault();
-      //guardar();
-  });
+    $('#formContenedores').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            Codigo_registro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            Descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            Capacidad: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Añoelab: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Tara: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Estados: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            Habilitacion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+        }
+    }).on('success.form.bv', function(e){
+        e.preventDefault();
+        //guardar();
+    });
 </script>
-<!--_____________________________________________________________-->
+<!--__________________________________________________________________________________________-->
 
     
 
-</script> -->
+</script>  -->
 
 
 
@@ -846,13 +747,6 @@ DataTable($('#tabla_contenedores'))
 <!-- 
 '<div class="text-center">
 <button type="button" title="Editar"  onclick="clickedit('+aux+')" class="btn btn-primary btn-circle"  data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-
 <button type="button" title="Info" onclick="clickinfo('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
-
 <button type="button" title="eliminar" onclick="borrar('+aux+')" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-
-
-</div>', -->
-
-                     
-
+</div>',-->

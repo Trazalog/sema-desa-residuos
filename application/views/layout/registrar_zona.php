@@ -338,7 +338,7 @@
 
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+            <!--___________________________FORMULARIO MODAL___________________________-->
 
             <form method="POST" autocomplete="off" id="" class="registerForm">
 
@@ -349,7 +349,7 @@
                 
                         <div class="col-sm-12 ">
 
-                            <!--__________________HEADER TABLA___________________________-->
+                            <!--___________________________HEADER TABLA___________________________-->
 
 
                             <table id="tabla_circuitos" class="table table-bordered table-striped table-scroll">
@@ -364,7 +364,7 @@
 
                                 </thead>
 
-                                <!--__________________BODY TABLA___________________________-->
+                                <!--___________________________BODY TABLA___________________________-->
 
                                 <tbody>
                                 <tr>
@@ -385,7 +385,7 @@
                                 </tbody>
                             </table>
 
-                            <!--__________________FIN TABLAa___________________________-->
+                            <!--___________________________FIN TABLAa___________________________-->
 
                         </div>
                     </div>
@@ -396,7 +396,7 @@
                 
             </form>
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <!--___________________________FIN FORMULARIO MODAL___________________________-->
 
             </div>
             <div class="modal-footer">
@@ -421,7 +421,7 @@
 
 
             <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
-<!--_____________________________________________-->
+<!--__________________________________________________________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
@@ -448,143 +448,138 @@
         $('#chofer').find('option').remove();
         });
 </script>
-<!--_____________________________________________-->
+<!--__________________________________________________________________________________________-->
 
 <!-- Script Data-Tables-->
+
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
-
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").focus();
         $("#boxDatos").show();
-
     });
 </script>
-​<!--_____________________________________________-->
+​<!--__________________________________________________________________________________________-->
 
 <!-- Script Agregar datos de registrar_zona-->
 <script>
-function agregarDato(){
-    console.log("entro a agregar datos");
-    $('#formZonas').on('submit', function(e){
-    e.preventDefault();
-    var me = $(this);
-    if ( me.data('requestRunning') ) {return;}
-    me.data('requestRunning', true);
-    datos=$('#formZonas').serialize();
-    console.log(datos);
+    function agregarDato(){
+        console.log("entro a agregar datos");
+        $('#formZonas').on('submit', function(e){
+        e.preventDefault();
+        var me = $(this);
+        if ( me.data('requestRunning') ) {return;}
+        me.data('requestRunning', true);
+        datos=$('#formZonas').serialize();
+        console.log(datos);
 
-        //--------------------------------------------------------------
+            //--------------------------------------------------------------
 
-    $.ajax({
-                type:"POST",
-                data:datos,
-                url:"ajax/Registrarzona/guardarDato",
-                success:function(r){
-                    if(r == "ok"){
-                        //console.log(datos);
-                        $('#formZonas')[0].reset();
-                        alertify.success("Agregado con exito");
+            $.ajax({
+                    type:"POST",
+                    data:datos,
+                    url:"ajax/Registrarzona/guardarDato",
+                    success:function(r){
+                        if(r == "ok"){
+                            //console.log(datos);
+                            $('#formZonas')[0].reset();
+                            alertify.success("Agregado con exito");
+                        }
+                        else{
+                            console.log(r);
+                            $('#formZonas')[0].reset();
+                            alertify.error("error al agregar");
+                        }
+                    },
+                    complete: function() {
+                        me.data('requestRunning', false);
                     }
-                    else{
-                        console.log(r);
-                        $('#formZonas')[0].reset();
-                        alertify.error("error al agregar");
-                    }
-                },
-                complete: function() {
-                    me.data('requestRunning', false);
-                }
-            });
-    });
-}
+                });
+        });
+    }
 </script>
-<!--_____________________________________________-->
+<!--__________________________________________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
-  $('#formZonas').bootstrapValidator({
-      message: 'This value is not valid',
-      /*feedbackIcons: {
-          valid: 'glyphicon glyphicon-ok',
-          invalid: 'glyphicon glyphicon-remove',
-          validating: 'glyphicon glyphicon-refresh'
-      },*/
-      //excluded: ':disabled',
-      fields: {
-          Nombre: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-          Departamento: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada debe ser un numero entero'
-                  }
-              }
-          },
-          Circuito_Recorrido: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'   
-                  }
-              }
-          },
-          Descripcion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  }
-              }
-          }
-      }
-  }).on('success.form.bv', function (e) {
-      e.preventDefault();
-      //guardar();
-  });
+    $('#formZonas').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            nombre: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            depa_nom: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            Circuito_Recorrido: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'   
+                    }
+                }
+            },
+            Descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            }
+        }
+    }).on('success.form.bv', function (e) {
+        e.preventDefault();
+        //guardar();
+    });
 </script>
-<!--_____________________________________________-->
+<!--__________________________________________________________________________________________-->
 
 <!--Script validador de campo de imagenes-->
 <script>
-var value = $("#imgarch").val();
-if (value == "1") {
-    document.getElementById('imgarch').setAttribute("data-required","true");
-}
-else {
-    document.getElementById('imgarch').setAttribute("data-required","false");
-}
+    var value = $("#imgarch").val();
+    if (value == "1") {
+        document.getElementById('imgarch').setAttribute("data-required","true");
+    }
+    else {
+        document.getElementById('imgarch').setAttribute("data-required","false");
+    }
 </script>
-<!--_____________________________________________-->
+<!--__________________________________________________________________________________________-->
 
+<!--DataTable script-->
 <script>
-
-DataTable($('#tabla_zonas'))
-
-DataTable($('#tabla_circuitos'))
-
-tabla_circuitos
-
-
+    DataTable($('#tabla_zonas'))
+    DataTable($('#tabla_circuitos'))
+    tabla_circuitos
 </script>
-           
+<!--__________________________________________________________________________________________-->

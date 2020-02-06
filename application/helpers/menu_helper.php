@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 if(!function_exists('menu')){
-    function menu($json)
+    function menu($json, $aux = null)
     {
         $array =  $json;
        // var_dump($array->menu);die;
         $html = '<ul class="sidebar-menu tree menu" data-widget="tree">
-        <li class="header">Menu Navegacion</li>';
+        <li class="header">Menu Navegacion</li>'.$aux;
         foreach ($array->menuP->menuH as $i) {
             switch ($i->nivel) {
                 case 1:

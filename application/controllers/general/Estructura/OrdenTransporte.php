@@ -7,18 +7,33 @@ class OrdenTransporte extends CI_Controller {
     function __construct(){
 
       parent::__construct();
+
+      $this->load->model('general/Estructura/OrdenTransportes');
+      
    }
-
-
-
 
   
 
+
+  // ---------------- Funcion Cargar vista Orden de transporte MUNICIPIOS y Datos
+
       // ---------------- Funcion Cargar vista Orden de transporte y Datos
 
-      function template()
+      function templateOrdentransporte()
       {
-       //    $this->load->view('layout/registrar_infraccion');
+          
+        $data['empresa'] = $this->Empresas->obtener();
+        $data['d'] = $this->DisposisionesFinales->obtener();
+        $data['tipoResiduo'] = $this->TipoResiduos->obtener();
+        $data['fecha'] = date('Y-m-d');
+
+        // $data[''] = $this->OrdenTransportes->obtener_();
+        // $data[''] = $this->OrdenTransportes->obtener_();
+        // $data[''] = $this->OrdenTransportes->obtener_();
+        // $data[''] = $this->OrdenTransportes->obtener_();
+        
+
+        $this->load->view('layout/orden_transporte', $data);
           
       }
    
@@ -26,7 +41,15 @@ class OrdenTransporte extends CI_Controller {
    
        function Guardar_OrdenTransporte()
        {
-           // $this->load->view('layout/registrar_infraccion');
+
+        $datos =  $this->input->post('datos');
+        $resp = $this->OrdenTransportes->Guardar_OrdenT($datos);
+        if($resp){
+        echo "ok";
+        }else{
+        echo "error";
+        }
+           
        }
    
        // ---------------- Funcion Crear Orden de transporte
@@ -63,10 +86,46 @@ class OrdenTransporte extends CI_Controller {
        }
 
        
-      // ---------------- Funciones Solicitudes --------------------------------//
+      // ---------------- Funciones SOLICITUD RETIRO DE ORDEN CONTENEDOR --------------------------------//
 
 
+ // ---------------- Funcion Cargar vista Solicitud retiroy Datos
 
+    function templateSolicitudRetiro()
+    {
+        
+      // $data[''] = $this->->obtener_();
+      // $data[''] = $this->->obtener_();
+      // $data[''] = $this->->obtener_();
+      // $data[''] = $this->->obtener_();
+
+      
+      $this->load->view('layout/Solicitud_retiro', $data);
+        
+    }
+
+      // ---------------- Funcion Registrar Orden Transporte
+
+      function Guardar_SolicitudRetiro()
+      {
+          
+      }
+
+      // ---------------- Funcion Crear Orden de transporte
+
+    function Crear_SolicitudRetiro()
+    {
+        
+        
+    }
+
+    // ---------------- Funcion Listar OrdenTransporte
+
+    function Listar_SolicitudesRetiro()
+    {
+        
+        
+    }
       
    
        
@@ -75,29 +134,23 @@ class OrdenTransporte extends CI_Controller {
       // ---------------- Funciones Obtener --------------------------------//
       
 
-       // ---------------- Funcion Obtener Estado
+       // ---------------- Funcion Obtener tipo residuo
    
-       function Obtener_Estado()
+       function Obtener_tipo_residuo()
        {
            
            
        }
 
-        // ---------------- Funcion Agregar Incidencia
+        // ---------------- Funcion obtener contenedor
    
-        function Agregar_Incidencia()
+        function OBtener_contendor()
         {
              
              
         }
 
-        // ---------------- Funcion Agregar Rectificada
-   
-       function Agregar_Rectificada()
-       {
-           
-           
-       }
+       
 
        
    

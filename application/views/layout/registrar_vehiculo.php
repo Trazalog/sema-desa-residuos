@@ -1,5 +1,3 @@
-<!-- Hecha por Jose Roberto el mas VIRGO -->
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
 <div class="box box-primary animated fadeInLeft">
@@ -43,34 +41,32 @@
 ​        <!--_____________________________________________________________-->
 
 
-<div class="box-body">
-
-<form class="formVehiculo" id="formVehiculo"  method="POST" autocomplete="off" class="registerForm">
-
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="box-body">
+            <form class="formVehiculo" id="formVehiculo"  method="POST" autocomplete="off" class="registerForm">
+                <div class="col-md-6 col-sm-6 col-xs-12">
         
-                        <!--Descripcion-->
+                    <!--Descripcion-->
                         <div class="form-group">
                                 <label for="Descripcion" >Descripcion:</label>
                                 <input type="text" class="form-control" id="Descripcion" name="descripcion">
                         </div>
-            ​            <!--_____________________________________________________________-->
+            ​        <!--_____________________________________________________________-->
 
-                        <!--Dominio-->
+                    <!--Dominio-->
                         <div class="form-group">
                                 <label for="Dominio">Dominio:</label>
                                 <input type="text" class="form-control" id="Dominio" name="dominio">
                         </div>
-            ​            <!--_____________________________________________________________-->
+            ​        <!--_____________________________________________________________-->
 
-                        <!--Marca-->
+                    <!--Marca-->
                         <div class="form-group">
                                 <label for="Marca" >Marca:</label>
                                 <input type="text" class="form-control" id="Marca" name="marca">
                         </div>
-            ​            <!--_____________________________________________________________-->
+            ​        <!--_____________________________________________________________-->
 
-                        <!--Condicion-->
+                    <!--Condicion-->
                         <div class="form-group">
                             <label for="condicion" >Condicion:</label>
                             <select class="form-control select2 select2-hidden-accesible" id="condicion" name="condicion" >
@@ -82,47 +78,47 @@
                                 ?>
                             </select>
                         </div>
-            ​            <!--_____________________________________________________________-->
+            ​        <!--_____________________________________________________________-->
 
-                        <!--Modelo-->
+                    <!--Modelo-->
                         <div class="form-group">
                                 <label for="Modelo" >Modelo:</label>
                                 <input type="text" class="form-control" id="Modelo" name="modelo">
                         </div>
-            ​            <!--_____________________________________________________________-->
-        </div>
-        
-        <div class="col-md-6 col-sm-6 col-xs-12">
-        
-                        <!--Capacidad-->
+            ​        <!--_____________________________________________________________-->
+
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                    <!--Capacidad-->
                         <div class="form-group">
                                 <label for="Capacidad" >Capacidad:</label>
                                 <input type="text" class="form-control" id="Capacidad" name="capacidad">
                         </div>
-            ​            <!--_____________________________________________________________-->
+            ​        <!--_____________________________________________________________-->
 
-                        <!--Tara-->
+                    <!--Tara-->
                         <div class="form-group">
                                 <label for="Tara" >Tara:</label>
                                 <input type="text" class="form-control" id="Tara" name="tara" >
                         </div>
-            ​            <!--_____________________________________________________________-->    
+            ​        <!--_____________________________________________________________-->    
 
-                        <!--Habilitacion-->
+                    <!--Habilitacion-->
                         <div class="form-group">
                                 <label for="Habilitacion" >Habilitacion:</label>
                                 <input type="text" class="form-control" id="Habilitacion" name="habilitacion" >
                         </div>
-            ​            <!--_____________________________________________________________-->    
+            ​        <!--_____________________________________________________________-->    
 
-                        <!--Registro-->
+                    <!--Registro-->
                         <div class="form-group">
                                 <label for="Registro" >Registro:</label>
                                 <input type="text" class="form-control" id="Registro" name="registro" >
                         </div>
-            ​            <!--_____________________________________________________________--> 
+            ​        <!--_____________________________________________________________--> 
 
-                        <!--Fecha de habilitacion-->
+                    <!--Fecha de habilitacion-->
                         <div class="form-group" >
                             <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
                             <div class="input-group date">
@@ -133,7 +129,7 @@
                             </div>
                             <!-- /.input group -->
                         </div>
-            ​            <!--_____________________________________________________________-->
+            ​        <!--_____________________________________________________________-->
 
                         <!--Adjuntador de imagenes-->
                         <!-- <div class="form-group">
@@ -175,15 +171,11 @@
 
 <!---//////////////////////////////////////--- FIN BOX---///////////////////////////////////////////////////////----->
 
-
 <!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
-
-
 
 <div class="box box-primary">
 
     <!--__________________TABLA___________________________-->
-
 
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -197,7 +189,6 @@
 
                 <!--__________________HEADER TABLA___________________________-->
 
-
                     <!--__________________HEADER TABLA___________________________-->
                     <table id="tabla_vehiculos" class="table table-bordered table-striped">
                         <thead class="thead-dark" bgcolor="#eeeeee">
@@ -209,7 +200,6 @@
                             <th>Tara</th>
                             <th>habilitacion</th>
                             <th>Registro</th>
-                            
 
                         </thead>
 
@@ -231,23 +221,19 @@
                             <td>DATO</td>
                         </tr>
 
-                           
                         </tbody>
                     </table>
-                    
+
                     <!--__________________FIN TABLA___________________________-->
                 </div>
             </div>
-
         </div>
     </div>
 
     <!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
 
-
     <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-    
     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -258,124 +244,115 @@
                 <h5 class="modal-title" id="exampleModalLabel">Editar Vehiculo</h5>
             </div>
 
-
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form class="formVehiculoEdit" id="formVehiculoEdit"  method="POST" autocomplete="off" class="registerForm">
-
-
                 <div class="modal-body">
-
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
         
                         <!--Descripcion-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Descripcion" >Descripcion:</label>
                                 <input type="text" class="form-control" id="" name="e_descripcion">
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Dominio-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Dominio">Dominio:</label>
                                 <input type="text" class="form-control" id="" name="e_dominio">
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Marca-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Marca" >Marca:</label>
                                 <input type="text" class="form-control" id="" name="e_marca">
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Condicion-->
-                        <div class="form-group">
-                            <label for="condicion" >Condicion:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="" name="e_condicion" >
-                                <option value="" disabled selected>-Seleccione opcion-</option>
-                                <?php
-                                foreach ($condicion as $i) {
-                                    echo '<option>'.$i->nombre.'</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
+                            <div class="form-group">
+                                <label for="condicion" >Condicion:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="" name="e_condicion" >
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                    foreach ($condicion as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Modelo-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Modelo" >Modelo:</label>
                                 <input type="text" class="form-control" id="" name="e_modelo">
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->
-        </div>
-        
-        <div class="col-md-6 col-sm-6 col-xs-12">
-        
+
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+
                         <!--Capacidad-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Capacidad" >Capacidad:</label>
                                 <input type="text" class="form-control" id="" name="e_capacidad">
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Tara-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Tara" >Tara:</label>
                                 <input type="text" class="form-control" id="" name="e_tara" >
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->    
 
                         <!--Habilitacion-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Habilitacion" >Habilitacion:</label>
                                 <input type="text" class="form-control" id="" name="e_habilitacion" >
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->    
 
                         <!--Registro-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Registro" >Registro:</label>
                                 <input type="text" class="form-control" id="" name="e_registro" >
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________--> 
 
                         <!--Fecha de habilitacion-->
-                        <div class="form-group" >
-                            <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
+                            <div class="form-group" >
+                                <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control pull-right" id="" name="e_fechahabilitacion">
                                 </div>
-                                <input type="date" class="form-control pull-right" id="" name="e_fechahabilitacion">
+                                <!-- /.input group -->
                             </div>
-                            <!-- /.input group -->
-                        </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Adjuntador de imagenes-->
-                        <!-- <div class="form-group">
-                            <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
-                                <input  type="file"  id="imgarch" name="upload" data-required="true">
-                            </form>
-                        </div> -->
+                            <!-- <div class="form-group">
+                                <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
+                                    <input  type="file"  id="imgarch" name="upload" data-required="true">
+                                </form>
+                            </div> -->
             ​            <!--_____________________________________________________________-->
 
-        
-        </div>
-                    
-                    
+                    </div>  
                 </div>
-                
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
             </div>
-
             <div class="col-md-12"><hr></div>
             <div class="modal-footer">
                 <div class="form-group text-right">
@@ -387,14 +364,10 @@
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
-
 
 <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-    
 <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -404,116 +377,107 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel">Informacion Vehiculo</h5>
             </div>
-
-
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
-
                 <div class="modal-body">
-
                     <div class="col-md-6 col-sm-6 col-xs-12">
-        
+
                         <!--Descripcion-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Descripcion" >Descripcion:</label>
                                 <input type="text" class="form-control" id="Descripcion" name="descripcion" readonly>
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Dominio-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Dominio">Dominio:</label>
                                 <input type="text" class="form-control" id="Dominio" name="dominio"readonly>
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Marca-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Marca" >Marca:</label>
                                 <input type="text" class="form-control" id="Marca" name="marca"readonly>
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Condicion-->
-                        <div class="form-group">
-                            <label for="condicion" >Condicion:</label>
-                            <input type="text" class="form-control" id="condicion" name="condicion"readonly >                            
-                        </div>
+                            <div class="form-group">
+                                <label for="condicion" >Condicion:</label>
+                                <input type="text" class="form-control" id="condicion" name="condicion"readonly >                            
+                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Modelo-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Modelo" >Modelo:</label>
                                 <input type="text" class="form-control" id="Modelo" name="modelo"readonly >
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->
+
                     </div>
-                
-                <div class="col-md-6 col-sm-6 col-xs-12">
-        
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+
                         <!--Capacidad-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Capacidad" >Capacidad:</label>
                                 <input type="text" class="form-control" id="Capacidad" name="capacidad"readonly >
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Tara-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Tara" >Tara:</label>
                                 <input type="text" class="form-control" id="Tara" name="tara"readonly  >
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->    
 
                         <!--Habilitacion-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Habilitacion" >Habilitacion:</label>
                                 <input type="text" class="form-control" id="Habilitacion" name="habilitacion" readonly >
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________-->    
 
                         <!--Registro-->
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="Registro" >Registro:</label>
                                 <input type="text" class="form-control" id="Registro" name="registro" readonly >
-                        </div>
+                            </div>
             ​            <!--_____________________________________________________________--> 
 
                         <!--Fecha de habilitacion-->
-                        <div class="form-group" >
-                            <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
+                            <div class="form-group" >
+                                <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control pull-right" id="datepicker" name="fechahabilitacion" readonly >
                                 </div>
-                                <input type="date" class="form-control pull-right" id="datepicker" name="fechahabilitacion" readonly >
+                                <!-- /.input group -->
                             </div>
-                            <!-- /.input group -->
-                        </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Adjuntador de imagenes-->
-                        <!-- <div class="form-group">
-                            <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
-                                <input  type="file"  id="imgarch" name="upload" data-required="true">
-                            </form>
-                        </div> -->
+                            <!-- <div class="form-group">
+                                <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
+                                    <input  type="file"  id="imgarch" name="upload" data-required="true">
+                                </form>
+                            </div> -->
             ​            <!--_____________________________________________________________-->
 
-        
-        </div>
+                    </div>
                 </div>
-                
             </form>
-
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
             </div>
-
             <div class="col-md-12"><hr></div>
             <div class="modal-footer">
                 <div class="form-group text-right">
@@ -525,17 +489,9 @@
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-
-
-
-
-
-
-  
- <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
 <!--_____________________________________________________________-->
 
@@ -555,14 +511,14 @@
 
 <!-- Script Data-Tables-->
 <script>
-        $("#btnclose").on("click", function() {
-        $("#boxDatos").hide(500);
-        $("#botonAgregar").removeAttr("disabled");
-        $('#formDatos').data('bootstrapValidator').resetForm();
-        $("#formDatos")[0].reset();
-        $('#selecmov').find('option').remove();
-        $('#chofer').find('option').remove();
-        });
+    $("#btnclose").on("click", function() {
+    $("#boxDatos").hide(500);
+    $("#botonAgregar").removeAttr("disabled");
+    $('#formDatos').data('bootstrapValidator').resetForm();
+    $("#formDatos")[0].reset();
+    $('#selecmov').find('option').remove();
+    $('#chofer').find('option').remove();
+    });
 </script>
 ​<!--_____________________________________________________________-->
 
@@ -582,400 +538,397 @@
 
 <!-- Script Agregar datos de registrar_generadores-->
 <script>
-function agregarDato(){
-    console.log("entro a agregar datos");
-    $('#formVehiculo').on('submit', function(e){
-    e.preventDefault();
-    var me = $(this);
-    if ( me.data('requestRunning') ) {return;}
-    me.data('requestRunning', true);
-    datos=$('#formVehiculo').serialize();
-    console.log(datos);
-        //--------------------------------------------------------------
-    $.ajax({
-                type:"POST",
-                data:datos,
-                url:"ajax/Registrarchofer/guardarDato",
-                success:function(r){
-                    if(r == "ok"){
-                        //console.log(datos);
-                        $('#formVehiculo')[0].reset();
-                        alertify.success("Agregado con exito");
+    function agregarDato(){
+        console.log("entro a agregar datos");
+        $('#formVehiculo').on('submit', function(e){
+        e.preventDefault();
+        var me = $(this);
+        if ( me.data('requestRunning') ) {return;}
+        me.data('requestRunning', true);
+        datos=$('#formVehiculo').serialize();
+        console.log(datos);
+
+            //--------------------------------------------------------------
+
+        $.ajax({
+                    type:"POST",
+                    data:datos,
+                    url:"ajax/Registrarchofer/guardarDato",
+                    success:function(r){
+                        if(r == "ok"){
+                            //console.log(datos);
+                            $('#formVehiculo')[0].reset();
+                            alertify.success("Agregado con exito");
+                        }
+                        else{
+                            console.log(r);
+                            $('#formVehiculo')[0].reset();
+                            alertify.error("error al agregar");
+                        }
+                    },
+                    complete: function() {
+                        me.data('requestRunning', false);
                     }
-                    else{
-                        console.log(r);
-                        $('#formVehiculo')[0].reset();
-                        alertify.error("error al agregar");
-                    }
-                },
-                complete: function() {
-                    me.data('requestRunning', false);
-                }
-            });
-    });
-}
+                });
+        });
+    }
 </script>
 ​<!--_____________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
-  $('#formVehiculo').bootstrapValidator({
-      message: 'This value is not valid',
-      /*feedbackIcons: {
-          valid: 'glyphicon glyphicon-ok',
-          invalid: 'glyphicon glyphicon-remove',
-          validating: 'glyphicon glyphicon-refresh'
-      },*/
-      //excluded: ':disabled',
-      fields: {
-          descripcion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          dominio: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          marca: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          condicion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  }
-              }
-          },
-          modelo: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          capacidad: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          tara: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          habilitacion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          registro: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-              }
-          },
-          fechahabilitacion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          }
-      }
-  }).on('success.form.bv', function (e) {
-      e.preventDefault();
-      //guardar();
-  });
+    $('#formVehiculo').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            dominio: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                      regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            marca: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                       /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            condicion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            modelo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            capacidad: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            tara: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            habilitacion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            registro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                }
+            },
+            fechahabilitacion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }  
+            }
+        }
+    }).on('success.form.bv', function (e) {
+        e.preventDefault();
+        //guardar();
+    });
 </script>
-
 ​<!--_____________________________________________________________-->
 
 <!--Script Bootstrap Validacion.MODAL EDITAR -->
 <script>
-  $('#formVehiculoEdit').bootstrapValidator({
-      message: 'This value is not valid',
-      /*feedbackIcons: {
-          valid: 'glyphicon glyphicon-ok',
-          invalid: 'glyphicon glyphicon-remove',
-          validating: 'glyphicon glyphicon-refresh'
-      },*/
-      //excluded: ':disabled',
-      fields: {
-         e_descripcion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
+    $('#formVehiculoEdit').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+           e_descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_dominio: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_marca: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_condicion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            e_modelo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_capacidad: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_tara: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_habilitacion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          e_dominio: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_registro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          e_marca: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
+                }
+            },
+            e_fechahabilitacion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          e_condicion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  }
-              }
-          },
-          e_modelo: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /[A-Za-z]/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          e_capacidad: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          e_tara: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          e_habilitacion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          },
-          e_registro: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  }
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-              }
-          },
-          e_fechahabilitacion: {
-              message: 'la entrada no es valida',
-              validators: {
-                  notEmpty: {
-                      message: 'la entrada no puede ser vacia'
-                  },
-                    /*stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                  regexp: {
-                      regexp: /^(0|[1-9][0-9]*)$/,
-                      message: 'la entrada no debe ser un numero entero'
-                  }
-              }
-          }
-      }
-  }).on('success.form.bv', function (e) {
-      e.preventDefault();
-      //guardar();
-  });
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            }
+        }
+    }).on('success.form.bv', function (e) {
+        e.preventDefault();
+        //guardar();
+    });
 </script>
-
-
-
-
 <!--_____________________________________________________________-->
- <!-- script Datatables -->
- <script>
 
+<!-- script Datatables -->
+<script>
     DataTable($('#tabla_vehiculos'))
-
 </script>
+<!--_____________________________________________________________-->

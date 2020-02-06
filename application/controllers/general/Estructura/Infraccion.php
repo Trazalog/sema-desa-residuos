@@ -7,6 +7,10 @@ class Infraccion extends CI_Controller {
     function __construct(){
 
       parent::__construct();
+
+
+      $this->load->model('general/Estructura/Infracciones');
+
    }
 
 
@@ -17,8 +21,15 @@ class Infraccion extends CI_Controller {
       // ---------------- Funcion Cargar vista Contenedores y Datos
 
       function templateInfracciones()
+      
+      
       {
-          $this->load->view('layout/registrar_infraccion');
+          $data['Transportista'] = $this->Infracciones->obtener_Transportista();
+          // $data['Generador'] = $this->Infracciones->obtener_Generador();
+          // $data['Inspector'] = $this->Infracciones->obtener_Inspector();
+          // $data['Tipoinfraccion'] = $this->Infracciones->obtener_Tipo_Infraccion();
+          // $data['Destino'] = $this->Infracciones->obtener_Destino_Acta();
+          $this->load->view('layout/Registrar_Infraccion',$data);
           
           
       }

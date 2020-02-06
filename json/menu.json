@@ -10,34 +10,33 @@
 					{
 						"titulo": "Registrar Inspectores",
 						"icono": "fa fa-genderless",
-						"link": "general/RegistrarIn/templateIn"
+						"link": "general/Estructura/Inspector/templateInspectores"
 					},
 					{
 						"titulo": "Registrar Generadores ",
 						"icono": "fa fa-genderless",
-						"link": "general/Registrar/templateRg"
+						"link": "general/Estructura/Generador/templateGeneradores"
 					},
 					{
 						"titulo": "Registrar Transportista",
 						"icono": "fa fa-genderless",
-						"link": "general/RegistrarT/templateRt"
+						"link": "general/Estructura/Transportista/templateTransportistas"
 					},
 					{
 						"titulo": "Registrar Zona",
 						"icono": "fa fa-genderless",
-						"link": "general/RegistrarZ/templateRz"
+						"link": "general/Estructura/Zona/templateZonas"
 					},
 					{
 						"titulo": "Registrar Circuito",
 						"icono": "fa fa-genderless",
-						"link": "general/RegistrarCi/templateRci"
+						"link": "general/Estructura/Zona/templateCircuitos"
 					},
 					{
 						"titulo": "Registrar Contenedor",
 						"icono": "fa fa-genderless",
 						"link": "general/Estructura/Contenedor/templateContenedores"
 					},
-
 					{
 						"titulo": "Solicitud de retiro",
 						"icono": "fa fa-genderless",
@@ -75,30 +74,22 @@
 					},
 					{
 						"titulo": "ABM establecimiento",
-
 						"icono": "fa fa-genderless",
-
 						"link": "general/Orden/nueva"
 					},
 					{
 						"titulo": "ABM Incidencias ",
-
 						"icono": "fa fa-genderless",
-
 						"link": "general/Orden/nueva2"
 					},
 					{
 						"titulo": "ABM Infracciones ",
-
 						"icono": "fa fa-genderless",
-
 						"link": "general/Estructura/Infraccion/templateInfracciones"
 					},
 					{
 						"titulo": "Solicitud de pedido ",
-
 						"icono": "fa fa-genderless",
-
 						"link": "general/Solicitud_Pedido/templateSolicitudPedidos"
 					},
 					{
@@ -113,6 +104,21 @@
 					},
 					{
 						"titulo": "Vehiculo",
+						"icono": "fa fa-genderless",
+						"link": "general/RegistrarVehi/templateVehi"
+					},
+					{
+						"titulo": "Gestion de seguimiento",
+						"icono": "fa fa-genderless",
+						"link": "general/Estructura/GestionDeSeguimiento/templateGestion"
+					},
+					{
+						"titulo": "Control de Trayecto",
+						"icono": "fa fa-genderless",
+						"link": "general/RegistrarVehi/templateVehi"
+					},
+					{
+						"titulo": "Registrar acta de infraccion",
 						"icono": "fa fa-genderless",
 						"link": "general/RegistrarVehi/templateVehi"
 					}

@@ -1,5 +1,4 @@
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
-
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
         <h4>Registrar Transportista</h4>
@@ -16,15 +15,9 @@
     </div>
 </div>
 
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-
-
 <!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
-
-
-
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
         <div class="box-tittle">
@@ -36,43 +29,33 @@
                 <i class="fa fa-times"></i>
             </button>
         </div>
-
     </div>
-
-
-
     <!--_____________________________________________-->
 
-
     <div class="box-body">
-
         <form class="formTransportistas" id="formTransportistas">
-
             <div class="col-md-6 col-sm-6 col-xs-12">
-
                 <!--_____________________________________________-->
-                <!--Nombre / Razon social-->
 
+                <!--Nombre / Razon social-->
                 <div class="form-group">
                     <label for="Nombre/Razon social" >Nombre / Razon social:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Nombre_razon" id="Nombre/Razon social">
-                    </div>
-                    
+                    </div>                    
                 </div>
                 <!--_____________________________________________-->
-                <!--Descripcion-->
 
+                <!--Descripcion-->
                 <div class="form-group">
                     <label for="Descripcion" >Descripcion:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control"  name="Descripcion" id="Descripcion">
                     </div>
                 </div>
-
                 <!--_____________________________________________-->
-                <!--Direccion-->
 
+                <!--Direccion-->
                 <div class="form-group">
                     <label for="Direccion">Direccion:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -80,8 +63,8 @@
                     </div>
                 </div>
                 <!--_____________________________________________-->
-                <!--Telefono-->
 
+                <!--Telefono-->
                 <div class="form-group">
                     <label for="Telefono" >Telefono:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -89,33 +72,29 @@
                     </div>
                 </div>
                 <!--_____________________________________________-->
-                <!--contacto-->
 
+                <!--Contacto-->
                 <div class="form-group">
                     <label for="Contacto" >Contacto:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="Contacto" id="Contacto">
                     </div>
                 </div>
-            </div>
-
-             <!--***************************************-->
-            
-             <div class="col-md-6 col-sm-6 col-xs-12">
-             
                 <!--_____________________________________________-->
-                <!--Resolucion-->
 
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                <!--Resolucion-->
                 <div class="form-group">
                     <label for="Resolucion" >Resolucion:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control"  name="Resolucion" id="Resolucion">
                     </div>
                 </div>
-
                 <!--_____________________________________________-->
-                <!--Registro-->
 
+                <!--Registro-->
                 <div class="form-group">
                     <label for="Registro" >Registro:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -123,8 +102,8 @@
                     </div>
                 </div>
                 <!--_____________________________________________-->
-                <!--Fecha de alta-->
 
+                <!--Fecha de alta-->
                 <div class="form-group">
                     <label for="Fechalta"class="form-label label-sm">Fecha de alta:</label>                                              
                     <div class="input-group date">
@@ -135,8 +114,8 @@
                     </div>  
                 </div>
                 <!--_____________________________________________-->
-                <!--Fecha de baja-->
 
+                <!--Fecha de baja-->
                 <div class="form-group">
                     <label for="Fechabaja" >Fecha de baja:</label>
                     <div class="input-group date">
@@ -146,56 +125,45 @@
                         <input type="date" class="form-control pull-right" name="Fecha_de_baja" id="fecha-baja">
                     </div>
                 </div>
-
                 <!--_____________________________________________-->
-                <!--Tipo de RSU autorizado-->
 
+                <!--Tipo de RSU autorizado-->
                 <div class="form-group">
                     <label for="Rsu" >Tipo de RSU autorizado:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <select class="form-control select2 select2-hidden-accesible" name="Rsu" id="Rsu">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
-                            foreach ($Rsu as $i) {
-                                echo '<option>'.$i->nombre.'</option>';
-                            }
+                        foreach ($tiporesiduo as $i) {
+                            echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+                        }
                         ?>
                         </select>
                         </div>
+                    </div>
                 </div>
-
-            </div>
-
-            <!--***************************************-->
-
+                <!--_____________________________________________-->
 
             <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 
-            <!--___________________BOTON GUARDAR__________________________-->
+            <!--__________________________BOTON GUARDAR__________________________-->
             <br>
-            
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-           
             <br>
-        </form>
+            <!--_____________________________________________-->
+
+            </form>
+        </div>
     </div>
 </div>
-</div>
-
-
 
 <!---//////////////////////////////////////--- FIN BOX 1 ---///////////////////////////////////////////////////////----->
 
-
 <!---//////////////////////////////////////---BOX 2---///////////////////////////////////////////////////////----->
-
-
 
 <div class="box box-primary">
 
-    <!--__________________TABLA___________________________-->
-
-
+<!--___________________________TABLA___________________________-->
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">
@@ -203,27 +171,20 @@
                 <div class="col-sm-6"></div>
             </div>
             <div class="row">
-
                 <div class="col-sm-12 table-scroll">
 
-                <!--__________________HEADER TABLA___________________________-->
-
-
-                    <!--__________________HEADER TABLA___________________________-->
+                <!--___________________________HEADER TABLA___________________________-->
                     <table id="tabla_transportistas" class="table table-bordered table-striped">
                         <thead class="thead-dark" bgcolor="#eeeeee">
-
                             <th>Acciones</th>
                             <th>Nombre / Razon social</th>
                             <th>Zona</th>
                             <th>Departamento</th>
                             <th>Tipo</th>
-                            
-
                         </thead>
+                    <!--___________________________FIN HEADER TABLA___________________________-->
 
-                        <!--__________________BODY TABLA___________________________-->
-
+                    <!--___________________________BODY TABLA___________________________-->
                         <tbody>
                         <tr>
                             <td>
@@ -232,41 +193,23 @@
                             <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
                             </td>
                             <td>DATO2</td>
-                            <td> DATO</td>
+                            <td>DATO</td>
                             <td>DATO</td>
                             <td>DATO</td>
                         </tr>
-
-                           
                         </tbody>
                     </table>
-                    
-                    <!--__________________FIN TABLA___________________________-->
-
-
-
-
-                    
-
-
-
+                <!--___________________________FIN TABLA___________________________-->
 
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
 
+<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-
-
-
-
-    <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
-    
     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -276,57 +219,54 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel">Editar Transportista</h5>
             </div>
-
-
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
-
+        <!--___________________________FORMULARIO MODAL___________________________-->
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
-                            <!--_____________________________________________-->
+                    <div class="col-md-6">
 
-                            <!--Nombre/Razon social-->
+                        <!--Nombre/Razon social-->
                             <div class="form-group">
                                 <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
                                 <input type="text" class="form-control" id="Nombre/Razon social">
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!--_____________________________________________-->
+                        <!--_____________________________________________-->
 
-                            <!--Registro-->
+                    </div>
+                    <div class="col-md-6">
+
+                        <!--Registro-->
                             <div class="form-group">
                                 <label for="Registro" name="Registro">Registro:</label>
                                 <input type="text" class="form-control" id="Registro">
                             </div>
-                        </div>                         
+                        <!--_____________________________________________-->
+
                     </div>
-
+                    </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <!--_____________________________________________-->
+                    <div class="col-md-6">
 
-                            <!--Direccion-->
+                        <!--Direccion-->
                             <div class="form-group">
                                 <label for="Direccion" name="Direccion">Direccion:</label>
                                 <input type="text" class="form-control" id="Direccion">
                             </div>
-                            <!--_____________________________________________-->
+                        <!--_____________________________________________-->
 
-                            <!--Telefono-->
+                        <!--Telefono-->
                             <div class="form-group">
-                                 <label for="Telefono" name="Telefono">Telefono:</label>
-                                 <input type="text" class="form-control" id="Telefono">
+                                <label for="Telefono" name="Telefono">Telefono:</label>
+                                <input type="text" class="form-control" id="Telefono">
                             </div>
-                         </div>
+                        <!--_____________________________________________-->
 
-                        <div class="col-md-6">
-                            <!--_____________________________________________-->
+                    </div>
+                    <div class="col-md-6">
 
-                            <!--Zona-->
+                        <!--Zona-->
                             <div class="form-group">
                             <label for="Zonag" name="Zona">Zona:</label>
                                 <select class="form-control select2 select2-hidden-accesible" id="Zonag">
@@ -338,9 +278,9 @@
                                     ?>
                                 </select>
                             </div>
-                            <!--_____________________________________________-->
+                        <!--_____________________________________________-->
 
-                            <!--Fecha de alta-->
+                        <!--Fecha de alta-->
                             <div class="form-group">
                                 <label for="Fechalta" name="Fecha_de_alta" class="form-label label-sm">Fecha de alta:</label>                                              
                                 <div class="input-group date">
@@ -348,14 +288,14 @@
                                         <i class="fa fa-calendar"></i>
                                     </div>
                                     <input type="date" class="form-control pull-right" id="fecha-alta">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                <div class="row">
-                    <div class="col-md-6"> 
                         <!--_____________________________________________-->
+
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
 
                         <!--Descripcion-->
                             <div class="form-group">
@@ -368,13 +308,13 @@
                             <div class="form-group">
                                 <label for="Contacto" name="Contacto">Contacto:</label>
                                 <input type="text" class="form-control" id="Contacto">
-                                
                             </div>
-                    </div>
-                    <div class="col-md-6"> 
-                            <!--_____________________________________________-->
+                        <!--_____________________________________________-->
 
-                            <!--Fecha baja-->
+                    </div>
+                    <div class="col-md-6">
+
+                        <!--Fecha baja-->
                             <div class="form-group">
                                 <label for="Fechabaja" name="Fecha_de_baja">Fecha de baja:</label>
                                 <div class="input-group date">
@@ -384,9 +324,9 @@
                                     <input type="date" class="form-control pull-right" id="fecha-baja">
                                 </div>
                             </div>
-                            <!--_____________________________________________-->
+                        <!--_____________________________________________-->
 
-                            <!--Tipo RSU autorizado-->
+                        <!--Tipo RSU autorizado-->
                             <div class="form-group">
                                 <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
                                 <select class="form-control select2 select2-hidden-accesible" id="Rsu">
@@ -398,12 +338,14 @@
                                     ?>
                                     </select>
                             </div>
+                        <!--_____________________________________________-->
+
                         </div>
                     </div>
                 </div>
             </form>
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+        <!--___________________________FIN FORMULARIO MODAL___________________________-->
 
             </div>
             <div class="modal-footer">
@@ -420,7 +362,7 @@
 
 <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-    <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
@@ -432,12 +374,13 @@
 
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+        <!--___________________________FORMULARIO MODAL___________________________-->
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
+
                         <!--_____________________________________________-->
 
                         <!--Nombre/Razon social-->
@@ -447,8 +390,8 @@
                             </div>
                         <!--_____________________________________________-->
 
-                        </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
 
                         <!--Registro-->
                             <div class="form-group">
@@ -459,8 +402,8 @@
                             </div>
                         <!--_____________________________________________-->
 
-                        <div class="row">
-                        <div class="col-md-6">
+                    <div class="row">
+                    <div class="col-md-6">
 
                         <!--Direccion-->
                             <div class="form-group">
@@ -471,13 +414,13 @@
 
                         <!--Telefono-->
                             <div class="form-group">
-                                 <label for="Telefono" name="Telefono">Telefono:</label>
-                                 <input type="text" class="form-control pull-right" id="" readonly>
+                                <label for="Telefono" name="Telefono">Telefono:</label>
+                                <input type="text" class="form-control pull-right" id="" readonly>
                             </div>
                         <!--_____________________________________________-->
 
-                        </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
 
                         <!--Zona-->
                             <div class="form-group">
@@ -500,8 +443,8 @@
                             </div>
                         <!--_____________________________________________-->
 
-                        <div class="row">
-                        <div class="col-md-6">
+                    <div class="row">
+                    <div class="col-md-6">
 
                         <!--Descripcion-->
                             <div class="form-group">
@@ -517,8 +460,8 @@
                             </div>
                         <!--_____________________________________________-->
 
-                        </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
 
                         <!--Fecha baja-->
                             <div class="form-group">
@@ -532,18 +475,39 @@
                             </div>
                         <!--_____________________________________________-->
 
+                <!--Tipo RSU autorizado-->
+                <div class="form-group">
+                    <label for="Rsu">Tipo RSU autorizado:</label>
+                    <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-check"></i>
+                            </div>
+                        <select class="form-control select2 select2-hidden-accesible" name="Rsu" id="Rsu">
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($tiporesiduo as $i) {
+                                    echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+
+                                
+                                }
+                                ?>
+                        </select>
+                    </div>
+                </div>
+                <!--____________________________________________________________________-->
+
                         <!--Tipo RSU autorizado-->
-                            <div class="form-group">
+                           <!-- <div class="form-group">
                                 <label for="Rsu" name="Rsu">Tipo de RSU autorizado:</label>
                                 <input type="text" class="form-control pull-right" id="" readonly>
                             </div>
                             </div>
                             </div>
                             </div>
-                            </form>
+                            </form>-->
                         <!--_____________________________________________-->
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <!--___________________________FIN FORMULARIO MODAL___________________________-->
 
             </div>
             <div class="modal-footer">
@@ -565,20 +529,20 @@
 <!-- script modal -->
 
 <script>
-$("#btnview").on("click", function() {
-    $("#btnadd").removeClass("active");
-    $("#btnview").addClass("active");
-    $("#tablamodal").show();
-    $("#formadd").hide();
-    $("#btnsave").hide();
-});
-$("#btnadd").on("click", function() {
-    $("#btnadd").addClass("active");
-    $("#btnview").removeClass("active");
-    $("#formadd").show();
-    $("#tablamodal").hide();
-    $("#btnsave").show();
-});
+    $("#btnview").on("click", function() {
+        $("#btnadd").removeClass("active");
+        $("#btnview").addClass("active");
+        $("#tablamodal").show();
+        $("#formadd").hide();
+        $("#btnsave").hide();
+    });
+    $("#btnadd").on("click", function() {
+        $("#btnadd").addClass("active");
+        $("#btnview").removeClass("active");
+        $("#formadd").show();
+        $("#tablamodal").hide();
+        $("#btnsave").show();
+    });
 </script>
 <!--_____________________________________________________________-->
 
@@ -634,7 +598,9 @@ $("#btnadd").on("click", function() {
         $("#boxDatos").show();
     });
 </script>
+
 <!--_____________________________________________________________-->
+
 <script>
     $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
@@ -789,7 +755,7 @@ $("#btnadd").on("click", function() {
         e.preventDefault();
         //guardar();
     });
-    </script>
+</script>
 
 <script>
     //este script me permite limpiar la validacion una vez cerrado el modal
@@ -797,10 +763,3 @@ $("#btnadd").on("click", function() {
         $("#formEditDatos").data('bootstrapValidator').resetForm();
     });
 </script>
-
-
-
-
-
-
-    

@@ -12,4 +12,10 @@ class Registrartransportistas extends CI_Model
         $aux =json_decode($aux["status"]);
         return $aux;
     }
+
+    public function obtener_RSU(){
+        $aux = $this->rest->callAPI("GET","/tablas/tipo_carga");
+        $aux =json_decode($aux["data"]);
+        return $aux->valores->valor;
+    }
 }
