@@ -1,9 +1,6 @@
 <data enableBatchRequests="true" enableBoxcarring="true" name="semaresiduosDS" transports="http https local">
    <config enableOData="false" id="semaresiduosDS">
-      <property name="driverClassName">org.postgresql.Driver</property>
-      <property name="url">jdbc:postgresql://PC-PC:5432/tools</property>
-      <property name="username">postgres</property>
-      <property name="password">admin24</property>
+      <property name="carbon_datasource_name">SemaResiduosDataSource</property>
    </config>
    <query id="departamentosSet" useConfig="semaresiduosDS">
       <sql>insert into &#xd;   core.departamentos &#xd;   (nombre, descripcion) &#xd;values&#xd;   (:nombre, :descripcion)&#xd;returning &#xd;    depa_id</sql>
@@ -12,8 +9,8 @@
       <param name="descripcion" sqlType="STRING"/>
    </query>
    <query id="zonasGet" useConfig="semaresiduosDS">
-      <sql>select &#xd;   zona_id, nombre, descripción, depa_id &#xd;from &#xd;   core.zonas</sql>
-      <result outputType="json">{&#xd;  "zonas": {&#xd;	    "zona": [&#xd;	       {&#xd;	        "zona_id": "$zona_id",&#xd;	        "nombre": "$nombre",&#xd;	        "descripción": "$descripción",&#xd;	        "depa_id": "$depa_id"&#xd;	       }&#xd;	     ]&#xd;  }&#xd;}</result>
+      <sql>select &#xd;zonas.zona_id, zonas.nombre, zonas.descripcion, zonas.depa_id, departamentos.nombre as depa_nom from core.zonas&#xd;join core.departamentos on core.zonas.depa_id = core.departamentos.depa_id</sql>
+      <result outputType="json">{&#xd;   "zonas":{&#xd;      "zona":[&#xd;         {&#xd;            "zona_id":"$zona_id",&#xd;            "nombre":"$nombre",&#xd;            "descripción":"$descripcion",&#xd;            "depa_id": "$depa_id",&#xd;            "depa_nom": "$depa_nom"          &#xd;         }      &#xd;      ]   &#xd;   }&#xd;}</result>
    </query>
    <query id="transportistasSet" useConfig="semaresiduosDS">
       <sql>insert into log.transportistas(razon_social,descripcion,direccion,telefono,contacto,resolucion,registro,fec_alta_efectiva,fec_baja_efectiva,usuario_app)&#xd;values(:razon_social,:descripcion,:direccion,:telefono,:contacto,:resolucion,:registro,TO_DATE(:fec_alta_efectiva,'YYYY-MM-DD'),TO_DATE(:fec_baja_efectiva,'YYYY-MM-DD'),:usuario_app)&#xd;returning tran_id</sql>
@@ -70,10 +67,6 @@
    <query id="transportistasGet" useConfig="semaresiduosDS">
       <sql>select tran_id,razon_social,descripcion,direccion,telefono,contacto,resolucion,registro,fec_alta_efectiva,fec_baja_efectiva,fec_alta,usuario,usuario_app &#xd;from log.transportistas</sql>
       <result outputType="json">{&#xd;   "transportistas":{&#xd;      "transportista":[&#xd;         {&#xd;            "tran_id":"$tran_id",&#xd;            "razon_social":"$razon_social",&#xd;            "descripcion":"$descripcion",&#xd;            "direccion":"$direccion",&#xd;            "telefono":"$telefono",&#xd;            "contacto":"$contacto",&#xd;            "resolucion":"$resolucion",&#xd;            "registro":"$registro",&#xd;            "fec_alta_efectiva":"$fec_alta_efectiva",&#xd;            "fec_baja_efectiva":"$fec_baja_efectiva",&#xd;            "fec_alta":"$fec_alta",&#xd;            "usuario":"$usuario",&#xd;            "usuario_app":"$usuario_app"&#xd;         }&#xd;      ]&#xd;   }&#xd;}</result>
-   </query>
-   <query id="estadosGet" useConfig="semaresiduosDS">
-      <sql>select &#xd;  tabl_id, valor, valor2, valor3 &#xd;from &#xd;  core.tablas &#xd;where &#xd;  tabla = 'estado_contenedor' &#xd;and &#xd;  eliminado = 'false'</sql>
-      <result outputType="json">{&#xd;   "estados":{&#xd;      "estado":[&#xd;         {&#xd;            "tabl_id":"$tabl_id",&#xd;            "valor":"$valor",&#xd;            "valor2":"$valor2",&#xd;            "valor3":"$valor3"&#xd;         }&#xd;      ]&#xd;   }&#xd;}</result>
    </query>
    <query id="contenedoresGet" useConfig="semaresiduosDS">
       <sql>select cont_id, codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, esco_id, reci_id from log.contenedores</sql>
@@ -270,6 +263,30 @@
       <param name="zona_id" sqlType="STRING"/>
       <param name="usuario_app" sqlType="STRING"/>
    </query>
+   <query id="circuitosGetPorZonaId" useConfig="semaresiduosDS">
+      <sql>select circ_id, codigo, descripcion from log.circuitos where zona_id = CAST(:zona_id AS INTEGER)</sql>
+      <result outputType="json">{  &#xd;  "zonas":{         &#xd;    "zona":[ &#xd;         {&#xd;          "cir_id": "$circ_id",&#xd;          "codigo": "$codigo",          &#xd;          "descripcion": "$descripcion"          &#xd;         }      &#xd;    ]&#xd;  }      &#xd;}</result>
+      <param name="zona_id" sqlType="STRING"/>
+   </query>
+   <query id="vehiculosGetActivos" useConfig="semaresiduosDS">
+      <sql>select equi_id, descripcion, marca, dominio from core.equipos where estado = 'AC'</sql>
+      <result outputType="json">{&#xd;    "vehiculos":{&#xd;      "vehiculo":[&#xd;          {&#xd;            "equi_id": "$equi_id",&#xd;            "descripcion": "$descripcion",&#xd;            "marca": "$marca",&#xd;            "dominio": "$dominio"&#xd;          }&#xd;      ]&#xd;    }&#xd;  }</result>
+   </query>
+   <query id="zonaGetPorDepto" useConfig="semaresiduosDS">
+      <sql>select &#xd;  zonas.zona_id, zonas.nombre from core.zonas &#xd;where &#xd;  eliminado = 0  &#xd;and &#xd;  depa_id = CAST(:depa_id AS INTEGER)</sql>
+      <result outputType="json">{&#xd;   "zonas":{&#xd;      "zona":[&#xd;         {&#xd;            "zona_id":"$zona_id",&#xd;            "zona_nom":"$nombre"         &#xd;         }      &#xd;      ]   &#xd;   }&#xd;}</result>
+      <param name="depa_id" sqlType="STRING"/>
+   </query>
+   <query id="puntosPorCircuito" useConfig="semaresiduosDS">
+      <sql>select  &#xd;  PC.pucr_id, PC.nombre, PC.descripcion, PC.lat, PC.lng &#xd;from &#xd;  log.puntos_criticos PC, log.circuitos_puntos_criticos CPC&#xd;where &#xd;  PC.pucr_id = CPC.pucr_id &#xd;and&#xd;  CPC.circ_id = CAST(:circ_id AS INTEGER)</sql>
+      <result outputType="json">{&#xd;  "puntos":{&#xd;    "punto":[&#xd;      {&#xd;        "pucr_id": "$pucr_id",&#xd;        "nombre": "$nombre",&#xd;        "descripcion": "$descripcion",&#xd;        "lat": "$lat",&#xd;        "lng": "$lng"&#xd;      }&#xd;    ]&#xd;  }&#xd;}</result>
+      <param name="circ_id" sqlType="STRING"/>
+   </query>
+   <query id="ordTransPorIdGet" useConfig="semaresiduosDS">
+      <sql>select &#xd;  ortr_id, fec_retiro, caseid, fec_alta, difi_id, sotr_id, equi_id, chof_id &#xd;from &#xd;  log.ordenes_transporte &#xd;where &#xd;  ortr_id = CAST(:ortr_id AS INTEGER)</sql>
+      <result outputType="json">{&#xd;   "ordenTransp":{&#xd;      "ortr_id":"$ortr_id",&#xd;      "fec_retiro":"$fec_retiro",&#xd;      "caseid":"$caseid",&#xd;      "fec_alta":"$fec_alta",&#xd;      "difi_id":"$difi_id",&#xd;      "sotr_id":"$sotr_id",&#xd;      "equi_id":"$equi_id",&#xd;      "chof_id":"$chof_id"   &#xd;   }&#xd;}</result>
+      <param name="ortr_id" sqlType="STRING"/>
+   </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
          <with-param name="nombre" query-param="nombre"/>
@@ -330,9 +347,6 @@
    </resource>
    <resource method="GET" path="/transportistas">
       <call-query href="transportistasGet"/>
-   </resource>
-   <resource method="GET" path="/estados">
-      <call-query href="estadosGet"/>
    </resource>
    <resource method="GET" path="/contenedores">
       <call-query href="contenedoresGet"/>
@@ -540,6 +554,29 @@
          <with-param name="vehi_id" query-param="vehi_id"/>
          <with-param name="zona_id" query-param="zona_id"/>
          <with-param name="usuario_app" query-param="usuario_app"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/circuitos/{zona_id}">
+      <call-query href="circuitosGetPorZonaId">
+         <with-param name="zona_id" query-param="zona_id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/vehiculos">
+      <call-query href="vehiculosGetActivos"/>
+   </resource>
+   <resource method="GET" path="/zonas/departamento/{depa_id}">
+      <call-query href="zonaGetPorDepto">
+         <with-param name="depa_id" query-param="depa_id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/puntosCriticos/{circ_id}">
+      <call-query href="puntosPorCircuito">
+         <with-param name="circ_id" query-param="circ_id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/ordenTransporte/{ortr_id}">
+      <call-query href="ordTransPorIdGet">
+         <with-param name="ortr_id" query-param="ortr_id"/>
       </call-query>
    </resource>
 </data>
