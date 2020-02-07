@@ -65,7 +65,7 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                            <select class="form-control select2 select2-hidden-accesible" name="depa_id" id="Departamento">
+                            <select class="form-control select2 select2-hidden-accesible" name="depa_nom" id="Departamento">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                             foreach ($Departamentos as $i) {
@@ -474,7 +474,6 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   }
-                  
               }
           },
           Circuito_Recorrido: {

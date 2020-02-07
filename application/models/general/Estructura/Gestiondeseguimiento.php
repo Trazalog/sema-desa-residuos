@@ -5,7 +5,7 @@ class Gestiondeseguimiento extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-    }
+  }
 
     // Funcion Listar Gestion (MODIFICAR)
     function Listar_Gestion()
@@ -30,12 +30,12 @@ class Gestiondeseguimiento extends CI_Model
   // ---------------------- FUNCIONES OBTENER ----------------------
 
   // Funcion Obtener Estado
-  public function obtener_Estados()
-  {
-      $aux = $this->rest->callAPI("GET",REST."/estados");
-      $aux =json_decode($aux["data"]);
-      return $aux->estados->estado;
-  }
+  // public function obtener_Estados()
+  // {
+  //    $aux = $this->rest->callAPI("GET",REST."/estados");
+  //    $aux =json_decode($aux["data"]);
+  //    return $aux->estados->estado;
+  // }
   // ----------------------------------------------------------------
 
 }
