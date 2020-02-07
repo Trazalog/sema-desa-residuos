@@ -87,21 +87,43 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 #TRAZ-COMP-BPM
 define('BPM', 'traz-comp-bpm/');
 
-define('BONITA_URL', 'http://35.243.231.36:8080/bonita/');
+/*
+|--------------------------------------------------------------------------
+| Bonita url
+|--------------------------------------------------------------------------
+|
+| Url base to Bonita
+|
+*/
+// define('BONITA_URL', 'http://35.243.231.36:8080/bonita/');
+define('BONITA_URL', 'http://localhost:8080/bonita/');//mbustos
 
-define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '6352939331165329370');
+//? PEDIDOS NORMALES
+// define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '6352939331165329370');
+define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '6911486128031023313');//mbustos 
 
-define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '6013058915384903051');
+//? PEDIDOS EXTRAORDINATIOS
+// define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '6013058915384903051');
+define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '8026690512058828779');//mbustos
+
+//? PROCESO MANTENIMIENTO 
+define('BPM_PROCESS_ID', '5851349397648544013'); // localhost - //mbustos
 
 define('BPM_PROCESS', json_encode(array(
-    '6352939331165329370' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12'],
-    '6013058915384903051' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12'],
-    '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A'],
+    // '6352939331165329370' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12'],
+    '6911486128031023313' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12'],//mbustos
+    // '6013058915384903051' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12'],
+    '8026690512058828779' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12'],//mbustos
+    // '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A']
+    '5851349397648544013' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A']//mbustos
 )));
 
-define('BPM_ADMIN_USER', 'almacen.tools');
-define('BPM_ADMIN_PASS', 'bpm');
-define('BPM_USER_PASS', 'bpm');
+// define('BPM_ADMIN_USER', 'almacen.tools');
+// define('BPM_ADMIN_PASS', 'bpm');
+// define('BPM_USER_PASS', 'bpm');
+define('BPM_ADMIN_USER', 'admin');//mbustos
+define('BPM_ADMIN_PASS', 'bpm');//mbustos
+define('BPM_USER_PASS', 'bpm');//mbustos
 
 #ERRORES DE BONITA
 define('ASP_100', 'Fallo Conexión BPM');
@@ -121,6 +143,8 @@ define('ASP_113', 'Usuario No Encontrado');
 define('ASP_114', 'Error al Actualizar Variable');
 define('ASP_115', 'Error al Leer Variable');
 
+#TRAZ-COMP-ORDEN
+define('ORD', 'traz-comp-orden/');
 
 
 # DNATO
@@ -166,51 +190,3 @@ define('FILES', 'files/');
 define('PORT', ':3000/');
 
 // define('REST', 'http://localhost'.PORT);
-
-/*
-|--------------------------------------------------------------------------
-| Bonita url
-|--------------------------------------------------------------------------
-|
-| Url base to Bonita
-|
-*/
-
-// define('BONITA_URL', 'http://localhost:8080/bonita/');
-// define('BONITA_URL', 'http://192.168.0.118:8080/bonita/');//(fguardia)
-define('BONITA_URL', 'http://localhost:8080/bonita/');//(fleiva)
-
-define('BPM_ADMIN_USER', 'admin');
-define('BPM_ADMIN_PASS', 'bpm');
-define('BPM_USER_PASS', 'bpm');
-
-
-/*
-|--------------------------------------------------------------------------
-| Bonita Process ID ()
-|--------------------------------------------------------------------------
-|
-| Id de proceso productivo (se usa para lanzar proceso)
-|
-*/
-
-
-//? PEDIDOS NORMALES
- 
-define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '6911486128031023313'); 
-
-//? PEDIDOS EXTRAORDINATIOS
-
-define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '8026690512058828779');
-
-
-/*
-|--------------------------------------------------------------------------
-| Bonita Process ID ()
-|--------------------------------------------------------------------------
-|
-| Id de proceso productivo (se usa para lanzar proceso)
-|
-*/
- 
-define('BPM_PROCESS_ID', '5851349397648544013'); // localhost -

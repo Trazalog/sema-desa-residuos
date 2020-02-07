@@ -1,16 +1,19 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dash extends CI_Controller {
-    function __construct(){
+class Dash extends CI_Controller
+{
+    function __construct()
+    {
 
-      parent::__construct();
-      $this->load->helper('menu_helper');
-      $this->load->helper('file');
-   }
+        parent::__construct();
+        $this->load->helper('menu_helper');
+        $this->load->helper('file');
+    }
 
-   function index(){
-      
-      $aux = '{"menuP" : {
+    function index()
+    {
+
+        $aux = '{"menuP" : {
                 "menuH": [
                     {
                         "titulo": "Registros",
@@ -167,10 +170,10 @@ class Dash extends CI_Controller {
     }
 }';
 
-      $aux2  = $this->load->view('layout/menu/mis_tareas', null, true).$this->load->view('layout/menu/aux_menu_alm', null, true);
+        $aux2  = $this->load->view('layout/menu/mis_tareas', null, true) . $this->load->view('layout/menu/aux_menu_alm', null, true);
 
-      $data['menu'] = menu(json_decode($aux), $aux2);
-    
-      $this->load->view('layout/Admin',$data);
-   }
+        $data['menu'] = menu(json_decode($aux), $aux2);
+
+        $this->load->view('layout/Admin', $data);
+    }
 }
