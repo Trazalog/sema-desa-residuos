@@ -16,14 +16,20 @@ class Transportista extends CI_Controller {
         $data['tiporesiduo'] = $this->Transportistas->obtener_RSU();
         $data['Zonas'] = $this->Transportistas->obtener_Zonas();
 
-        $this->load->view('layout/registrar_transportista', $data);
+        $this->load->view('layout/Transportistas/registrar_transportista', $data);
       }
 
       // ---------------- Funcion Registrar Transportista
 
       function Guardar_Transportista()
       {
-        $this->load->view('layout/registrar_transportista');
+        // $datos =  $this->input->post('datos');
+        // $resp = $this->Transportistas->Guardar_Transportista($datos);
+        // if($resp){
+        // echo "ok";
+        // }else{
+        // echo "error";
+        // }
       }
 
        // ---------------- Funcion Crear Transportista
@@ -37,7 +43,8 @@ class Transportista extends CI_Controller {
 
       function Listar_Transportista()
       {
-
+        $data["transportistas"] = $this->Transportistas->Listar_Transportista();         
+        $this->load->view('layout/Transportistas/Listar_Transportista',$data);
       }
 
       // ---------------- Funcion Modificar Transportista

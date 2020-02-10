@@ -22,7 +22,13 @@ class Generador extends CI_Controller {
     // ---------------- Funcion Registrar Generador
     function Guardar_Generador()
     {
-        // $this->load->view('layout/registrar_infraccion');
+        $datos =  $this->input->post('datos');
+        $resp = $this->Generador->Guardar_Generador($datos);
+        if($resp){
+        echo "ok";
+        }else{
+        echo "error";
+        }
     }
     // _________________________________________________________
 

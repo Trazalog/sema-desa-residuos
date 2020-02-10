@@ -28,13 +28,7 @@ class Zona extends CI_Controller {
    
       function Guardar_Zona()
       {
-         $datos =  $this->input->post('datos');
-         $resp = $this->Zonas->Guardar_Zona($datos);
-         if($resp){
-         echo "ok";
-         }else{
-         echo "error";
-         }
+
       }
    
       // ---------------- Funcion Crear Zona
