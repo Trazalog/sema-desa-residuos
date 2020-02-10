@@ -546,6 +546,7 @@
 </script>
 <!--_____________________________________________________________-->
 
+<!--Script de guardado de datos y listado en Datatable-->
 <script>
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportistas/Listar_Transportista");
     function Guardar_Zona() {
@@ -589,7 +590,7 @@
                         // $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
                         // $("#boxDatos").hide(500);
                         // $("#botonAgregar").removeAttr("disabled");
-                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportistas/Listar_Transportista");
                         alertify.success("Agregado con exito");
                     } else {
                         //console.log(r);
@@ -601,7 +602,6 @@
     }
 </script>
 <!--__________________________________________________________________________________________-->
-
 
 <!-- Script Agregar datos de registrar_transportista-->
 <script>
@@ -655,7 +655,6 @@
         $("#boxDatos").show();
     });
 </script>
-
 <!--_____________________________________________________________-->
 
 <script>
@@ -813,6 +812,7 @@
         //guardar();
     });
 </script>
+<!--_____________________________________________________________-->
 
 <script>
     //este script me permite limpiar la validacion una vez cerrado el modal
