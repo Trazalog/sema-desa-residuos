@@ -8,8 +8,6 @@ class Zonas extends CI_Model
 		parent::__construct();
     }
 
-
-
 // ---------------------- FUNCIONES ZONAS ----------------------
 
 // Funcion Listar Zonas (MODIFICAR)

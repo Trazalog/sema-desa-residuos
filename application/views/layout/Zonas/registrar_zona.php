@@ -16,7 +16,6 @@
     </div>
 </div>
 
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
 <!---//////////////////////////////////////---BOX 1---///////////////////////////////////////////////////////----->
@@ -32,9 +31,7 @@
                 <i class="fa fa-times"></i>
             </button>
         </div>
-
     </div>
-    
 
     <!--__________________________________________________________________________________________-->
     
@@ -65,7 +62,7 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                            <select class="form-control select2 select2-hidden-accesible" name="depa_id" id="Departamento">
+                            <select class="form-control select2 select2-hidden-accesible" name="depa_nom" id="Departamento">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                             foreach ($Departamentos as $i) {
@@ -79,13 +76,8 @@
                         <!--__________________________________________________________________________________________-->
                     </div>
                 </div>
-                    <!--Circuito-->
-
-                    <!--__________________________________________________________________________________________-->
-
                 <div class="col-md-12"> 
 
-                    <!--__________________________________________________________________________________________-->
                     <!--Descripcion-->
                     <div class="form-group">
                         <label for="Descripcion" >Descripcion:</label>
@@ -97,7 +89,6 @@
             </div>
             <div class="col-md-12"><hr></div>
 
-                <!--__________________________________________________________________________________________-->
                 <!--Adjuntar imagen--> 
 
                 <!-- <div class="col-md-6">
@@ -133,7 +124,6 @@
 <!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
 
 <div class="box box-primary">
-
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">
@@ -474,7 +464,6 @@ function agregarDato(){
                   notEmpty: {
                       message: 'la entrada no puede ser vacia'
                   }
-                  
               }
           },
           Circuito_Recorrido: {

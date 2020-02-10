@@ -27,7 +27,6 @@ class Registrar extends CI_Controller {
        $data['TipoG'] = $this->TipoG->obtener();
        $data['Dpto'] = $this->Dpto->obtener();
        $this->load->view('layout/registrar_generadores',$data);
-       
    }
 }
 ?>

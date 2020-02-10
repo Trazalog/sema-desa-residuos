@@ -38,6 +38,7 @@
     <div class="box-body">
         <form class="formGeneradores" id="formGeneradores"method="POST" autocomplete="off" >
             <div class="col-md-6 col-sm-6 col-xs-12">
+
                 <!--Nombre / Razon social-->
                 <div class="form-group">
                     <label for="Nombre/Razon social"> Nombre / Razon social:</label>
@@ -77,7 +78,7 @@
                         }
                         ?>
                     </select>
-                    </div>  
+                    </div>
                 </div>
                 <!--____________________________________________________________________-->
 
@@ -116,7 +117,7 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
 
                 <!--Domicilio-->
-                <div class="form-group">                
+                <div class="form-group">
                     <label for="Domicilio">Domicilio:</label>
                     <div class="input-group date">
                             <div class="input-group-addon">
@@ -139,8 +140,6 @@
                                 <?php
                                 foreach ($Departamentos as $i) {
                                     echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';
-
-                                
                                 }
                                 ?>
                         </select>
@@ -259,7 +258,7 @@
                 <div class="modal-body">
                 <!--____________________________________________________________________-->
 
-                <!--Nombre/Razon social-->
+                    <!--Nombre/Razon social-->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -268,19 +267,19 @@
                             </div>
                         </div>                        
                     </div>
-                <!--____________________________________________________________________-->
+                    <!--____________________________________________________________________-->
 
-                <!--Registro-->
-                <div class="row">
+                    <!--Registro-->
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="CUIT">CUIT:</label>
-                                <input type="text" class="form-control" id="E_CUIT" name="e_cuit">
-                            </div>
-                <!--____________________________________________________________________-->
+                            <input type="text" class="form-control" id="E_CUIT" name="e_cuit">
+                        </div>
+                     <!--____________________________________________________________________-->
 
-                <!--Tipo de residuo-->
-                            <div class="form-group">
+                    <!--Tipo de residuo-->
+                        <div class="form-group">
                             <label for="Dpto" >Departamento:</label>
                             <select class="form-control select2 select2-hidden-accesible" id="E_Dpto" name="e_departamento">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
@@ -290,47 +289,47 @@
                                 }
                                 ?>
                             </select>
-                            </div>
-                         </div>
-                <!--____________________________________________________________________-->
+                        </div>
+                    </div>
+                    <!--____________________________________________________________________-->
 
-                <!--Descripcion-->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Domicilio" >Domicilio:</label>
-                                <input type="text" class="form-control" id="E_Domicilio" name="e_omicilio">
-                            </div>
-                <!--____________________________________________________________________-->
+                     <!--Descripcion-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Domicilio" >Domicilio:</label>
+                            <input type="text" class="form-control" id="E_Domicilio" name="e_omicilio">
+                        </div>
+                    <!--____________________________________________________________________-->
 
-                <!--Resolucion-->
-                            <div class="form-group">
-                                <label for="Zonag" >Zona:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="E_Zonag" name="e_zonag">
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                    foreach ($Zonag as $i) {
-                                        echo '<option>'.$i->nombre.'</option>';
-                                    }
-                                    ?>
-                                </select>
+                    <!--Resolucion-->
+                    <div class="form-group">
+                        <label for="Zonag" >Zona:</label>
+                        <select class="form-control select2 select2-hidden-accesible" id="E_Zonag" name="e_zonag">
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
+                            foreach ($Zonag as $i) {
+                                echo '<option>'.$i->nombre.'</option>';
+                            }
+                            ?>
+                            </select>
                             </div>
                         </div>
-                </div>
-                <!--____________________________________________________________________-->
+                    </div>
+                    <!--____________________________________________________________________-->
 
-                <!--Fecha de Alta-->
-                <div class="row">                        
-                    <div class="col-md-6">
-                        <label for="Numero de registro" >Numero de registro:</label>
-                        <input type="text" class="form-control" id="E_Numero de registro" name="e_numero_registro">  
+                    <!--Fecha de Alta-->
+                    <div class="row">                        
+                        <div class="col-md-6">
+                            <label for="Numero de registro" >Numero de registro:</label>
+                            <input type="text" class="form-control" id="E_Numero de registro" name="e_numero_registro">  
                         </div>
                         <div class="col-md-6">
                             <label for="Rubro" >Rubro:</label>
                             <input type="text" class="form-control" id="E_Rubro" name="e_rubro">
                         </div>
-                <!--____________________________________________________________________-->
+                    <!--____________________________________________________________________-->
 
-                <!--Fecha de Baja-->
+                    <!--Fecha de Baja-->
                         <div class="col-md-6">
                             <label for="TipoG" >Tipo:</label>
                             <select class="form-control select2 select2-hidden-accesible" id="E_TipoG"name="e_tipo">
@@ -342,6 +341,8 @@
                                 ?>
                             </select>
                         </div>
+                    <!--____________________________________________________________________-->
+
                         <div class="col-md-6">
                             <label for="Tipo de residuos" >Tipo de residuos:</label>
                             <input type="text" class="form-control" id="E_Tipo de residuos" name="e_tipo_Residuo">
@@ -398,7 +399,7 @@
                 <!--____________________________________________________________________-->
 
                 <!--Registro-->
-                <div class="row">
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="CUIT" name="Cuit">CUIT:</label>
@@ -407,11 +408,11 @@
                 <!--____________________________________________________________________-->
 
                 <!--Tipo de residuo-->
-                            <div class="form-group">
+                    <div class="form-group">
                             <label for="Dpto" name="Departamento">Departamento:</label>
                             <input type="text" class="form-control" id="Dpto" readonly>
-                            </div>
-                         </div>
+                        </div>
+                    </div>
                 <!--____________________________________________________________________-->
 
                 <!--Descripcion-->

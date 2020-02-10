@@ -1,19 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Zona extends CI_Controller {
-
 
     function __construct(){
 
       parent::__construct();
 
       $this->load->model('general/Estructura/Zonas');
-      
-      
+            
    }
-
-
 
 // --------------------------------- ZONAS ----------------------------------
   
@@ -28,23 +23,15 @@ class Zona extends CI_Controller {
          $this->load->view('layout/Zonas/registrar_zona',$data);
           
       }
+   
+      // ---------------- Funcion Registrar Zona
+   
+      function Guardar_Zona()
+      {
 
-
+      }
    
-       // ---------------- Funcion Registrar Zona
-   
-       function Guardar_Zona()
-       {
-            $datos =  $this->input->post('datos');
-            $resp = $this->Zonas->Guardar_Zona($datos);
-            if($resp){
-            echo "ok";
-            }else{
-            echo "error";
-            }
-       }
-   
-       // ---------------- Funcion Crear Zona
+      // ---------------- Funcion Crear Zona
    
       function Crear_Zona()
       {

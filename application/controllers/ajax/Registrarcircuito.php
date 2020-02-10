@@ -32,5 +32,4 @@ class Registrarcircuito  extends CI_Controller {
       //   echo "error";
       // }
     }
-
 }

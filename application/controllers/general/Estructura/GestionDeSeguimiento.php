@@ -10,12 +10,9 @@ class GestionDeSeguimiento extends CI_Controller {
     // ---------------- Funcion Cargar vista Generadores y Datos
     function templateGestion()
     {
-        $data['Estados'] = $this->GestionDeSeguimiento->obtener_Estado();
-        // $data['Zonas'] = $this->Generadores->obtener_Zonas();
-        // $data['Zonagenerador'] = $this->Infracciones->obtener_Zonas();
-        // $data['Tiporesiduo'] = $this->Infracciones->obtener_Tipo_residuo();
+        // $data['Estados'] = $this->GestionDeSeguimiento->obtener_Estado();
 
-        $this->load->view('layout/Gestion_de_seguimiento', $data);
+        $this->load->view('layout/Gestion_de_seguimiento');
     }
     // _________________________________________________________
 

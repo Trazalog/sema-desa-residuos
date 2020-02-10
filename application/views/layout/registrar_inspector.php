@@ -69,7 +69,7 @@
                     <label for="Direccion">Direccion:</label>
                     <div class="input-group date">
                          <div class="input-group-addon">
-                            <i class="fa  fa-map-marker"></i>
+                            <i class="fa fa-map-marker"></i>
                         </div>                    
                     <input type="text" class="form-control" id="Direccion" name="descripcion">
                     </div>
@@ -103,7 +103,7 @@
                     <label for="Departamento">Departamento:</label>
                     <div class="input-group date">
                          <div class="input-group-addon">
-                            <i class="fa  fa-map-marker"></i>
+                            <i class="fa fa-map-marker"></i>
                         </div> 
                     <input type="text" class="form-control" id="Departamento" name="departamento">
                     </div>
