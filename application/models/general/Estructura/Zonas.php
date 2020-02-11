@@ -56,11 +56,11 @@ function Listar_Circuitos()
 // Funcion Guardar Circuito
 function Guardar_Circuito($data){
 
-$post["post_circuito"] = $data;
-log_message('DEBUG','#Zonas/Guardar_Circuito: '.json_encode($post));
-$aux = $this->rest->callAPI("POST",REST."/circuitos", $post);
-$aux =json_decode($aux["status"]);
-return $aux;
+    $post["post_circuito"] = $data;
+    log_message('DEBUG','#Zonas/Guardar_Circuito: '.json_encode($post));
+    $aux = $this->rest->callAPI("POST",REST."/circuitos", $post);
+    $aux =json_decode($aux["status"]);
+    return $aux;
 }
 
 // Funcion Guardar Zona
@@ -72,7 +72,7 @@ function Guardar_Punto_Critico($data){
 
 // Funcion Guardar Zona
 function Asignar_Zona($data){
-    $aux = $this->rest->callAPI("POST",REST."/RECURSO", $data);
+    $aux = $this->rest->callAPI("POST",REST."/zonas/departamento", $data);
     $aux =json_decode($aux["status"]);
     return $aux;
 }

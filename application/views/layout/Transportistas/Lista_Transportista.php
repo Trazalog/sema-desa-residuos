@@ -1,14 +1,12 @@
                     <!--__________________HEADER TABLA___________________________-->
+                    
                     <table id="tabla_transportistas" class="table table-bordered table-striped">
                         <thead class="thead-dark" bgcolor="#eeeeee">
-
                             <th>Acciones</th>
                             <th>Nombre / Razon Social</th>
                             <th>Zona</th>
                             <th>Departamento</th>
                             <th>Tipo</th>
-                            
-
                         </thead>
 
                         <!--__________________BODY TABLA___________________________-->
@@ -39,10 +37,6 @@
 
                     <!--__________________FIN TABLA___________________________-->
 
-
-                    
 <script>
-
 DataTable($('#tabla_transportistas'))
-
 </script>

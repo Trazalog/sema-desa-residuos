@@ -345,7 +345,7 @@
                 </div>
             </form>
 
-        <!--___________________________FIN FORMULARIO MODAL___________________________-->
+            <!--___________________________FIN FORMULARIO MODAL___________________________-->
 
             </div>
             <div class="modal-footer">
@@ -487,8 +487,6 @@
                                 <?php
                                 foreach ($tiporesiduo as $i) {
                                     echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
-
-                                
                                 }
                                 ?>
                         </select>
@@ -549,7 +547,7 @@
 <!--Script de guardado de datos y listado en Datatable-->
 <script>
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportistas/Listar_Transportista");
-    function Guardar_Zona() {
+    function Guardar_Transportista() {
         // datos = $('#formTransportistas').serialize();
         var datos = new FormData($('#formTransportistas')[0]);
         datos = formToObject(datos);
