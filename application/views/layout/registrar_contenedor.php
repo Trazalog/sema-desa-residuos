@@ -111,9 +111,16 @@
             <!--__________________________________________________________________________________________-->
 
             <!--Adjuntador de imagenes-->  
-                <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+                <!--<form action="cargar_archivo" method="post" enctype="multipart/form-data">
                     <input type="file" name="upload">
-                </form>
+                </form>-->
+                <div class="col-md-6 col-sm-6 col-xs-12">  
+                <button type="button" class="btn btn-default btn-circle" aria-label="Left Align" data-toggle="modal"
+                        data-target="">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                        <small for="agregar" class="form-label">Adjuntar Archivo</small>
+                </div>
             <!--__________________________________________________________________________________________-->
 
         </div>
