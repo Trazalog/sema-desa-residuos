@@ -1,0 +1,21 @@
+{
+    "zonas" : {
+            "zona" : [
+                {
+                    "nombre": "zona 1"
+                },
+                {
+                    "nombre": "zona 2"
+                },
+                {
+                    "nombre": "zona 3"
+                },
+                {
+                    "nombre": "zona 4"
+                },
+                {
+                    "nombre": "zona 5"
+                }
+            ]
+    }
+}

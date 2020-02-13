@@ -1,0 +1,12 @@
+{
+    "Estado" : {
+            "Estado" : [
+                {
+                    "nombre": "optimo"
+                },
+                {
+                    "nombre": "ocupado"
+                }
+            ]
+    }
+}

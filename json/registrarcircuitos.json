@@ -1,0 +1,13 @@
+{
+    "filarg" : {
+                "filarg" : [
+                    {
+                        "codigo": "",
+                        "chofer": "",
+                        "descripcion": "",
+                        "vehiculo": "",
+                        "tiporesiduo": "",
+                    }
+                ]
+    }
+}

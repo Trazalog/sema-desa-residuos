@@ -1,0 +1,15 @@
+{
+    "Rsu" : {
+            "Rsu" : [
+                {
+                    "nombre": "Tipo Residuo"
+                },
+                {
+                    "nombre": "Rsu"
+                },
+                {
+                    "nombre": "Escombro"
+                }
+            ]
+    }
+}
