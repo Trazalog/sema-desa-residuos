@@ -9,131 +9,105 @@ class Etapa extends CI_Controller {
       parent::__construct();
    }
 
-
-
-
-  
-
       // ---------------- Funcion Cargar vista Etapas y Datos
 
       function templateEtapas()
       
       {
-
           // $data[''] = $this->Infracciones->obtener_();
           // $data[''] = $this->Infracciones->obtener_();
           // $data[''] = $this->Infracciones->obtener_();
           // $data[''] = $this->Infracciones->obtener_();
        
-         $this->load->view('layout/registrar_etapa');
-          
+         $this->load->view('layout/registrar_etapa');   
       }
    
-       // ---------------- Funcion Registrar Etapas
-   
-       function Guardar_Etapa()
-       {
+      // ---------------- Funcion Registrar Etapas
+      function Guardar_Etapa()
+      {
            // $this->load->view('layout/registrar_infraccion');
-       }
+      }
+      //___________________________________________________________
    
-       // ---------------- Funcion Crear Etapas
-   
+      // ---------------- Funcion Crear Etapas
       function Crear_Etapa()
       {
-          
-          
+
       }
+      //___________________________________________________________
 
       // ---------------- Funcion Listar Etapas
-   
       function Listar_Etapas()
       {
-          
-          
-      }
 
-   
+      }
+      //___________________________________________________________
+
       // ---------------- Funcion Modificar Etapas
-   
       function Modificar_Etapa()
       {
-          
-          
+
       }
+      //___________________________________________________________
    
-       // ---------------- Funcion Borrar Etapas
-   
-       function Borrar_Etapa()
-       {
-           
-           
-       }
-   
-       
-   
-       // ---------------- Funcion Iniciar Etapa
-   
+      // ---------------- Funcion Borrar Etapas
+      function Borrar_Etapa()
+      {
+
+      }
+      //___________________________________________________________
+
+      // ---------------- Funcion Iniciar Etapa
       function Iniciar_Etapa()
       {
-          
-          
-      }
 
-       // ---------------- Funcion Finalizar Etapa
+      }
+      //___________________________________________________________
+
+      // ---------------- Funcion Finalizar Etapa
+      function Finalizar_Etapa()
+      {
    
-       function Finalizar_Etapa()
-       {
-           
-           
-       }
+      }
+      //___________________________________________________________
 
        
-        // ---------------- Funcion Planificar Etapa
-   
+      // ---------------- Funcion Planificar Etapa
       function Planificar_Etapa()
       {
-          
-          
+
       }
+      //___________________________________________________________
 
-       // ---------------- Funcion Controlar Calidad
-   
-       function Controlar_Calidad()
-       {
-           
-           
-       }
+      // ---------------- Funcion Controlar Calidad
+      function Controlar_Calidad()
+      {
+
+      }
+      //___________________________________________________________
  
-
       // ---------------- Funciones Obtener --------------------------------//
       
 
-       // ---------------- Funcion Obtener Tareas
-   
-       function Obtener_Tareas()
-       {
-           
-           
-       }
+      // ---------------- Funcion Obtener Tareas
+      function Obtener_Tareas()
+      {
 
-        // ---------------- Funcion Obtener Batch inicial
-   
-        function Obtener_BatchInicial()
-        {
-             
-             
-        }
+      }
+      //___________________________________________________________
 
-        // ---------------- Funcion Obtener Batch Producto final
-   
-        function Obtener_BatchProductoFinal()
-        {
-             
-             
-        }
+      // ---------------- Funcion Obtener Batch inicial
+      function Obtener_BatchInicial()
+      {
+     
+      }
+      //___________________________________________________________
 
-       
-   
-
+      // ---------------- Funcion Obtener Batch Producto final
+      function Obtener_BatchProductoFinal()
+      {
+     
+      }
+      //___________________________________________________________
 }
 ?>

@@ -89,9 +89,26 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                    <input type="text" class="form-control"  name="Rubro" id="Rubro">
+                    <select class="form-control select2 select2-hidden-accesible"  name="Rubro" id="Rubro">
+                        <option value="" disabled selected>-Seleccione opcion-</option>
+                        <?php
+                            foreach ($Rubro as $i) {
+                                echo '<option>'.$i->rubr_id.'</option>';
+                            }
+                        ?>
+                    </select>
                     </div>
                 </div>
+
+                <!--<div class="form-group">
+                    <label for="Rubro">Rubro:</label>
+                    <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-check"></i>
+                            </div>
+                    <input type="text" class="form-control"  name="Rubro" id="Rubro">
+                    </div>
+                </div>-->
                 <!--____________________________________________________________________-->
 
                 <!--Tipo-->
@@ -284,8 +301,8 @@
                             <select class="form-control select2 select2-hidden-accesible" id="E_Dpto" name="e_departamento">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
-                                foreach ($Dpto as $i) {
-                                    echo '<option>'.$i->nombre.'</option>';
+                                foreach ($Departamentos as $i) {
+                                    echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';
                                 }
                                 ?>
                             </select>
@@ -307,10 +324,10 @@
                         <select class="form-control select2 select2-hidden-accesible" id="E_Zonag" name="e_zonag">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                            foreach ($Zonag as $i) {
-                                echo '<option>'.$i->nombre.'</option>';
-                            }
-                            ?>
+                        foreach ($Zonas as $i) {
+                            echo '<option  value="'.$i->depa_nom.'">'.$i->nombre.'</option>';
+                        }
+                        ?>
                             </select>
                             </div>
                         </div>

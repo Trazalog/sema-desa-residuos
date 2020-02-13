@@ -201,10 +201,10 @@
                     </table>
                 <!--___________________________FIN TABLA___________________________-->
 
-                </div>
             </div>
         </div>
     </div>
+</div>
 
 <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
 
@@ -340,20 +340,21 @@
                             </div>
                         <!--_____________________________________________-->
 
-                        </div>
                     </div>
                 </div>
-            </form>
-
-            <!--___________________________FIN FORMULARIO MODAL___________________________-->
-
             </div>
+        </form>
+
+        <!--___________________________FIN FORMULARIO MODAL___________________________-->
+
+        </div>
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
                     <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
+            <!--_________________________________________________-->
         </div>
     </div>
 </div>

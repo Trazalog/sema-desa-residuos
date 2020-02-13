@@ -34,7 +34,7 @@
     </div>
 
     <!--__________________________________________________________________________________________-->
-    
+
     <div class="box-body">
         <form class="formZonas" id="formZonas" method="POST" autocomplete="off" class="registerForm">
                 <div class="col-md-12">
@@ -74,9 +74,10 @@
                             </div>
                         </div>
                         <!--__________________________________________________________________________________________-->
-                    </div>
+
                 </div>
-                <div class="col-md-12"> 
+                </div>
+                <div class="col-md-12">
 
                     <!--Descripcion-->
                     <div class="form-group">
@@ -85,11 +86,11 @@
                             name="descripcion" required></textarea>
                     </div>
                     <!--__________________________________________________________________________________________-->
-            
+
             </div>
             <div class="col-md-12"><hr></div>
 
-                <!--Adjuntar imagen--> 
+                <!--Adjuntar imagen-->
 
                 <!-- <div class="col-md-6">
 

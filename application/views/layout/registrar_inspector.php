@@ -100,6 +100,23 @@
 
             <!--Departamento-->
                 <div class="form-group">
+                    <label for="Dpto">Departamento:</label>
+                    <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-check"></i>
+                            </div>
+                        <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($Departamentos as $i) {
+                                    echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';
+                                }
+                                ?>
+                        </select>
+                    </div>
+                </div>
+
+                <!--<div class="form-group">
                     <label for="Departamento">Departamento:</label>
                     <div class="input-group date">
                          <div class="input-group-addon">
@@ -107,7 +124,7 @@
                         </div> 
                     <input type="text" class="form-control" id="Departamento" name="departamento">
                     </div>
-                </div>
+                </div>-->
             <!--_____________________________________________-->
 
             <!--Movilidad Asignada-->
@@ -119,8 +136,8 @@
                             foreach ($vehiculo as $i) {
                                 echo '<option  value="'.$i->equi_id.'">'.$i->descripcion.'</option>';
                                 }
-                            ?>
-                        </select>
+                        ?>
+                    </select>
                 </div>
             <!--_____________________________________________-->
 
@@ -132,6 +149,7 @@
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
                 </div>
             <!--_____________________________________________-->
+
         </form>
     </div>
 </div>

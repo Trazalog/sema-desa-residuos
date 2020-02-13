@@ -38,5 +38,5 @@
                     <!--__________________FIN TABLA___________________________-->
 
 <script>
-DataTable($('#tabla_transportistas'))
+    DataTable($('#tabla_transportistas'))
 </script>

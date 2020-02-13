@@ -23,13 +23,13 @@ class Transportista extends CI_Controller {
 
       function Guardar_Transportista()
       {
-        // $datos =  $this->input->post('datos');
-        // $resp = $this->Transportistas->Guardar_Transportista($datos);
-        // if($resp){
-        // echo "ok";
-        // }else{
-        // echo "error";
-        // }
+        $datos =  $this->input->post('datos');
+        $resp = $this->Transportistas->Guardar_Transportista($datos);
+        if($resp){
+        echo "ok";
+        }else{
+        echo "error";
+        }
       }
 
        // ---------------- Funcion Crear Transportista
