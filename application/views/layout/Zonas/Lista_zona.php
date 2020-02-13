@@ -43,10 +43,5 @@
 
 DataTable($('#tabla_zonas'))
 
-
-
-
-
-
 </script>
            

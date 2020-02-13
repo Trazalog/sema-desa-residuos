@@ -1,6 +1,5 @@
 <script>
 
-    /* Hecha por Jose Roberto el mas vergas */
         function guardar(){
  
             datos=$('#formGeneradores').serialize();

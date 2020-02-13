@@ -16,16 +16,9 @@
     </div>
 </div>
 
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-
-
-
-
-
 <!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
-
 
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
@@ -38,17 +31,13 @@
                 <i class="fa fa-times"></i>
             </button>
         </div>
-        
     </div>
     <!--_____________________________________________-->
 
     <div class="box-body">
+        <form class="formCircuitos" id="formCircuitos">
 
-    <form class="formCircuitos" id="formCircuitos">
-
-            <!--_____________________________________________-->
             <!--Codigo-->
-
             <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                         
@@ -59,12 +48,11 @@
                             </div>
                         </div>
             </div>
-
             <!--_____________________________________________--> 
-             <!--Chofer-->
 
-             <div class="col-md-6 col-sm-6 col-xs-12">
-                 <div class="form-group">
+            <!--Tipo de residuo-->
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="form-group">
                     <label for="tipoResiduos" >Tipo de residuo:</label>
                     <div class="input-group date">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -84,20 +72,18 @@
                     </div>
                 </div>
             </div>
-
             <!--_____________________________________________-->
-            <!--Descripcion-->
 
+            <!--Descripcion-->
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="Descripcion" >Descripcion:</label>
                     <textarea style="resize: none;" type="text" class="form-control" name="descripcion" id="Descripcion"></textarea>
                 </div>
             </div>
-
             <!--_____________________________________________-->
-            <!--vehiculo-->
 
+            <!--vehiculo-->
             <div class="col-md-6 col-sm-6 col-xs-12">          
                 <div class="form-group">
                     <label for="Vehiculo">Vehiculo:</label>
@@ -118,11 +104,9 @@
                     </div>
                 </div>
             </div>
-
             <!--_____________________________________________-->
-            <!--Tipo de residuo-->
 
-
+            <!--Chofer-->
             <div class="col-md-6 col-sm-6 col-xs-12">            
                 <div class="form-group">
                     <label for="Chofer" >Chofer:</label>
@@ -132,29 +116,23 @@
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Chofer as $i) {
-                            
                             echo '<option  value="'.$i->chof_id.'">'.$i->nombre.'</option>';
                         }
                         ?>
                     </select>
                     </div>                    
                 </div>
-                
             </div>
-
-             <!--_________________SEPARADOR_________________-->
-
-             <div class="col-md-12"> <hr></div>
+            <!--_____________________________________________-->
 
             <!--_________________SEPARADOR_________________-->
 
-            
+            <div class="col-md-12"> <hr></div>
 
-            <!--_____________________________________________-->
+            <!--_________________SEPARADOR_________________-->
+
             <!--Adjuntador de imagenes-->
-
-            <div class="col-md-12"> 
-
+            <div class="col-md-12">
                 <div class="col-md-6 col-sm-6 col-xs-12">     
                     
                     

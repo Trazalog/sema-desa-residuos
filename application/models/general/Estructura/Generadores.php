@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Generadores extends CI_Model
 {
 	function __construct()
@@ -12,13 +11,11 @@ class Generadores extends CI_Model
 
     function Lista_generadores()
     {
-        
         $aux = $this->rest->callAPI("GET",REST."/RECURSO");
         $aux =json_decode($aux["data"]);       
         return $aux->generadores->generador;
     }
-    
-// Funcion Guardar Generador
+    // ----------------------------------------------------------------
 
 function Guardar_Generadores($data){
 
@@ -30,10 +27,9 @@ function Guardar_Generadores($data){
         
       	
 
-}
+// ________________________________________________________________
 
 // ---------------------- FUNCIONES OBTENER ----------------------
-
 // Funcion Obtener Zona
 
 public function obtener_Zonas(){
@@ -41,14 +37,16 @@ public function obtener_Zonas(){
     $aux =json_decode($aux["data"]);
     return $aux->zonas->zona;
 }
+// ----------------------------------------------------------------
 
 // Funcion Obtener Tipo Generador
-
-public function obtener_Tipo_Generador(){
+public function obtener_Tipo_Generador()
+{
     $aux = $this->rest->callAPI("GET",REST."http://localhost:3000/tipo");
     $aux =json_decode($aux["data"]);
     return $aux->TipoG->TipoG;
 }
+// ----------------------------------------------------------------
 
 // Funcion Obtener Departamento
 
@@ -57,18 +55,16 @@ public function obtener_Departamentos(){
     $aux =json_decode($aux["data"]);
     return $aux->departamentos->departamento;
 }
+// ----------------------------------------------------------------
 
 // Funcion Obtener Tipo Residuo
-
-public function obtener_Tipo_residuo(){
+public function obtener_Tipo_residuo()
+{
     $aux = $this->rest->callAPI("GET",REST."http://localhost:3000/tipo");
     $aux =json_decode($aux["data"]);
     return $aux->TipoRSU->residuo;
 }
-
-
-
-
+// ----------------------------------------------------------------
 
 }
-
+// ________________________________________________________________

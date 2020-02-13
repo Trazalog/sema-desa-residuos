@@ -1,5 +1,9 @@
+<a href="#" class="frm-new" data-form="1" onclick="$('#frm-modal-0').modal('show');">Formulario Test</a>
 <!---//////////////////////////////////////--- FORMULARIO 1 ---///////////////////////////////////////////////////////----->
 
+<script>
+detectarForm();
+</script>
 
 <div class="box box-primary">
 
