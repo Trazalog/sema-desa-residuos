@@ -83,8 +83,7 @@
                             <option value="" disabled selected>-Seleccione opcion-</option>                            
                         <?php
                             foreach ($Transportista as $i) {
-                                // echo '<option value="'.$fila->id.'">'.$fila->tran_id.'</option>' ;
-                                echo '<option>'.$i->contacto.'</option>';
+                                echo '<option  value="'.$i->tran_id_id.'">'.$i->razon_social.'</option>';
                             }
                         ?>                      
 

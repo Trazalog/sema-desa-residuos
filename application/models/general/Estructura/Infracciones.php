@@ -22,10 +22,15 @@ class Infracciones extends CI_Model
 
 function Guardar_Infraccion($data){
 
-    $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
-        $aux =json_decode($aux["status"]);
-        return $aux;	
 
+    $post["post_infraccion"] = $data;
+    log_message('DEBUG','#Infracciones/Guardar_Infraccion: '.json_encode($post));
+    $aux = $this->rest->callAPI("POST",REST."/RECURSO", $post);
+    $aux =json_decode($aux["status"]);
+    return $aux;
+        
+        
+   
 }
 
 
@@ -34,7 +39,7 @@ function Guardar_Infraccion($data){
 // Funcion Obtener Transportista
 
 public function obtener_Transportista(){
-    $aux = $this->rest->callAPI("GET",REST."/transportistas");
+    $aux = $this->rest->callAPI("GET",REST."/transportistas/todo");
     $aux =json_decode($aux["data"]);    
     return $aux->transportistas->transportista;
 }

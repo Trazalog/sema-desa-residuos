@@ -7,8 +7,9 @@ class Generadores extends CI_Model
 		parent::__construct();
     }
 
-    // Funcion Listar Generadores (MODIFICAR)
-    function Listar_Generadores()
+// Funcion Listar Generadores (MODIFICAR)
+
+    function Lista_generadores()
     {
         $aux = $this->rest->callAPI("GET",REST."/RECURSO");
         $aux =json_decode($aux["data"]);       
@@ -16,21 +17,22 @@ class Generadores extends CI_Model
     }
     // ----------------------------------------------------------------
 
-    // Funcion Guardar Generador
-    function Guardar_Generadores($data)
-    {
+function Guardar_Generadores($data){
+
+        $post["post_generador"] = $data;
+        log_message('DEBUG','#Generadores/Guardar_Generadores: '.json_encode($post));
         $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
         $aux =json_decode($aux["status"]);
         return $aux;
-    }
-    // ----------------------------------------------------------------
+        
+      	
 
 // ________________________________________________________________
 
 // ---------------------- FUNCIONES OBTENER ----------------------
 // Funcion Obtener Zona
-public function obtener_Zonas()
-{
+
+public function obtener_Zonas(){
     $aux = $this->rest->callAPI("GET",REST."/zonas");
     $aux =json_decode($aux["data"]);
     return $aux->zonas->zona;
@@ -47,8 +49,8 @@ public function obtener_Tipo_Generador()
 // ----------------------------------------------------------------
 
 // Funcion Obtener Departamento
-public function obtener_Departamento()
-{
+
+public function obtener_Departamentos(){
     $aux = $this->rest->callAPI("GET",REST."/departamentos");
     $aux =json_decode($aux["data"]);
     return $aux->departamentos->departamento;

@@ -33,15 +33,6 @@ function Guardar_Zona($data){
 
 }
 
-// ---------------------- FUNCIONES OBTENER ----------------------
-
-// Funcion Obtener Departamentos
-
-// public function obtener_Departamentos(){
-//     $aux = $this->rest->callAPI("GET",REST."/departamentos");
-//     $aux =json_decode($aux["data"]);
-//     return $aux->Departamentos->Departamento;
-// }
 
 // ---------------------- FUNCIONES CIRCUITOS ----------------------
 
@@ -56,11 +47,22 @@ function Listar_Circuitos()
 // Funcion Guardar Circuito
 function Guardar_Circuito($data){
 
-    $post["post_circuito"] = $data;
-    log_message('DEBUG','#Zonas/Guardar_Circuito: '.json_encode($post));
-    $aux = $this->rest->callAPI("POST",REST."/circuitos", $post);
-    $aux =json_decode($aux["status"]);
-    return $aux;
+$post["post_circuito"] = $data;
+log_message('DEBUG','#Zonas/Guardar_Circuito: '.json_encode($post));
+$aux = $this->rest->callAPI("POST",REST."/circuitos", $post);
+$aux =json_decode($aux["status"]);
+return $aux;
+
+
+// $post["post_zona"] = $data;
+//     log_message('DEBUG','#Zonas/Guardar_Zona: '.json_encode($post));
+//     $aux = $this->rest->callAPI("POST",REST."/zonas", $post);
+//     $aux =json_decode($aux["status"]);
+//     return $aux;	
+
+
+
+
 }
 
 // Funcion Guardar Zona
@@ -70,12 +72,27 @@ function Guardar_Punto_Critico($data){
     return $aux;	
 }
 
-// Funcion Guardar Zona
-function Asignar_Zona($data){
-    $aux = $this->rest->callAPI("POST",REST."/zonas/departamento", $data);
-    $aux =json_decode($aux["status"]);
-    return $aux;
+// Funcion Botener zonas por departamento
+
+function Asignar_Zona($depa_id){
+
+
+    $aux = $this->rest->callAPI("GET",REST."/zonas/departamento/".$depa_id);
+    $aux =json_decode($aux["data"]);
+    return $aux->zonas->zona;	
+
 }
+
+// Funcion Guardar Asignacion de  Zona
+
+function Insertar_zona($data){
+
+    $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
+    $aux =json_decode($aux["status"]);
+    return $aux;	
+    
+    }
+
 
 // ---------------------- FUNCIONES OBTENER ----------------------
 
@@ -87,11 +104,12 @@ public function obtener_Circuitos(){
 }
 
 // Funcion Obtener Punto Critico
-public function obtener_Punto_Critico(){
-    $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-    $aux =json_decode($aux["data"]);
-    return $aux->Puntos->PuntosCriticos;
-}
+
+// public function obtener_Punto_Critico(){
+//     $aux = $this->rest->callAPI("GET",REST."/puntosCriticos");
+//     $aux =json_decode($aux["data"]);
+//     return $aux->puntos_criticos->punto;
+// }
 
 // Funcion Obtener Tipo RSU
 public function obtener_RSU(){
@@ -102,7 +120,7 @@ public function obtener_RSU(){
 
 // Funcion Obtener Vehiculo
 public function obtener_Vehiculo(){
-    $aux = $this->rest->callAPI("GET",REST."/RECURSO");
+    $aux = $this->rest->callAPI("GET",REST."/vehiculos");
     $aux =json_decode($aux["data"]);
     return $aux->vehiculos->vehiculo;
 }
@@ -126,6 +144,14 @@ public function obtener_Zona(){
     $aux = $this->rest->callAPI("GET",REST."/zonas");
     $aux =json_decode($aux["data"]);
     return $aux->zonas->Zona;
+}
+
+// Funcion Obtener Zona
+
+public function obtener_Zona_departamento(){
+    $aux = $this->rest->callAPI("GET",REST."/zonas/departamento/");
+    $aux =json_decode($aux["data"]);
+    return $aux->zonas->zona;
 }
 
 // Funcion Obtener Circuitos Asignados

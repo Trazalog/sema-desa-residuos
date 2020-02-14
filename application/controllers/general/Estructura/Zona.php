@@ -7,7 +7,9 @@ class Zona extends CI_Controller {
       parent::__construct();
 
       $this->load->model('general/Estructura/Zonas');
-            
+     
+      
+      
    }
 
 // --------------------------------- ZONAS ----------------------------------
@@ -73,10 +75,15 @@ class Zona extends CI_Controller {
    // ---------------- Funcion Cargar vista CIRCUITOS y Datos
    function templateCircuitos()
    {
-      // $data['tipoResiduos'] = $this->Zonas->obtener_RSU();
-      // $data['Vehiculo'] = $this->Zonas->obtener_Vehiculo();
-      $data['Chofer'] = $this->Zonas->obtener_Chofer();
-
+      
+      $data['tipoResiduos'] = $this->Zonas->obtener_RSU();
+      // $data['puntos_criticos'] = $this->Zonas->obtener_Punto_Critico();
+      $data['Departamentos'] = $this->Zonas->obtener_Departamentos();
+      // $data['zonas_departamento'] = $this->Zonas->obtener_Zona_departamento(); 
+      $data['Vehiculo'] = $this->Zonas->obtener_Vehiculo();   
+      $data['Chofer'] = $this->Zonas->obtener_Chofer();     
+      
+      
       $this->load->view('layout/Zonas/registrar_circuitos',$data);
    }
    // _________________________________________________________
@@ -93,6 +100,49 @@ class Zona extends CI_Controller {
       }
    }
    // _________________________________________________________
+
+    // ---------------- Funcion Asignar Circuito
+    
+   function Asignar_Circuito()
+   {
+        $datos =  $this->input->post('datos');
+        $resp = $this->Zonas->Asignar_Zona($datos);
+        if($resp){
+        echo "ok";
+        }else{
+        echo "error";
+        }
+   }
+
+    // ---------------- Funcion Registrar Punto critico
+   
+    function Guardar_PuntosCriticos()
+    {
+         $datos =  $this->input->post('datos');
+         $resp = $this->Zonas->Guardar_Punto_Critico($datos);
+         if($resp){
+         echo "ok";
+         }else{
+         echo "error";
+         }
+    }
+
+   // ---------------- Funcion Insertar zona a circuitos
+
+    function insertCircuito()
+    {
+         $datos =  $this->input->post('datos');
+         $resp = $this->Zonas->Insertar_zona($datos);
+         if($resp){
+         echo "ok";
+         }else{
+         echo "error";
+         }
+    }
+
+
+
+    
 
    // ---------------- Funcion Listar Zona
    function Listar_Circuitos()
@@ -116,8 +166,15 @@ class Zona extends CI_Controller {
       function Obtener_PuntosCriticos()
       {
 
-      }
-      // _________________________________________________________
+       
+       function obtenerDeptoPorZona(){
+          $depa_id = $this->input->post('idDepto');
+          $resp = $this->Zonas->Asignar_Zona($depa_id);
+          echo json_encode($resp);
+       }
+       
+   
 
+}
 }
 ?>

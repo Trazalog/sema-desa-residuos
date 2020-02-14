@@ -91,12 +91,12 @@
 
                 <!--Adjuntar imagen--> 
 
-                <!-- <div class="col-md-6">
+                <div class="col-md-6">
 
                     <form action="cargar_archivo" method="post" enctype="multipart/form-data">
                         <input type="file" name="imagen">
                     </form>
-                </div> -->
+                </div>
 
                 <!--__________________________________________________________________________________________-->
 
@@ -197,16 +197,25 @@
                                     <select class="form-control select2 select2-hidden-accesible" id="">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         <?php
-                                            foreach ($Departamentos as $i) {
-                                            echo '<option  value="'.$i->depa_nom.'">'.$i->nombre.'</option>';
-                                            }
-                                        ?>
+                                    foreach ($Departamentos as $i) {
+                                        echo '<option value="'.$fila->depa_id.'">'.$fila->nombre.'</option>' ;
+                                     }
+                                    ?>
                                     </select>
                                 </div>
                                 <!--__________________________________________________________________________________________-->
 
                             </div>
-                        </div>  
+
+                           
+
+                            
+
+
+
+
+                        </div>
+                                
                     </div>
                 </div>
             </form>
@@ -450,7 +459,7 @@ function agregarDato(){
       },*/
       //excluded: ':disabled',
       fields: {
-          nombre: {
+        nombre: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -458,7 +467,7 @@ function agregarDato(){
                   }
               }
           },
-          depa_nom: {
+          depa_id: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -488,23 +497,14 @@ function agregarDato(){
       //guardar();
   });
 </script>
-<!--__________________________________________________________________________________________-->
 
-<!--Script validador de campo de imagenes-->
-<!-- <script>
-var value = $("#imgarch").val();
-if (value == "1") {
-    document.getElementById('imgarch').setAttribute("data-required","true");
-}
-else {
-    document.getElementById('imgarch').setAttribute("data-required","false");
-}
-</script> -->
-<!--__________________________________________________________________________________________-->
+<!--_____________________________________________-->
 
 <script>
 // DataTable($('#tabla_zonas'));
 
 // DataTable($('#tabla_circuitos'));
+
+
 </script>
            
