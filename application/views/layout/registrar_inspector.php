@@ -116,7 +116,7 @@
                     </div>
                 </div>
 
-                <!--<div class="form-group">
+                <!-- <div class="form-group">
                     <label for="Departamento">Departamento:</label>
                     <div class="input-group date">
                          <div class="input-group-addon">
@@ -124,7 +124,7 @@
                         </div> 
                     <input type="text" class="form-control" id="Departamento" name="departamento">
                     </div>
-                </div>-->
+                </div> -->
             <!--_____________________________________________-->
 
             <!--Movilidad Asignada-->
