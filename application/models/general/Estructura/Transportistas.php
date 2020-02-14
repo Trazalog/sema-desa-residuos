@@ -8,7 +8,8 @@ class Transportistas extends CI_Model
 		parent::__construct();
     }
 
-    // Funcion Listar Transportistas (MODIFICAR)
+// Funcion Listar Transportistas (MODIFICAR)
+
     function Listar_Transportistas()
     {
         
@@ -20,9 +21,10 @@ class Transportistas extends CI_Model
    
 
     }
+    
+// Funcion Guardar Municipio
 
-    // Funcion Guardar Zona
-    function Guardar_Transportista($data){
+function Guardar_Transportista($data){
 
     $post["post_transportista"] = $data;
     log_message('DEBUG','#Transportistas/Guardar_Transportista: '.json_encode($post));
@@ -30,17 +32,11 @@ class Transportistas extends CI_Model
     $aux =json_decode($aux["status"]);
     return $aux;
 
-    }
+}
 
-    // ---------------------- FUNCIONES OBTENER ----------------------
+// ---------------------- FUNCIONES OBTENER ----------------------
 
-    // Funcion Obtener RSU
-    public function obtener_RSU()
-    {
-        $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
-        $aux =json_decode($aux["data"]);
-        return $aux->valores->valor;
-    }
+// Funcion Obtener RSU
 
     public function obtener_RSU(){
     $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
@@ -48,3 +44,12 @@ class Transportistas extends CI_Model
     return $aux->valores->valor;
     
 }
+
+
+
+
+
+
+
+}
+

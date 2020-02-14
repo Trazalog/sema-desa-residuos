@@ -1,13 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 class Contenedor extends CI_Controller {
+
 
     function __construct(){
 
       parent::__construct();
 
             
-            $this->load->model('general/Estructura/Contenedores');
             $this->load->model('general/Estructura/Contenedores');
 
             
@@ -17,6 +18,7 @@ class Contenedor extends CI_Controller {
 
    }
   
+   // ---------------- Funciones  CONTENEDOR --------------------------------//
 
       // ---------------- Funcion Cargar vista Contenedores y Datos
 
@@ -30,9 +32,9 @@ class Contenedor extends CI_Controller {
         $this->load->view('layout/Contenedores/registrar_contenedor',$data);
           
       }
-
+   
        // ---------------- Funcion Registrar Contenedor
-
+   
        function Guardar_Contenedor()
 
        {
@@ -57,16 +59,17 @@ class Contenedor extends CI_Controller {
 
 
         }
-
+   
        // ---------------- Funcion Crear Contenedor
-
+   
       function Crear_Contenedor()
       {
-
+          
+          
       }
 
       // ---------------- Funcion Listar Contenedor
-
+   
       function Listar_Contenedor()
       {
 
@@ -75,40 +78,59 @@ class Contenedor extends CI_Controller {
           
       }
 
+   
       // ---------------- Funcion Modificar Generador
-
+   
       function Modificar_Contenedor()
       {
-
+          
+          
       }
-
-      // ---------------- Funcion Borrar Contenedor
-
-      function Borrar_Contenedor()
-      {
-
-      }
-
-      // ---------------- Funcion Suspender Contenedor
-
+   
+       // ---------------- Funcion Borrar Contenedor
+   
+       function Borrar_Contenedor()
+       {
+           
+           
+       }
+   
+       
+   
+       // ---------------- Funcion Suspender Contenedor
+   
       function Suspender_Contenedor()
       {
-
+          
+          
       }
 
       // ---------------- Funciones Obtener --------------------------------//
+      
 
-      // ---------------- Funcion Obtener tipo de residuo
+       // ---------------- Funcion Obtener tipo de residuo
    
-      function Obtener_Residuo()
-      {
+       function Obtener_Residuo()
+       {
+           
+           
+       }
 
-      }
-
-      // ---------------- Funcion Obtener Transportista
+        // ---------------- Funcion Obtener Transportista
    
-      function Obtener_transportista()
-      {
+        function Obtener_transportista()
+        {
+             
+             
+        }
+
+        // ---------------- Funcion Obtener Generador
+   
+       function Obtener_Generador()
+       {
+           
+           
+       }
 
   // ---------------- Funciones SOLICITUD RETIRO DE ORDEN CONTENEDOR --------------------------------//
 
@@ -169,10 +191,6 @@ class Contenedor extends CI_Controller {
    
        
    
-      function Obtener_Generador()
-      {
-  
-      }
 
       // ---------------- Funciones Obtener --------------------------------//
       

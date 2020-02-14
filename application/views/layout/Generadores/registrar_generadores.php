@@ -178,7 +178,7 @@
                                 }
                                 ?>
                             </select>
-                    <input type="text" class="form-control"   name="Tipo_Residuo" id="Tipo de residuos">
+                    
                     </div>
                 </div>
                 <!--_____________________________________________-->

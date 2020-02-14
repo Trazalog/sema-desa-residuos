@@ -249,7 +249,7 @@
 
                     <div class="col-md-12 col-sm-12 col-xs-12"> <br></div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="puntos_criticos">
 
                                         <!--__________________HEADER TABLA___________________________-->
                                         <table id="tabla_puntos_criticos" class="table table-bordered table-striped">
@@ -490,6 +490,13 @@ function Agregar_punto() {
                         
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Lista_Circuitos");
                         alertify.success("Agregado con exito");
+
+                        // $('#formCircuitos').data('bootstrapValidator').resetForm();
+                        // $("#formCircuitos")[0].reset();
+                       
+                        $("#boxDatos").hide(500);
+                        $("#botonAgregar").removeAttr("disabled");
+
                     } else {
                         //console.log(r);
                         alertify.error("error al agregar");
@@ -565,9 +572,6 @@ $("#selectDepto").change(function(){
 //----------------- Funcion POST Asignacion --------------------------//
 
 
-
-
-
 // function insertCircuitoZona(){
 //     ban = true;
 //     idDepto = $('#selectDepto').val();
@@ -605,16 +609,36 @@ $("#selectDepto").change(function(){
 
 // }
 
-
-
-
-
-
-
-
 </script>
 
+<!--_____________________________________________-->
+<!-- Agregar punto critico -->
 
+
+
+<script>
+function Agregar_punto() {
+    $('#puntos_criticos').show();
+
+    var data = new FormData($('#formPuntos')[0]);
+    data = formToObject(data);
+
+    $('#datos tbody').append(
+        `<tr data-json='${JSON.stringify(data)}'>
+            <td><button class="btn btn-link" onclick="$(this).closest('tr').remove();"><i class="fa fa-times"></i></button></td>
+            <td>${$('option[value="'+data.recu_id+'"]').html()}</td>
+            <td>${$('option[value="'+data.arti_id+'"]').html()}</td>
+            <td>${data.cantidad}</td>
+            <td>${data.lote}</td>
+            <td>${$('option[value="'+data.destino+'"]').html()}</td>
+        </tr>`
+    );
+
+    $('#formPuntos')[0].reset();
+    $('select').select2().trigger('change');
+}
+
+</script>
 
 <!--_____________________________________________--> 
 <!-- script que muestra box de datos al dar click en boton agregar -->
