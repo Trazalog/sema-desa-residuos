@@ -1,5 +1,4 @@
-<!--__________________HEADER TABLA___________________________-->
-
+<!-- __________________HEADER TABLA___________________________ -->
 
 <table id="tabla_circuitos" class="table table-bordered table-striped">
     <thead class="thead-dark" bgcolor="#eeeeee">
@@ -10,10 +9,9 @@
         <th>Vehiculo</th>
         <th>Tipo de residuo</th>
 
-
     </thead>
 
-    <!--__________________BODY TABLA___________________________-->
+    <!-- __________________BODY TABLA___________________________ -->
 
     <tbody>
     <?php
@@ -34,7 +32,7 @@
                 aria-hidden="true"></span></button>&nbsp
         <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
                 class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
-                
+
             echo   '</td>';
             echo    '<td>'.$fila->codigo.'</td>';
             echo    '<td>'.$fila->chof_id.'</td>';
@@ -47,15 +45,8 @@
     </tbody>
 </table>
 
-<!--__________________FIN TABLAa___________________________-->
+<!-- __________________FIN TABLAa___________________________ -->
 
 <script>
-
 DataTable($('#tabla_circuitos'))
-
 </script>
-           
-
-
-
-           

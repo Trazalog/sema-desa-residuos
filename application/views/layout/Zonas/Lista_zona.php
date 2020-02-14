@@ -1,4 +1,5 @@
-    <!--__________________HEADER TABLA___________________________-->
+    <!-- __________________HEADER TABLA__________________ -->
+
     <table id="tabla_zonas" class="table table-bordered table-striped">
         <thead class="thead-dark" bgcolor="#eeeeee">
 
@@ -7,11 +8,10 @@
             <th>Departamento</th>
             <!--<th>Circuito</th>-->
             <th>Descripcion</th>
-            
 
         </thead>
 
-    <!--__________________BODY TABLA___________________________-->
+    <!-- __________________BODY TABLA__________________ -->
 
     <tbody>
     <?php
@@ -24,7 +24,7 @@
         echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
             <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
             <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
-            
+
         echo   '</td>';
         echo    '<td>'.$fila->nombre.'</td>';
         echo    '<td>'.$fila->depa_nom.'</td>';
@@ -37,7 +37,7 @@
     </tbody>
         </table>
 
-    <!--__________________FIN TABLA___________________________-->
+    <!-- __________________FIN TABLA__________________ -->
 
 <script>
 DataTable($('#tabla_zonas'))

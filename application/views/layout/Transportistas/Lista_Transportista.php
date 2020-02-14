@@ -1,4 +1,4 @@
-    <!--__________________HEADER TABLA___________________________-->
+    <!-- __________________HEADER TABLA___________________________ -->
 
     <table id="tabla_transportistas" class="table table-bordered table-striped">
         <thead class="thead-dark" bgcolor="#eeeeee">
@@ -9,7 +9,7 @@
             <th>Tipo</th>
         </thead>
 
-        <!--__________________BODY TABLA___________________________-->
+        <!-- __________________BODY TABLA___________________________ -->
 
     <tbody>
     <?php
@@ -17,6 +17,7 @@
     {
         foreach($transportistas as $fila)
         {
+
         echo '<tr data-json:'.json_encode($fila).'>';
         echo    '<td>';
         echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
@@ -29,13 +30,14 @@
         echo    '<td>'.$fila->depa_nom.'</td>';
         echo    '<td>'.$fila->Rsu.'</td>';
         echo '</tr>';
-    }
+
+        }
     }
     ?>
     </tbody>
     </table>
 
-    <!--__________________FIN TABLA___________________________-->
+    <!-- __________________FIN TABLA___________________________ -->
 
 <script>
     DataTable($('#tabla_transportistas'))
