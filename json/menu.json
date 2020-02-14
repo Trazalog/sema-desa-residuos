@@ -38,11 +38,6 @@
                                 "link": "general/Estructura/Contenedor/templateContenedores"
                             },
                             {
-                                "titulo": "Solicitud de retiro",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Orden/solicitudRetiro"
-                            },
-                            {
                                 "titulo": "Registrar Proceso Productivo",
                                 "icono": "fa fa-genderless",
                                 "link": "general/RegistrarPp/templatePp"
@@ -50,7 +45,7 @@
                             {
                                 "titulo": "Establecimiento",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarE/templateEs"
+                                "link": "general/Estructura/Establecimiento/templateEstablecimientos"
                             },
                             {
                                 "titulo": "Orden de transporte",
@@ -75,7 +70,9 @@
                             {
                                 "titulo": "ABM establecimiento",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Orden/nueva"
+
+                                "link": "general/Estructura/Establecimiento/templateAsignarEstablecimiento"
+
                             },
                             {
                                 "titulo": "ABM Incidencias ",
@@ -88,9 +85,26 @@
                                 "link": "general/Estructura/Infraccion/templateInfracciones"
                             },
                             {
-                                "titulo": "Solicitud de pedido ",
+                                "titulo": "Solicitud de Contenedor ",
+
                                 "icono": "fa fa-genderless",
-                                "link": "general/Solicitud_Pedido/templateSolicitudPedidos"
+
+                                "link": "general/Estructura/Contenedor/templateSolicitudPedido"
+
+                            },
+                            {
+                                "titulo": "Entrega de Contenedor ",
+
+                                "icono": "fa fa-genderless",
+
+                                "link": "general/Estructura/Contenedor/templateEntregacontenedor"
+
+                            },
+                            
+                            {
+                                "titulo": "Retiro de Contenedor",
+                                "icono": "fa fa-genderless",
+                                "link": "general/Estructura/Contenedor/templateSolicitudRetiro"
                             },
                             {
                                 "titulo": "Etapa",
@@ -122,8 +136,36 @@
                                 "icono": "fa fa-genderless",
                                 "link": "general/RegistrarVehi/templateVehi"
                             }
+                        ]                    
+                    },
+                    {
+                        "titulo": "Reportes",
+                        "icono": "fa-flus",
+                        "link": "",
+                        "nivel": 2,
+                        "submenu": [
+                            {
+                                "titulo": "SUbmenu1",
+                                "icono": "fa fa-genderless",
+                                "link": "general/Orden/ordenT"
+                            },
+                            {
+                                "titulo": "Submenu2",
+                                "icono": "fa fa-genderless",
+                                "link": "general/Orden/templateOt"
+                            },
+                            {
+                                "titulo": "Submenu3",
+                                "icono": "fa fa-genderless",
+                                "link": "general/Orden/solicitudRetiro"
+                            
+                            }
                         ]
                     }
+                    
+                    
+
+
                 ]
     }
 }

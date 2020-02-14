@@ -19,6 +19,9 @@
 
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
+
+
+
 <!---//////////////////////////////////////---BOX 1---///////////////////////////////////////////////////////----->
 
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
@@ -36,14 +39,19 @@
     </div>
     
 
-    <!--__________________________________________________________________________________________-->
+    <!--_____________________________________________-->
     
     <div class="box-body">
+    
         <form class="formZonas" id="formZonas" method="POST" autocomplete="off" class="registerForm">
+           
                 <div class="col-md-12">
+
                     <div class="col-md-6 col-sm-6 col-xs-12">
 
+                        <!--_____________________________________________-->
                         <!--Nombre-->
+
                         <div class="form-group">
                             <label for="Nombre" >Nombre:</label>
                             <div class="input-group date">
@@ -53,12 +61,14 @@
                             <input type="text" name="nombre" class="form-control" id="Nombre">
                             </div>
                         </div>
-                        <!--__________________________________________________________________________________________-->
 
                     </div>
+
                     <div class="col-md-6 col-sm-6 col-xs-12">
 
+                        <!--_____________________________________________-->
                         <!--Departamento-->
+
                         <div class="form-group">
                             <label for="Departamento" >Departamento:</label>
                             <div class="input-group date">
@@ -69,70 +79,102 @@
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                             foreach ($Departamentos as $i) {
-                                echo '<option  value="'.$i->depa_nom.'">'.$i->nombre.'</option>';
+                                echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';
 
+                                
                             }
                             ?>
                             </select>
                             </div>
                         </div>
-                        <!--__________________________________________________________________________________________-->
+
                     </div>
+
+
                 </div>
+
+                
+
+                    <!--_____________________________________________-->
                     <!--Circuito-->
 
-                    <!--__________________________________________________________________________________________-->
+
+                        
+
+
+                    <!--_____________________________________________-->
 
                 <div class="col-md-12"> 
 
-                    <!--__________________________________________________________________________________________-->
-                    <!--Descripcion-->
+                    <!--_____________________________________________-->
+                    <!--Descripcion--> 
+
                     <div class="form-group">
                         <label for="Descripcion" >Descripcion:</label>
                         <textarea style="resize: none;" type="text" class="form-control input-sm" rows="5" id="Descripcion"
                             name="descripcion" required></textarea>
+                        
                     </div>
-                    <!--__________________________________________________________________________________________-->
+                </div>
+
+                <!--_____________________________________________-->
             
-            </div>
             <div class="col-md-12"><hr></div>
 
-                <!--__________________________________________________________________________________________-->
+                <!--_____________________________________________-->
                 <!--Adjuntar imagen--> 
 
-                <!-- <div class="col-md-6">
+                <div class="col-md-6">
 
                     <form action="cargar_archivo" method="post" enctype="multipart/form-data">
                         <input type="file" name="imagen">
                     </form>
-                </div> -->
+                </div>
 
-                <!--__________________________________________________________________________________________-->
+                <!--_____________________________________________-->
 
-            <div class="col-md-12"><hr></div>
+                <div class="col-md-12"><hr></div>
 
-                <!--__________________________________________________________________________________________-->
-
+                <!--_____________________________________________-->
+                <!--Boton Guardar--> 
+            
             <div class="col-md-12">
 
-                <!--Boton Guardar--> 
-                    <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Zona()">Guardar</button>
-                <!--__________________________________________________________________________________________-->
+            <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Zona()">Guardar</button>
+            
             </div>
+                
         </div>
+
+            
+
+            
+
+            
+
+
     </div>
 
-    <!--__________________________________________________________________________________________-->
+    <!--_____________________________________________-->
 </div>
 </form>
 </div>
 </div>
 
+
+
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
 
+
+
+
+
 <div class="box box-primary">
+
+    
+
 
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -140,16 +182,24 @@
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6"></div>
             </div>
+
+
+
             <div class="row"><div class="col-sm-12 table-scroll" id="cargar_tabla">
+
+
 
                 </div>
             </div>
 
 <!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
 
-<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+ <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+ <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
@@ -159,66 +209,101 @@
                 <h5 class="modal-title" id="exampleModalLabel">Editar Zona</h5>
             </div>
 
+
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="" class="registerForm">
-                <div class="modal-body">
-                    <div class="row"> 
-                        <div class="col-md-12 "> 
-                            <div class="col-md-6 col-sm-6">
-                                <!--__________________________________________________________________________________________-->
 
+
+                <div class="modal-body">
+
+                
+
+                    <div class="row"> 
+
+                        <div class="col-md-12 "> 
+
+                                               
+
+                            <div class="col-md-6 col-sm-6">
+
+                                <!--_____________________________________________-->
                                 <!--Nombre-->
+
                                 <div class="form-group">
                                  <label for="Nombre" name="">Nombre:</label>
                                  <input type="text" class="form-control" id="">
                                 </div>
-                                <!--__________________________________________________________________________________________-->
 
+                                <!--_____________________________________________-->
                                 <!--Descripcion-->
+
                                 <div class="form-group">
                                     <label for="Descripcion" name="">Descripcion:</label>
                                      <input type="text" class="form-control" id="">
                                 </div>
-                                <!--__________________________________________________________________________________________-->
 
                             </div>
+
+                            
+
+                            <!--**************************************************-->
+                            
+                            
+
                             <div class="col-md-6 col-sm-6">
 
+                                <!--_____________________________________________-->
                                 <!--Circuito-->
+
                                 <div class="form-group">
                                     <label for="CircR" name="">Circuito / Recorrido:</label>
                                     <select class="form-control select2 select2-hidden-accesible" id="">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         <?php
-                                            foreach ($Circuitos as $i) {
-                                            echo '<option  value="'.$i->circ_id.'">'.$i->codigo.'</option>';
-                                            }
-                                        ?>
+
+                                    ?>
                                     </select>
                                 </div>
-                                <!--__________________________________________________________________________________________-->
 
-                                <!--Departamento-->
+                                <!--_____________________________________________-->
+                                <!--Departamento-->                
+
                                 <div class="form-group">
                                     <label for="Dpto" name="">Departamento:</label>
                                     <select class="form-control select2 select2-hidden-accesible" id="">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         <?php
-                                            foreach ($Departamentos as $i) {
-                                            echo '<option  value="'.$i->depa_nom.'">'.$i->nombre.'</option>';
-                                            }
-                                        ?>
+                                    foreach ($Departamentos as $i) {
+                                        echo '<option value="'.$fila->depa_id.'">'.$fila->nombre.'</option>' ;
+                                     }
+                                    ?>
                                     </select>
                                 </div>
-                                <!--__________________________________________________________________________________________-->
 
                             </div>
-                        </div>  
+
+                           
+
+                            
+
+
+
+
+                        </div>
+                                
                     </div>
+                    
+
+                    
+                    
+                    
+                    
+                    
                 </div>
+                
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
@@ -230,7 +315,6 @@
                     <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
-            <!--__________________________________________________________________________________________-->
         </div>
     </div>
 </div>
@@ -258,20 +342,31 @@
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="" class="registerForm">
+
+
                 <div class="modal-body">                
+
                     <div class="row">
+                
                         <div class="col-sm-12 ">
 
                             <!--__________________HEADER TABLA___________________________-->
 
+
                             <table id="tabla_circuitos" class="table table-bordered table-striped table-scroll">
                                 <thead class="thead-dark" bgcolor="#eeeeee">
+
+                                    
                                     <th>Codigo</th>
                                     <th>Chofer</th>
                                     <th>Vehiculo</th>
                                     <th>Tipo de residuo</th>
+                                    
+
                                 </thead>
+
                                 <!--__________________BODY TABLA___________________________-->
+
                                 <tbody>
                                 <tr>
                                     <!-- <td>
@@ -279,18 +374,27 @@
                                     <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
                                     <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalPunto"><span class="glyphicon glyphicon-record" aria-hidden="true"></span></button>&nbsp
                                     <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
+                                    
                                     </td> -->
                                     <td>DATO</td>
                                     <td> DATO</td>
                                     <td>DATO</td>
                                     <td>DATO</td>
                                 </tr>
+                                
+                                
                                 </tbody>
                             </table>
+
                             <!--__________________FIN TABLAa___________________________-->
+
                         </div>
-                    </div><br>
+                    </div>
+                
+                     <br>          
+                   
                 </div>
+                
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
@@ -306,11 +410,17 @@
     </div>
 </div>
 
+
 <!---//////////////////////////////////////--- FIN MODAL CIRCUITOS ---///////////////////////////////////////////////////////----->
 
-<!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 
-<!--__________________________________________________________________________________________-->
+
+
+
+
+
+            <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
+<!--_____________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
@@ -337,26 +447,27 @@
         $('#chofer').find('option').remove();
         });
 </script>
-<!--__________________________________________________________________________________________-->
+<!--_____________________________________________-->
 
 <!-- Script Data-Tables-->
-
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
+
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").focus();
         $("#boxDatos").show();
+
     });
 </script>
-​<!--__________________________________________________________________________________________-->
+​<!--_____________________________________________-->
 
 <!-- Script Agregar datos de registrar_zona-->
-<!--<script>
+<!-- <script>
 function agregarDato(){
     console.log("entro a agregar datos");
     $('#formZonas').on('submit', function(e){
@@ -391,17 +502,24 @@ function agregarDato(){
             });
     });
 }
-</script>-->
+</script> -->
+
+
 
 <script>
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona");
     function Guardar_Zona() {
+
         // datos = $('#formZonas').serialize();
+
         var datos = new FormData($('#formZonas')[0]);
         datos = formToObject(datos);
         datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
         console.log(datos);
+        
+        
+        
 
         //--------------------------------------------------------------
 
@@ -438,6 +556,15 @@ function agregarDato(){
                         // $("#botonAgregar").removeAttr("disabled");
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona");
                         alertify.success("Agregado con exito");
+
+                        $('#formZonas').data('bootstrapValidator').resetForm();
+                        $("#formZonas")[0].reset();
+                       
+                        $("#boxDatos").hide(500);
+                        $("#botonAgregar").removeAttr("disabled");
+
+
+
                     } else {
                         //console.log(r);
                         alertify.error("error al agregar");
@@ -447,7 +574,8 @@ function agregarDato(){
         }
     }
 </script>
-<!--__________________________________________________________________________________________-->
+
+<!--_____________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
@@ -460,7 +588,7 @@ function agregarDato(){
       },*/
       //excluded: ':disabled',
       fields: {
-          nombre: {
+        nombre: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -468,7 +596,7 @@ function agregarDato(){
                   }
               }
           },
-          depa_nom: {
+          depa_id: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -499,23 +627,15 @@ function agregarDato(){
       //guardar();
   });
 </script>
-<!--__________________________________________________________________________________________-->
 
-<!--Script validador de campo de imagenes-->
-<!-- <script>
-var value = $("#imgarch").val();
-if (value == "1") {
-    document.getElementById('imgarch').setAttribute("data-required","true");
-}
-else {
-    document.getElementById('imgarch').setAttribute("data-required","false");
-}
-</script> -->
-<!--__________________________________________________________________________________________-->
+<!--_____________________________________________-->
 
 <script>
+
 // DataTable($('#tabla_zonas'));
 
 // DataTable($('#tabla_circuitos'));
+
+
 </script>
            

@@ -10,12 +10,10 @@ class Inspector extends CI_Controller {
     // ---------------- Funcion Cargar vista Inspector
     function templateInspectores()
     {
-        // $data['Departamentos'] = $this->Generadores->obtener_Departamento();
-        // $data['Zonas'] = $this->Generadores->obtener_Zonas();
-        // $data['Zonagenerador'] = $this->Infracciones->obtener_Zonas();
-        // $data['Tiporesiduo'] = $this->Infracciones->obtener_Tipo_residuo();
+        $data['vehiculo'] = $this->Inspectores->obtener_Movilidad();
+        $data['Departamentos'] = $this->Inspectores->obtener_Departamento();
 
-        $this->load->view('layout/registrar_inspector');
+        $this->load->view('layout/registrar_inspector', $data);
     }
     // _________________________________________________________
 
@@ -38,6 +36,7 @@ class Inspector extends CI_Controller {
     {
 
     }
+    // _________________________________________________________
 
     // ---------------- Funcion Suspender Inspector
     function Borrar_Inspector()

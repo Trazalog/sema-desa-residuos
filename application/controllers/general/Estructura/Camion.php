@@ -1,16 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Camiones extends CI_Controller {
-
 
     function __construct(){
 
       parent::__construct();
-
             $this->load->model('general/Estructura/Camiones');
             // $this->load->model('general/Estructura/Contenedores');
-
     }
 
    // ---------------- Funcions CHOFERES ---------------------------------------
