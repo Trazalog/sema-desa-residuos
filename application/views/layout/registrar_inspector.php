@@ -33,12 +33,12 @@
         </div>
     </div>
 
-    <!--_____________________________________________-->
+    <!-- _____________________________________________ -->
 
     <div class="box-body">
         <form class="formInspectores" id="formInspectores">
             <div class="col-md-6 col-sm-6 col-xs-12">
-            <!--_____________________________________________-->
+            <!-- _____________________________________________ -->
 
             <!--Nombre-->
                 <div class="form-group">
@@ -50,7 +50,7 @@
                     <input type="text" class="form-control" id="Nombre" name="nombre">
                     </div>
                 </div>
-            <!--_____________________________________________-->
+            <!-- _____________________________________________ -->
 
             <!--Apellido-->
                 <div class="form-group">
@@ -62,7 +62,7 @@
                     <input type="text" class="form-control" id="Apellido" name="apellido">
                     </div>
                 </div>
-            <!--_____________________________________________-->
+            <!-- _____________________________________________ -->
 
             <!--Direccion-->
                 <div class="form-group">                    
@@ -74,7 +74,7 @@
                     <input type="text" class="form-control" id="Direccion" name="descripcion">
                     </div>
                 </div>
-            <!--_____________________________________________-->
+            <!-- _____________________________________________ -->
 
             <!--Email-->
                 <div class="form-group">
@@ -86,7 +86,7 @@
                     <input type="text" class="form-control" id="Email" name="email">
                     </div>
                 </div>
-            <!--_____________________________________________-->
+            <!-- _____________________________________________ -->
 
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -96,10 +96,27 @@
                     <label for="DNI">DNI:</label>
                     <input type="text" class="form-control" id="DNI" name="dni">
                 </div>
-            <!--_____________________________________________-->
+            <!-- _____________________________________________ -->
 
             <!--Departamento-->
                 <div class="form-group">
+                    <label for="Dpto">Departamento:</label>
+                    <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-check"></i>
+                            </div>
+                        <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
+                            <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                foreach ($Departamentos as $i) {
+                                    echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';
+                                }
+                                ?>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
                     <label for="Departamento">Departamento:</label>
                     <div class="input-group date">
                          <div class="input-group-addon">
@@ -107,8 +124,8 @@
                         </div> 
                     <input type="text" class="form-control" id="Departamento" name="departamento">
                     </div>
-                </div>
-            <!--_____________________________________________-->
+                </div> -->
+            <!-- _____________________________________________ -->
 
             <!--Movilidad Asignada-->
                 <div class="form-group">
@@ -119,10 +136,10 @@
                             foreach ($vehiculo as $i) {
                                 echo '<option  value="'.$i->equi_id.'">'.$i->descripcion.'</option>';
                                 }
-                            ?>
-                        </select>
+                        ?>
+                    </select>
                 </div>
-            <!--_____________________________________________-->
+            <!-- _____________________________________________ -->
 
         </div>
         <div class="col-md-12"><hr> </div>
@@ -131,7 +148,8 @@
                 <div class="col-md-12">
                 <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
                 </div>
-            <!--_____________________________________________-->
+            <!-- _____________________________________________ -->
+
         </form>
     </div>
 </div>
@@ -142,7 +160,7 @@
 
 <div class="box box-primary">
 
-    <!--__________________TABLA___________________________-->
+    <!-- __________________TABLA___________________________ -->
 
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -201,7 +219,7 @@
                 <div class="modal-body">
                     <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--Nombre-->
                                 <div class="form-group">
@@ -213,7 +231,7 @@
                                     <input type="text" class="form-control" id="E_Nombre" name="e_nombre">
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--Apellido-->
                                 <div class="form-group">
@@ -225,7 +243,7 @@
                                     <input type="text" class="form-control" id="E_Apellido" name="e_apellido">
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--Direccion-->
                                 <div class="form-group">
@@ -237,7 +255,7 @@
                                     <input type="text" class="form-control" id="E_Direccion" name="e_descripcion">
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--Email-->
                                 <div class="form-group">
@@ -249,7 +267,7 @@
                                     <input type="text" class="form-control" id="E_Email" name="e_email">
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -264,7 +282,7 @@
                                     <input type="text" class="form-control" id="E_Departamento" name="e_departamento">
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--Movilidad Asignada-->
                                 <div class="form-group">
@@ -278,7 +296,7 @@
                                         ?>
                                     </select>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--DNI--> 
                                 <div class="form-group">
@@ -290,13 +308,13 @@
                                     <input type="text" class="form-control" id="E_DNI" name="e_dni">
                                     </div>                                
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
                             </div>
                         </div>
                     </div>
                 </form>
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <!-- __________________ FIN FORMULARIO MODAL ___________________________ -->
 
             </div>
 
@@ -326,13 +344,13 @@
 
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+            <!-- __________________ FORMULARIO MODAL ___________________________ -->
 
             <form method="POST" autocomplete="off" id="frmInspecotresInfo" class="registerForm">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--Nombre-->
                                 <div class="form-group">
@@ -344,7 +362,7 @@
                                     <input type="text" class="form-control" id="I_Nombre" name="i_nombre" readonly>
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--Apellido-->
                                 <div class="form-group">
@@ -356,7 +374,7 @@
                                     <input type="text" class="form-control" id="I_Apellido" name="i_apellido" readonly>
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--Direccion-->
                                 <div class="form-group">
@@ -368,7 +386,7 @@
                                     <input type="text" class="form-control" id="I_Direccion" name="i_descripcion" readonly>
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--Email-->
                                 <div class="form-group">
@@ -380,7 +398,7 @@
                                     <input type="text" class="form-control" id="I_Email" name="i_email" readonly>
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -395,7 +413,7 @@
                                     <input type="text" class="form-control" id="I_Departamento" name="i_departamento" readonly>
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--Movilidad Asignada-->
                                 <div class="form-group">
@@ -407,7 +425,7 @@
                                     <input type="text" class="form-control" id="I_MovAsignada" name="i_movilidadasignada" readonly>
                                     </div>
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
 
                                 <!--DNI--> 
                                 <div class="form-group">
@@ -419,16 +437,16 @@
                                     <input type="text" class="form-control" id="I_DNI" name="i_dni" readonly>
                                     </div>                                
                                 </div>
-                                <!--_____________________________________________-->
+                                <!-- _____________________________________________ -->
+
                             </div>
                         </div>
                     </div>
                 </form>
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <!-- __________________ FIN FORMULARIO MODAL ___________________________ -->
 
             </div>
-
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
@@ -438,17 +456,15 @@
         </div>
     </div>
 </div>
-
+<!-- _____________________________________________________________ -->
 
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-
-
 <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
-<!--_____________________________________________________________-->
-<!-- script modal -->
+<!-- _____________________________________________________________ -->
 
+<!-- script modal -->
 <script>
 $("#btnview").on("click", function() {
     $("#btnadd").removeClass("active");
@@ -466,13 +482,11 @@ $("#btnadd").on("click", function() {
     $("#btnsave").show();
 });
 </script>
-
-
 <!---/////////////////////////--- FUNCIONES - AJAX ---/////////////////////////----->
 
-<!--_____________________________________________________________-->
-<!-- Script Agregar datos de registrar_inspector-->
+<!-- _____________________________________________________________ -->
 
+<!-- Script Agregar datos de registrar_inspector-->
 <script>
 function agregarDato(){
     console.log("entro a agregar datos");
@@ -508,17 +522,13 @@ function agregarDato(){
     });    
 }
 </script>
-
-
 <!---/////////////////////////--- FUNCIONES - FIN AJAX ---/////////////////////////----->
-
 
 <!---/////////////////////////--- BOOTSRAP VALIDATOR---/////////////////////////----->
 
+<!-- _____________________________________________________________ -->
 
-<!--_____________________________________________________________-->
 <!--Script Bootstrap Validacion. FORMULARIO GENERAl-->
-
 <script>
     $('#formInspectores').bootstrapValidator({
     message: 'This value is not valid',
@@ -580,16 +590,12 @@ function agregarDato(){
                     }
                 }
             },
-            departamento: {
+            Departamento: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
                     },
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
                 }
             },
             vehiculo: {
@@ -606,9 +612,9 @@ function agregarDato(){
         //guardar();
     });
 </script>
-<!--_____________________________________________________________-->
-<!--Script Bootstrap Validacion. MODAL EDITAR-->
+<!-- _____________________________________________________________ -->
 
+<!--Script Bootstrap Validacion. MODAL EDITAR-->
 <script>
     $('#frmInspecotresEdit').bootstrapValidator({
     message: 'This value is not valid',
@@ -696,13 +702,11 @@ function agregarDato(){
         //guardar();
     });
 </script>
-
 <!---/////////////////////////--- FIN BOOTSRAP VALIDATOR---/////////////////////////----->
 
-<!--_____________________________________________________________-->
+<!-- _____________________________________________________________ -->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
-
 <script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
@@ -716,7 +720,9 @@ function agregarDato(){
 
     });
 </script>
+<!-- _____________________________________________________________ -->
 
+<!-- script que cierra el box de datos -->
 <script>
     $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
@@ -727,9 +733,10 @@ function agregarDato(){
         $('#chofer').find('option').remove();
     });
 </script>
-<!--_____________________________________________________________-->
+<!-- _____________________________________________________________ -->
 
 <!-- script Datatables -->
 <script>
     DataTable($('#tabla_inspectores'))
-</script>          
+</script>
+<!-- _____________________________________________________________ -->

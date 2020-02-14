@@ -16,13 +16,9 @@
     </div>
 </div>
 
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-
 <!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
-
-
 
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
@@ -35,11 +31,9 @@
                 <i class="fa fa-times"></i>
             </button>
         </div>
-
     </div>
 
 ​        <!--_____________________________________________________________-->
-
 
         <div class="box-body">
             <form class="formVehiculo" id="formVehiculo"  method="POST" autocomplete="off" class="registerForm">
@@ -131,15 +125,14 @@
                         </div>
             ​        <!--_____________________________________________________________-->
 
-                        <!--Adjuntador de imagenes-->
+                    <!--Adjuntador de imagenes-->
                         <!-- <div class="form-group">
                             <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
                                 <input  type="file"  id="imgarch" name="upload" data-required="true">
                             </form>
                         </div> -->
-            ​            <!--_____________________________________________________________-->
+            ​        <!--_____________________________________________________________-->
 
-        
         </div>
 
             <!--_______________________SEPARADOR______________________________________-->            
@@ -149,7 +142,6 @@
             <!--_______________________SEPARADOR______________________________________-->
             
             <div class="col-md-6">
-                
 
                 <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
                     <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
@@ -157,16 +149,17 @@
                 <small for="agregar" class="form-label">Adjuntar imagen</small>
         
             </div>
-
             <!--_____________________________________________________________-->            
-            <!--Boton de guardado--> 
-                    <div class="col-md-12"><hr></div><br>
-            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
 
+            <div class="col-md-12"><hr></div><br>
+
+            <!--Boton de guardado--> 
+            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
             <!--_____________________________________________________________--> 
-</form>
-</div>
-</div>
+
+            </form>
+        </div>
+    </div>
 </div>
 
 <!---//////////////////////////////////////--- FIN BOX---///////////////////////////////////////////////////////----->
@@ -184,7 +177,6 @@
                 <div class="col-sm-6"></div>
             </div>
             <div class="row">
-
                 <div class="col-sm-12 table-scroll">
 
                 <!--__________________HEADER TABLA___________________________-->
@@ -192,7 +184,6 @@
                     <!--__________________HEADER TABLA___________________________-->
                     <table id="tabla_vehiculos" class="table table-bordered table-striped">
                         <thead class="thead-dark" bgcolor="#eeeeee">
-
                             <th>Acciones</th>
                             <th>Dominio</th>
                             <th>Condicion</th>
@@ -200,31 +191,26 @@
                             <th>Tara</th>
                             <th>habilitacion</th>
                             <th>Registro</th>
-
                         </thead>
-
                         <!--__________________BODY TABLA___________________________-->
-
                         <tbody>
                         <tr>
                             <td>
                             <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                             <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
                             <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                            
                             </td>
                             <td>DATO</td>
-                            <td> DATO</td>
+                            <td>DATO</td>
                             <td>DATO</td>
                             <td>DATO</td>
                             <td>DATO</td>
                             <td>DATO</td>
                         </tr>
-
                         </tbody>
                     </table>
-
                     <!--__________________FIN TABLA___________________________-->
+
                 </div>
             </div>
         </div>
@@ -737,10 +723,6 @@
                           max: 30,
                           message: 'The username must be more than 6 and less than 30 characters long'
                       },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
                 }  
             }
         }

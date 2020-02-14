@@ -21,7 +21,6 @@ class Contenedor extends CI_Controller {
    // ---------------- Funciones  CONTENEDOR --------------------------------//
 
       // ---------------- Funcion Cargar vista Contenedores y Datos
-
       function templateContenedores()
       {
         $data['Estados'] = $this->Contenedores->obtener_Estados();
@@ -67,6 +66,7 @@ class Contenedor extends CI_Controller {
           
           
       }
+      //___________________________________________________________
 
       // ---------------- Funcion Listar Contenedor
    
@@ -77,6 +77,7 @@ class Contenedor extends CI_Controller {
         $this->load->view('layout/Contenedores/Lista_contenedores',$data);
           
       }
+      //___________________________________________________________
 
    
       // ---------------- Funcion Modificar Generador
@@ -157,6 +158,7 @@ class Contenedor extends CI_Controller {
       {
           
       }
+      //___________________________________________________________
 
       // ---------------- Funcion Crear Orden de transporte
 
