@@ -395,8 +395,8 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
 -- circuitosSet
   recurso: /circuitos
   metodo: post
-  insert into log.circuitos(codigo, descripcion, imagen, chof_id, vehi_id, zona_id)
-  values(:circ_id, :codigo, :descripcion, :imagen, :chof_id, :vehi_id, :zona_id)
+  insert into log.circuitos(codigo, descripcion, imagen, chof_id, vehi_id)
+  values(:circ_id, :codigo, :descripcion, :imagen, :chof_id, :vehi_id)
 
   {
    "circuito":{     
@@ -405,39 +405,56 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
       "imagen":"",
       "usuario_app": "hugoDS",
       "chof_id":"2",
-      "vehi_id":"21",
-      "zona_id":"5"
+      "vehi_id":"21"     
    }
   } 
-  -- batch request para usar en zona set Probar no funciona en SoapUI
+
   {
-    "_post_circuitos_batch_request":{
-        "circuito":[
-          {
-              "codigo":"Circ AA-00",
-              "descripcion":"desc circuito",
-              "imagen":"",
-              "usuario_app":"hugoDS",
-              "chof_id":"4",
-              "vehi_id":"22",
-              "zona_id":"5"
-          },
-          {
-              "codigo":"Circ BB-00",
-              "descripcion":"desc circuito",
-              "imagen":"",
-              "usuario_app":"hugoDS",
-              "chof_id":"6",
-              "vehi_id":"23",
-              "zona_id":"5"
-          }
-        ]
+    "respuesta": {
+      "circ_id": "$circ_id"
+    }
+  }
+  
+--circuitosSetTipoCarga
+  recurso: /circuitos/tipoCarga
+  metodo: post
+  insert into log.tipos_carga_circuitos(circ_id, tica_id) values(CAST(:circ_id AS iNTEGER), :tica_id)
+  {
+    "circuito_carga":{
+      "circ_id":"3",
+      "tica_id":"tipo_cargaOrganico"
     }
   }
 
+  recurso: /_post_circuitos_tipocarga_batch_req
+  metodo: post
+  {
+    "circuitos_cargas":{
+      "circuito_carga":[
+        {
+          "circ_id":"3",
+          "tica_id":"tipo_cargaOrganico"
+        },
+        {
+          "circ_id":"3",
+          "tica_id":"tipo_cargaEscombros"
+        }
+      ]
+    }
+  }
 
--- circuitosSetTiposCarga (ejecutar tablasSet como batch_request) 
-  -- 
+--circuitosUpdateZona
+  recurso: /circuitos/zonas
+  metodo: put
+  update log.circuitos set zona_id = CAST(:zona_id AS INTEGER)
+  where circ_id = CAST(:circ_id AS INTEGER)
+
+  {
+    "circuito":{
+      "zona_id": "5",
+      "circ_id": "5"
+    }
+  }
 
 -- circuitosGetPorZonaId
 
@@ -667,6 +684,31 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
 
   {"respuesta": {"cont_id": "8"}}
 
+-- contEntregadosSet
+  recurso: /contEntregados
+  metodo: post
+  insert into log.contenedores_entregados(porc_llenado, mts_cubicos, fec_entrega, usuario_app, cont_id, soco_id, ortr_id, tica_id)
+  values(CAST(:porc_llenado AS float8), CAST(:mts_cubicos AS float8), TO_DATE(:fec_entrega, 'YYYY-MM-DD'), :usuario_app, CAST(:cont_id AS INTEGER), CAST(:soco_id AS INTEGER), CAST(:ortr_id AS INTEGER), :tica_id) returning coen_id
+  
+  {
+    "contenedor":{
+        "porc_llenado":"50.40",
+        "mts_cubicos":"120.50",
+        "fec_entrega":"2020-02-10",
+        "usuario_app":"hugoDs",
+        "cont_id":"7",
+        "soco_id":"1",
+        "ortr_id":"1",
+        "tica_id":"tipo_cargaOrganico"   
+    }
+  }
+  
+  {
+    "respuesta":{
+      "coen_id": "$coen_id"
+    }
+  }
+ 
 -- (generadores)solicitanteTransporteGet
   recurso: /solicitantesTransporte
   metodo: get
@@ -688,6 +730,35 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
             "rubr_id": "$rubr_id",
             "tist_id": "$tist_id",
             "tica_id": "$tica_id"	            
+          }
+        ]
+    }
+  }
+
+-- (generadores)solicitanteTransportePorUsuario  
+  recurso: /solicitantesTransporte/{usuario_app}  (ej: /solicitantesTransporte/hugoDS)
+  metodo: get
+  select ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, ST.tica_id, D.nombre as depa_nom
+  from log.solicitantes_transporte ST, core.departamentos D 
+  where usuario_app = :usuario_app 
+  and ST.depa_id = D.depa_id 
+
+  {
+    "solicitantes_transporte": {
+        "solicitante": [
+          {
+            "sotr_id": "$sotr_id",
+            "razon_social": "$razon_social",
+            "cuit": "$cuit",
+            "domicilio": "$domicilio",
+            "num_registro": "$num_registro",
+            "lat": "$lat",
+            "lng": "$lng",
+            "zona_id": "$zona_id",
+            "rubr_id": "$rubr_id",
+            "tist_id": "$tist_id",
+            "tica_id": "$tica_id",
+            "depa_nom": "$depa_nom"	            
           }
         ]
     }
@@ -777,6 +848,7 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
 -- alternativa a get orden transporte
   select CE.fec_retiro, 
   from log.contenedores_entregados, core.tablas
+  where 
   
 
 
@@ -916,6 +988,9 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   -- sector descarga es un deposito de trazasoft
   -- en bascula es un recipiente
 
+  - preguntar funcionalidad. estan inconclusos  
+  ordTransPorIdGet
+  alternativa a get orden transporte
 
 
 
