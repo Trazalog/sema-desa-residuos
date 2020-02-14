@@ -1,15 +1,15 @@
-    <!-- __________________HEADER TABLA___________________________ -->
+<!-- __________________HEADER TABLA___________________________ -->
 
-    <table id="tabla_transportistas" class="table table-bordered table-striped">
-        <thead class="thead-dark" bgcolor="#eeeeee">
-            <th>Acciones</th>
-            <th>Nombre / Razon Social</th>
-            <th>Zona</th>
-            <th>Departamento</th>
-            <th>Tipo</th>
-        </thead>
+<table id="tabla_transportistas" class="table table-bordered table-striped">
+    <thead class="thead-dark" bgcolor="#eeeeee">
+        <th>Acciones</th>
+        <th>Nombre / Razon Social</th>
+        <th>Zona</th>
+        <th>Departamento</th>
+        <th>Tipo</th>
+    </thead>
 
-        <!-- __________________BODY TABLA___________________________ -->
+    <!-- __________________BODY TABLA___________________________ -->
 
     <tbody>
     <?php
@@ -25,19 +25,19 @@
                  <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
 
         echo   '</td>';
-        echo    '<td>'.$fila->Nombre_razon.'</td>';
-        // echo    '<td>'.$fila->.'</td>';
-        echo    '<td>'.$fila->depa_nom.'</td>';
-        echo    '<td>'.$fila->Rsu.'</td>';
-        echo '</tr>';
+        echo   '<td>'.$fila->Nombre_razon.'</td>';
+        // echo   '<td>'.$fila->.'</td>';
+        echo   '<td>'.$fila->depa_nom.'</td>';
+        echo   '<td>'.$fila->Rsu.'</td>';
+        echo   '</tr>';
 
         }
     }
     ?>
     </tbody>
-    </table>
+</table>
 
-    <!-- __________________FIN TABLA___________________________ -->
+<!-- __________________FIN TABLA___________________________ -->
 
 <script>
     DataTable($('#tabla_transportistas'))
