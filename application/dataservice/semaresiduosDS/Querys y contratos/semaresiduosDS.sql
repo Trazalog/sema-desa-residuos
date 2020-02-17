@@ -405,8 +405,7 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
       "imagen":"",
       "usuario_app": "hugoDS",
       "chof_id":"2",
-      "vehi_id":"21",
-      "zona_id":"5"
+      "vehi_id":"21"     
    }
   } 
   -- batch request para usar en zona set Probar no funciona en SoapUI

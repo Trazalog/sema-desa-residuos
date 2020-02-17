@@ -44,7 +44,7 @@
                             <label for="Codigo">Codigo:</label>
                             <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                            <input type="number" class="form-control"  name="codigo" id="Codigo" required>
+                            <input type="number" class="form-control"  name="codigo" id="codigo" required>
                             </div>
                         </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="Descripcion" >Descripcion:</label>
-                    <textarea style="resize: none;" type="text" class="form-control" name="descripcion" id="Descripcion"></textarea>
+                    <textarea style="resize: none;" type="text" class="form-control" name="descripcion" id="descripcion"></textarea>
                 </div>
             </div>
             <!--_____________________________________________-->
@@ -89,7 +89,7 @@
                     <label for="Vehiculo">Vehiculo:</label>
                     <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <select class="form-control select2 select2-hidden-accesible"  name="vehiculo" id="Vehiculo">
+                    <select class="form-control select2 select2-hidden-accesible"  name="vehi_id" id="vehi_id">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Vehiculo as $i) {
@@ -112,7 +112,7 @@
                     <label for="Chofer" >Chofer:</label>
                     <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <select class="form-control select2 select2-hidden-accesible" name="chofer" id="Chofer">
+                    <select class="form-control select2 select2-hidden-accesible" name="chof_id" id="chof_id">
                         <option value="" disabled selected>-Seleccione opcion-</option>
                         <?php
                         foreach ($Chofer as $i) {
@@ -189,7 +189,7 @@
                             <label for="Codigo">Nombre:</label>
                             <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                            <input type="text" class="form-control"  name="nombrepunto" id="NombrePunto">
+                            <input type="text" class="form-control"  name="nombre" id="nombre">
                             </div>
                         </div>
                     </div>
@@ -203,12 +203,40 @@
                             <label for="Codigo">Descripcion:</label>
                             <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                            <input type="text" class="form-control"  name="nombrepunto" id="NombrePunto">
+                            <input type="text" class="form-control"  name="descripcion" id="descripcion">
                             </div>
                         </div>
                     </div>
 
-                
+                    <!--_____________________________________________-->
+                    <!--Descripcion-->
+
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                        <div class="form-group">
+                        
+                            <label for="Codigo">Latitud:</label>
+                            <div class="input-group date">
+                            <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                            <input type="text" class="form-control"  name="lat" id="lat">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--_____________________________________________-->
+                    <!--Descripcion-->
+
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                        <div class="form-group">
+                        
+                            <label for="Codigo">Longitud:</label>
+                            <div class="input-group date">
+                            <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                            <input type="text" class="form-control"  name="lng" id="lng">
+                            </div>
+                        </div>
+                    </div>
+
+               
 
                     <div class="col-md-2 col-sm-2 col-xs-12">  
 
@@ -225,7 +253,7 @@
 
                     </div>
 
-                    </form>
+                </form>
 
                     <!--_________________SEPARADOR_________________-->
 
@@ -248,11 +276,13 @@
                   
 
                     <div class="col-md-12 col-sm-12 col-xs-12"> <br></div>
+                    
 
-                    <div class="col-md-12" id="puntos_criticos">
-
+                    <div class="col-md-12 col-sm-12 col-xs-12" >
+                        <div class="box " id="puntos_criticos" style="display:none">
+                            <div class="box-body table-responsive">
                                         <!--__________________HEADER TABLA___________________________-->
-                                        <table id="tabla_puntos_criticos" class="table table-bordered table-striped">
+                                        <table class="table table-striped" id="datos">
                                         <thead class="thead-dark" bgcolor="#eeeeee">
 
                                             
@@ -281,13 +311,15 @@
                                     // }
                                     // }
                                     
-                                    ?>
+                                    // ?>
                                  
                                     </tbody>
                                         </table>
 
-                    <!--__________________FIN TABLA___________________________-->
+                                <!--__________________FIN TABLA___________________________-->
+                            </div>
 
+                        </div>
 
                     </div>
                     
@@ -421,7 +453,7 @@
 </div>
 
 
-<!---//////////////////////////////////////--- FIN MODAL PUNTO CRITICO ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- FIN MODAL MAPA ---///////////////////////////////////////////////////////----->
 
 
 
@@ -430,37 +462,34 @@
 
 <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 
-<!--_____________________________________________--> 
-<!-- SCRIPT AGREGAR -->
-<!-- <script>
-function Agregar_punto() {
-    $('#tabla_puntos_criticos').show();
+<!--______________________________--> 
+<!-- SCRIPT AGREGAR PUNTO CRITICO -->
 
-    var data = new FormData($('#frm-reporte')[0]);
+<script>
+function Agregar_punto() {
+
+    $('#puntos_criticos').show();
+
+    var data = new FormData($('#formPuntos')[0]);
     data = formToObject(data);
 
     $('#datos tbody').append(
-        `<tr data-json='${JSON.stringify(data)}'>
-            <td><button class="btn btn-link" onclick="$(this).closest('tr').remove();"><i class="fa fa-times"></i></button></td>
-            <td>${$('option[value="'+data.recu_id+'"]').html()}</td>
-            <td>${$('option[value="'+data.arti_id+'"]').html()}</td>
-            <td>${data.cantidad}</td>
-            <td>${data.lote}</td>
-            <td>${$('option[value="'+data.destino+'"]').html()}</td>
+        `<tr data-json='${JSON.stringify(data)}'>       
+            <td>${data.nombre}</td>
+            <td>${data.descripcion}</td>
+            <td>${data.lat}</td>
+            <td>${data.lng}</td>            
         </tr>`
     );
 
-    $('#frm-reporte')[0].reset();
+    $('#formPuntos')[0].reset();
     $('select').select2().trigger('change');
 }
 
-</script> -->
 
-<!--_____________________________________________--> 
-<!-- SCRIPT GUARDAR CIRCUITO -->
+//<!--______________________________--> 
+//<!-- SCRIPT GUARDAR CIRCUITO -->
 
-
-<script>
     
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Circuitos");
 
@@ -491,8 +520,9 @@ function Agregar_punto() {
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Lista_Circuitos");
                         alertify.success("Agregado con exito");
 
-                        // $('#formCircuitos').data('bootstrapValidator').resetForm();
-                        // $("#formCircuitos")[0].reset();
+                        $('#formCircuitos').data('bootstrapValidator').resetForm();
+                        $("#formCircuitos")[0].reset();
+                        
                        
                         $("#boxDatos").hide(500);
                         $("#botonAgregar").removeAttr("disabled");
@@ -513,7 +543,8 @@ function Agregar_punto() {
 </script>
 <!--_____________________________________________--> 
 <!-- SCRIPT CONCATENAR FORMULARIOS -->
-<script>
+
+<!-- <script>
 
 function obtenerFormularios(){
 
@@ -527,96 +558,15 @@ function obtenerFormularios(){
 }
 
 
-</script>
+</script> -->
 
-<!--_____________________________________________--> 
-<!-- SCRIPT AIGNAR ZONA A CIRCUITO -->
-
-<script>
-
-
-//----------------- Funcion Filtrar zonas por departamento --------------------------//
-
-$("#selectDepto").change(function(){
-    
-    var idDepto = $("#selectDepto").val();
-  
-    $.ajax({
-
-            type: 'POST',        
-            data: {idDepto: idDepto}, 
-            url: 'general/Estructura/Zona/obtenerDeptoPorZona',
-            dataType: 'json',
-
-            success: function(result) {
-                console.table(result);
-
-               
-                for (let index = 0; index < result.length; index++)
-                {
-                                              
-                    $('#selectZona').append("<option value='" + result[index].zona_id + "'>" +result[index].zona_nom +"</option");                  
-
-
-                    
-                }
-            },
-
-            
-            error: function() {
-                alert('Error');
-            }
-    });
-});
-
-//----------------- Funcion POST Asignacion --------------------------//
-
-
-// function insertCircuitoZona(){
-//     ban = true;
-//     idDepto = $('#selectDepto').val();
-//     idZona = $('#selectZona').val();
-//     if (idDepto == null) {
-//       ban= false;
-//       alert("Seleccione Departamento...");
-//     } 
-//     if (idZona == null) {
-//       ban= false;
-//       alert("Seleccione Zona...");
-//     } 
-
-//     if(ban){
-//       $.ajax({
-//             type: 'POST',
-//             data: {id_censo: id_censo,
-//                   id_area: id_area },
-//             url: 'Censo/insertAreaCenso',
-//             dataType: 'json',
-//             success: function(result) { 
-//                       alert('resultado: ' + result);
-//                   if (result == 500) {
-//                     alert("La zona ya se encuentra asignada a este Circuito");
-//                   }else{
-//                     $("#modalZona").modal('hide');
-//                     buscaCensos();
-//                   } 
-//             },
-//             error: function() {
-//                   alert('Error en Asignacion de zona...');
-//             }
-//       });
-//     }  
-
-// }
-
-</script>
 
 <!--_____________________________________________-->
 <!-- Agregar punto critico -->
 
 
 
-<script>
+<!-- <script>
 function Agregar_punto() {
     $('#puntos_criticos').show();
 
@@ -638,7 +588,7 @@ function Agregar_punto() {
     $('select').select2().trigger('change');
 }
 
-</script>
+</script> -->
 
 <!--_____________________________________________--> 
 <!-- script que muestra box de datos al dar click en boton agregar -->
@@ -657,6 +607,8 @@ $("#botonAgregar").on("click", function() {
 });
 </script>
 
+<!--_____________________________________________-->
+
 <script>
 $("#btnclose").on("click", function() {
     $("#boxDatos").hide(500);
@@ -670,8 +622,7 @@ $("#btnclose").on("click", function() {
 
 
 <!--_____________________________________________-->
-
-<!--Script Bootstrap Validacion.-->
+<!-- Validator Circuitos.-->
 <script>
   $('#formCircuitos').bootstrapValidator({
       message: 'This value is not valid',
@@ -682,6 +633,14 @@ $("#btnclose").on("click", function() {
       },*/
       //excluded: ':disabled',
       fields: {
+        codigo: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+              }
+          },
         tipoResiduos: {
               message: 'la entrada no es valida',
               validators: {
@@ -699,7 +658,7 @@ $("#btnclose").on("click", function() {
                   
               }
           },
-          vehiculo: {
+          vehi_id: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -707,7 +666,7 @@ $("#btnclose").on("click", function() {
                   }
               }
           },
-          chofer: {
+          chof_id: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {
@@ -721,6 +680,60 @@ $("#btnclose").on("click", function() {
       guardar();
   });
 </script>
+
+
+<!--_____________________________________________-->
+<!--Validator Puntos criticos.-->
+<script>
+  $('#formPuntos').bootstrapValidator({
+      message: 'This value is not valid',
+      /*feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },*/
+      //excluded: ':disabled',
+      fields: {        
+          nombre: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+              }
+          },
+          descripcion: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+                  
+              }
+          },
+          lat: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'   
+                  }
+              }
+          },
+          lng: {
+              message: 'la entrada no es valida',
+              validators: {
+                  notEmpty: {
+                      message: 'la entrada no puede ser vacia'
+                  }
+              }
+          }
+      }
+  }).on('success.form.bv', function (e) {
+      e.preventDefault();
+      guardar();
+  });
+</script>
+
 
 <!--_____________________________________________--> 
 <!-- Script Data-Tables-->

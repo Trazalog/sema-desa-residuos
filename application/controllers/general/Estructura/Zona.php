@@ -31,12 +31,24 @@ class Zona extends CI_Controller {
       function Guardar_Zona()
       {
 
+         {
+            $datos =  $this->input->post('datos');
+            $resp = $this->Zonas->Guardar_Zona($datos);
+            if($resp){
+            echo "ok";
+            }else{
+            echo "error";
+            }
+       }
+
       }
    
       // ---------------- Funcion Crear Zona
    
       function Crear_Zona()
       {
+
+
 
       }
 
@@ -91,6 +103,8 @@ class Zona extends CI_Controller {
    // ---------------- Funcion Registrar Circuito
    function Guardar_Circuito()
    {
+
+      
       $datos =  $this->input->post('datos');
       $resp = $this->Zonas->Guardar_Circuito($datos);
       if($resp){
@@ -148,6 +162,7 @@ class Zona extends CI_Controller {
    function Listar_Circuitos()
    {
       $data["circuitos"] = $this->Zonas->Listar_Circuitos();
+      $data['puntos_criticos'] = $this->Zonas->obtener_Punto_Critico();
 
       $this->load->view('layout/Zonas/Lista_Circuitos',$data);
    }
