@@ -99,7 +99,7 @@ class Dash extends CI_Controller {
                                 "link": "general/Estructura/Infraccion/templateInfracciones"
                             },
                             {
-                                "titulo": "Solicitud de pedido ",
+                                "titulo": "Solicitud de Contenedores ",
                                 "icono": "fa fa-genderless",
                                 "link": "general/Solicitud_Pedido/templateSolicitudPedidos"
                             },
