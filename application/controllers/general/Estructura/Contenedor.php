@@ -54,7 +54,7 @@ class Contenedor extends CI_Controller {
             echo "error";
             }
 
-
+         
 
 
 
@@ -216,7 +216,7 @@ class Contenedor extends CI_Controller {
   // ---------------- Funciones SOLICITUD PEDIDO DE ORDEN CONTENEDOR --------------------------------//
 
 
-   // ---------------- Funcion Cargar vista Solicitud retiroy Datos
+   // ---------------- Funcion Cargar vista Solicitud retiro y Datos
 
    function templateSolicitudPedido()
    {

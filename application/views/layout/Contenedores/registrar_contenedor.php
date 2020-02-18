@@ -221,7 +221,7 @@
         $('#formDatos').data('bootstrapValidator').resetForm();
         $("#formDatos")[0].reset();
         $('#selecmov').find('option').remove();
-        $('#chofer').find('option').remove();
+       
         });
 </script>
 
@@ -281,7 +281,7 @@ function Guardar_Contenedor(){
 
         var datos = new FormData($('#formContenedores')[0]);
         datos = formToObject(datos);
-        // datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
+        datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
         datos.reci_id = "270";      
         console.table(datos);
@@ -299,31 +299,21 @@ function Guardar_Contenedor(){
                 success: function (r) {
                     console.table(r);
                     if (r == "ok") {
-                        // //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
-                        // var t = $('#tabla_infracciones').DataTable();
-                        // var fila = t.row.add([
-                        //     N° Acta,
-                        //     Tipo de infraccion,
-                        //     Inspector,
-                        //     Destino,
-                    
-                        //     //agrega los iconos correspondientes
-                        //     '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
-                        // ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
-                        // t.draw(false);
+                        
 
-                        // aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
-                        // localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
-
-                        // $('#FormInfraccion').data('bootstrapValidator').resetForm();
-                        // $("#FormInfraccion")[0].reset();
-                        // $('#selecmov').find('option').remove();
-                        // $('#chofer').find('option').remove();
-                        // $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
-                        // $("#boxDatos").hide(500);
-                        // $("#botonAgregar").removeAttr("disabled");
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor");
                         alertify.success("Agregado con exito");
+
+                        
+                        $('#formContenedores').data('bootstrapValidator').resetForm();
+                        $("#formContenedores")[0].reset();
+                        
+                       
+                        $("#boxDatos").hide(500);
+                        $("#botonAgregar").removeAttr("disabled");
+
+
+
                     } else {
                         //console.table(r);
                         alertify.error("error al agregar");
@@ -410,7 +400,7 @@ function Guardar_Contenedor(){
                   },
               }
           },
-        Habilitacion: {
+          habilitacion: {
               message: 'la entrada no es valida',
               validators: {
                   notEmpty: {

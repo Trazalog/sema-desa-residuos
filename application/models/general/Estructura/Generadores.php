@@ -7,6 +7,8 @@ class Generadores extends CI_Model
 		parent::__construct();
     }
 
+
+// ----------------------------------------------------------------
 // Funcion Listar Generadores (MODIFICAR)
 
     function Lista_generadores()
@@ -15,19 +17,18 @@ class Generadores extends CI_Model
         $aux =json_decode($aux["data"]);       
         return $aux->generadores->generador;
     }
-    // ----------------------------------------------------------------
 
-function Guardar_Generadores($data){
+// ----------------------------------------------------------------
+// Funcion Guardar zona
 
-        $post["post_generador"] = $data;
+function Guardar_Generadores($data)
+{
+        $post["post_generador"] = $data;           
         log_message('DEBUG','#Generadores/Guardar_Generadores: '.json_encode($post));
-        $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
-        $aux =json_decode($aux["status"]);
-        return $aux;
-        
-      	
-
-// ________________________________________________________________
+        $aux = $this->rest->callAPI("POST",REST."/solicitantesTransporte", $post);
+        $aux =json_decode($aux["status"]);       
+        return $aux; 
+}
 
 // ---------------------- FUNCIONES OBTENER ----------------------
 // Funcion Obtener Zona
@@ -37,18 +38,17 @@ public function obtener_Zonas(){
     $aux =json_decode($aux["data"]);
     return $aux->zonas->zona;
 }
-// ----------------------------------------------------------------
-
+// // ----------------------------------------------------------------
 // Funcion Obtener Tipo Generador
+
 public function obtener_Tipo_Generador()
 {
-    $aux = $this->rest->callAPI("GET",REST."http://localhost:3000/tipo");
+    $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_generador");
     $aux =json_decode($aux["data"]);
-    return $aux->TipoG->TipoG;
+    return $aux->valores->valor;
 }
 // ----------------------------------------------------------------
-
-// Funcion Obtener Departamento
+// Funcion Obtener Departamentos
 
 public function obtener_Departamentos(){
     $aux = $this->rest->callAPI("GET",REST."/departamentos");
@@ -56,15 +56,25 @@ public function obtener_Departamentos(){
     return $aux->departamentos->departamento;
 }
 // ----------------------------------------------------------------
+// Funcion Obtener Rubro
 
-// Funcion Obtener Tipo Residuo
-public function obtener_Tipo_residuo()
-{
-    $aux = $this->rest->callAPI("GET",REST."http://localhost:3000/tipo");
+public function obtener_Rubro(){
+    $aux = $this->rest->callAPI("GET",REST."/tablas/rubro_generador");
     $aux =json_decode($aux["data"]);
-    return $aux->TipoRSU->residuo;
+    return $aux->valores->valor;
 }
 // ----------------------------------------------------------------
+// Funcion Obtener Tipo Residuo
+
+public function obtener_Tipo_residuo()
+{
+    $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
+    $aux =json_decode($aux["data"]);
+    return $aux->valores->valor;}
+
+
+
+
 
 }
-// ________________________________________________________________
+

@@ -39,8 +39,7 @@
 
             <!--Codigo-->
             <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                        
+                        <div class="form-group">                        
                             <label for="Codigo">Codigo:</label>
                             <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -501,7 +500,7 @@ function Agregar_punto() {
         datos = formToObject(datos);
         datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
-        console.table(datos);
+        console.log(datos);
         
         
         
@@ -548,9 +547,9 @@ function Agregar_punto() {
 
 function obtenerFormularios(){
 
-    var frmCricuitos = new FormData($('#formCircuitos')[0]);
+    var frmCircuitos = new FormData($('#formCircuitos')[0]);
     var frmPuntos = new FormData($('#formPuntos')[0]);
-    var dataForm = mergeFD(frmCricuitos , frmPuntos );
+    var dataForm = mergeFD(frmCircuitos , frmPuntos );
     
     console.log(dataForm);
 
@@ -558,8 +557,8 @@ function obtenerFormularios(){
 }
 
 
-</script> -->
-
+</script>
+ -->
 
 <!--_____________________________________________-->
 <!-- Agregar punto critico -->

@@ -20,7 +20,7 @@ class Zona extends CI_Controller {
       
       {
          $data['Departamentos'] = $this->Zonas->obtener_Departamentos();
-         // $data['CircuitosAsignados'] = $this->Zonas->obtener_Circuitos_Asignados();
+         $data['CircuitosAsignados'] = $this->Zonas->obtener_Circuitos_Asignados();
          // $this->load->view('layout/Zonas/Lista_zona',$data);
          $this->load->view('layout/Zonas/registrar_zona',$data);
           
@@ -163,7 +163,8 @@ class Zona extends CI_Controller {
    {
       $data["circuitos"] = $this->Zonas->Listar_Circuitos();
       $data['puntos_criticos'] = $this->Zonas->obtener_Punto_Critico();
-
+      // $data['Departamentosxzona'] = $this->Zonas->obtener_Departamentoss();
+      
       $this->load->view('layout/Zonas/Lista_Circuitos',$data);
    }
    // _________________________________________________________

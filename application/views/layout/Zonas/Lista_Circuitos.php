@@ -71,89 +71,59 @@
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
 
 
-                <div class="modal-body">
-
-                        <div class="col-md-12">
+                <div class="modal-body">               
                         
+                        <div class="row">
 
+                            <div class="col-md-12 col-sm-12 col-xs-12">
                             
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                <!--_____________________________________________-->
-                                <!--Codigo-->
-
-                                    <div class="form-group">
+                                     <div class="form-group">
                                         <label for="Codigo" name="Codigo">Codigo:</label>
                                         <input type="text" class="form-control" id="Codigo" readonly>
                                     </div>
-                                </div> 
+                                </div>
 
-                                <!--_____________________________________________-->
-                                <!--Vehiculo-->
-
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12">                                  
                                     <div class="form-group">
                                         <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
                                         <input type="text" class="form-control" id="Vehiculo" readonly>                                
                                     </div>
-                                </div>                       
-                            
-
-                        
-
-                            
+                                </div>  
 
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                <!--_____________________________________________-->
-                                <!--Chofer-->
-
                                     <div class="form-group">
                                         <label for="Chofer" name="Chofer">Chofer:</label>
-                                        <input type="text" class="form-control" id="Chofer" readonly>
-                                    
+                                        <input type="text" class="form-control" id="Chofer" readonly>                                    
                                     </div>
-
                                 </div>
-
-                                <!--_____________________________________________-->
-                                <!--Tipo de residuo-->
 
                                 <div class="col-md-6 col-sm-6 col-xs-12">
+                                     <div class="form-group">
+                                        <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
+                                        <input type="text" class="form-control" id="tipoResiduos" readonly>                               
+                                    </div>
+                                </div>                            
+                       
+
+                                <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
+                        
+                                <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                    <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
-                                    <input type="text" class="form-control" id="tipoResiduos" readonly>                               
+                                        <label for="Descripcion" >Descripcion:</label>
+                                        <textarea style="resize: none;" type="text" class="form-control" name="descripcion" id="descripcion"></textarea>
                                     </div>
                                 </div>
-                           
+                            </div>
 
-                        </div>
+                         </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
 
 
-                            <!--_____________________________________________-->
-                            <!--Descripcion-->
-
+                            
                             <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">                        
-                                    <div class="form-group">
-                                        <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                                        <textarea style="resize: none;" type="text" class="form-control" id="Descripcion" readonly></textarea>                                            
-                                    </div>         
-                                </div>
-                            </div>
-
-                        
-                       
-                            <!--_______________________SEPARADOR______________________-->    
-
-                            <div class="col-md-12"><br><hr><br></div>
-
-                            <!--_______________________SEPARADOR______________________-->   
-
-                            <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 col-sm-12">
                                     <div class="box-header bg-blue">
                                         <h5>Punto Critico</h5>
                                     </div>                        
@@ -220,17 +190,26 @@
                 
             </form>
 
-            </div>
+            <!--_______________________SEPARADOR______________________-->    
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 
-            </div>
+            <!--_______________________SEPARADOR______________________--> 
+        
+
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
                     <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
+
+            </div>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            
         </div>
     </div>
 </div>
@@ -283,7 +262,7 @@
                                     </div>
                                     <select class="form-control select2 select2-hidden-accesible" name="selectDepto" id="selectDepto">                                    
                                     <?php
-                                        foreach($Departamentos as $fila)
+                                        foreach($Departamentosxzona as $fila)
                                         {
                                         echo '<option value="'.$fila->depa_id.'">'.$fila->nombre.'</option>' ;
                                         }

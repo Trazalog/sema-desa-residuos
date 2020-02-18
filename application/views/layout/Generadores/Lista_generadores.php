@@ -323,6 +323,131 @@
 
 
 
+<!--_____________________________________________________________-->
+<!--Script Bootstrap Validacion.FORMULARIO MODAL EDITAR -->
+
+            
+<script>
+            $('#formGeneradoresEdit').bootstrapValidator({
+                message: 'This value is not valid',
+                /*feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },*/
+                //excluded: ':disabled',
+                fields: {
+                    e_nombre_razon: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /[A-Za-z]/,
+                                message: 'la entrada no debe ser un numero entero'
+                            }
+                        }
+                    },
+
+                    e_cuit: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /^(0|[1-9][0-9]*)$/,
+                                message: 'la entrada debe ser un numero entero'
+                            }
+                        }
+                    },
+
+                    e_zonag: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+
+                    e_rubro: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /[A-Za-z]/,
+                                message: 'la entrada no debe ser un numero entero'
+                            }
+                        }
+                    },
+
+                    e_tipo: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+
+                    e_omicilio: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /[A-Za-z]/,
+                                message: 'la entrada no debe ser un numero entero'
+                            }
+                        }
+                    },
+
+                    e_departamento: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+
+                    e_numero_registro: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /^(0|[1-9][0-9]*)$/,
+                                message: 'la entrada debe ser un numero entero'
+                            }
+                        }
+                    },
+
+                    e_tipo_Residuo: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /[A-Za-z]/,
+                                message: 'la entrada no debe ser un numero entero'
+                            }
+                        }
+                    }
+                }
+            }).on('success.form.bv', function(e) {
+                e.preventDefault();
+                //guardar();
+            });
+            </script>
+
 
 
 

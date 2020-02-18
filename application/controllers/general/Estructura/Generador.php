@@ -7,6 +7,8 @@ class Generador extends CI_Controller {
     function __construct(){
 
       parent::__construct();
+
+      $this->load->model('general/Estructura/Generadores');
    }
 
 
@@ -19,12 +21,13 @@ class Generador extends CI_Controller {
    function templateGeneradores()
    {
     
-        //  $data['Departamentos'] = $this->Generadores->obtener_Departamentos();;
-          // $data['Tipogenerador'] = $this->Generadores->obtener_Tipo_Generador();
-        //   $data['Zonagenerador'] = $this->Generadores->obtener_Zonas();
-          // $data['Tiporesiduo'] = $this->Generadores->obtener_Tipo_residuo();
-    
+          $data['Departamentos'] = $this->Generadores->obtener_Departamentos();
+          $data['Tipogenerador'] = $this->Generadores->obtener_Tipo_Generador();
+          $data['Zonagenerador'] = $this->Generadores->obtener_Zonas();
+          $data['Tiporesiduo'] = $this->Generadores->obtener_Tipo_residuo();
+          $data['Rubro'] = $this->Generadores->obtener_Rubro();           
           $this->load->view('layout/Generadores/registrar_generadores',$data);
+          
        
    }
 
@@ -33,13 +36,14 @@ class Generador extends CI_Controller {
     function Guardar_Generador()
     {
         $datos =  $this->input->post('datos');
-        $resp = $this->Generadores->Guardar_Generadores($datos);
+        $resp = $this->Generadores->Guardar_Generadores($datos);        
         if($resp){
         echo "ok";
         }else{
         echo "error";
         }
     }
+    
 
     // ---------------- Funcion Crear Generador
 
