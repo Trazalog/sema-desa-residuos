@@ -28,8 +28,8 @@
                                 <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
                         echo   '</td>';
                         echo    '<td>'.$fila->razon_social.'</td>';
-                        echo    '<td>'.$fila->descripcion.'</td>';
-                        echo    '<td>'.$fila->registro.'</td>';                       
+                        echo    '<td>'.$fila->zona_id.'</td>';
+                        echo    '<td>'.$fila->num_registro.'</td>';                       
                         echo '</tr>';
                     }
                     }

@@ -158,9 +158,7 @@
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                             foreach ($Departamentos as $i) {
-                                echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';
-
-                                
+                                echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';                                
                             }
                             ?>
                             </select>
@@ -310,7 +308,7 @@ $("#btnadd").on("click", function() {
                                 message: 'la entrada no puede ser vacia'
                             },
                             regexp: {
-                                regexp: /^(0|[1-9][0-9]*)$/,
+                                regexp: /\b(20|23|24|27|30|33|34)(\D)?[0-9]{8}(\D)?[0-9]/,
                                 message: 'la entrada debe ser un numero entero'
                             }
                         }

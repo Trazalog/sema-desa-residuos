@@ -25,15 +25,13 @@ class Contenedores extends CI_Model
 function Guardar_Contenedor($data){
 
         // var_dump($data);
-        $post["contenedores"] = $data;
-        log_message('DEBUG','#Contenedores/Guardar_Contenedor: '.json_encode($post));
+        $post["contenedores"] = $data;       
+        log_message('DEBUG','#Contenedores/Guardar_Contenedor'.json_encode($post));
+        //log_message('DEBUG', '#Contenedores/Guardar_Contenedor ->$post: '.json _encode($post));
         $aux = $this->rest->callAPI("POST",REST."/contenedores", $post);
         $aux =json_decode($aux["status"]);
+        // wso2Msj($aux);
         return $aux;
-        
-        	
-
-
 }
 
 
@@ -108,6 +106,24 @@ public function Obtener_empresas(){
     $aux =json_decode($aux["data"]);
     return $aux->transportistas->transportista;
     }
+    
+// Funcion Obtener  recipiente
+
+public function Obtener_recipiente(){
+    $aux = $this->rest->callAPI("GET",REST."/lote/todos/deposito");
+    $aux =json_decode($aux["data"]);
+    return $aux->recipientes->recipiente;
+    }
+
+// Funcion Obtener  Habilitacion
+
+public function Obtener_Habilitacion(){
+    $aux = $this->rest->callAPI("GET",REST."/tablas/habilitacion_contenedor");
+    $aux =json_decode($aux["data"]);
+    return $aux->valores->valor;
+    }
+    
+
     
 
 // ---------------- Funciones  SOLICITUD RETIRO --------------------------------//

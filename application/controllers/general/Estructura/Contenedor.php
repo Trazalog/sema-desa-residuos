@@ -10,6 +10,7 @@ class Contenedor extends CI_Controller {
 
             
             $this->load->model('general/Estructura/Contenedores');
+            
 
             
     
@@ -25,8 +26,8 @@ class Contenedor extends CI_Controller {
       function templateContenedores()
       {
         $data['Estados'] = $this->Contenedores->obtener_Estados();
-        // $data[''] = $this->Contenedores->obtener_();
-        // $data[''] = $this->Contenedores->obtener_();
+        $data['Recipiente'] = $this->Contenedores->Obtener_recipiente();
+        $data['Habilitacion'] = $this->Contenedores->Obtener_Habilitacion();
         // $data[''] = $this->Contenedores->obtener_();
         // $data[''] = $this->Contenedores->obtener_();
         $this->load->view('layout/Contenedores/registrar_contenedor',$data);
@@ -38,14 +39,11 @@ class Contenedor extends CI_Controller {
        function Guardar_Contenedor()
 
        {
-
-
-        //  var_dump($data);
+         //  var_dump($data);
       // $data["imagen"] = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
       // $data["usuario_app"] = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
 
-
-           
+      {           
             $datos =  $this->input->post('datos');
             $resp = $this->Contenedores->Guardar_Contenedor($datos);
             if($resp){
@@ -53,12 +51,8 @@ class Contenedor extends CI_Controller {
             }else{
             echo "error";
             }
-
-         
-
-
-
         }
+      }
    
        // ---------------- Funcion Crear Contenedor
    

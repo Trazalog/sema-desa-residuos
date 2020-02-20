@@ -47,20 +47,12 @@ function Listar_Circuitos()
 // Funcion Guardar Circuito
 function Guardar_Circuito($data){
 
+var_dump($data);
 $post["post_circuito"] = $data;
 log_message('DEBUG','#Zonas/Guardar_Circuito: '.json_encode($post));
 $aux = $this->rest->callAPI("POST",REST."/circuitos", $post);
 $aux =json_decode($aux["status"]);
 return $aux;
-
-
-// $post["post_zona"] = $data;
-//     log_message('DEBUG','#Zonas/Guardar_Zona: '.json_encode($post));
-//     $aux = $this->rest->callAPI("POST",REST."/zonas", $post);
-//     $aux =json_decode($aux["status"]);
-//     return $aux;	
-
-
 
 
 }
@@ -113,7 +105,10 @@ public function obtener_Punto_Critico(){
 
 // Funcion Obtener Tipo RSU
 public function obtener_RSU(){
+
+    log_message('DEBUG', 'Zonas/obtener_RSU');
     $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
+    wso2Msj($aux);
     $aux =json_decode($aux["data"]);
     return $aux->valores->valor;
 }

@@ -26,6 +26,7 @@ class Transportistas extends CI_Model
 
 function Guardar_Transportista($data){
 
+   
     $post["post_transportista"] = $data;
     log_message('DEBUG','#Transportistas/Guardar_Transportista: '.json_encode($post));
     $aux = $this->rest->callAPI("POST",REST."/transportistas", $post);

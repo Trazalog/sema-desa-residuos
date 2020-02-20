@@ -13,9 +13,9 @@ class Generadores extends CI_Model
 
     function Lista_generadores()
     {
-        $aux = $this->rest->callAPI("GET",REST."/RECURSO");
+        $aux = $this->rest->callAPI("GET",REST."/solicitantesTransporte");
         $aux =json_decode($aux["data"]);       
-        return $aux->generadores->generador;
+        return $aux->solicitantes_transporte->solicitante;
     }
 
 // ----------------------------------------------------------------
