@@ -22,7 +22,7 @@ class Transportista extends CI_Controller {
       function templateTransportistas()
       {
 
-        // $data['Rsu'] = $this->Transportistas->obtener_RSU();
+        $data['Rsu'] = $this->Transportistas->obtener_RSU();
       
         $this->load->view('layout/Transportistas/registrar_transportista',$data);
           

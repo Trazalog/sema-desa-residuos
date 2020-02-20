@@ -144,7 +144,7 @@
             
             </div>
                 
-        </div>
+            </div>
 
             
 
@@ -283,9 +283,7 @@
                                     </select>
                                 </div>
 
-                            </div>
-
-                           
+                            </div>   
 
                             
 
@@ -368,21 +366,20 @@
                                 <!--__________________BODY TABLA___________________________-->
 
                                 <tbody>
-                                <tr>
-                                    <!-- <td>
-                                    <button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalPunto"><span class="glyphicon glyphicon-record" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                    
-                                    </td> -->
-                                    <td>DATO</td>
-                                    <td> DATO</td>
-                                    <td>DATO</td>
-                                    <td>DATO</td>
-                                </tr>
-                                
-                                
+                                <?php
+                                if($CircuitosAsignados)
+                                    {
+                                        foreach($CircuitosAsignados as $fila)
+                                        {
+                                        echo '<tr data-json:'.json_encode($fila).'>';                                        
+                                        echo    '<td>'.$fila->codigo.'</td>';
+                                        echo    '<td>'.$fila->chof_id.'</td>';
+                                        echo    '<td>'.$fila->vehi_id.'</td>';
+                                        echo    '<td>'.$fila->descripcion.'</td>';
+                                        echo '</tr>';
+                                    }
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
 
@@ -477,9 +474,7 @@ function agregarDato(){
     me.data('requestRunning', true);
     datos=$('#formZonas').serialize();
     console.log(datos);
-
         //--------------------------------------------------------------
-
     $.ajax({
                 type:"POST",
                 data:datos,
@@ -516,7 +511,7 @@ function agregarDato(){
         datos = formToObject(datos);
         datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
-        console.log(datos);
+        console.table(datos);
         
         
         
@@ -529,7 +524,7 @@ function agregarDato(){
                 data: {datos},
                 url: "general/Estructura/Zona/Guardar_Zona",
                 success: function (r) {
-                    console.log(r);
+                    console.table(r);
                     if (r == "ok") {
                         // //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
                         // var t = $('#tabla_infracciones').DataTable();
@@ -638,4 +633,3 @@ function agregarDato(){
 
 
 </script>
-           
