@@ -291,11 +291,7 @@ $("#btnadd").on("click", function() {
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
                         alertify.success("Agregado con exito");
 
-                        $('#formTransportistas').data('bootstrapValidator').resetForm();
-                        $("#formTransportistas")[0].reset();
                        
-                        $("#boxDatos").hide(500);
-                        $("#botonAgregar").removeAttr("disabled");
 
                     } else {
                         //console.log(r);

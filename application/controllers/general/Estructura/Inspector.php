@@ -11,6 +11,7 @@ class Inspector extends CI_Controller {
     function templateInspectores()
     {
         $data['vehiculo'] = $this->Inspectores->obtener_Movilidad();
+        $data['Departamentos'] = $this->Inspectores->obtener_Departamento();
 
         $this->load->view('layout/registrar_inspector', $data);
     }
@@ -35,6 +36,7 @@ class Inspector extends CI_Controller {
     {
 
     }
+    // _________________________________________________________
 
     // ---------------- Funcion Suspender Inspector
     function Borrar_Inspector()

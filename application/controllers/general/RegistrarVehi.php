@@ -12,7 +12,7 @@ class RegistrarVehi extends CI_Controller {
    function templateVehi()
    {
     //    $data['condicion'] = $this->condicion->obtener();
-       $this->load->view('layout/registrar_vehiculo',$data);
+       $this->load->view('layout/registrar_vehiculo');
    }
    
    function templateRg()

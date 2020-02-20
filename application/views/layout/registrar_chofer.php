@@ -16,11 +16,9 @@
     </div>
 </div>
 
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+
 <!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
-
-
 
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
@@ -33,16 +31,12 @@
                 <i class="fa fa-times"></i>
             </button>
         </div>
-
     </div>
 
-​        <!--_____________________________________________________________-->
-
+​    <!--_____________________________________________________________-->
 
 <div class="box-body">
-
-<form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
-
+    <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
         <div class="col-md-6 col-sm-6 col-xs-12">
 
         
@@ -51,21 +45,21 @@
                     <label for="Nombre" >Nombre:</label>
                     <input type="text" class="form-control" id="Nombre" name="nombre" >
             </div>
-        ​            <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
 
             <!--Apellido-->
             <div class="form-group">
                     <label for="Apellido"  >Apellido:</label>
                     <input type="text" class="form-control" id="Apellido" name="apellido"  >
             </div>
-        ​            <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
 
             <!--DNI-->
             <div class="form-group">
                     <label for="DNI"  >DNI:</label>
                     <input type="text" class="form-control" id="DNI" name="dni"  >
             </div>
-        ​            <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
 
             <!--Fecha de nacimiento-->
             <div class="form-group">
@@ -76,25 +70,23 @@
                     </div>
                     <input type="date" class="form-control" id="FechaNacimiento" name="fecha_nacimiento"  ></div>
             </div>
-        ​            <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
 
             <!--Direccion-->
             <div class="form-group">
                     <label for="Direccion"  >Direccion:</label>
                     <input type="text" class="form-control" id="Direccion" name="direccion"  >
             </div>
-        ​     <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
+
             <!--Celular-->
             <div class="form-group">
                         <label for="Celular"  >Celular:</label>
                         <input type="text" class="form-control" id="Celular" name="celular"  >
             </div>
-
-            
-        ​          
+            <!--_____________________________________________________________-->
 
         </div>
-
         <div class="col-md-6 col-sm-6 col-xs-12">
 
             <!--Codigo-->
@@ -109,7 +101,7 @@
                     <label for="Empresa"  >Empresa:</label>
                     <input type="text" class="form-control" id="Empresa" name="empresa"  >
             </div>
-        ​            <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
 
             <!--Carnet-->
             <div class="form-group">
@@ -123,14 +115,14 @@
                     ?>
                 </select>
             </div>
-        ​            <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
 
             <!--Categoria-->
             <div class="form-group">
                     <label for="Categoria"  >Categoria:</label>
                     <input type="text" class="form-control" id="Categoria" name="categoria" >
             </div>
-        ​            <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
 
             <!--Vencimiento-->
             <div class="form-group" >
@@ -143,22 +135,20 @@
                 </div>
                 <!-- /.input group -->
             </div>
-        ​            <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
 
             <!--Habilitacion-->
             <div class="form-group">
                     <label for="Habilitacion"  >Habilitacion:</label>
                     <input type="text" class="form-control" id="Habilitacion" name="habilitacion" >
             </div>
-        ​     <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
             
-
-
             <!--Adjuntador de imagenes-->
             <!-- <form action="cargar_archivo" method="post" enctype="multipart/form-data" >
                 <input  type="file"  id="imgarch" name="upload" data-required="true">
             </form> -->
-        ​            <!--_____________________________________________________________-->
+        ​    <!--_____________________________________________________________-->
 
         </div>
 
@@ -170,8 +160,7 @@
             
             <div class="col-md-6">
                 
-<!-- 
-                <button type="file" name="upload" class="btn btn-default btn-circle" id="file" name="file" accept=".jpg, .jpeg, .png" aria-label="Left Align">
+            <!--<button type="file" name="upload" class="btn btn-default btn-circle" id="file" name="file" accept=".jpg, .jpeg, .png" aria-label="Left Align">
                     <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
                 </button> -->
                 
@@ -181,29 +170,25 @@
                 <small for="agregar" class="form-label">Adjuntar imagen</small>
 
             </div>
-
             <!--_____________________________________________________________-->            
+
             <!--Boton de guardado--> 
                     <div class="col-md-12"><hr></div><br>
             <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-
             <!--_____________________________________________________________--> 
-</form>
-</div>
-</div>
+
+            </form>
+        </div>
+    </div>
 </div>
 
 <!---//////////////////////////////////////--- FIN BOX---///////////////////////////////////////////////////////----->
 
-
 <!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
-
-
 
 <div class="box box-primary">
 
     <!--__________________TABLA___________________________-->
-
 
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -217,7 +202,6 @@
 
                 <!--__________________HEADER TABLA___________________________-->
 
-
                     <!--__________________HEADER TABLA___________________________-->
                     <table id="tabla_choferes" class="table table-bordered table-striped">
                         <thead class="thead-dark" bgcolor="#eeeeee">
@@ -229,7 +213,6 @@
                             <th>Tara</th>
                             <th>habilitacion</th>
                             <th>Registro</th>
-                            
 
                         </thead>
 
@@ -256,19 +239,16 @@
                     </table>
                     
                     <!--__________________FIN TABLA___________________________-->
+
                 </div>
             </div>
-
         </div>
     </div>
 
     <!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
 
-
-
     <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-    
     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -279,14 +259,11 @@
                 <h5 class="modal-title" id="exampleModalLabel">Editar Chofer</h5>
             </div>
 
-
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-           
-            <form class="formChoferEdit" id="formChoferEdit"  method="POST" autocomplete="off" class="registerForm">
-
+                <form class="formChoferEdit" id="formChoferEdit"  method="POST" autocomplete="off" class="registerForm">
                     <div class="col-md-6 col-sm-6 col-xs-12">
 
 
@@ -404,12 +381,8 @@
                         </form> -->
                     ​            <!--_____________________________________________________________-->
 
-                    </div>
-        
-    </form>
-
-                
-               
+                </div> 
+            </form>
 
         <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
@@ -425,19 +398,13 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-
-
 <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
-
     
 <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -449,36 +416,33 @@
                 <h5 class="modal-title" id="exampleModalLabel">Informacion Chofer</h5>
             </div>
 
-
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-            <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
-
+                <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-
 
                         <!--Nombre-->
                         <div class="form-group">
                                 <label for="Nombre" >Nombre:</label>
                                 <input type="text" class="form-control" id="Nombre" name="nombre" readonly>
                         </div>
-                    ​            <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
                         <!--Apellido-->
                         <div class="form-group">
                                 <label for="Apellido"  >Apellido:</label>
                                 <input type="text" class="form-control" id="Apellido" name="apellido" readonly >
                         </div>
-                    ​            <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
                         <!--DNI-->
                         <div class="form-group">
                                 <label for="DNI"  >DNI:</label>
                                 <input type="text" class="form-control" id="DNI" name="dni"  readonly>
                         </div>
-                    ​            <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
                         <!--Fecha de nacimiento-->
                         <div class="form-group">
@@ -489,25 +453,23 @@
                                 </div>
                                 <input type="date" class="form-control" id="FechaNacimiento" name="fecha_nacimiento" readonly ></div>
                         </div>
-                    ​            <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
                         <!--Direccion-->
                         <div class="form-group">
                                 <label for="Direccion"  >Direccion:</label>
                                 <input type="text" class="form-control" id="Direccion" name="direccion" readonly >
                         </div>
-                    ​     <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
+
                         <!--Celular-->
                         <div class="form-group">
                                     <label for="Celular"  >Celular:</label>
                                     <input type="text" class="form-control" id="Celular" name="celular" readonly >
                         </div>
-
-                        
-                    ​          
+                        <!--_____________________________________________________________-->
 
                     </div>
-
                     <div class="col-md-6 col-sm-6 col-xs-12">
 
                         <!--Codigo-->
@@ -515,14 +477,14 @@
                                 <label for="Codigo"  >Codigo:</label>
                                 <input type="text" class="form-control" id="Codigo" name="codigo"  readonly>
                         </div>
-                    ​            <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
                         <!--Empresa-->
                         <div class="form-group">
                                 <label for="Empresa"  >Empresa:</label>
                                 <input type="text" class="form-control" id="Empresa" name="empresa" readonly >
                         </div>
-                    ​            <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
                         <!--Carnet-->
                         <div class="form-group">
@@ -530,14 +492,14 @@
                             <input type="text" class="form-control" id="carnet" name="carnet" readonly >
                             
                         </div>
-                    ​            <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
                         <!--Categoria-->
                         <div class="form-group">
                                 <label for="Categoria"  >Categoria:</label>
                                 <input type="text" class="form-control" id="Categoria" name="categoria" readonly>
                         </div>
-                    ​            <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
                         <!--Vencimiento-->
                         <div class="form-group" >
@@ -550,16 +512,14 @@
                             </div>
                             <!-- /.input group -->
                         </div>
-                    ​            <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
                         <!--Habilitacion-->
                         <div class="form-group">
                                 <label for="Habilitacion"  >Habilitacion:</label>
                                 <input type="text" class="form-control" id="Habilitacion" name="habilitacion"readonly >
                         </div>
-                    ​     <!--_____________________________________________________________-->
-                        
-
+                    ​    <!--_____________________________________________________________-->
 
                         <!--Adjuntador de imagenes-->
                         <!-- <form action="cargar_archivo" method="post" enctype="multipart/form-data" >
@@ -567,12 +527,8 @@
                         </form> -->
                     ​            <!--_____________________________________________________________-->
 
-                    </div>
-        
-    </form>
-
-                
-               
+                    </div>  
+                </form>
 
         <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
@@ -586,18 +542,13 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-    
 <!--_____________________________________________________________-->
-
 
 <!--_____________________________________________________________-->
 
@@ -677,7 +628,6 @@ function agregarDato(){
     });
 }
 </script>
-
 ​<!--_____________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
@@ -879,8 +829,6 @@ function agregarDato(){
       //guardar();
   });
 </script>
-
-
 <!--_____________________________________________________________-->
 
 <!--Script Bootstrap Validacion.MODAL EDITAR-->
@@ -1100,14 +1048,10 @@ function agregarDato(){
       //guardar();
   });
 </script>
-
-
 <!--_____________________________________________________________-->
- <!-- script Datatables -->
- <script>
 
+<!-- script Datatables -->
+<script>
     DataTable($('#tabla_choferes'))
-
 </script>
-
- 
+<!--_____________________________________________________________-->

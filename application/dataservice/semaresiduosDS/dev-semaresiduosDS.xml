@@ -287,6 +287,23 @@
       <result outputType="json">{&#xd;   "ordenTransp":{&#xd;      "ortr_id":"$ortr_id",&#xd;      "fec_retiro":"$fec_retiro",&#xd;      "caseid":"$caseid",&#xd;      "fec_alta":"$fec_alta",&#xd;      "difi_id":"$difi_id",&#xd;      "sotr_id":"$sotr_id",&#xd;      "equi_id":"$equi_id",&#xd;      "chof_id":"$chof_id"   &#xd;   }&#xd;}</result>
       <param name="ortr_id" sqlType="STRING"/>
    </query>
+   <query id="contEntregadosSet" useConfig="semaresiduosDS">
+      <sql>insert into &#xd;  log.contenedores_entregados(porc_llenado, mts_cubicos, fec_entrega, usuario_app, cont_id, soco_id, ortr_id, tica_id)&#xd;  values(CAST(:porc_llenado AS float8), CAST(:mts_cubicos AS float8), TO_DATE(:fec_entrega, 'YYYY-MM-DD'), :usuario_app, CAST(:cont_id AS INTEGER), CAST(:soco_id AS INTEGER), CAST(:ortr_id AS INTEGER), :tica_id) returning coen_id</sql>
+      <result outputType="json">{&#xd;    "respuesta":{&#xd;      "coen_id": "$coen_id"&#xd;    }&#xd;}</result>
+      <param name="porc_llenado" sqlType="STRING"/>
+      <param name="mts_cubicos" sqlType="STRING"/>
+      <param name="cont_id" sqlType="STRING"/>
+      <param name="soco_id" sqlType="STRING"/>
+      <param name="ortr_id" sqlType="STRING"/>
+      <param name="tica_id" sqlType="STRING"/>
+      <param name="fec_entrega" sqlType="STRING"/>
+      <param name="usuario_app" sqlType="STRING"/>
+   </query>
+   <query id="solicitanteTransporteGetPorUsr" useConfig="semaresiduosDS">
+      <sql>select &#xd; ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, ST.tica_id, D.nombre as depa_nom&#xd;  from log.solicitantes_transporte ST, core.departamentos D &#xd;  where usuario_app = :usuario_app &#xd;  and ST.depa_id = D.depa_id</sql>
+      <result outputType="json">{&#xd;    "solicitantes_transporte": {&#xd;        "solicitante": [&#xd;          {&#xd;            "sotr_id": "$sotr_id",&#xd;            "razon_social": "$razon_social",&#xd;            "cuit": "$cuit",&#xd;            "domicilio": "$domicilio",&#xd;            "num_registro": "$num_registro",&#xd;            "lat": "$lat",&#xd;            "lng": "$lng",&#xd;            "zona_id": "$zona_id",&#xd;            "rubr_id": "$rubr_id",&#xd;            "tist_id": "$tist_id",&#xd;            "tica_id": "$tica_id",&#xd;            "depa_nom": "$depa_nom"	            &#xd;          }&#xd;        ]&#xd;    }&#xd;  }</result>
+      <param name="usuario_app" sqlType="STRING"/>
+   </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
          <with-param name="nombre" query-param="nombre"/>
@@ -577,6 +594,23 @@
    <resource method="GET" path="/ordenTransporte/{ortr_id}">
       <call-query href="ordTransPorIdGet">
          <with-param name="ortr_id" query-param="ortr_id"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="/contEntregados">
+      <call-query href="contEntregadosSet">
+         <with-param name="porc_llenado" query-param="porc_llenado"/>
+         <with-param name="mts_cubicos" query-param="mts_cubicos"/>
+         <with-param name="cont_id" query-param="cont_id"/>
+         <with-param name="soco_id" query-param="soco_id"/>
+         <with-param name="ortr_id" query-param="ortr_id"/>
+         <with-param name="tica_id" query-param="tica_id"/>
+         <with-param name="fec_entrega" query-param="fec_entrega"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/solicitantesTransporte/{usuario_app}">
+      <call-query href="solicitanteTransporteGetPorUsr">
+         <with-param name="usuario_app" query-param="usuario_app"/>
       </call-query>
    </resource>
 </data>
