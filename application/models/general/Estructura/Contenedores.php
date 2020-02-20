@@ -24,7 +24,7 @@ class Contenedores extends CI_Model
 
 function Guardar_Contenedor($data){
 
-        // var_dump($data);
+        var_dump($data);
         $post["contenedores"] = $data;       
         log_message('DEBUG','#Contenedores/Guardar_Contenedor'.json_encode($post));
         //log_message('DEBUG', '#Contenedores/Guardar_Contenedor ->$post: '.json _encode($post));
