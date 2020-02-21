@@ -17,16 +17,14 @@ class Generadores extends CI_Model
     }
     // ----------------------------------------------------------------
 
-function Guardar_Generadores($data){
-
+function Guardar_Generadores($data)
+{
         $post["post_generador"] = $data;
         log_message('DEBUG','#Generadores/Guardar_Generadores: '.json_encode($post));
         $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
         $aux =json_decode($aux["status"]);
-        return $aux;
-        
-      	
-
+        return $aux;      	
+}
 // ________________________________________________________________
 
 // ---------------------- FUNCIONES OBTENER ----------------------
