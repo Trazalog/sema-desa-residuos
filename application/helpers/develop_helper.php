@@ -15,6 +15,7 @@ if(!function_exists('getJson'))
             return $rsp;
         }
     }
+
     function wso2Msj($rsp)
     {
         $rsp['data'] = json_decode( $rsp['data']);
@@ -22,6 +23,5 @@ if(!function_exists('getJson'))
         preg_match('~>>([^{]*)<<~i', $msj, $match);
         log_message('DEBUG', '#WSO2 #RESPONCE: ' . $match[1]);
     }
-
 }
 ?>

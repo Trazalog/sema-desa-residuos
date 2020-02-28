@@ -58,7 +58,7 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                    <input type="text" class="form-control" name="Nombre_razon" id="Nombre/Razon social">
+                    <input type="text" class="form-control" name="razon_social" id="razon_social">
                     </div>
                 </div>
                 <!--_____________________________________________-->
@@ -69,7 +69,7 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>                    
-                    <input type="text" class="form-control"  name="Cuit" id="CUIT">
+                    <input type="text" class="form-control"  name="cuit" id="cuit">
                     </div>  
                 </div>
                 <!--_____________________________________________-->
@@ -80,14 +80,16 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                    <select class="form-control select2 select2-hidden-accesible"  name="Zona" id="Zonag">
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
-                        foreach ($Zonagenerador as $i) {
-                            echo '<option>'.$i->nombre.'</option>';
-                        }
-                        ?>
-                    </select>
+                            <select class="form-control select2 select2-hidden-accesible" name="zona_id" id="zona_id">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                            foreach ($Zonagenerador as $i) {
+                                echo '<option  value="'.$i->zona_id.'">'.$i->nombre.'</option>';
+
+                                
+                            }
+                            ?>
+                            </select>
                     </div>  
                 </div>
                 <!--_____________________________________________-->
@@ -98,7 +100,16 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                    <input type="text" class="form-control"  name="Rubro" id="Rubro">
+                            <select class="form-control select2 select2-hidden-accesible" name="rubr_id" id="rubr_id">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                            foreach ($Rubro as $i) {
+                                echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+
+                                
+                            }
+                            ?>
+                            </select>
                     </div>
                 </div>
                 <!--_____________________________________________-->
@@ -109,14 +120,16 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                    <select class="form-control select2 select2-hidden-accesible"name="Tipo" id="TipoG">
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
-                        foreach ($Tipogenerador as $i) {
-                            echo '<option>'.$i->nombre.'</option>';
-                        }
-                        ?>
-                    </select>
+                            <select class="form-control select2 select2-hidden-accesible" name="tist_id" id="tist_id">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                            foreach ($Tipogenerador as $i) {
+                                echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+
+                                
+                            }
+                            ?>
+                            </select>
                     </div>
                 </div>
             </div>
@@ -130,7 +143,7 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                    <input type="text" class="form-control"  name="Domicilio" id="Domicilio">
+                    <input type="text" class="form-control"  name="domicilio" id="domicilio">
                     </div>
                 </div>
                 <!--_____________________________________________-->
@@ -141,14 +154,14 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                    <select class="form-control select2 select2-hidden-accesible" name="Departamento" id="Dpto">
-                        <option value="" disabled selected>-Seleccione opcion-</option>
-                        <?php
+                            <select class="form-control select2 select2-hidden-accesible" name="depa_id" id="depa_id">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
                             foreach ($Departamentos as $i) {
-                            echo '<option value="'.$fila->depa_id.'">'.$fila->nombre.'</option>' ;
+                                echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';                                
                             }
-                        ?>
-                    </select>
+                            ?>
+                            </select>
                     </div>
                 </div>
                 <!--_____________________________________________-->
@@ -159,7 +172,7 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                    <input type="text" class="form-control" name="Numero_registro" id="Numero de registro">
+                    <input type="text" class="form-control" name="num_registro" id="num_registro">
                     </div>
                 </div>
                 <!--_____________________________________________-->
@@ -170,11 +183,11 @@
                             <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-check"></i>
                             </div>
-                            <select class="form-control select2 select2-hidden-accesible" name="Tipo_Residuo" id="Tipo de residuos">
+                            <select class="form-control select2 select2-hidden-accesible" name="tica_id" id="tica_id">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                 foreach ($Tiporesiduo as $i) {
-                                    echo '<option>'.$i->nombre.'</option>';
+                                    echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
                                 }
                                 ?>
                             </select>
@@ -275,7 +288,7 @@ $("#btnadd").on("click", function() {
                 },*/
                 //excluded: ':disabled',
                 fields: {
-                    Nombre_razon: {
+                    razon_social: {
                         message: 'la entrada no es valida',
                         validators: {
                             notEmpty: {
@@ -288,20 +301,20 @@ $("#btnadd").on("click", function() {
                         }
                     },
 
-                    Cuit: {
+                    cuit: {
                         message: 'la entrada no es valida',
                         validators: {
                             notEmpty: {
                                 message: 'la entrada no puede ser vacia'
                             },
                             regexp: {
-                                regexp: /^(0|[1-9][0-9]*)$/,
+                                regexp: /\b(20|23|24|27|30|33|34)(\D)?[0-9]{8}(\D)?[0-9]/,
                                 message: 'la entrada debe ser un numero entero'
                             }
                         }
                     },
 
-                    Zona: {
+                    zona_id: {
                         message: 'la entrada no es valida',
                         validators: {
                             notEmpty: {
@@ -323,7 +336,7 @@ $("#btnadd").on("click", function() {
                         }
                     },
 
-                    Tipo: {
+                    rubr_id: {
                         message: 'la entrada no es valida',
                         validators: {
                             notEmpty: {
@@ -332,7 +345,7 @@ $("#btnadd").on("click", function() {
                         }
                     },
 
-                    Domicilio: {
+                    domicilio: {
                         message: 'la entrada no es valida',
                         validators: {
                             notEmpty: {
@@ -345,7 +358,7 @@ $("#btnadd").on("click", function() {
                         }
                     },
 
-                    Departamento: {
+                    depa_id: {
                         message: 'la entrada no es valida',
                         validators: {
                             notEmpty: {
@@ -354,79 +367,19 @@ $("#btnadd").on("click", function() {
                         }
                     },
 
-                    Numero_registro: {
+                    num_registro: {
                         message: 'la entrada no es valida',
                         validators: {
                             notEmpty: {
                                 message: 'la entrada no puede ser vacia'
                             },
                             regexp: {
-                                regexp: /^(0|[1-9][0-9]*)$/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    Tipo_Residuo: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
-                    }
-                }
-            }).on('success.form.bv', function(e) {
-                e.preventDefault();
-                //guardar();
-            });
-            </script>
-
-<!--_____________________________________________________________-->
-<!--Script Bootstrap Validacion.FORMULARIO MODAL EDITAR -->
-
-            
-<script>
-            $('#formGeneradoresEdit').bootstrapValidator({
-                message: 'This value is not valid',
-                /*feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },*/
-                //excluded: ':disabled',
-                fields: {
-                    e_nombre_razon: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
+                                regexp: /^\d+$/ ,
                                 message: 'la entrada no debe ser un numero entero'
                             }
                         }
                     },
-
-                    e_cuit: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /^(0|[1-9][0-9]*)$/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    e_zonag: {
+                    tist_id: {
                         message: 'la entrada no es valida',
                         validators: {
                             notEmpty: {
@@ -434,73 +387,11 @@ $("#btnadd").on("click", function() {
                             }
                         }
                     },
-
-                    e_rubro: {
+                    tica_id: {
                         message: 'la entrada no es valida',
                         validators: {
                             notEmpty: {
                                 message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    e_tipo: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
-                    },
-
-                    e_omicilio: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    e_departamento: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
-                    },
-
-                    e_numero_registro: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /^(0|[1-9][0-9]*)$/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    e_tipo_Residuo: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
                             }
                         }
                     }
@@ -525,15 +416,18 @@ $("#btnadd").on("click", function() {
 
 <script>
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Generador/Listar_Generador");
+
     function Guardar_Generador() {
 
         // datos = $('#form').serialize();
 
         var datos = new FormData($('#formGeneradores')[0]);
         datos = formToObject(datos);
-        datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
+        // datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
-        console.log(datos);
+        datos.lat = "110";
+        datos.lng = "220";
+        console.table(datos);
         
         
         
@@ -548,31 +442,16 @@ $("#btnadd").on("click", function() {
                 success: function (r) {
                     console.log(r);
                     if (r == "ok") {
-                        // //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
-                        // var t = $('#tabla_infracciones').DataTable();
-                        // var fila = t.row.add([
-                        //     N° Acta,
-                        //     Tipo de infraccion,
-                        //     Inspector,
-                        //     Destino,
-                    
-                        //     //agrega los iconos correspondientes
-                        //     '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
-                        // ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
-                        // t.draw(false);
-
-                        // aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
-                        // localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
-
-                        // $('#FormInfraccion').data('bootstrapValidator').resetForm();
-                        // $("#FormInfraccion")[0].reset();
-                        // $('#selecmov').find('option').remove();
-                        // $('#chofer').find('option').remove();
-                        // $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
-                        // $("#boxDatos").hide(500);
-                        // $("#botonAgregar").removeAttr("disabled");
+                        
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Generador/Listar_Generador");
                         alertify.success("Agregado con exito");
+
+                        $('#formGeneradores').data('bootstrapValidator').resetForm();
+                        $("#formGeneradores")[0].reset();
+                       
+                        $("#boxDatos").hide(500);
+                        $("#botonAgregar").removeAttr("disabled");
+
                     } else {
                         //console.log(r);
                         alertify.error("error al agregar");
