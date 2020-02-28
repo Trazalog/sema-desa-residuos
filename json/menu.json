@@ -70,9 +70,7 @@
                             {
                                 "titulo": "ABM establecimiento",
                                 "icono": "fa fa-genderless",
-
                                 "link": "general/Estructura/Establecimiento/templateAsignarEstablecimiento"
-
                             },
                             {
                                 "titulo": "ABM Incidencias ",
@@ -85,22 +83,15 @@
                                 "link": "general/Estructura/Infraccion/templateInfracciones"
                             },
                             {
-                                "titulo": "Solicitud de Contenedor ",
-
+                                "titulo": "Solicitud de Contenedor",
                                 "icono": "fa fa-genderless",
-
                                 "link": "general/Estructura/Contenedor/templateSolicitudPedido"
-
                             },
                             {
                                 "titulo": "Entrega de Contenedor ",
-
                                 "icono": "fa fa-genderless",
-
                                 "link": "general/Estructura/Contenedor/templateEntregacontenedor"
-
                             },
-                            
                             {
                                 "titulo": "Retiro de Contenedor",
                                 "icono": "fa fa-genderless",

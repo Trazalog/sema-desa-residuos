@@ -9,25 +9,25 @@ class Camion extends CI_Controller {
         // $this->load->model('general/Estructura/Contenedores');
     }
 
-// ---------------- Funcions CHOFERES ---------------------------------------
+// ---------------- Funcions CHOFERES ----------------
 
     // ---------------- Funcion Cargar vista Chofer y Datos
     function templateChoferes()
     {
-        // $data['carnet'] = $this->Chofer->obtener_Carnet();
+        $data['carnet'] = $this->Camiones->obtener_Carnet();
+        $data['categoria'] = $this->Camiones->obtener_Categoria();
         // $data[''] = $this->Chofer->obtener_();
         // $data[''] = $this->Chofer->obtener_();
-        // $data[''] = $this->Chofer->obtener_();       
 
-        $this->load->view('layout/Choferes/registrar_chofer', $data);
+        $this->load->view('layout/choferes/registrar_chofer',$data);
     }
     // _________________________________________________________
 
     // ---------------- Funcion Registrar Chofer
     function Guardar_Chofer()
     {
-        $data =  $this->input->post('data');
-        $resp = $this->Camiones->Guardar_Chofer($data);
+        $datos =  $this->input->post('datos');
+        $resp = $this->Camiones->Guardar_Chofer($datos);
         if($resp){
         echo "ok";
         }else{
@@ -44,10 +44,10 @@ class Camion extends CI_Controller {
     // _________________________________________________________
 
     // ---------------- Funcion Listar Choferes
-    function Listar_Choferes()
+    function Listar_Chofer()
     {
-        $data["vehiculos"] = $this->Vehiculos->Listar_Vehiculos();         
-        $this->load->view('layout/Vehiculos/Listar_Choferes',$data);
+        $data["choferes"] = $this->Camiones->Listar_Chofer();
+        $this->load->view('layout/choferes/lista_choferes',$data);
     }
     // _________________________________________________________
 
@@ -72,7 +72,7 @@ class Camion extends CI_Controller {
     }
     // _________________________________________________________
 
-    // ---------------- Funciones Obtener --------------------------------//
+    // ---------------- Funciones Obtener ---------------- //
 
     // ---------------- Funcion Obtener tipo de residuo
     function Obtener_Residuo()
@@ -95,7 +95,7 @@ class Camion extends CI_Controller {
     }
     // _________________________________________________________
 
-    // ---------------- Funcions VEHICULORS---------------------------------------
+    // ---------------- Funcions VEHICULOS ----------------
 
     // ---------------- Funcion Cargar vista Vehiculos y Datos
     function templateVehiculos()
@@ -103,17 +103,17 @@ class Camion extends CI_Controller {
         // $data[''] = $this->Infracciones->obtener_();
         // $data[''] = $this->Infracciones->obtener_();
         // $data[''] = $this->Infracciones->obtener_();
-        // $data[''] = $this->Infracciones->obtener_();       
+        // $data[''] = $this->Infracciones->obtener_();
 
-        $this->load->view('layout/Vehiculos/registrar_vehiculo', $data);  
+        $this->load->view('layout/vehiculos/registrar_vehiculo');
     }
     // _________________________________________________________
 
     // ---------------- Funcion Registrar Vehiculo
     function Guardar_Vehiculo()
     {
-        $data =  $this->input->post('data');
-        $resp = $this->Camiones->Guardar_Vehiculo($data);
+        $datos =  $this->input->post('datos');
+        $resp = $this->Camiones->Guardar_Vehiculo($datos);
         if($resp){
         echo "ok";
         }else{
@@ -130,10 +130,10 @@ class Camion extends CI_Controller {
     // _________________________________________________________
 
     // ---------------- Funcion Listar Vehiculos
-    function Listar_Vehiculos()
+    function Listar_Vehiculo()
     {
-        $data["vehiculos"] = $this->Vehiculos->Listar_Vehiculos();         
-        $this->load->view('layout/Vehiculos/Lista_Vehiculos',$data);
+        $data["vehiculos"] = $this->Camiones->Listar_Vehiculo();
+        $this->load->view('layout/vehiculos/lista_Vehiculos',$data);
     }
     // _________________________________________________________
 
@@ -158,7 +158,7 @@ class Camion extends CI_Controller {
     }
     // _________________________________________________________
 
-    // ---------------- Funciones Obtener --------------------------------//
+    // ---------------- Funciones Obtener ---------------- //
 
     // ---------------- Funcion Obtener tipo de carnet
     function Obtener_Carnet()
@@ -169,44 +169,3 @@ class Camion extends CI_Controller {
 
 }
 ?>
-
-<!-- class RegistrarC extends CI_Controller {
-    function __construct(){
-
-      parent::__construct();
-      $this->load->helper('estado_helper');
-
-      $this->load->model('general/Estados');
-   }
-
-   function registrarC()
-   {
-       $data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/registrar_contenedor', $data);
-   }
-
-   function templateRc()
-   {
-       $data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/registrar_contenedor',$data);
-   }
-} -->
-
-<!-- 
-class Registrarcontenedor  extends CI_Controller {
-    function __construct()
-    {
-      parent::__construct();
-      $this->load->model('general/Registrarcontenedores');
-    }
-    public function guardarDato()
-    {
-        $datos =  $this->input->post();
-        $resp = $this->Registrarcontenedores->guardarDatos($datos);
-        if($resp){
-          echo "ok";
-        }else{
-          echo "error";
-        }
-    }
-} -->

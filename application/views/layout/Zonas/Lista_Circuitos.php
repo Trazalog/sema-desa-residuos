@@ -274,25 +274,14 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel">Registrar punto critico</h5>
             </div>
-
-
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="" class="registerForm">
-
-
                 <div class="modal-body">
-
-                
-
-                    <div class="row"> 
-
-                        <div class="col-md-12 "> 
-
-                                               
-
+                    <div class="row">
+                        <div class="col-md-12 ">
                             <div class="col-md-6 col-sm-6">
 
                                 <!--_____________________________________________-->
