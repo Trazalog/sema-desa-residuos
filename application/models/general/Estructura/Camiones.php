@@ -3,73 +3,84 @@
 
 class Camiones extends CI_Model
 {
-	function __construct()
-	{
-		parent::__construct();
-    }
-
-    // ----------------------- VEHICULOS ------------------------------------
-
-// Funcion Listar Vehiculos (MODIFICAR)
-
-    function Listar_Vehiculos()
+    function __construct()
     {
-        
-        $aux = $this->rest->callAPI("GET",REST."RECURSO");
-        $aux =json_decode($aux["data"]);       
-        return $aux->Vehiculos->Vehiculo;
+        parent::__construct();
     }
-    
-// Funcion Guardar Vehiculo
 
-function Guardar_Vehiculo($data){
+// ----------------------- VEHICULOS ----------------------
 
-    $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
-        $aux =json_decode($aux["status"]);
-        return $aux;	
-
+// Funcion Listar Vehiculos
+function Listar_Vehiculo()
+{
+    $aux = $this->rest->callAPI("GET",REST."/vehiculos");
+    $aux =json_decode($aux["data"]);
+    return $aux->vehiculos->vehiculo;
 }
+//________________________________________________________
+
+// Funcion Guardar Vehiculo
+function Guardar_Vehiculo($data)
+{
+    $post["post_vehiculo"] = $data;
+    log_message('DEBUG','#Vehiculos/Guardar_Vehiculo: '.json_encode($post));
+    $aux = $this->rest->callAPI("POST",REST."/vehiculos", $post);
+    $aux =json_decode($aux["status"]);
+    return $aux;
+}
+//________________________________________________________
 
 // ---------------------- FUNCIONES OBTENER ----------------------
 
 // Funcion Obtener condicion vehiculo
-
-public function obtener_Condicion(){
+public function obtener_Condicion()
+{
     $aux = $this->rest->callAPI("GET",REST."/transportistas");
-    $aux =json_decode($aux["data"]);    
+    $aux =json_decode($aux["data"]);
     return $aux->condiciones->condicion;
 }
+//________________________________________________________
 
-    // ----------------------- CHOFERES ------------------------------------
+// ---------------------- CHOFERES ----------------------
 
-// Funcion Listar Choferes (MODIFICAR)
-
-function Listar_Choferes()
+// Funcion Listar Choferes
+function Listar_Chofer()
 {
-    
-    $aux = $this->rest->callAPI("GET",REST."RECURSO");
-    $aux =json_decode($aux["data"]);       
-    return $aux->Choferes->Chofer;
+    $aux = $this->rest->callAPI("GET",REST."/choferes");
+    $aux =json_decode($aux["data"]);
+    return $aux->choferes->chofere;
 }
+//________________________________________________________
 
 // Funcion Guardar Vehiculo
-
-function Guardar_Choferes($data){
-
-$aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
+function Guardar_Choferes($data)
+{
+    $post["post_chofer"] = $data;
+    log_message('DEBUG','#Choferes/Guardar_Vehiculo: '.json_encode($post));
+    $aux = $this->rest->callAPI("POST",REST."/choferes", $post);
     $aux =json_decode($aux["status"]);
-    return $aux;	
-
+    return $aux;
 }
+//________________________________________________________
 
 // ---------------------- FUNCIONES OBTENER ----------------------
 
-// Funcion Obtener condicion vehiculo
-
-public function obtener_Carnet(){
-$aux = $this->rest->callAPI("GET",REST."/transportistas");
-$aux =json_decode($aux["data"]);    
-return $aux->carnets->carnet;
+// Funcion Obtener carnet
+public function obtener_Carnet()
+{
+    $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carnet");
+    $aux =json_decode($aux["data"]);
+    return $aux->valores->valor;
 }
+//________________________________________________________
+
+// Funcion Obtener categorias
+public function obtener_Categoria()
+{
+    $aux = $this->rest->callAPI("GET",REST."/tablas/categoria_carnet");
+    $aux =json_decode($aux["data"]);
+    return $aux->valores->valor;
+}
+//________________________________________________________
 
 }

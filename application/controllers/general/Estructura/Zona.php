@@ -7,9 +7,7 @@ class Zona extends CI_Controller {
       parent::__construct();
 
       $this->load->model('general/Estructura/Zonas');
-     
-      
-      
+
    }
 
 // --------------------------------- ZONAS ----------------------------------

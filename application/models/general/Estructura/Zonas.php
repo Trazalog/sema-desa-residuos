@@ -29,10 +29,9 @@ function Guardar_Zona($data){
     log_message('DEBUG','#Zonas/Guardar_Zona: '.json_encode($post));
     $aux = $this->rest->callAPI("POST",REST."/zonas", $post);
     $aux =json_decode($aux["status"]);
-    return $aux;	
-
+    return $aux;
 }
-
+// ____________________________________________________________   
 
 // ---------------------- FUNCIONES CIRCUITOS ----------------------
 
@@ -43,6 +42,7 @@ function Listar_Circuitos()
     $aux =json_decode($aux["data"]);       
     return $aux->circuitos->circuito;
 }
+// ____________________________________________________________   
 
 // Funcion Guardar Circuito
 function Guardar_Circuito($data){
@@ -56,6 +56,7 @@ return $aux;
 
 
 }
+// ____________________________________________________________   
 
 // Funcion Guardar Zona
 function Guardar_Punto_Critico($data){
@@ -63,28 +64,25 @@ function Guardar_Punto_Critico($data){
     $aux =json_decode($aux["status"]);
     return $aux;	
 }
+// ____________________________________________________________   
 
 // Funcion Botener zonas por departamento
-
-function Asignar_Zona($depa_id){
-
-
+function Asignar_Zona($depa_id)
+{
     $aux = $this->rest->callAPI("GET",REST."/zonas/departamento/".$depa_id);
     $aux =json_decode($aux["data"]);
-    return $aux->zonas->zona;	
-
+    return $aux->zonas->zona;
 }
+// ____________________________________________________________   
 
-// Funcion Guardar Asignacion de  Zona
-
-function Insertar_zona($data){
-
+// Funcion Guardar Asignacion de Zona
+function Insertar_zona($data)
+{
     $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
     $aux =json_decode($aux["status"]);
-    return $aux;	
-    
-    }
-
+    return $aux;
+}
+// ____________________________________________________________   
 
 // ---------------------- FUNCIONES OBTENER ----------------------
 
@@ -94,6 +92,7 @@ public function obtener_Circuitos(){
     $aux =json_decode($aux["data"]);
     return $aux->zonas->zona;
 }
+// ____________________________________________________________   
 
 // Funcion Obtener Punto Critico
 
@@ -112,42 +111,54 @@ public function obtener_RSU(){
     $aux =json_decode($aux["data"]);
     return $aux->valores->valor;
 }
+// ____________________________________________________________   
 
 // Funcion Obtener Vehiculo
 public function obtener_Vehiculo(){
     $aux = $this->rest->callAPI("GET",REST."/vehiculos");
+    wso2Msj($aux);
     $aux =json_decode($aux["data"]);
     return $aux->vehiculos->vehiculo;
 }
+// ____________________________________________________________   
 
 // Funcion Obtener Chofer
 public function obtener_Chofer(){
     $aux = $this->rest->callAPI("GET",REST."/choferes");
+    wso2Msj($aux);
     $aux =json_decode($aux["data"]);
     return $aux->choferes->chofere;
 }
+// ____________________________________________________________   
 
 // Funcion Obtener Departamentos
 public function obtener_Departamentos(){
     $aux = $this->rest->callAPI("GET",REST."/departamentos");
+    wso2Msj($aux);
     $aux =json_decode($aux["data"]);
     return $aux->departamentos->departamento;
 }
+// ____________________________________________________________   
 
 // Funcion Obtener Zona
 public function obtener_Zona(){
     $aux = $this->rest->callAPI("GET",REST."/zonas");
+    wso2Msj($aux);
     $aux =json_decode($aux["data"]);
     return $aux->zonas->Zona;
 }
+// ____________________________________________________________   
 
 // Funcion Obtener Zona
-
-public function obtener_Zona_departamento(){
+public function obtener_Zona_departamento()
+{
+    log_message('DEBUG', 'Zonas/obtener_Zona_departamento');
     $aux = $this->rest->callAPI("GET",REST."/zonas/departamento/");
+    wso2Msj($aux);
     $aux =json_decode($aux["data"]);
     return $aux->zonas->zona;
 }
+// ____________________________________________________________   
 
 // Funcion Obtener Circuitos Asignados
 public function obtener_Circuitos_Asignados(){
