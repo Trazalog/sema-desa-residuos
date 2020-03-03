@@ -102,7 +102,7 @@
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                     foreach ($empresa as $i) {
-                                        echo '<option value="'.$i->descripcion.'">'.$i->razon_social.'</option>';
+                                        echo '<option value="'.$i->razon_social.'">'.$i->tran_id.'</option>';
                                     }
                                 ?>
                             </select>
