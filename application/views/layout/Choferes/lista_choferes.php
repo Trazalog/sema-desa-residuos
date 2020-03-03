@@ -2,11 +2,12 @@
     <table id="tabla_choferes" class="table table-bordered table-striped">
         <thead class="thead-dark" bgcolor="#eeeeee">
             <th>Acciones</th>
-            <th>Condicion</th>
-            <th>Capacidad</th>
-            <th>Tara</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Empresa</th>
+            <th>Carnet</th>
+            <th>Categoria</th>
             <th>Habilitacion</th>
-            <th>Registro</th>
         </thead>
 
         <!--__________________BODY TABLA___________________________-->
@@ -25,8 +26,11 @@
                 
             echo   '</td>';
             echo    '<td>'.$fila->nombre.'</td>';
-            echo    '<td>'.$fila->depa_nom.'</td>';                       
-            echo    '<td>'.$fila->descripción.'</td>';
+            echo    '<td>'.$fila->direccion.'</td>';
+            echo    '<td>'.$fila->empresa.'</td>';
+            echo    '<td>'.$fila->carnet.'</td>';
+            echo    '<td>'.$fila->categoria.'</td>';
+            echo    '<td>'.$fila->habilitacion.'</td>';
             echo   '</tr>';
         }
         }
