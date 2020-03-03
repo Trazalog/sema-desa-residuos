@@ -43,7 +43,7 @@ public function obtener_Condicion()
 // ---------------------- CHOFERES ----------------------
 
 // Funcion Listar Choferes
-function Listar_Choferes()
+function Listar_Chofer()
 {
     $aux = $this->rest->callAPI("GET",REST."/choferes");
     $aux =json_decode($aux["data"]);
@@ -52,9 +52,9 @@ function Listar_Choferes()
 //________________________________________________________
 
 // Funcion Guardar Choferes
-function Guardar_Choferes($data)
+function Guardar_Chofer($data)
 {
-    $post["post_chofer"] = $data;
+    $post["chofer"] = $data;
     log_message('DEBUG','#Choferes/Guardar_Chofer: '.json_encode($post));
     $aux = $this->rest->callAPI("POST",REST."/choferes", $post);
     $aux =json_decode($aux["status"]);

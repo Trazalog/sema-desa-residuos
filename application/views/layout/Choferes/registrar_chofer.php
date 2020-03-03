@@ -102,7 +102,7 @@
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                     foreach ($empresa as $i) {
-                                        echo '<option value="'.$i->razon_social.'">'.$i->tran_id.'</option>';
+                                        echo '<option value="'.$i->tran_id.'">'.$i->razon_social.'</option>';
                                     }
                                 ?>
                             </select>
@@ -639,7 +639,7 @@
             $.ajax({
                 type: "POST",
                 data: {datos},
-                url: "general/Estructura/Chofer/Guardar_Chofer",
+                url: "general/Estructura/Camion/Guardar_Chofer",
                 success: function (r) {
                     console.log(r);
                     if (r == "ok") {
@@ -851,15 +851,6 @@
                 validators: {
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada no debe ser un numero entero'
                     }
                 }
             },
