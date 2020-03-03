@@ -57,7 +57,7 @@ class Zona extends CI_Controller {
       function Listar_Zona()
       {
          $data["zonas"] = $this->Zonas->Listar_Zonas();         
-         $this->load->view('layout/Zonas/Lista_Zona',$data);
+         $this->load->view('layout/Zonas/Lista_zona',$data);
       }
 
    
@@ -104,9 +104,11 @@ class Zona extends CI_Controller {
    function Guardar_Circuito()
    {
 
-      
-      $datos =  $this->input->post('datos');
-      $resp = $this->Zonas->Guardar_Circuito($datos);
+      // var_dump($data);
+      $datos_circuitos =  $this->input->post('datos_circuito');
+      $datos_puntos_criticos =  $this->input->post('datos_puntos_criticos');
+      $resp = $this->Zonas->Guardar_Circuito( $datos_circuitos);
+      $resp = $this->Zonas->Guardar_punto_critico($datos_puntos_criticos);
       if($resp){
       echo "ok";
       }else{
@@ -130,16 +132,16 @@ class Zona extends CI_Controller {
 
     // ---------------- Funcion Registrar Punto critico
    
-    function Guardar_PuntosCriticos()
-    {
-         $datos =  $this->input->post('datos');
-         $resp = $this->Zonas->Guardar_Punto_Critico($datos);
-         if($resp){
-         echo "ok";
-         }else{
-         echo "error";
-         }
-    }
+   //  function Guardar_PuntosCriticos()
+   //  {
+   //       $datos =  $this->input->post('datos');
+   //       $resp = $this->Zonas->Guardar_Punto_Critico($datos);
+   //       if($resp){
+   //       echo "ok";
+   //       }else{
+   //       echo "error";
+   //       }
+   //  }
 
    // ---------------- Funcion Insertar zona a circuitos
 

@@ -15,25 +15,23 @@ class OrdenTransporte extends CI_Controller {
   
 
 
-  // ---------------- Funcion Cargar vista Orden de transporte MUNICIPIOS y Datos
+  // ---------------- Funcion Cargar vista Orden de transporte  y Datos
 
       // ---------------- Funcion Cargar vista Orden de transporte y Datos
 
       function templateOrdentransporte()
-      {
-          
-        $data['empresa'] = $this->Empresas->obtener();
-        $data['d'] = $this->DisposisionesFinales->obtener();
-        $data['tipoResiduo'] = $this->TipoResiduos->obtener();
-        $data['fecha'] = date('Y-m-d');
+      {     
+       
 
-        // $data[''] = $this->OrdenTransportes->obtener_();
-        // $data[''] = $this->OrdenTransportes->obtener_();
-        // $data[''] = $this->OrdenTransportes->obtener_();
+        $data['Tiporesiduo'] = $this->OrdenTransportes->obtener_Tipo_residuo();
+        $data['empresa'] = $this->OrdenTransportes->obtener_();
+          // $data[''] = $this->OrdenTransportes->obtener_();
         // $data[''] = $this->OrdenTransportes->obtener_();
         
 
-        $this->load->view('layout/orden_transporte', $data);
+        $this->load->view('layout/Ordenes/orden_transporte',$data);
+        
+        
           
       }
    
@@ -42,23 +40,10 @@ class OrdenTransporte extends CI_Controller {
        function Guardar_OrdenTransporte()
        {
 
-        $datos =  $this->input->post('datos');
-        $resp = $this->OrdenTransportes->Guardar_OrdenT($datos);
-        if($resp){
-        echo "ok";
-        }else{
-        echo "error";
-        }
+       
            
-       }
-   
-       // ---------------- Funcion Crear Orden de transporte
-   
-      function Crear_OrdenTransporte()
-      {
-          
-          
-      }
+       }  
+       
 
       // ---------------- Funcion Listar OrdenTransporte
    
@@ -67,27 +52,46 @@ class OrdenTransporte extends CI_Controller {
           
           
       }
+   
 
-   
-      // ---------------- Funcion Modificar OrdenTransporte
-   
-      function Modificar_OrdenTransporte()
-      {
-          
+       
+
+  // ---------------- Funcion Cargar vista Recepcion de Orden y Datos
+
+      // ---------------- Funcion Cargar vista Recepcion de orden
+
+      function templateRecepcionOrden()
+      
+      {          
+       
+
+        // $data[''] = $this->OrdenTransportes->obtener_();
+        // $data[''] = $this->OrdenTransportes->obtener_();
+        // $data[''] = $this->OrdenTransportes->obtener_();
+        // $data[''] = $this->OrdenTransportes->obtener_();
+        
+
+        $this->load->view('layout/Ordenes/recepcion_de_orden', $data);
           
       }
    
-       // ---------------- Funcion Borrar OrdenTransporte
+       // ---------------- Funcion Registrar Orden Transporte
    
-       function Borrar_OrdenTransporte()
+       function Guardar_RecepcionOrden()
        {
-           
+
+        
            
        }
-
+   
        
-    
-       
+      // ---------------- Funcion Listar Recepcion Orden
+   
+      function Listar_RecepcionOrden()
+      {
+          
+          
+      }       
 
        
    

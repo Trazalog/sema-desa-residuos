@@ -123,9 +123,9 @@
                                 <select class="form-control select2 select2-hidden-accesible" id="Zonag">
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                    foreach ($Zonag as $i) {
-                                        echo '<option>'.$i->nombre.'</option>';
-                                    }
+                                    // foreach ($Zonag as $i) {
+                                    //     echo '<option>'.$i->nombre.'</option>';
+                                    // }
                                     ?>
                                 </select>
                             </div>
@@ -192,9 +192,9 @@
                                 <select class="form-control select2 select2-hidden-accesible" id="Rsu">
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                        foreach ($Rsu as $i) {
-                                            echo '<option>'.$i->nombre.'</option>';
-                                        }
+                                        // foreach ($Rsu as $i) {
+                                        //     echo '<option>'.$i->nombre.'</option>';
+                                        // }
                                     ?>
                                     </select>
                             </div>

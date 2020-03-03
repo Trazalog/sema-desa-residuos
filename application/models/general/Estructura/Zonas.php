@@ -47,7 +47,8 @@ function Listar_Circuitos()
 // Funcion Guardar Circuito
 function Guardar_Circuito($data){
 
-var_dump($data);
+// var_dump($data);
+$data['usuario_app'] = userNick();
 $post["post_circuito"] = $data;
 log_message('DEBUG','#Zonas/Guardar_Circuito: '.json_encode($post));
 $aux = $this->rest->callAPI("POST",REST."/circuitos", $post);
@@ -57,12 +58,21 @@ return $aux;
 
 }
 
-// Funcion Guardar Zona
-function Guardar_Punto_Critico($data){
-    $aux = $this->rest->callAPI("POST",REST."/RECURSO",$data);
+// Funcion Guardar Punto Critico
+function Guardar_punto_critico($data){
+
+    // var_dump($data);
+    $data['usuario_app'] = userNick();
+    $post["post_punto_critico"] = $data;   
+    log_message('DEBUG','#Zonas/Guardar_punto_critico: '.json_encode($post));
+    $aux = $this->rest->callAPI("POST",REST."/puntosCriticos", $post);
     $aux =json_decode($aux["status"]);
-    return $aux;	
+    return $aux;
+    
+    
 }
+
+
 
 // Funcion Botener zonas por departamento
 

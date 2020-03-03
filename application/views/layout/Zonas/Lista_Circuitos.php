@@ -362,8 +362,6 @@ $("#selectDepto").change(function(){
                     $('#selectZona').append("<option value='" + result[index].zona_id + "'>" +result[index].zona_nom +"</option"); 
 
                    
-
-
                     
                 }
             },

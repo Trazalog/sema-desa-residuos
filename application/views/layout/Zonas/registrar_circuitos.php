@@ -72,7 +72,8 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="Descripcion">Descripcion:</label>
-                    <textarea style="resize: none;" type="text" class="form-control" name="descripcion" id="descripcion"></textarea>
+                    <textarea style="resize: none;" type="text" class="form-control" name="descripcion"
+                        id="descripcion"></textarea>
                 </div>
             </div>
             <!--_____________________________________________-->
@@ -127,7 +128,7 @@
             <div class="col-md-12">
                 <div class="col-md-6 col-sm-6 col-xs-12">
 
-                    
+
                     <form action="cargar_archivo" method="post" enctype="multipart/form-data">
                         <input type="file" name="imagen">
                     </form>
@@ -181,7 +182,7 @@
                         <label for="Codigo">Nombre:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                            <input type="text" class="form-control" name="" id="" readonly>
+                            <input type="text" class="form-control" name="nombre" id="nombre" >
                         </div>
                     </div>
                 </div>
@@ -195,7 +196,7 @@
                         <label for="Codigo">Descripcion:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                            <input type="text" class="form-control" name="" id="" readonly>
+                            <input type="text" class="form-control" name="descripcion" id="descripcion" >
                         </div>
                     </div>
                 </div>
@@ -209,7 +210,7 @@
                         <label for="Codigo">Latitud:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                            <input type="text" class="form-control" name="" id="" readonly>
+                            <input type="text" class="form-control" name="lat" id="lat" >
                         </div>
                     </div>
                 </div>
@@ -223,7 +224,7 @@
                         <label for="Codigo">Longitud:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                            <input type="text" class="form-control" name="" id="" readonly>
+                            <input type="text" class="form-control" name="lng" id="lng" >
                         </div>
                     </div>
                 </div>
@@ -306,7 +307,7 @@
                                     // }
                                     // }
                                     
-                                    // ?>
+                                    ?>
 
                         </tbody>
                     </table>
@@ -482,37 +483,63 @@
         );
 
         $('#formPuntos')[0].reset();
-        $('select').select2().trigger('change');
+        
     }
 
-
     //<!--______________________________--> 
-    //<!-- SCRIPT GUARDAR CIRCUITO -->
+    //<!--  GUARDAR CIRCUITO -->
 
 
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Circuitos");
 
     function Guardar_Circuito() {
 
-        // datos = $('#formCircuitos').serialize();
+  //---------------------- Formulario Circuitos ----------------------------------------------
 
-        var datos = new FormData($('#formCircuitos')[0]);
-        datos = formToObject(datos);
-        // datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
-        datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
-        console.log(datos);
+        var datos_circuito = new FormData($('#formCircuitos')[0]);
+        datos_circuito = formToObject(datos);
+
+        //---------------------- Formulario Puntos Criticos ----------------------------------------
+
+        // var datos_puntos_criticos = new FormData($('#puntos_criticos')[0]);
+        // datos_puntos_criticos = formToObject(datos);
+
+        var data = [];
+            $('#datos tbody tr').each(function() {
+                data.push(getJson(this));
+            });
+
+            if (!data.lenght) {
+                alert('Sin Datos para Registrar.');
+                return;
+            }
 
 
+            console.table(data);
+    
+        
 
+        //---------------------- Imagen y Usuario ----------------------------------------
+
+
+        // datos_circuito.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
+        // datos_circuito.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
+        console.table(datos);
 
         //--------------------------------------------------------------
+        
+
+        
 
         if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
+           
             $.ajax({
                 type: "POST",
                 data: {
-                    datos
+                    datos_circuito, datos_puntos_criticos, data
                 },
+
+               
                 url: "general/Estructura/Zona/Guardar_Circuito",
                 success: function(r) {
                     console.log(r);
@@ -520,7 +547,7 @@
 
                         $("#cargar_tabla").load(
                             "<?php echo base_url(); ?>index.php/general/Estructura/Zona/Lista_Circuitos"
-                            );
+                        );
                         alertify.success("Agregado con exito");
 
                         $('#formCircuitos').data('bootstrapValidator').resetForm();
@@ -544,25 +571,7 @@
         }
     }
     </script>
-    <!--_____________________________________________-->
-    <!-- SCRIPT CONCATENAR FORMULARIOS -->
 
-    <!-- <script>
-
-function obtenerFormularios(){
-
-    var frmCircuitos = new FormData($('#formCircuitos')[0]);
-    var frmPuntos = new FormData($('#formPuntos')[0]);
-    var dataForm = mergeFD(frmCircuitos , frmPuntos );
-    
-    console.log(dataForm);
-
-    return formToObject(dataForm);
-}
-
-
-</script>
- -->
 
     <!--_____________________________________________-->
     <!-- Agregar punto critico -->
@@ -608,11 +617,7 @@ function Agregar_punto() {
         $("#boxDatos").show();
 
     });
-    </script>
-
-    <!--_____________________________________________-->
-
-    <script>
+   
     $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
