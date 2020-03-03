@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class Camiones extends CI_Model
 {
     function __construct()
@@ -44,7 +43,7 @@ public function obtener_Condicion()
 // ---------------------- CHOFERES ----------------------
 
 // Funcion Listar Choferes
-function Listar_Chofer()
+function Listar_Choferes()
 {
     $aux = $this->rest->callAPI("GET",REST."/choferes");
     $aux =json_decode($aux["data"]);
@@ -52,11 +51,11 @@ function Listar_Chofer()
 }
 //________________________________________________________
 
-// Funcion Guardar Vehiculo
+// Funcion Guardar Choferes
 function Guardar_Choferes($data)
 {
     $post["post_chofer"] = $data;
-    log_message('DEBUG','#Choferes/Guardar_Vehiculo: '.json_encode($post));
+    log_message('DEBUG','#Choferes/Guardar_Chofer: '.json_encode($post));
     $aux = $this->rest->callAPI("POST",REST."/choferes", $post);
     $aux =json_decode($aux["status"]);
     return $aux;
@@ -80,6 +79,15 @@ public function obtener_Categoria()
     $aux = $this->rest->callAPI("GET",REST."/tablas/categoria_carnet");
     $aux =json_decode($aux["data"]);
     return $aux->valores->valor;
+}
+//________________________________________________________
+
+// Funcion Obtener empresa
+public function obtener_Empresa()
+{
+    $aux = $this->rest->callAPI("GET",REST."/transportistas");
+    $aux =json_decode($aux["data"]);
+    return $aux->transportistas->transportista;
 }
 //________________________________________________________
 

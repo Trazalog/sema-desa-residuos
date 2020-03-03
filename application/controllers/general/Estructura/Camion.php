@@ -6,7 +6,6 @@ class Camion extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('general/Estructura/Camiones');
-        // $this->load->model('general/Estructura/Contenedores');
     }
 
 // ---------------- Funcions CHOFERES ----------------
@@ -16,10 +15,10 @@ class Camion extends CI_Controller {
     {
         $data['carnet'] = $this->Camiones->obtener_Carnet();
         $data['categoria'] = $this->Camiones->obtener_Categoria();
-        // $data[''] = $this->Chofer->obtener_();
+        $data['empresa'] = $this->Camiones->obtener_Empresa();
         // $data[''] = $this->Chofer->obtener_();
 
-        $this->load->view('layout/choferes/registrar_chofer',$data);
+        $this->load->view('layout/Choferes/registrar_chofer',$data);
     }
     // _________________________________________________________
 
@@ -47,7 +46,7 @@ class Camion extends CI_Controller {
     function Listar_Chofer()
     {
         $data["choferes"] = $this->Camiones->Listar_Chofer();
-        $this->load->view('layout/choferes/lista_choferes',$data);
+        $this->load->view('layout/Choferes/lista_choferes',$data);
     }
     // _________________________________________________________
 
@@ -105,7 +104,7 @@ class Camion extends CI_Controller {
         // $data[''] = $this->Infracciones->obtener_();
         // $data[''] = $this->Infracciones->obtener_();
 
-        $this->load->view('layout/vehiculos/registrar_vehiculo');
+        $this->load->view('layout/Vehiculos/registrar_vehiculo',$data);
     }
     // _________________________________________________________
 
@@ -133,7 +132,7 @@ class Camion extends CI_Controller {
     function Listar_Vehiculo()
     {
         $data["vehiculos"] = $this->Camiones->Listar_Vehiculo();
-        $this->load->view('layout/vehiculos/lista_Vehiculos',$data);
+        $this->load->view('layout/Vehiculos/lista_vehiculos',$data);
     }
     // _________________________________________________________
 
