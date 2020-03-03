@@ -98,8 +98,21 @@
                     <!--Empresa-->
                         <div class="form-group">
                             <label for="Empresa">Empresa:</label>
-                            <input type="text" class="form-control" id="Empresa" name="empresa">
+                            <select class="form-control select2 select2-hidden-accesible" id="Empresa" name="empresa">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                    foreach ($empresa as $i) {
+                                        echo '<option value="'.$i->descripcion.'">'.$i->razon_social.'</option>';
+                                    }
+                                ?>
+                            </select>
                         </div>
+
+
+                        <!-- <div class="form-group">
+                            <label for="Empresa">Empresa:</label>
+                            <input type="text" class="form-control" id="Empresa" name="empresa">
+                        </div> -->
                 ​    <!--_____________________________________________________________-->
 
                     <!--Carnet-->
@@ -183,9 +196,9 @@
 
                 </div>
 
-                    <!--Boton de guardado--> 
+                    <!--Boton de guardado-->
                         <div class="col-md-12"><hr></div><br>
-                        <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+                        <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Chofer()">Guardar</button>
                     <!--_____________________________________________________________--> 
 
             </form>
@@ -198,9 +211,19 @@
 <!---//////////////////////////////////////--- TABLA ---///////////////////////////////////////////////////////----->
 
 <div class="box box-primary">
+    <div class="box-body">
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6"></div>
+            </div>
+            <div class="row"><div class="col-sm-12 table-scroll" id="cargar_tabla">
+            </div>
+        </div>
+
 
     <!--__________________TABLA___________________________-->
-<!--
+    <!--
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">
@@ -242,7 +265,7 @@
                         </table>-->
                     <!--__________________FIN TABLA___________________________-->
 
-<!--                </div>
+    <!--                </div>
             </div>
         </div>
     </div>-->
@@ -387,8 +410,8 @@
                             -->
                     ​    <!--_____________________________________________________________-->
 
-                </div> 
-            </form>
+                    </div> 
+                </form>
 
         <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
@@ -396,16 +419,17 @@
             <div class="col-md-12"><hr></div>
 
             <div class="modal-footer">
-            <div class="col-md-12">
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btnsaveEdit">Guardar</button>                    
-                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                <div class="col-md-12">
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary" id="btnsaveEdit">Guardar</button>                    
+                        <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
@@ -550,6 +574,7 @@
     </div>
 </div>
 
+
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
 <!--_____________________________________________________________-->
@@ -597,7 +622,7 @@
 
 <!--Script para cargar el listado-->
 <script>
-    $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/choferes/listar_choferes");
+    $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Camion/Listar_Chofer");
     function Guardar_Chofer() {
 
         // datos = $('#formZonas').serialize();
@@ -618,7 +643,7 @@
                 success: function (r) {
                     console.log(r);
                     if (r == "ok") {
-                        // //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
+                        // esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
                         // var t = $('#tabla_infracciones').DataTable();
                         // var fila = t.row.add([
                         //     N° Acta,
@@ -641,7 +666,7 @@
                         // $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
                         // $("#boxDatos").hide(500);
                         // $("#botonAgregar").removeAttr("disabled");
-                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/choferes/listar_choferes");
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Camion/Listar_Chofer");
                         alertify.success("Agregado con exito");
 
                         $('#formChoferes').data('bootstrapValidator').resetForm();

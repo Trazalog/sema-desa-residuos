@@ -530,7 +530,7 @@ function agregarDato(){
 
         //--------------------------------------------------------------
 
-        if ($("#formZonas").data('bootstrapValidator').isValid()) {
+        if ($("#formVehiculos").data('bootstrapValidator').isValid()) {
             $.ajax({
                 type: "POST",
                 data: {datos},
