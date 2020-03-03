@@ -79,7 +79,7 @@ public function obtener_Circuitos(){
 
 // Funcion Obtener Chofer
 
-public function obtener_Chofer(){
+public function obtener_chofer(){
     $aux = $this->rest->callAPI("GET",REST."/choferes/".);
     $aux =json_decode($aux["data"]);
     return $aux->choferes->chofer;
@@ -92,6 +92,16 @@ public function obtener_Chofer(){
 //     $aux =json_decode($aux["data"]);
 //     return $aux->->;
 // }
+
+
+// Funcion Obtener Vehiculo
+
+// public function obtener_vehiculo(){
+//     $aux = $this->rest->callAPI("GET",REST."/vehiculos/transp/");
+//     $aux =json_decode($aux["data"]);
+//     return $aux->->;
+// }
+
 
 // ---------------------- FUNCIONES RECEPCION DE ORDEN  ----------------------
 

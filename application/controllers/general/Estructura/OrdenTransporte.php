@@ -24,10 +24,11 @@ class OrdenTransporte extends CI_Controller {
        
 
         $data['Tiporesiduo'] = $this->OrdenTransportes->obtener_Tipo_residuo();
-        $data['empresa'] = $this->OrdenTransportes->obtener_();
-          // $data[''] = $this->OrdenTransportes->obtener_();
-        // $data[''] = $this->OrdenTransportes->obtener_();
-        
+        $data['empresa'] = $this->OrdenTransportes->obtener_empresa();
+          // $data['vehiculo'] = $this->OrdenTransportes->obtener_vehiculo();
+          // $data['chofer'] = $this->OrdenTransportes->obtener_chofer();
+           // $data['chofer'] = $this->OrdenTransportes->obtener_chofer();
+       
 
         $this->load->view('layout/Ordenes/orden_transporte',$data);
         

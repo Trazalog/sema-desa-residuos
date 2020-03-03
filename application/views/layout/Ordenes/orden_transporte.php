@@ -86,6 +86,11 @@
                         <div class="form-group">
                             <label for="selecmov">Movilidad:</label>
                             <select multiple="" class="form-control" id="selecmov">
+                            <?php
+                                // foreach ($vehiculo as $i) {
+                                //     echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                                // }
+                                ?>
                             </select>
                         </div>
                         <!--_______________________-->
