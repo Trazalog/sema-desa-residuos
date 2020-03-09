@@ -23,7 +23,7 @@
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
         <div class="box-tittle">
-        <h5>Informacion</h5>  
+            <h5>Informacion</h5>
         </div>
         <div class="box-tools pull-right">
             <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
@@ -42,21 +42,21 @@
                     <!--Nombre-->
                         <div class="form-group">
                             <label for="Nombre">Nombre:</label>
-                            <input type="text" class="form-control" id="Nombre" name="nombre">
+                            <input type="text" class="form-control" id="nombre" name="nombre">
                         </div>
                 ​    <!--_____________________________________________________________-->
 
                     <!--Apellido-->
                         <div class="form-group">
                             <label for="Apellido">Apellido:</label>
-                            <input type="text" class="form-control" id="Apellido" name="apellido">
+                            <input type="text" class="form-control" id="apellido" name="apellido">
                         </div>
                 ​    <!--_____________________________________________________________-->
 
                     <!--DNI-->
                         <div class="form-group">
                             <label for="DNI">DNI:</label>
-                            <input type="text" class="form-control" id="DNI" name="dni">
+                            <input type="text" class="form-control" id="documento" name="documento">
                         </div>
                 ​    <!--_____________________________________________________________-->
 
@@ -67,21 +67,21 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control" id="FechaNacimiento" name="fecha_nacimiento"></div>
+                            <input type="date" class="form-control" id="fec_nacimiento" name="fec_nacimiento"></div>
                         </div>
                 ​    <!--_____________________________________________________________-->
 
                     <!--Direccion-->
                         <div class="form-group">
                             <label for="Direccion">Direccion:</label>
-                            <input type="text" class="form-control" id="Direccion" name="direccion">
+                            <input type="text" class="form-control" id="direccion" name="direccion">
                         </div>
                 ​    <!--_____________________________________________________________-->
 
                     <!--Celular-->
                         <div class="form-group">
                             <label for="Celular">Celular:</label>
-                            <input type="text" class="form-control" id="Celular" name="celular">
+                            <input type="text" class="form-control" id="celular" name="celular">
                         </div>
                     <!--_____________________________________________________________-->
 
@@ -91,14 +91,14 @@
                     <!--Codigo-->
                         <div class="form-group">
                             <label for="Codigo">Codigo:</label>
-                            <input type="text" class="form-control" id="Codigo" name="codigo">
+                            <input type="text" class="form-control" id="codigo" name="codigo">
                         </div>
         ​            <!--_____________________________________________________________-->
 
                     <!--Empresa-->
                         <div class="form-group">
                             <label for="Empresa">Empresa:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="Empresa" name="empresa">
+                            <select class="form-control select2 select2-hidden-accesible" id="tran_id" name="tran_id">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                     foreach ($empresa as $i) {
@@ -107,18 +107,12 @@
                                 ?>
                             </select>
                         </div>
-
-
-                        <!-- <div class="form-group">
-                            <label for="Empresa">Empresa:</label>
-                            <input type="text" class="form-control" id="Empresa" name="empresa">
-                        </div> -->
                 ​    <!--_____________________________________________________________-->
 
                     <!--Carnet-->
                         <div class="form-group">
                             <label for="Carnet">Carnet:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="Carnet" name="carnet">
+                            <select class="form-control select2 select2-hidden-accesible" id="carnet" name="carnet">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                     foreach ($carnet as $i) {
@@ -132,7 +126,7 @@
                     <!--Categoria-->
                         <div class="form-group">
                             <label for="Categoria">Categoria:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="Categoria" name="categoria">
+                            <select class="form-control select2 select2-hidden-accesible" id="cach_id" name="cach_id">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                     foreach ($categoria as $i) {
@@ -150,23 +144,23 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="date" class="form-control pull-right" id="datepicker" name="vencimiento">
+                                <input type="date" class="form-control pull-right" id="vencimiento" name="vencimiento">
                             </div>
                             <!-- /.input group -->
                         </div>
                 ​    <!--_____________________________________________________________-->
 
-                    <!--Habilitacion-->
+                    <!--Estado-->
                         <div class="form-group">
-                            <label for="Habilitacion">Habilitacion:</label>
-                            <input type="text" class="form-control" id="Habilitacion" name="habilitacion">
+                            <label for="Habilitacion">Estado:</label>
+                            <input type="text" class="form-control" id="habilitacion" name="habilitacion">
                         </div>
                 ​    <!--_____________________________________________________________-->
-                    
+
                     <!--Adjuntador de imagenes-->
                         <!--
                         <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                        <input type="file" id="imgarch" name="upload" data-required="true">
+                           <input type="file" id="imgarch" name="upload" data-required="true">
                         </form>
                         -->
                 ​    <!--_____________________________________________________________-->
@@ -181,27 +175,27 @@
 
                 <div class="col-md-6">
 
-                        <!--
-                        <button type="file" name="upload" class="btn btn-default btn-circle" id="file" name="file" accept=".jpg, .jpeg, .png" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                        </button>
-                        -->
-
-                        <button type="file" class=" btn btn-default btn-circle pull-left" id="file" name="file" accept=".jpg, .jpeg, .png" >
-                            <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                        </button>
-                        <small for="agregar" class="form-label">Adjuntar imagen</small>
+                    <!--
+                    <button type="file" name="upload" class="btn btn-default btn-circle" id="file" name="file" accept=".jpg, .jpeg, .png" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                    </button>
+                    -->
+                    <!-- 
+                    <button type="file" class=" btn btn-default btn-circle pull-left" id="file" name="file" accept=".jpg, .jpeg, .png" >
+                        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                    </button>
+                    <small for="agregar" class="form-label">Adjuntar imagen</small> -->
 
                     <!--_____________________________________________________________-->
 
-                </div>
+            </form>
+        </div>
 
                     <!--Boton de guardado-->
                         <div class="col-md-12"><hr></div><br>
                         <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Chofer()">Guardar</button>
                     <!--_____________________________________________________________--> 
 
-            </form>
         </div>
     </div>
 </div>
@@ -231,7 +225,7 @@
                 <div class="col-sm-6"></div>
             </div>
             <div class="row">
-                <div class="col-sm-12 table-scroll">
+                <div class="col-sm-12 table-scroll">-->
 
                     <!--__________________HEADER TABLA___________________________-->
 
@@ -430,7 +424,6 @@
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
@@ -447,7 +440,7 @@
 
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+                <!--__________________ FORMULARIO MODAL ___________________________-->
 
                 <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -525,7 +518,7 @@
                         <!--Categoria-->
                             <div class="form-group">
                                 <label for="Categoria">Categoria:</label>
-                                <input type="text" class="form-control" id="Categoria" name="categoria" readonly>
+                                <input type="text" class="form-control" id="" name="" readonly>
                             </div>
                     ​    <!--_____________________________________________________________-->
 
@@ -555,7 +548,7 @@
                             </form> -->
                     ​    <!--_____________________________________________________________-->
 
-                    </div>  
+                    </div>
                 </form>
 
                 <!--__________________ FIN FORMULARIO MODAL ___________________________-->
@@ -574,7 +567,6 @@
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
 <!--_____________________________________________________________-->
@@ -590,32 +582,11 @@
         $("#boxDatos").focus();
         $("#boxDatos").show();
     });
-</script>
-​<!--_____________________________________________________________-->
-
-<!-- Script Data-Tables-->
-<script>
     $("#btnclose").on("click", function() {
-    $("#boxDatos").hide(500);
-    $("#botonAgregar").removeAttr("disabled");
-    $('#formChofer').data('bootstrapValidator').resetForm();
-    $("#formChofer")[0].reset();
-    $('#selecmov').find('option').remove();
-    $('#chofer').find('option').remove();
-    });
-</script>
-​<!--_____________________________________________________________-->
-
-<!-- script que muestra box de datos al dar click en boton agregar -->
-<script>
-    $("#botonAgregar").on("click", function() {
-        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-        $("#nro").val(aleatorio);
-        $("#botonAgregar").attr("disabled", "");
-        //$("#boxDatos").removeAttr("hidden");
-        $("#boxDatos").focus();
-        $("#boxDatos").show();
+        $("#boxDatos").hide(500);
+        $("#botonAgregar").removeAttr("disabled");
+        $('#formChofer').data('bootstrapValidator').resetForm();
+        $("#formChofer")[0].reset();
     });
 </script>
 ​<!--_____________________________________________________________-->
@@ -625,52 +596,28 @@
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Camion/Listar_Chofer");
     function Guardar_Chofer() {
 
-        // datos = $('#formZonas').serialize();
-
-        var datos = new FormData($('#formChoferes')[0]);
+        var datos = new FormData($('#formChofer')[0]);
         datos = formToObject(datos);
         datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
-        console.log(datos);
+        console.table(datos);
 
         //--------------------------------------------------------------
 
-        if ($("#formChoferes").data('bootstrapValidator').isValid()) {
+        if ($("#formChofer").data('bootstrapValidator').isValid()) {
             $.ajax({
                 type: "POST",
                 data: {datos},
                 url: "general/Estructura/Camion/Guardar_Chofer",
                 success: function (r) {
-                    console.log(r);
+                    console.table(r);
                     if (r == "ok") {
-                        // esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
-                        // var t = $('#tabla_infracciones').DataTable();
-                        // var fila = t.row.add([
-                        //     N° Acta,
-                        //     Tipo de infraccion,
-                        //     Inspector,
-                        //     Destino,
 
-                        //     //agrega los iconos correspondientes
-                        //     '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
-                        // ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
-                        // t.draw(false);
-
-                        // aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
-                        // localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
-
-                        // $('#FormInfraccion').data('bootstrapValidator').resetForm();
-                        // $("#FormInfraccion")[0].reset();
-                        // $('#selecmov').find('option').remove();
-                        // $('#chofer').find('option').remove();
-                        // $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
-                        // $("#boxDatos").hide(500);
-                        // $("#botonAgregar").removeAttr("disabled");
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Camion/Listar_Chofer");
                         alertify.success("Agregado con exito");
 
-                        $('#formChoferes').data('bootstrapValidator').resetForm();
-                        $("#formChoferes")[0].reset();
+                        $('#formChofer').data('bootstrapValidator').resetForm();
+                        $("#formChofer")[0].reset();
 
                         $("#boxDatos").hide(500);
                         $("#botonAgregar").removeAttr("disabled");
@@ -685,45 +632,6 @@
     }
 </script>
 <!--_____________________________________________________________-->
-
-<!-- Script Agregar datos de registrar_generadores-->
-<script>
-    function agregarDato(){
-        console.log("entro a agregar datos");
-        $('#formChofer').on('submit', function(e){
-        e.preventDefault();
-        var me = $(this);
-        if ( me.data('requestRunning') ) {return;}
-        me.data('requestRunning', true);
-        datos=$('#formChofer').serialize();
-        console.log(datos);
-
-            //--------------------------------------------------------------
-
-        $.ajax({
-                    type:"POST",
-                    data:datos,
-                    url:"ajax/Registrarchofer/guardarDato",
-                    success:function(r){
-                        if(r == "ok"){
-                            //console.log(datos);
-                            $('#formChofer')[0].reset();
-                            alertify.success("Agregado con exito");
-                        }
-                        else{
-                            console.log(r);
-                            $('#formChofer')[0].reset();
-                            alertify.error("error al agregar");
-                        }
-                    },
-                    complete: function() {
-                        me.data('requestRunning', false);
-                    }
-                });
-        });
-    }
-</script>
-​<!--_____________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
 <script>
@@ -770,7 +678,7 @@
                     }
                 }
             },
-            dni: {
+            documento: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -787,7 +695,7 @@
                     }
                 }
             },
-            fecha_nacimiento: {
+            fec_nacimiento: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -834,19 +742,10 @@
                 validators: {
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada no debe ser un numero entero'
                     }
                 }
             },
-            empresa: {
+            tran_id: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -862,7 +761,7 @@
                     }
                 }
             },
-            categoria: {
+            cach_id: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
