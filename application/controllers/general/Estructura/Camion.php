@@ -17,6 +17,7 @@ class Camion extends CI_Controller {
         $data['categoria'] = $this->Camiones->obtener_Categoria();
         $data['empresa'] = $this->Camiones->obtener_Empresa();
         // $data[''] = $this->Chofer->obtener_();
+        // log_message('DEBUG','ZEROBERTO TROLO'.json_encode($data['empresa']));
 
         $this->load->view('layout/Choferes/registrar_chofer',$data);
     }
@@ -71,7 +72,7 @@ class Camion extends CI_Controller {
     }
     // _________________________________________________________
 
-    // ---------------- Funciones Obtener ---------------- //
+// ---------------- Funciones Obtener ---------------- //
 
     // ---------------- Funcion Obtener tipo de residuo
     function Obtener_Residuo()
@@ -94,7 +95,7 @@ class Camion extends CI_Controller {
     }
     // _________________________________________________________
 
-    // ---------------- Funcions VEHICULOS ----------------
+// ---------------- Funciones VEHICULOS ----------------
 
     // ---------------- Funcion Cargar vista Vehiculos y Datos
     function templateVehiculos()
@@ -104,7 +105,7 @@ class Camion extends CI_Controller {
         // $data[''] = $this->Infracciones->obtener_();
         // $data[''] = $this->Infracciones->obtener_();
 
-        $this->load->view('layout/Vehiculos/registrar_vehiculo',$data);
+        $this->load->view('layout/Vehiculos/registrar_vehiculo', $data);
     }
     // _________________________________________________________
 
@@ -157,7 +158,7 @@ class Camion extends CI_Controller {
     }
     // _________________________________________________________
 
-    // ---------------- Funciones Obtener ---------------- //
+// ---------------- Funciones Obtener ---------------- //
 
     // ---------------- Funcion Obtener tipo de carnet
     function Obtener_Carnet()
