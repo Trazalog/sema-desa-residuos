@@ -1,4 +1,16 @@
 endpoint: 'http://pc-pc:8280/services/semaresiduosDS'	
+-- arrays
+  {
+  "entries": {
+      "entry": [
+          {
+          "field1": "$column1",
+          "field2": "$column2"
+          }
+      ]
+      }
+  }
+
 
 //TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
   - falta saber de donde sale el destino acta para elegir
@@ -6,36 +18,39 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
 -- actaInfraccionSet
   recurso: /actaInfraccion
   metodo: post
-  insert into fis.actas_infraccion (numero_acta, descripcion, tipo, sotr_id, inspector_id, tran_id, destino) values(CAST(:numero_acta AS INTEGER), :descripcion, :tipo, CAST(:sotr_id AS INTEGER), CAST(:inspector_id AS INTEGER), CAST(:tran_id AS INTEGER), :destino);
+  insert into fis.actas_infraccion (numero_acta, descripcion, tipo, sotr_id, inspector_id, tran_id, destino, usuario_app) values(CAST(:numero_acta AS INTEGER), :descripcion, :tipo, CAST(:sotr_id AS INTEGER), CAST(:inspector_id AS INTEGER), CAST(:tran_id AS INTEGER), :destino, :usuario_app);
 
   {
-    "_post_actaInfraccion":{
-      "numero_acta": "",
-      "descripcion": ,
-      "tipo": ,
-      "sotr_id": ,
-      "inspector_id": ,
-      "tran_id": ,
-      "destino":
+    "_post_actainfraccion":{
+      "numero_acta": "01",
+      "descripcion": "acta infraccion por descargar caballo antes de ser mortadela",
+      "tipo": "preventiva",
+      "sotr_id": "1",
+      "inspector_id": "10",
+      "tran_id": "01",
+      "destino": "PTA",
+      "usuario_app": "hugoDS"
     }
   }
 
 -- actaInfraccionGet
   recurso: /actaInfraccion
   metodo: get
-  select acin_id, numero_acta, descripcion, tipo, sotr_id, inspector_id, tran_id, destino from fis.acta_infraccion where eliminado = 0;
+  select acin_id, numero_acta, descripcion, tipo, sotr_id, inspector_id, tran_id, destino from fis.actas_infraccion where eliminado = 0;
   {
     "actas":{
-      "acta":{
-        "acin_id": "$acin_id",
-        "numero_acta": "$numero_acta",
-        "descripcion": "$descripcion",
-        "tipo": "$tipo",
-        "sotr_id": "$sotr_id",
-        "inspector_id": "$inspector_id",
-        "tran_id": "$tran_id",
-        "destino": "$destino"
-      }
+      "acta":[  
+        {
+          "acin_id": "$acin_id",
+          "numero_acta": "$numero_acta",
+          "descripcion": "$descripcion",
+          "tipo": "$tipo",
+          "sotr_id": "$sotr_id",
+          "inspector_id": "$inspector_id",
+          "tran_id": "$tran_id",
+          "destino": "$destino"
+        }
+      ]
     }
   }
 
@@ -57,12 +72,31 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
       }
     }
   }  
+
+
+  {    
+      "acta":{
+        "acin_id": "$acin_id",
+        "numero_acta": "$numero_acta",
+        "descripcion": "$descripcion",
+        "tipo": "$tipo",
+        "sotr_id": "$sotr_id",
+        "inspector_id": "$inspector_id",
+        "tran_id": "$tran_id",
+        "destino": "$destino"
+      }    
+  }  
  
 -- actaInfraccionDelete
-  recurso: /actaInfraccion/{acin_id}
+  recurso: /actaInfraccion
   metodo: post
-
   update fis.actas_infraccion set eliminado = 1 where acin_id = CAST(:acin_id AS INTEGER);
+
+  {
+    "put_actainfraccion":{
+      "acin_id": "2"
+    }
+  }
 
 -- actaInfraccionUpdate
 
@@ -72,14 +106,14 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
 
   {
     "_post_actaInfraccion":{
-      "acin_id": "",
-      "numero_acta": "",
-      "descripcion": ,
-      "tipo": ,
-      "sotr_id": ,
-      "inspector_id": ,
-      "tran_id": ,
-      "destino":
+      "acin_id": "2",
+      "numero_acta": "5",
+      "descripcion": "acta infraccion por descargar caballo antes de ser mortadela",
+      "tipo": "naa",
+      "sotr_id": "1",
+      "inspector_id": "11",
+      "tran_id": "2",
+      "destino": "PTA"
     }
   }
 
