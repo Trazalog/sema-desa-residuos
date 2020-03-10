@@ -46,7 +46,7 @@ class Zona extends CI_Controller {
       function Listar_Zona()
       {
          $data["zonas"] = $this->Zonas->Listar_Zonas();         
-         $this->load->view('layout/Zonas/lista_zona',$data);
+         $this->load->view('layout/Zonas/Lista_zona',$data);
       }
       // _________________________________________________________
 
