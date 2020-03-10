@@ -21,13 +21,10 @@ class Contenedores extends CI_Model
     // Funcion Guardar Contenedor
     function Guardar_Contenedor($data)
     {
-        var_dump($data);
-        $post["contenedores"] = $data;       
+        $post["contenedor"] = $data;       
         log_message('DEBUG','#Contenedores/Guardar_Contenedor'.json_encode($post));
-        //log_message('DEBUG', '#Contenedores/Guardar_Contenedor ->$post: '.json _encode($post));
         $aux = $this->rest->callAPI("POST",REST."/contenedores", $post);
         $aux =json_decode($aux["status"]);
-        // wso2Msj($aux);
         return $aux;
     }
     // __________________________________________________________
