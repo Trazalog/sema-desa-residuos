@@ -1,10 +1,88 @@
 endpoint: 'http://pc-pc:8280/services/semaresiduosDS'	
 
-//TODO: TERMINAR ACTA INFRACCION, EVACUAR DUDAS CON ELIBERTA
+//TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
+  - falta saber de donde sale el destino acta para elegir
+  - inspectores seran usrs?
 -- actaInfraccionSet
   recurso: /actaInfraccion
   metodo: post
-  insert into fis.acta_infraccion (numero_acta, descripcion, tipo, sotr_id, inspector_id, tran_id, destino) values(CAST(:numero_acta AS INTEGER), :descripcion, :tipo, CAST(:sotr_id AS INTEGER), CAST(:inspector_id AS INTEGER), CAST(:tran_id AS INTEGER), :destino);
+  insert into fis.actas_infraccion (numero_acta, descripcion, tipo, sotr_id, inspector_id, tran_id, destino) values(CAST(:numero_acta AS INTEGER), :descripcion, :tipo, CAST(:sotr_id AS INTEGER), CAST(:inspector_id AS INTEGER), CAST(:tran_id AS INTEGER), :destino);
+
+  {
+    "_post_actaInfraccion":{
+      "numero_acta": "",
+      "descripcion": ,
+      "tipo": ,
+      "sotr_id": ,
+      "inspector_id": ,
+      "tran_id": ,
+      "destino":
+    }
+  }
+
+-- actaInfraccionGet
+  recurso: /actaInfraccion
+  metodo: get
+  select acin_id, numero_acta, descripcion, tipo, sotr_id, inspector_id, tran_id, destino from fis.acta_infraccion where eliminado = 0;
+  {
+    "actas":{
+      "acta":{
+        "acin_id": "$acin_id",
+        "numero_acta": "$numero_acta",
+        "descripcion": "$descripcion",
+        "tipo": "$tipo",
+        "sotr_id": "$sotr_id",
+        "inspector_id": "$inspector_id",
+        "tran_id": "$tran_id",
+        "destino": "$destino"
+      }
+    }
+  }
+
+-- actaInfraccionGetPorId
+  recurso: /actaInfraccion/{acin_id}
+  metodo: get
+  select acin_id, numero_acta, descripcion, tipo, sotr_id, inspector_id, tran_id, destino from fis.actas_infraccion where eliminado = 0 and acin_id = CAST(:acin_id AS INTEGER);
+  {
+    "actas":{
+      "acta":{
+        "acin_id": "$acin_id",
+        "numero_acta": "$numero_acta",
+        "descripcion": "$descripcion",
+        "tipo": "$tipo",
+        "sotr_id": "$sotr_id",
+        "inspector_id": "$inspector_id",
+        "tran_id": "$tran_id",
+        "destino": "$destino"
+      }
+    }
+  }  
+ 
+-- actaInfraccionDelete
+  recurso: /actaInfraccion/{acin_id}
+  metodo: post
+
+  update fis.actas_infraccion set eliminado = 1 where acin_id = CAST(:acin_id AS INTEGER);
+
+-- actaInfraccionUpdate
+
+  recurso: /actaInfraccion
+  metodo: put
+  update fis.actas_infraccion set numero_acta = CAST(:numero_acta AS INTEGER), descripcion = :descripcion, tipo = :tipo, :sotr_id = CAST(:sotr_id AS INTEGER) , inspector_id = CAST(:inspector_id AS INTEGER), tran_id = CAST(:tran_id AS INTEGER), destino = :destino where acin_id =  CAST(:acin_id AS INTEGER);
+
+  {
+    "_post_actaInfraccion":{
+      "acin_id": "",
+      "numero_acta": "",
+      "descripcion": ,
+      "tipo": ,
+      "sotr_id": ,
+      "inspector_id": ,
+      "tran_id": ,
+      "destino":
+    }
+  }
+
 -- departamentosSet
 	recurso: /departamentos
   metodo: post
@@ -205,7 +283,10 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   recurso: /contenedores
   metodo: get
 
-  select cont_id, codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, esco_id, reci_id from log.contenedores
+  select C.cont_id, C.codigo, C.descripcion, C.capacidad, C.anio_elaboracion, C.tara, C.habilitacion as habil_id, C.fec_alta, C.esco_id, C.reci_id, T.valor as estado, T2.valor as habilitacion 
+  from log.contenedores C, core.tablas T, core.tablas T2
+  where C.esco_id = T.tabl_id 
+  and C.habilitacion = T2.tabl_id 
 
   {
     "contenedores":{
@@ -218,14 +299,46 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
               "capacidad": "$capacidad",
               "anio_elaboracion": "$anio_elaboracion",
               "tara": "$tara",
-              "habilitacion": "$habilitacion",
+              "habil_id": "$habil_id",
               "fec_alta": "$fec_alta",
               "esco_id": "$esco_id",
-              "reci_id": "$reci_id"
+              "reci_id": "$reci_id",
+              "estado": "$estado",
+              "habilitacion": "$habilitacion"
             }
           ]
     }
   }
+
+
+-- contenedoresGetPorId
+  recurso: /contenedores/{cont_id}
+  metodo: get
+
+  select C.cont_id, C.codigo, C.descripcion, C.capacidad, C.anio_elaboracion, C.tara, C.habilitacion as habil_id, C.fec_alta, C.esco_id, C.reci_id, T.valor as estado, T2.valor as habilitacion 
+  from log.contenedores C, core.tablas T, core.tablas T2
+  where C.esco_id = T.tabl_id 
+  and C.habilitacion = T2.tabl_id
+  and C.cont_id = CAST(:cont_id as INTEGER)
+
+  {"contenedor": 
+    {
+      "descripcion": "escombros",
+      "codigo": "325325",
+      "estado": "Activo",
+      "habil_id": "habilitacion_contenedorBaja",
+      "reci_id": "108",
+      "anio_elaboracion": "2000-01-01-03:00",
+      "fec_alta": "2020-02-24-03:00",
+      "esco_id": "estado_contenedorActivo",
+      "habilitacion": "Baja",
+      "tara": "124.0",
+      "cont_id": "24",
+      "capacidad": "124.0"
+    }
+  }
+
+
 
 -- contenedoresSet
   recurso: /contenedores
@@ -532,7 +645,77 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
         "eliminado": "0"
     }
   }
+   
+-- inspectoresGet
+  //TODO: CONDICIONAL
+  recurso: /inspectores
+  metodo: get
+  
+  select id, first_name, last_name from users where role='inspector' and banned_users ='unband';
 
+  {
+    "inspectores":{
+      "inspector":[
+        {
+          "id": "$id",
+          "nombre": "first_name",
+          "apellido": "last_name"
+        },
+        {
+          "id": "$id",
+          "nombre": "first_name",
+          "apellido": "last_name"
+        },
+        {
+          "id": "$id",
+          "nombre": "first_name",
+          "apellido": "last_name"
+        }
+      ]
+    }
+  }
+
+  --respuesta ejemplo
+  {
+    "inspectores":{
+      "inspector":[
+        {
+          "id": "1",
+          "nombre": "Luis",
+          "apellido": "Suarez"
+        },
+        {
+          "id": "2",
+          "nombre": "Esteban",
+          "apellido": "Quito"
+        },
+        {
+          "id": "3",
+          "nombre": "Benito",
+          "apellido": "Camela"
+        }
+      ]
+    }
+  }
+
+
+
+-- lotes -- getLotetodos
+  recurso: /lote/todos/deposito
+   metodo: get
+  select reci_id, nombre from prd.recipientes where tipo = 'DEPOSITO' and estado = 'VACIO'
+
+  {
+    "recipientes":
+          {"recipiente":
+            [
+              {
+              "reci_id": "$reci_id",
+              "nombre":"$nombre"
+              }          
+            ]
+          }
+  }
 
 -- puntosCriticosCircuitosset
   recurso: /puntosCriticos/circuito
@@ -600,7 +783,7 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   returning pucr_id
 
   {
-    "puntos_criticos":{
+    "post_puntos_criticos":{
       "nombre": "Puesto critico 3", 
       "descripcion": "probable descarga de vidrio", 
       "lat": "-31.5555", 
@@ -1123,6 +1306,4 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   - preguntar funcionalidad. estan inconclusos  
   ordTransPorIdGet
   alternativa a get orden transporte
-
-
 
