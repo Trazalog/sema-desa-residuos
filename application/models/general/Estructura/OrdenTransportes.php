@@ -10,7 +10,7 @@ class OrdenTransportes extends CI_Model
 
 // Funcion Listar Ordenes Transporte (MODIFICAR)
 
-    function Listar_OrdenesT()
+    function Listar_ordenes_transporte()
     {
         
         $aux = $this->rest->callAPI("GET",REST."/RECURSO");
@@ -79,11 +79,12 @@ public function obtener_Circuitos(){
 
 // Funcion Obtener Chofer
 
-public function obtener_chofer(){
-    $aux = $this->rest->callAPI("GET",REST."/choferes/".);
+public function obtener_numero_orden(){
+    $aux = $this->rest->callAPI("GET",REST."/ordenTransporte/prox");
     $aux =json_decode($aux["data"]);
-    return $aux->choferes->chofer;
+    return $aux->respuesta->nueva_ortr_id;
 }
+
 
 // Funcion Obtener Empresa
 
@@ -96,6 +97,11 @@ public function obtener_chofer(){
 
 // Funcion Obtener Vehiculo
 
+// public function obtener_chofer(){
+//     $aux = $this->rest->callAPI("GET",REST."/choferes/".);
+//     $aux =json_decode($aux["data"]);
+//     return $aux->choferes->chofer;
+// }
 // public function obtener_vehiculo(){
 //     $aux = $this->rest->callAPI("GET",REST."/vehiculos/transp/");
 //     $aux =json_decode($aux["data"]);

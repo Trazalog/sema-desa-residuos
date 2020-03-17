@@ -432,9 +432,8 @@
         $("#boxDatos").show();
 
     });
-</script>
+    
 
-<script>
         $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
@@ -526,29 +525,7 @@ function agregarDato(){
                 success: function (r) {
                     console.table(r);
                     if (r == "ok") {
-                        // //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
-                        // var t = $('#tabla_infracciones').DataTable();
-                        // var fila = t.row.add([
-                        //     N° Acta,
-                        //     Tipo de infraccion,
-                        //     Inspector,
-                        //     Destino,
-                    
-                        //     //agrega los iconos correspondientes
-                        //     '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
-                        // ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
-                        // t.draw(false);
-
-                        // aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
-                        // localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
-
-                        // $('#FormInfraccion').data('bootstrapValidator').resetForm();
-                        // $("#FormInfraccion")[0].reset();
-                        // $('#selecmov').find('option').remove();
-                        // $('#chofer').find('option').remove();
-                        // $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
-                        // $("#boxDatos").hide(500);
-                        // $("#botonAgregar").removeAttr("disabled");
+                        
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona");
                         alertify.success("Agregado con exito");
 

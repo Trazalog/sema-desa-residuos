@@ -54,8 +54,8 @@
                     <label for="tipoResiduos">Tipo de residuo:</label>
                     <div class="input-group date">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                        <select class="form-control select2 select2-hidden-accesible" name="tica_id" id="tica_id">
-                            <option value="" disabled selected>-Seleccione opcion-</option>
+                        <select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_id">
+                            
                             <?php
                                 foreach ($tipoResiduos as $i) {
                                     
@@ -64,6 +64,10 @@
                                 }
                             ?>
                         </select>
+
+
+              
+            
                     </div>
                 </div>
             </div>
@@ -86,10 +90,10 @@
                         <select class="form-control select2 select2-hidden-accesible" name="vehi_id" id="vehi_id">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                        foreach ($Vehiculo as $i) {
-                        echo '<option  value="'.$i->equi_id.'">'.$i->dominio.'</option>';                         
-                          
-                        }
+                                foreach ($Vehiculo as $i) {
+                                echo '<option  value="'.$i->equi_id.'">'.$i->dominio.'</option>';                         
+                                
+                                }
                         ?>
                         </select>
                     </div>
@@ -107,10 +111,13 @@
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                         foreach ($Chofer as $i) {
-                            echo '<option  value="'.$i->chof_id.'">'.$i->nombre.'</option>';
+                            echo '<option  value="'.$i->chof_id.'">'.$i->nombre." ".$i->apellido.'</option>';
                         }
                         ?>
+                        
                         </select>
+
+          
                     </div>
                 </div>
             </div>
@@ -206,7 +213,6 @@
 
                 <div class="col-md-5 col-sm-5 col-xs-12">
                     <div class="form-group">
-
                         <label for="Codigo">Latitud:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -283,7 +289,7 @@
 
 
                             <th>Nombre</th>
-                            <th>Depscripcion</th>
+                            <th>Descripcion</th>
                             <th>Latitud</th>
                             <th>Longitud</th>
 
@@ -293,22 +299,7 @@
                         <!--__________________BODY TABLA___________________________-->
 
                         <tbody>
-                            <?php
-                                    // if($puntos_criticos)
-                                    // {
-                                    //     foreach($puntos_criticos as $fila)
-                                    //     {
-                                    //     echo '<tr data-json:'.json_encode($fila).'>';                        
-                                    //     echo    '<td>'.$fila->nombre.'</td>';
-                                    //     echo    '<td>'.$fila->descripcion.'</td>';                       
-                                    //     echo    '<td>'.$fila->lat.'</td>';
-                                    //     echo    '<td>'.$fila->lng.'</td>';
-                                    //     echo '</tr>';
-                                    // }
-                                    // }
-                                    
-                                    ?>
-
+                            
                         </tbody>
                     </table>
 
@@ -366,7 +357,7 @@
 
 
 
-<div class="box box-primary">
+    <div class="box box-primary">
 
 
     <div class="box-body">
@@ -462,8 +453,15 @@
 
     <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 
+    
+    
     <!--______________________________-->
     <!-- SCRIPT AGREGAR PUNTO CRITICO -->
+
+ 
+
+
+
 
     <script>
     function Agregar_punto() {
@@ -473,19 +471,29 @@
         var data = new FormData($('#formPuntos')[0]);
         data = formToObject(data);
 
-        $('#datos tbody').append(
-            `<tr data-json='${JSON.stringify(data)}'>       
-            <td>${data.nombre}</td>
-            <td>${data.descripcion}</td>
-            <td>${data.lat}</td>
-            <td>${data.lng}</td>            
-        </tr>`
-        );
+        var table = $('#datos').DataTable();
 
+        var row =  `<tr data-json='${JSON.stringify(data)}'> 
+             <td>${data.nombre}</td>
+             <td>${data.descripcion}</td>
+             <td>${data.lat}</td>
+             <td>${data.lng}</td>            
+         </tr>`;
+ 
+        table.row.add($(row)).draw();       
+		
         $('#formPuntos')[0].reset();
+        
+        
         
     }
 
+
+
+</script>
+<script>
+
+		
     //<!--______________________________--> 
     //<!--  GUARDAR CIRCUITO -->
 
@@ -494,38 +502,41 @@
 
     function Guardar_Circuito() {
 
-  //---------------------- Formulario Circuitos ----------------------------------------------
+    //---------------------- Tipo de Carga----------------------------------------------
+
+     var datos_tipo_carga= $('#tica_id').val();   
+       
+       
+
+    //---------------------- Formulario Circuito ----------------------------------------
+
 
         var datos_circuito = new FormData($('#formCircuitos')[0]);
-        datos_circuito = formToObject(datos);
+        datos_circuito = formToObject(datos_circuito);
 
-        //---------------------- Formulario Puntos Criticos ----------------------------------------
+       
+    //---------------------- Formulario Puntos Criticos ----------------------------------------
 
-        // var datos_puntos_criticos = new FormData($('#puntos_criticos')[0]);
-        // datos_puntos_criticos = formToObject(datos);
-
-        var data = [];
-            $('#datos tbody tr').each(function() {
-                data.push(getJson(this));
+        var datos_puntos_criticos = [];
+        
+        var rows = $('#datos tbody tr');
+        
+        // $('#datos').each(function() {
+            rows.each(function(i,e) {    
+                
+                
+                datos_puntos_criticos.push(getJson(e));
             });
 
-            if (!data.lenght) {
+            console.table(datos_puntos_criticos);
+
+            if (datos_puntos_criticos.lenght==0) {
                 alert('Sin Datos para Registrar.');
                 return;
             }
 
 
-            console.table(data);
-    
         
-
-        //---------------------- Imagen y Usuario ----------------------------------------
-
-
-        // datos_circuito.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
-        // datos_circuito.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
-        console.table(datos);
-
         //--------------------------------------------------------------
         
 
@@ -536,7 +547,7 @@
             $.ajax({
                 type: "POST",
                 data: {
-                    datos_circuito, datos_puntos_criticos, data
+                    datos_circuito, datos_puntos_criticos,datos_tipo_carga
                 },
 
                
@@ -558,7 +569,7 @@
                         $("#botonAgregar").removeAttr("disabled");
 
                     } else {
-                        //console.log(r);
+                        console.log(r);
                         alertify.error("error al agregar");
                     }
                 }
@@ -572,35 +583,6 @@
     }
     </script>
 
-
-    <!--_____________________________________________-->
-    <!-- Agregar punto critico -->
-
-
-
-    <!-- <script>
-function Agregar_punto() {
-    $('#puntos_criticos').show();
-
-    var data = new FormData($('#formPuntos')[0]);
-    data = formToObject(data);
-
-    $('#datos tbody').append(
-        `<tr data-json='${JSON.stringify(data)}'>
-            <td><button class="btn btn-link" onclick="$(this).closest('tr').remove();"><i class="fa fa-times"></i></button></td>
-            <td>${$('option[value="'+data.recu_id+'"]').html()}</td>
-            <td>${$('option[value="'+data.arti_id+'"]').html()}</td>
-            <td>${data.cantidad}</td>
-            <td>${data.lote}</td>
-            <td>${$('option[value="'+data.destino+'"]').html()}</td>
-        </tr>`
-    );
-
-    $('#formPuntos')[0].reset();
-    $('select').select2().trigger('change');
-}
-
-</script> -->
 
     <!--_____________________________________________-->
     <!-- script que muestra box de datos al dar click en boton agregar -->
@@ -751,5 +733,12 @@ function Agregar_punto() {
     <script>
     // DataTable($('#tabla_circuitos'))
 
-    DataTable($('#tabla_puntos_criticos'))
+    DataTable($('#datos'))
+    </script>
+
+
+<script>
+  
+    //Initialize Select2 Elements
+    $('.select3').select2();
     </script>

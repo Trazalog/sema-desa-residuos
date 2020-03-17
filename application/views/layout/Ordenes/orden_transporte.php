@@ -45,106 +45,110 @@
 
         <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
 
-        <div class="row">
-
-            <div class="col-md-12 col-sm-12 col-xs-12">
-
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="box box-primary animated fadeInLeft">
-                        <div class="box-header with-border">
-                            <h4>Transportistas</h4>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
 
-                    <div class="col-md-6">
-                        <!--_______________________-->
-                        <!--Empresa-->
-                        <div class="form-group">
-                            <label for="selecemp" class="form-label">Empresa:</label>
-                            <select multiple="" class="form-control" id="selecemp" name="empresa">
-                                <?php
-                                // foreach ($empresa as $i) {
-                                //     echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
-                                // }
-                                ?>
-                            </select>
-                        </div>
-                        <!--_______________________-->
-                        <!--Numero Registro-->
-                        <div class="form-group">
-                            <label for="registron" class="form-label">Registro n°:</label>
-                            <input type="text" name="registron" id="registron" readonly class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <!--_______________________-->
-                        <!--movilidad-->
-                        <div class="form-group">
-                            <label for="selecmov">Movilidad:</label>
-                            <select multiple="" class="form-control" id="selecmov">
-                            <?php
-                                // foreach ($vehiculo as $i) {
-                                //     echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
-                                // }
-                                ?>
-                            </select>
-                        </div>
-                        <!--_______________________-->
-                        <!--Dominio-->
-                        <div class="form-group">
-                            <label for="dominio" class="form-label">Dominio:</label>
-                            <input type="text" name="dominio" id="dominio" readonly class="form-control">
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-12">
-                        <hr>
-                    </div>
-
-                    <div class="col-md-6">
-                        <!--_______________________-->
-                        <!--Dominio-->
-
-                        <div class="form-group">
-                            <label for="chofer" class="form-label">Chofer:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="chofer">
-                                <option value="" disabled selected>-Seleccione opcion-</option>
-                                <?php
-                                // foreach ($Chofer as $i) {
-                                //     echo '<option  value="'.$i->chof_id.'">'.$i->nombre.'</option>';
-                                // }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6">
-
-                    
-                        <div class="form-group">                            
-                        <label for="">Fecha y Hora <strong style="color: #dd4b39"></strong>:</label>                        
-                          
-                            <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="box box-primary animated fadeInLeft">
+                            <div class="box-header with-border">
+                                <h4>Transportistas</h4>
                             </div>
-                            <input type="text" name="fecha" id="fecha" class="form-control" />
-                            </div> 
                         </div>
-                    
+                    </div>
+
+                    <form class="formTransportista" id="formTransportista">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        
+                            <div class="col-md-6">
+                                <!--_______________________-->
+                                <!--Empresa-->
+                                <div class="form-group">
+                                    <label for="selecemp" class="form-label">Empresa:</label>
+                                    <select multiple="" class="form-control" id="selecemp" name="empresa">
+                                        <?php
+                                        // foreach ($empresa as $i) {
+                                        //     echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                                        // }
+                                        ?>
+                                    </select>
+                                </div>
+                                <!--_______________________-->
+                                <!--Numero Registro-->
+                                <div class="form-group">
+                                    <label for="registron" class="form-label">Registro n°:</label>
+                                    <input type="text" name="registron" id="registron" readonly class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <!--_______________________-->
+                                <!--movilidad-->
+                                <div class="form-group">
+                                    <label for="selecmov">Movilidad:</label>
+                                    <select multiple="" class="form-control" id="selecmov">
+                                    <?php
+                                        // foreach ($vehiculo as $i) {
+                                        //     echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                                        // }
+                                        ?>
+                                    </select>
+                                </div>
+                                <!--_______________________-->
+                                <!--Dominio-->
+                                <div class="form-group">
+                                    <label for="dominio" class="form-label">Dominio:</label>
+                                    <input type="text" name="dominio" id="dominio" readonly class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <!--_______________________-->
+                                <!--Dominio-->
+
+                                <div class="form-group">
+                                    <label for="chofer" class="form-label">Chofer:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="chofer">
+                                        <option value="" disabled selected>-Seleccione opcion-</option>
+                                        <?php
+                                        // foreach ($Chofer as $i) {
+                                        //     echo '<option  value="'.$i->chof_id.'">'.$i->nombre.'</option>';
+                                        // }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                            
+                                <div class="form-group">                            
+                                <label for="">Fecha y Hora <strong style="color: #dd4b39"></strong>:</label>                        
+                                
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                    <input type="text" name="fecha" id="fecha" class="form-control" />
+                                    </div> 
+                                </div>
+                            
+                            </div>
+                        </form>
                     </div>
 
                 </div>
 
-            </div>
-
-            <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
+            </div>    
+            
+        <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
            
 
             <!--**********************************************-->
@@ -174,14 +178,14 @@
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-check"></i>
                                         </div>
-                                        <input type="text" name="nro" id="Nro" value="<?php //echo rand(1,30);?>"
+                                        <input type="text" name="nro" id="Nro" value="<?php //if($=='' ){echo 'value="'.$->.'"';}?>"
                                             class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>
                             <!--_______________________-->
                             <!--Fecha-->
-                            <div class="col-md64 col-sm-6 col-xs-12">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="fecha" class="form-label">Fecha:</label>
                                     <div class="input-group date">
@@ -233,65 +237,68 @@
             </div>
 
             <!--_______________________-->
+            <div class="col-md-12 col-sm-12 col-xs-12">
+            
+                
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
 
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-
-                    <!--_______________________-->
-                    <!--Tipo residuo-->
-                    <div class="col-md-6 col-xs-12">
-                        <div class="form-group">
-                            <label for="tipores" class="form-label">Tipo residuo:</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-check"></i>
+                        <!--_______________________-->
+                        <!--Tipo residuo-->
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="tipores" class="form-label">Tipo residuo:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="glyphicon glyphicon-check"></i>
+                                    </div>
+                                    <select class="form-control select2 select2-hidden-accesible" id="tipores"
+                                        name="tipo_residuo" required>
+                                        <option value="" disabled selected>-Seleccione opcion-</option>
+                                        <?php
+                                        foreach ($Tiporesiduo as $i) {
+                                            echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
-                                <select class="form-control select2 select2-hidden-accesible" id="tipores"
-                                    name="tipo_residuo" required>
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                    foreach ($Tiporesiduo as $i) {
-                                        echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
-                                    }
-                                    ?>
-                                </select>
+                            </div>
+                            <!--_______________________-->
+                            <!--Porcentaje llenado-->
+                            <div class="form-group">
+                                <label for="porcentajell" class="form-label">% de llenado:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="glyphicon glyphicon-check"></i>
+                                    </div>
+                                    <input type="number" step="0.0001" id="porcentajell" name="porcent_llenado"
+                                        class="form-control" required>
+                                </div>
                             </div>
                         </div>
-                        <!--_______________________-->
-                        <!--Porcentaje llenado-->
-                        <div class="form-group">
-                            <label for="porcentajell" class="form-label">% de llenado:</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-check"></i>
+                        <div class="col-md-6  col-sm-6 col-xs-12">
+                            <!--_______________________-->
+                            <!--Contenedor-->
+                            <div class="form-group">
+                                <label for="contenedor" class="form-label">Contenedor:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="glyphicon glyphicon-check"></i>
+                                    </div>
+                                    <input type="number" id="contenedor" name="contenedor" class="form-control" required>
                                 </div>
-                                <input type="number" step="0.0001" id="porcentajell" name="porcent_llenado"
-                                    class="form-control" required>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-xs-12">
-                        <!--_______________________-->
-                        <!--Contenedor-->
-                        <div class="form-group">
-                            <label for="contenedor" class="form-label">Contenedor:</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-check"></i>
+                            <!--_______________________-->
+                            <!--Metros cubicos-->
+                            <div class="form-group">
+                                <label for="metroscubicos" class="form-label">Metros cubicos:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="glyphicon glyphicon-check"></i>
+                                    </div>
+                                    <input type="number" step="0.0001" name="metroscubicos" class="form-control"
+                                        id="metroscubicos" min="0" required>
                                 </div>
-                                <input type="number" id="contenedor" name="contenedor" class="form-control" required>
-                            </div>
-                        </div>
-                        <!--_______________________-->
-                        <!--Metros cubicos-->
-                        <div class="form-group">
-                            <label for="metroscubicos" class="form-label">Metros cubicos:</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-check"></i>
-                                </div>
-                                <input type="number" step="0.0001" name="metroscubicos" class="form-control"
-                                    id="metroscubicos" min="0" required>
                             </div>
                         </div>
                     </div>
@@ -332,54 +339,49 @@
             <!--_______________________-->
 
             </form>
-        </div>
 
-
-        <!--____________________________TABLA RESIDUOS____________________________-->
-
-        <div class="row">
-            <div class="box box-primary" id="box-tabla" style="display:none">
-                <div class="box-body table-responsive">
-                    <table class="table table-striped" id="contenedores">
-                        <thead>
-                            <th>Tipo residuo</th>
-                            <th>Contenedor</th>
-                            <th>% llenado</th>
-                            <th>Metros cubicos</th>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <button type="submit" class="btn btn-primary pull-right"
+                    onclick="Guardar_Orden_transporte()">Guardar</button>
             </div>
-
         </div>
 
-        <!--_______________________-->
+        
+        
 
-        <div class="col-md-12 col-sm-12 col-xs-12"><br>
-            <hr>
-        </div>
 
-        <!--_______________________-->
+            <!--____________________________TABLA RESIDUOS____________________________-->
+
+            <div class="row">
+                <div class="box box-primary" id="box-tabla" style="display:none">
+                    <div class="box-body table-responsive">
+                        <table class="table table-striped" id="contenedores">
+                            <thead>
+                                <th>Tipo residuo</th>
+                                <th>Contenedor</th>
+                                <th>% llenado</th>
+                                <th>Metros cubicos</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            
+         
 
         <!--____________________________-->
         <!--Boton de guardado-->
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <button type="submit" class="btn btn-primary pull-right"
-                onclick="Guardar_Orden_transporte()">Guardar</button>
-        </div>
+
+      
+           
 
 
-        <!--_______________________-->
-
-        <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
-
-        <!--_______________________-->
-
-
-        
+       
+         
     </div>
 
     <!--___________________FIN BOX BODY__________________________-->
@@ -388,6 +390,35 @@
 
 </div>
 
+
+<!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
+
+
+
+
+
+<div class="box box-primary">
+
+    
+
+
+    <div class="box-body">
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6"></div>
+            </div>
+
+
+
+            <div class="row"><div class="col-sm-12 table-scroll" id="cargar_tabla">
+
+
+
+                </div>
+            </div>
+
+<!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
 
 
 
@@ -425,9 +456,9 @@ function Agregar_Residuo() {
 //<!-- SCRIPT GUARDAR CIRCUITO -->
 
 
-$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Circuitos");
+$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/OrdenTransporte/lista_orden_transporte");
 
-function Guardar_Circuito() {
+function Guardar_Orden() {
 
     // datos = $('#formCircuitos').serialize();
 
@@ -454,7 +485,7 @@ function Guardar_Circuito() {
                 if (r == "ok") {
 
                     $("#cargar_tabla").load(
-                        "<?php echo base_url(); ?>index.php/general/Estructura/Zona/Lista_Circuitos"
+                        "<?php echo base_url(); ?>index.php/general/Estructura/OrdenTransporte/lista_orden_transporte"
                     );
                     alertify.success("Agregado con exito");
 

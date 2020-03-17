@@ -45,33 +45,55 @@ function Listar_Circuitos()
 }
 
 // Funcion Guardar Circuito
-function Guardar_Circuito($data){
+//NOOOOOO TOCaaar !!!!!!!!!
+function Guardar_Circuito($data){ 
+ 
+    $data["usuario_app"] = userNick();
+    $post["_post_circuitos"] = $data;
+    log_message('DEBUG','#Zonas/Guardar_Circuito: '.json_encode($post));
+    $aux = $this->rest->callAPI("POST",REST."/circuitos", $post);
+    $aux =json_decode($aux["data"]);   
 
-// var_dump($data);
-$data['usuario_app'] = userNick();
-$post["post_circuito"] = $data;
-log_message('DEBUG','#Zonas/Guardar_Circuito: '.json_encode($post));
-$aux = $this->rest->callAPI("POST",REST."/circuitos", $post);
-$aux =json_decode($aux["status"]);
-return $aux;
-
-
+    return $aux;
 }
 
 // Funcion Guardar Punto Critico
+/////NOOOOOOO TOCAAAARRRR  !!!!!
 function Guardar_punto_critico($data){
 
-    // var_dump($data);
-    $data['usuario_app'] = userNick();
-    $post["post_punto_critico"] = $data;   
+   $data["usuario_app"] = userNick();
+    $post["post_puntos_criticos"] = $data;
     log_message('DEBUG','#Zonas/Guardar_punto_critico: '.json_encode($post));
-    $aux = $this->rest->callAPI("POST",REST."/puntosCriticos", $post);
-    $aux =json_decode($aux["status"]);
-    return $aux;
-    
+    $aux = $this->rest->callAPI("POST",REST."/puntosCriticos", $post);   
+    $aux =json_decode($aux["data"]);   
+    return $aux;       
     
 }
 
+/////NOOOOOOO TOCAAAARRRR  !!!!!
+// Funcion Asociar punto critico
+function Asociar_punto_critico($data){
+    
+    $arraypuntos["_post_puntoscriticos_circuito"]  = $data;  
+    $post["_post_puntoscriticos_batch_req"]= $arraypuntos;    
+    log_message('DEBUG','#Zonas/Asociar_punto_critico: '.json_encode($post));
+    $aux = $this->rest->callAPI("POST",REST."/_post_puntoscriticos_circuito_batch_req", $post);   
+    return $aux;          
+      
+  }
+
+/////NOOOOOOO TOCAAAARRRR  !!!!!
+  // Funcion Guardar Tipo de carga Circuito
+function Guardar_tipo_carga($data){
+
+    $arraycargas["_post_circuitos_tipocarga"]  = $data;  
+    $post["_post_circuitos_tipocarga_batch_req"]= $arraycargas;
+       
+    log_message('DEBUG','#Zonas/Guardar_tipo_carga: '.json_encode($post));
+    $aux = $this->rest->callAPI("POST",REST."/_post_circuitos_tipocarga_batch_req", $post);
+    return $aux;    
+    
+}
 
 
 // Funcion Botener zonas por departamento
@@ -118,7 +140,6 @@ public function obtener_RSU(){
 
     log_message('DEBUG', 'Zonas/obtener_RSU');
     $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
-    wso2Msj($aux);
     $aux =json_decode($aux["data"]);
     return $aux->valores->valor;
 }

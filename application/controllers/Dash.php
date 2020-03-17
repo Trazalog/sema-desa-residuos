@@ -124,7 +124,7 @@ class Dash extends CI_Controller {
                                 "link": "general/Estructura/GestionDeSeguimiento/templateGestion"
                             },
                             {
-                                "titulo": "Control de Trayecto",
+                                "titulo": "Entrega contenedor",
                                 "icono": "fa fa-genderless",
                                 "link": "general/RegistrarVehi/templateVehi"
                             },

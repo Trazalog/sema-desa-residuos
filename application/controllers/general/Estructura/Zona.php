@@ -14,7 +14,7 @@ class Zona extends CI_Controller {
 
 // --------------------------------- ZONAS ----------------------------------
   
-// ---------------- Funcion Cargar vista Zonas y Datos
+   // ---------------- Funcion Cargar vista Zonas y Datos
       
       function templateZonas()
       
@@ -43,15 +43,6 @@ class Zona extends CI_Controller {
 
       }
    
-      // ---------------- Funcion Crear Zona
-   
-      function Crear_Zona()
-      {
-
-
-
-      }
-
       // ---------------- Funcion Listar Zona
    
       function Listar_Zona()
@@ -61,30 +52,12 @@ class Zona extends CI_Controller {
       }
 
    
-      // ---------------- Funcion Modificar Zona
-      function Modificar_Zona()
-      {
-
-      }
-      // _________________________________________________________
    
-      // ---------------- Funcion Borrar Zona
-      function Borrar_Zona()
-      {
-
-      }
-      // _________________________________________________________
-
-      // ---------------- Funcion Zona 
-      function Suspender_Zona()
-      {
-
-      }
-      // _________________________________________________________
 
    // --------------------------------- CIRCUITOS ----------------------------------
 
    // ---------------- Funcion Cargar vista CIRCUITOS y Datos
+
    function templateCircuitos()
    {
       
@@ -98,24 +71,70 @@ class Zona extends CI_Controller {
       
       $this->load->view('layout/Zonas/registrar_circuitos',$data);
    }
-   // _________________________________________________________
+   
 
    // ---------------- Funcion Registrar Circuito
    function Guardar_Circuito()
    {
 
-      // var_dump($data);
-      $datos_circuitos =  $this->input->post('datos_circuito');
+       // datos de la vista  
+      $datos_circuitos =  $this->input->post('datos_circuito');    
       $datos_puntos_criticos =  $this->input->post('datos_puntos_criticos');
-      $resp = $this->Zonas->Guardar_Circuito( $datos_circuitos);
-      $resp = $this->Zonas->Guardar_punto_critico($datos_puntos_criticos);
-      if($resp){
-      echo "ok";
-      }else{
-      echo "error";
+      $datos_tipo_carga =  $this->input->post('datos_tipo_carga'); 
+      
+       //------------------------------------------------------------------
+      // 1 guarda circuito 
+      $circ_id = $this->Zonas->Guardar_Circuito($datos_circuitos)->respuesta->circ_id;
+
+
+       // Operacion de validacion circuito
+
+      if ($circ_id == 0) {
+            echo "Circuito no registrado"; return;
+      } 
+      
+      //------------------------------------------------------------------
+       // 2 recorro  array puntos agregando id de circ y guardando de a uno     
+       for ($i=0; $i < count($datos_puntos_criticos); $i++) { 
+        
+         $aux[$i]['circ_id'] = $circ_id;
+         $aux[$i]['pucr_id'] = $this->Zonas->Guardar_punto_critico($datos_puntos_criticos[$i])->respuesta->pucr_id;
       }
+      
+      // asociar Id circuito a punto critico
+      $resp = $this->Zonas->Asociar_punto_critico($aux);
+      if(!$resp['status']){
+         echo "punto no asociado";return;
+         }
+         
+      
+      // 3  con id circ  agregar a array tipo de carga armar batch  /_post_circuitos_tipocarga_batch_req  
+      foreach ($datos_tipo_carga as $key => $carga) {
+        
+         $tipocarga[$key]['circ_id'] = $circ_id;
+         $tipocarga[$key]['tica_id'] = $carga;
+      
+      }
+
+      $resp = $this->Zonas->Guardar_tipo_carga($tipocarga);
+
+      // Operacion de validacion tipo carga
+    
+      if (!$resp['status']) {
+         echo "tipo carga no asociado";return;
+       }
+      
+      //-------------------------------------------------------------
+      
+
+      echo 'ok';
+     
+
+
    }
-   // _________________________________________________________
+
+   
+   
 
     // ---------------- Funcion Asignar Circuito
     
@@ -130,31 +149,20 @@ class Zona extends CI_Controller {
         }
    }
 
-    // ---------------- Funcion Registrar Punto critico
    
-   //  function Guardar_PuntosCriticos()
+
+   // ---------------- Funcion Insertar zona a circuitos
+
+   //  function insertCircuito()
    //  {
    //       $datos =  $this->input->post('datos');
-   //       $resp = $this->Zonas->Guardar_Punto_Critico($datos);
+   //       $resp = $this->Zonas-> ($datos);
    //       if($resp){
    //       echo "ok";
    //       }else{
    //       echo "error";
    //       }
    //  }
-
-   // ---------------- Funcion Insertar zona a circuitos
-
-    function insertCircuito()
-    {
-         $datos =  $this->input->post('datos');
-         $resp = $this->Zonas->Insertar_zona($datos);
-         if($resp){
-         echo "ok";
-         }else{
-         echo "error";
-         }
-    }
 
 
 
@@ -173,26 +181,16 @@ class Zona extends CI_Controller {
 
    // ---------------- Funciones Obtener ---------------- //
 
-      // ---------------- Funcion Obtener Circuitos
-      function Obtener_Circuitos()
-      {
-
-      }
-      // _________________________________________________________
+   
 
       // ---------------- Funcion Obtener Puntos Criticos
-      function Obtener_PuntosCriticos()
-      {
-
-       
-       function obtenerDeptoPorZona(){
-          $depa_id = $this->input->post('idDepto');
-          $resp = $this->Zonas->Asignar_Zona($depa_id);
-          echo json_encode($resp);
-       }
+      function obtenerDeptoPorZona(){
+         $depa_id = $this->input->post('idDepto');
+         $resp = $this->Zonas->Asignar_Zona($depa_id);
+         echo json_encode($resp);
+      }
        
    
 
-}
 }
 ?>
