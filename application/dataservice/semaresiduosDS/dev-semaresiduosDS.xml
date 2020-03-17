@@ -49,14 +49,13 @@
       <result outputType="json">{&#xd;  "choferes":{&#xd;      "chofere":[&#xd;        {&#xd;          "chof_id": "$chof_id", &#xd;          "nombre": "$nombre", &#xd;          "apellido": "$apellido", &#xd;          "documento": "$documento", &#xd;          "fec_nacimiento": "$fec_nacimiento", &#xd;          "direccion": "$fec_nacimiento", &#xd;          "celular": "$celular", &#xd;          "codigo": "$codigo", &#xd;          "carnet": "$carnet", &#xd;          "vencimiento": "$vencimiento", &#xd;          "habilitacion": "$habilitacion", &#xd;          "imagen": "$imagen", &#xd;          "tran_id": "$tran_id", &#xd;          "cach_id": "$cach_id"&#xd;        }&#xd;      ]&#xd;  }    &#xd;}</result>
    </query>
    <query id="choferesSet" useConfig="semaresiduosDS">
-      <sql>insert into &#xd;   log.choferes(nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id)&#xd;values(:nombre, :apellido, :documento, TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), :direccion, CAST(:celular AS INTEGER), CAST(:codigo AS INTEGER), :carnet, TO_DATE(:vencimiento,'YYYY-MM-DD'), :habilitacion, :imagen, CAST(:tran_id AS INTEGER), :cach_id)&#xd;returning chof_id</sql>
+      <sql>insert into &#xd;   log.choferes(nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id, usuario_app)&#xd;values(:nombre, :apellido, :documento, TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), :direccion, :celular, CAST(:codigo AS INTEGER), :carnet, TO_DATE(:vencimiento,'YYYY-MM-DD'), :habilitacion, :imagen, CAST(:tran_id AS INTEGER), :cach_id, :usuario_app)&#xd;returning chof_id</sql>
       <result outputType="json">{"respuesta":{&#xd;    "chof_id": "$chof_id"&#xd;  }&#xd;}</result>
       <param name="nombre" sqlType="STRING"/>
       <param name="apellido" sqlType="STRING"/>
       <param name="documento" sqlType="STRING"/>
       <param name="fec_nacimiento" sqlType="STRING"/>
       <param name="direccion" sqlType="STRING"/>
-      <param name="celular" sqlType="STRING"/>
       <param name="codigo" sqlType="STRING"/>
       <param name="carnet" sqlType="STRING"/>
       <param name="vencimiento" sqlType="STRING"/>
@@ -64,6 +63,8 @@
       <param name="imagen" optional="false" sqlType="BINARY"/>
       <param name="tran_id" sqlType="STRING"/>
       <param name="cach_id" sqlType="STRING"/>
+      <param name="usuario_app" sqlType="STRING"/>
+      <param name="celular" sqlType="STRING"/>
    </query>
    <query id="transportistasGet" useConfig="semaresiduosDS">
       <sql>select tran_id,razon_social,descripcion,direccion,telefono,contacto,resolucion,registro,fec_alta_efectiva,fec_baja_efectiva,fec_alta,usuario,usuario_app, cuit &#xd;from log.transportistas</sql>
@@ -389,7 +390,6 @@
          <with-param name="documento" query-param="documento"/>
          <with-param name="fec_nacimiento" query-param="fec_nacimiento"/>
          <with-param name="direccion" query-param="direccion"/>
-         <with-param name="celular" query-param="celular"/>
          <with-param name="codigo" query-param="codigo"/>
          <with-param name="carnet" query-param="carnet"/>
          <with-param name="vencimiento" query-param="vencimiento"/>
@@ -397,6 +397,8 @@
          <with-param name="imagen" query-param="imagen"/>
          <with-param name="tran_id" query-param="tran_id"/>
          <with-param name="cach_id" query-param="cach_id"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
+         <with-param name="celular" query-param="celular"/>
       </call-query>
    </resource>
    <resource method="GET" path="/transportistas">
