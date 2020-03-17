@@ -42,7 +42,7 @@
    </query>
    <query id="circuitosGet" useConfig="semaresiduosDS">
       <sql>select &#xd;   circ_id, codigo, descripcion, imagen, chof_id, vehi_id, zona_id &#xd;from &#xd;   log.circuitos</sql>
-      <result outputType="json">{&#xd;   "circuitos":{&#xd;      "circuito":[&#xd;         {&#xd;            "circ_id":"$circ_id",&#xd;            "codigo":"$codigo",&#xd;            "descripcion":"$descripcion",&#xd;            "imagen":"$descripcion",&#xd;            "chof_id":"$descripcion",&#xd;            "vehi_id":"$vehi_id",&#xd;            "zona_id":"$zona_id"&#xd;         }&#xd;      ]&#xd;   }&#xd;}</result>
+      <result outputType="json">{&#xd;   "circuitos":{&#xd;      "circuito":[&#xd;         {&#xd;            "circ_id":"$circ_id",&#xd;            "codigo":"$codigo",&#xd;            "descripcion":"$descripcion",&#xd;            "imagen":"$descripcion",&#xd;            "chof_id":"$descripcion",&#xd;            "vehi_id":"$vehi_id",&#xd;            "zona_id":"$zona_id",&#xd;            "@tiposCargaCicuitoGet":"$circ_id-&gt;circ_id"&#xd;         }&#xd;      ]&#xd;   }&#xd;}</result>
    </query>
    <query id="choferesGet" useConfig="semaresiduosDS">
       <sql>select &#xd;  chof_id, nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id  &#xd;from &#xd;  log.choferes</sql>
@@ -328,6 +328,16 @@
       <param name="circ_id" sqlType="STRING"/>
       <param name="pucr_id" sqlType="STRING"/>
    </query>
+   <query id="tiposCargaCicuitoGet" useConfig="semaresiduosDS">
+      <sql>select &#xd;  TCC.tica_id , T.valor&#xd;from &#xd;  log.tipos_carga_circuitos TCC , core.tablas T&#xd;where &#xd;  circ_id = CAST(:circ_id as INTEGER)&#xd;and &#xd;  TCC.tica_id = T.tabl_id</sql>
+      <result outputType="json">{&#xd;  "tiposCarga":{&#xd;    "carga":[&#xd;      {&#xd;        "tica_id": "$tica_id",&#xd;        "valor": "$valor"&#xd;      }&#xd;    ]&#xd;  }&#xd;}</result>
+      <param name="circ_id" sqlType="STRING"/>
+   </query>
+   <query id="circuitosGetPorId" useConfig="semaresiduosDS">
+      <sql>select &#xd;  circ_id, codigo, descripcion, imagen, chof_id, vehi_id, zona_id &#xd;from &#xd;  log.circuitos &#xd;where &#xd;  circ_id = CAST(:circ_id AS INTEGER)</sql>
+      <result outputType="json">{&#xd;   "circuito":   &#xd;          {&#xd;            "circ_id": "$circ_id", &#xd;            "codigo": "$codigo", &#xd;            "descripcion": "$descripcion", &#xd;            "imagen": "$imagen", &#xd;            "chof_id": "$chof_id", &#xd;            "vehi_id": "$vehi_id", &#xd;            "zona_id": "$zona_id",&#xd;            "@tiposCargaCicuitoGet":"$circ_id-&gt;circ_id"           &#xd;          }  &#xd;}</result>
+      <param name="circ_id" sqlType="STRING"/>
+   </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
          <with-param name="nombre" query-param="nombre"/>
@@ -364,8 +374,10 @@
          <with-param name="imagen" query-param="imagen"/>
       </call-query>
    </resource>
-   <resource method="GET" path="/circuitos">
-      <call-query href="circuitosGet"/>
+   <resource method="GET" path="/circuitos/{circ_id}">
+      <call-query href="circuitosGetPorId">
+         <with-param name="circ_id" query-param="circ_id"/>
+      </call-query>
    </resource>
    <resource method="GET" path="/choferes">
       <call-query href="choferesGet"/>
@@ -660,5 +672,8 @@
          <with-param name="circ_id" query-param="circ_id"/>
          <with-param name="pucr_id" query-param="pucr_id"/>
       </call-query>
+   </resource>
+   <resource method="GET" path="/circuitos">
+      <call-query href="circuitosGet"/>
    </resource>
 </data>

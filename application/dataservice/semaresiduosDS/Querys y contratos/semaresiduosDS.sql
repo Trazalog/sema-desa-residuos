@@ -1,15 +1,4 @@
-endpoint: 'http://pc-pc:8280/services/semaresiduosDS'	
--- arrays
-  {
-  "entries": {
-      "entry": [
-          {
-          "field1": "$column1",
-          "field2": "$column2"
-          }
-      ]
-      }
-  }
+http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 
 
 //TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
@@ -157,19 +146,140 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   {"circuitos":{
       "circuito":[
           {
-          "circ_id": "$circ_id", 
-          "codigo": "$codigo", 
-          "descripcion": "$descripcion", 
-          "imagen": "$imagen", 
-          "chof_id": "$chof_id", 
-          "vehi_id": "$vehi_id", 
-          "zona_id": "$zona_id"
+            "circ_id": "$circ_id", 
+            "codigo": "$codigo", 
+            "descripcion": "$descripcion", 
+            "imagen": "$imagen", 
+            "chof_id": "$chof_id", 
+            "vehi_id": "$vehi_id", 
+            "zona_id": "$zona_id",
+            "@tiposCargaCicuitoGet":"$circ_id->circ_id"            
           }
       ]    
     }
   }  
 
+  -- ejemplo get circuitos todos con tipo de carga
+  
+  {
+    "circuitos": {"circuito": [
+      {
+          "descripcion": "circuito desampardos 1",
+          "codigo": "212",
+          "chof_id": "circuito desampardos 1",
+          "circ_id": "57",
+          "imagen": "circuito desampardos 1",
+          "vehi_id": "21",
+          "tiposCarga": {},
+          "zona_id": null
+      },    
+      {
+          "descripcion": "prueba23",
+          "codigo": "37823",
+          "chof_id": "prueba23",
+          "circ_id": "94",
+          "imagen": "prueba23",
+          "vehi_id": "22",
+          "tiposCarga": {"carga":       [
+                      {
+                "tica_id": "tipo_cargaEscombros",
+                "valor": "Escombros"
+            },
+                      {
+                "tica_id": "tipo_cargaResiduos Quimicos",
+                "valor": "Residuos Quimicos"
+            }
+          ]},
+          "zona_id": null
+      },
+      {
+        "descripcion": "prueba1234",
+        "codigo": "435436",
+        "chof_id": "prueba1234",
+        "circ_id": "97",
+        "imagen": "prueba1234",
+        "vehi_id": "21",
+        "tiposCarga": {"carga":       [
+                    {
+              "tica_id": "tipo_cargaResiduos Patologicos",
+              "valor": "Residuos Patologicos"
+          },
+                    {
+              "tica_id": "tipo_cargaResiduos Quimicos",
+              "valor": "Residuos Quimicos"
+          }
+        ]},
+        "zona_id": null
+      }
+    ]
+    }
+  }
 
+-- circuitosGetPorId
+  recurso: /circuitos/{circ_id}
+  metodo: get
+  
+  select circ_id, codigo, descripcion, imagen, chof_id, vehi_id, zona_id from log.circuitos where circ_id = CAST(:circ_id AS INTEGER)
+  
+  {
+    "circuito":   
+          {
+            "circ_id": "$circ_id", 
+            "codigo": "$codigo", 
+            "descripcion": "$descripcion", 
+            "imagen": "$imagen", 
+            "chof_id": "$chof_id", 
+            "vehi_id": "$vehi_id", 
+            "zona_id": "$zona_id",
+            "@tiposCargaCicuitoGet":"$circ_id->circ_id"           
+          }  
+  }
+
+  -- ejemplo get circuito con tipo de carga
+
+  {
+    "circuito": {
+      "descripcion": "licia",
+      "codigo": "4354353244",
+      "chof_id": "4",
+      "circ_id": "93",
+      "imagen": "",
+      "vehi_id": "21",
+      "tiposCarga": {
+            "carga": 
+                  [
+                    {
+                      "tica_id": "tipo_cargaEscombros",
+                      "valor": "Escombros"
+                    },
+                    {
+                      "tica_id": "tipo_cargaResiduos Quimicos",
+                      "valor": "Residuos Quimicos"
+                    }
+                  ]
+      },
+      "zona_id": null
+    }
+  }
+
+-- tiposCargaCircuitoGet
+  recurso: 
+  metodo: get
+  select TCC.tica_id , T.valor
+  from log.tipos_carga_circuitos TCC , core.tablas T
+  where circ_id = CAST(:circ_id as INTEGER)
+  and TCC.tica_id = T.tabl_id 
+
+  {
+    "tiposCarga":{
+      "carga":[
+        {
+          "tica_id": "$tica_id",
+          "valor": "$valor"
+        }
+      ]
+    }
+  }
 
 
 -- circuitosSet
@@ -209,8 +319,8 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   recurso: /_post_circuitos_tipocarga_batch_req
   metodo: post
   {
-    "circuitos_cargas":{
-      "circuito_carga":[
+    "_post_circuitos_tipocarga_batch_req":{
+      "_post_circuitos_tipocarga":[
         {
           "circ_id":"3",
           "tica_id":"tipo_cargaOrganico"
@@ -924,7 +1034,31 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   select CE.fec_retiro, 
   from log.contenedores_entregados, core.tablas
   where 
-  
+
+
+
+//TODO: TERMINAR....
+-- ordenTransporteSet
+insert into log.ordenes_transporte (fec_retiro, estado, caseid, difi_id, sotr_id, equi_id, chof_id)
+  values(TO_DATE(:fec_retiro, 'YYYY-MM-DD'), :estado, :caseid, :difi_id, :sotr_id, :equi_id, :chof_id)
+
+
+  {
+    "fec_retiro"
+    "estado"            // 
+    "caseid"            // de BPM
+    "difi_id"           // disposicion final
+    "sotr_id"
+    "equi_id"           
+    "chof_id"           // recordar que es el dni de chofer
+  }
+
+
+
+
+
+
+-- estado PARA ORDEN DE TRANSPORT LLENAR EN TABLA Y DAR EJEMPO DE SERVICIO
 
 -- transportistasSet
   recurso: /transportistas
@@ -1151,7 +1285,7 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   }
   
 -- vehiculosSet
-  recurso: /vehiculos
+  recurso: /veh:qiculos
   metodo: post
   /vehiculos
   insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio)
