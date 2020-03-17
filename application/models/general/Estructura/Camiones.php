@@ -54,7 +54,7 @@ class Camiones extends CI_Model
     // Funcion Guardar Choferes
         function Guardar_Chofer($data)
         {
-            var_dump($data);
+            // var_dump($data);
             $post["post_chofer"] = $data;
             log_message('DEBUG','#Choferes/Guardar_Chofer: '.json_encode($post));
             $aux = $this->rest->callAPI("POST",REST."/choferes", $post);
