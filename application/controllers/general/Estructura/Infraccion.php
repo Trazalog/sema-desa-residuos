@@ -24,19 +24,19 @@ class Infraccion extends CI_Controller {
       
       
       {
-          $data['Transportista'] = $this->Infracciones->obtener_Transportista();
-          // $data['Generador'] = $this->Infracciones->obtener_Generador();
-          // $data['Inspector'] = $this->Infracciones->obtener_Inspector();
-          // $data['Tipoinfraccion'] = $this->Infracciones->obtener_Tipo_Infraccion();
-          // $data['Destino'] = $this->Infracciones->obtener_Destino_Acta();
-          $this->load->view('layout/Registrar_Infraccion',$data);
+          $data['transportista'] = $this->Infracciones->obtener_Transportista();
+          $data['generador'] = $this->Infracciones->obtener_Generador();
+          // $data['inspector'] = $this->Infracciones->obtener_Inspector();
+          // $data['tipoinfraccion'] = $this->Infracciones->obtener_Tipo_Infraccion();
+          // $data['destino'] = $this->Infracciones->obtener_Destino_Acta();
+          $this->load->view('layout/Infracciones/Registrar_Infraccion',$data);
           
           
       }
    
        // ---------------- Funcion Registrar Infraccion
    
-       function Guardar_Infraccion()
+       function Guardar_infraccion()
        
        {
 
@@ -50,19 +50,14 @@ class Infraccion extends CI_Controller {
            
        }
    
-       // ---------------- Funcion Crear Infraccion
-   
-      function Crear_Infraccion()
-      {
-          
-          
-      }
+    
 
       // ---------------- Funcion Listar Contenedor
    
-      function Listar_Infraccion()
+      function Listar_infraccion()
       {
-          
+        $data["infracciones"] = $this->Infracciones->Lista_infracciones();         
+        $this->load->view('layout/Infracciones/Lista_infracciones',$data);  
           
       }
 

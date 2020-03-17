@@ -470,5 +470,97 @@
 
 
 <script>
+
+
+//----------------- Funcion Filtrar zonas por departamento --------------------------//
+
+$("#selectDepto").change(function(){
+    
+    var idDepto = $("#selectDepto").val();
+  
+    $.ajax({
+
+            type: 'POST',        
+            data: {idDepto: idDepto}, 
+            url: 'general/Estructura/Zona/obtenerDeptoPorZona',
+            dataType: 'json',
+
+            success: function(result) {
+                console.table(result);
+
+               
+                for (let index = 0; index < result.length; index++)
+                {
+                                              
+                    $('#selectZona').append("<option value='" + result[index].zona_id + "'>" +result[index].zona_nom +"</option"); 
+
+                   
+                    
+                }
+            },
+
+            
+            error: function() {
+                alert('Error');
+            }
+    });
+});
+
+//----------------- Funcion POST Asignacion --------------------------//
+
+
+
+
+
+// function insertCircuitoZona(){
+//     ban = true;
+//     idDepto = $('#selectDepto').val();
+//     idZona = $('#selectZona').val();
+//     if (idDepto == null) {
+//       ban= false;
+//       alert("Seleccione Departamento...");
+//     } 
+//     if (idZona == null) {
+//       ban= false;
+//       alert("Seleccione Zona...");
+//     } 
+
+//     if(ban){
+//       $.ajax({
+//             type: 'POST',
+//             data: {id_censo: id_censo,
+//                   id_area: id_area },
+//             url: 'Censo/insertAreaCenso',
+//             dataType: 'json',
+//             success: function(result) { 
+//                       alert('resultado: ' + result);
+//                   if (result == 500) {
+//                     alert("La zona ya se encuentra asignada a este Circuito");
+//                   }else{
+//                     $("#modalZona").modal('hide');
+//                     buscaCensos();
+//                   } 
+//             },
+//             error: function() {
+//                   alert('Error en Asignacion de zona...');
+//             }
+//       });
+//     }  
+
+// }
+
+
+
+
+
+
+
+
+</script>
+
+
+
+<script>
+
 DataTable($('#tabla_circuitos'))
 </script>
