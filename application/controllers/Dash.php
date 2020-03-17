@@ -66,7 +66,7 @@ class Dash extends CI_Controller {
                             {
                                 "titulo": "Orden de transporte",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Orden/ordenT"
+                                "link": "general/Estructura/OrdenTransporte/templateOrdentransporte"
                             },
                             {
                                 "titulo": "Template OT",
@@ -124,7 +124,7 @@ class Dash extends CI_Controller {
                                 "link": "general/Estructura/GestionDeSeguimiento/templateGestion"
                             },
                             {
-                                "titulo": "Control de Trayecto",
+                                "titulo": "Entrega contenedor",
                                 "icono": "fa fa-genderless",
                                 "link": "general/RegistrarVehi/templateVehi"
                             },

@@ -103,7 +103,9 @@
                 <div class="form-group">
                     <label for="Contacto" >Cuit:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <input type="text" class="form-control" name="cuit" id="cuit">
+                    <input type="text" class="form-control" name="cuit" id="cuit" size="11">
+
+                    
                     </div>
                 </div>
             </div>
@@ -427,7 +429,7 @@ $("#btnadd").on("click", function() {
                         message: 'la entrada no puede ser vacia'
                     },
                     regexp: {
-                        regexp: /\b(20|23|24|27|30|33|34)(\D)?[0-9]{8}(\D)?[0-9]/,
+                        regexp: /^[0-9]{2}-[0-9]{8}-[0-9]$ /,
                         message: 'la entrada no debe ser un numero entero'
                     }
                 }
@@ -505,7 +507,6 @@ $("#btnadd").on("click", function() {
         $("#formEditDatos").data('bootstrapValidator').resetForm();
     });
 </script>
-
 
 
 

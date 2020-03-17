@@ -10,7 +10,7 @@ class OrdenTransportes extends CI_Model
 
 // Funcion Listar Ordenes Transporte (MODIFICAR)
 
-    function Listar_OrdenesT()
+    function Listar_ordenes_transporte()
     {
         
         $aux = $this->rest->callAPI("GET",REST."/RECURSO");
@@ -20,13 +20,13 @@ class OrdenTransportes extends CI_Model
     
 // Funcion Guardar Orden
 
-function Guardar_OrdenT($data){
+function Guardar_OrdenT(){
 
-        $post["post_ordenT"] = $data;
-        log_message('DEBUG','#OrdenTransporte/Guardar_OrdenTransporte: '.json_encode($post))
-        $aux = $this->rest->callAPI("POST",REST."/RECURSO", $post);
-        $aux =json_decode($aux["status"]);
-        return $aux;	
+        // $post["post_ordenT"] = $data;
+        // log_message('DEBUG','#OrdenTransporte/Guardar_OrdenTransporte: '.json_encode($post))
+        // $aux = $this->rest->callAPI("POST",REST."/RECURSO", $post);
+        // $aux =json_decode($aux["status"]);
+        // return $aux;	
 
         
 
@@ -54,11 +54,11 @@ public function obtener_Zona(){
 
 // Funcion Obtener Tipo de residuo
 
-public function obtener_Tipo_residuo(){
-    $aux = $this->rest->callAPI("GET","http://localhost:3000/rsu");
+public function obtener_Tipo_residuo()
+{
+    $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
     $aux =json_decode($aux["data"]);
-    return $aux->Rsu->Rsu;
-}
+    return $aux->valores->valor;}
 
 // Funcion Obtener Disposicion final
 
@@ -79,38 +79,62 @@ public function obtener_Circuitos(){
 
 // Funcion Obtener Chofer
 
-public function obtener_Chofer(){
-    $aux = $this->rest->callAPI("GET",REST."/RECURSO");
+public function obtener_numero_orden(){
+    $aux = $this->rest->callAPI("GET",REST."/ordenTransporte/prox");
     $aux =json_decode($aux["data"]);
-    return $aux->choferes->chofer;
+    return $aux->respuesta->nueva_ortr_id;
 }
+
+
+// Funcion Obtener Empresa
+
+// public function obtener_empresa(){
+//     $aux = $this->rest->callAPI("GET",REST."/vehiculos/transp/");
+//     $aux =json_decode($aux["data"]);
+//     return $aux->->;
+// }
+
+
+// Funcion Obtener Vehiculo
+
+// public function obtener_chofer(){
+//     $aux = $this->rest->callAPI("GET",REST."/choferes/".);
+//     $aux =json_decode($aux["data"]);
+//     return $aux->choferes->chofer;
+// }
+// public function obtener_vehiculo(){
+//     $aux = $this->rest->callAPI("GET",REST."/vehiculos/transp/");
+//     $aux =json_decode($aux["data"]);
+//     return $aux->->;
+// }
+
 
 // ---------------------- FUNCIONES RECEPCION DE ORDEN  ----------------------
 
 
 // Funcion Listar Ordenes Transporte (MODIFICAR)
 
-function Listar_OrdenesT()
-{
+// function Listar_OrdenesT()
+// {
     
-    $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-    $aux =json_decode($aux["data"]);       
-    return $aux->Ordenes->Orden;
+//     $aux = $this->rest->callAPI("GET",REST."/RECURSO");
+//     $aux =json_decode($aux["data"]);       
+//     return $aux->Ordenes->Orden;
 
     
-}
+// }
 
 // Funcion Guardar Orden
 
-function Guardar_SolicitudOrden($data){
+// function Guardar_SolicitudOrden($data){
 
-    $post["post_solicitudorden"] = $data;
-        log_message('DEBUG','#: '.json_encode($post))
-    $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
-    $aux =json_decode($aux["status"]);
-    return $aux;	
+//     $post["post_solicitudorden"] = $data;
+//         log_message('DEBUG','#: '.json_encode($post))
+//     $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
+//     $aux =json_decode($aux["status"]);
+//     return $aux;	
 
-}
+// }
 
 function Asignar_($data){
 

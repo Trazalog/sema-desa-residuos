@@ -41,7 +41,9 @@
         <!-- <link rel="stylesheet"
         href="<?php //base_url()?>lib/bower_components/datatables1/datatables.min.css"> -->
 
-        
+        <!-- Select2 -->
+        <link rel="stylesheet" href="<?php base_url()?>lib/bower_components/select2/dist/css/select2.min.css">
+
 
 
     <link rel="stylesheet" href="<?php base_url()?>lib/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
