@@ -70,9 +70,7 @@
                             {
                                 "titulo": "ABM establecimiento",
                                 "icono": "fa fa-genderless",
-
                                 "link": "general/Estructura/Establecimiento/templateAsignarEstablecimiento"
-
                             },
                             {
                                 "titulo": "ABM Incidencias ",
@@ -85,22 +83,15 @@
                                 "link": "general/Estructura/Infraccion/templateInfracciones"
                             },
                             {
-                                "titulo": "Solicitud de Contenedor ",
-
+                                "titulo": "Solicitud de Contenedor",
                                 "icono": "fa fa-genderless",
-
                                 "link": "general/Estructura/Contenedor/templateSolicitudPedido"
-
                             },
                             {
                                 "titulo": "Entrega de Contenedor ",
-
                                 "icono": "fa fa-genderless",
-
                                 "link": "general/Estructura/Contenedor/templateEntregacontenedor"
-
                             },
-                            
                             {
                                 "titulo": "Retiro de Contenedor",
                                 "icono": "fa fa-genderless",
@@ -114,12 +105,12 @@
                             {
                                 "titulo": "Chofer",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarCh/templateCh"
+                                "link": "general/Estructura/Camion/templateChoferes"
                             },
                             {
                                 "titulo": "Vehiculo",
                                 "icono": "fa fa-genderless",
-                                "link": "general/RegistrarVehi/templateVehi"
+                                "link": "general/Estructura/Camion/templateVehiculos"
                             },
                             {
                                 "titulo": "Gestion de seguimiento",
@@ -158,14 +149,9 @@
                                 "titulo": "Submenu3",
                                 "icono": "fa fa-genderless",
                                 "link": "general/Orden/solicitudRetiro"
-                            
                             }
                         ]
                     }
-                    
-                    
-
-
                 ]
     }
 }
