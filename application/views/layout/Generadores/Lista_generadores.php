@@ -17,23 +17,23 @@
 
     <tbody>
     <?php
-                    if($generadores)
-                    {
-                        foreach($generadores as $fila)
-                        {
-                        echo '<tr data-json:'.json_encode($fila).'>';
-                        echo    '<td>';
-                        echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
-                        echo   '</td>';
-                        echo    '<td>'.$fila->razon_social.'</td>';
-                        echo    '<td>'.$fila->zona_id.'</td>';
-                        echo    '<td>'.$fila->num_registro.'</td>';                       
-                        echo '</tr>';
-                    }
-                    }
-                    ?>
+        if($generadores)
+        {
+            foreach($generadores as $fila)
+            {
+            echo '<tr data-json:'.json_encode($fila).'>';
+            echo    '<td>';
+            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                    <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
+            echo   '</td>';
+            echo    '<td>'.$fila->razon_social.'</td>';
+            echo    '<td>'.$fila->zona_id.'</td>';
+            echo    '<td>'.$fila->num_registro.'</td>';                       
+            echo '</tr>';
+        }
+        }
+        ?>
     </tbody>
 </table>
 
@@ -60,63 +60,64 @@
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="GET" autocomplete="off" id="formGeneradoresInfo" class="registerForm">
-
-
                 <div class="modal-body">
 
-                <!--_____________________________________________-->
                 <!--Nombre/Razon social-->
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Nombre/Razon social" >Nombre / Razon social:</label>
-                                <input type="text" class="form-control" id="I_Nombre/Razon social" name="i_nombre_razon" readonly>
-                            </div>
-                        </div>                        
-                    </div>
-
-                <!--_____________________________________________-->
-                <!--Registro-->
-
                 <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="CUIT" name="Cuit">CUIT:</label>
-                                <input type="text" class="form-control" id="CUIT" name="Cuit" readonly>
-                            </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Nombre/Razon social" >Nombre / Razon social:</label>
+                            <input type="text" class="form-control" id="I_Nombre/Razon social" name="i_nombre_razon" readonly>
+                        </div>
+                    </div>                        
+                </div>
                 <!--_____________________________________________-->
-                <!--Tipo de residuo-->
 
-                            <div class="form-group">
+                <!--Registro-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="CUIT" name="Cuit">CUIT:</label>
+                            <input type="text" class="form-control" id="CUIT" name="Cuit" readonly>
+                        </div>
+                    </div>
+                </div>        
+                <!--_____________________________________________-->
+
+                <!--Tipo de residuo-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label for="Dpto" name="Departamento">Departamento:</label>
                             <input type="text" class="form-control" id="Dpto" readonly>
-                            </div>
-                         </div>
-
-                <!--_____________________________________________-->
-                <!--Descripcion-->
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Domicilio" name="Domicilio">Domicilio:</label>
-                                <input type="text" class="form-control" id="Domicilio" readonly>
-                            </div>
-
-                <!--_____________________________________________-->
-                <!--Resolucion-->
-
-                            <div class="form-group">
-                                <label for="Zonag" name="Zona">Zona:</label>
-                                <input type="text" class="form-control" id="zonaG" readonly>
-                            </div>
                         </div>
+                    </div>
                 </div>
-
                 <!--_____________________________________________-->
-                
 
-                <div class="row"> 
+                <!--Descripcion-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Domicilio" name="Domicilio">Domicilio:</label>
+                            <input type="text" class="form-control" id="Domicilio" readonly>
+                        </div>
+                    </div>
+                </div>
+                <!--_____________________________________________-->
+
+                <!--Resolucion-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Zonag" name="Zona">Zona:</label>
+                            <input type="text" class="form-control" id="zonaG" readonly>
+                        </div>
+                    </div>
+                </div>
+                <!--_____________________________________________-->
+
+            <div class="row"> 
 
                         <!--_____________________________________________-->
                         <!--Numero de registro-->
@@ -188,14 +189,11 @@
                 <h5 class="modal-title" id="exampleModalLabel">Editar Generador</h5>
             </div>
 
-
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="formGeneradoresEdit" class="registerForm">
-
-
                 <div class="modal-body">
 
                 <!--_____________________________________________-->
@@ -268,15 +266,14 @@
 
                 <div class="row">                        
                     <div class="col-md-6">
-                        <label for="Numero de registro" >Numero de registro:</label>
+                        <label for="Numero de registro">Numero de registro:</label>
                         <input type="text" class="form-control" id="E_Numero de registro" name="e_numero_registro">
-                            
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="Rubro" >Rubro:</label>
-                            <input type="text" class="form-control" id="E_Rubro" name="e_rubro">
-                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Rubro">Rubro:</label>
+                        <input type="text" class="form-control" id="E_Rubro" name="e_rubro">
+                    </div>
+                </div>
 
                 <!--_____________________________________________-->
                 <!--Fecha de Baja-->

@@ -322,7 +322,6 @@
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
                     }
-                    
                 }
             },
             tara: {
