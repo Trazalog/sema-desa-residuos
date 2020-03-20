@@ -484,7 +484,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 
 
 
--- contenedoresSet
+-- contenedoresSet (alta contenedores)
   recurso: /contenedores
   metodo: post
   insert into log.contenedores(codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, usuario_app, esco_id, reci_id)
@@ -533,6 +533,15 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }
  
+
+
+
+
+
+
+
+
+
 
 
 -- choferesGet
@@ -902,8 +911,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 -- puntosCriticosGet
   recurso: /puntosCriticos
   metodo: get
-  select nombre, descripcion, lat, lng, zona_id from log.puntos_criticos 
-  
+  select nombre, descripcion, lat, lng, zona_id from log.puntos_criticos  
 
   {"puntos_criticos":
     {
@@ -917,7 +925,9 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
           }     
       ]
     }
-  }   
+  } 
+
+
 
 -- puntosCriticosSet
   recurso: /puntosCriticos
@@ -966,8 +976,8 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   }
 
 -- puntosCriticosEstados
-  recurso: /puntosCriticos/estado
-  metodo: put
+    recurso: /puntosCriticos/estado
+    metodo: put
     update 
     log.puntos_criticos 
     set eliminado = CAST(:eliminado AS INTEGER)
@@ -997,6 +1007,186 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
         "zona_id": "5"
       }
     }
+
+-- solicitudContenedorSet(guardado de la cabecera de contenedores pedidos)
+  recurso: /solicitudContenedor
+  metodo: post
+  insert into log.solicitudes_contenedor(estado, observaciones, usuario_app, sotr_id) values(:estado, :observaciones, :usuario_app, cast(:sotr_id as INTEGER))
+
+  {
+    "_post_solicitudcontenedor":{
+      "estado": "SOLICITADA", 
+      "observaciones": "observaciones test", 
+      "usuario_app": "HugoDS", 
+      "sotr_id": "1"
+    }
+  }
+
+-- solicitudContenedorTipoCarga(guardado de contenedores pedidos con tipo carga)
+  recurso: /solicitudContenedor/tipoCarga
+  metodo: post
+  insert into log.contenedoresSolicitados(cantidad, otro, usuario_app, tica_id, soco_id) values(CAST(:cantidad AS INTEGER), :otro, :usuario_app, :tica_id, CAST(:soco_id AS INTEGER))
+
+  {
+    "_post_solicitudcontenedor_tipocarga":{
+      "cantidad": "1", 
+      "otro": "", 
+      "usuario_app": "hugoDS", 
+      "tica_id": "tipos_cargaResiduos Patologicos", 
+      "soco_id": "2"
+    }
+  }
+
+  -- BATCH REQUEST
+    recurso: /_post_solicitudcontenedor_tipocarga_batch_req
+    metodo: post
+    {
+      "_post_solicitudcontenedor_tipocarga_batch_req":{
+        "_post_solicitudcontenedor_tipocarga":[
+            {
+              "cantidad": "1", 
+              "otro": "", 
+              "usuario_app": "hugoDS", 
+              "tica_id": "tipos_cargaResiduos Patologicos", 
+              "soco_id": "2"
+            },
+            {
+              "cantidad": "1", 
+              "otro": "", 
+              "usuario_app": "hugoDS", 
+              "tica_id": "tipos_cargaResiduos Patologicos", 
+              "soco_id": "2"
+            },
+            {
+              "cantidad": "1", 
+              "otro": "", 
+              "usuario_app": "hugoDS", 
+              "tica_id": "tipos_cargaResiduos Patologicos", 
+              "soco_id": "2"
+            }
+        ]
+      }
+    }
+
+-- solicitudContenedorProximo(numero automatico de nueva solicitud de contenedor)
+    recurso: /solicitudContenedor/prox
+    metodo: get
+    select COALESCE(NULL,(max(soco_id) + 1), 1) as nuevo_soco_id from log.solicitudes_contenedor
+
+    {"respuesta": {"nuevo_soco_id": "3"}}
+
+-- solicitudContenedorGet  
+  
+  recurso: /solicitudContenedores/{usuario_app}
+  metodo: get
+
+  select soco_id, estado, observaciones, fec_alta, sotr_id from log.solicitudes_contenedor SC where usuario_app = :usuario_app  // donde usuario_app es el "generador" ver como resolverlo
+
+  {
+    "sol_cont":{
+      "soco_id": "$soco_id", 
+      "estado": "$estado", 
+      "observaciones": "$observaciones", 
+      "fec_alta": "$fec_alta", 
+      "sotr_id": "$sotr_id",
+      "@contenedoresSolicitadosGet": "$soco_id->soco_id"
+    }
+  }
+
+  -- ejemplo de json devuelto ppor l servicio
+  {
+    "sol_cont": {
+    "estado": "SOLICITADA",
+    "contSolicitados": {"contenedor":    [
+              {
+          "otro": "",
+          "fec_alta": "2020-03-19+00:00",
+          "tica_id": "tipos_cargaResiduos Patologicos",
+          "valor": "Residuos Patologicos",
+          "coso_id": "5",
+          "cantidad": "1",
+          "soco_id": "2"
+        },
+              {
+          "otro": "",
+          "fec_alta": "2020-03-19+00:00",
+          "tica_id": "tipos_cargaResiduos Patologicos",
+          "valor": "Residuos Patologicos",
+          "coso_id": "4",
+          "cantidad": "1",
+          "soco_id": "2"
+        },
+              {
+          "otro": "",
+          "fec_alta": "2020-03-19+00:00",
+          "tica_id": "tipos_cargaResiduos Patologicos",
+          "valor": "Residuos Patologicos",
+          "coso_id": "3",
+          "cantidad": "1",
+          "soco_id": "2"
+        },
+              {
+          "otro": "",
+          "fec_alta": "2020-03-19+00:00",
+          "tica_id": "tipos_cargaResiduos Patologicos",
+          "valor": "Residuos Patologicos",
+          "coso_id": "2",
+          "cantidad": "1",
+          "soco_id": "2"
+        },
+              {
+          "otro": null,
+          "fec_alta": "2020-03-19+00:00",
+          "tica_id": "tipos_cargaResiduos Patologicos",
+          "valor": "Residuos Patologicos",
+          "coso_id": "1",
+          "cantidad": "2",
+          "soco_id": "2"
+        }
+    ]},
+    "fec_alta": "2020-03-19+00:00",
+    "observaciones": "OBSERVACIONES 1",
+    "sotr_id": "1",
+    "soco_id": "2"
+    }
+  }
+
+
+
+
+
+-- contenedoresSolicitadosGet
+  select CS.coso_id, CS.cantidad, CS.otro, CS.fec_alta, CS.tica_id, CS.soco_id, T.valor as rsu from log.contenedores_solicitados CS, core.tablas T
+  where CS.tica_id = T.tabl_id 
+  and soco_id = CAST(:soco_id as INTEGER)
+
+  {
+    "contSolicitados":{
+      "contenedor":[
+        {
+          "coso_id": "$coso_id", 
+          "cantidad": "$cantidad", 
+          "otro": "$otro", 
+          "fec_alta": "$fec_alta", 
+          "tica_id": "$tica_id",
+          "soco_id": "$soco_id",
+          "valor": "$valor"
+        }
+      ]
+    }  
+  }
+
+
+  
+
+
+
+
+
+
+
+
+
 
 
 
