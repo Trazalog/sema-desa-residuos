@@ -1,15 +1,4 @@
-endpoint: 'http://pc-pc:8280/services/semaresiduosDS'	
--- arrays
-  {
-  "entries": {
-      "entry": [
-          {
-          "field1": "$column1",
-          "field2": "$column2"
-          }
-      ]
-      }
-  }
+http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 
 
 //TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
@@ -157,19 +146,140 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   {"circuitos":{
       "circuito":[
           {
-          "circ_id": "$circ_id", 
-          "codigo": "$codigo", 
-          "descripcion": "$descripcion", 
-          "imagen": "$imagen", 
-          "chof_id": "$chof_id", 
-          "vehi_id": "$vehi_id", 
-          "zona_id": "$zona_id"
+            "circ_id": "$circ_id", 
+            "codigo": "$codigo", 
+            "descripcion": "$descripcion", 
+            "imagen": "$imagen", 
+            "chof_id": "$chof_id", 
+            "vehi_id": "$vehi_id", 
+            "zona_id": "$zona_id",
+            "@tiposCargaCicuitoGet":"$circ_id->circ_id"            
           }
       ]    
     }
   }  
 
+  -- ejemplo get circuitos todos con tipo de carga
+  
+  {
+    "circuitos": {"circuito": [
+      {
+          "descripcion": "circuito desampardos 1",
+          "codigo": "212",
+          "chof_id": "circuito desampardos 1",
+          "circ_id": "57",
+          "imagen": "circuito desampardos 1",
+          "vehi_id": "21",
+          "tiposCarga": {},
+          "zona_id": null
+      },    
+      {
+          "descripcion": "prueba23",
+          "codigo": "37823",
+          "chof_id": "prueba23",
+          "circ_id": "94",
+          "imagen": "prueba23",
+          "vehi_id": "22",
+          "tiposCarga": {"carga":       [
+                      {
+                "tica_id": "tipo_cargaEscombros",
+                "valor": "Escombros"
+            },
+                      {
+                "tica_id": "tipo_cargaResiduos Quimicos",
+                "valor": "Residuos Quimicos"
+            }
+          ]},
+          "zona_id": null
+      },
+      {
+        "descripcion": "prueba1234",
+        "codigo": "435436",
+        "chof_id": "prueba1234",
+        "circ_id": "97",
+        "imagen": "prueba1234",
+        "vehi_id": "21",
+        "tiposCarga": {"carga":       [
+                    {
+              "tica_id": "tipo_cargaResiduos Patologicos",
+              "valor": "Residuos Patologicos"
+          },
+                    {
+              "tica_id": "tipo_cargaResiduos Quimicos",
+              "valor": "Residuos Quimicos"
+          }
+        ]},
+        "zona_id": null
+      }
+    ]
+    }
+  }
 
+-- circuitosGetPorId
+  recurso: /circuitos/{circ_id}
+  metodo: get
+  
+  select circ_id, codigo, descripcion, imagen, chof_id, vehi_id, zona_id from log.circuitos where circ_id = CAST(:circ_id AS INTEGER)
+  
+  {
+    "circuito":   
+          {
+            "circ_id": "$circ_id", 
+            "codigo": "$codigo", 
+            "descripcion": "$descripcion", 
+            "imagen": "$imagen", 
+            "chof_id": "$chof_id", 
+            "vehi_id": "$vehi_id", 
+            "zona_id": "$zona_id",
+            "@tiposCargaCicuitoGet":"$circ_id->circ_id"           
+          }  
+  }
+
+  -- ejemplo get circuito con tipo de carga
+
+  {
+    "circuito": {
+      "descripcion": "licia",
+      "codigo": "4354353244",
+      "chof_id": "4",
+      "circ_id": "93",
+      "imagen": "",
+      "vehi_id": "21",
+      "tiposCarga": {
+            "carga": 
+                  [
+                    {
+                      "tica_id": "tipo_cargaEscombros",
+                      "valor": "Escombros"
+                    },
+                    {
+                      "tica_id": "tipo_cargaResiduos Quimicos",
+                      "valor": "Residuos Quimicos"
+                    }
+                  ]
+      },
+      "zona_id": null
+    }
+  }
+
+-- tiposCargaCircuitoGet
+  recurso: 
+  metodo: get
+  select TCC.tica_id , T.valor
+  from log.tipos_carga_circuitos TCC , core.tablas T
+  where circ_id = CAST(:circ_id as INTEGER)
+  and TCC.tica_id = T.tabl_id 
+
+  {
+    "tiposCarga":{
+      "carga":[
+        {
+          "tica_id": "$tica_id",
+          "valor": "$valor"
+        }
+      ]
+    }
+  }
 
 
 -- circuitosSet
@@ -209,8 +319,8 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   recurso: /_post_circuitos_tipocarga_batch_req
   metodo: post
   {
-    "circuitos_cargas":{
-      "circuito_carga":[
+    "_post_circuitos_tipocarga_batch_req":{
+      "_post_circuitos_tipocarga":[
         {
           "circ_id":"3",
           "tica_id":"tipo_cargaOrganico"
@@ -374,7 +484,7 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
 
 
 
--- contenedoresSet
+-- contenedoresSet (alta contenedores)
   recurso: /contenedores
   metodo: post
   insert into log.contenedores(codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, usuario_app, esco_id, reci_id)
@@ -423,6 +533,15 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
     }
   }
  
+
+
+
+
+
+
+
+
+
 
 
 -- choferesGet
@@ -477,12 +596,12 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
 -- choferesSet
   recurso: /choferes
   metodo: post
-  insert into log.choferes(nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id)
-  values(:nombre, :apellido, :documento, TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), :direccion, CAST(:celular AS INTEGER), CAST(:codigo AS INTEGER), :carnet, TO_DATE(:vencimiento,'YYYY-MM-DD'), :habilitacion, :imagen, CAST(:tran_id AS INTEGER), :cach_id)
+  insert into log.choferes(nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id, usuario_app)
+  values(:nombre, :apellido, :documento, TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), :direccion, CAST(:celular AS INTEGER), CAST(:codigo AS INTEGER), :carnet, TO_DATE(:vencimiento,'YYYY-MM-DD'), :habilitacion, :imagen, CAST(:tran_id AS INTEGER), :cach_id, :usuario_app)
   returning chof_id  
 
   {
-    "chofer":{
+    "_post_choferes":{
       "nombre": "Ruben", 
       "apellido": "Juarez", 
       "documento": "20202020" , 
@@ -792,8 +911,7 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
 -- puntosCriticosGet
   recurso: /puntosCriticos
   metodo: get
-  select nombre, descripcion, lat, lng, zona_id from log.puntos_criticos 
-  
+  select nombre, descripcion, lat, lng, zona_id from log.puntos_criticos  
 
   {"puntos_criticos":
     {
@@ -807,7 +925,9 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
           }     
       ]
     }
-  }   
+  } 
+
+
 
 -- puntosCriticosSet
   recurso: /puntosCriticos
@@ -856,8 +976,8 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   }
 
 -- puntosCriticosEstados
-  recurso: /puntosCriticos/estado
-  metodo: put
+    recurso: /puntosCriticos/estado
+    metodo: put
     update 
     log.puntos_criticos 
     set eliminado = CAST(:eliminado AS INTEGER)
@@ -887,6 +1007,186 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
         "zona_id": "5"
       }
     }
+
+-- solicitudContenedorSet(guardado de la cabecera de contenedores pedidos)
+  recurso: /solicitudContenedor
+  metodo: post
+  insert into log.solicitudes_contenedor(estado, observaciones, usuario_app, sotr_id) values(:estado, :observaciones, :usuario_app, cast(:sotr_id as INTEGER))
+
+  {
+    "_post_solicitudcontenedor":{
+      "estado": "SOLICITADA", 
+      "observaciones": "observaciones test", 
+      "usuario_app": "HugoDS", 
+      "sotr_id": "1"
+    }
+  }
+
+-- solicitudContenedorTipoCarga(guardado de contenedores pedidos con tipo carga)
+  recurso: /solicitudContenedor/tipoCarga
+  metodo: post
+  insert into log.contenedoresSolicitados(cantidad, otro, usuario_app, tica_id, soco_id) values(CAST(:cantidad AS INTEGER), :otro, :usuario_app, :tica_id, CAST(:soco_id AS INTEGER))
+
+  {
+    "_post_solicitudcontenedor_tipocarga":{
+      "cantidad": "1", 
+      "otro": "", 
+      "usuario_app": "hugoDS", 
+      "tica_id": "tipos_cargaResiduos Patologicos", 
+      "soco_id": "2"
+    }
+  }
+
+  -- BATCH REQUEST
+    recurso: /_post_solicitudcontenedor_tipocarga_batch_req
+    metodo: post
+    {
+      "_post_solicitudcontenedor_tipocarga_batch_req":{
+        "_post_solicitudcontenedor_tipocarga":[
+            {
+              "cantidad": "1", 
+              "otro": "", 
+              "usuario_app": "hugoDS", 
+              "tica_id": "tipos_cargaResiduos Patologicos", 
+              "soco_id": "2"
+            },
+            {
+              "cantidad": "1", 
+              "otro": "", 
+              "usuario_app": "hugoDS", 
+              "tica_id": "tipos_cargaResiduos Patologicos", 
+              "soco_id": "2"
+            },
+            {
+              "cantidad": "1", 
+              "otro": "", 
+              "usuario_app": "hugoDS", 
+              "tica_id": "tipos_cargaResiduos Patologicos", 
+              "soco_id": "2"
+            }
+        ]
+      }
+    }
+
+-- solicitudContenedorProximo(numero automatico de nueva solicitud de contenedor)
+    recurso: /solicitudContenedor/prox
+    metodo: get
+    select COALESCE(NULL,(max(soco_id) + 1), 1) as nuevo_soco_id from log.solicitudes_contenedor
+
+    {"respuesta": {"nuevo_soco_id": "3"}}
+
+-- solicitudContenedorGet  
+  
+  recurso: /solicitudContenedores/{usuario_app}
+  metodo: get
+
+  select soco_id, estado, observaciones, fec_alta, sotr_id from log.solicitudes_contenedor SC where usuario_app = :usuario_app  // donde usuario_app es el "generador" ver como resolverlo
+
+  {
+    "sol_cont":{
+      "soco_id": "$soco_id", 
+      "estado": "$estado", 
+      "observaciones": "$observaciones", 
+      "fec_alta": "$fec_alta", 
+      "sotr_id": "$sotr_id",
+      "@contenedoresSolicitadosGet": "$soco_id->soco_id"
+    }
+  }
+
+  -- ejemplo de json devuelto ppor l servicio
+  {
+    "sol_cont": {
+    "estado": "SOLICITADA",
+    "contSolicitados": {"contenedor":    [
+              {
+          "otro": "",
+          "fec_alta": "2020-03-19+00:00",
+          "tica_id": "tipos_cargaResiduos Patologicos",
+          "valor": "Residuos Patologicos",
+          "coso_id": "5",
+          "cantidad": "1",
+          "soco_id": "2"
+        },
+              {
+          "otro": "",
+          "fec_alta": "2020-03-19+00:00",
+          "tica_id": "tipos_cargaResiduos Patologicos",
+          "valor": "Residuos Patologicos",
+          "coso_id": "4",
+          "cantidad": "1",
+          "soco_id": "2"
+        },
+              {
+          "otro": "",
+          "fec_alta": "2020-03-19+00:00",
+          "tica_id": "tipos_cargaResiduos Patologicos",
+          "valor": "Residuos Patologicos",
+          "coso_id": "3",
+          "cantidad": "1",
+          "soco_id": "2"
+        },
+              {
+          "otro": "",
+          "fec_alta": "2020-03-19+00:00",
+          "tica_id": "tipos_cargaResiduos Patologicos",
+          "valor": "Residuos Patologicos",
+          "coso_id": "2",
+          "cantidad": "1",
+          "soco_id": "2"
+        },
+              {
+          "otro": null,
+          "fec_alta": "2020-03-19+00:00",
+          "tica_id": "tipos_cargaResiduos Patologicos",
+          "valor": "Residuos Patologicos",
+          "coso_id": "1",
+          "cantidad": "2",
+          "soco_id": "2"
+        }
+    ]},
+    "fec_alta": "2020-03-19+00:00",
+    "observaciones": "OBSERVACIONES 1",
+    "sotr_id": "1",
+    "soco_id": "2"
+    }
+  }
+
+
+
+
+
+-- contenedoresSolicitadosGet
+  select CS.coso_id, CS.cantidad, CS.otro, CS.fec_alta, CS.tica_id, CS.soco_id, T.valor as rsu from log.contenedores_solicitados CS, core.tablas T
+  where CS.tica_id = T.tabl_id 
+  and soco_id = CAST(:soco_id as INTEGER)
+
+  {
+    "contSolicitados":{
+      "contenedor":[
+        {
+          "coso_id": "$coso_id", 
+          "cantidad": "$cantidad", 
+          "otro": "$otro", 
+          "fec_alta": "$fec_alta", 
+          "tica_id": "$tica_id",
+          "soco_id": "$soco_id",
+          "valor": "$valor"
+        }
+      ]
+    }  
+  }
+
+
+  
+
+
+
+
+
+
+
+
+
 
 
 
@@ -924,7 +1224,31 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   select CE.fec_retiro, 
   from log.contenedores_entregados, core.tablas
   where 
-  
+
+
+
+//TODO: TERMINAR....
+-- ordenTransporteSet
+insert into log.ordenes_transporte (fec_retiro, estado, caseid, difi_id, sotr_id, equi_id, chof_id)
+  values(TO_DATE(:fec_retiro, 'YYYY-MM-DD'), :estado, :caseid, :difi_id, :sotr_id, :equi_id, :chof_id)
+
+
+  {
+    "fec_retiro"
+    "estado"            // 
+    "caseid"            // de BPM
+    "difi_id"           // disposicion final
+    "sotr_id"
+    "equi_id"           
+    "chof_id"           // recordar que es el dni de chofer
+  }
+
+
+
+
+
+
+-- estado PARA ORDEN DE TRANSPORT LLENAR EN TABLA Y DAR EJEMPO DE SERVICIO
 
 -- transportistasSet
   recurso: /transportistas
@@ -1151,7 +1475,7 @@ endpoint: 'http://pc-pc:8280/services/semaresiduosDS'
   }
   
 -- vehiculosSet
-  recurso: /vehiculos
+  recurso: /veh:qiculos
   metodo: post
   /vehiculos
   insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio)

@@ -138,8 +138,7 @@ define('DEF_VIEW','traz-comp-bpm/Tarea');
 | Variables Locales
 |
 */
-//define('REST', 'http://localhost:3000/');
-// define('REST', 'http://pc-pc:8280/services/semaresiduosDS');
+
 define('REST', 'http://dev-trazalog.com.ar:8280/services/semaresiduosDS');
 //define('REST', 'http://dev-trazalog.com.ar:8280/services/ProduccionDataService/');
 define('RESTPT', 'http://dev-trazalog.com.ar:8280/services/produccionTest/');
