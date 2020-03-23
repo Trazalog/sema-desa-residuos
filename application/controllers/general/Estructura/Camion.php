@@ -1,212 +1,171 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Camiones extends CI_Controller {
+class Camion extends CI_Controller {
 
-    function __construct(){
-
-      parent::__construct();
-            $this->load->model('general/Estructura/Camiones');
-            // $this->load->model('general/Estructura/Contenedores');
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('general/Estructura/Camiones');
     }
 
-   // ---------------- Funcions CHOFERES ---------------------------------------
+// ---------------- Funcions CHOFERES ----------------
 
-      // ---------------- Funcion Cargar vista Chofer y Datos
-      function templateChoferes()
-      {
-          // $data[''] = $this->Infracciones->obtener_();
-          // $data[''] = $this->Infracciones->obtener_();
-          // $data[''] = $this->Infracciones->obtener_();
-          // $data[''] = $this->Infracciones->obtener_();       
-          
-          $this->load->view('layout/registrar_chofer',$data);
-      }
-      // _________________________________________________________
-   
-      // ---------------- Funcion Registrar Chofer
-      function Guardar_Chofer()
-      {
-          $datos =  $this->input->post();
-          $resp = $this->Camiones->Guardar_Choferes($datos);
-          if($resp){
-          echo "ok";
-          }else{
-          echo "error";
-          }
-      }
-      // _________________________________________________________
+    // ---------------- Funcion Cargar vista Chofer y Datos
+    function templateChoferes()
+    {
+        $data['carnet'] = $this->Camiones->obtener_Carnet();
+        $data['categoria'] = $this->Camiones->obtener_Categoria();
+        $data['empresa'] = $this->Camiones->obtener_Empresa();
+        // $data[''] = $this->Chofer->obtener_();
+        // log_message('DEBUG','ZEROBERTO TROLO'.json_encode($data['empresa']));
 
-      // ---------------- Funcion Crear Chofer
-      function Crear_Chofer()
-      {
+        $this->load->view('layout/Choferes/registrar_chofer',$data);
+    }
+    // _________________________________________________________
 
-      }
-      // _________________________________________________________
+    // ---------------- Funcion Registrar Chofer
+    function Guardar_Chofer()
+    {
+        $datos =  $this->input->post('datos');
+        $resp = $this->Camiones->Guardar_Chofer($datos);
+        if($resp){
+        echo "ok";
+        }else{
+        echo "error";
+        }
+    }
+    // _________________________________________________________
 
-      // ---------------- Funcion Listar Choferes
-      function Listar_Choferes()
-      {
-  
-      }
-      // _________________________________________________________
-   
-      // ---------------- Funcion Modificar Chofer
-      function Modificar_Chofer()
-      {
+    // ---------------- Funcion Crear Chofer
+    function Crear_Chofer()
+    {
 
-      }
-      // _________________________________________________________
-   
-      // ---------------- Funcion Borrar Chofer
-      function Borrar_Chofer()
-      {
+    }
+    // _________________________________________________________
 
-      }
-      // _________________________________________________________
+    // ---------------- Funcion Listar Choferes
+    function Listar_Chofer()
+    {
+        $data["choferes"] = $this->Camiones->Listar_Chofer();
+        $this->load->view('layout/Choferes/lista_choferes',$data);
+    }
+    // _________________________________________________________
 
-      // ---------------- Funcion Suspender Chofer
-      function Suspender_Chofer()
-      {
+    // ---------------- Funcion Modificar Chofer
+    function Modificar_Chofer()
+    {
 
-      }
-      // _________________________________________________________
+    }
+    // _________________________________________________________
 
-      // ---------------- Funciones Obtener --------------------------------//
+    // ---------------- Funcion Borrar Chofer
+    function Borrar_Chofer()
+    {
 
-      // ---------------- Funcion Obtener tipo de residuo
-      function Obtener_Residuo()
-      {
-   
-      }
-      // _________________________________________________________
+    }
+    // _________________________________________________________
 
-      // ---------------- Funcion Obtener Transportista
-      function Obtener_transportista()
-      {
+    // ---------------- Funcion Suspender Chofer
+    function Suspender_Chofer()
+    {
 
-      }
-      // _________________________________________________________
+    }
+    // _________________________________________________________
 
-      // ---------------- Funcion Obtener Generador
-      function Obtener_Generador()
-      {
-  
-      }
-      // _________________________________________________________
+// ---------------- Funciones Obtener ---------------- //
 
-      // ---------------- Funcions VEHICULORS---------------------------------------
+    // ---------------- Funcion Obtener tipo de residuo
+    function Obtener_Residuo()
+    {
 
-      // ---------------- Funcion Cargar vista Vehiculos y Datos
-      function templateVehiculos()
-      {
-          // $data[''] = $this->Infracciones->obtener_();
-          // $data[''] = $this->Infracciones->obtener_();
-          // $data[''] = $this->Infracciones->obtener_();
-          // $data[''] = $this->Infracciones->obtener_();       
-          
-        $this->load->view('layout/registrar_vehiculo',$data);  
-      }
-      // _________________________________________________________
+    }
+    // _________________________________________________________
 
-      // ---------------- Funcion Registrar Vehiculo
-      function Guardar_Vehiculo()
-      {
-          $datos =  $this->input->post();
-          $resp = $this->Camiones->Guardar_Choferes($datos);
-          if($resp){
-          echo "ok";
-          }else{
-          echo "error";
-          }
-      }
-      // _________________________________________________________
-   
-      // ---------------- Funcion Crear Vehiculo
-      function Crear_Vehiculo()
-      {
+    // ---------------- Funcion Obtener Transportista
+    function Obtener_transportista()
+    {
 
-      }
-      // _________________________________________________________
+    }
+    // _________________________________________________________
 
-      // ---------------- Funcion Listar Vehiculos
-      function Listar_Vehiculos()
-      {
+    // ---------------- Funcion Obtener Generador
+    function Obtener_Generador()
+    {
 
-      }
-      // _________________________________________________________
+    }
+    // _________________________________________________________
 
-   
-      // ---------------- Funcion Modificar Vehiculo
-      function Modificar_Vehiculo()
-      {
+// ---------------- Funciones VEHICULOS ----------------
 
-      }
-      // _________________________________________________________
+    // ---------------- Funcion Cargar vista Vehiculos y Datos
+    function templateVehiculos()
+    {
+        // $data[''] = $this->Infracciones->obtener_();
+        // $data[''] = $this->Infracciones->obtener_();
+        // $data[''] = $this->Infracciones->obtener_();
+        // $data[''] = $this->Infracciones->obtener_();
 
-      // ---------------- Funcion Borrar Vehiculo
-      function Borrar_Vehiculo()
-      {
+        $this->load->view('layout/Vehiculos/registrar_vehiculo', $data);
+    }
+    // _________________________________________________________
 
-      }
-      // _________________________________________________________
+    // ---------------- Funcion Registrar Vehiculo
+    function Guardar_Vehiculo()
+    {
+        $datos =  $this->input->post('datos');
+        $resp = $this->Camiones->Guardar_Vehiculo($datos);
+        if($resp){
+        echo "ok";
+        }else{
+        echo "error";
+        }
+    }
+    // _________________________________________________________
 
-      // ---------------- Funcion Suspender Vehiculo
-      function Suspender_Vehiculo()
-      {
+    // ---------------- Funcion Crear Vehiculo
+    function Crear_Vehiculo()
+    {
 
-      }
-      // _________________________________________________________
+    }
+    // _________________________________________________________
 
-      // ---------------- Funciones Obtener --------------------------------//
-      
-      // ---------------- Funcion Obtener tipo de carnet
-      function Obtener_Carnet()
-      {
+    // ---------------- Funcion Listar Vehiculos
+    function Listar_Vehiculo()
+    {
+        $data["vehiculos"] = $this->Camiones->Listar_Vehiculo();
+        $this->load->view('layout/Vehiculos/lista_vehiculos',$data);
+    }
+    // _________________________________________________________
 
-      }
-      // _________________________________________________________
+    // ---------------- Funcion Modificar Vehiculo
+    function Modificar_Vehiculo()
+    {
+
+    }
+    // _________________________________________________________
+
+    // ---------------- Funcion Borrar Vehiculo
+    function Borrar_Vehiculo()
+    {
+
+    }
+    // _________________________________________________________
+
+    // ---------------- Funcion Suspender Vehiculo
+    function Suspender_Vehiculo()
+    {
+
+    }
+    // _________________________________________________________
+
+// ---------------- Funciones Obtener ---------------- //
+
+    // ---------------- Funcion Obtener tipo de carnet
+    function Obtener_Carnet()
+    {
+
+    }
+    // _________________________________________________________
 
 }
 ?>
-
-<!-- class RegistrarC extends CI_Controller {
-    function __construct(){
-
-      parent::__construct();
-      $this->load->helper('estado_helper');
-
-      $this->load->model('general/Estados');
-   }
-
-   function registrarC()
-   {
-       $data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/registrar_contenedor', $data);
-   }
-   
-   function templateRc()
-   {
-       $data['Estados'] = $this->Estados->obtener();
-       $this->load->view('layout/registrar_contenedor',$data);
-       
-   }
-} -->
-
-<!-- 
-class Registrarcontenedor  extends CI_Controller {
-    function __construct()
-    {
-      parent::__construct();
-      $this->load->model('general/Registrarcontenedores');
-    }
-    public function guardarDato()
-    {
-        $datos =  $this->input->post();
-        $resp = $this->Registrarcontenedores->guardarDatos($datos);
-        if($resp){
-          echo "ok";
-        }else{
-          echo "error";
-        }
-    }
-} -->

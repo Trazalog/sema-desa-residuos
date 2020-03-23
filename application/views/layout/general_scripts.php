@@ -59,6 +59,11 @@
        <!-- AdminLTE App -->
        <script src="<?php base_url() ?>lib/dist/js/adminlte.min.js"></script>
 
+
+       <!-- Select2 -->
+        <script src="<?php base_url() ?>lib/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+
        
 
         <!-- <script type="text/javascript"> var $jq1 = jQuery.noConflict(true);</script> 

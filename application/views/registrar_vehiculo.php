@@ -16,54 +16,54 @@
     </div>
 </div>
 
-<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+    <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-<!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
+    <!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
 
-<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
-    <div class="box-header with-border">
-        <div class="box-tittle">
-        <h5>Informacion</h5>  
+    <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
+        <div class="box-header with-border">
+            <div class="box-tittle">
+            <h5>Informacion</h5>  
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                    data-toggle="tooltip" title="" data-original-title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
         </div>
-        <div class="box-tools pull-right">
-            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
-                data-toggle="tooltip" title="" data-original-title="Remove">
-                <i class="fa fa-times"></i>
-            </button>
-        </div>
-    </div>
 
 ​        <!--_____________________________________________________________-->
 
         <div class="box-body">
             <form class="formVehiculo" id="formVehiculo"  method="POST" autocomplete="off" class="registerForm">
                 <div class="col-md-6 col-sm-6 col-xs-12">
-        
+
                     <!--Descripcion-->
                         <div class="form-group">
-                                <label for="Descripcion" >Descripcion:</label>
-                                <input type="text" class="form-control" id="Descripcion" name="descripcion">
+                            <label for="Descripcion">Descripcion:</label>
+                            <input type="text" class="form-control" id="Descripcion" name="descripcion">
                         </div>
             ​        <!--_____________________________________________________________-->
 
                     <!--Dominio-->
                         <div class="form-group">
-                                <label for="Dominio">Dominio:</label>
-                                <input type="text" class="form-control" id="Dominio" name="dominio">
+                            <label for="Dominio">Dominio:</label>
+                            <input type="text" class="form-control" id="Dominio" name="dominio">
                         </div>
             ​        <!--_____________________________________________________________-->
 
                     <!--Marca-->
                         <div class="form-group">
-                                <label for="Marca" >Marca:</label>
-                                <input type="text" class="form-control" id="Marca" name="marca">
+                            <label for="Marca">Marca:</label>
+                            <input type="text" class="form-control" id="Marca" name="marca">
                         </div>
             ​        <!--_____________________________________________________________-->
 
                     <!--Condicion-->
                         <div class="form-group">
-                            <label for="condicion" >Condicion:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="condicion" name="condicion" >
+                            <label for="condicion">Condicion:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="condicion" name="condicion">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                 <?php
                                 foreach ($condicion as $i) {
@@ -76,8 +76,8 @@
 
                     <!--Modelo-->
                         <div class="form-group">
-                                <label for="Modelo" >Modelo:</label>
-                                <input type="text" class="form-control" id="Modelo" name="modelo">
+                            <label for="Modelo">Modelo:</label>
+                            <input type="text" class="form-control" id="Modelo" name="modelo">
                         </div>
             ​        <!--_____________________________________________________________-->
 
@@ -86,35 +86,35 @@
 
                     <!--Capacidad-->
                         <div class="form-group">
-                                <label for="Capacidad" >Capacidad:</label>
-                                <input type="text" class="form-control" id="Capacidad" name="capacidad">
+                            <label for="Capacidad">Capacidad:</label>
+                            <input type="text" class="form-control" id="Capacidad" name="capacidad">
                         </div>
             ​        <!--_____________________________________________________________-->
 
                     <!--Tara-->
                         <div class="form-group">
-                                <label for="Tara" >Tara:</label>
-                                <input type="text" class="form-control" id="Tara" name="tara" >
+                            <label for="Tara" >Tara:</label>
+                            <input type="text" class="form-control" id="Tara" name="tara">
                         </div>
             ​        <!--_____________________________________________________________-->    
 
                     <!--Habilitacion-->
                         <div class="form-group">
-                                <label for="Habilitacion" >Habilitacion:</label>
-                                <input type="text" class="form-control" id="Habilitacion" name="habilitacion" >
+                            <label for="Habilitacion">Habilitacion:</label>
+                            <input type="text" class="form-control" id="Habilitacion" name="habilitacion">
                         </div>
             ​        <!--_____________________________________________________________-->    
 
                     <!--Registro-->
                         <div class="form-group">
-                                <label for="Registro" >Registro:</label>
-                                <input type="text" class="form-control" id="Registro" name="registro" >
+                            <label for="Registro">Registro:</label>
+                            <input type="text" class="form-control" id="Registro" name="registro">
                         </div>
             ​        <!--_____________________________________________________________--> 
 
                     <!--Fecha de habilitacion-->
-                        <div class="form-group" >
-                            <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
+                        <div class="form-group">
+                            <label for="Fechahabilitacion">Fecha de habilitacion:</label>
                             <div class="input-group date">
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
@@ -135,27 +135,25 @@
 
         </div>
 
-            <!--_______________________SEPARADOR______________________________________-->            
-            
-            <div class="col-md-12"><hr></div>
+                    <!--_______________________SEPARADOR______________________________________-->            
 
-            <!--_______________________SEPARADOR______________________________________-->
-            
-            <div class="col-md-6">
+                    <div class="col-md-12"><hr></div>
 
-                <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                </button>
-                <small for="agregar" class="form-label">Adjuntar imagen</small>
-        
-            </div>
-            <!--_____________________________________________________________-->            
+                    <!--_______________________SEPARADOR______________________________________-->
 
-            <div class="col-md-12"><hr></div><br>
+                    <div class="col-md-6">
+                        <button type="file" name="upload" class="btn btn-default btn-circle" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                        </button>
+                        <small for="agregar" class="form-label">Adjuntar imagen</small>
+                    </div>
+                    <!--_____________________________________________________________-->            
 
-            <!--Boton de guardado--> 
-            <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
-            <!--_____________________________________________________________--> 
+                <div class="col-md-12"><hr></div><br>
+
+                    <!--Boton de guardado--> 
+                        <button type="submit" class="btn btn-primary pull-right" onclick="agregarDato()">Guardar</button>
+                    <!--_____________________________________________________________--> 
 
             </form>
         </div>
@@ -182,6 +180,7 @@
                 <!--__________________HEADER TABLA___________________________-->
 
                     <!--__________________HEADER TABLA___________________________-->
+
                     <table id="tabla_vehiculos" class="table table-bordered table-striped">
                         <thead class="thead-dark" bgcolor="#eeeeee">
                             <th>Acciones</th>
@@ -192,7 +191,9 @@
                             <th>habilitacion</th>
                             <th>Registro</th>
                         </thead>
+
                         <!--__________________BODY TABLA___________________________-->
+
                         <tbody>
                         <tr>
                             <td>
@@ -209,6 +210,7 @@
                         </tr>
                         </tbody>
                     </table>
+
                     <!--__________________FIN TABLA___________________________-->
 
                 </div>
@@ -237,10 +239,10 @@
             <form class="formVehiculoEdit" id="formVehiculoEdit"  method="POST" autocomplete="off" class="registerForm">
                 <div class="modal-body">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-        
+
                         <!--Descripcion-->
                             <div class="form-group">
-                                <label for="Descripcion" >Descripcion:</label>
+                                <label for="Descripcion">Descripcion:</label>
                                 <input type="text" class="form-control" id="" name="e_descripcion">
                             </div>
             ​            <!--_____________________________________________________________-->
@@ -254,15 +256,15 @@
 
                         <!--Marca-->
                             <div class="form-group">
-                                <label for="Marca" >Marca:</label>
+                                <label for="Marca">Marca:</label>
                                 <input type="text" class="form-control" id="" name="e_marca">
                             </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Condicion-->
                             <div class="form-group">
-                                <label for="condicion" >Condicion:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="" name="e_condicion" >
+                                <label for="condicion">Condicion:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="" name="e_condicion">
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
                                     foreach ($condicion as $i) {
@@ -275,7 +277,7 @@
 
                         <!--Modelo-->
                             <div class="form-group">
-                                <label for="Modelo" >Modelo:</label>
+                                <label for="Modelo">Modelo:</label>
                                 <input type="text" class="form-control" id="" name="e_modelo">
                             </div>
             ​            <!--_____________________________________________________________-->
@@ -285,35 +287,35 @@
 
                         <!--Capacidad-->
                             <div class="form-group">
-                                <label for="Capacidad" >Capacidad:</label>
+                                <label for="Capacidad">Capacidad:</label>
                                 <input type="text" class="form-control" id="" name="e_capacidad">
                             </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Tara-->
                             <div class="form-group">
-                                <label for="Tara" >Tara:</label>
-                                <input type="text" class="form-control" id="" name="e_tara" >
+                                <label for="Tara">Tara:</label>
+                                <input type="text" class="form-control" id="" name="e_tara">
                             </div>
             ​            <!--_____________________________________________________________-->    
 
                         <!--Habilitacion-->
                             <div class="form-group">
-                                <label for="Habilitacion" >Habilitacion:</label>
-                                <input type="text" class="form-control" id="" name="e_habilitacion" >
+                                <label for="Habilitacion">Habilitacion:</label>
+                                <input type="text" class="form-control" id="" name="e_habilitacion">
                             </div>
             ​            <!--_____________________________________________________________-->    
 
                         <!--Registro-->
                             <div class="form-group">
-                                <label for="Registro" >Registro:</label>
-                                <input type="text" class="form-control" id="" name="e_registro" >
+                                <label for="Registro">Registro:</label>
+                                <input type="text" class="form-control" id="" name="e_registro">
                             </div>
             ​            <!--_____________________________________________________________--> 
 
                         <!--Fecha de habilitacion-->
-                            <div class="form-group" >
-                                <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
+                            <div class="form-group">
+                                <label for="Fechahabilitacion">Fecha de habilitacion:</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
@@ -373,7 +375,7 @@
 
                         <!--Descripcion-->
                             <div class="form-group">
-                                <label for="Descripcion" >Descripcion:</label>
+                                <label for="Descripcion">Descripcion:</label>
                                 <input type="text" class="form-control" id="Descripcion" name="descripcion" readonly>
                             </div>
             ​            <!--_____________________________________________________________-->
@@ -387,22 +389,22 @@
 
                         <!--Marca-->
                             <div class="form-group">
-                                <label for="Marca" >Marca:</label>
+                                <label for="Marca">Marca:</label>
                                 <input type="text" class="form-control" id="Marca" name="marca"readonly>
                             </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Condicion-->
                             <div class="form-group">
-                                <label for="condicion" >Condicion:</label>
-                                <input type="text" class="form-control" id="condicion" name="condicion"readonly >                            
+                                <label for="condicion">Condicion:</label>
+                                <input type="text" class="form-control" id="condicion" name="condicion"readonly>                            
                             </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Modelo-->
                             <div class="form-group">
-                                <label for="Modelo" >Modelo:</label>
-                                <input type="text" class="form-control" id="Modelo" name="modelo"readonly >
+                                <label for="Modelo">Modelo:</label>
+                                <input type="text" class="form-control" id="Modelo" name="modelo"readonly>
                             </div>
             ​            <!--_____________________________________________________________-->
 
@@ -411,40 +413,40 @@
 
                         <!--Capacidad-->
                             <div class="form-group">
-                                <label for="Capacidad" >Capacidad:</label>
-                                <input type="text" class="form-control" id="Capacidad" name="capacidad"readonly >
+                                <label for="Capacidad">Capacidad:</label>
+                                <input type="text" class="form-control" id="Capacidad" name="capacidad"readonly>
                             </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Tara-->
                             <div class="form-group">
-                                <label for="Tara" >Tara:</label>
-                                <input type="text" class="form-control" id="Tara" name="tara"readonly  >
+                                <label for="Tara">Tara:</label>
+                                <input type="text" class="form-control" id="Tara" name="tara"readonly>
                             </div>
             ​            <!--_____________________________________________________________-->    
 
                         <!--Habilitacion-->
                             <div class="form-group">
-                                <label for="Habilitacion" >Habilitacion:</label>
-                                <input type="text" class="form-control" id="Habilitacion" name="habilitacion" readonly >
+                                <label for="Habilitacion">Habilitacion:</label>
+                                <input type="text" class="form-control" id="Habilitacion" name="habilitacion" readonly>
                             </div>
             ​            <!--_____________________________________________________________-->    
 
                         <!--Registro-->
                             <div class="form-group">
-                                <label for="Registro" >Registro:</label>
-                                <input type="text" class="form-control" id="Registro" name="registro" readonly >
+                                <label for="Registro">Registro:</label>
+                                <input type="text" class="form-control" id="Registro" name="registro" readonly>
                             </div>
             ​            <!--_____________________________________________________________--> 
 
                         <!--Fecha de habilitacion-->
-                            <div class="form-group" >
-                                <label for="Fechahabilitacion" >Fecha de habilitacion:</label>
+                            <div class="form-group">
+                                <label for="Fechahabilitacion">Fecha de habilitacion:</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" class="form-control pull-right" id="datepicker" name="fechahabilitacion" readonly >
+                                    <input type="date" class="form-control pull-right" id="datepicker" name="fechahabilitacion" readonly>
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -461,6 +463,7 @@
                     </div>
                 </div>
             </form>
+
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
             </div>
@@ -474,7 +477,6 @@
         </div>
     </div>
 </div>
-
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
@@ -537,25 +539,25 @@
             //--------------------------------------------------------------
 
         $.ajax({
-                    type:"POST",
-                    data:datos,
-                    url:"ajax/Registrarchofer/guardarDato",
-                    success:function(r){
-                        if(r == "ok"){
-                            //console.log(datos);
-                            $('#formVehiculo')[0].reset();
-                            alertify.success("Agregado con exito");
-                        }
-                        else{
-                            console.log(r);
-                            $('#formVehiculo')[0].reset();
-                            alertify.error("error al agregar");
-                        }
-                    },
-                    complete: function() {
-                        me.data('requestRunning', false);
+                type:"POST",
+                data:datos,
+                url:"ajax/Registrarchofer/guardarDato",
+                success:function(r){
+                    if(r == "ok"){
+                        //console.log(datos);
+                        $('#formVehiculo')[0].reset();
+                        alertify.success("Agregado con exito");
                     }
-                });
+                    else{
+                        console.log(r);
+                        $('#formVehiculo')[0].reset();
+                        alertify.error("error al agregar");
+                    }
+                },
+                complete: function() {
+                    me.data('requestRunning', false);
+                }
+            });
         });
     }
 </script>

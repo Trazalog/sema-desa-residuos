@@ -97,6 +97,17 @@
                     <input type="text" class="form-control" name="contacto" id="contacto">
                     </div>
                 </div>
+                <!--_____________________________________________-->
+                <!--contacto-->
+
+                <div class="form-group">
+                    <label for="Contacto" >Cuit:</label>
+                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                    <input type="text" class="form-control" name="cuit" id="cuit" size="11">
+
+                    
+                    </div>
+                </div>
             </div>
 
              <!--***************************************-->
@@ -149,8 +160,8 @@
 
                 <!--_____________________________________________-->
                 <!--Tipo de RSU autorizado-->
-<!-- 
-                <div class="form-group">
+
+                <!-- <div class="form-group">
                     <label for="Rsu" >Tipo de RSU autorizado:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <select class="form-control select2 select2-hidden-accesible" name="Rsu" id="Rsu">
@@ -282,6 +293,13 @@ $("#btnadd").on("click", function() {
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
                         alertify.success("Agregado con exito");
 
+                        $('#formTransportistas').data('bootstrapValidator').resetForm();
+                        $("#formTransportistas")[0].reset();
+                       
+                        $("#boxDatos").hide(500);
+                        $("#botonAgregar").removeAttr("disabled");
+
+
                        
 
                     } else {
@@ -399,7 +417,19 @@ $("#btnadd").on("click", function() {
                         message: 'la entrada no puede ser vacia'
                     },
                     regexp: {
-                        regexp: /[A-Za-z]/,
+                        regexp: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            cuit: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]{2}-[0-9]{8}-[0-9]$ /,
                         message: 'la entrada no debe ser un numero entero'
                     }
                 }
@@ -477,7 +507,6 @@ $("#btnadd").on("click", function() {
         $("#formEditDatos").data('bootstrapValidator').resetForm();
     });
 </script>
-
 
 
 
