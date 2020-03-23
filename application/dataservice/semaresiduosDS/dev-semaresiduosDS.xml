@@ -368,6 +368,17 @@
       <result outputType="json">{&#xd;    "sol_cont":{&#xd;      "soco_id": "$soco_id", &#xd;      "estado": "$estado", &#xd;      "observaciones": "$observaciones", &#xd;      "fec_alta": "$fec_alta", &#xd;      "sotr_id": "$sotr_id",&#xd;      "@contenedoresSolicitadosGet": "$soco_id-&gt;soco_id"&#xd;    }&#xd;  }</result>
       <param name="usuario_app" sqlType="STRING"/>
    </query>
+   <query id="ordTransSet" useConfig="semaresiduosDS">
+      <sql>insert into &#xd;  log.ordenes_transporte (fec_retiro, estado, caseid, difi_id, sotr_id, equi_id, chof_id)&#xd;  values(TO_DATE(:fec_retiro, 'YYYY-MM-DD'), :estado, :caseid, :difi_id, CAST(:sotr_id AS INTEGER), CAST(:equi_id AS INTEGER), :chof_id) &#xd;returning ortr_id</sql>
+      <result outputType="json">{&#xd;    "respuesta":{&#xd;      "ortr_id": "$ortr_id"&#xd;    }&#xd;}</result>
+      <param name="fec_retiro" sqlType="STRING"/>
+      <param name="estado" sqlType="STRING"/>
+      <param name="caseid" sqlType="STRING"/>
+      <param name="difi_id" sqlType="STRING"/>
+      <param name="sotr_id" sqlType="STRING"/>
+      <param name="equi_id" sqlType="STRING"/>
+      <param name="chof_id" sqlType="STRING"/>
+   </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
          <with-param name="nombre" query-param="nombre"/>
@@ -730,6 +741,17 @@
    <resource method="GET" path="/solicitudContenedores/{usuario_app}">
       <call-query href="solicitudContenedorGet">
          <with-param name="usuario_app" query-param="usuario_app"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="/ordenTransporte">
+      <call-query href="ordTransSet">
+         <with-param name="fec_retiro" query-param="fec_retiro"/>
+         <with-param name="estado" query-param="estado"/>
+         <with-param name="caseid" query-param="caseid"/>
+         <with-param name="difi_id" query-param="difi_id"/>
+         <with-param name="sotr_id" query-param="sotr_id"/>
+         <with-param name="equi_id" query-param="equi_id"/>
+         <with-param name="chof_id" query-param="chof_id"/>
       </call-query>
    </resource>
 </data>

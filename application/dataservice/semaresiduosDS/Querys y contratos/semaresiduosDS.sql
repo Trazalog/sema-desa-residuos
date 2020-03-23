@@ -1209,10 +1209,11 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }
 
--- ordTransProxId
+-- ordTransProxId (numero automático próximo)
   recurso: /ordenTransporte/prox
   metodo: get
-  select (max(ortr_id) + 1) as nueva_ortr_id from log.ordenes_transporte 
+
+  select COALESCE(NULL,(max(ortr_id) + 1), 1) as nuevo_soco_id from log.solicitudes_contenedor
 
   {
     "respuesta":{
@@ -1220,35 +1221,63 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }
 
--- orden transporte get  -> alternativa 
-  select CE.fec_retiro, 
-  from log.contenedores_entregados, core.tablas
-  where 
-
-
-
-//TODO: TERMINAR....
 -- ordenTransporteSet
-insert into log.ordenes_transporte (fec_retiro, estado, caseid, difi_id, sotr_id, equi_id, chof_id)
-  values(TO_DATE(:fec_retiro, 'YYYY-MM-DD'), :estado, :caseid, :difi_id, :sotr_id, :equi_id, :chof_id)
-
+  recurso: /ordenTransporte
+  metodo: post
+  insert into log.ordenes_transporte (fec_retiro, estado, caseid, difi_id, sotr_id, equi_id, chof_id)
+  values(TO_DATE(:fec_retiro, 'YYYY-MM-DD'), :estado, :caseid, :difi_id, CAST(:sotr_id AS INTEGER), CAST(:equi_id AS INTEGER), :chof_id) returning ortr_id
 
   {
-    "fec_retiro"
-    "estado"            // 
-    "caseid"            // de BPM
-    "difi_id"           // disposicion final
-    "sotr_id"
-    "equi_id"           
-    "chof_id"           // recordar que es el dni de chofer
+    "_post_ordentransporte":
+      {
+        "fec_retiro": "2020-03-23",
+        "estado": "INGRESADO",             
+        "caseid": "00001",                                    // de BPM
+        "difi_id": "disposicion_finalPTA",                    // disposicion final
+        "sotr_id": "1",                                       // solic transporte id
+        "equi_id": "21",                                      // ide de equipo(camión)
+        "chof_id": "18887911"                                 // recordar que es el dni de chofer
+      }
   }
 
+  {
+    "respuesta":{
+      "ortr_id": "15"
+    }
+  }
 
-
-
-
-
--- estado PARA ORDEN DE TRANSPORT LLENAR EN TABLA Y DAR EJEMPO DE SERVICIO
+-- ordenTransporte->Estado (estados:'EN_TRANSITO', 'INGRESADO', 'DESCARGADO', 'INFRACCION', 'EGRESADO')
+  recurso: tabla/estado_contenedor
+  metodo: get
+  
+  -- ejemplo de respuesta
+  {
+    "valores":{
+        "valor":[
+          {
+            "tabl_id": "estado_contenedorEN_TRANSITO",
+            "valor": "EN_TRANSITO",
+            "valor2": "",
+            "valor3": "",
+            "descripcion": ""
+          },
+          {
+            "tabl_id": "estado_contenedorINGRESADO",
+            "valor": "INGRESADO",
+            "valor2": "",
+            "valor3": "",
+            "descripcion": ""
+          },
+          {
+            "tabl_id": "estado_contenedorDESCARGADO",
+            "valor": "DESCARGADO",
+            "valor2": "",
+            "valor3": "",
+            "descripcion": ""
+          }
+        ]
+    }
+  }
 
 -- transportistasSet
   recurso: /transportistas
