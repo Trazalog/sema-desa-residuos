@@ -80,19 +80,19 @@
                 <!--__________________________________________________________________________________________-->
 
                 <!--Asociar Recipiente-->
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="Recipiente">Asociar Recipiente:</label>
                         <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                             <select class="form-control select2 select2-hidden-accesible" name="reci_id" id="reci_id">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                        foreach ($Recipiente as $i) {
-                                            echo '<option  value="'.$i->reci_id.'">'.$i->nombre.'</option>';
-                                        }
+                                        // foreach ($Recipiente as $i) {
+                                        //     echo '<option  value="'.$i->reci_id.'">'.$i->nombre.'</option>';
+                                        // }
                                     ?>
                             </select>
                         </div>
-                    </div>
+                    </div>-->
                 <!--__________________________________________________________________________________________-->
 
             </div>
