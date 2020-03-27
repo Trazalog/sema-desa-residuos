@@ -21,6 +21,7 @@ class Contenedores extends CI_Model
     // Funcion Guardar Contenedor
     function Guardar_Contenedor($data)
     {
+        // var_dump($data);
         $post["post_contenedor"] = $data;       
         log_message('DEBUG','#Contenedores/Guardar_Contenedor'.json_encode($post));
         $aux = $this->rest->callAPI("POST",REST."/contenedores", $post);
@@ -100,12 +101,12 @@ class Contenedores extends CI_Model
     // __________________________________________________________
 
     // Funcion Obtener  recipiente
-    public function Obtener_recipiente()
-    {
-        $aux = $this->rest->callAPI("GET",REST."/lote/todos/deposito");
-        $aux =json_decode($aux["data"]);
-        return $aux->recipientes->recipiente;
-    }
+    // public function Obtener_recipiente()
+    // {
+    //     $aux = $this->rest->callAPI("GET",REST."/lote/todos/deposito");
+    //     $aux =json_decode($aux["data"]);
+    //     return $aux->recipientes->recipiente;
+    // }
     // __________________________________________________________
 
     // Funcion Obtener  Habilitacion

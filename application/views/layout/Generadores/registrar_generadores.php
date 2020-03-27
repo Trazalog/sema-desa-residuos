@@ -145,7 +145,7 @@
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                             foreach ($Departamentos as $i) {
-                                echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';                                
+                                echo '<opption  value="'.$i->depa_id.'">'.$i->nombre.'</option>';                                
                             }
                             ?>
                         </select>

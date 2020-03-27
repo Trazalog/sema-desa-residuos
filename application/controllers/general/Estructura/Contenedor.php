@@ -14,8 +14,8 @@ class Contenedor extends CI_Controller {
     function templateContenedores()
     {
       $data['Estados'] = $this->Contenedores->obtener_Estados();
-      $data['Recipiente'] = $this->Contenedores->Obtener_recipiente();
       $data['Habilitacion'] = $this->Contenedores->Obtener_Habilitacion();
+      // $data['Recipiente'] = $this->Contenedores->Obtener_recipiente();
       // $data[''] = $this->Contenedores->obtener_();
       // $data[''] = $this->Contenedores->obtener_();
       $this->load->view('layout/Contenedores/registrar_contenedor',$data); 
