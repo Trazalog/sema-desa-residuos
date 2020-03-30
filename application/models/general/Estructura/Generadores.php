@@ -52,8 +52,8 @@ public function obtener_Tipo_Generador()
 
 public function obtener_Departamentos(){
     $aux = $this->rest->callAPI("GET",REST."/departamentos");
-    $aux =json_decode($aux["data"]);
-    return $aux->departamentos->departamento;
+    $aux =json_decode($aux["data"]);    
+    return $aux->departamentos->departamento;  
 }
 // ----------------------------------------------------------------
 // Funcion Obtener Rubro
