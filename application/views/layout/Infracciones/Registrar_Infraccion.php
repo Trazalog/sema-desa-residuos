@@ -1,3 +1,4 @@
+
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
 <div class="box box-primary animated fadeInLeft">
@@ -50,7 +51,7 @@
 
                 <div class="form-group">
                     <label for="Nombre">N° :</label>
-                    <input type="text" class="form-control" id="numero_acta" name="numero_acta" >
+                    <input type="text" class="form-control" id="nro" name="nro" readonly >
                 </div>
             <!--_____________________________________________-->
             <!--Descripcion-->
@@ -105,9 +106,9 @@
                         <select class="form-control select2 select2-hidden-accesible" id="tipo"  name="tipo">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                            // foreach ($tipoinfraccion as $i) {
-                            //     echo '<option  value="'.$i->.'">'.$i->.'</option>';
-                            // }
+                            foreach ($tipoinfraccion as $i) {
+                                echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+                            }
                         ?>   
                         </select>
                 </div>
@@ -123,7 +124,7 @@
 
                 <div class="form-group">
                 <label for="TipoInfraccion" >Inspector:</label>
-                        <select class="form-control select2 select2-hidden-accesible" id="inspector_id" name="inspector_id">
+                        <select class="form-control select2 select2-hidden-accesible" id="" name="" readonly>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                             // foreach ($inspector as $i) {
@@ -223,8 +224,8 @@ function Guardar_Circuito() {
 
     var datos = new FormData($('#formInfracciones')[0]);
         datos = formToObject(datos);
-        
-        // console.table(datos);
+        datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario         
+        console.table(datos);
         
     
 

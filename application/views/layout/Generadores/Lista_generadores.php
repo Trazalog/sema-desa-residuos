@@ -59,106 +59,64 @@
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-            <form method="GET" autocomplete="off" id="formGeneradoresInfo" class="registerForm">
+            <form  id="formGeneradoresInfo" class="registerForm">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                           
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <!--________Razon social__________-->
+                                <div class="form-group">
+                                    <label for="CUIT" name="Cuit">Nombre / Razon social:</label>
+                                    <input type="text" class="form-control" id="" name="" readonly>
+                                </div> 
+                                <!--________CUIT__________-->
+                                <div class="form-group">
+                                    <label for="Dpto" name="Departamento">CUIT:</label>
+                                    <input type="text" class="form-control" id="" readonly>
+                                </div>
+                                <!--________Zona__________-->
+                                <div class="form-group">
+                                    <label for="Domicilio" name="Domicilio">Zona:</label>
+                                    <input type="text" class="form-control" id="" readonly>
+                                </div>
+                                <!--________Rubro__________-->
+                                <div class="form-group">
+                                    <label for="Zonag" name="Zona">Rubro:</label>
+                                    <input type="text" class="form-control" id="" readonly>
+                                </div>
 
+                            </div>                 
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <!--________Tipo residuo__________-->
+                                <div class="form-group">
+                                    <label for="CUIT" name="Cuit">Tipo:</label>
+                                    <input type="text" class="form-control" id="" name="" readonly>
+                                </div> 
+                                <!--________Domicilio__________-->
+                                <div class="form-group">
+                                    <label for="Dpto" name="Departamento">Domicilio:</label>
+                                    <input type="text" class="form-control" id="" readonly>
+                                </div>
+                                <!--________Departamento__________-->
+                                <div class="form-group">
+                                    <label for="Domicilio" name="Domicilio">Departamento:</label>
+                                    <input type="text" class="form-control" id="" readonly>
+                                </div>
+                                <!--________Numero Registro__________-->
+                                <div class="form-group">
+                                    <label for="Zonag" name="Zona">Numero de registro:</label>
+                                    <input type="text" class="form-control" id="" readonly>
+                                </div>
 
-                <div class="modal-body">
-
-                <!--_____________________________________________-->
-                <!--Nombre/Razon social-->
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Nombre/Razon social" >Nombre / Razon social:</label>
-                                <input type="text" class="form-control" id="I_Nombre/Razon social" name="i_nombre_razon" readonly>
-                            </div>
-                        </div>                        
-                    </div>
-
-                <!--_____________________________________________-->
-                <!--Registro-->
-
-                <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="CUIT" name="Cuit">CUIT:</label>
-                                <input type="text" class="form-control" id="CUIT" name="Cuit" readonly>
-                            </div>
-                <!--_____________________________________________-->
-                <!--Tipo de residuo-->
-
-                            <div class="form-group">
-                            <label for="Dpto" name="Departamento">Departamento:</label>
-                            <input type="text" class="form-control" id="Dpto" readonly>
-                            </div>
-                         </div>
-
-                <!--_____________________________________________-->
-                <!--Descripcion-->
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Domicilio" name="Domicilio">Domicilio:</label>
-                                <input type="text" class="form-control" id="Domicilio" readonly>
-                            </div>
-
-                <!--_____________________________________________-->
-                <!--Resolucion-->
-
-                            <div class="form-group">
-                                <label for="Zonag" name="Zona">Zona:</label>
-                                <input type="text" class="form-control" id="zonaG" readonly>
                             </div>
                         </div>
-                </div>
-
-                <!--_____________________________________________-->
-                
-
-                <div class="row"> 
-
-                        <!--_____________________________________________-->
-                        <!--Numero de registro-->
-
-                        <div class="col-md-6">
-                            <label for="Numero de registro" name="Numero_registro">Numero de registro:</label>
-                            <input type="text" class="form-control" id="Numero de registro" readonly>                            
-                        </div>
-
-                        <!--_____________________________________________-->
-                        <!--Rubro-->
-
-                        <div class="col-md-6">
-                            <label for="Rubro" name="Rubro">Rubro:</label>
-                            <input type="text" class="form-control" id="Rubro" readonly>
-                        </div>                
-
-                        <!--_____________________________________________-->
-                        <!--Tipo-->
-
-                        <div class="col-md-6">
-                            <label for="TipoG" name="Tipo">Tipo:</label>
-                            <input type="text" class="form-control" id="TipoG" readonly>
-                        </div>
-
-                        <!--_____________________________________________-->
-                        <!--Tipo de residuos-->
-
-                        <div class="col-md-6">
-                            <label for="Tipo de residuos" name="Tipo_Residuo">Tipo de residuos:</label>
-                            <input type="text" class="form-control" id="Tipo de residuos"readonly >
-                        </div>
-                    </div>
                     
-                    
-                </div>
                 
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
             </div>
+            <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->

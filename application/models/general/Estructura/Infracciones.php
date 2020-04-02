@@ -22,7 +22,7 @@ class Infracciones extends CI_Model
 
 function Guardar_Infraccion($data){
 
-    $data['usuario_app'] = userNick();   
+    // $data['usuario_app'] = userNick();   
     $post["_post_actainfraccion"] = $data;
     log_message('DEBUG','#Infracciones/Guardar_Infraccion: '.json_encode($post));
     $aux = $this->rest->callAPI("POST",REST."/actaInfraccion", $post);
@@ -32,6 +32,8 @@ function Guardar_Infraccion($data){
         
    
 }
+
+
 
 
 // ---------------------- FUNCIONES OBTENER ----------------------
@@ -58,11 +60,11 @@ public function obtener_Generador(){
 //     return $aux->inspectores->inspector;
 // }
 
-// public function obtener_Tipo_Infraccion(){
-//     $aux = $this->rest->callAPI("GET",REST."RECURSO");
-//     $aux =json_decode($aux["data"]);
-//     return $aux->infracciones->infraccion;
-// }
+public function obtener_Tipo_Infraccion(){
+    $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_infraccion");
+    $aux =json_decode($aux["data"]);
+    return $aux->valores->valor;
+}
 
 // public function obtener_Destino_Acta(){
 //     $aux = $this->rest->callAPI("GET",REST."RECURSO");

@@ -27,7 +27,7 @@ class Infraccion extends CI_Controller {
           $data['transportista'] = $this->Infracciones->obtener_Transportista();
           $data['generador'] = $this->Infracciones->obtener_Generador();
           // $data['inspector'] = $this->Infracciones->obtener_Inspector();
-          // $data['tipoinfraccion'] = $this->Infracciones->obtener_Tipo_Infraccion();
+          $data['tipoinfraccion'] = $this->Infracciones->obtener_Tipo_Infraccion();
           // $data['destino'] = $this->Infracciones->obtener_Destino_Acta();
           $this->load->view('layout/Infracciones/Registrar_Infraccion',$data);
           

@@ -190,7 +190,20 @@ class Zona extends CI_Controller {
          echo json_encode($resp);
       }
        
+ // ---------------- Funciones Obtener MODAL ---------------- //
+
+     // Funcion Obtener Datos puntos  modal 
+     public function getCircuito() 
+     {	
+        $id = $this->input->post('id');
+        
+         $result = $this->Zonas->getCircuitos($id)->circuito;
+         echo json_encode($result);
+     }  
+     
+      
    
 
 }
 ?>
+

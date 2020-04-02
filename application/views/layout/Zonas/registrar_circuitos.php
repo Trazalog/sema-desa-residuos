@@ -589,10 +589,7 @@
 
     <script>
     $("#botonAgregar").on("click", function() {
-        //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-        var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-        $("#nro").val(aleatorio);
-
+        
         $("#botonAgregar").attr("disabled", "");
         //$("#boxDatos").removeAttr("hidden");
         $("#boxDatos").focus();
@@ -603,9 +600,9 @@
     $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
-        $('#formDatos').data('bootstrapValidator').resetForm();
+        // $('#formDatos').data('bootstrapValidator').resetForm();
         $("#formDatos")[0].reset();
-        $('#selecmov').find('option').remove();
+        
 
     });
     </script>
@@ -726,19 +723,22 @@
 
 
     <!--_____________________________________________-->
-    <!-- Script Data-Tables-->
-
 
 
     <script>
-    // DataTable($('#tabla_circuitos'))
-
+    //Initialize DATATABLE
     DataTable($('#datos'))
+
     </script>
 
+    <!--_____________________________________________-->
 
-<script>
+    <script>
   
-    //Initialize Select2 Elements
+    //Initialize Select multiple
     $('.select3').select2();
+
     </script>
+
+
+     <!--_____________________________________________-->

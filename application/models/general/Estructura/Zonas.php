@@ -174,11 +174,11 @@ public function obtener_Zona(){
 
 // Funcion Obtener Zona
 
-public function obtener_Zona_departamento(){
-    $aux = $this->rest->callAPI("GET",REST."/zonas/departamento/");
-    $aux =json_decode($aux["data"]);
-    return $aux->zonas->zona;
-}
+// public function obtener_Zona_departamento(){
+//     $aux = $this->rest->callAPI("GET",REST."/zonas/departamento/");
+//     $aux =json_decode($aux["data"]);
+//     return $aux->zonas->zona;
+// }
 
 // Funcion Obtener Circuitos Asignados
 public function obtener_Circuitos_Asignados(){
@@ -186,4 +186,19 @@ public function obtener_Circuitos_Asignados(){
     $aux =json_decode($aux["data"]);
     return $aux->zonas->zona;
 }
+
+// Funcion Obtener Datos puntos modal
+
+public function getCircuitos($id) 
+{	 
+   $aux = $this->rest->callAPI("GET",REST."/circuitos/".$id);
+   $aux =json_decode($aux["data"]);
+   //var_dump($aux);
+   return $aux;
+}  
+
+
+
+
+
 }

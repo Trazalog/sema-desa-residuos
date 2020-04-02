@@ -17,18 +17,22 @@
     <?php
         if($circuitos)
         {
+
+//var_dump($circuitos);
+
             foreach($circuitos as $fila)
             {
-            echo '<tr data-json:'.json_encode($fila).'>';
+            echo "<tr data-json='".json_encode($fila)."'>";
+          
             echo    '<td>';
             echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal"
-            data-target="#modalEdit"><span class="glyphicon glyphicon-pencil"
+            data-target="#modalEdit" onclick="ModalEdit(this)"><span class="glyphicon glyphicon-pencil"
                 aria-hidden="true"></span></button>&nbsp
         <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal"
-            data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign"
+            data-target="#modalInfo" onclick="ModalInfo(this)"><span class="glyphicon glyphicon-info-sign"
                 aria-hidden="true"></span></button>&nbsp
         <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal"
-            data-target="#modalPunto"><span class="glyphicon glyphicon-record"
+            data-target="#modalZona"><span class="glyphicon glyphicon-record"
                 aria-hidden="true"></span></button>&nbsp
         <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
                 class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
@@ -37,21 +41,26 @@
             echo    '<td>'.$fila->codigo.'</td>';
             echo    '<td>'.$fila->chof_id.'</td>';
             echo    '<td>'.$fila->vehi_id.'</td>';
-            echo    '<td>'.$fila->descripcion.'</td>';
+            // echo    '<td>'.$fila->tiposCarga."".$fila->carga.'</td>';
+            echo    '<td>';
+                for ($i=0; $i < count($fila->tiposCarga->carga) ; $i++) { 
+                    echo $fila->tiposCarga->carga[$i]->valor;
+                    echo ' - ';
+                }
+            echo '</td>';
             echo '</tr>';
         }
         }
         ?>
+
     </tbody>
 </table>
 
 <!-- __________________FIN TABLAa___________________________ -->
 
 
-<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-    
-<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
@@ -66,79 +75,52 @@
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
-            <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
+            <form  id="frmentrega" class="registerForm">
 
 
-                <div class="modal-body">
+                    
+            
+                        <div class="col-md-12 col-sm-12 col-xs-12"> 
 
-                        <!--_____________________________________________-->
-                        <!--Codigo-->
-
-                            <div class="row">
-                                <div class="col-md-6">
-
-                                <!--_____________________________________________-->
-                                <!--Codigo-->
-
+                                <div class="col-md-6">                                
                                     <div class="form-group">
                                         <label for="Codigo" name="Codigo">Codigo:</label>
-                                        <input type="text" class="form-control" id="Codigo" readonly>
+                                        <input type="text" class="form-control" id="i_codigo"name="i_codigo" readonly>
                                     </div>
-                                </div> 
-
-                                <!--_____________________________________________-->
-                                <!--Vehiculo-->
-
-                                <div class="col-md-6">
+                                
                                     <div class="form-group">
                                         <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
-                                        <input type="text" class="form-control" id="Vehiculo" readonly>                                
+                                        <input type="text" class="form-control" id="i_vehiculo" readonly>                                
                                     </div>
-                                </div>                       
-                            </div>
-
-                        
-
-                    <div class="row">
-
-                        <div class="col-md-6">
-
-                        <!--_____________________________________________-->
-                        <!--Chofer-->
-
-                            <div class="form-group">
-                                <label for="Chofer" name="Chofer">Chofer:</label>
-                                <input type="text" class="form-control" id="Chofer" readonly>
-                            
-                            </div>
-
-                        </div>
-
-                        <!--_____________________________________________-->
-                        <!--Tipo de residuo-->
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
-                            <input type="text" class="form-control" id="tipoResiduos" readonly>                               
-                            </div>
-                        </div>
-                    </div>
-
-                        <!--_____________________________________________-->
-                        <!--Descripcion-->
-
-                    <div class="row">                        
-                        <div class="col-md-12">
-                            <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                            <textarea style="resize: none;" type="text" class="form-control" id="Descripcion" readonly></textarea>
+                                </div>                   
+                          
+                                <div class="col-md-6">                            
+                                    <div class="form-group">
+                                        <label for="Chofer" name="Chofer">Chofer:</label>
+                                        <input type="text" class="form-control" id="i_chofer" readonly>
                                     
-                        </div>         
-                    </div>
+                                    </div>                                
+                                    <div class="form-group">
+                                    <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
+                                    <input type="text" class="form-control" id="i_tipoResiduo" readonly>                               
+                                    </div>
+                                </div>
 
+                         </div>
+
+                         <div class="col-md-12 col-sm-12 col-xs-12"><br></div>  
+
+                         <div class="col-md-12 col-sm-12 col-xs-12">  
+                         <div class="form-group">
+                            <label  name="Descripcion">Descripciones:</label>
+                            <textarea style="resize: none;"  type="text" class="form-control" id="i_descripcion" readonly></textarea>
+                            </div>         
+                        </div>         
+                    
+                    
                     <!--_______________________SEPARADOR______________________-->    
 
-                    <div class="col-md-12"><br><hr><br></div>
+                    <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
 
                     <!--_______________________SEPARADOR______________________-->   
 
@@ -153,50 +135,16 @@
                         </div>
 
                     </div>
-
-                    <!--_______________________SEPARADOR______________________-->    
-
-                    <div class="col-md-12"><br></div>
-
-                    <!--_______________________SEPARADOR______________________--> 
                     
-
+                    <div class="col-md-12 col-sm-12 col-xs-12"><br><br></div>
                    <!--*******************************************-->
 
                     <div class="row">
 
-                        <div class="col-md-12">
-
-                            <div class="row"> 
+                        <div class="col-md-12">                           
                         
-                                <div class="col-md-6">
-
-                                    <!--_____________________________________________-->
-                                    <!--Nombre-->
-                            
-                                    <div class="form-group">
-                                        <label for="Nombre" name="Nombre">Nombre:</label>
-                                        <input type="text" class="form-control" id="Nombre"readonly>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-6">
-
-                                    <!--_____________________________________________-->
-                                    <!--Descripcion-->
-
-                                    <div class="form-group">
-                                        <label for="Descripcion" name="Descripcion">Descripcion:</label>
-                                        <input type="text" class="form-control" id="Descripcion" readonly>
-                                    </div>
-
-                                </div>
-                                    
-                        
-                            </div>
-
-                            <div class="col-md-12"><br><hr><br></div>
+                                
+                             
 
                                 <div class="row">                        
                                     <div class="col-md-12">
@@ -242,7 +190,7 @@
                         </div>
                     
                     
-                </div>
+                
                 
             </form>
 
@@ -252,7 +200,7 @@
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <!-- <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button> -->
-                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-default" id="btnInformacion" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -261,6 +209,156 @@
 
 
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL Editar ---///////////////////////////////////////////////////////----->
+
+    
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Circuito</h5>
+            </div>
+
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL ___________________________-->
+
+            <form  id="frmentrega" class="registerForm">                    
+            
+                        <div class="col-md-12 col-sm-12 col-xs-12"> 
+
+                                <div class="col-md-6">                                
+                                    <div class="form-group">
+                                        <label for="Codigo" name="Codigo">Codigo:</label>
+                                        <input type="text" class="form-control" id="e_codigo" name="">
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label for="Vehiculo" name="Vehiculo">Vehiculo:</label>
+                                        <input type="text" class="form-control" id="e_vehiculo"name="" >                                
+                                    </div>
+                                </div>                   
+                          
+                                <div class="col-md-6">                            
+                                    <div class="form-group">
+                                        <label for="Chofer" name="Chofer">Chofer:</label>
+                                        <input type="text" class="form-control" id="e_chofer" name="" >
+                                    
+                                    </div>                                
+                                    <div class="form-group">
+                                    <label for="tipoResiduos" name="tipoResiduos">Tipo de residuo:</label>
+                                    <input type="text" class="form-control" id="e_tipoResiduo" name="">                               
+                                    </div>
+                                </div>
+
+                         </div>
+
+                         <div class="col-md-12 col-sm-12 col-xs-12"><br></div>  
+
+                         <div class="col-md-12 col-sm-12 col-xs-12">  
+                         <div class="form-group">
+                            <label  name="Descripcion">Descripciones:</label>
+                            <textarea style="resize: none;"  type="text" class="form-control" id="e_descripcion" name="" ></textarea>
+                            </div>         
+                        </div>         
+                    
+                    
+                    <!--_______________________SEPARADOR______________________-->    
+
+                    <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
+
+                    <!--_______________________SEPARADOR______________________-->   
+
+                    <div class="row"> 
+
+                         <div class="col-md-12">
+
+                            <div class="box-header bg-blue">
+                                <h5>Punto Critico</h5>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12"><br><br></div>
+                   <!--*******************************************-->
+
+                    <div class="row">
+
+                        <div class="col-md-12">                           
+                        
+                                
+                             
+
+                                <div class="row">                        
+                                    <div class="col-md-12">
+                                        
+                                        <!--__________________HEADER TABLA___________________________-->
+
+                                        <table id="tabla_puntos_criticos" class="table table-bordered table-striped">
+                                            <thead class="thead-dark" bgcolor="#eeeeee">
+
+                                                
+                                                <th>Nombre</th>
+                                                <th>Descripcion</th>
+                                                <th>Ubicacion</th>
+                                                
+                                                
+
+                                            </thead>
+                                            <!--__________________BODY TABLA___________________________-->
+                                            <tbody>
+                                                <?php
+                                                if($puntos_criticos)
+                                                {
+                                                    foreach($puntos_criticos as $fila)
+                                                    {
+                                                    
+                                                    echo    '<td>'.$fila->nombre.'</td>';
+                                                    echo    '<td>'.$fila->descripcion.'</td>';
+                                                    echo    '<td>'.$fila->descripción.'</td>';
+                                                    echo '</tr>';
+                                                }
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>                                    
+                                        <!--__________________FIN TABLA___________________________-->
+
+                                        
+                                    </div>         
+                                </div>
+
+                            </div>
+
+                        </div>
+                    
+                    
+                
+                
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnEditar" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
+
 
 <!---//////////////////////////////////////--- MODAL PUNTO CRITICO ---///////////////////////////////////////////////////////----->
 
@@ -486,7 +584,7 @@ $("#selectDepto").change(function(){
             dataType: 'json',
 
             success: function(result) {
-                console.table(result);
+                // console.table(result);
 
                
                 for (let index = 0; index < result.length; index++)
@@ -506,57 +604,103 @@ $("#selectDepto").change(function(){
     });
 });
 
-//----------------- Funcion POST Asignacion --------------------------//
 
 
 
+ </script>
 
 
-// function insertCircuitoZona(){
-//     ban = true;
-//     idDepto = $('#selectDepto').val();
-//     idZona = $('#selectZona').val();
-//     if (idDepto == null) {
-//       ban= false;
-//       alert("Seleccione Departamento...");
-//     } 
-//     if (idZona == null) {
-//       ban= false;
-//       alert("Seleccione Zona...");
-//     } 
+<!--FUNCION MODAL Informacion-->
+<script>
+function ModalInfo(e) { 
 
-//     if(ban){
-//       $.ajax({
-//             type: 'POST',
-//             data: {id_censo: id_censo,
-//                   id_area: id_area },
-//             url: 'Censo/insertAreaCenso',
-//             dataType: 'json',
-//             success: function(result) { 
-//                       alert('resultado: ' + result);
-//                   if (result == 500) {
-//                     alert("La zona ya se encuentra asignada a este Circuito");
-//                   }else{
-//                     $("#modalZona").modal('hide');
-//                     buscaCensos();
-//                   } 
-//             },
-//             error: function() {
-//                   alert('Error en Asignacion de zona...');
-//             }
-//       });
-//     }  
-
-// }
+   var json = getJson($(e).closest('tr'));
+   
 
 
+$('#btnInformacion').prop("disabled", false);    
+var id = json.circ_id;
+console.log("id de circuito selec:" + id);
+$.ajax({
+  data: { id:id },
+  dataType: 'json',
+  type: 'POST',
+  url: 'index.php/general/Estructura/Zona/getCircuito',
+  success: function(data){
+      console.table(data);
+    
 
+    console.info(data.descripcion);
+    console.log('///////////////////////////');
+    console.log("tipo de carga" + data.tiposCarga.carga[0].valor);
 
+    // var circuito = getcircuito(data['datos']);
+     
+    //   //llenar datos de circuitos
+      $("#i_codigo").val(data.codigo);
+      $('#i_chofer').val(data.chof_id);
+      $('#i_vehiculo').val(data.vehi_id);
+      $('#i_tipoResiduo').val(data.tiposCarga);
+      $('#i_descripcion').val(data.descripcion);
+  
+    
+   
+  },
 
+  error: function(result){
+    //alert('ERror');
+} })
 
-
+} 
+</script>
 
 </script>
+
+
+<!--FUNCION MODAL EDITAR-->
+<script>
+function ModalEdit(e) { 
+
+   var json = getJson($(e).closest('tr'));
+   
+
+
+$('#btnEditar').prop("disabled", false);    
+var id = json.circ_id;
+console.log("id de circuito selec:" + id);
+$.ajax({
+  data: { id:id },
+  dataType: 'json',
+  type: 'POST',
+  url: 'index.php/general/Estructura/Zona/getCircuito',
+  success: function(data){
+      console.table(data);
+    
+
+    console.info(data.descripcion);
+    console.log('///////////////////////////');
+    console.log("tipo de carga" + data.tiposCarga.carga[0].valor);
+
+    // var circuito = getcircuito(data['datos']);
+     
+    //   //llenar datos de circuitos
+      $("#e_codigo").val(data.codigo);
+      $('#e_chofer').val(data.chof_id);
+      $('#e_vehiculo').val(data.vehi_id);
+      $('#e_tipoResiduo').val(data.tiposCarga);
+      $('#e_descripcion"').val(data.descripcion);
+  
+    
+   
+  },
+
+  error: function(result){
+    //alert('ERror');
+} })
+
+} 
+</script>
+
 
 
 

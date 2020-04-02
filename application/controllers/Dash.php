@@ -27,6 +27,7 @@ class Dash extends CI_Controller {
                                 "titulo": "Registrar Generadores ",
                                 "icono": "fa fa-genderless",
                                 "link": "general/Estructura/Generador/templateGeneradores"
+                                
                             },
                             {
                                 "titulo": "Registrar Transportista",
