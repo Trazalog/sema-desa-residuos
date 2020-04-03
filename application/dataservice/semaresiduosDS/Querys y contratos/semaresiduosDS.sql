@@ -4,6 +4,38 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 //TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
   - falta saber de donde sale el destino acta para elegir
   - inspectores seran usrs?
+
+-- actaInfraccion(Tipo)
+  recurso:/tablas/tipo_infraccion
+  metodo: get
+  
+  -- ejemplo de respuesta
+  {
+    "valores":{
+        "valor":[
+          {
+            "tabl_id": "tipo_infraccionInfraccion1",
+            "valor": "Infraccion1",
+            "valor2": "$valor2",
+            "valor3": "$valor3",
+            "descripcion": ""
+          },
+          {
+            "tabl_id": "tipo_infraccionInfraccion2",
+            "valor": "Infraccion2",
+            "valor2": "",
+            "valor3": "",
+            "descripcion": ""
+          }
+        ]
+    }
+  }
+
+
+
+
+
+
 -- actaInfraccionSet
   recurso: /actaInfraccion
   metodo: post
@@ -426,7 +458,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 -- contenedoresGet
   recurso: /contenedores
   metodo: get
-
+  //FIXME: agregar tipo de residuos a contenedores
   select C.cont_id, C.codigo, C.descripcion, C.capacidad, C.anio_elaboracion, C.tara, C.habilitacion as habil_id, C.fec_alta, C.esco_id, C.reci_id, T.valor as estado, T2.valor as habilitacion 
   from log.contenedores C, core.tablas T, core.tablas T2
   where C.esco_id = T.tabl_id 
@@ -487,26 +519,69 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 -- contenedoresSet (alta contenedores)
   recurso: /contenedores
   metodo: post
-  insert into log.contenedores(codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, usuario_app, esco_id, reci_id)
-  values(CAST(:codigo as INTEGER), :descripcion, CAST(:capacidad as float8), CAST(:anio_elaboracion as INTEGER), CAST(:tara as float8), :habilitacion, TO_DATE(:fec_alta,'YYYY-MM-DD'), :usuario_app, :esco_id, CAST(:reci_id as INTEGER))
+  insert into log.contenedores(codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, usuario_app, esco_id)
+  values(CAST(:codigo as INTEGER), :descripcion, CAST(:capacidad as float8), TO_DATE(:anio_elaboracion,'YYYY-MM-DD'), CAST(:tara as float8), :habilitacion, TO_DATE(:fec_alta,'YYYY-MM-DD'), :usuario_app, :esco_id)
+  returning cont_id
 
-  {
-    "contenedores":
-      {
-        "codigo": "56789",
-        "descripcion": "contenedor 2",
-        "capacidad": "56.89",
-        "anio_elaboracion": "2010",
-        "tara": "200.75",
-        "habilitacion": "habilitacion 234h",
-        "fec_alta": "2019-10-11",
-        "usuario_app": "hugoDS",
-        "esco_id": "escoActivo",
-        "reci_id": "100"
+  {"post_contenedor":
+    {
+      "codigo":"0000",
+      "descripcion":"Descripcion prueba hugo",
+      "capacidad":"5",
+      "anio_elaboracion":"2019-01-01",
+      "tara":"11",
+      "esco_id":"estado_contenedorINGRESADO",
+      "habilitacion":"habilitacion_contenedorUso",
+      "fec_alta":"2021-05-01",
+      "usuario_app":"hugoDS",
+      "tran_id": "2"
       }
   }
 
   {"respuesta": {"cont_id": "8"}}
+
+
+-- contenedoresGetPorTransp (contenedores por transporte y tipo de residuo agrupado por tipo de residuo)
+
+  recurso: /contenedores/transportista/{tran_id}
+  metodo: get    
+
+  select 
+    C.cont_id, C.codigo, C.descripcion, C.capacidad, C.tara, C.reci_id, 
+    T.valor as estado, 
+    T2.valor as habilitacion, 
+    TCC.tica_id, 
+    T3.valor as rsu
+  from 
+    log.contenedores C, core.tablas T, core.tablas T2, core.tablas T3, log.tipos_carga_contenedores TCC
+  where 
+      C.esco_id = T.tabl_id 
+  and C.cont_id = TCC.cont_id 
+  and TCC.tica_id = T3.tabl_id 
+  and C.habilitacion = T2.tabl_id 
+  -- por transportista
+  and C.tran_id = CAST(:tran_id  as INTEGER)
+  -- agrupados por tipo de carga
+   group by TCC.tica_id, C.cont_id, T.valor, T2.valor, T3.valor
+
+   {
+    "contenedores": {
+        "contenedor": [
+            {
+              "cont_id": "$cont_id",
+              "codigo": "$codigo",
+              "descripcion": "$descripcion",
+              "capacidad": "$capacidad",
+              "tara": "$tara"
+              "reci_id": "$reci_id",
+              "estado": "$estado",
+              "habilitacion": "$habilitacion"
+              "tica_id": "$tica_id",
+              "rsu": "$rsu"
+            }
+        ]
+        }
+  }
 
 -- contEntregadosSet
   recurso: /contEntregados
@@ -533,15 +608,82 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }
  
+-- contenedoresEntregados  (por soco_id)
+  recurso: /contenedoresEntregados/{soco_id}
+  metodo: get
+
+  select COUNT(CE.coen_id) as cant_entregados, CE.tica_id, T.valor 
+	from log.contenedores_entregados CE, core.tablas T
+	where CE.soco_id = :soco_id and CE.tica_id = T.tabl_id
+	group by CE.tica_id, T.valor
+
+  {
+    "contenedores":{
+      "contenedor":[
+        {
+          "cant_entregados": "$cant_entregados",
+          "tica_id": "$tica_id",
+          "valor": "$valor"
+        }
+      ]
+    }
+  }
+
+-- contenedoresEntregados (todos con camion y residuos para tabla entregas anteriores)
+
+  recurso: /contenedoresEntregados/todos
+  metodo: get
+  select CE.porc_llenado, CE.fec_retiro, T.valor, CE.tica_id, E.dominio, CONCAT(CH.apellido, ', ', CH.nombre) as chofer  
+	from log.contenedores_entregados CE, log.ordenes_transporte OT, core.equipos E, log.choferes CH, core.tablas T
+	where CE.ortr_id = OT.ortr_id 
+	and OT.equi_id = E.equi_id 
+	and OT.chof_id = CH.documento 
+	and CE.tica_id = T.tabl_id 
+
+  {
+    "contenedoresEntregados": {
+      "contenedores": [
+        {
+        "porc_llenado": "$porc_llenado",
+        "fec_retiro": "$fec_retiro",
+        "rsu": "$valor",
+        "tica_id": "$tica_id",
+        "dominio": "$dominio",
+        "chofer": "$chofer"
+        }
+      ]
+    }
+  }
 
 
 
+-- contenedoresSolicitadosGet (/solicitudContenedores/{usuario_app}, para pantalla entrega contenedores tambien)
+  recurso: /contnedoresSolicitados/{soco_id}
+  metodo: get
+
+  select 
+  CS.coso_id, CS.cantidad, CS.otro, CS.fec_alta, CS.tica_id, CS.soco_id, coalesce (CS.cantidad_acordada, null, 0) as cantidad_acordada, CS.reci_id, T.valor as rsu from log.contenedores_solicitados CS, core.tablas T
+  where CS.tica_id = T.tabl_id 
+  and soco_id = CAST(:soco_id as INTEGER)
 
 
-
-
-
-
+   {
+    "contSolicitados":{
+      "contenedor":[
+        {
+          "coso_id": "$coso_id", 
+          "cantidad": "$cantidad", 
+          "otro": "$otro", 
+          "fec_alta": "$fec_alta", 
+          "tica_id": "$tica_id",
+          "soco_id": "$soco_id",
+          "valor": "$rsu",
+          "cantidad_acordada": "$cantidad_acordada",
+          "reci_id": "$reci_id" 
+        }
+      ]
+    }  
+  }
 
 
 -- choferesGet
@@ -681,6 +823,62 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
 
 
+-- contenedoresEntregaSet 
+
+  recurso: /entregaContenedores
+  metodo: post
+
+  insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id )
+  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id)
+  returning coen_id
+
+
+  -- ejemplo
+
+    {
+      "_post_contenedores_entrega_batch_req":{
+          "_post_contenedores_entrega":[
+            {
+              "fec_entrega": "2020-04-02",
+              "cont_id": "43",
+              "usuario_app": "hugoDS",
+              "soco_id": "2",
+              "tica_id": "tipo_cargaOrganico"
+            },
+            {
+              "fec_entrega": "2020-04-02",
+              "cont_id": "44",
+              "usuario_app": "hugoDS",
+              "soco_id": "2",
+              "tica_id": "tipo_cargaOrganico"
+            },
+            {
+              "fec_entrega": "2020-04-02",
+              "cont_id": "43",
+              "usuario_app": "hugoDS",
+              "soco_id": "2",
+              "tica_id": "tipo_cargaOrganico"
+            }
+          ]
+      }
+    }
+
+
+    {
+      "_post_contenedores_entrega":{
+          "fec_entrega": "2020-04-02",
+          "cont_id": "43",
+          "usuario_app": "hugoDS",
+          "soco_id": "2",
+          "tica_id": "tipo_cargaOrganico"
+      }
+    }
+
+
+
+
+
+
 
 -- (generadores)solicitanteTransporteGet
   recurso: /solicitantesTransporte
@@ -707,6 +905,30 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
         ]
     }
   }
+
+-- (generadores)solicitanteTransporteGet(por soco_id)
+
+  recurso: /solicitantesTransporte/{soco_id}
+  metodo: get
+
+  select 
+		razon_social, domicilio from log.solicitantes_transporte ST, log.solicitudes_contenedor SC
+	where 
+		ST.sotr_id = SC.sotr_id and 
+		SC.soco_id = cast(:soco_id as integer)
+
+  {
+    "solicitante":{
+      "razon_social": "$razon_social",
+      "domicilio": "$domicilio"
+    }
+  }
+
+  -- ejemplo de respuesta del servicio
+  {"solicitante": {
+    "domicilio": "Calle Mr. ED 45",
+    "razon_social": "Residuos Caballos Salvajes"
+  }}
 
 -- (generadores)solicitanteTransportePorUsuario  
   recurso: /solicitantesTransporte/{usuario_app}  (ej: /solicitantesTransporte/hugoDS)
@@ -1008,6 +1230,22 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
       }
     }
 
+-- solicitudContenedorProx
+  recurso: /solicitudContenedor/prox
+  metodo: get
+
+  select COALESCE(NULL,(max(soco_id) + 1), 1) as nuevo_soco_id from log.solicitudes_contenedor
+
+  {
+    "respuesta":{
+      "nuevo_soco_id": "$nuevo_soco_id"
+    }
+  }
+
+
+
+
+
 -- solicitudContenedorSet(guardado de la cabecera de contenedores pedidos)
   recurso: /solicitudContenedor
   metodo: post
@@ -1093,91 +1331,71 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }
 
-  -- ejemplo de json devuelto ppor l servicio
-  {
-    "sol_cont": {
-    "estado": "SOLICITADA",
-    "contSolicitados": {"contenedor":    [
-              {
-          "otro": "",
-          "fec_alta": "2020-03-19+00:00",
-          "tica_id": "tipos_cargaResiduos Patologicos",
-          "valor": "Residuos Patologicos",
-          "coso_id": "5",
-          "cantidad": "1",
-          "soco_id": "2"
-        },
-              {
-          "otro": "",
-          "fec_alta": "2020-03-19+00:00",
-          "tica_id": "tipos_cargaResiduos Patologicos",
-          "valor": "Residuos Patologicos",
-          "coso_id": "4",
-          "cantidad": "1",
-          "soco_id": "2"
-        },
-              {
-          "otro": "",
-          "fec_alta": "2020-03-19+00:00",
-          "tica_id": "tipos_cargaResiduos Patologicos",
-          "valor": "Residuos Patologicos",
-          "coso_id": "3",
-          "cantidad": "1",
-          "soco_id": "2"
-        },
-              {
-          "otro": "",
-          "fec_alta": "2020-03-19+00:00",
-          "tica_id": "tipos_cargaResiduos Patologicos",
-          "valor": "Residuos Patologicos",
-          "coso_id": "2",
-          "cantidad": "1",
-          "soco_id": "2"
-        },
-              {
-          "otro": null,
-          "fec_alta": "2020-03-19+00:00",
-          "tica_id": "tipos_cargaResiduos Patologicos",
-          "valor": "Residuos Patologicos",
-          "coso_id": "1",
-          "cantidad": "2",
-          "soco_id": "2"
-        }
+  -- ejemplo de json respuesta del servicio
+  {"sol_cont": {
+   "estado": "SOLICITADA",
+   "contSolicitados": {"contenedor":    [
+            {
+         "reci_id": null,
+         "otro": "",
+         "fec_alta": "2020-03-19+00:00",
+         "tica_id": "tipos_cargaResiduos Patologicos",
+         "valor": "Residuos Patologicos",
+         "coso_id": "5",
+         "cantidad_acordada": "3",
+         "cantidad": "4",
+         "soco_id": "2"
+      },
+            {
+         "reci_id": null,
+         "otro": "",
+         "fec_alta": "2020-03-19+00:00",
+         "tica_id": "tipos_cargaResiduos Patologicos",
+         "valor": "Residuos Patologicos",
+         "coso_id": "4",
+         "cantidad_acordada": "6",
+         "cantidad": "6",
+         "soco_id": "2"
+      },
+            {
+         "reci_id": null,
+         "otro": "",
+         "fec_alta": "2020-03-19+00:00",
+         "tica_id": "tipos_cargaResiduos Patologicos",
+         "valor": "Residuos Patologicos",
+         "coso_id": "3",
+         "cantidad_acordada": "8",
+         "cantidad": "11",
+         "soco_id": "2"
+      },
+            {
+         "reci_id": null,
+         "otro": "",
+         "fec_alta": "2020-03-19+00:00",
+         "tica_id": "tipos_cargaResiduos Patologicos",
+         "valor": "Residuos Patologicos",
+         "coso_id": "2",
+         "cantidad_acordada": null,
+         "cantidad": "1",
+         "soco_id": "2"
+      },
+            {
+         "reci_id": null,
+         "otro": null,
+         "fec_alta": "2020-03-19+00:00",
+         "tica_id": "tipos_cargaResiduos Patologicos",
+         "valor": "Residuos Patologicos",
+         "coso_id": "1",
+         "cantidad_acordada": null,
+         "cantidad": "2",
+         "soco_id": "2"
+      }
     ]},
     "fec_alta": "2020-03-19+00:00",
     "observaciones": "OBSERVACIONES 1",
     "sotr_id": "1",
     "soco_id": "2"
-    }
-  }
-
-
-
-
-
--- contenedoresSolicitadosGet
-  select CS.coso_id, CS.cantidad, CS.otro, CS.fec_alta, CS.tica_id, CS.soco_id, T.valor as rsu from log.contenedores_solicitados CS, core.tablas T
-  where CS.tica_id = T.tabl_id 
-  and soco_id = CAST(:soco_id as INTEGER)
-
-  {
-    "contSolicitados":{
-      "contenedor":[
-        {
-          "coso_id": "$coso_id", 
-          "cantidad": "$cantidad", 
-          "otro": "$otro", 
-          "fec_alta": "$fec_alta", 
-          "tica_id": "$tica_id",
-          "soco_id": "$soco_id",
-          "valor": "$valor"
-        }
-      ]
-    }  
-  }
-
-
-  
+  }}
 
 
 
@@ -1411,9 +1629,37 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }
 
+-- transportistaTipoCarga(tipo de carga por id de transportista)
 
+  recurso: /transportistas/{tran_id}/tipo/carga
+  metodo: get
+  
+  select TCT.tran_id, TCT.tica_id, T.valor from log.tipos_carga_transportistas TCT, core.tablas T
+  where TCT.tica_id = T.tabl_id 
+  and TCT.tran_id = CAST(:tran_id as INTEGER) 
 
-
+  {
+    "tiposCarga":{
+      "cargas":[
+          "tran_id": "$tran_id",
+          "tica_id": "$tica_id",
+          "valor": "$valor"
+      ]
+    }
+  }
+  -- ejemplo de respuesta
+  {"tiposCarga": {"cargas": [
+        {
+        "tica_id": "tipo_cargaEscombros",
+        "valor": "Escombros",
+        "tran_id": "3"
+    },
+        {
+        "tica_id": "tipo_cargaResiduos Patologicos",
+        "valor": "Residuos Patologicos",
+        "tran_id": "3"
+    }
+  ]}}
 
 -- tablasGet
 
@@ -1684,13 +1930,23 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 
 
 
-//TODO: ANOTACIONES 
 
 
-  -- sector descarga es un deposito de trazasoft
-  -- en bascula es un recipiente
 
-  - preguntar funcionalidad. estan inconclusos  
-  ordTransPorIdGet
-  alternativa a get orden transporte
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
