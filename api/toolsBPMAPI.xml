@@ -46,18 +46,8 @@
          <send/>
       </outSequence>
       <faultSequence>
-         <log level="custom" description="Informe de error">
-            <property name="text" value="************Error Inesperado******************"/>
-            <property name="code" value="1000"/>
-            <property name="message" expression="get-property('ERROR_MESSAGE')"/>
-         </log>
-         <payloadFactory media-type="json" description="Mensaje error">
-            <format>{"response" : {&#xd;                       "errorCode" : "1000"                 }&#xd;}</format>
-            <args/>
-         </payloadFactory>
-         <property name="messageType" value="application/json" scope="axis2" type="STRING"/>
-         <property name="HTTP_SC" value="404" scope="axis2" type="STRING" description="Respuesta 404"/>
-         <send/>
+         <property name="TOOLS_ERROR" value="Error en API BPM" type="STRING"/>
+         <sequence key="toolsFault"/>
       </faultSequence>
    </resource>
 </api>
