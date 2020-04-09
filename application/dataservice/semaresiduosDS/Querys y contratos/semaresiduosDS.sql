@@ -855,7 +855,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   }
 
  
-// TODO: REVISAR ESTO POR LA MULTIPICIDAD DE RESIDUOS QUE LLEVA CADA CONTENEDOR
+//TODO: REVISAR ESTO POR LA MULTIPICIDAD DE RESIDUOS QUE LLEVA CADA CONTENEDOR
 -- contenedoresGetPorTransp (contenedores por transporte y tipo de residuo agrupado por tipo de residuo)
 
   recurso: /contenedores/transportista/{tran_id}
@@ -1007,6 +1007,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   
   select chof_id, nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id  
   from log.choferes     
+  where eliminado = 0
       
   {
     "choferes":{
@@ -1544,20 +1545,6 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
         "zona_id": "5"
       }
     }
-
--- solicitudContenedorProx
-  recurso: /solicitudContenedor/prox
-  metodo: get
-
-  select COALESCE(NULL,(max(soco_id) + 1), 1) as nuevo_soco_id from log.solicitudes_contenedor
-
-  {
-    "respuesta":{
-      "nuevo_soco_id": "$nuevo_soco_id"
-    }
-  }
-
-
 
 
 
