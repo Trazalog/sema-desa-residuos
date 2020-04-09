@@ -1,0 +1,54 @@
+<api xmlns="http://ws.apache.org/ns/synapse" name="toolsbpmAPI" context="/tools/bpm">
+   <resource methods="POST" uri-template="/proceso/instancia">
+      <inSequence>
+         <log level="custom" description="msg entrada">
+            <property name="nombre proceso" expression="json-eval($.nombre_proceso)"/>
+            <property name="payload" expression="json-eval($.payload)"/>
+            <property name="session" expression="json-eval($.session)"/>
+         </log>
+         <property name="nombre_proceso" expression="json-eval($.nombre_proceso)"/>
+         <property name="payload" expression="json-eval($.payload)"/>
+         <property name="session" expression="json-eval($.session)"/>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="getprocess_url" expression="fn:concat('/API/bpm/process?s=',$ctx:nombre_proceso,'&amp;f%3DactivationStateactivationState%253D=ENABLED')" scope="default" type="STRING"/>
+         <log level="custom">
+            <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="url a invocar getprocess" expression="get-property('getprocess_url')"/>
+         </log>
+         <call-template target="bpmAPICallTemplate">
+            <with-param name="recurso" value="{$ctx:getprocess_url}"/>
+            <with-param name="session" value="{$ctx:session}"/>
+            <with-param name="method" value="GET"/>
+         </call-template>
+         <log level="custom" category="DEBUG">
+            <property name="msg" expression="json-eval($)"/>
+            <property name="processid" expression="json-eval($..id)"/>
+            <property name="session" expression="json-eval($..session)"/>
+         </log>
+         <property name="processid" expression="json-eval($..id)"/>
+         <property name="session" expression="json-eval($..session)"/>
+         <script language="js">try{ var log = mc.getServiceLog(); var pid = mc.getProperty("processid");log.debug("process id:"+pid.substring(2,21));     mc.setProperty('bpmProcessId',pid.substring(2,21));                       }catch(error1){  log.debug("error parseando processid:" + error1); }</script>
+         <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="instantiation_url" expression="fn:concat('/API/bpm/process/',$ctx:bpmProcessId,'/instantiation')" scope="default" type="STRING"/>
+         <log level="custom" category="DEBUG">
+            <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="url a invocar instantiation" expression="get-property('instantiation_url')"/>
+         </log>
+         <call-template target="bpmAPICallTemplate">
+            <with-param name="recurso" value="{$ctx:instantiation_url}"/>
+            <with-param name="session" value="{$ctx:session}"/>
+            <with-param name="method" value="POST"/>
+            <with-param name="payload" value="{$ctx:payload}"/>
+         </call-template>
+         <respond/>
+      </inSequence>
+      <outSequence>
+         <log level="full">
+            <property name="MESSAGE" value="FIRST"/>
+         </log>
+         <send/>
+      </outSequence>
+      <faultSequence>
+         <property name="TOOLS_ERROR" value="Error en API BPM" type="STRING"/>
+         <sequence key="toolsFault"/>
+      </faultSequence>
+   </resource>
+</api>
+                        

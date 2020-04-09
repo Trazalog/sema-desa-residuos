@@ -1,0 +1,27 @@
+  {
+    "solicitudContenedores":{
+      "observaciones": "observaciones test", 
+      "usuario_app": "HugoDS", 
+      "sotr_id": "1",
+      "contenedores": [
+       {
+              "cantidad": "1", 
+              "otro": "", 
+              "usuario_app": "hugoDS", 
+              "tica_id": "tipos_cargaResiduos Patologicos" 
+            },
+            {
+              "cantidad": "1", 
+              "otro": "", 
+              "usuario_app": "hugoDS", 
+              "tica_id": "tipos_cargaResiduos Patologicos" 
+            },
+            {
+              "cantidad": "1", 
+              "otro": "", 
+              "usuario_app": "hugoDS",
+              "tica_id": "tipos_cargaResiduos Patologicos" 
+            }
+        ]
+      }
+    }

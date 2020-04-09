@@ -12,23 +12,17 @@ class Generador extends CI_Controller {
    }
 
 
-
-
-  
-
    // ---------------- Funcion Cargar vista Generadores y Datos
 
    function templateGeneradores()
    {
-    
-          $data['Departamentos'] = $this->Generadores->obtener_Departamentos();
+          $data['departamentos'] = $this->Generadores->obtener_Departamentos();
+          //var_dump($data['departamentos']); //siempre va dspues de la variable que contiene los datos
           $data['Tipogenerador'] = $this->Generadores->obtener_Tipo_Generador();
           $data['Zonagenerador'] = $this->Generadores->obtener_Zonas();
           $data['Tiporesiduo'] = $this->Generadores->obtener_Tipo_residuo();
           $data['Rubro'] = $this->Generadores->obtener_Rubro();           
           $this->load->view('layout/Generadores/registrar_generadores',$data);
-          
-       
    }
 
     // ---------------- Funcion Registrar Generador

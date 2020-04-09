@@ -1,4 +1,4 @@
-<!--__________________HEADER TABLA___________________________-->
+<!--__________________HEADER TABLA__________________-->
 
 
 <table id="tabla_transportistas" class="table table-bordered table-striped">
@@ -13,7 +13,7 @@
 
     </thead>
 
-    <!--__________________BODY TABLA___________________________-->
+    <!--__________________BODY TABLA__________________-->
 
     <tbody>
     <?php
@@ -37,7 +37,7 @@
     </tbody>
 </table>
 
-<!--__________________FIN TABLAa___________________________-->
+<!--__________________FIN TABLA__________________-->
 
 
 
@@ -57,7 +57,7 @@
 
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+            <!--__________________ FORMULARIO MODAL __________________-->
 
             <form method="GET" autocomplete="off" id="formGeneradoresInfo" class="registerForm">
                 <div class="modal-body">
@@ -71,7 +71,7 @@
                         </div>
                     </div>                        
                 </div>
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
 
                 <!--Registro-->
                 <div class="row">
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>        
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
 
                 <!--Tipo de residuo-->
                 <div class="row">
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
 
                 <!--Descripcion-->
                 <div class="row">
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
 
                 <!--Resolucion-->
                 <div class="row">
@@ -115,11 +115,11 @@
                         </div>
                     </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
 
             <div class="row"> 
 
-                        <!--_____________________________________________-->
+                        <!--_____________________________________________________________-->
                         <!--Numero de registro-->
 
                         <div class="col-md-6">
@@ -127,7 +127,7 @@
                             <input type="text" class="form-control" id="Numero de registro" readonly>                            
                         </div>
 
-                        <!--_____________________________________________-->
+                        <!--_____________________________________________________________-->
                         <!--Rubro-->
 
                         <div class="col-md-6">
@@ -135,7 +135,7 @@
                             <input type="text" class="form-control" id="Rubro" readonly>
                         </div>                
 
-                        <!--_____________________________________________-->
+                        <!--_____________________________________________________________-->
                         <!--Tipo-->
 
                         <div class="col-md-6">
@@ -143,7 +143,7 @@
                             <input type="text" class="form-control" id="TipoG" readonly>
                         </div>
 
-                        <!--_____________________________________________-->
+                        <!--_____________________________________________________________-->
                         <!--Tipo de residuos-->
 
                         <div class="col-md-6">
@@ -157,7 +157,7 @@
                 
             </form>
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <!--__________________ FIN FORMULARIO MODAL __________________-->
 
             </div>
             <div class="modal-footer">
@@ -191,12 +191,12 @@
 
             <div class="modal-body">
 
-            <!--__________________ FORMULARIO MODAL ___________________________-->
+            <!--__________________ FORMULARIO MODAL __________________-->
 
             <form method="POST" autocomplete="off" id="formGeneradoresEdit" class="registerForm">
                 <div class="modal-body">
 
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
                 <!--Nombre/Razon social-->
 
                     <div class="row">
@@ -208,7 +208,7 @@
                         </div>                        
                     </div>
 
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
                 <!--Registro-->
 
                 <div class="row">
@@ -217,7 +217,7 @@
                                 <label for="CUIT">CUIT:</label>
                                 <input type="text" class="form-control" id="E_CUIT" name="e_cuit">
                             </div>
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
                 <!--Tipo de residuo-->
 
                             <div class="form-group">
@@ -235,7 +235,7 @@
                             </div>
                          </div>
 
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
                 <!--Descripcion-->
 
                         <div class="col-md-6">
@@ -244,7 +244,7 @@
                                 <input type="text" class="form-control" id="E_Domicilio" name="e_omicilio">
                             </div>
 
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
                 <!--Resolucion-->
 
                             <div class="form-group">
@@ -261,7 +261,7 @@
                         </div>
                 </div>
 
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
                 <!--Fecha de Alta-->
 
                 <div class="row">                        
@@ -275,7 +275,7 @@
                     </div>
                 </div>
 
-                <!--_____________________________________________-->
+                <!--_____________________________________________________________-->
                 <!--Fecha de Baja-->
 
 
@@ -302,7 +302,7 @@
                 
             </form>
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+            <!--__________________ FIN FORMULARIO MODAL __________________-->
 
             </div>
             <div class="modal-footer">
@@ -315,146 +315,125 @@
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-
-
 <!--_____________________________________________________________-->
+
 <!--Script Bootstrap Validacion.FORMULARIO MODAL EDITAR -->
-
-            
 <script>
-            $('#formGeneradoresEdit').bootstrapValidator({
-                message: 'This value is not valid',
-                /*feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },*/
-                //excluded: ':disabled',
-                fields: {
-                    e_nombre_razon: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
+    $('#formGeneradoresEdit').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            e_nombre_razon: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
                     },
-
-                    e_cuit: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /^(0|[1-9][0-9]*)$/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    e_zonag: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
-                    },
-
-                    e_rubro: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    e_tipo: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
-                    },
-
-                    e_omicilio: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    e_departamento: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            }
-                        }
-                    },
-
-                    e_numero_registro: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /^(0|[1-9][0-9]*)$/,
-                                message: 'la entrada debe ser un numero entero'
-                            }
-                        }
-                    },
-
-                    e_tipo_Residuo: {
-                        message: 'la entrada no es valida',
-                        validators: {
-                            notEmpty: {
-                                message: 'la entrada no puede ser vacia'
-                            },
-                            regexp: {
-                                regexp: /[A-Za-z]/,
-                                message: 'la entrada no debe ser un numero entero'
-                            }
-                        }
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
                     }
                 }
-            }).on('success.form.bv', function(e) {
-                e.preventDefault();
-                //guardar();
-            });
-            </script>
-
-
-
-
+            },
+            e_cuit: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            e_zonag: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            e_rubro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_tipo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            e_omicilio: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            e_departamento: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            e_numero_registro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            e_tipo_Residuo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            }
+        }
+    }).on('success.form.bv', function(e) {
+        e.preventDefault();
+        //guardar();
+    });
+</script>
 
 <script>
-
-DataTable($('#tabla_transportistas'));
-
-// DataTable($('#tabla_'));
-
-
+    DataTable($('#tabla_transportistas'));
+    // DataTable($('#tabla_'));
 </script>
-           

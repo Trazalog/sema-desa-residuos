@@ -144,9 +144,9 @@
                         <select class="form-control select2 select2-hidden-accesible" name="depa_id" id="depa_id">
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                            foreach ($Departamentos as $i) {
-                                echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';                                
-                            }
+                                foreach ($departamentos as $dep) {
+                                    echo '<option  value="'.$dep->depa_id.'">'.$dep->nombre.'</option>';             
+                                }
                             ?>
                         </select>
                     </div>
