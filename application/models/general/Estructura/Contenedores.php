@@ -100,13 +100,13 @@ class Contenedores extends CI_Model
     }
     // __________________________________________________________
 
-    // Funcion Obtener  recipiente
-    // public function Obtener_recipiente()
-    // {
-    //     $aux = $this->rest->callAPI("GET",REST."/lote/todos/deposito");
-    //     $aux =json_decode($aux["data"]);
-    //     return $aux->recipientes->recipiente;
-    // }
+    //Funcion Obtener  recipiente
+    public function Obtener_recipiente()
+    {
+        $aux = $this->rest->callAPI("GET",REST."/lote/todos/deposito");
+        $aux =json_decode($aux["data"]);
+        return $aux->recipientes->recipiente;
+    }
     // __________________________________________________________
 
     // Funcion Obtener  Habilitacion
