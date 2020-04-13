@@ -10,7 +10,6 @@
     <th>Registro</th>
     <!-- <th>Tipo</th> -->
 
-
     </thead>
 
     <!--__________________BODY TABLA__________________-->
@@ -39,11 +38,8 @@
 
 <!--__________________FIN TABLA__________________-->
 
-
-
 <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
 
-    
 <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -53,7 +49,6 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel">Informacion Generador</h5>
             </div>
-
 
             <div class="modal-body">
 

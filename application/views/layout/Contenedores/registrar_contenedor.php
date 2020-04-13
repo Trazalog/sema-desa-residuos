@@ -74,25 +74,25 @@
                         <label for="Añoelab">Año de elaboracion:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                <input type="date" class="form-control"  name="anio_elaboracion" id="anio_elaboracion">
+                                <input type="date" class="form-control" name="anio_elaboracion" id="anio_elaboracion">
                         </div>
                     </div>
                 <!--__________________________________________________________________________________________-->
 
                 <!--Asociar Recipiente-->
-                    <!--<div class="form-group">
+                    <div class="form-group">
                         <label for="Recipiente">Asociar Recipiente:</label>
                         <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                             <select class="form-control select2 select2-hidden-accesible" name="reci_id" id="reci_id">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                        // foreach ($Recipiente as $i) {
-                                        //     echo '<option  value="'.$i->reci_id.'">'.$i->nombre.'</option>';
-                                        // }
+                                        foreach ($Recipiente as $i) {
+                                            echo '<option  value="'.$i->reci_id.'">'.$i->nombre.'</option>';
+                                        }
                                     ?>
                             </select>
                         </div>
-                    </div>-->
+                    </div>
                 <!--__________________________________________________________________________________________-->
 
             </div>
@@ -145,7 +145,7 @@
                         <label for="Añoelab">Fecha alta:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                <input type="date" class="form-control"  name="fec_alta" id="fec_alta">
+                                <input type="date" class="form-control" name="fec_alta" id="fec_alta">
                         </div>
                     </div>      
                 <!--__________________________________________________________________________________________-->

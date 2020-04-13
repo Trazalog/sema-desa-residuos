@@ -16,14 +16,9 @@
     </div>
 </div>
 
-
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-
-
 <!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
-
-
 
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
@@ -36,33 +31,24 @@
                 <i class="fa fa-times"></i>
             </button>
         </div>
-
     </div>
-
-
 
     <!--_____________________________________________-->
 
-
     <div class="box-body">
-
         <form class="formTransportistas" id="formTransportistas">
-
             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                <!--_____________________________________________-->
                 <!--Nombre / Razon social-->
-
                 <div class="form-group">
                     <label for="Nombre/Razon social" >Nombre / Razon social:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="razon_social" id="razon_social">
                     </div>
-                    
                 </div>
                 <!--_____________________________________________-->
-                <!--Descripcion-->
 
+                <!--Descripcion-->
                 <div class="form-group">
                     <label for="Descripcion" >Descripcion:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -70,9 +56,7 @@
                     </div>
                 </div>
 
-                <!--_____________________________________________-->
                 <!--Direccion-->
-
                 <div class="form-group">
                     <label for="Direccion">Direccion:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -80,8 +64,8 @@
                     </div>
                 </div>
                 <!--_____________________________________________-->
-                <!--Telefono-->
 
+                <!--Telefono-->
                 <div class="form-group">
                     <label for="Telefono" >Telefono:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -89,8 +73,8 @@
                     </div>
                 </div>
                 <!--_____________________________________________-->
-                <!--contacto-->
 
+                <!--contacto-->
                 <div class="form-group">
                     <label for="Contacto" >Contacto:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -98,35 +82,30 @@
                     </div>
                 </div>
                 <!--_____________________________________________-->
-                <!--contacto-->
 
+                <!--contacto-->
                 <div class="form-group">
                     <label for="Contacto" >Cuit:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control" name="cuit" id="cuit" size="11">
 
-                    
                     </div>
                 </div>
-            </div>
+                <!--_____________________________________________-->
 
-             <!--***************************************-->
-            
+            </div>
              <div class="col-md-6 col-sm-6 col-xs-12">
              
-                <!--_____________________________________________-->
                 <!--Resolucion-->
-
                 <div class="form-group">
                     <label for="Resolucion" >Resolucion:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                     <input type="text" class="form-control"  name="resolucion" id="resolucion">
                     </div>
                 </div>
-
                 <!--_____________________________________________-->
-                <!--Registro-->
 
+                <!--Registro-->
                 <div class="form-group">
                     <label for="Registro" >Registro:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -134,8 +113,8 @@
                     </div>
                 </div>
                 <!--_____________________________________________-->
-                <!--Fecha de alta-->
 
+                <!--Fecha de alta-->
                 <div class="form-group">
                     <label for="Fechalta"class="form-label label-sm">Fecha de alta:</label>                                              
                     <div class="input-group date">
@@ -146,8 +125,8 @@
                     </div>  
                 </div>
                 <!--_____________________________________________-->
-                <!--Fecha de baja-->
 
+                <!--Fecha de baja-->
                 <div class="form-group">
                     <label for="Fechabaja" >Fecha de baja:</label>
                     <div class="input-group date">
@@ -157,10 +136,9 @@
                         <input type="date" class="form-control pull-right" name="fec_baja_efectiva" id="fec_baja_efectiva">
                     </div>
                 </div>
-
                 <!--_____________________________________________-->
-                <!--Tipo de RSU autorizado-->
 
+                <!--Tipo de RSU autorizado-->
                 <!-- <div class="form-group">
                     <label for="Rsu" >Tipo de RSU autorizado:</label>
                     <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
@@ -181,60 +159,45 @@
 
             <!--***************************************-->
 
-
             <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 
             <!--___________________BOTON GUARDAR__________________________-->
             <br>
-            
+
             <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Transportista()">Guardar</button>
-           
+
             <br>
         </form>
     </div>
 </div>
 </div>
 
-
-
 <!---//////////////////////////////////////--- FIN BOX 1 ---///////////////////////////////////////////////////////----->
-
 
 <!---//////////////////////////////////////---BOX TABLA ---///////////////////////////////////////////////////////----->
 
-
-
-<div class="box box-primary">    
-
-
+<div class="box box-primary">
     <div class="box-body">
-
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6"></div>
-            </div>        
+            </div>   
 
                 <!--__________________TABLA___________________________-->
 
                     <div class="row"><div class="col-sm-12 table-scroll" id="cargar_tabla"></div>
 
-                <!--__________________TABLA___________________________-->                  
-
-                
+                <!--__________________TABLA___________________________-->
         </div>
-
     </div>
-
 
 <!---//////////////////////////////////////--- FIN BOX TABLA ---///////////////////////////////////////////////////////----->
 
-
-
-
- <!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- SCRIPTS---///////////////////////////////////////////////////////----->
 
 <!--_____________________________________________________________-->
+
 <!-- script modal -->
 <script>
 $("#btnview").on("click", function() {
@@ -253,13 +216,10 @@ $("#btnadd").on("click", function() {
     $("#btnsave").show();
 });
 </script>
-
-
 <!--_____________________________________________-->
+
 <!--FUNCION GUARDAR TRANSPORTISTA.-->
-
 <script>
-
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
 
     function Guardar_Transportista() {
@@ -271,9 +231,6 @@ $("#btnadd").on("click", function() {
         // datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
         console.table(datos);
-        
-        
-        
 
         //--------------------------------------------------------------
 
@@ -286,10 +243,6 @@ $("#btnadd").on("click", function() {
                     console.log(r);
                     if (r == "ok") {
 
-
-                       
-
-
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
                         alertify.success("Agregado con exito");
 
@@ -299,24 +252,19 @@ $("#btnadd").on("click", function() {
                         $("#boxDatos").hide(500);
                         $("#botonAgregar").removeAttr("disabled");
 
-
-                       
-
                     } else {
                         //console.log(r);
                         alertify.error("error al agregar");
-
                     }
                 }
             });
         }
     }
 </script>
-
 <!--_____________________________________________________________-->
-    <!-- script que muestra box de datos al dar click en boton agregar -->
 
-    <script>
+<!-- script que muestra box de datos al dar click en boton agregar -->
+<script>
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
@@ -328,9 +276,11 @@ $("#btnadd").on("click", function() {
         $("#boxDatos").show();
 
     });
-    </script>
+</script>
+<!--_____________________________________________________________-->
 
-    <script>
+<!-- script que cierra box de datos al dar click en la cruz -->
+<script>
     $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
@@ -339,20 +289,17 @@ $("#btnadd").on("click", function() {
         $('#selecmov').find('option').remove();
         $('#chofer').find('option').remove();
     });
-    </script>
-
-<!--_____________________________________________________________-->
- <!-- script Datatables -->
- <script>
-
-    DataTable($('#tabla_transportistas'))
-
 </script>
+<!--_____________________________________________________________-->
 
+<!-- script Datatables -->
+<script>
+    DataTable($('#tabla_transportistas'))
+</script>
+<!--_____________________________________________________________-->
 
-   <!--_____________________________________________________________-->
-    <!--Script Bootstrap Validacion.-->
-    <script>
+<!--Script Bootstrap Validacion.-->
+<script>
     $('#formTransportistas').bootstrapValidator({
         message: 'This value is not valid',
         /*feedbackIcons: {
@@ -417,7 +364,7 @@ $("#btnadd").on("click", function() {
                         message: 'la entrada no puede ser vacia'
                     },
                     regexp: {
-                        regexp: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+                        regexp: /^(0|[1-9][0-9]*)$/,
                         message: 'la entrada no debe ser un numero entero'
                     }
                 }
@@ -429,7 +376,7 @@ $("#btnadd").on("click", function() {
                         message: 'la entrada no puede ser vacia'
                     },
                     regexp: {
-                        regexp: /^[0-9]{2}-[0-9]{8}-[0-9]$ /,
+                        regexp: /^(0|[1-9][0-9]*)$/,
                         message: 'la entrada no debe ser un numero entero'
                     }
                 }
@@ -499,17 +446,13 @@ $("#btnadd").on("click", function() {
         e.preventDefault();
         //guardar();
     });
-    </script>
+</script>
+<!--_____________________________________________________________-->
 
+<!-- este script me permite limpiar la validacion una vez cerrado el modal -->
 <script>
-    //este script me permite limpiar la validacion una vez cerrado el modal
     $("#modalEdit").on("hidden.bs.modal", function (e) {
         $("#formEditDatos").data('bootstrapValidator').resetForm();
     });
 </script>
-
-
-
-
-
-    
+<!--_____________________________________________________________-->
