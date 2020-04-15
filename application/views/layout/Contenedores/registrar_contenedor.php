@@ -78,7 +78,20 @@
                         </div>
                     </div>
                 <!--__________________________________________________________________________________________-->
-
+                <!--Transporista-->
+                    <div class="form-group">
+                        <label for="Habilitacion" >transportista:</label>
+                        <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                            <select class="form-control select2 select2-hidden-accesible" name="tran_id" id="tran_id">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                        foreach ($transportista as $i) {
+                                            echo '<option  value="'.$i->tran_id.'">'.$i->razon_social.'</option>';
+                                        }
+                                    ?>
+                            </select>
+                        </div>
+                    </div>
                 <!--Asociar Recipiente-->
                     <!--<div class="form-group">
                         <label for="Recipiente">Asociar Recipiente:</label>
@@ -140,6 +153,24 @@
                     </div>
                 <!--__________________________________________________________________________________________-->
 
+                 <!--Tipo carga-->                
+                    <div class="form-group">
+                        <label for="tipoResiduos">Tipo de residuo:</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                                <select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="ticco_id">
+                            
+                                    <?php
+                                        foreach ($Carga as $i) {
+                                            
+
+                                            echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+                                        }
+                                    ?>
+                                </select>
+                        </div>
+                     </div>                
+                <!-- ______________________________________________________________________________________________ -->
                 <!--Año de elaboracion-->
                     <div class="form-group">
                         <label for="Añoelab">Fecha alta:</label>
@@ -152,7 +183,7 @@
 
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
-
+           
                 <!--Adjuntar imagen-->
                     <!-- <div class="col-md-6">
                         <form action="cargar_archivo" method="post" enctype="multipart/form-data">
@@ -229,23 +260,26 @@
 <script>
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor");
     function Guardar_Contenedor() {
-
+        var datos_tipo_carga= $('#ticco_id').val();   
         // datos = $('#formContenedores').serialize();
 
         var datos = new FormData($('#formContenedores')[0]);
         datos = formToObject(datos);
         // datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario         
+        //datos.tran_id = 2; //HARCODE falata ver esto tran_id no tiene un selct o input ver que honda
         console.table(datos);
+        console.table(datos_tipo_carga);
 
         //--------------------------------------------------------------
 
         if ($("#formContenedores").data('bootstrapValidator').isValid()) {
             $.ajax({
                 type: "POST",
-                data: {datos},
+                data: {datos, datos_tipo_carga},
                 url: "general/Estructura/Contenedor/Guardar_Contenedor",
                 success: function (r) {
+                    
                     console.table(r);
                     if (r == "ok") {
 
@@ -344,6 +378,7 @@
                     }
                 }
             },
+            
             capacidad: {
                 message: 'la entrada no es valida',
                 validators: {
@@ -364,11 +399,32 @@
                     }
                 }
             },
+            ticco_id: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            tran_id: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
         }
     }).on('success.form.bv', function(e){
         e.preventDefault();
         //guardar();
     });
+</script>
+<script>
+  
+    //Initialize Select2 Elements
+    $('.select3').select2();
 </script>
 <!--__________________________________________________________________________________________-->
 

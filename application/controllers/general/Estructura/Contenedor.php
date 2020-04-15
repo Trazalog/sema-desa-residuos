@@ -15,6 +15,8 @@ class Contenedor extends CI_Controller {
     {
       $data['Estados'] = $this->Contenedores->obtener_Estados();
       $data['Habilitacion'] = $this->Contenedores->Obtener_Habilitacion();
+      $data['Carga'] = $this->Contenedores->obtener_Tipo_Carga();
+      $data['transportista'] = $this->Contenedores->obtener_Transportista();
       // $data['Recipiente'] = $this->Contenedores->Obtener_recipiente();
       // $data[''] = $this->Contenedores->obtener_();
       // $data[''] = $this->Contenedores->obtener_();
@@ -25,15 +27,39 @@ class Contenedor extends CI_Controller {
     // ---------------- Funcion Registrar Contenedor
     function Guardar_Contenedor()
     {
-      {
+      
+        // datos de la vista  
         $datos =  $this->input->post('datos');
-        $resp = $this->Contenedores->Guardar_Contenedor($datos);
-        if($resp){
-        echo "ok";
-        }else{
-        echo "error";
+        $datos_tipo_carga = $this->input->post('datos_tipo_carga');
+         // 1 guarda contenedor y devuelve su id
+        $cont_id = $this->Contenedores->Guardar_Contenedor($datos)->respuesta->cont_id;
+        
+        // Operacion de validacion circuito
+        if ($cont_id == 0) {
+          
+          echo "contenedor no registrado"; return;
+            } 
+        
+        // 3  con id circ  agregar a array tipo de carga armar batch  /_post_circuitos_tipocarga_batch_req  
+        foreach ($datos_tipo_carga as $key => $carga) {
+        
+        $tipocarga[$key]['cont_id'] = $cont_id;
+        $tipocarga[$key]['tica_id'] = $carga;
+     
         }
-      }
+
+        $resp = $this->Contenedores->Guardar_tipo_carga($tipocarga);
+        // Operacion de validacion tipo carga
+    
+        if (!$resp['status']) {
+        echo "tipo carga no asociado";return;
+          }
+
+         //------------------------------------------------------------- 
+        
+        echo 'ok';
+        
+      
     }
     // _________________________________________________________
 

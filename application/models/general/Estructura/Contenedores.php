@@ -25,10 +25,23 @@ class Contenedores extends CI_Model
         $post["post_contenedor"] = $data;       
         log_message('DEBUG','#Contenedores/Guardar_Contenedor'.json_encode($post));
         $aux = $this->rest->callAPI("POST",REST."/contenedores", $post);
-        $aux =json_decode($aux["status"]);
+        $aux =json_decode($aux["data"]);
         return $aux;
     }
     // __________________________________________________________
+
+    //Funcion Guardar Tipo de carga
+    function Guardar_tipo_carga($data)
+    {
+    
+    $arraycargas["_post_contenedores_tipocarga"]  = $data;  
+    $post["_post_contenedores_tipocarga_batch_req"]= $arraycargas;
+       
+    log_message('DEBUG','#Contenedores/Guardar_tipo_carga: '.json_encode($post));
+    $aux = $this->rest->callAPI("POST",REST."/_post_contenedores_tipocarga_batch_req", $post);
+    return $aux;    
+
+    }
 
 // ---------------------- FUNCIONES OBTENER ----------------------
 
@@ -38,6 +51,17 @@ class Contenedores extends CI_Model
         $aux = $this->rest->callAPI("GET",REST."/tablas/estado_contenedor");
         $aux =json_decode($aux["data"]);
         return $aux->valores->valor;
+    }
+    public function obtener_Tipo_Carga(){
+        $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
+        $aux =json_decode($aux["data"]);
+        return $aux->valores->valor;
+    }
+    public function obtener_Transportista()
+    {
+        $aux = $this->rest->callAPI("GET",REST."/transportistas/todo");
+        $aux =json_decode($aux["data"]);
+        return $aux->transportistas->transportista;
     }
     // __________________________________________________________
 
