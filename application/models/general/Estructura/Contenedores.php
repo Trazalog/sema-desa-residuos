@@ -57,12 +57,7 @@ class Contenedores extends CI_Model
         $aux =json_decode($aux["data"]);
         return $aux->valores->valor;
     }
-    public function obtener_Transportista()
-    {
-        $aux = $this->rest->callAPI("GET",REST."/transportistas/todo");
-        $aux =json_decode($aux["data"]);
-        return $aux->transportistas->transportista;
-    }
+   
     // __________________________________________________________
 
 // ---------------------- Funciones  SOLICITUD PEDIDO ----------------------

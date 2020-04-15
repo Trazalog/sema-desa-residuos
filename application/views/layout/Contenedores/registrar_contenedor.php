@@ -74,38 +74,25 @@
                         <label for="Añoelab">Año de elaboracion:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                <input type="date" class="form-control" name="anio_elaboracion" id="anio_elaboracion">
+                                <input type="date" class="form-control"  name="anio_elaboracion" id="anio_elaboracion">
                         </div>
                     </div>
                 <!--__________________________________________________________________________________________-->
-                <!--Transporista-->
-                    <div class="form-group">
-                        <label for="Habilitacion" >transportista:</label>
-                        <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                            <select class="form-control select2 select2-hidden-accesible" name="tran_id" id="tran_id">
-                                <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                        foreach ($transportista as $i) {
-                                            echo '<option  value="'.$i->tran_id.'">'.$i->razon_social.'</option>';
-                                        }
-                                    ?>
-                            </select>
-                        </div>
-                    </div>
+               
                 <!--Asociar Recipiente-->
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="Recipiente">Asociar Recipiente:</label>
                         <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                             <select class="form-control select2 select2-hidden-accesible" name="reci_id" id="reci_id">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                        foreach ($Recipiente as $i) {
-                                            echo '<option  value="'.$i->reci_id.'">'.$i->nombre.'</option>';
-                                        }
+                                        // foreach ($Recipiente as $i) {
+                                        //     echo '<option  value="'.$i->reci_id.'">'.$i->nombre.'</option>';
+                                        // }
                                     ?>
                             </select>
                         </div>
-                    </div>
+                    </div>-->
                 <!--__________________________________________________________________________________________-->
 
             </div>
@@ -176,7 +163,7 @@
                         <label for="Añoelab">Fecha alta:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                <input type="date" class="form-control" name="fec_alta" id="fec_alta">
+                                <input type="date" class="form-control"  name="fec_alta" id="fec_alta">
                         </div>
                     </div>      
                 <!--__________________________________________________________________________________________-->
@@ -267,7 +254,7 @@
         datos = formToObject(datos);
         // datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario         
-        //datos.tran_id = 2; //HARCODE falata ver esto tran_id no tiene un selct o input ver que honda
+        datos.tran_id = 2; //HARCODE falata ver esto tran_id no tiene un selct o input ver que honda
         console.table(datos);
         console.table(datos_tipo_carga);
 

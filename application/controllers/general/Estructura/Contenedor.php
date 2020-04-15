@@ -16,7 +16,7 @@ class Contenedor extends CI_Controller {
       $data['Estados'] = $this->Contenedores->obtener_Estados();
       $data['Habilitacion'] = $this->Contenedores->Obtener_Habilitacion();
       $data['Carga'] = $this->Contenedores->obtener_Tipo_Carga();
-      $data['transportista'] = $this->Contenedores->obtener_Transportista();
+     
       // $data['Recipiente'] = $this->Contenedores->Obtener_recipiente();
       // $data[''] = $this->Contenedores->obtener_();
       // $data[''] = $this->Contenedores->obtener_();
