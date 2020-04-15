@@ -169,27 +169,40 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   }
 
 
--- circuitosGet
+-- circuitosGet (listado de circuitos con tipo residuo, camion y chofer)
   recurso: /circuitos
   metodo: get
   
-  select circ_id, codigo, descripcion, imagen, chof_id, vehi_id, zona_id from log.circuitos 
+  select 
+   C.circ_id, C.codigo, C.descripcion, C.chof_id, 
+   C.zona_id, CONCAT(CH.apellido, ', ', CH.nombre) as chofer, C.vehi_id, E.dominio 
+  from 
+    log.circuitos C, log.choferes CH, core.equipos E
+  where 
+    C.vehi_id = E.equi_id 
+  and   
+    C.chof_id = CH.chof_id 
+  and   
+    C.eliminado = 0   
+  ORDER BY C.circ_id
   
-  {"circuitos":{
+  {
+   "circuitos":{
       "circuito":[
-          {
-            "circ_id": "$circ_id", 
-            "codigo": "$codigo", 
-            "descripcion": "$descripcion", 
-            "imagen": "$imagen", 
-            "chof_id": "$chof_id", 
-            "vehi_id": "$vehi_id", 
-            "zona_id": "$zona_id",
-            "@tiposCargaCicuitoGet":"$circ_id->circ_id"            
-          }
-      ]    
+         {
+            "circ_id":"$circ_id",
+            "codigo":"$codigo",
+            "descripcion":"$descripcion",            
+            "chof_id":"$chof_id",
+            "chofer": "$chofer", 
+            "zona_id":"$zona_id",
+            "vehi_id":"$vehi_id",            
+            "dominio": "$dominio",
+            "@tiposCargaCicuitoGet":"$circ_id->circ_id"
+         }
+      ]
     }
-  }  
+  }
 
   -- ejemplo get circuitos todos con tipo de carga
   
@@ -404,6 +417,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   from log.puntos_criticos PC, log.circuitos_puntos_criticos CPC
   where PC.pucr_id = CPC.pucr_id 
   and CPC.circ_id = CAST(:circ_id AS INTEGER)
+  and CPC.eliminado = 0
 
   {
     "puntos":{
@@ -453,12 +467,61 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }  
 
+-- circuitosEstado ("borrado" se puede uasra para activar de nuevo pasando eliminado en 0)
+  recurso: /circuitos/estado
+  metodo: put
+
+  update log.circuitos set eliminado = CAST(:eliminado AS BOOLEAN)
+  where circ_id = CAST(:circ_id as INTEGER)
+  -- ej de json contrato
+  {
+    "_put_circuitos_delete":{
+      "circ_id": "118",
+      "eliminado": "1"  // esto es fijo en este metodo
+    }
+  }
 
 
--- contenedoresGet
+-- cirucitoUpdate
+  recurso: /circuitos
+  metodo: put
+
+  update log.circuitos set 
+  codigo = sq.codigo, 
+  descripcion = sq.descripcion,
+  imagen = sq.imagen,
+  usuario_app = sq.usuario_app , 
+  chof_id = CAST(sq.chof_id as integer), 
+  vehi_id = CAST(sq.vehi_id as integer), 
+  zona_id = case when sq.zona_id = '' or sq.zona_id is null then null else cast(sq.zona_id as integer) end
+  from (
+    select :codigo codigo
+            ,:descripcion descripcion
+            ,:imagen imagen
+            ,:usuario_app usuario_app
+            ,:chof_id chof_id
+            ,:vehi_id vehi_id 
+            ,:zona_id zona_id) as sq
+  where circ_id = CAST(:circ_id AS INTEGER)
+
+  -- ejemplo de json contrato
+  {
+    "circuito":{ 
+        "circ_id": "118",
+        "codigo":"Circulito AA-00",
+        "descripcion":"desc circuito",     
+        "usuario_app": "hugoDS",
+        "imagen": "",
+        "chof_id":"2",
+        "vehi_id":"21",
+        "zona_id": ""
+    }
+  } 
+
+-- contenedoresGet (contenedor con tipo de carga por cont_id)
   recurso: /contenedores
   metodo: get
-  //FIXME: agregar tipo de residuos a contenedores
+  
   select C.cont_id, C.codigo, C.descripcion, C.capacidad, C.anio_elaboracion, C.tara, C.habilitacion as habil_id, C.fec_alta, C.esco_id, C.reci_id, T.valor as estado, T2.valor as habilitacion 
   from log.contenedores C, core.tablas T, core.tablas T2
   where C.esco_id = T.tabl_id 
@@ -478,16 +541,137 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
               "habil_id": "$habil_id",
               "fec_alta": "$fec_alta",
               "esco_id": "$esco_id",
-              "reci_id": "$reci_id",
+              "reci_id": "$reci_id",          
               "estado": "$estado",
               "habilitacion": "$habilitacion"
+              "@contenedoresGetTipoCargaPorId": "$cont_id->cont_id"
             }
           ]
     }
   }
 
+  -- ejempo de respuesta
+    {"contenedores": {"contenedor": [
+      {
+      "descripcion": "Descripcion prueba 5",
+      "codigo": "123123123",
+      "estado": "INGRESADO",
+      "habil_id": "habilitacion_contenedorBaja",
+      "reci_id": "117",
+      "tipos_carga": {},
+      "habilitacion": "Baja",
+      "tara": "15.0",
+      "anio_elaboracion": "2020-02-12+00:00",
+      "fec_alta": "2021-12-12+00:00",
+      "esco_id": "estado_contenedorINGRESADO",
+      "cont_id": "47",
+      "capacidad": "14.0"
+      },
+          {
+          "descripcion": "Descripcion",
+          "codigo": "123123",
+          "estado": "EN_TRANSITO",
+          "habil_id": "habilitacion_contenedorBaja",
+          "reci_id": "116",
+          "tipos_carga": {"tipoCarga":       [
+                      {
+                "rsu": "Organico",
+                "tica_id": "tipo_cargaOrganico",
+                "cont_id": "46"
+            },
+                      {
+                "rsu": "Escombros",
+                "tica_id": "tipo_cargaEscombros",
+                "cont_id": "46"
+            }
+          ]},
+          "habilitacion": "Baja",
+          "tara": "5.0",
+          "anio_elaboracion": "2020-02-01+00:00",
+          "fec_alta": "2020-12-12+00:00",
+          "esco_id": "estado_contenedorEN_TRANSITO",
+          "cont_id": "46",
+          "capacidad": "6.0"
+      },
+          {
+          "descripcion": "contenedor 1",
+          "codigo": "123456",
+          "estado": "Activo",
+          "habil_id": "habilitacion_contenedorBaja",
+          "reci_id": "113",
+          "tipos_carga": {"tipoCarga": [      {
+            "rsu": "Organico",
+            "tica_id": "tipo_cargaOrganico",
+            "cont_id": "43"
+          }]},
+          "habilitacion": "Baja",
+          "tara": "158.2",
+          "anio_elaboracion": "2020-03-21+00:00",
+          "fec_alta": "2020-03-21+00:00",
+          "esco_id": "estado_contenedorActivo",
+          "cont_id": "43",
+          "capacidad": "50.8"
+      },
+          {
+          "descripcion": "Descripcion prueba 4",
+          "codigo": "9203",
+          "estado": "INGRESADO",
+          "habil_id": "habilitacion_contenedorUso",
+          "reci_id": "115",
+          "tipos_carga": {"tipoCarga": [      {
+            "rsu": "Escombros",
+            "tica_id": "tipo_cargaEscombros",
+            "cont_id": "45"
+          }]},
+          "habilitacion": "Uso",
+          "tara": "11.0",
+          "anio_elaboracion": "2019-01-01+00:00",
+          "fec_alta": "2021-05-01+00:00",
+          "esco_id": "estado_contenedorINGRESADO",
+          "cont_id": "45",
+          "capacidad": "5.0"
+      },
+          {
+          "descripcion": "Descripcion prueba hugo",
+          "codigo": "0",
+          "estado": "INGRESADO",
+          "habil_id": "habilitacion_contenedorUso",
+          "reci_id": "118",
+          "tipos_carga": {"tipoCarga": [      {
+            "rsu": "Organico",
+            "tica_id": "tipo_cargaOrganico",
+            "cont_id": "48"
+          }]},
+          "habilitacion": "Uso",
+          "tara": "11.0",
+          "anio_elaboracion": "2019-01-01+00:00",
+          "fec_alta": "2021-05-01+00:00",
+          "esco_id": "estado_contenedorINGRESADO",
+          "cont_id": "48",
+          "capacidad": "5.0"
+      },
+          {
+          "descripcion": "probando nuevo contenedor 112233",
+          "codigo": "112233",
+          "estado": "Activo",
+          "habil_id": "habilitacion_contenedorUso",
+          "reci_id": "114",
+          "tipos_carga": {"tipoCarga": [      {
+            "rsu": "Escombros",
+            "tica_id": "tipo_cargaEscombros",
+            "cont_id": "44"
+          }]},
+          "habilitacion": "Uso",
+          "tara": "3000.0",
+          "anio_elaboracion": "2020-03-01+00:00",
+          "fec_alta": "2020-03-01+00:00",
+          "esco_id": "estado_contenedorActivo",
+          "cont_id": "44",
+          "capacidad": "4500.0"
+      }
+    ]}}
 
--- contenedoresGetPorId
+-- contenedoresGetPorId (contenedor por cont_id con su tipo de carga por cont_id)
   recurso: /contenedores/{cont_id}
   metodo: get
 
@@ -497,24 +681,46 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   and C.habilitacion = T2.tabl_id
   and C.cont_id = CAST(:cont_id as INTEGER)
 
-  {"contenedor": 
-    {
-      "descripcion": "escombros",
-      "codigo": "325325",
-      "estado": "Activo",
-      "habil_id": "habilitacion_contenedorBaja",
-      "reci_id": "108",
-      "anio_elaboracion": "2000-01-01-03:00",
-      "fec_alta": "2020-02-24-03:00",
-      "esco_id": "estado_contenedorActivo",
-      "habilitacion": "Baja",
-      "tara": "124.0",
-      "cont_id": "24",
-      "capacidad": "124.0"
+  -- ejemplo de json respuesta
+  {
+    "contenedor": {
+      "descripcion": "Descripcion prueba hugo",
+      "codigo": "0",
+      "estado": "INGRESADO",
+      "habil_id": "habilitacion_contenedorUso",
+      "reci_id": "118",
+      "tipoCarga":    {
+          "rsu": "Organico",
+          "tica_id": "tipo_cargaOrganico",
+          "cont_id": "48"
+      },
+      "habilitacion": "Uso",
+      "tara": "11.0",
+      "anio_elaboracion": "2019-01-01+00:00",
+      "fec_alta": "2021-05-01+00:00",
+      "esco_id": "estado_contenedorINGRESADO",
+      "cont_id": "48",
+      "capacidad": "5.0"
     }
   }
 
-
+  {"contenedor": 
+    {
+      "cont_id": "$cont_id",
+      "codigo": "$codigo",
+      "descripcion": "$descripcion",
+      "capacidad": "$capacidad",
+      "anio_elaboracion": "$anio_elaboracion",
+      "tara": "$tara",
+      "habil_id": "$habil_id",
+      "fec_alta": "$fec_alta",
+      "esco_id": "$esco_id",
+      "reci_id": "$reci_id",
+      "estado": "estado",
+      "habilitacion": "$habilitacion", 
+      "@contenedoresGetTipoCargaPorId": "$cont_id->cont_id"
+    }
+  }
 
 -- contenedoresSet (alta contenedores)
   recurso: /contenedores
@@ -540,7 +746,116 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 
   {"respuesta": {"cont_id": "8"}}
 
+-- contenedoresTipoCarga ( SET asociar tipo carga a contenedores son varios por contenedor)  
+  -- usar este formato xq puede ser varios tipos de carga por contenedor
+  recurso: /_post_contenedores_tipocarga_batch_req
+  metodo: post 
+  {
+    "_post_contenedores_tipocarga_batch_req":{
+        "_post_contenedores_tipocarga":[
+              {
+                "cont_id": "46",
+                "tica_id": "tipo_cargaOrganico"
+              },
+              {
+                "cont_id": "46",
+                "tica_id": "tipo_cargaOrganico"
+              }
+        ]
+    }
+  }
+  
+  resurso: /contenedores/tipoCarga
+  metodo: post
 
+  insert into log.tipos_carga_contenedores(cont_id, tica_id) values(CAST(:cont_id AS INTEGER), :tica__id)
+ 
+  {
+    "_post_contenedores_tipocarga":{
+      "cont_id": "46",
+      "tica_id": "tipo_cargaOrganico"
+    }
+  }
+
+  
+
+
+-- contenedoresTipoCargaEstado (borrado logico asociar tipo carga a contenedores) 
+  recurso: /contenedores/tipoCarga/estado
+  metodo: put
+
+  update log.tipos_carga_contenedores set eliminado = CAST(:eliminado AS iNTEGER)
+  where cont_id = CAST(:cont_id as INTEGER)
+
+
+  -- ej de json contrato
+  {
+    "_put_contenedores_tipocarga_estado":{
+      "cont_id": "48",
+      "eliminado": "1"  // esto es fijo en este metodo
+    }
+  }
+
+-- contenedoresGetTipoCargaPorId
+
+  recurso: no hay recurso programado se llama solo la query desde otros metodos
+  metodo: 
+
+  select C.cont_id, C.tica_id, T.valor as rsu
+  from 
+    log.tipos_carga_contenedores C, core.tablas T
+  where 
+    C.tica_id = T.tabl_id 
+  and  
+    cont_id = CAST(:cont_id as INTEGER)
+  and C.eliminado = 0  
+
+  { 
+    "tipos_carga":{
+        "tipoCarga":[
+          {
+            "cont_id": "$cont_id",
+            "tica_id": "$tica_id",
+            "rsu": "$rsu"
+          }
+        ]
+    }
+  }
+
+-- contenedoresUpdate (edicion de contenedores)
+
+  -- instrucciones
+  1- recurso: /contenedores/tipoCarga/estado (borrado de tipos de carga)
+     metodo: put
+  2- recurso:/contenedores (actuaizar info contenedores)
+     metodo: put
+  3- recurso: /_post_contenedores_tipocarga_batch_req
+     metodo: post
+
+  recurso:/contenedores
+  metodo: put
+
+  update log.contenedores 
+  set codigo = CAST(:codigo as INTEGER), descripcion = :descripcion, capacidad = CAST(:capacidad as float8), tara = CAST(:tara as float8), habilitacion = :habilitacion, usuario_app = :usuario_app, esco_id = :esco_id, anio_elaboracion = TO_DATE(:anio_elaboracion,'YYYY-MM-DD')
+  where cont_id = CAST(:cont_id as INTEGER)
+
+
+  {"put_contenedor":
+    {
+      "cont_id": "46",
+      "codigo":"0000",
+      "descripcion":"Descripcion prueba hugo",
+      "capacidad":"5",
+      "tara":"11",
+      "habilitacion":"habilitacion_contenedorUso",
+      "usuario_app":"hugoDS",
+      "esco_id":"estado_contenedorINGRESADO",
+      "anio_elaboracion":"2019-01-01"
+    }
+  }
+
+ 
+//TODO: REVISAR ESTO POR LA MULTIPICIDAD DE RESIDUOS QUE LLEVA CADA CONTENEDOR
 -- contenedoresGetPorTransp (contenedores por transporte y tipo de residuo agrupado por tipo de residuo)
 
   recurso: /contenedores/transportista/{tran_id}
@@ -692,6 +1007,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   
   select chof_id, nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id  
   from log.choferes     
+  where eliminado = 0
       
   {
     "choferes":{
@@ -1229,20 +1545,6 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
         "zona_id": "5"
       }
     }
-
--- solicitudContenedorProx
-  recurso: /solicitudContenedor/prox
-  metodo: get
-
-  select COALESCE(NULL,(max(soco_id) + 1), 1) as nuevo_soco_id from log.solicitudes_contenedor
-
-  {
-    "respuesta":{
-      "nuevo_soco_id": "$nuevo_soco_id"
-    }
-  }
-
-
 
 
 
@@ -1922,9 +2224,19 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }
 
+-- zonaDelete
 
+  recurso: /zonas/estado
+  metodo: put
+   update core.zonas set eliminado = CAST(:eliminado as INTEGER) where zona_id = CAST(:zona_id as INTEGER)
 
-
+  -- ej de json contrato
+  {
+    "_put_zonas_estado":{
+      "zona_id":"93",
+      "eliminado":"1"   // valor fijo en "1" para borrar, en "0" para habilitar nuevamente
+    }  
+  }
 
 
 
