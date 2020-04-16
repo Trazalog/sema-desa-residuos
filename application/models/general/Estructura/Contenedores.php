@@ -44,7 +44,8 @@ class Contenedores extends CI_Model
 // ---------------------- Funciones  SOLICITUD PEDIDO ----------------------
 
     // Funcion Listar SOLICITUD PEDIDO (MODIFICAR)
-    function Listar_Solicitudes_pedido()
+		
+		function Listar_Solicitudes_pedido()
     {
         $aux = $this->rest->callAPI("GET",REST."/RECURSO");
         $aux =json_decode($aux["data"]);       
@@ -70,6 +71,18 @@ class Contenedores extends CI_Model
         return $aux;
     }
     // __________________________________________________________
+
+    // Funcion Obtener Tipo de RSU
+    // public function obtener_Tipo_residuo()
+    // {
+    //     $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
+    //     $aux =json_decode($aux["data"]);
+    //     return $aux->valores->valor;
+		// }
+	
+
+    
+
 
 // ---------------------- FUNCIONES OBTENER ----------------------
 
@@ -100,14 +113,6 @@ class Contenedores extends CI_Model
     }
     // __________________________________________________________
 
-    // Funcion Obtener  recipiente
-    // public function Obtener_recipiente()
-    // {
-    //     $aux = $this->rest->callAPI("GET",REST."/lote/todos/deposito");
-    //     $aux =json_decode($aux["data"]);
-    //     return $aux->recipientes->recipiente;
-    // }
-    // __________________________________________________________
 
     // Funcion Obtener  Habilitacion
     public function Obtener_Habilitacion()
@@ -120,35 +125,52 @@ class Contenedores extends CI_Model
 
 // ---------------------- Funciones  SOLICITUD RETIRO ----------------------
 
-// Funcion Listar SOLICITUD RETIRO (MODIFICAR)
+	// Funcion Listar SOLICITUD RETIRO (MODIFICAR)
 
-// function Listar_Solicitudes_retiro()
-// {
-    
-//     $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-//     $aux =json_decode($aux["data"]);       
-//     return $aux->->;
-// }
+	// function Listar_Solicitudes_retiro()
+	// {
+			
+	//     $aux = $this->rest->callAPI("GET",REST."/RECURSO");
+	//     $aux =json_decode($aux["data"]);       
+	//     return $aux->->;
+	// }
 
-// Funcion Guardar  SOLICITUD RETIRO
+	//Funcion Guardar  SOLICITUD RETIRO
+	function Guardar_SolicitudRetiro($data){
 
-// function Guardar_Solicitud_retiro($data){
+	    $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
+	    $aux =json_decode($aux["status"]);
+	    return $aux;	
 
-//     $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
-//     $aux =json_decode($aux["status"]);
-//     return $aux;	
-
-// }
+	}
 
 
-// ---------------------- FUNCIONES OBTENER ----------------------
+	// ---------------------- FUNCIONES OBTENER ----------------------
 
-// Funcion Obtener Estados
+	// Funcion proximo num de solicitud de retiro	
+	function solicitudRetiroProx(){
+		$aux = $this->rest->callAPI("GET",REST."/solicitudRetiro/prox");
+		$aux =json_decode($aux["data"]);   
+		return $aux->respuesta->nuevo_sore_id;
+	}
+	
+	// Funcion Obtener Transportista
+	function obtener_Transportista(){
+		//FIXME: DESHARDCODEAR USUARIO
+		$usuario_app  = "hugoDS";
+		$aux = $this->rest->callAPI("GET",REST."/transportistas/generador/".$usuario_app);
+		$aux =json_decode($aux["data"]);    
+		return $aux->transportistas->transportista;
+	}
 
-// public function obtener_Estados(){
-// $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-// $aux =json_decode($aux["data"]);
-// return $aux->estados->estado;
-// }
+	// Funcion obtenesr RSU habilitado por transportista 
+	function obtener_Tipo_residuo($tran_id)
+	{
+		$aux = $this->rest->callAPI("GET",REST."/transportistas/".$tran_id."/tipo/carga");
+		$aux =json_decode($aux["data"]);
+		//var_dump($aux->tiposCarga->cargas);
+		return $aux->tiposCarga->cargas;
+	}
+	
 
 }
