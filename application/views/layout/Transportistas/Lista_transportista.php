@@ -3,37 +3,33 @@
 
 <table id="tabla_transportistas" class="table table-bordered table-striped">
     <thead class="thead-dark" bgcolor="#eeeeee">
-
-    <th>Acciones</th>
-    <th>Nombre / Razon social</th>
-    <th>Descripcion</th>
-    <th>Registro</th>
-    <!-- <th>Tipo</th> -->
-
-
+        <th>Acciones</th>
+        <th>Nombre / Razon social</th>
+        <th>Descripcion</th>
+        <th>Registro</th>
     </thead>
 
     <!--__________________BODY TABLA___________________________-->
 
     <tbody>
-    <?php
-                    if($transportistas)
-                    {
-                        foreach($transportistas as $fila)
-                        {
-                        echo '<tr data-json:'.json_encode($fila).'>';
-                        echo    '<td>';
-                        echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
-                        echo   '</td>';
-                        echo    '<td>'.$fila->razon_social.'</td>';
-                        echo    '<td>'.$fila->descripcion.'</td>';
-                        echo    '<td>'.$fila->registro.'</td>';                       
-                        echo '</tr>';
-                    }
-                    }
-                    ?>
+        <?php
+            if($transportistas)
+            {
+                foreach($transportistas as $fila)
+                {
+                    echo '<tr data-json:'.json_encode($fila).'>';
+                    echo    '<td>';
+                    echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
+                    echo   '</td>';
+                    echo    '<td>'.$fila->razon_social.'</td>';
+                    echo    '<td>'.$fila->descripcion.'</td>';
+                    echo    '<td>'.$fila->registro.'</td>';                       
+                    echo '</tr>';
+                }
+            }
+        ?>
     </tbody>
 </table>
 
@@ -41,7 +37,6 @@
 
 <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-    
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -52,34 +47,28 @@
                 <h5 class="modal-title" id="exampleModalLabel">Editar Transportista</h5>
             </div>
 
-
             <div class="modal-body">
 
             <!--__________________ FORMULARIO MODAL ___________________________-->
 
             <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
-
                 <div class="modal-body">
-
-                
-
                     <div class="row">
                         <div class="col-md-6">
 
                             <!--_____________________________________________-->
-                             <!--Nombre/Razon social-->
+                            <!--Nombre/Razon social-->
 
                             <div class="form-group">
                                 <label for="Nombre/Razon social" name="Nombre_razon">Nombre / Razon social:</label>
                                 <input type="text" class="form-control" id="Nombre/Razon social">
                             </div>
-                        </div>
+                            <!--_____________________________________________-->
 
+                        </div>
                         <div class="col-md-6">
 
-                            <!--_____________________________________________-->
-                             <!--Registro-->
+                            <!--Registro-->
 
                             <div class="form-group">
                                 <label for="Registro" name="Registro">Registro:</label>
@@ -88,10 +77,7 @@
                         </div>                         
                     </div>
 
-                
-
-                <div class="row">
-
+                    <div class="row">
                         <div class="col-md-6">
 
                             <!--_____________________________________________-->
@@ -145,11 +131,7 @@
                             </div>
                         </div>
                 </div>
-
-                
-
                 <div class="row">
-
                     <div class="col-md-6"> 
                         <!--_____________________________________________-->
                         <!--Descripcion-->
@@ -168,7 +150,6 @@
                                 
                             </div>
                     </div>
-
                     <div class="col-md-6"> 
 
                             <!--_____________________________________________-->
@@ -192,18 +173,15 @@
                                 <select class="form-control select2 select2-hidden-accesible" id="Rsu">
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                        // foreach ($Rsu as $i) {
-                                        //     echo '<option>'.$i->nombre.'</option>';
-                                        // }
+                                        foreach ($Rsu as $i) {
+                                            echo '<option>'.$i->nombre.'</option>';
+                                        }
                                     ?>
-                                    </select>
+                                </select>
                             </div>
-                            </div>
+                        </div>
                     </div>
-                    
-                    
                 </div>
-                
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
