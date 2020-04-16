@@ -51,7 +51,7 @@ class Dash extends CI_Controller {
                             {
                                 "titulo": "Solicitud de retiro",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Orden/solicitudRetiro"
+                                "link": "general/Estructura/Contenedor/templateSolicitudRetiro"
                             },
                             {
                                 "titulo": "Registrar Proceso Productivo",
@@ -132,12 +132,7 @@ class Dash extends CI_Controller {
                                 "titulo": "Registrar acta de infraccion",
                                 "icono": "fa fa-genderless",
                                 "link": "general/RegistrarVehi/templateVehi"
-                            },
-                            {
-                                "titulo": "Sol. Retiro Contenedor",
-                                "icono": "fa fa-genderless",
-                                "link": "general/Estructura/Contenedor/templateSolicitudRetiro"
-                            }
+                            }                            
                         ]
                     }
                 ]

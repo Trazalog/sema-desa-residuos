@@ -725,8 +725,8 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 -- contenedoresSet (alta contenedores)
   recurso: /contenedores
   metodo: post
-  insert into log.contenedores(codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, usuario_app, esco_id)
-  values(CAST(:codigo as INTEGER), :descripcion, CAST(:capacidad as float8), TO_DATE(:anio_elaboracion,'YYYY-MM-DD'), CAST(:tara as float8), :habilitacion, TO_DATE(:fec_alta,'YYYY-MM-DD'), :usuario_app, :esco_id)
+  insert into log.contenedores(codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, usuario_app, esco_id, tran_id)
+  values(CAST(:codigo as INTEGER), :descripcion, CAST(:capacidad as float8), TO_DATE(:anio_elaboracion,'YYYY-MM-DD'), CAST(:tara as float8), :habilitacion, TO_DATE(:fec_alta,'YYYY-MM-DD'), :usuario_app, :esco_id, CAST(:tran_id as INTEGER))
   returning cont_id
 
   {"post_contenedor":
@@ -746,7 +746,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 
   {"respuesta": {"cont_id": "8"}}
 
--- contenedoresTipoCarga ( SET asociar tipo carga a contenedores son varios por contenedor)  
+-- contenedoresTipoCarga (SET asociar tipo carga a contenedores son varios por contenedor)  
   -- usar este formato xq puede ser varios tipos de carga por contenedor
   recurso: /_post_contenedores_tipocarga_batch_req
   metodo: post 
@@ -776,8 +776,6 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
       "tica_id": "tipo_cargaOrganico"
     }
   }
-
-  
 
 
 -- contenedoresTipoCargaEstado (borrado logico asociar tipo carga a contenedores) 
@@ -945,7 +943,6 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   }
 
 -- contenedoresEntregados (todos con camion y residuos para tabla entregas anteriores)
-
   recurso: /contenedoresEntregados/todos
   metodo: get
   select CE.porc_llenado, CE.fec_retiro, T.valor, CE.tica_id, E.dominio, CONCAT(CH.apellido, ', ', CH.nombre) as chofer  
@@ -970,6 +967,46 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }
 
+-- contenedoresEntregadosPorTicaId (contenedores entregados por tipo de carga y usuario_app)
+  recurso: /contenedoresEntregados/tipocarga/tipo_cargaOrganico/usr/hugoDS
+  metodo: post
+  select C.cont_id, C.codigo, C.descripcion
+  from log.contenedores C, log.contenedores_entregados CE  
+  where C.cont_id = CE.cont_id
+  and CE.ortr_id is null 
+  and CE.tica_id = :tica_id	
+  and CE.usuario_app = :usuario_app
+  
+  {
+    "contenedores":{
+      "contenedor":[
+        {
+          "cont_id": "$cont_id",
+          "codigo": "$codigo",
+          "descripcion": "$descripcion"
+        }
+      ]
+    }
+  }
+
+  -- ej contrato
+  {
+    "_post_contenedores_tipocarga":{
+      "tica_id": "tipo_cargaOrganico",
+      "usuario_app": "hugoDS"
+    }
+  }
+
+  -- ej respuesta
+  {"contenedores": 
+      {
+        "contenedor": [
+          {
+            "descripcion": "probando nuevo contenedor 112233",
+            "codigo": "112233",
+            "cont_id": "44"
+          }
+        ]}}
 
 
 -- contenedoresSolicitadosGet (/solicitudContenedores/{usuario_app}, para pantalla entrega contenedores tambien)
@@ -1855,6 +1892,34 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }
 
+-- transportistaGetPorGenerador
+  (transportistas que entregaron contenedores a un generador segun solicitud de contenedores)
+  recurso: /transportistas/generador/{usuario_app}
+  metodo: get
+  select TR.tran_id,TR.razon_social 
+  from  
+      log.solicitudes_contenedor SC, log.contenedores_entregados CE, log.contenedores C, log.transportistas TR
+  where 
+      SC.soco_id = CE.soco_id and
+      CE.cont_id = C.cont_id and
+      C.tran_id = TR.tran_id and
+      SC.usuario_app = :usuario_app
+      limit (1)
+  -- ejemplo de respuesta
+  {"transportistas":
+    {
+      "transportista":[
+        {
+          "tran_id": "$tran_id",
+          "razon_social": "$razon_social"
+        }
+      ]
+    }
+  }
+
+
+
+
 -- transportistasGetTodo
   
   recurso: /transportistas/todo
@@ -2012,6 +2077,39 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
       "tabl_id": "$tabl_id"
     }
   }
+
+// TODO: ACA ESTOY
+
+-- solicitudRetiroProx
+  recurso: /solicitudRetiro/prox
+  metodo: get
+  select COALESCE(NULL,(max(sore_id) + 1), 1) as nuevo_sore_id from log.solicitudes_retiro
+  --ej de respuesta
+  {"respuesta": {"nuevo_sore_id": "3"}}
+
+-- solicitudRetiroSet
+  recurso: /solicitudRetiro
+  metodo: post
+  insert into solicitudes_retiro(usuario_app) values(:usuario_app)
+  
+  {
+    "_post_solicitudretiro":{
+      "usuario_app": "hugoDS"
+    }
+  }
+  --ejemplo de respuesta
+  {"respuesta": {"sore_id": "9"}}
+
+-- updateSolicitudRetiroContenedores
+  recurso:
+  metodo:
+  update log.contenedores_entregados set sore_id = CAST(:sore_id AS INTEGER), porc_llenado = CAST(:porc_llenado AS FLOAT4), mts_cubicos = CAST(:mts_cubicos AS FLOAT4)  
+  where cont_id = CAST(:cont_id AS INTEGER) 
+
+
+
+
+
 
 
 -- vehiculosGetActivos

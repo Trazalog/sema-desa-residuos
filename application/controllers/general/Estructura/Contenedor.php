@@ -2,13 +2,13 @@
 
 class Contenedor extends CI_Controller {
 
-    function __construct()
+  function __construct()
       {
         parent::__construct();
         $this->load->model('general/Estructura/Contenedores');
-      }
+  }
     
-    // ---------------- Funciones  CONTENEDOR --------------------------------//
+  // ---------------- Funciones  CONTENEDOR --------------------------------//
 
     // ---------------- Funcion Cargar vista Contenedores y Datos
     function templateContenedores()
@@ -122,7 +122,7 @@ class Contenedor extends CI_Controller {
     }
     // _________________________________________________________
 
-    // ---------------- Funciones SOLICITUD RETIRO DE ORDEN CONTENEDOR --------------------------------//
+  // ---------------- Funciones SOLICITUD RETIRO DE CONTENEDOR --------------------------------//
 
 
     // ---------------- Funcion Cargar vista Solicitud retiroy Datos
@@ -130,28 +130,27 @@ class Contenedor extends CI_Controller {
     {
       // $data[''] = $this->->obtener_();
       // $data[''] = $this->->obtener_();
-      // $data[''] = $this->->obtener_();
-      // $data[''] = $this->->obtener_();
-
-      $this->load->view('layout/Contenedores/solicitud_retiro');
+      $data['transportista'] = $this->Contenedores->obtener_Transportista();
+      $data['nuevo_sore_id'] = $this->Contenedores->solicitudRetiroProx();
+      //$data[''] = $this->Contenedores->obtener_();
+      $this->load->view('layout/Contenedores/solicitud_retiro', $data);
     }
     // _________________________________________________________
 
-    // ---------------- Funcion Registrar Orden Transporte
+    // ---------------- Funcion Registrar Solicitud de Retiro
     function Guardar_SolicitudRetiro()
     {
+      $solicitud = $this->input->post('datos_contenedor');
+      var_dump($solicitud);
+      
+      $usuario['usuario_app'] = 'hugoDS';
+
+      $sore_id = $this->Contenedores->Guardar_SolicitudRetiro();
         
     }
     //___________________________________________________________
 
-    // ---------------- Funcion Crear Orden de transporte
-    function Crear_SolicitudRetiro()
-    {
-
-    }
-    // _________________________________________________________
-
-    // ---------------- Funcion Listar OrdenTransporte
+    // ---------------- Funcion Listar 
     function Listar_SolicitudesRetiro()
     {
       // $data["solicitudes_retiros"] = $this->Contenedores->Listar_Solicitudes_retiro();
@@ -167,19 +166,20 @@ class Contenedor extends CI_Controller {
     // _________________________________________________________
     // ---------------- Funciones Obtener --------------------------------//
 
-    // ---------------- Funcion Obtener tipo residuo
-    function Obtener_tipo_residuo()
-    {
+      // ----- Funcion Obtener tipo residuo de contenedores entregados a generador
+      function obtener_Tipo_residuo()
+      {
+        $response = $this->Contenedores->obtener_Tipo_residuo($this->input->post('tran_id'));
+        echo json_encode($response);
+      }
+      // _________________________________________________________
 
-    }
-    // _________________________________________________________
+      // ---------------- Funcion obtener contenedor
+      function Obtener_contendor()
+      {
 
-    // ---------------- Funcion obtener contenedor
-    function Obtener_contendor()
-    {
-
-    }
-    // _________________________________________________________
+      }
+      // _________________________________________________________
 
   // ---------------- Funciones SOLICITUD PEDIDO DE ORDEN CONTENEDOR --------------------------------//
 
@@ -234,52 +234,52 @@ class Contenedor extends CI_Controller {
 
     // ---------------- Funciones ENTREGA CONTENEDOR --------------------------------//
 
-    // ---------------- Funcion Cargar vista Entrega contenedor y Datos
-    function templateEntregacontenedor()
-    {
-      // $data[''] = $this->Contenedores->obtener_();
-      // $data[''] = $this->Contenedores->obtener_();
-      // $data['residuos'] = $this->Contenedores->Listar_Residuos();
-      // $data['contenedores'] = $this->Contenedores->obtener_();
+      // ---------------- Funcion Cargar vista Entrega contenedor y Datos
+      function templateEntregacontenedor()
+      {
+        // $data[''] = $this->Contenedores->obtener_();
+        // $data[''] = $this->Contenedores->obtener_();
+        // $data['residuos'] = $this->Contenedores->Listar_Residuos();
+        // $data['contenedores'] = $this->Contenedores->obtener_();
 
-      //  $data["residuos"] = $this->Contenedores->Listar_Residuos();
+        //  $data["residuos"] = $this->Contenedores->Listar_Residuos();
 
-      $this->load->view('layout/Contenedores/Entrega_contenedor');
-    }
+        $this->load->view('layout/Contenedores/Entrega_contenedor');
+      }
 
-    // ---------------- Funcion Registrar Solicitud Pedido
-    //  function Guardar_SolicitudPedido()
-    //  {
+      // ---------------- Funcion Registrar Solicitud Pedido
+      //  function Guardar_SolicitudPedido()
+      //  {
 
-    //  }
+      //  }
 
-    // ---------------- Funcion Crear Solicitud Pedido
-    //  function Crear_SolicitudPedido()
-    //  {
+      // ---------------- Funcion Crear Solicitud Pedido
+      //  function Crear_SolicitudPedido()
+      //  {
 
-    //  }
+      //  }
 
-    // ---------------- Funcion Listar Solicitud Pedido
-    function Listar_entregas()
-    {
-      $this->load->view('layout/Contenedores/Lista_entrega');
-    }
+      // ---------------- Funcion Listar Solicitud Pedido
+      function Listar_entregas()
+      {
+        $this->load->view('layout/Contenedores/Lista_entrega');
+      }
 
-    // ---------------- Funciones Obtener --------------------------------//
+      // ---------------- Funciones Obtener --------------------------------//
 
-    // ---------------- Funcion Obtener tipo residuo
+      // ---------------- Funcion Obtener tipo residuo
 
-    // function Obtener_tipo_residuo()
-    // {
+      // function Obtener_tipo_residuo()
+      // {
 
-    // }
+      // }
 
-    // ---------------- Funcion obtener contenedor
+      // ---------------- Funcion obtener contenedor
 
-    //  function Obtener_contendor()
-    //  {
+      //  function Obtener_contendor()
+      //  {
 
-    //  }
+      //  }
 
 }
 ?>
