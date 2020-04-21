@@ -70,7 +70,8 @@ public function obtener_Tipo_residuo()
 {
     $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
     $aux =json_decode($aux["data"]);
-    return $aux->valores->valor;}
+    return $aux->valores->valor;
+}
 
 
 

@@ -28,7 +28,7 @@
                                 
                             echo   '</td>';
                             echo    '<td>'.$fila->codigo.'</td>';
-                            echo    '<td>'.$fila->esco_id.'</td>';
+                            echo    '<td>'.substr("$fila->esco_id",17).'</td>'; //funcion substr("cadena de caracteres,n° posición del carácter desde la cual se comenzará la extracción") 17 por que hay que obviar estado_contenedor (0-16)
                             echo    '<td>'.$fila->capacidad.'</td>';
                             echo    '<td>'.$fila->habilitacion.'</td>';
                             echo '</tr>';
@@ -118,10 +118,10 @@
                                                 id="Estados">
                                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                                 <?php
-                            foreach ($Estados as $i) {
-                                echo '<option>'.$i->nombre.'</option>';
-                            }
-                            ?>
+                                                        foreach ($Estados as $i) {
+                                                            echo '<option>'.$i->nombre.'</option>';
+                                                                                 }
+                                                ?>
                                             </select>
                                         </div>
                                         <!--_____________________________________________-->
@@ -130,6 +130,7 @@
                                             <label for="Habilitacion">Habilitacion:</label>
                                             <input type="text" class="form-control" name="" id="Habilitacion">
                                         </div>
+                                        
                                     </div>
 
                                 </div>
