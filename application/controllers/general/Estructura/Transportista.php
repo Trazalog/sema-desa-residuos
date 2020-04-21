@@ -55,67 +55,51 @@ class Transportista extends CI_Controller {
       {
         $data["transportistas"] = $this->Transportistas->Listar_Transportistas();         
         $this->load->view('layout/Transportistas/Lista_transportista',$data);
-
-        
-          
       }
 
-   
       // ---------------- Funcion Modificar Transportista
    
       function Modificar_Transportista()
       {
-          
-          
+
       }
    
-       // ---------------- Funcion Borrar Transportista
+      // ---------------- Funcion Borrar Transportista
    
-       function Borrar_Transportista()
-       {
-           
-           
-       }
-   
-       
-   
-       // ---------------- Funcion Suspender Transportista
+      function Borrar_Transportista()
+      {
+
+      }
+
+      // ---------------- Funcion Suspender Transportista
    
       function Suspender_Transportista()
       {
-          
-          
+
       }
 
       // ---------------- Funciones Obtener --------------------------------//
       
 
-       // ---------------- Funcion Obtener camion
-   
-       function Obtener_Camiones()
-       {
-           
-           
-       }
+      // ---------------- Funcion Obtener camion
+  
+      function Obtener_Camiones()
+      {
 
-        // ---------------- Funcion Obtener Contenedores
-   
-        function Obtener_Contenedores()
-        {
-             
-             
-        }
+      }
 
-        // ---------------- Funcion Obtener Generador
-   
-       function Obtener_Generador()
-       {
-           
-           
-       }
+      // ---------------- Funcion Obtener Contenedores
+  
+      function Obtener_Contenedores()
+      {
 
-       
-   
+      }
 
+      // ---------------- Funcion Obtener Generador
+   
+      function Obtener_Generador()
+      {
+
+      }
 }
 ?>
