@@ -1,5 +1,6 @@
 http://dev-trazalog.com.ar:8280/services/semaresiduosDS
-
+http://trazalog.com.ar:8280/services/semaresiduosDS
+http://34.66.255.127:8280/services/semaresiduosDS
 
 //TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
   - falta saber de donde sale el destino acta para elegir
@@ -144,7 +145,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   insert into core.departamentos (nombre, descripcion) values(:nombre, :descripcion);
 	
 	{
-		"departamentos":{
+		"_post_departamentos":{
 			"nombre": "Santa Lucia",
 			"descripcion": "Depto Santa Lucia"
 		}
@@ -1844,7 +1845,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   values(:razon_social,:descripcion,:direccion,:telefono,:contacto,:resolucion,:registro,TO_DATE(:fec_alta_efectiva,'YYYY-MM-DD'),TO_DATE(:fec_baja_efectiva,'YYYY-MM-DD'),:usuario_app)
   returning tran_id
   {
-    "transportista":{
+    "_post_transportistas":{
       "razon_social": "Razon transportista",
       "descripcion": "decripcion transportista",
       "direccion": "calle gral acha 123",
@@ -1886,14 +1887,76 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
           "fec_baja_efectiva": "$fec_baja_efectiva",
           "fec_alta": "$fec_alta",
           "usuario": "$usuario",
-          "usuario_app": "$usuario_app"
+          "usuario_app": "$usuario_app",
+          "@transportistaTipoCarga": "$tran_id->tran_id"
         }
       ]
     }
   }
 
--- transportistaGetPorGenerador
-  (transportistas que entregaron contenedores a un generador segun solicitud de contenedores)
+-- transportistaGetPorId
+  recurso: /transportistas/{tran_id}
+  metodo: get
+  select tran_id,razon_social,descripcion,direccion,telefono,contacto,resolucion,registro,fec_alta_efectiva,fec_baja_efectiva,fec_alta,usuario,usuario_app from log.transportistas
+  where tran_id = CAST(:tran_id as INTEGER)
+
+  {
+      "transportista":
+        {
+          "tran_id": "$tran_id",
+          "razon_social": "$razon_social",
+          "descripcion": "$descripcion",
+          "direccion": "$direccion",
+          "telefono": "$telefono",
+          "contacto": "$contacto",
+          "resolucion": "$resolucion",
+          "registro": "$registro",
+          "fec_alta_efectiva": "$fec_alta_efectiva",
+          "fec_baja_efectiva": "$fec_baja_efectiva",
+          "fec_alta": "$fec_alta",
+          "usuario": "$usuario",
+          "usuario_app": "$usuario_app",
+           "@transportistaTipoCarga": "$tran_id->tran_id"        
+        }      
+  }
+
+  -- ejemplo de respuesta
+    {"transportista": {
+      "descripcion": "un transporte copado",
+      "contacto": "Tomas O. Bámela",
+      "fec_alta_efectiva": "2019-12-20+00:00",
+      "resolucion": "Resolucion test1",
+      "direccion": "libertador 1890",
+      "usuario_app": "HugoDS",
+      "tran_id": "3",
+      "razon_social": "Transportes Capria y Asoc.",
+      "registro": "registro test1",
+      "fec_baja_efectiva": "2019-12-20+00:00",
+      "fec_alta": "2019-12-27+00:00",
+      "tiposCarga": {"cargas":    [
+                {
+            "tica_id": "tipo_cargaEscombros",
+            "valor": "Escombros",
+            "tran_id": "3"
+          },
+                {
+            "tica_id": "tipo_cargaResiduos Patologicos",
+            "valor": "Residuos Patologicos",
+            "tran_id": "3"
+          }
+      ]},
+      "usuario": "postgres",
+      "telefono": "1234456789"
+    }}
+
+
+
+
+
+
+
+-- transportistaGetPorGenerador(transportistas que entregaron contenedores a un generador segun solicitud de contenedores)
+  
   recurso: /transportistas/generador/{usuario_app}
   metodo: get
   select TR.tran_id,TR.razon_social 
@@ -1920,7 +1983,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 
 
 
--- transportistasGetTodo
+-- transportistasGetTodo (todos transportistas con choferes)
   
   recurso: /transportistas/todo
   metodo: get
@@ -1945,7 +2008,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   where tran_id = CAST(:tran_id AS INTEGER)
 
   {
-   "transportista":{
+   "_put_transportistas":{
       "tran_id":"1",
       "razon_social":"Razon transportista",
       "descripcion":"decripcion transportista",
@@ -1983,7 +2046,7 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 
   {
     "_post_transportistas_tipo_carga_batch_req":{
-        "cargas":[
+        "_post_transportistas_tipo_carga":[
           {
               "tran_id":"3",
               "tica_id":"tipo_cargaEscombros"
@@ -1995,6 +2058,21 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
         ]
     }
   }
+
+-- transportistasDeleteTipoCarga
+  recurso: /transportista/tipo/carga
+  metodo:  delete
+  delete from log.tipos_carga_transportistas where tran_id = CAST(:tran_id AS INTEGER)
+
+  {
+    "_delete_transportista_tipo_carga":{
+      "tran_id": ""
+    }
+  }
+
+
+
+
 
 -- transportistaTipoCarga(tipo de carga por id de transportista)
 
@@ -2107,11 +2185,6 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   where cont_id = CAST(:cont_id AS INTEGER) 
 
 
-
-
-
-
-
 -- vehiculosGetActivos
   recurso: /vehiculos
   metodo: get
@@ -2203,19 +2276,29 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   select 
   zonas.zona_id, zonas.nombre, zonas.imagen, zonas.descripcion, zonas.depa_id, departamentos.nombre as depa_nom from core.zonas
   join core.departamentos on core.zonas.depa_id = core.departamentos.depa_id 
-  where eliminado = 0  and zona_id = zona_id
-  //TODO: TERMINAR Y REVISAR
+  where eliminado = 0  and zona_id = CAST(:zona_id AS INTEGER)
 
   {  
     "zona":
         {
           "zona_id":"$zona_id",
           "nombre":"$nombre",
+          "imagen": "$imagen",
           "descripcion":"$descripcion",
           "depa_id": "$depa_id",
           "depa_nom": "$depa_nom"          
     }  
   }
+
+  -- ejemplo de respuesta
+    {"zona": {
+    "descripcion": "Zona Centro",
+    "depa_nom": "Capital",
+    "depa_id": "1",
+    "imagen": "L2Fzc2V0L2ltYWdlbm5vc3ViaWRhLmpwZw==",
+    "nombre": "Trinidad",
+    "zona_id": "5"
+  }}
 
 -- zonaGetPorDepto
 
@@ -2244,12 +2327,12 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
   values(:nombre, :descripción, :imagen, :usuario_app, CAST(:depa_id AS INTEGER))
   returning zona_id
   {
-    "zona":{
-      "nombre": "Concepción", 
+    "_post_zonas":{
+      "nombre": "Jachal", 
       "descripcion": "Zona Norte", 
       "imagen": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN",
       "usuario_app": "hugoDS", 
-      "depa_id": "1"
+      "depa_id": "5"
     }
   }
 
@@ -2306,7 +2389,25 @@ http://dev-trazalog.com.ar:8280/services/semaresiduosDS
     }
   }
 
--- zonaUpdateImagen
+-- zonaGetImagen
+  recurso: /zona/get/imagen/{zona_id}
+  metodo: get
+
+  select imagen from core.zonas
+  where zona_id = CAST(:zona_id AS INTEGER)
+
+  {
+    "respuesta":{
+        "imagen": "$imagen"
+    }
+  }
+
+  -- ejemplo de respuesta
+  {"respuesta": {"imagen": "dataimage/jpegbase64/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPU"}}
+
+
+
+-- 
   recurso: /zonas/update/imagen
   metodo: put
 
