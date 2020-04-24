@@ -132,6 +132,11 @@ class Dash extends CI_Controller {
                                 "titulo": "Registrar acta de infraccion",
                                 "icono": "fa fa-genderless",
                                 "link": "general/RegistrarVehi/templateVehi"
+                            },
+                            {
+                                "titulo": "Plantilla",
+                                "icono": "fa fa-genderless",
+                                "link": "Test/index"
                             }                            
                         ]
                     }
