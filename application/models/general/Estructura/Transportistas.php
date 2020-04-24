@@ -1,13 +1,27 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+* Representa a la Entidad Transportistas
+*
+* @autor Hugo Gallardo
+*/
 class Transportistas extends CI_Model
 {
+		/**
+    * Constructor de Clase
+    * @param 
+    * @return 
+    */
 		function __construct()
 		{
+			
 			parent::__construct();
     }
 
-		// Funcion Listar Transportistas (MODIFICAR)
+		/**
+		* Trae listado de Todos los transportistas 
+		* @param 
+		* @return array datos de todos los transportistas
+		*/
     function Listar_Transportistas()
     {        
         $aux = $this->rest->callAPI("GET",REST."/transportistas");
@@ -15,7 +29,11 @@ class Transportistas extends CI_Model
         return $aux->transportistas->transportista;    
     }
     
-		// Funcion Guardar Transportista
+		/**
+		* Crea un transportista nuevo
+		* @param array datos transportista
+		* @return int tran_id (id de transportista nuevo)
+		*/
 		function Guardar_Transportista($data){
 				
 				$post["post_transportista"] = $data;
@@ -25,7 +43,11 @@ class Transportistas extends CI_Model
 				return $aux->respuesta->tran_id;
 		}
 
-		// Funcion asociar transportistas a tipos de carga	
+		/**
+		* Asocia los tipos de carga autorizados a cada transportista
+		* @param array con tipos de carga
+		* @return string status del servicio
+		*/	
 		function asociarTipoCarga($data){
 
 				$post['_post_transportistas_tipo_carga_batch_req']['_post_transportistas_tipo_carga'] = $data;
@@ -35,7 +57,11 @@ class Transportistas extends CI_Model
 				return $aux;
 		}
 
-		// modifica datos transportista
+		/**
+		* Actualiza datos de transportistas
+		* @param array datos de transportista
+		* @return string status del servicio
+		*/
 		function Modificar_Transportista($transportista){
 
 			$data['_put_transportistas'] = $transportista;			
@@ -45,7 +71,11 @@ class Transportistas extends CI_Model
 			return $aux;
 		}
 
-		// elimina transportista
+		/**
+		* borrado logico de transportista
+		* @param int id de transportista
+		* @return string status del servicio
+		*/
 		function Borrar_Transportista($tran_id){
 
 			$comp['tran_id'] = $tran_id;
@@ -57,7 +87,11 @@ class Transportistas extends CI_Model
 			return $aux;
 		}
 
-		// elimina tipos de cargas asociados a transportista
+		/**
+		* borrado fisico de tipos de carga asociado a transportista
+		* @param int id de transportista
+		* @return string status del servicio
+		*/
 		function Borrar_TiposCarga($tran_id){
 			
 			$comp['tran_id'] = $tran_id;
@@ -69,7 +103,11 @@ class Transportistas extends CI_Model
 		}
 // ---------------------- FUNCIONES OBTENER ----------------------
 
-		// Funcion Obtener RSU
+		/**
+		* Obtiene todos los tipos de carga
+		* @param 
+		* @return array con tipos de carga
+		*/
     public function obtener_RSU(){
 				$aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
 				$aux =json_decode($aux["data"]);

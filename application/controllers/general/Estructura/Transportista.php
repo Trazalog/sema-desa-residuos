@@ -1,22 +1,41 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+/**
+* Representa a la Entidad Transportistas
+*
+* @autor Hugo Gallardo
+*/
 class Transportista extends CI_Controller 
-{
+{   
+    /**
+    * Constructor de Clase
+    * @param 
+    * @return 
+    */
     function __construct(){
       parent::__construct();
       $this->load->model('general/Estructura/Transportistas');
     }  
-
-    // Funcion Cargar vista Transportistas y Datos
+   
+    /**
+    * Carga pantalla ABM transportistas y listado   
+    * @param 
+    * @return view transportistas
+    */
     function templateTransportistas()
     {
+        log_message('INFO','#TRAZA|TRANSPORTISTA|templateTransportistas() >>');
         $data['Rsu'] = $this->Transportistas->obtener_RSU();    
         $this->load->view('layout/Transportistas/registrar_transportista',$data);        
     }
-  
-    // Funcion Registrar Transportista
+   
+    /**
+    * Guarda transportista nuevo
+    * @param array datos transportista y tipo carga asociada
+    * @return string "ok, error"
+    */
     function Guardar_Transportista()
-    {
+    {   
+        log_message('INFO','#TRAZA|TRANSPORTISTA|Guardar_Transportista() >>');
         $datos =  $this->input->post('datos');
         $tiposcarga = $this->input->post('tipocarga');        
         $tran_id = $this->Transportistas->Guardar_Transportista($datos);
@@ -27,6 +46,7 @@ class Transportista extends CI_Controller
               $data[$i]['tica_id'] = $tipo_carga;              
             }
         }else{
+          log_message('ERROR','#TRAZA|TRANSPORTISTAS|Guardar_Transportista() >> $tran_id: '.$tran_id);
           echo "error";
           return;
         }       
@@ -34,20 +54,29 @@ class Transportista extends CI_Controller
         $resp = $this->Transportistas->asociarTipoCarga($data);
 
         if($resp){
-        echo "ok";
+          echo "ok";
         }else{
-        echo "error";
+          log_message('ERROR','#TRAZA|TRANSPORTISTA|Guardar_Transportista() >> $resp: '.$resp);
+          echo "error";
         }
     }    
 
-    // Funcion Listar Transportista  
+    /**
+    * Tabla con listado de todos los Transportistas
+    * @param 
+    * @return view Lista_transportista
+    */
     function Listar_Transportista()
     {
       $data["transportistas"] = $this->Transportistas->Listar_Transportistas(); 
       $this->load->view('layout/Transportistas/Lista_transportista',$data);
     }
   
-    // Funcion Modifica datos Transportista  
+    /**
+    * Actualiza datos transportistas
+    * @param array datos transportistas y tipos de catga
+    * @return string "error, ok"
+    */
     function Modificar_Transportista()
     {        
         $transportista = $this->input->post('transportista');
@@ -57,6 +86,7 @@ class Transportista extends CI_Controller
         $response = $this->Transportistas->Modificar_Transportista($transportista, $tran_id); 
          
         if(!$response){
+          log_message('ERROR','#TRAZA|TRANSPORTISTA|Modificar_Transportista() >> $response: '.$response);
           echo "error_transportista";
           return;
         }else{          
@@ -67,16 +97,19 @@ class Transportista extends CI_Controller
           }
           $resp = $this->Transportistas->asociarTipoCarga($data);   
           if($resp){
+            log_message('ERROR','#TRAZA|TRANSPORTISTA|Modificar_Transportista() >> $resp: '.$resp);
             echo "ok";
           }else{
             echo "error";
-          }
-          
-        }
-       
+          }          
+        }       
     }
   
-    // Funcion Borrar Transportista
+    /**
+    * Borrado de Transportistas
+    * @param string id de transportista
+    * @return json status servicio 
+    */
     function Borrar_Transportista()
     {
         $tran_id = $this->input->post('tran_id');       
@@ -86,7 +119,11 @@ class Transportista extends CI_Controller
 
   // ---------------- Funciones Obtener --------------------------------//
 
-    // Funcion Obtener rsu
+    /**
+    * Obtiene todos los tipos de carga
+    * @param 
+    * @return json tipos de carga
+    */
     function obtener_RSU()
     {
       $rsu = $this->Transportistas->obtener_RSU();      

@@ -197,9 +197,9 @@
 				$("#btnsave").show();
 		});
 	
-	//guardar transportista	
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
-
+		
+		//guardar transportista	
     function Guardar_Transportista() {        
         var datos = new FormData($('#formTransportistas')[0]);
         datos = formToObject(datos);

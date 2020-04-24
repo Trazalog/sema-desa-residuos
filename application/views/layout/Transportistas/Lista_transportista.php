@@ -55,12 +55,12 @@
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:10px;">
 
 											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-													<!--Nombre/Razon social-->
-															<div class="form-group">
-																<label for="razon_social_edit" name="razon_social_edit">Razon social:</label>
-																<input type="text" class="form-control habilitar" id="razon_social_edit" name="razon_social" size="30%">
-															</div>
-													<!--___________________-->
+	<!--Nombre/Razon social-->
+			<div class="form-group">
+				<label for="razon_social_edit" name="razon_social_edit">Razon social:</label>
+				<input type="text" class="form-control habilitar" id="razon_social_edit" name="razon_social" size="30%">
+			</div>
+	<!--___________________-->
 											</div>
 											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 													<!--Registro-->
@@ -160,22 +160,18 @@
 									</div>	
 
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:10px;">
-										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-											<!--Tipo RSU autorizado-->
-											<div class="form-group">
-												<label for="tipoResiduos">Tipos de residuo:</label>
-												<div class="input-group date">
-														<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-														<select class="form-control habilitar select4" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  size="40%" style="width: 100%; min-width: 30px;" id="tica_edit">
-														</select>            
-												</div>
-											</div>
-											<!--___________________-->
-										</div>
-										<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									
+										<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+											<!-- Cuit -->
+												<div class="form-group">
+													<label for="tica_edit">Tipos de residuo:</label>		
+													<select class="form-control habilitar select4" multiple="multiple"  data-placeholder="Seleccione tipo residuo" id="tica_edit" style="min-width: 30px; !important">
+													</select>
+												</div>											
+											<!--______-->
 										</div>
 									</div>	
-
+																		
 								</form>
 							<!--__________________ FIN FORMULARIO MODAL ___________________________-->
 						</div>
@@ -191,7 +187,7 @@
 <!---///////--- FIN MODAL EDITAR ---///////--->
 
 <!---///////--- MODAL AVISO ---///////--->
-	<div class="modal fade" id="modalaviso">
+	<div class="modal fade" id="modalaviso">		
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-blue">
@@ -252,9 +248,6 @@
 	function llenarModal(datajson){
 
 		data = JSON.parse(datajson);
-
-		$("input#usuario_app_edit").val('hugoDS'); //FIXME: DESHARDCODEAR USUARIO
-
 		$("input#tran_id").val(data.tran_id);			
 		$("input#razon_social_edit").val(data.razon_social);			
 		$("input#direccion_edit").val(data.direccion);
@@ -282,11 +275,9 @@
 		$('input#fec_baja_efectiva').val(new Date().toDateInputValue());
 	
 		$.ajax({
-				type: "POST",
-				//data: {transportista, tipo_carga, tran_id},
+				type: "POST",		
 				url: "general/Estructura/Transportista/obtener_RSU",
-				success: function (result) {
-					
+				success: function (result) {					
 						$('.select4').find('option').remove();							
 						var tipos = JSON.parse(result);		
 						var opcGuardadas = [];
@@ -312,21 +303,22 @@
 		//tomo datos del form y hago objeto
     var transportista = new FormData($('#frm_transportista')[0]);
     transportista = formToObject(transportista);    
-
-		$.ajax({
-				type: "POST",
-				data: {transportista, tipo_carga},
-				url: "general/Estructura/Transportista/Modificar_Transportista",
-				success: function (result) {
-					
-					if(result == 'error_transportista'){
-						alertify.error("Hubo un error a modificar Transportista");
-					}else{
-						$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
-						alertify.success("Transportista modificado con exito...");
-					}						
-				}
-		});
+		var tipo_carga = $("#tica_edit").val();		
+		if ($("#frm_transportista").data('bootstrapValidator').isValid()) {
+				$.ajax({
+						type: "POST",
+						data: {transportista, tipo_carga},
+						url: "general/Estructura/Transportista/Modificar_Transportista",
+						success: function (result) {
+							if(result == "error_transportista"){
+								alertify.error("Hubo un error a modificar Transportista");
+							}else{
+								$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
+								//alertify.success("Transportista modificado con exito...");
+							}	
+						}
+				});
+		}		
 	});	
 
 	//levanta modal y guarda tran_id
@@ -358,10 +350,133 @@
 		});
 	}
 
-	// inicializo tabla
-	DataTable($('#tabla_transportistas'));	
+	//Script Bootstrap Validacion.
+	$('#frm_transportista').bootstrapValidator({
+        message: 'This value is not valid',
+        fields: {
+            razon_social: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z-z0-9]/,
+                        message: 'la entrada no debe ser solo numeros'
+                    }
+                }
+            },            
+            direccion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z-z0-9]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            telefono: {
+                message: 'la entrada no es valida',
+                validators: {                    
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            descripcion: {
+               message: 'la entrada no es valida',
+               validators: {
+                   notEmpty: {
+                       message: 'la entrada no puede ser vacia'
+                   },
+                   regexp: {
+                       regexp: /[A-Za-z]/,
+                       message: 'la entrada no debe ser un numero entero'
+                   }
+               }
+            },
+            contacto: {
+                message: 'la entrada no es valida',
+                validators: {
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            registro: {
+               message: 'la entrada no es valida',
+               validators: {
+                   notEmpty: {
+                       message: 'la entrada no puede ser vacia'
+                   },
+                   regexp: {
+                       regexp: /[A-Za-z-z0-9]/,
+                       message: 'la entrada no debe ser un numero entero'
+                   }
+               }
+           	},
+            cuit: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },            
+            resolucion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },            
+            fec_alta: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            fec_baja: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            }
+        }
+	}).on('success.form.bv', function(e) {
+			e.preventDefault();
+			//guardar();
+	});	
+
+	// este script me permite limpiar la validacion una vez cerrado el modal
+	$("#modalEdit").on("hidden.bs.modal", function (e) {
+        $("#formEditDatos").data('bootstrapValidator').resetForm();
+    });
 	
 	//Initialize Select2 Elements
 	$('.select4').select2();
+
+	// inicializo tabla
+	DataTable($('#tabla_transportistas'));
+
 </script>
            
+
