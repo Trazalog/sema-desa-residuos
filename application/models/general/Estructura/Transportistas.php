@@ -23,7 +23,8 @@ class Transportistas extends CI_Model
 		* @return array datos de todos los transportistas
 		*/
     function Listar_Transportistas()
-    {        
+    {   
+				log_message('INFO','#TRAZA|TRANSPORTISTAS|Listar_Transportistas() >> ');     
         $aux = $this->rest->callAPI("GET",REST."/transportistas");
         $aux =json_decode($aux["data"]);       
         return $aux->transportistas->transportista;    
@@ -35,7 +36,7 @@ class Transportistas extends CI_Model
 		* @return int tran_id (id de transportista nuevo)
 		*/
 		function Guardar_Transportista($data){
-				
+				log_message('INFO','#TRAZA|TRANSPORTISTAS|Guardar_Transportista() >> ');
 				$post["post_transportista"] = $data;
 				log_message('DEBUG','#Transportistas/Guardar_Transportista: '.json_encode($post));
 				$aux = $this->rest->callAPI("POST",REST."/transportistas", $post);
@@ -49,7 +50,7 @@ class Transportistas extends CI_Model
 		* @return string status del servicio
 		*/	
 		function asociarTipoCarga($data){
-
+				log_message('INFO','#TRAZA|TRANSPORTISTAS|asociarTipoCarga() >> ');
 				$post['_post_transportistas_tipo_carga_batch_req']['_post_transportistas_tipo_carga'] = $data;
 				log_message('DEBUG','#Transportistas/asociarTipoCarga: '.json_encode($post));
 				$aux = $this->rest->callAPI("POST",REST."/_post_transportistas_tipo_carga_batch_req", $post);
@@ -63,7 +64,7 @@ class Transportistas extends CI_Model
 		* @return string status del servicio
 		*/
 		function Modificar_Transportista($transportista){
-
+			log_message('INFO','#TRAZA|TRANSPORTISTAS|Modificar_Transportista() >> ');
 			$data['_put_transportistas'] = $transportista;			
 			log_message('DEBUG','#Transportistas/Modificar_Transportista (datos transportista): '.json_encode($data));		
 			$aux = $this->rest->callAPI("PUT",REST."/transportistas", $data);
@@ -77,7 +78,7 @@ class Transportistas extends CI_Model
 		* @return string status del servicio
 		*/
 		function Borrar_Transportista($tran_id){
-
+			log_message('INFO','#TRAZA|TRANSPORTISTAS|Borrar_Transportista() >> ');
 			$comp['tran_id'] = $tran_id;
 			$comp['eliminado'] = "1";			// para habilitar nuevamente cambiar a "0"
 			$data['_put_transportistas_estado'] = $comp;			
@@ -93,7 +94,7 @@ class Transportistas extends CI_Model
 		* @return string status del servicio
 		*/
 		function Borrar_TiposCarga($tran_id){
-			
+			log_message('INFO','#TRAZA|TRASNPORTISTAS|Borrar_TiposCarga() >> ');
 			$comp['tran_id'] = $tran_id;
 			$data['_delete_transportista_tipo_carga'] = $comp;		
 			log_message('DEBUG','#Transportistas/Borrar_Transportista (tran_id): '.json_encode($data));		
@@ -109,10 +110,11 @@ class Transportistas extends CI_Model
 		* @return array con tipos de carga
 		*/
     public function obtener_RSU(){
+			
+				log_message('INFO','#TRAZA|TRANSPORTISTAS|obtener_RSU >> ');
 				$aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
 				$aux =json_decode($aux["data"]);
-				return $aux->valores->valor;
-				
+				return $aux->valores->valor;				
 		}
 
 
