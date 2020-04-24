@@ -68,6 +68,7 @@ class Transportista extends CI_Controller
     */
     function Listar_Transportista()
     {
+      log_message('INFO','#TRAZA|TRANSPORTISTA|Listar_Transportista() >>');
       $data["transportistas"] = $this->Transportistas->Listar_Transportistas(); 
       $this->load->view('layout/Transportistas/Lista_transportista',$data);
     }
@@ -78,7 +79,8 @@ class Transportista extends CI_Controller
     * @return string "error, ok"
     */
     function Modificar_Transportista()
-    {        
+    {   
+        log_message('INFO','#TRAZA|TRANSPORTISTA|Modificar_Transportista() >> ');     
         $transportista = $this->input->post('transportista');
         $tipo_carga = $this->input->post('tipo_carga');
         $tran_id = $transportista['tran_id']; 
@@ -111,7 +113,8 @@ class Transportista extends CI_Controller
     * @return json status servicio 
     */
     function Borrar_Transportista()
-    {
+    {   
+        log_message('INFO','#TRAZA|TRANSPORTISTA|Borrar_Transportista() >>');
         $tran_id = $this->input->post('tran_id');       
         $response = $this->Transportistas->Borrar_Transportista($tran_id);
         echo json_encode($response);
@@ -125,7 +128,8 @@ class Transportista extends CI_Controller
     * @return json tipos de carga
     */
     function obtener_RSU()
-    {
+    { 
+      log_message('INFO','#TRAZA|TRANSPORTISTA|obtener_RSU() >>');
       $rsu = $this->Transportistas->obtener_RSU();      
       echo json_encode($rsu);   
     }         
