@@ -42,6 +42,24 @@ class Zona extends CI_Controller {
        }
 
       }
+      //------------------funcion Actualizar Zona
+      function Actualizar_Zona(){
+         $datos =  $this->input->post('datos');
+         $datosimg = $this->input->post('datosImg');
+         $resp = $this->Zonas->Actualizar_Zona($datos);
+         $respimg = $this->Zonas->Actualizar_Zona_Img($datosimg);
+         if($resp){
+            if($respimg){
+               echo "ok";
+            }else{
+               echo "error";
+               }
+         
+         }else{
+            echo "error";
+            }
+         
+      }
    
       // ---------------- Funcion Listar Zona
    
@@ -49,7 +67,40 @@ class Zona extends CI_Controller {
       {
          $data["zonas"] = $this->Zonas->Listar_Zonas();         
          $this->load->view('layout/Zonas/Lista_zona',$data);
+         
       }
+      function Listar_Zona_Tabla()
+      {
+         $data["zonas"] = $this->Zonas->Listar_Zonas();       
+         $this->load->view('layout/Zonas/Lista_zona_tabla',$data);
+         
+      }
+      function MostrarModalEditar(){
+          
+         $dato["dep"]= $this->Zonas->obtener_Departamentos();
+         //$this->load->view('layout/Zonas/registrar_zona',$dato);
+         echo json_encode($dato);
+       
+      }
+      function GetImagen(){
+
+         $id = $this->input->post("zona_id");
+         $dato= $this->Zonas->obtenerImagen_Zona_Id($id);  
+        
+         //$this->load->view('layout/Zonas/registrar_zona',$dato);
+         echo json_encode($dato);
+      }
+      function Eliminar_Zona()
+      {
+        
+         $resp = $this->Zonas->eliminar_Zona($this->input->post('datos'));
+         if($resp){
+            echo "ok";
+            }else{
+            echo "error";
+            }
+      }
+
 
    
    
@@ -151,19 +202,7 @@ class Zona extends CI_Controller {
 
    
 
-   // ---------------- Funcion Insertar zona a circuitos
-
-   //  function insertCircuito()
-   //  {
-   //       $datos =  $this->input->post('datos');
-   //       $resp = $this->Zonas-> ($datos);
-   //       if($resp){
-   //       echo "ok";
-   //       }else{
-   //       echo "error";
-   //       }
-   //  }
-
+   
 
 
     
@@ -178,6 +217,16 @@ class Zona extends CI_Controller {
       $this->load->view('layout/Zonas/Lista_Circuitos',$data);
    }
    // _________________________________________________________
+
+   //___________________________________________________________//
+   //---------------------Funcion Lista Circuito de una Zona en epecifico
+   function Listar_Circuito_X_Zona(){
+      $zona_id = $this->input->post('zona_id');
+      $dato["circuito"] = $this->Zonas->obtener_Id_Circuito($zona_id);
+      $aux = $dato["circuito"].cir_id;
+      echo json_encode($dato);
+
+   }
 
    // ---------------- Funciones Obtener ---------------- //
 
