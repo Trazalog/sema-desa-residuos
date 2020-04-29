@@ -29,7 +29,7 @@
         echo    '<button  type="button" title="Editar"  class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit" id="btnEditar"  ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
             <button type="button" title="Info" class="btn btn-primary btn-circle btnVer" data-toggle="modal" data-target="#modalEdit" ><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
             <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar" id="btnBorrar"  ><span class="glyphicon glyphicon-trash" aria-hidden="true" ></span></button>&nbsp';
-            
+        echo '</td>';         
             
         echo    '<td >'.$fila->nombre.'</td>';
         echo    '<td>'.$fila->depa_nom.'</td>';                       
