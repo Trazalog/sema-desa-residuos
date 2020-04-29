@@ -92,8 +92,10 @@
                     <!--Adjuntar imagen--> 
                         <div class="col-md-6">
                             <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                                <input type="file" name="imagen">
+                                <input type="file" name="imagen" id="img_File" onchange="convertA()" style="font-size: smaller" id="img_Id">
+                                <input type="text" id="input_aux_img" style="display:none" >
                             </form>
+                            <img src="" alt="" id="img_Base" width="" height="">
                         </div>
                     <!--_____________________________________________-->
 
@@ -128,90 +130,6 @@
         </div>
 
 <!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
-
-<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
-    
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-blue">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel">Editar Zona</h5>
-            </div>
-            <div class="modal-body">
-
-            <!--__________________ FORMULARIO MODAL ___________________________-->
-
-            <form method="POST" autocomplete="off" id="" class="registerForm">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12 ">
-                            <div class="col-md-6 col-sm-6">
-
-                                <!--Nombre-->
-                                <div class="form-group">
-                                    <label for="Nombre" name="">Nombre:</label>
-                                    <input type="text" class="form-control" id="">
-                                </div>
-                                <!--_____________________________________________-->
-
-                                <!--Descripcion-->
-                                <div class="form-group">
-                                    <label for="Descripcion" name="">Descripcion:</label>
-                                    <input type="text" class="form-control" id="">
-                                </div>
-                                <!--_____________________________________________-->
-
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-
-                                <!--Circuito-->
-                                <div class="form-group">
-                                    <label for="CircR" name="">Circuito / Recorrido:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="">
-                                        <option value="" disabled selected>-Seleccione opcion-</option>
-                                        <?php
-
-                                        ?>
-                                    </select>
-                                </div>
-                                <!--_____________________________________________-->
-
-                                <!--Departamento-->
-                                <div class="form-group">
-                                    <label for="Dpto" name="">Departamento:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="">
-                                        <option value="" disabled selected>-Seleccione opcion-</option>
-                                        <?php
-                                    foreach ($Departamentos as $i) {
-                                        echo '<option value="'.$fila->depa_id.'">'.$fila->nombre.'</option>' ;
-                                     }
-                                    ?>
-                                    </select>
-                                </div>
-                                <!--_____________________________________________-->
-                            </div>
-                        </div>      
-                    </div>
-                </div>
-            </form>
-
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
-            </div>
-            <div class="modal-footer">
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
-                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////--- MODAL CIRCUITOS ---///////////////////////////////////////////////////////----->
 
@@ -288,7 +206,70 @@
 
 <!---//////////////////////////////////////--- FIN MODAL CIRCUITOS ---///////////////////////////////////////////////////////----->
 
+
 <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
+
+<!-- --------------------------------script para modal editar----------------------------------------- -->
+<script>
+//Convertir a base64 el archivo Imagen
+function GetFile(file){
+		var reader = new FileReader();
+		return new Promise((resolve, reject) => {
+			reader.onerror = () => {
+				reader.abort();
+				reject(new Error("Error parsing file"));
+			}
+			reader.onload = function() {
+				//This will result in an array that will be recognized by C#.NET WebApi as a byte[]
+				let bytes = Array.from(new Uint8Array(this.result));
+				//if you want the base64encoded file you would use the below line:
+				let base64StringFile = btoa(bytes.map((item) => String.fromCharCode(item)).join(""));
+				//Resolve the promise with your custom file structure
+				resolve({
+					bytes: bytes,
+					base64StringFile: base64StringFile,
+					fileName: file.name,
+					fileType: file.type
+				});
+			}
+			reader.readAsArrayBuffer(file);
+		});
+	}
+
+async function convertA(){
+       
+       
+       var file = document.getElementById('img_File').files[0];
+       console.table(document.getElementById('img_File').files[0]);
+           if (file) {
+               var archivo = await GetFile(file);
+               console.table(archivo);
+               if(archivo.fileType == "image/jpeg"){
+                  var cod = "data:image/jpeg;base64,"+archivo.base64StringFile;
+                  //var cod = "data:image/png;base64,"+archivo.base64StringFile;
+                    $("#input_aux_img").val(cod);
+                    $("#img_Base").attr("src",$("#input_aux_img").val());
+                    $("#img_Base").attr("width",100);
+                    $("#img_Base").attr("height",100);
+               }else{
+                   if(archivo.fileType == "application/pdf"){
+                      var cod = "data:application/pdf;base64,"+archivo.base64StringFile;
+                   }
+                 
+               }
+               
+                $("#input_aux_img").val(cod);
+                console.table($("#input_aux_img").val());
+                
+               
+           }
+          
+           
+           
+   }
+
+</script>
+<!-- --------------------------------fin script modal editar----------------------------------------------- -->    
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
@@ -313,6 +294,9 @@
         $('#chofer').find('option').remove();
     });
 </script>
+
+
+
 <!--_____________________________________________-->
 
 <!-- Script Data-Tables-->
@@ -339,8 +323,9 @@
         // datos = $('#formZonas').serialize();
 
         var datos = new FormData($('#formZonas')[0]);
+
         datos = formToObject(datos);
-        datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
+        datos.imagen = $("#input_aux_img").val();
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
         console.table(datos);
 
