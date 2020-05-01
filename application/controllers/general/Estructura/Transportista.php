@@ -75,7 +75,7 @@ class Transportista extends CI_Controller
   
     /**
     * Actualiza datos transportistas
-    * @param array datos transportistas y tipos de catga
+    * @param array datos transportistas y tipos de carga
     * @return string "error, ok"
     */
     function Modificar_Transportista()
@@ -98,10 +98,10 @@ class Transportista extends CI_Controller
             $data[$i]['tica_id'] = $tipo_carga;              
           }
           $resp = $this->Transportistas->asociarTipoCarga($data);   
-          if($resp){
-            log_message('ERROR','#TRAZA|TRANSPORTISTA|Modificar_Transportista() >> $resp: '.$resp);
+          if($resp){            
             echo "ok";
           }else{
+            log_message('ERROR','#TRAZA|TRANSPORTISTA|Modificar_Transportista() >> $resp: '.$resp);
             echo "error";
           }          
         }       

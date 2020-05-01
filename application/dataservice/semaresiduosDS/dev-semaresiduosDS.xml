@@ -129,7 +129,7 @@
       <param name="sotr_id" sqlType="STRING"/>
    </query>
    <query id="transportistaUpdate" useConfig="semaresiduosDS">
-      <sql>update log.transportistas &#xd;set &#xd;  razon_social=:razon_social, &#xd;  descripcion=:descripcion, &#xd;  direccion=:direccion, &#xd;  telefono=:telefono,&#xd;  contacto=:contacto, &#xd;  resolucion=:resolucion, &#xd;  registro=:registro, &#xd;  fec_alta_efectiva=TO_DATE(:fec_alta_efectiva,'YYYY-MM-DD'), &#xd;  fec_baja_efectiva=TO_DATE(:fec_baja_efectiva,'YYYY-MM-DD'), &#xd;  usuario_app=:usuario_app, &#xd;  cuit=:cuit&#xd;where &#xd;  tran_id = CAST(:tran_id AS INTEGER)</sql>
+      <sql>update log.transportistas &#xd;set &#xd;  razon_social=:razon_social, &#xd;  descripcion=:descripcion, &#xd;  direccion=:direccion, &#xd;  telefono=:telefono,&#xd;  contacto=:contacto, &#xd;  resolucion=:resolucion, &#xd;  registro=:registro, &#xd;  fec_alta=TO_DATE(:fec_alta,'YYYY-MM-DD'), &#xd;  fec_baja_efectiva=TO_DATE(:fec_baja_efectiva,'YYYY-MM-DD'), &#xd;  usuario_app=:usuario_app, &#xd;  cuit=:cuit&#xd;where &#xd;  tran_id = CAST(:tran_id AS INTEGER)</sql>
       <param name="razon_social" sqlType="STRING"/>
       <param name="descripcion" sqlType="STRING"/>
       <param name="direccion" sqlType="STRING"/>
@@ -137,11 +137,11 @@
       <param name="contacto" sqlType="STRING"/>
       <param name="resolucion" sqlType="STRING"/>
       <param name="registro" sqlType="STRING"/>
-      <param name="fec_alta_efectiva" sqlType="STRING"/>
       <param name="fec_baja_efectiva" sqlType="STRING"/>
       <param name="tran_id" sqlType="STRING"/>
       <param name="usuario_app" sqlType="STRING"/>
       <param name="cuit" sqlType="STRING"/>
+      <param name="fec_alta" sqlType="STRING"/>
    </query>
    <query id="transportistasEstado" useConfig="semaresiduosDS">
       <sql>update &#xd;  log.transportistas &#xd;  set eliminado = CAST(:eliminado AS INTEGER)&#xd;  where tran_id = CAST(:tran_id AS INTEGER)</sql>
@@ -517,6 +517,13 @@
       <sql>update log.solicitudes_contenedor&#xd;set eliminado = 1&#xd;where soco_id = cast(:soco_id as integer)</sql>
       <param name="soco_id" sqlType="STRING"/>
    </query>
+   <query id="contenedoresEntregadosRetirarUpdate" useConfig="semaresiduosDS">
+      <sql>update log.contenedores_entregados set &#xd;sore_id = CAST(:sore_id AS INTEGER)&#xd;,porc_llenado = CAST(:porc_llenado AS FLOAT4)&#xd;,mts_cubicos = CAST(:mts_cubicos AS FLOAT4)  &#xd;where cont_id = CAST(:cont_id AS INTEGER)</sql>
+      <param name="sore_id" sqlType="STRING"/>
+      <param name="porc_llenado" sqlType="STRING"/>
+      <param name="mts_cubicos" sqlType="STRING"/>
+      <param name="cont_id" sqlType="STRING"/>
+   </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
          <with-param name="nombre" query-param="nombre"/>
@@ -649,11 +656,11 @@
          <with-param name="contacto" query-param="contacto"/>
          <with-param name="resolucion" query-param="resolucion"/>
          <with-param name="registro" query-param="registro"/>
-         <with-param name="fec_alta_efectiva" query-param="fec_alta_efectiva"/>
          <with-param name="fec_baja_efectiva" query-param="fec_baja_efectiva"/>
          <with-param name="tran_id" query-param="tran_id"/>
          <with-param name="usuario_app" query-param="usuario_app"/>
          <with-param name="cuit" query-param="cuit"/>
+         <with-param name="fec_alta" query-param="fec_alta"/>
       </call-query>
    </resource>
    <resource method="PUT" path="/transportistas/estado">
@@ -1052,6 +1059,14 @@
    <resource method="DELETE" path="/solicitudContenedor">
       <call-query href="solicitudContenedorDelete">
          <with-param name="soco_id" query-param="soco_id"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="/contenedoresEntregados/retirar">
+      <call-query href="contenedoresEntregadosRetirarUpdate">
+         <with-param name="sore_id" query-param="sore_id"/>
+         <with-param name="porc_llenado" query-param="porc_llenado"/>
+         <with-param name="mts_cubicos" query-param="mts_cubicos"/>
+         <with-param name="cont_id" query-param="cont_id"/>
       </call-query>
    </resource>
 </data>

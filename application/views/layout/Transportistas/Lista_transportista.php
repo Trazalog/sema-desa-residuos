@@ -55,12 +55,12 @@
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:10px;">
 
 											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<!--Nombre/Razon social-->
-			<div class="form-group">
-				<label for="razon_social_edit" name="razon_social_edit">Razon social:</label>
-				<input type="text" class="form-control habilitar" id="razon_social_edit" name="razon_social" size="30%">
-			</div>
-	<!--___________________-->
+												<!--Nombre/Razon social-->
+														<div class="form-group">
+															<label for="razon_social_edit" name="razon_social_edit">Razon social:</label>
+															<input type="text" class="form-control habilitar" id="razon_social_edit" name="razon_social" size="30%">
+														</div>
+												<!--___________________-->
 											</div>
 											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 													<!--Registro-->

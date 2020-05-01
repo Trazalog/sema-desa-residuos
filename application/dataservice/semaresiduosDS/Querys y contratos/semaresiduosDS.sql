@@ -199,7 +199,8 @@ http://34.66.255.127:8280/services/semaresiduosDS
             "zona_id":"$zona_id",
             "vehi_id":"$vehi_id",            
             "dominio": "$dominio",
-            "@tiposCargaCicuitoGet":"$circ_id->circ_id"
+            "@tiposCargaCicuitoGet":"$circ_id->circ_id",
+            "@puntosCriticos": "$circ_id->circ_id"
          }
       ]
     }
@@ -410,11 +411,11 @@ http://34.66.255.127:8280/services/semaresiduosDS
   }
 
 
--- circuito->puntosPorCircuitoGet
+-- circuito->puntosPorCircuito
   recurso: /puntosCriticos/{circ_id}
   metodo: get
 
-  select PC.pucr_id, PC.nombre, PC.descripcion, PC.lat, PC.lng 
+  select PC.nombre, PC.descripcion, PC.lat, PC.lng 
   from log.puntos_criticos PC, log.circuitos_puntos_criticos CPC
   where PC.pucr_id = CPC.pucr_id 
   and CPC.circ_id = CAST(:circ_id AS INTEGER)
@@ -423,8 +424,7 @@ http://34.66.255.127:8280/services/semaresiduosDS
   {
     "puntos":{
       "punto":[
-        {
-          "pucr_id": "$pucr_id",
+        {          
           "nombre": "$nombre",
           "descripcion": "$descripcion",
           "lat": "$lat",
@@ -483,7 +483,7 @@ http://34.66.255.127:8280/services/semaresiduosDS
   }
 
 
--- cirucitoUpdate
+-- circuitoUpdate
   recurso: /circuitos
   metodo: put
 
@@ -1459,7 +1459,7 @@ http://34.66.255.127:8280/services/semaresiduosDS
     }
   }  
 
-  -- batch request
+  -- batch request (no se usa porq siempre debe tener el id de pto critico nuevo)
   recurso: /_post_puntoscriticos_circuito_batch_req
   metodo: post
 
