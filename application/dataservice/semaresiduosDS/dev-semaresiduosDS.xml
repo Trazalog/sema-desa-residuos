@@ -42,7 +42,7 @@
    </query>
    <query id="circuitosGet" useConfig="semaresiduosDS">
       <sql>select &#xd;   C.circ_id, C.codigo, C.descripcion, C.chof_id, &#xd;   C.zona_id, CONCAT(CH.apellido, ', ', CH.nombre) as chofer, C.vehi_id, E.dominio &#xd;from &#xd;   log.circuitos C, log.choferes CH, core.equipos E&#xd;where &#xd;   C.vehi_id = E.equi_id &#xd;and   &#xd;   C.chof_id = CH.chof_id &#xd;and   &#xd;   C.eliminado = 0   &#xd;ORDER BY C.circ_id</sql>
-      <result outputType="json">{&#xd;   "circuitos":{&#xd;      "circuito":[&#xd;         {&#xd;            "circ_id":"$circ_id",&#xd;            "codigo":"$codigo",&#xd;            "descripcion":"$descripcion",            &#xd;            "chof_id":"$chof_id",&#xd;            "chofer": "$chofer", &#xd;            "zona_id":"$zona_id",&#xd;            "vehi_id":"$vehi_id",            &#xd;            "dominio": "$dominio",&#xd;            "@tiposCargaCicuitoGet":"$circ_id-&gt;circ_id"&#xd;         }&#xd;      ]&#xd;   }&#xd;}</result>
+      <result outputType="json">{&#xd;   "circuitos":{&#xd;      "circuito":[&#xd;         {&#xd;            "circ_id":"$circ_id",&#xd;            "codigo":"$codigo",&#xd;            "descripcion":"$descripcion",            &#xd;            "chof_id":"$chof_id",&#xd;            "chofer": "$chofer", &#xd;            "zona_id":"$zona_id",&#xd;            "vehi_id":"$vehi_id",            &#xd;            "dominio": "$dominio",&#xd;            "@tiposCargaCicuitoGet":"$circ_id-&gt;circ_id",&#xd;            "@puntosPorCircuito": "$circ_id-&gt;circ_id"&#xd;        }&#xd;      ]&#xd;   }&#xd;}</result>
    </query>
    <query id="choferesGet" useConfig="semaresiduosDS">
       <sql>select &#xd;  chof_id, nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id  &#xd;from &#xd;  log.choferes&#xd;where eliminado = 0</sql>
@@ -71,7 +71,7 @@
       <result outputType="json">{&#xd;   "transportistas":{&#xd;      "transportista":[&#xd;         {&#xd;            "tran_id":"$tran_id",&#xd;            "razon_social":"$razon_social",&#xd;            "descripcion":"$descripcion",&#xd;            "direccion":"$direccion",&#xd;            "telefono":"$telefono",&#xd;            "contacto":"$contacto",&#xd;            "resolucion":"$resolucion",&#xd;            "registro":"$registro",&#xd;            "fec_alta_efectiva":"$fec_alta_efectiva",&#xd;            "fec_baja_efectiva":"$fec_baja_efectiva",&#xd;            "fec_alta":"$fec_alta",&#xd;            "usuario":"$usuario",&#xd;            "usuario_app":"$usuario_app",&#xd;            "cuit": "$cuit",&#xd;            "@transportistaTipoCarga": "$tran_id-&gt;tran_id"&#xd;         }&#xd;      ]&#xd;   }&#xd;}</result>
    </query>
    <query id="contenedoresGet" useConfig="semaresiduosDS">
-      <sql>select C.cont_id, C.codigo, C.descripcion, C.capacidad, C.anio_elaboracion, C.tara, C.habilitacion as habil_id, C.fec_alta, C.esco_id, C.reci_id, T.valor as estado, T2.valor as habilitacion &#xd;  from log.contenedores C, core.tablas T, core.tablas T2&#xd;  where C.esco_id = T.tabl_id &#xd;  and C.habilitacion = T2.tabl_id</sql>
+      <sql>select C.cont_id, C.codigo, C.descripcion, C.capacidad, C.anio_elaboracion, C.tara, C.habilitacion as habil_id, C.fec_alta, C.esco_id, C.reci_id, T.valor as estado, T2.valor as habilitacion &#xd;  from log.contenedores C, core.tablas T, core.tablas T2&#xd;  where C.esco_id = T.tabl_id &#xd;  and C.habilitacion = T2.tabl_id&#xd;  and C.eliminado = 0</sql>
       <result outputType="json">{&#xd;    "contenedores":{&#xd;      "contenedor":&#xd;          [&#xd;            {&#xd;              "cont_id": "$cont_id",&#xd;              "codigo": "$codigo",&#xd;              "descripcion": "$descripcion",&#xd;              "capacidad": "$capacidad",&#xd;              "anio_elaboracion": "$anio_elaboracion",&#xd;              "tara": "$tara",&#xd;              "habil_id": "$habil_id",&#xd;              "fec_alta": "$fec_alta",&#xd;              "esco_id": "$esco_id",&#xd;              "reci_id": "$reci_id",          &#xd;              "estado": "$estado",&#xd;              "habilitacion": "$habilitacion",&#xd;              "@contenedoresGetTipoCargaPorId": "$cont_id-&gt;cont_id"&#xd;            }&#xd;          ]&#xd;    }&#xd;  }</result>
    </query>
    <query id="contenedoresSet" useConfig="semaresiduosDS">
@@ -280,8 +280,8 @@
       <param name="depa_id" sqlType="STRING"/>
    </query>
    <query id="puntosPorCircuito" useConfig="semaresiduosDS">
-      <sql>select  &#xd;  PC.pucr_id, PC.nombre, PC.descripcion, PC.lat, PC.lng &#xd;from &#xd;  log.puntos_criticos PC, log.circuitos_puntos_criticos CPC&#xd;where &#xd;  PC.pucr_id = CPC.pucr_id &#xd;and&#xd;  CPC.circ_id = CAST(:circ_id AS INTEGER)&#xd;and &#xd;  CPC.eliminado = 0</sql>
-      <result outputType="json">{&#xd;  "puntos":{&#xd;    "punto":[&#xd;      {&#xd;        "pucr_id": "$pucr_id",&#xd;        "nombre": "$nombre",&#xd;        "descripcion": "$descripcion",&#xd;        "lat": "$lat",&#xd;        "lng": "$lng"&#xd;      }&#xd;    ]&#xd;  }&#xd;}</result>
+      <sql>select  &#xd;  PC.nombre, PC.descripcion, PC.lat, PC.lng &#xd;from &#xd;  log.puntos_criticos PC, log.circuitos_puntos_criticos CPC&#xd;where &#xd;  PC.pucr_id = CPC.pucr_id &#xd;and&#xd;  CPC.circ_id = CAST(:circ_id AS INTEGER)&#xd;and &#xd;  CPC.eliminado = 0</sql>
+      <result outputType="json">{&#xd;  "puntos":{&#xd;    "punto":[&#xd;      {&#xd;        "nombre": "$nombre",&#xd;        "descripcion": "$descripcion",&#xd;        "lat": "$lat",&#xd;        "lng": "$lng"&#xd;      }&#xd;    ]&#xd;  }&#xd;}</result>
       <param name="circ_id" sqlType="STRING"/>
    </query>
    <query id="ordTransPorIdGet" useConfig="semaresiduosDS">
@@ -522,6 +522,11 @@
       <param name="sore_id" sqlType="STRING"/>
       <param name="porc_llenado" sqlType="STRING"/>
       <param name="mts_cubicos" sqlType="STRING"/>
+      <param name="cont_id" sqlType="STRING"/>
+   </query>
+   <query id="contenedoresEstado" useConfig="semaresiduosDS">
+      <sql>update log.contenedores &#xd;  set eliminado = cast(:eliminado as INTEGER) &#xd;  where cont_id = cast(:cont_id as INTEGER)</sql>
+      <param name="eliminado" sqlType="STRING"/>
       <param name="cont_id" sqlType="STRING"/>
    </query>
    <resource method="POST" path="/departamentos">
@@ -1066,6 +1071,12 @@
          <with-param name="sore_id" query-param="sore_id"/>
          <with-param name="porc_llenado" query-param="porc_llenado"/>
          <with-param name="mts_cubicos" query-param="mts_cubicos"/>
+         <with-param name="cont_id" query-param="cont_id"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="/contenedores/estado">
+      <call-query href="contenedoresEstado">
+         <with-param name="eliminado" query-param="eliminado"/>
          <with-param name="cont_id" query-param="cont_id"/>
       </call-query>
    </resource>

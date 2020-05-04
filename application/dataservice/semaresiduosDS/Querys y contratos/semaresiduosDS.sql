@@ -551,6 +551,25 @@ http://34.66.255.127:8280/services/semaresiduosDS
     }
   }
 
+-- contenedoresEstado
+  recurso: /contenedores/estado
+  metodo: put
+  eliminado = "1" para borrar y "0" para activar nuevamente
+  update log.contenedores 
+  set eliminado = cast(:eliminado as INTEGER) 
+  where cont_id = cast(:cont_id as INTEGER)
+
+{
+  "_put_contenedores_estado":{
+    "eliminado": "1",
+    "cont_id": "45"
+  }
+}
+
+
+
+
+
   -- ejempo de respuesta
     {"contenedores": {"contenedor": [
       {

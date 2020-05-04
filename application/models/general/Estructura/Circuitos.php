@@ -91,16 +91,35 @@ class Circuitos extends CI_Model {
   function Asignar_Zona($data)
   {
     log_message('INFO','#TRAZA|CIRCUITOS|Asignar_Zona() >> ');
-    $aux = $this->rest->callAPI("PUT",REST."/circuitos/zonas ", $data);
+    $post['_put_circuitos_zonas'] = $data;
+    log_message('DEBUG','#TRAZA|CIRCUITOS|Asignar_Zona() $post >> '.json_encode($post));
+    $aux = $this->rest->callAPI("PUT",REST."/circuitos/zonas ", $post);
+    $aux =json_decode($aux["status"]);
+    return $aux;
+  }
+
+  /**
+  * borra un circuito
+  * @param int circ_id
+  * @return string "ok" o "error"
+  */  
+  function borrar_Circuito($circ_id)
+  {
+    log_message('INFO','#TRAZA|CIRCUITOS|borrar_Circuito() >> ');
+    $data['circ_id'] = $circ_id;
+    $data['eliminado'] = "1";
+    $post['_put_circuitos_delete'] = $data;
+    log_message('DEBUG','#TRAZA|CIRCUITOS|borrar_Circuito->$post  >> '.json_encode($post));
+    $aux = $this->rest->callAPI("PUT",REST."/circuitos/estado", $post);
     $aux =json_decode($aux["status"]);
     return $aux;
   }
 
 
-  // ---------------------- FUNCIONES OBTENER ----------------------
+// ---------------------- FUNCIONES OBTENER ----------------------
 
 // Funcion Obtener Circuitos
- function obtener_Circuitos(){
+function obtener_Circuitos(){
   $aux = $this->rest->callAPI("GET",REST."/circuitos/5");
   $aux =json_decode($aux["data"]);
   return $aux->zonas->zona;
@@ -108,14 +127,14 @@ class Circuitos extends CI_Model {
 
 // Funcion Obtener Punto Critico
 
- function obtener_Punto_Critico(){
+function obtener_Punto_Critico(){
   $aux = $this->rest->callAPI("GET",REST."/puntosCriticos/1");
   $aux =json_decode($aux["data"]);
   return $aux->puntos->punto;
 }
 
 // Funcion Obtener Tipo RSU
- function obtener_RSU(){
+function obtener_RSU(){
 
   log_message('DEBUG', 'Zonas/obtener_RSU');
   $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
@@ -124,7 +143,7 @@ class Circuitos extends CI_Model {
 }
 
 // Funcion Obtener Vehiculo
- function obtener_Vehiculo(){
+function obtener_Vehiculo(){
   $aux = $this->rest->callAPI("GET",REST."/vehiculos");
   $aux =json_decode($aux["data"]);
   return $aux->vehiculos->vehiculo;
@@ -162,7 +181,6 @@ function obtener_Zona_departamento($depa_id){
 
 
 
-
 // Funcion Obtener Zona
 function obtener_Zona(){
   $aux = $this->rest->callAPI("GET",REST."/zonas");
@@ -178,11 +196,6 @@ function obtener_Zona(){
   $aux =json_decode($aux["data"]);
   return $aux->zonas->zona;
 }
-
-
-
-
-
 
 
 }

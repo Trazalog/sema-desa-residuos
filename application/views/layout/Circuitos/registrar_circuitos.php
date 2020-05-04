@@ -122,14 +122,9 @@
 
 							<!--Adjuntador de imagenes-->
 							<div class="col-md-12">
-									<div class="col-md-6 col-sm-6 col-xs-12">
-
-										<!-- <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-												<input type="file" name="imagen">
-										</form> -->
-
+									<div class="col-md-6 col-sm-6 col-xs-12">									
+											<input type="file" id="imagen" name="imagen" value=" ">		
 									</div>
-
 							</div>
 					</form>
 					
@@ -277,7 +272,6 @@
 <!---//////////////////////////////////////--- FIN BOX 1---///////////////////////////////////////////////////////----->
 
 
-
 <!---//////////////////////////////////////---BOX 2 DATATBLE ---///////////////////////////////////////////////////////----->
 	<div class="box box-primary">
 		<div class="box-body">
@@ -389,7 +383,25 @@
 												<input type="text" class="form-control habilitar" id="descripcion_edit"> 
 											</div>
 									</div>
-								<!--__________________________-->								
+								<!--__________________________-->	
+								
+								<!--_____________ ZONA _____________-->                 
+								<!-- <div class="form-group">
+									<label for="zonaAsociar" class="col-sm-4 control-label">Zona:</label>
+									<div class="col-sm-8">
+										<select class="form-control select2 select2-hidden-accesible" name="zona_id" id="zonaAsociar">
+											<option value="" disabled selected>-Seleccione opcion-</option>		
+											<?php
+													//foreach($Departamentos as $fila)
+													//{
+													//echo '<option value="'.$fila->depa_id.'">'.$fila->nombre.'</option>' ;
+													//}
+											?>																					
+										</select>
+									</div>
+								</div> -->
+								<!--__________________________-->	
+
 							</div>
 
 							<div class="col-sm-12">
@@ -405,9 +417,7 @@
 						</form>	
 					</div>
 
-					<!--_____________ SECCION P. CRITICOS _____________-->							
-					
-						
+					<!--_____________ SECCION P. CRITICOS _____________-->	
 						<div class="row">
 							<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="box box-primary">
@@ -513,12 +523,7 @@
 	</div>
 <!---///////--- FIN MODAL EDICION E INFORMACION ---///////--->
 
-
-
-
-
 <!---///////--- MODAL ASOCIAR ZONA ---///////--->
-
 	<div class="modal fade bs-example-modal-lg" id="modalAsociar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
@@ -578,10 +583,34 @@
 			</div>
 		</div>
 	</div>
-
 <!---///////--- FIN MODAL ASOCIAR ZONA ---///////--->
 
-
+<!---///////--- MODAL AVISO ---///////--->
+<div class="modal fade" id="modalaviso">		
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-blue">
+				<h5 class="modal-title" ><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>  Eliminar</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true" >&times;</span>
+				</button>
+			</div>
+			<input id="circuito_delete" style="display: none;">
+			<div class="modal-body">
+				<center>
+				<h4><p>¿ DESEA ELIMINAR CIRCUITO ?</p></h4>
+				</center>
+			</div>
+			<div class="modal-footer">
+				<center>
+				<button type="button" class="btn btn-primary" onclick="eliminar()">SI</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+				</center>
+			</div>
+		</div>
+	</div>
+</div>
+<!---///////--- FIN MODAL AVISO ---///////--->
 
 
 
@@ -616,6 +645,12 @@
 		var datos_tipo_carga= $('#tica_id').val();  
 		// toma datos form circuitos
 		var datos_circuito = new FormData($('#formCircuitos')[0]);
+		var inpImagen = $('input#imagen');
+		//agrego el campo vacio sino tiene dato para completar el json
+		if( document.getElementById("imagen").files.length == 0 ){					
+			datos_circuito.append("imagen", "");
+		}
+	
 		datos_circuito = formToObject(datos_circuito);
 		// recorre tabla guardando ptos criticos en array
 		var datos_puntos_criticos = [];		
@@ -624,7 +659,7 @@
 				datos_puntos_criticos.push(getJson(e));
 		});				
 
-		//FIXME: VER VALIDACION DE GUARDADO SIN PUNTOS CRITICOS
+		//TODO: VER VALIDACION DE GUARDADO SIN PUNTOS CRITICOS
 		// valida existencia de ptos criticos en tabla
 		if (datos_puntos_criticos.lenght==0) {
 				alert('Sin Datos para Registrar.');
@@ -636,19 +671,18 @@
 					$.ajax({
 							type: "POST",
 							data: {datos_circuito, datos_puntos_criticos,datos_tipo_carga},							
-							url: "general/Estructura/Zona/Guardar_Circuito",
+							url: "general/Estructura/Circuito/Guardar_Circuito",
 							success: function(r) {
 									console.log(r);
 									if (r == "ok") {
 
 											$("#cargar_tabla").load(
-													"<?php echo base_url(); ?>index.php/general/Estructura/Zona/Lista_Circuitos"
+													"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Lista_Circuitos"
 											);
 											alertify.success("Agregado con exito");
 
 											$('#formCircuitos').data('bootstrapValidator').resetForm();
 											$("#formCircuitos")[0].reset();
-
 
 											$("#boxDatos").hide(500);
 											$("#botonAgregar").removeAttr("disabled");

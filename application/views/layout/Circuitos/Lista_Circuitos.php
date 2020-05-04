@@ -18,9 +18,9 @@
 						echo "<tr data-json='".json_encode($fila)."'>";
 						echo    '<td>';
 						echo    '<button  type="button" title="Editar"  class="btn btn-primary btn-circle btnEditar" data-toggle="modal" 			data-target="#modalEdit" id="btnEditar"  ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-								<button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" data-target="#modalEdit" ><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
-								<button type="button" title="Eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar" id="btnBorrar"  ><span class="glyphicon glyphicon-trash" aria-hidden="true" ></span></button>&nbsp
-								<button  type="button" title="Asociar Zona"  class="btn btn-primary btn-circle btnAsociar" data-toggle="modal" data-target="#modalAsociar" id="btnAsociar"  ><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>&nbsp';
+								<button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" data-target="#modalEdit" ><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 								
+								<button  type="button" title="Asociar Zona"  class="btn btn-primary btn-circle btnAsociar" data-toggle="modal" data-target="#modalAsociar" id="btnAsociar"  ><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>&nbsp
+								<button type="button" title="Eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar" id="btnBorrar"  ><span class="glyphicon glyphicon-trash" aria-hidden="true" ></span></button>&nbsp';
 						echo "</td>";
 						echo "<td>".$fila->codigo."</td>";
 						echo "<td>".$fila->chof_id."</td>";
@@ -103,7 +103,6 @@
 		llenarTablaPuntosEdit(data.puntos.punto);
 
 	}
-
 	//agrega punto critico a la tabla para guardar  
 	function llenarTablaPuntosEdit(data) {
 
@@ -140,7 +139,6 @@
 		
 		//$('#formPuntos')[0].reset();          
 	}
-
 	//agrega punto critico a la tabla para guardar  
 	function Agregar_punto_edit() {
 
@@ -219,7 +217,6 @@
 				}
 		});	
 	});
-
 	// llena select de zonas por id de depto
 	$('#depAsociar').change(function(e){
 		e.preventDefault();
@@ -243,29 +240,27 @@
 				}
 		});
 	});
-
+	// Asocia zona a circuito
 	$("#btnsaveAsociacion").on("click", function() {
-		//datos a mandar
-		// "zona_id": "5",
-    // "circ_id": "5"
 	
 		var idcircuito	= $('#circ_id_asociar').val();	
 		var idzona = $('#zonaAsociar option:selected').val();
 		
 		var circ_zona = new Object();
+		circ_zona.circ_id = idcircuito;
+		circ_zona.zona_id = idzona;	
 
-			circ_zona.circ_id = idcircuito;
-			circ_zona.zona_id = idzona;	
-
-		console.table('array obketo no se: ' + circ_zona);
+		console.table('array objeto no se: ' + circ_zona);
 
 		$.ajax({
 				type: 'POST',
 				data:{circ_zona},
 				url: "general/Estructura/Circuito/Asignar_Zona",
-				success: function(result) {
-							if(result == ''){
-									
+				success: function(result) {					
+							if(result == 'ok'){
+								alertify.success("Zona asociada con exito...");
+							}else{
+								alertify.success("Hubo error en la Asociacion...");
 							}
 				},
 				error: function(result){
@@ -274,14 +269,45 @@
 		});
 
 	});
+	// Levanta modal eliminar
+	$(".btnEliminar").on("click", function() {
+		datajson = $(this).parents("tr").attr("data-json");
+		data = JSON.parse(datajson);
+		var circ_id = data.circ_id;	
+		// guardo circ_id en modal para usar en funcion eliminar
+		$("#circuito_delete").val(circ_id);
+		//levanto modal	
+		$("#modalaviso").modal('show');	
+	});
+	// Elimina circuito 
+	function eliminar(){
+
+		var circ_id = $("#circuito_delete").val();
+		$.ajax({
+				type: 'POST',
+				data:{circ_id: circ_id},
+				url: "general/Estructura/Circuito/borrar_Circuito",
+				success: function(result) {
+							if(result == "ok"){
+								$("#modalaviso").modal('hide');
+								$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");	
+							}else{
+								$("#modalaviso").modal('hide');	
+							}
+				},
+				error: function(result){
+					$("#modalaviso").modal('hide');			
+				}
+		});
+
+	}
+	
 	
 
-
+	
 
 	// inicializo datatable edicion
 	DataTable('#tabla_puntos_criticos_edit');
-
-
   // script Datatables
   DataTable($('#tabla_circuitos'));	
   // Initialize Select2 Elements
