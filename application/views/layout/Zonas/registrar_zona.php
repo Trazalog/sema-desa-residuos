@@ -339,13 +339,13 @@ async function convertA(){
                 success: function (r) {
                     console.table(r);
                     if (r == "ok") {
-                        
+
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona");
                         alertify.success("Agregado con exito");
 
                         $('#formZonas').data('bootstrapValidator').resetForm();
                         $("#formZonas")[0].reset();
-                       
+
                         $("#boxDatos").hide(500);
                         $("#botonAgregar").removeAttr("disabled");
 

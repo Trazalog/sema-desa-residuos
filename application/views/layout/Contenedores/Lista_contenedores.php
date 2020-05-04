@@ -64,15 +64,8 @@
                 <!--__________________ FORMULARIO MODAL ___________________________-->
 
                 <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
-
                     <div class="modal-body">
-
-
-
-                        <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off"
-                            class="registerForm">
-
+                        <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -82,70 +75,68 @@
                                             <input type="text" class="form-control" name="" id="Codigo/Registro">
                                         </div>
                                         <!--_____________________________________________-->
+
                                         <!--Descripcion-->
                                         <div class="form-group">
                                             <label for="Descripcion">Descripcion:</label>
                                             <input type="text" class="form-control" name="" id="Descripcion">
                                         </div>
                                         <!--_____________________________________________-->
+
                                         <!--Capacidad-->
                                         <div class="form-group">
                                             <label for="Capacidad">Capacidad:</label>
                                             <input type="text" class="form-control" name="" id="Capacidad">
                                         </div>
                                         <!--_____________________________________________-->
+
                                         <!--Año de elaboracion-->
                                         <div class="form-group">
                                             <label for="Añoelab">Año de elaboracion:</label>
                                             <input type="text" class="form-control" name="" id="Añoelab">
                                         </div>
+                                        <!--_____________________________________________-->
 
                                     </div>
-
                                     <div class="col-md-6">
-                                        <!--_____________________________________________-->
+
                                         <!--Tara-->
                                         <div class="form-group">
                                             <label for="Tara">Tara:</label>
                                             <input type="text" class="form-control" name="" id="Tara">
                                         </div>
                                         <!--_____________________________________________-->
-                                        <!--Estado-->
 
+                                        <!--Estado-->
                                         <div class="form-group">
                                             <label for="Estados">Estado:</label>
                                             <select class="form-control select2 select2-hidden-accesible" name=""
                                                 id="Estados">
                                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                                 <?php
-                                                        foreach ($Estados as $i) {
-                                                            echo '<option>'.$i->nombre.'</option>';
-                                                                                 }
+                                                    foreach ($Estados as $i) {
+                                                        echo '<option>'.$i->nombre.'</option>';
+                                                    }
                                                 ?>
                                             </select>
                                         </div>
                                         <!--_____________________________________________-->
+
                                         <!--Habilitacion-->
                                         <div class="form-group">
                                             <label for="Habilitacion">Habilitacion:</label>
                                             <input type="text" class="form-control" name="" id="Habilitacion">
                                         </div>
-                                        
+                                        <!--_____________________________________________-->
+
                                     </div>
-
                                 </div>
-
                             </div>
                             <div class="col-md-12">
                                 <hr>
                             </div>
-
-
                         </form>
-
-
                     </div>
-
                 </form>
 
                 <!--__________________ FIN FORMULARIO MODAL ___________________________-->
@@ -162,15 +153,9 @@
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
-
-
-
-
 <!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
-
 
 <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -183,24 +168,17 @@
                 <h5 class="modal-title" id="exampleModalLabel">Informacion Contenedor</h5>
             </div>
 
-
             <div class="modal-body">
 
                 <!--__________________ FORMULARIO MODAL ___________________________-->
 
                 <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
-
                     <div class="modal-body">
-
-
-
-                        <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off"
-                            class="registerForm">
-
+                        <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
+
                                         <!--Codigo / Registro-->
                                         <div class="form-group">
                                             <label for="Codigo/Registro">Codigo / Registro:</label>
@@ -208,6 +186,7 @@
                                                 id="Codigo/Registro" readonly>
                                         </div>
                                         <!--_____________________________________________-->
+
                                         <!--Descripcion-->
                                         <div class="form-group">
                                             <label for="Descripcion">Descripcion:</label>
@@ -215,6 +194,7 @@
                                                 id="Descripcion" readonly>
                                         </div>
                                         <!--_____________________________________________-->
+
                                         <!--Capacidad-->
                                         <div class="form-group">
                                             <label for="Capacidad">Capacidad:</label>
@@ -222,53 +202,47 @@
                                                 readonly>
                                         </div>
                                         <!--_____________________________________________-->
+
                                         <!--Año de elaboracion-->
                                         <div class="form-group">
                                             <label for="Añoelab">Año de elaboracion:</label>
                                             <input type="text" class="form-control" name="E_Añoelab" id="Añoelab"
                                                 readonly>
                                         </div>
+                                        <!--_____________________________________________-->
 
                                     </div>
-
                                     <div class="col-md-6 col-sm-6 col-xs-12">
 
-                                        <!--_____________________________________________-->
                                         <!--Tara-->
                                         <div class="form-group">
                                             <label for="Tara">Tara:</label>
                                             <input type="text" class="form-control" name="E_Tara" id="Tara" readonly>
                                         </div>
                                         <!--_____________________________________________-->
-                                        <!--Estado-->
 
+                                        <!--Estado-->
                                         <div class="form-group">
                                             <label for="Estados">Estado:</label>
                                             <input type="text" class="form-control" name="E_Estados" id="" readonly>
                                         </div>
                                         <!--_____________________________________________-->
+
                                         <!--Habilitacion-->
                                         <div class="form-group">
                                             <label for="Habilitacion">Habilitacion:</label>
                                             <input type="text" class="form-control" name="E_Habilitacion"
                                                 id="Habilitacion" readonly>
                                         </div>
+                                        <!--_____________________________________________-->
                                     </div>
-
                                 </div>
-
                             </div>
                         </form>
                         <div class="col-md-12">
                             <hr>
                         </div>
-
-
-
-
-
                     </div>
-
                 </form>
 
                 <!--__________________ FIN FORMULARIO MODAL ___________________________-->
@@ -285,11 +259,7 @@
     </div>
 </div>
 
-
 <!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
-
-
-
 
 <script>
 DataTable($('#tabla_contenedores'))
