@@ -33,6 +33,29 @@ function Guardar_Zona($data){
 
 }
 
+//Funcion Editar Zona
+function Actualizar_Zona($data){
+    $post["zona"] = $data;
+    log_message('DEBUG','#Zonas/Actualizar_Zona: '.json_encode($post));
+    $aux = $this->rest->callAPI("PUT",REST."/zonas", $post);
+    $aux =json_decode($aux["status"]);
+    return $aux;
+}
+function Actualizar_Zona_Img($data){
+    $post["zona"] = $data;
+    log_message('DEBUG','#Zonas/Actualizar_Zona: '.json_encode($post));
+    $aux = $this->rest->callAPI("PUT",REST."/zonas/update/imagen",$post);
+    $aux =json_decode($aux["status"]);
+    return $aux;
+}
+
+public function eliminar_Zona($data){
+     $post["_put_zonas_estado"] = $data;
+     log_message('DEBUG','#Zonas/#Eliminar_Zona: '.json_encode($post));
+     $aux = $this->rest->callAPI("PUT",REST."/zonas/estado", $post);
+     $aux =json_decode($aux["status"]);
+     return $aux;	
+ }
 
 // ---------------------- FUNCIONES CIRCUITOS ----------------------
 
@@ -186,4 +209,18 @@ public function obtener_Circuitos_Asignados(){
     $aux =json_decode($aux["data"]);
     return $aux->zonas->zona;
 }
+public function obtenerImagen_Zona_Id($dato){
+    $auxx = $this->rest->callAPI("GET",REST."/zona/get/imagen/$dato");
+    $aux =json_decode($auxx["data"]);
+    
+    return $aux;
+}
+
+//Funcion Obtener id de circuito 
+function obtener_Id_Circuito($data){
+  $aux = $this->rest->callAPI("GET",REST."/circuitos/$data");
+  $aux = json_decode($aux["data"]);
+  return $aux->zonas->zona;
+}
+
 }
