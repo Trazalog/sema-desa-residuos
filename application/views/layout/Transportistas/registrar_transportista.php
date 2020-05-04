@@ -35,127 +35,6 @@
     <div class="box-body">
         <form class="formTransportistas" id="formTransportistas">
             <div class="col-md-6 col-sm-6 col-xs-12">
-<<<<<<< HEAD
-
-                <!--Nombre / Razon social-->
-                <div class="form-group">
-                    <label for="Nombre/Razon social">Nombre / Razon social:</label>
-                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <input type="text" class="form-control" name="razon_social" id="razon_social">
-                    </div>
-                </div>
-                <!--_____________________________________________-->
-
-                <!--Descripcion-->
-                <div class="form-group">
-                    <label for="Descripcion">Descripcion:</label>
-                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <input type="text" class="form-control" name="descripcion" id="descripcion">
-                    </div>
-                </div>
-                <!--_____________________________________________-->
-
-                <!--Direccion-->
-                <div class="form-group">
-                    <label for="Direccion">Direccion:</label>
-                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <input type="text" class="form-control" name="direccion" id="direccion">
-                    </div>
-                </div>
-                <!--_____________________________________________-->
-
-                <!--Telefono-->
-                <div class="form-group">
-                    <label for="Telefono">Telefono:</label>
-                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <input type="text" class="form-control" name="telefono" id="telefono">
-                    </div>
-                </div>
-                <!--_____________________________________________-->
-
-                <!--contacto-->
-                <div class="form-group">
-                    <label for="Contacto">Contacto:</label>
-                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <input type="text" class="form-control" name="contacto" id="contacto">
-                    </div>
-                </div>
-                <!--_____________________________________________-->
-
-                <!--contacto-->
-                <div class="form-group">
-                    <label for="Contacto">Cuit:</label>
-                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <input type="text" class="form-control" name="cuit" id="cuit" size="11">
-
-                    </div>
-                </div>
-                <!--_____________________________________________-->
-
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-
-                <!--Resolucion-->
-                <div class="form-group">
-                    <label for="Resolucion">Resolucion:</label>
-                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <input type="text" class="form-control" name="resolucion" id="resolucion">
-                    </div>
-                </div>
-                <!--_____________________________________________-->
-
-                <!--Registro-->
-                <div class="form-group">
-                    <label for="Registro">Registro:</label>
-                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <input type="text" class="form-control" name="registro" id="registro">
-                    </div>
-                </div>
-                <!--_____________________________________________-->
-
-                <!--Fecha de alta-->
-                <div class="form-group">
-                    <label for="Fechalta"class="form-label label-sm">Fecha de alta:</label>                                              
-                    <div class="input-group date">
-                         <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="date" class="form-control pull-right" name="fec_alta_efectiva"  id="fec_alta_efectiva">
-                    </div>  
-                </div>
-                <!--_____________________________________________-->
-
-                <!--Fecha de baja-->
-                <div class="form-group">
-                    <label for="Fechabaja">Fecha de baja:</label>
-                    <div class="input-group date">
-                         <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="date" class="form-control pull-right" name="fec_baja_efectiva" id="fec_baja_efectiva">
-                    </div>
-                </div>
-                <!--_____________________________________________-->
-
-                <!--Tipo de RSU autorizado-->
-                <!-- <div class="form-group">
-                    <label for="Rsu" >Tipo de RSU autorizado:</label>
-                    <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                    <select class="form-control select2 select2-hidden-accesible" name="Rsu" id="Rsu">
-                        <option value="" disabled selected>-Seleccione opcion-</option>                        
-                        <?php
-                            // foreach ($Rsu as $i) {
-                            //     echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
-                            // }
-                            ?>
-                        </select>
-                        </div>
-                </div> -->
-
-            </div>
-
-            <!--***************************************-->
-=======
 							<!--Nombre / Razon social-->
 								<div class="form-group">
 										<label for="Nombre/Razon social" >Nombre / Razon social:</label>
@@ -270,7 +149,6 @@
 									</div>
                 <!--_____________________________________________-->  
             </div>          
->>>>>>> develop
 
             <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 

@@ -46,70 +46,6 @@ class Transportista extends CI_Controller
               $data[$i]['tica_id'] = $tipo_carga;              
             }
         }else{
-<<<<<<< HEAD
-        echo "error";
-        }
-       }
-   
-       // ---------------- Funcion Crear Transportista
-   
-      function Crear_Transportista()
-      {
-          
-          
-      }
-
-      // ---------------- Funcion Listar Transportista
-   
-      function Listar_Transportista()
-      {
-        $data["transportistas"] = $this->Transportistas->Listar_Transportistas();         
-        $this->load->view('layout/Transportistas/Lista_transportista',$data);
-      }
-
-      // ---------------- Funcion Modificar Transportista
-   
-      function Modificar_Transportista()
-      {
-
-      }
-   
-      // ---------------- Funcion Borrar Transportista
-   
-      function Borrar_Transportista()
-      {
-
-      }
-
-      // ---------------- Funcion Suspender Transportista
-   
-      function Suspender_Transportista()
-      {
-
-      }
-
-      // ---------------- Funciones Obtener --------------------------------//
-      
-
-      // ---------------- Funcion Obtener camion
-  
-      function Obtener_Camiones()
-      {
-
-      }
-
-      // ---------------- Funcion Obtener Contenedores
-  
-      function Obtener_Contenedores()
-      {
-
-      }
-
-      // ---------------- Funcion Obtener Generador
-   
-      function Obtener_Generador()
-      {
-=======
           log_message('ERROR','#TRAZA|TRANSPORTISTAS|Guardar_Transportista() >> $tran_id: '.$tran_id);
           echo "error";
           return;
@@ -197,7 +133,6 @@ class Transportista extends CI_Controller
       $rsu = $this->Transportistas->obtener_RSU();      
       echo json_encode($rsu);   
     }         
->>>>>>> develop
 
       }
 }
