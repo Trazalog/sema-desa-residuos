@@ -68,15 +68,8 @@
                 <!--__________________ FORMULARIO MODAL ___________________________-->
 
                 <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-
-
                     <div class="modal-body">
-
-
-
-                        <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off"
-                            class="registerForm">
-
+                        <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -86,6 +79,7 @@
                                             <input type="text" class="form-control habilitar" name="" id="Codigo">
                                         </div>
                                         <!--_____________________________________________-->
+
                                         <!--Descripcion-->
                                         <div class="form-group">
                                             <label for="Descripcion">Descripcion:</label>
@@ -103,24 +97,25 @@
                                             <input type="text" class="form-control habilitar" name="" id="Capacidad">
                                         </div>
                                         <!--_____________________________________________-->
+
                                         <!--Año de elaboracion-->
                                         <div class="form-group">
                                             <label for="Añoelab">Año de elaboracion:</label>
                                             <input type="text" class="form-control habilitar" name="" id="Añoelab">
                                         </div>
+                                        <!--_____________________________________________-->
 
                                     </div>
-
                                     <div class="col-md-6">
-                                        <!--_____________________________________________-->
+
                                         <!--Tara-->
                                         <div class="form-group">
                                             <label for="Tara">Tara:</label>
                                             <input type="text" class="form-control habilitar" name="" id="Tara">
                                         </div>
                                         <!--_____________________________________________-->
-                                        <!--Estado-->
 
+                                        <!--Estado-->
                                         <div class="form-group">
                                             <label for="Estados">Estado:</label>
                                             <select class="form-control select2 select2-hidden-accesible selectores" name=""
@@ -168,17 +163,14 @@
                                         
                                     </div>
 
+                                    </div>
                                 </div>
-
                             </div>
                             
 
 
                         </form>
-
-
                     </div>
-
                 </form>
 
                 <!--__________________ FIN FORMULARIO MODAL ___________________________-->
@@ -194,7 +186,6 @@
         </div>
     </div>
 </div>
-
 
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 

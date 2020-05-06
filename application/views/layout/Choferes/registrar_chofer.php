@@ -1,4 +1,4 @@
-<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+<!-- HEADER  -->
 
 <div class="box box-primary animated fadeInLeft">
     <div class="box-header with-border">
@@ -16,9 +16,9 @@
     </div>
 </div>
 
-<!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
+<!-- FIN HEADER -->
 
-<!---//////////////////////////////////////--- BOX 1 ---///////////////////////////////////////////////////////----->
+<!--- BOX 1 --->
 
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
@@ -157,14 +157,6 @@
                         </div>
                 ​    <!--_____________________________________________________________-->
 
-                    <!--Adjuntador de imagenes-->
-                        <!--
-                        <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                           <input type="file" id="imgarch" name="upload" data-required="true">
-                        </form>
-                        -->
-                ​    <!--_____________________________________________________________-->
-
                 </div>
 
                     <!--_______________________SEPARADOR______________________________________-->            
@@ -175,18 +167,6 @@
 
                 <div class="col-md-6">
 
-                    <!--
-                    <button type="file" name="upload" class="btn btn-default btn-circle" id="file" name="file" accept=".jpg, .jpeg, .png" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                    </button>
-                    -->
-                    <!-- 
-                    <button type="file" class=" btn btn-default btn-circle pull-left" id="file" name="file" accept=".jpg, .jpeg, .png" >
-                        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                    </button>
-                    <small for="agregar" class="form-label">Adjuntar imagen</small> -->
-
-                    <!--_____________________________________________________________-->
 
             </form>
         </div>
@@ -582,18 +562,17 @@
         $("#boxDatos").focus();
         $("#boxDatos").show();
     });
+
     $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
         $('#formChofer').data('bootstrapValidator').resetForm();
         $("#formChofer")[0].reset();
     });
-</script>
-​<!--_____________________________________________________________-->
 
-<!--Script para cargar el listado-->
-<script>
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Camion/Listar_Chofer");
+
+    //guardar chofer	
     function Guardar_Chofer() {
 
         var datos = new FormData($('#formChofer')[0]);
@@ -630,11 +609,8 @@
             });
         }
     }
-</script>
-<!--_____________________________________________________________-->
 
-<!--Script Bootstrap Validacion.-->
-<script>
+    // Script validacion
     $('#formChofer').bootstrapValidator({
         message: 'This value is not valid',
         /*feedbackIcons: {
@@ -808,225 +784,8 @@
         e.preventDefault();
         //guardar();
     });
-</script>
-<!--_____________________________________________________________-->
 
-<!--Script Bootstrap Validacion.MODAL EDITAR-->
-<script>
-    $('#formChoferEdit').bootstrapValidator({
-        message: 'This value is not valid',
-        /*feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },*/
-        //excluded: ':disabled',
-        fields: {
-            e_nombre: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            },
-            e_apellido: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            },
-            e_dni: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada debe ser un numero entero'
-                    }
-                }
-            },
-            e_fecha_nacimiento: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada debe ser un numero entero'
-                    }
-                }
-            },
-            e_direccion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            },
-            e_celular: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            },
-            e_codigo: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            },
-            e_empresa: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            },
-            carnet: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                }
-            },
-            e_categoria: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            },
-            e_vencimiento: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            },
-            e_habilitacion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                        /*stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
-                        },*/
-                    regexp: {
-                        regexp: /[A-Za-z]/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            }
-        }
-    }).on('success.form.bv', function (e) {
-        e.preventDefault();
-        //guardar();
-    });
-</script>
-<!--_____________________________________________________________-->
-
-<!-- script Datatables -->
-<script>
+    // Datatable tabla_choferes
     DataTable($('#tabla_choferes'))
 </script>
 <!--_____________________________________________________________-->
