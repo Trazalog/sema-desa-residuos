@@ -136,8 +136,8 @@
                                             <input type="text" class="form-control ocultarInfo" name="" id="estadoInfo" style="display:none">
                                         </div>
                                          <!--Habilitacion-->
-                                         <div class="form-group">
-                                            <label for="Habilitacion" >Habilitacion:</label>
+                                            <div class="form-group">
+                                                 <label for="Habilitacion" >Habilitacion:</label>
                                             
                                                 <select class="form-control select2 select2-hidden-accesible selectores" name="" id="Habilitacion">
                                                     <option value="" disabled selected>-seleccione opcion-</option>
@@ -148,10 +148,10 @@
                                                         ?>
                                                 </select>
                                                 <input type="text" class="form-control ocultarInfo" name="" id="habilitacionInfo" style="display:none">
-                                            
-                                        </div>
-                                    <!--__________________________________________________________________________________________-->
-                                                            <br>
+                                            </div>    
+                                    
+                                    
+                                        
                                         <div class="form-group">
                                             <label for="tipoResiduos">Tipo de residuo:</label>
                                             <div class="input-group date">
@@ -160,7 +160,8 @@
                                                    
                   
                                                     </select>
-                                            </div>
+                                            </div>  
+                                            
                                         </div>                                                   
                                         <!--_____________________________________________-->
                                        
@@ -170,9 +171,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-12">
-                                <hr>
-                            </div>
+                            
 
 
                         </form>
