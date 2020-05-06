@@ -156,7 +156,7 @@
                                             <label for="tipoResiduos">Tipo de residuo:</label>
                                             <div class="input-group date">
                                                 <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                                                    <select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tic_id">
+                                                    <select class="form-control select3 habilitar" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tic_id">
                                                    
                   
                                                     </select>
@@ -249,6 +249,7 @@ $(".btnEliminar").click(function(e){
 
 $(".btnInfo").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
+    var datacarga = JSON.parse($(this).parents("tr").attr("data-carga"));
     $(".habilitar").attr("readonly","readonly"); 
     $(".selectores").attr("style","display:none");
     $(".ocultarInfo").removeAttr("style");
@@ -264,6 +265,27 @@ $(".btnInfo").click(function(e){
     $(".titulo").text('Informacion Contenedor');
     $("#estadoInfo").attr("readonly","readonly"); 
     $("#habilitacionInfo").attr("readonly","readonly"); 
+
+    $("#tic_id").find('option').remove();
+
+
+        var tipo = data.tipos_carga.tipoCarga;
+        var aux = 0;
+
+        for(var i=0; i <= datacarga.length-1; i++){
+            aux = 0;
+            for(var j=0; j <=tipo.length-1; j++){
+                if(datacarga[i].valor == tipo[j].rsu)
+                {
+                $("#tic_id").append("<option selected value= '"+datacarga[i].tabl_id+"'> " + datacarga[i].valor + "</option>");
+                aux=1;
+                j=tipo.length+1;}
+            }
+            if(aux==0){
+                $("#tic_id").append("<option value= '"+datacarga[i].tabl_id+"' >" + datacarga[i].valor + "</option>");
+            } 
+        
+        }
 
 });
 
