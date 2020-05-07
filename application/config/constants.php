@@ -138,7 +138,7 @@ define('DEF_VIEW','traz-comp-bpm/Tarea');
 | Variables Locales
 |
 */
-define('REST', 'http://trazalog.com.ar:8280/services/semaresiduosDS');
+
 
 define('REST', 'http://34.66.255.127:8280/services/semaresiduosDS');
 //define('REST', 'http://dev-trazalog.com.ar:8280/services/semaresiduosDS');
