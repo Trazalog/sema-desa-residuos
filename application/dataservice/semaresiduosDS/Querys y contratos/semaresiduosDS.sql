@@ -519,6 +519,34 @@ http://34.66.255.127:8280/services/semaresiduosDS
     }
   } 
 
+-- circuitosGetImagen
+  recurso: /circuitos/imagen/{circ_id}
+  metodo: get
+  select imagen from log.circuitos where circ_id = CAST(:circ_id AS INTEGER)
+  {
+    "circuito":{
+      "imagen": "$imagen"
+    }
+  }
+
+
+
+//TODO: HACER BORRAR TODOS O TIPOS CARGAD E CIRCUITO BORRADO FISICO
+
+-- circuitoDeleteTipoCarga
+  recurso: recurso: /circuitos/tipoCarga
+  metodo: delete
+  delete from log.tipos_carga_circuitos where circ_id = cast(:circ_id as integer)
+
+  {
+    "_delete_circuitos_tipocarga":{
+      "circ_id": "94"
+    }
+  }
+
+
+
+
 -- contenedoresGet (contenedor con tipo de carga por cont_id)
   recurso: /contenedores
   metodo: get
@@ -559,12 +587,12 @@ http://34.66.255.127:8280/services/semaresiduosDS
   set eliminado = cast(:eliminado as INTEGER) 
   where cont_id = cast(:cont_id as INTEGER)
 
-{
-  "_put_contenedores_estado":{
-    "eliminado": "1",
-    "cont_id": "45"
+  {
+    "_put_contenedores_estado":{
+      "eliminado": "1",
+      "cont_id": "45"
+    }
   }
-}
 
 
 

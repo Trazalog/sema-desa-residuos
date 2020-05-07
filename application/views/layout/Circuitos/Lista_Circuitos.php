@@ -52,31 +52,46 @@
 	$(document).on("click", ".fa-minus", function() {             
 			$(this).parents("tr").remove();
 	});
-	//bloquea campos en modal
+	// bloquea campos en modal
 	function blockEdicion(){
 		$(".habilitar").attr("readonly","readonly");
+		$(".selec_habilitar").attr('disabled', 'disabled');
+		$("#tica_edit").prop("disabled", true); 
 		$("#btn_agregar_edit").hide();
 		$(".fa-minus").click(false);	
 		$('#form_editar_pto_critico').hide();
 	}
-	//desbloquea campos en modal
+	// desbloquea campos en modal
 	function habilitarEdicion(){
 		$('.habilitar').removeAttr("readonly");//
+		$(".selec_habilitar").removeAttr("disabled");
+		$("#tica_edit").prop("disabled", false); 
 		$("#btn_agregar_edit").show();
 		$(".fa-minus").click(true);
 		$('#form_editar_pto_critico').show();	
 	}	
-	//llena modal Editar
+	// llena modal Editar
 	function llenarModal(datajson){
 
 		data = JSON.parse(datajson); 	
 		// lena los inputs
-		$("input#codigo_edit").val(data.codigo);			
-		$("input#vehiculo_edit").val(data.dominio);
-    $("input#chofer_edit").val(data.chofer);
-		$("input#chof_id_edit").val(data.chof_id);
+		$("#zona_id_edit").val(data.zona_id);
+		$("#circ_id_edit").val(data.circ_id);
+		$("input#codigo_edit").val(data.codigo);	
 		$("input#descripcion_edit").val(data.descripcion);
-		// lena input tipo RSU ademas de todas las opciones posibles
+		$("#vehi_id_edit option[value="+ data.vehi_id +"]").attr("selected",true);
+		$("#chof_id_edit option[value="+ data.chof_id +"]").attr("selected",true);
+
+		// lena input tipo RSU 
+		llenarSelectRsu();
+		// llena tabal de ptos criticos para editar
+		llenarTablaPuntosEdit(data.puntos.punto);
+		// trae imagen si hay aguna guardada
+		llenarImagen(data.circ_id);
+	}
+	// llena input tipo RSU		//TODO: SE PUEDE OPTIMIZAR CON LOS DATOS TRAIDOS ANTERIORMENTE
+	function llenarSelectRsu(){
+		
 		$.ajax({
 				type: "POST",		
 				url: "general/Estructura/Transportista/obtener_RSU",
@@ -99,11 +114,8 @@
 						$('#tica_edit').val(opcGuardadas);
 				}
 		});
-		// llena tabal de ptos criticos para editar
-		llenarTablaPuntosEdit(data.puntos.punto);
-
 	}
-	//agrega punto critico a la tabla para guardar  
+	// agrega puntos criticos guardados a la tabla para guardar  
 	function llenarTablaPuntosEdit(data) {
 
 		//$('#tabla_puntos_criticos_edit tbody tr').remove();
@@ -117,7 +129,7 @@
 	
 		$.each(data,function(index,element){
 			//console.info('nombre-> ' + element.nombre);
-			var row =  "<tr class='row_edit' data-json=" +JSON.stringify(element)+ ">" +
+			var row =  "<tr class='row_edit' data-json='" +JSON.stringify(element)+ "'>" +
 					"<td> <i class='fa fa-fw fa-minus text-light-blue tablamateriasasignadas_borrar' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
 					"<td>"+ element.nombre +"</td>" +
 					"<td>"+ element.descripcion +"</td>" +
@@ -139,7 +151,7 @@
 		
 		//$('#formPuntos')[0].reset();          
 	}
-	//agrega punto critico a la tabla para guardar  
+	// agrega punto critico a la tabla para guardar  
 	function Agregar_punto_edit() {
 
 		var table = $('#tabla_puntos_criticos_edit').DataTable();	
@@ -162,13 +174,14 @@
 		// tomo los datos de circuito editados
 		var circuito_edit = new FormData($('#frm_circuito_edit')[0]);
     circuito_edit = formToObject(circuito_edit);
+		
+		circuito_edit.imagen = $("#input_aux_img").val(); 
+		console.table('foto en guardar edit' + circuito_edit.imagen);
+
+		
 		// tipos de carga asociados
 		var tipoCarga = $("#tica_edit").val();
-
 		var tica_edit = JSON.stringify(tipoCarga);
-		console.table('tipos carga: ' + tica_edit);
-
-
 		// tomo la tabla de puntos criticos editados
 		var ptos_criticos_edit = [];		
 		var rows = $('#tabla_puntos_criticos_edit tbody tr');				
@@ -181,9 +194,12 @@
 				data:{ circuito_edit, tica_edit, ptos_criticos_edit},
 				url: "general/Estructura/Circuito/actulizaCircuitos",
 				success: function(result) {
-							// if(result == ''){
-									
-							// }
+							if(result == 'ok'){
+								$("#cargar_tabla").load(
+												"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Lista_Circuitos"
+										);
+								alertify.success("Agregado con exito");
+							}
 				},
 				error: function(result){
 									
@@ -191,6 +207,9 @@
 		});
 
 	});
+
+
+
 
 	// trae array con departamentos y lena el select depAsociar
 	$(".btnAsociar").on("click", function() {
@@ -300,11 +319,7 @@
 				}
 		});
 
-	}
-	
-	
-
-	
+	}	
 
 	// inicializo datatable edicion
 	DataTable('#tabla_puntos_criticos_edit');
@@ -316,68 +331,3 @@
 </script>
 
 
-
-
-
-<script>
-
-	// Funcion Filtrar zonas por departamento
-
-	// $("#selectDepto").change(function(){    
-	// 		var idDepto = $("#selectDepto").val();  
-	// 		$.ajax({
-	// 						type: 'POST',        
-	// 						data: {idDepto: idDepto}, 
-	// 						url: 'general/Estructura/Zona/obtenerDeptoPorZona',
-	// 						dataType: 'json',
-	// 						success: function(result) {
-	// 								console.table(result);               
-	// 								for (let index = 0; index < result.length; index++)
-	// 								{                                              
-	// 										$('#selectZona').append("<option value='" + result[index].zona_id + "'>" +result[index].zona_nom +"</option");  
-	// 								}
-	// 						},            
-	// 						error: function() {
-	// 								alert('Error');
-	// 						}
-	// 		});
-	// });
-
-
-	// function insertCircuitoZona(){
-	//     ban = true;
-	//     idDepto = $('#selectDepto').val();
-	//     idZona = $('#selectZona').val();
-	//     if (idDepto == null) {
-	//       ban= false;
-	//       alert("Seleccione Departamento...");
-	//     } 
-	//     if (idZona == null) {
-	//       ban= false;
-	//       alert("Seleccione Zona...");
-	//     } 
-
-	//     if(ban){
-	//       $.ajax({
-	//             type: 'POST',
-	//             data: {id_censo: id_censo,
-	//                   id_area: id_area },
-	//             url: 'Censo/insertAreaCenso',
-	//             dataType: 'json',
-	//             success: function(result) { 
-	//                       alert('resultado: ' + result);
-	//                   if (result == 500) {
-	//                     alert("La zona ya se encuentra asignada a este Circuito");
-	//                   }else{
-	//                     $("#modalZona").modal('hide');
-	//                     buscaCensos();
-	//                   } 
-	//             },
-	//             error: function() {
-	//                   alert('Error en Asignacion de zona...');
-	//             }
-	//       });
-	//     }  
-
-	// }
-</script>

@@ -428,7 +428,7 @@
       <param name="zona_id" sqlType="STRING"/>
    </query>
    <query id="circuitosEstado" useConfig="semaresiduosDS">
-      <sql>update &#xd;  log.circuitos &#xd;set &#xd;  eliminado = CAST(:eliminado AS SMALLINT)&#xd;where &#xd;  circ_id = CAST(:circ_id as INTEGER)</sql>
+      <sql>update &#xd;  log.circuitos &#xd;set &#xd;  eliminado = CAST(:eliminado AS INTEGER)&#xd;where &#xd;  circ_id = CAST(:circ_id as INTEGER)</sql>
       <param name="eliminado" sqlType="STRING"/>
       <param name="circ_id" sqlType="STRING"/>
    </query>
@@ -528,6 +528,38 @@
       <sql>update log.contenedores &#xd;  set eliminado = cast(:eliminado as INTEGER) &#xd;  where cont_id = cast(:cont_id as INTEGER)</sql>
       <param name="eliminado" sqlType="STRING"/>
       <param name="cont_id" sqlType="STRING"/>
+   </query>
+   <query id="solicitudRetiroDelete" useConfig="semaresiduosDS">
+      <sql>update log.solicitudes_retiro&#xd;set eliminado = 1&#xd;where soco_id = cast(:sore_id as integer)</sql>
+      <param name="sore_id" sqlType="STRING"/>
+   </query>
+   <query id="solicitudRetiroCaseidPut" useConfig="semaresiduosDS">
+      <sql>update log.solicitudes_retiro&#xd;set case_id = :case_id&#xd;where sore_id =  cast(:sore_id as integer)</sql>
+      <param name="case_id" sqlType="STRING"/>
+      <param name="sore_id" sqlType="STRING"/>
+   </query>
+   <query id="contenedoresRetiradosUpdate" useConfig="semaresiduosDS">
+      <sql>update log.contenedores_entregados set &#xd;ortr_id = CAST(:ortr_id AS INTEGER)&#xd;where cont_id = CAST(:cont_id AS INTEGER)</sql>
+      <param name="ortr_id" sqlType="STRING"/>
+      <param name="cont_id" sqlType="STRING"/>
+   </query>
+   <query id="ordenTransporteDelete" useConfig="semaresiduosDS">
+      <sql>update log.ordenes_transporte&#xd;set eliminado = 1&#xd;where ortr_id = cast(:ortr_id as integer)</sql>
+      <param name="ortr_id" sqlType="STRING"/>
+   </query>
+   <query id="ordenTransporteCaseidUpdate" useConfig="semaresiduosDS">
+      <sql>update log.orden_transporte&#xd;set case_id = :case_id&#xd;where ortr_id =  cast(:ortr_id as integer)</sql>
+      <param name="case_id" sqlType="STRING"/>
+      <param name="ortr_id" sqlType="STRING"/>
+   </query>
+   <query id="circuitosGetImagen" useConfig="semaresiduosDS">
+      <sql>select imagen from log.circuitos where circ_id = CAST(:circ_id AS INTEGER)</sql>
+      <result outputType="json">{&#xd;  "circuito":{&#xd;      "imagen": "$imagen"&#xd;   }&#xd;}</result>
+      <param name="circ_id" sqlType="STRING"/>
+   </query>
+   <query id="circuitoDeleteTipoCarga" useConfig="semaresiduosDS">
+      <sql>delete from log.tipos_carga_circuitos where circ_id = cast(:circ_id as integer)</sql>
+      <param name="circ_id" sqlType="STRING"/>
    </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
@@ -1066,7 +1098,7 @@
          <with-param name="soco_id" query-param="soco_id"/>
       </call-query>
    </resource>
-   <resource method="PUT" path="/contenedoresEntregados/retirar">
+   <resource method="PUT" path="/contenedores/entregados/retirar">
       <call-query href="contenedoresEntregadosRetirarUpdate">
          <with-param name="sore_id" query-param="sore_id"/>
          <with-param name="porc_llenado" query-param="porc_llenado"/>
@@ -1078,6 +1110,44 @@
       <call-query href="contenedoresEstado">
          <with-param name="eliminado" query-param="eliminado"/>
          <with-param name="cont_id" query-param="cont_id"/>
+      </call-query>
+   </resource>
+   <resource method="DELETE" path="/solicitudRetiro/{sore_id}">
+      <call-query href="solicitudRetiroDelete">
+         <with-param name="sore_id" query-param="sore_id"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="/solicitudRetiro/caseid&#x9;">
+      <call-query href="solicitudRetiroCaseidPut">
+         <with-param name="case_id" query-param="case_id"/>
+         <with-param name="sore_id" query-param="sore_id"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="/contenedores/retirados">
+      <call-query href="contenedoresRetiradosUpdate">
+         <with-param name="ortr_id" query-param="ortr_id"/>
+         <with-param name="cont_id" query-param="cont_id"/>
+      </call-query>
+   </resource>
+   <resource method="DELETE" path="/ordenTransporte/{ortr_id}">
+      <call-query href="ordenTransporteDelete">
+         <with-param name="ortr_id" query-param="ortr_id"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="/ordenTransporte/caseid">
+      <call-query href="ordenTransporteCaseidUpdate">
+         <with-param name="case_id" query-param="case_id"/>
+         <with-param name="ortr_id" query-param="ortr_id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/circuitos/imagen/{circ_id}">
+      <call-query href="circuitosGetImagen">
+         <with-param name="circ_id" query-param="circ_id"/>
+      </call-query>
+   </resource>
+   <resource method="DELETE" path="/circuitos/tipoCarga">
+      <call-query href="circuitoDeleteTipoCarga">
+         <with-param name="circ_id" query-param="circ_id"/>
       </call-query>
    </resource>
 </data>

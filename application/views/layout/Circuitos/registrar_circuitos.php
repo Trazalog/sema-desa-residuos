@@ -121,12 +121,21 @@
 							<!--_________________SEPARADOR_________________-->
 
 							<!--Adjuntador de imagenes-->
-							<div class="col-md-12">
+							<!-- <div class="col-md-12">
 									<div class="col-md-6 col-sm-6 col-xs-12">									
 											<input type="file" id="imagen" name="imagen" value=" ">		
 									</div>
+							</div> -->
+					</form>		
+							<!--Adjuntar imagen--> 
+							<div class="col-md-12">
+								<form action="cargar_archivo" method="post" enctype="multipart/form-data">
+										<input type="file" id="img_File" onchange=convertA() style="font-size: smaller">
+										<input type="text" name="imagen" id="input_aux_img" style="display:none" >
+								</form>
+								<img src="" alt="" id="img_Base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
 							</div>
-					</form>
+				<!--_____________________________________________-->					
 					
 					<!--_____________ SEPARADOR _____________-->
 					<div class="col-md-12 col-sm-12 col-xs-12"> <br> <br></div>
@@ -335,6 +344,18 @@
 				<div class="modal-body ">
 					<div class="form-horizontal">
 						<form class="frm_circuito_edit" id="frm_circuito_edit">
+							<!--_____________ ID CIRCUITO, ID ZONA (HIDDEN) _____________-->
+								<div class="hidden">							
+									<div class="col-sm-8">
+										<input type="text" class="form-control habilitar" name="zona_id" id="zona_id_edit">	
+									</div>
+								</div>
+								<div class="hidden">							
+									<div class="col-sm-8">
+										<input type="text" class="form-control habilitar" name="circ_id" id="circ_id_edit">	
+									</div>
+								</div>
+							<!--__________________________-->
 							<div class="col-sm-6">
 								<!--_____________ CODIGO _____________-->
 									<div class="form-group">																
@@ -347,20 +368,33 @@
 					
 								<!--_____________ VEHICULO _____________-->
 									<div class="form-group">																
-										<label for="vehiculo_edit" class="col-sm-4 control-label">Vehiculo:</label>
+										<label for="vehi_id_edit" class="col-sm-4 control-label">Vehiculo:</label>
 										<div class="col-sm-8">
-											<input type="text" class="form-control habilitar" id="vehiculo_edit"> 
-										</div>
-										<input type="text" class="form-control habilitar hidden" id="vehi_id_edit" name="vehi_id"> 
-									</div>   
+											<!-- <input type="text" class="form-control habilitar" id="vehiculo_edit">  -->
+											<select class="form-control select2 select2-hidden-accesible selec_habilitar" name="vehi_id" id="vehi_id_edit">
+												<option value="" disabled selected>-Seleccione opcion-</option>	
+												<?php
+													foreach ($Vehiculo as $i) {
+													echo '<option  value="'.$i->equi_id.'">'.$i->dominio.'</option>';
+													}
+												?>
+											</select>
+										</div>										
+									</div> 	
 								<!--__________________________-->	 
 							
 								<!--_____________ CHOFER _____________-->
 									<div class="form-group">																
-										<label for="chofer_edit" class="col-sm-4 control-label">Chofer:</label>
+										<label for="chof_id_edit" class="col-sm-4 control-label">Chofer:</label>
 										<div class="col-sm-8">
-											<input type="text" class="form-control habilitar hidden" name="chof_id" id="chof_id_edit">
-											<input type="text" class="form-control habilitar" name="chofer" id="chofer_edit">
+											<select class="form-control select2 select2-hidden-accesible selec_habilitar" name="chof_id" id="chof_id_edit">
+												<option value="" disabled selected>-Seleccione opcion-</option>
+												<?php
+													foreach ($Chofer as $i) {
+														echo '<option  value="'.$i->chof_id.'">'.$i->nombre." ".$i->apellido.'</option>';
+													}
+												?>
+											</select>	
 										</div>	
 									</div>
 								<!--__________________________-->
@@ -380,7 +414,7 @@
 									<div class="form-group">
 											<label for="descripcion_edit" class="col-sm-4 control-label">Descripcion:</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control habilitar" id="descripcion_edit"> 
+												<input type="text" class="form-control habilitar" name="descripcion" id="descripcion_edit"> 
 											</div>
 									</div>
 								<!--__________________________-->	
@@ -403,18 +437,23 @@
 								<!--__________________________-->	
 
 							</div>
-
-							<div class="col-sm-12">
-								<!--_____________ IMAGEN _____________-->
-									<div class="form-group pull-left">
-										<label for="imagen_edit" class="col-sm-4 control-label">Imágen:</label>
-										<div class="col-sm-8">
-											<input type="file" class="habilitar" id="imagen_edit"> 
-										</div>
-									</div> 
-								<!--__________________________-->	
-							</div>
 						</form>	
+							<!--_____________ IMAGEN _____________-->
+								<div class="col-sm-12">	
+										<div class="form-group pull-left">
+											<form action="cargar_archivo" method="post" enctype="multipart/form-data">	
+												<label for="img_file" class="col-sm-4 control-label" name="img">Imagen:</label>
+												<div class="col-sm-8">
+													<input type="file" class="ocultar" name="img" id="img_file" onchange=convert()>
+													<input type="text" id="input_aux_img64" style="display:none">
+													<input type="text" id="input_aux_zonaID" style="display:none">                                   
+													<img src="" alt="imagen" id="img_base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
+												</div>
+											</form>		
+										</div>									
+								</div>
+							<!--__________________________-->
+							
 					</div>
 
 					<!--_____________ SECCION P. CRITICOS _____________-->	
@@ -616,6 +655,70 @@
 
 <script>
 
+//////// Tratamiento de Imagen en Registrar nuevo circuito
+	async function convertA(){      
+				
+		var file = document.getElementById('img_File').files[0];
+		console.table('imagen en convertA: ' + document.getElementById('img_File').files[0]);
+
+		if (file) {
+
+			var archivo = await GetFile(file);
+			console.table(archivo);
+			if(archivo.fileType == "image/jpeg"){
+				
+				var cod = "data:image/jpeg;base64,"+archivo.base64StringFile;
+				//var cod = "data:image/png;base64,"+archivo.base64StringFile;
+				$("#input_aux_img").val(cod);
+				$("#img_Base").attr("src",$("#input_aux_img").val());
+				$("#img_Base").attr("width",100);
+				$("#img_Base").attr("height",100);
+			}else{
+
+				if(archivo.fileType == "application/pdf"){
+					var cod = "data:application/pdf;base64,"+archivo.base64StringFile;
+				}				
+			}               
+			$("#input_aux_img").val(cod);
+			console.table($("#input_aux_img").val());  
+		}        
+	}
+	//Convertir a base64 el archivo Imagen
+	function GetFile(file){
+
+		var reader = new FileReader();
+
+		return new Promise((resolve, reject) => {
+
+										reader.onerror = () => {
+													reader.abort();
+													reject(new Error("Error parsing file"));
+										}
+										reader.onload = function() {
+													//This will result in an array that will be recognized by C#.NET WebApi as a byte[]
+													let bytes = Array.from(new Uint8Array(this.result));
+													//if you want the base64encoded file you would use the below line:
+													let base64StringFile = btoa(bytes.map((item) => String.fromCharCode(item)).join(""));
+													//Resolve the promise with your custom file structure
+													resolve({
+																bytes: bytes,
+																base64StringFile: base64StringFile,
+																fileName: file.name,
+																fileType: file.type
+													});
+										}
+										reader.readAsArrayBuffer(file);
+		});
+	}
+//////// Fin Tratamiento de Imagen en Registrar nuevo circuito
+
+
+
+
+
+
+
+
 ////////// 	Guardado	//////////
 
 	// carga tabla genaral de circuitos
@@ -645,54 +748,51 @@
 		var datos_tipo_carga= $('#tica_id').val();  
 		// toma datos form circuitos
 		var datos_circuito = new FormData($('#formCircuitos')[0]);
-		var inpImagen = $('input#imagen');
-		//agrego el campo vacio sino tiene dato para completar el json
-		if( document.getElementById("imagen").files.length == 0 ){					
-			datos_circuito.append("imagen", "");
-		}
-	
+		var inpImagen = $('input#imagen');	
 		datos_circuito = formToObject(datos_circuito);
+		datos_circuito.imagen = $("#input_aux_img").val();
+		
+		//TODO: VER VALIDACION DE GUARDADO SIN PUNTOS CRITICOS
+		// valida existencia de ptos criticos en tabla
+		if (datos_puntos_criticos.lenght==0) {
+				alert('No hay Puntos Criticos para Registrar.');
+				return;
+		}
 		// recorre tabla guardando ptos criticos en array
 		var datos_puntos_criticos = [];		
 		var rows = $('#datos tbody tr');				
 		rows.each(function(i,e) {  
 				datos_puntos_criticos.push(getJson(e));
-		});				
+		});		
 
-		//TODO: VER VALIDACION DE GUARDADO SIN PUNTOS CRITICOS
-		// valida existencia de ptos criticos en tabla
-		if (datos_puntos_criticos.lenght==0) {
-				alert('Sin Datos para Registrar.');
-				return;
-		}
 		// valida campos cargados y envia datos
 		if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
 					
-					$.ajax({
-							type: "POST",
-							data: {datos_circuito, datos_puntos_criticos,datos_tipo_carga},							
-							url: "general/Estructura/Circuito/Guardar_Circuito",
-							success: function(r) {
-									console.log(r);
-									if (r == "ok") {
+				$.ajax({
+						type: "POST",
+						data: {datos_circuito, datos_puntos_criticos,datos_tipo_carga},							
+						url: "general/Estructura/Circuito/Guardar_Circuito",
+						success: function(r) {
+								console.log(r);
+								if (r == "ok") {
 
-											$("#cargar_tabla").load(
-													"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Lista_Circuitos"
-											);
-											alertify.success("Agregado con exito");
+										$("#cargar_tabla").load(
+												"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Lista_Circuitos"
+										);
+										alertify.success("Agregado con exito");
 
-											$('#formCircuitos').data('bootstrapValidator').resetForm();
-											$("#formCircuitos")[0].reset();
+										$('#formCircuitos').data('bootstrapValidator').resetForm();
+										$("#formCircuitos")[0].reset();
 
-											$("#boxDatos").hide(500);
-											$("#botonAgregar").removeAttr("disabled");
+										$("#boxDatos").hide(500);
+										$("#botonAgregar").removeAttr("disabled");
 
-									} else {
-											console.log(r);
-											alertify.error("error al agregar");
-									}
-							}
-					});
+								} else {
+										console.log(r);
+										alertify.error("error al agregar");
+								}
+						}
+				});
 		}
 	}  
  
@@ -703,7 +803,6 @@
 			//$("#boxDatos").removeAttr("hidden");
 			$("#boxDatos").focus();
 			$("#boxDatos").show();
-
 	});   
 	
 	// muestra box de datos al dar click en X
@@ -825,17 +924,121 @@
 	// inicialliza box2 para agregar punto critico nuevo
 	DataTable($('#datos'));
 
-	// inicialia tabla para moda edicion e info
-	//DataTable($('#tabla_puntos_criticos_edit'));
+	
 	
 	//Initialize Select2 Elements
 	$('.select3').select2();
 
 ////////// 	Fin Guardado	//////////
 
-////////// 	Edicion y Borrado	//////////
 
-	
+////// funciones imagen EDICION
+	//cada vez que carga una imagen	
+	async function convert(){       
+		
+		var file = document.getElementById('img_file').files[0];
+		
+		if (file) {
+				
+				var archivo = await getFile(file);			
+				if(archivo.fileType == "image/jpeg"){
+						var cod = "data:image/jpeg;base64,"+archivo.base64StringFile;
+						//var cod = "data:image/png;base64,"+archivo.base64StringFile;
+				}else{
+						if(archivo.fileType == "application/pdf"){
+								var cod = "data:application/pdf;base64,"+archivo.base64StringFile;
+						}				
+				}             
+				console.table(archivo.fileType);				
+				console.table(cod);
+				$("#input_aux_img64").val(cod);
+				console.table($("#input_aux_img64").val());
+				$("#img_base").attr("src",$("#input_aux_img64").val());
+				$("#img_base").attr("width",100);
+				$("#img_base").attr("height",100);			
+		}      
+	}	
+	// trae imagen guardada a vista previa
+	function llenarImagen(circ_id){
+			$.ajax({
+					type: "POST",
+					data: {circ_id: circ_id},
+					url: "general/Estructura/Circuito/obtener_Imagen",
+					success: function ($dato) {		
+									var imagen = JSON.parse($dato);							
+									var img_b64 = imagen;									
+									if(img_b64[4]=='a'){
+									pdf(img_b64);
+									}else{
+											if(img_b64[4]=='i'){jpg(img_b64);}
+									}								
+									//console.table("Como queda src final en llenar imagen: "+img_b64);
+					}
+			});
+		}
+	// carga la imagen en imagen base	
+	function cargarImg(){   
+			var val = $("#input_aux_img64").val();
+			console.table(val);
+			$("#img_base").attr("src",val);   
+			return;   
+		}	
+	//3
+	function pdf($img_b64){
+			var aux_link = "";
+			for(var i=25; i <= $img_b64.length-1; i++){
+					aux_link = aux_link + $img_b64[i];
+			}
+			img = "data:application/pdf;base64,"+aux_link;
+		
+			var ref = img;
+			ref= ref+"G";
+			$("#input_aux_img64").val(ref);
+			console.table("aca con la G agregada"+ref);
+			$("#pdf").attr("href",ref);
+			$("#img_base").attr("src",$("#input_aux_img64").val());
+			$("#img_base").attr("width",100);
+			$("#img_base").attr("height",100);
+	}
+	//2
+	function jpg($img_b64){
+			var aux_link = "/";
+			for(var i=21; i <= $img_b64.length-1; i++){
+					aux_link = aux_link + $img_b64[i];
+			}
+			img = "data:image/jpeg;base64,"+aux_link;
+			$("#input_aux_img64").val(img);
+			$("#img_base").attr("src",$("#input_aux_img64").val());
+			$("#img_base").attr("width",100);
+			$("#img_base").attr("height",100);
+			var ref = $("#input_aux_img64").val();
+			$("#pdf").attr("href",ref);
+	}	
+	//Convertir a base64 el archivo Imagen
+	function getFile(file){
+		var reader = new FileReader();
+		return new Promise((resolve, reject) => {
+			reader.onerror = () => {
+				reader.abort();
+				reject(new Error("Error parsing file"));
+			}
+			reader.onload = function() {
+				//This will result in an array that will be recognized by C#.NET WebApi as a byte[]
+				let bytes = Array.from(new Uint8Array(this.result));
+				//if you want the base64encoded file you would use the below line:
+				let base64StringFile = btoa(bytes.map((item) => String.fromCharCode(item)).join(""));
+				//Resolve the promise with your custom file structure
+				resolve({
+					bytes: bytes,
+					base64StringFile: base64StringFile,
+					fileName: file.name,
+					fileType: file.type
+				});
+			}
+			reader.readAsArrayBuffer(file);
+		});
+	}
+////// fin funciones imagen EDICION
 
 
 </script>

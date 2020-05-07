@@ -39,64 +39,62 @@ class Circuito extends CI_Controller {
   function Listar_Circuitos()
   {
      $data["circuitos"] = $this->Circuitos->Listar_Circuitos();
-     $data['puntos_criticos'] = $this->Circuitos->obtener_Punto_Critico();  
+     //$data['puntos_criticos'] = $this->Circuitos->obtener_Punto_Critico();  
      $this->load->view('layout/Circuitos/Lista_Circuitos',$data);
   }
 
-  
+	/**
+	* Guarda Circuito nuevo, tipo de RSU asociado y Puntos Criticos
+	* @param array datos circuito, rsu y ptos criticos
+	* @return string "ok" o "error"
+	*/
   function Guardar_Circuito()
   {
-
+		log_message('INFO','#TRAZA|CIRCUITO|Guardar_Circuito() >> ');
 		// datos de la vista  
 		$datos_circuitos =  $this->input->post('datos_circuito'); 		  
 		$datos_puntos_criticos =  $this->input->post('datos_puntos_criticos');
-		$datos_tipo_carga =  $this->input->post('datos_tipo_carga'); 
-     
-		// guarda circuito 
+		$datos_tipo_carga =  $this->input->post('datos_tipo_carga');
+		log_message('DEBUG','#TRAZA|CIRCUITO|Guardar_Circuito():$datos_circuitos  >> '.json_encode($datos_circuitos)); 
+		log_message('DEBUG','#TRAZA|CIRCUITO|Guardar_Circuito():$datos_puntos_criticos >> '.json_encode($datos_puntos_criticos)); 
+		log_message('DEBUG','#TRAZA|CIRCUITO|Guardar_Circuito():$datos_tipo_carga >> '.json_encode($datos_tipo_carga)); 
+		
+		// 1 guarda circuito 
 			$circ_id = $this->Circuitos->Guardar_Circuito($datos_circuitos)->respuesta->circ_id;
-
 			if ($circ_id == null) {
-						echo "Circuito no registrado"; return;
+				log_message('ERROR','#TRAZA|CIRCUITO|$circ_id >> ERROR '.json_encode($circ_id));
+				echo "Circuito no registrado"; return;
 			} 
      
     // 2 recorro  array puntos agregando id de circ y guardando de a uno     
-      for ($i=0; $i < count($datos_puntos_criticos); $i++) { 
-       
+      for ($i=0; $i < count($datos_puntos_criticos); $i++) {        
         $aux[$i]['circ_id'] = $circ_id;
         $aux[$i]['pucr_id'] = $this->Circuitos->Guardar_punto_critico($datos_puntos_criticos[$i])->respuesta->pucr_id;
-     }
+     	}
      
-     // asociar Id circuito a punto critico
-     $resp = $this->Circuitos->Asociar_punto_critico($aux);
-     if(!$resp['status']){
-        echo "punto no asociado";return;
-        }
-        
+    // asociar Id circuito a punto critico
+			$resp = $this->Circuitos->Asociar_punto_critico($aux);
+			if(!$resp['status']){
+					log_message('ERROR','#TRAZA|CIRCUITO|Guardar_Circuito() >> ERROR al asociar puntos criticos');
+					echo "punto no asociado";return;
+			}        
      
-     // 3  con id circ  agregar a array tipo de carga armar batch  /_post_circuitos_tipocarga_batch_req  
-     foreach ($datos_tipo_carga as $key => $carga) {
-       
-        $tipocarga[$key]['circ_id'] = $circ_id;
-        $tipocarga[$key]['tica_id'] = $carga;
-     
-     }
+    // 3  con id circ  agregar a array tipo de carga armar batch  /_post_circuitos_tipocarga_batch_req  
+			foreach ($datos_tipo_carga as $key => $carga) {       
+				$tipocarga[$key]['circ_id'] = $circ_id;
+				$tipocarga[$key]['tica_id'] = $carga;  
+				var_dump($carga);   
+			}
 
-     $resp = $this->Circuitos->Guardar_tipo_carga($tipocarga);
+			$resp = $this->Circuitos->Guardar_tipo_carga($tipocarga);
+			if (!$resp['status']) {
+				log_message('ERROR','#TRAZA|CIRCUITOS|Guardar_Circuito() >> ERROR al guardar tipos de carga ');
+				echo "tipo carga no asociado";return;
+			}
 
-     // Operacion de validacion tipo carga
-   
-     if (!$resp['status']) {
-        echo "tipo carga no asociado";return;
-      }
-     
-     //-------------------------------------------------------------
-     
-
-     echo 'ok';
-    
-
-
-  } 
+    echo 'ok';
+	} 
+	
   /**
   * Actualiza los datos de cicuito y puntos criticos
   * @param obj info de circuitos y ptus criticos
@@ -106,27 +104,38 @@ class Circuito extends CI_Controller {
   {
 		log_message('INFO','#TRAZA|CIRCUITO|actulizaCircuitos() >> ');
 
-		$circuitos = $this->input->post('circuito_edit');
-	
-		//TODO: SACARA CIRC_ID MANDAR A ACTUALIZAR
+		$circuitos = $this->input->post('circuito_edit');	
+		$circuitos['usuario_app'] = userNick();
+		// actualiza dats de circuito
+		$resp = $this->Circuitos->actulizaInfoCircuitos($circuitos);		
 		
-		$resp = $this->Circuitos->actulizaInfoCircuitos();
+		// borra tipos de carga
+		$circ_id = $circuitos['circ_id'];
+		$respDeletTipoCarga = $this->Circuitos->deleteTiposCarga($circ_id);
+		if(!$respDeletTipoCarga){
+			echo "Error eliminando tipos de RSU...";
+			log_message('ERROR','#TRAZA|CIRCUITO|actulizaCircuitos() >> ERROR eliminando tipos de carga');
+			return;
+		}
 		
-		
-		//TODO: GUARDAR EL TIPO CARGA
-		// 	$tipoCarga = $this->input->post('tica_edit');
-		// 	var_dump($tipocarga);
-
-		// 	foreach ($datos_tipo_carga as $key => $carga) {
-		// 		$tipocarga[$key]['circ_id'] = $circ_id;
-		// 		$tipocarga[$key]['tica_id'] = $carga;
-		// 	}
-		//  $resp = $this->Circuitos->Guardar_tipo_carga($tipocarga);
+		// guarda tipos de carga nuevos
+		$datos_tipo_carga = json_decode($this->input->post('tica_edit'));		
+		foreach ($datos_tipo_carga as $key => $carga) {
+			$tipocarga[$key]['circ_id'] = $circ_id;
+			$tipocarga[$key]['tica_id'] = $carga;
+		}
+		$respSetTipoCarga = $this->Circuitos->Guardar_tipo_carga($tipocarga);
+		if(!$respSetTipoCarga){
+			echo "Error al guardar tipos de RSU...";
+			log_message('ERROR','#TRAZA|CIRCUITO| >> ERROR al guardar tipos de carga');
+			return;
+		}	
 
 		//TODO: BORRAR PTOS CRITICOS ASOCIADOS A ID DE CRCUITOS
 		//TODO: RECORRER ARAY ASOCIANDO A CIRCUITOS LOS PUNTOS CRITICOS    
      $ptos = $this->input->post('ptos_criticos_edit');
-     var_dump($ptos); 
+		 
+		 echo "ok";
 
    }
 
@@ -191,7 +200,8 @@ class Circuito extends CI_Controller {
    {
       $deptos = $this->Circuitos->obtener_Departamentos();
       echo json_encode($deptos);
-   }
+	 }
+	 
    /**
    * otiene Zonas de un departamento determinado
    * @param int depa_id
@@ -201,7 +211,18 @@ class Circuito extends CI_Controller {
    {
       $resp = $this->Circuitos->obtener_Zona_departamento($this->input->post('depa_id'));
       echo json_encode($resp);
-   }
+	 }
+	 
+	 /**
+	 * Obtiene imagen guardada por id de circuito
+	 * @param int circ_id
+	 * @return bynary imagen
+	 */		
+	 function obtener_Imagen(){
+		 log_message('INFO','#TRAZA|CIRCUITO|obtener_Imagen() >> ');
+		 $resp = $this->Circuitos->obtener_Imagen($this->input->post('circ_id'));
+		 echo json_encode($resp);
+	 }
 
 
 } 
