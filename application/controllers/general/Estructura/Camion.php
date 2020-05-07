@@ -1,11 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
-* 
+* Representa a la Entidad Choferes
 *
 * @autor Ze Roberto Basañes
 */
 class Camion extends CI_Controller 
 {
+
     /**
     * Constructor de clase
     * @param 
@@ -41,15 +43,15 @@ class Camion extends CI_Controller
         log_message('INFO','#TRAZA|CHOFER|Guardar_Chofer() >>');
         $datos =  $this->input->post('datos');
         $tiposcarga = $this->input->post('tipocarga');        
-        $tran_id = $this->Camiones->Guardar_Chofer($datos);
+        $chof_id = $this->Camiones->Guardar_Chofer($datos);
         // agregar el id de chofer para asociar a tipo carga
-        if($tran_id){
+        if($chof_id){
             foreach ($tiposcarga as $i=>$tipo_carga) {              
-              $data[$i]['tran_id'] = $tran_id;
+              $data[$i]['chof_id'] = $chof_id;
               $data[$i]['tica_id'] = $tipo_carga;              
             }
         }else{
-          log_message('ERROR','#TRAZA|CHOFER|Guardar_Chofer() >> $tran_id: '.$tran_id);
+          log_message('ERROR','#TRAZA|CHOFER|Guardar_Chofer() >> $chof_id: '.$chof_id);
           echo "error";
           return;
         }       
@@ -97,9 +99,9 @@ class Camion extends CI_Controller
             echo "error_chofer";
             return;
           }else{          
-            $response = $this->Camiones->Borrar_TiposCarga($tran_id);
+            $response = $this->Camiones->Borrar_TiposCarga($chof_id);
             foreach ($tipo_carga as $i=>$tipo_carga) {              
-                $data[$i]['tran_id'] = $tran_id;
+                $data[$i]['chof_id'] = $chof_id;
                 $data[$i]['tica_id'] = $tipo_carga;             
             }
             $resp = $this->Camiones->asociarTipoCarga($data);   
@@ -120,112 +122,9 @@ class Camion extends CI_Controller
     function Borrar_Chofer()
     {
         log_message('INFO','#TRAZA|CHOFER|Borrar_Chofer() >>');
-        $tran_id = $this->input->post('tran_id');       
-        $response = $this->Camiones->Borrar_Chofer($tran_id);
+        $chof_id = $this->input->post('chof_id');       
+        $response = $this->Camiones->Borrar_Chofer($chof_id);
         echo json_encode($response);
     }
 
-    // ---------------- Funcion Suspender Chofer
-    function Suspender_Chofer()
-    {
-
-    }
-    // _________________________________________________________
-
-// ---------------- Funciones Obtener ---------------- //
-
-    // ---------------- Funcion Obtener tipo de residuo
-    function Obtener_Residuo()
-    {
-
-    }
-    // _________________________________________________________
-
-    // ---------------- Funcion Obtener Transportista
-    function Obtener_transportista()
-    {
-
-    }
-    // _________________________________________________________
-
-    // ---------------- Funcion Obtener Generador
-    function Obtener_Generador()
-    {
-
-    }
-    // _________________________________________________________
-
-// ---------------- Funciones VEHICULOS ----------------
-
-    // ---------------- Funcion Cargar vista Vehiculos y Datos
-    function templateVehiculos()
-    {
-        // $data[''] = $this->Infracciones->obtener_();
-        // $data[''] = $this->Infracciones->obtener_();
-        // $data[''] = $this->Infracciones->obtener_();
-        // $data[''] = $this->Infracciones->obtener_();
-
-        $this->load->view('layout/Vehiculos/registrar_vehiculo', $data);
-    }
-    // _________________________________________________________
-
-    // ---------------- Funcion Registrar Vehiculo
-    function Guardar_Vehiculo()
-    {
-        $datos =  $this->input->post('datos');
-        $resp = $this->Camiones->Guardar_Vehiculo($datos);
-        if($resp){
-        echo "ok";
-        }else{
-        echo "error";
-        }
-    }
-    // _________________________________________________________
-
-    // ---------------- Funcion Crear Vehiculo
-    function Crear_Vehiculo()
-    {
-
-    }
-    // _________________________________________________________
-
-    // ---------------- Funcion Listar Vehiculos
-    function Listar_Vehiculo()
-    {
-        $data["vehiculos"] = $this->Camiones->Listar_Vehiculo();
-        $this->load->view('layout/Vehiculos/lista_vehiculos',$data);
-    }
-    // _________________________________________________________
-
-    // ---------------- Funcion Modificar Vehiculo
-    function Modificar_Vehiculo()
-    {
-
-    }
-    // _________________________________________________________
-
-    // ---------------- Funcion Borrar Vehiculo
-    function Borrar_Vehiculo()
-    {
-
-    }
-    // _________________________________________________________
-
-    // ---------------- Funcion Suspender Vehiculo
-    function Suspender_Vehiculo()
-    {
-
-    }
-    // _________________________________________________________
-
-// ---------------- Funciones Obtener ---------------- //
-
-    // ---------------- Funcion Obtener tipo de carnet
-    function Obtener_Carnet()
-    {
-
-    }
-    // _________________________________________________________
-
-}
 ?>
