@@ -17,25 +17,6 @@ class Camiones extends CI_Model
         parent::__construct();
     }
 
-        function Listar_Vehiculo()
-        {
-            $aux = $this->rest->callAPI("GET",REST."/vehiculos");
-            $aux =json_decode($aux["data"]);
-            return $aux->vehiculos->vehiculo;
-        }
-    //________________________________________________________
-
-    // Funcion Guardar Vehiculo
-        function Guardar_Vehiculo($data)
-        {
-            $post["post_vehiculo"] = $data;
-            log_message('DEBUG','#Vehiculos/Guardar_Vehiculo:'.json_encode($post));
-            $aux = $this->rest->callAPI("POST",REST."/vehiculos", $post);
-            $aux =json_decode($aux["status"]);
-            return $aux;
-        }
-    //________________________________________________________
-
 // ---------------------- FUNCIONES OBTENER ----------------------
 
     // Funcion Obtener condicion vehiculo
