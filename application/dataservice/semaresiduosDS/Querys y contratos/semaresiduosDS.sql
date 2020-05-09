@@ -433,6 +433,47 @@ http://34.66.255.127:8280/services/semaresiduosDS
       ]
     }
   }
+//FIXME: PUNTO Y CIRCUITOS
+- no se puede duplicar el punto critico 
+- no se puede borrar la relacion entre pc y circuitos 
+  x clave foranea en circuitos_puntos_criticos
+
+alternativas
+- update de punto critico de a uno, pero se cual esta y cual no 
+  si agregue alguno o quite otro
+
+-- circuito->Puntos Criticos(deletePuntosPorCircuito) hacer que elimine fisicamete a relacion
+  -- borra la relacion entre puntos criticos y  circuitos
+    //FIXME: ARREGLAR RECURSO Y JSON NOMBRE
+    recurso: /puntosCriticos/circuito
+    metodo: delete
+    -- update log.circuitos_puntos_criticos set eliminado = 1 where circ_id = CAST(:circ_id AS INTEGER) 
+
+    delete from log.circuitos_puntos_criticos where circ_id = CAST(:circ_id AS INTEGER)
+    
+    {
+      "_delete_circuitos_tipocarga":{
+        "circ_id": "87"
+      }
+    }
+
+-- circuito->Puntos Criticos (deletePuntosCriticos) 
+  -- borra puntos criticos por circ_id
+  recurso: /puntosCriticos
+  metodo: delete
+  
+  delete from log.puntos_criticos PC
+  using circuitos_puntos_criticos CPC
+  where PC.pucr_id = CPC.pucr_id
+  and CPC.circ_id = CAST(:circ_id AS INTEGER)
+
+
+
+  {
+      "":{
+        "circ_id": "87"
+      }
+    }
 
 
 
@@ -529,9 +570,6 @@ http://34.66.255.127:8280/services/semaresiduosDS
     }
   }
 
-
-
-//TODO: HACER BORRAR TODOS O TIPOS CARGAD E CIRCUITO BORRADO FISICO
 
 -- circuitoDeleteTipoCarga
   recurso: recurso: /circuitos/tipoCarga
@@ -1550,6 +1588,17 @@ http://34.66.255.127:8280/services/semaresiduosDS
     }
   } 
 
+-- puntosCriticosGetId
+  recurso: /puntosCriticos/nombre/{nombre}
+  metodo: get
+
+  select pucr_id from log.puntos_criticos where nombre = :nombre
+
+  {
+    "respuesta":{
+      "pucr_id": "163"
+    }
+  }
 
 
 -- puntosCriticosSet

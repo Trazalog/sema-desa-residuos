@@ -11,7 +11,6 @@ class Circuitos extends CI_Model {
 		parent::__construct();
   }
 
-
   /**
   * Listado de circuitos
   * @param 
@@ -118,7 +117,7 @@ class Circuitos extends CI_Model {
   /**
   * borra un circuito
   * @param int circ_id
-  * @return string "ok" o "error"
+  * @return bool true o false
   */  
   function borrar_Circuito($circ_id)
   {
@@ -132,11 +131,10 @@ class Circuitos extends CI_Model {
     return $aux;
   }
 
-
   /**
   * Borra tipos de carga por circ_id
   * @param int circ_id
-  * @return string ok o error
+  * @return bool true o false
   */
   function deleteTiposCarga($circ_id)
   {     
@@ -146,6 +144,22 @@ class Circuitos extends CI_Model {
     $data['_delete_circuitos_tipocarga'] = $circuito_id;
     log_message('DEBUG','#TRAZA|CIRCUITOS|deleteTiposCarga($data): $data >> '.json_encode($data));
     $aux = $this->rest->callAPI("DELETE",REST."/circuitos/tipoCarga", $data); 
+    $aux =json_decode($aux["status"]);
+    return $aux;
+  }
+
+  /**
+  * Anula la relacion entre puntos criticos y un circuito
+  * @param int circ_id
+  * @return bool true o false
+  */
+  function borrar_PCriticosPorCirc($circ_id){
+
+    log_message('INFO','#TRAZA|CIRCUITOS|borrar_PCriticosPorCirc($circ_id) >> ');    
+    $circuito_id['circ_id'] = $circ_id;
+    $data['_delete_circuitos_tipocarga'] = $circuito_id;
+    log_message('DEBUG','#TRAZA|CIRCUITOS|borrar_PCriticosPorCirc($circ_id): $data >> '.json_encode($data));
+    $aux = $this->rest->callAPI("DELETE",REST."/puntosCriticos", $data);
     $aux =json_decode($aux["status"]);
     return $aux;
   }
@@ -224,6 +238,19 @@ class Circuitos extends CI_Model {
     return $aux->circuito->imagen;
   }
 
+  /**
+  * Obtiene el pucr_id de acuerdo al nombre
+  * @param string nombre
+  * @return int pucr_id
+  */
+  function ObtenerPucr_id($nombre)
+  { 
+    log_message('INFO','#TRAZA|CIRCUITOS|ObtenerPucr_id($nombre) >> ');
+    log_message('DEBUG','#TRAZA|CIRCUITOS|ObtenerPucr_id($nombre): $nombre >> '.json_encode($nombre));
+    $aux = $this->rest->callAPI("GET",REST."/puntosCriticos/nombre/".$nombre);
+    $aux =json_decode($aux["data"]);
+    return $aux->respuesta->pucr_id;
+  }
 
 
 

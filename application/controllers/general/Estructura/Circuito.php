@@ -24,11 +24,14 @@ class Circuito extends CI_Controller {
   */
   function templateCircuitos()
   {     
-     $data['tipoResiduos'] = $this->Circuitos->obtener_RSU();     
-     $data['Departamentos'] = $this->Circuitos->obtener_Departamentos();    
-     $data['Vehiculo'] = $this->Circuitos->obtener_Vehiculo();   
-     $data['Chofer'] = $this->Circuitos->obtener_Chofer();   
-     $this->load->view('layout/Circuitos/registrar_circuitos',$data);
+		$data['tipoResiduos'] = $this->Circuitos->obtener_RSU();     
+		$data['Departamentos'] = $this->Circuitos->obtener_Departamentos();    
+		$data['Vehiculo'] = $this->Circuitos->obtener_Vehiculo();   
+		$data['Chofer'] = $this->Circuitos->obtener_Chofer();   
+		$this->load->view('layout/Circuitos/registrar_circuitos',$data);	
+		//	 levanta solo tabla para pruebas
+		//  $data["circuitos"] = $this->Circuitos->Listar_Circuitos();
+		//  $this->load->view('layout/Circuitos/Lista_Circuitos',$data);
   }   
 
   /**
@@ -65,27 +68,26 @@ class Circuito extends CI_Controller {
 				log_message('ERROR','#TRAZA|CIRCUITO|$circ_id >> ERROR '.json_encode($circ_id));
 				echo "Circuito no registrado"; return;
 			} 
-     
-    // 2 recorro  array puntos agregando id de circ y guardando de a uno     
-      for ($i=0; $i < count($datos_puntos_criticos); $i++) {        
-        $aux[$i]['circ_id'] = $circ_id;
-        $aux[$i]['pucr_id'] = $this->Circuitos->Guardar_punto_critico($datos_puntos_criticos[$i])->respuesta->pucr_id;
-     	}
-     
-    // asociar Id circuito a punto critico
-			$resp = $this->Circuitos->Asociar_punto_critico($aux);
-			if(!$resp['status']){
-					log_message('ERROR','#TRAZA|CIRCUITO|Guardar_Circuito() >> ERROR al asociar puntos criticos');
-					echo "punto no asociado";return;
-			}        
-     
-    // 3  con id circ  agregar a array tipo de carga armar batch  /_post_circuitos_tipocarga_batch_req  
-			foreach ($datos_tipo_carga as $key => $carga) {       
+		//  2 guarda puntos criticos si hubiera
+			if(!empty($datos_puntos_criticos)){
+				// recorro  array puntos agregando id de circ y guardando de a uno     
+				for ($i=0; $i < count($datos_puntos_criticos); $i++) {        
+					$aux[$i]['circ_id'] = $circ_id;
+					$aux[$i]['pucr_id'] = $this->Circuitos->Guardar_punto_critico($datos_puntos_criticos[$i])->respuesta->pucr_id;
+				 }
+				// asociar Id circuito a punto critico
+				$resp = $this->Circuitos->Asociar_punto_critico($aux);
+				if(!$resp['status']){
+						log_message('ERROR','#TRAZA|CIRCUITO|Guardar_Circuito() >> ERROR al asociar puntos criticos');
+						echo "punto no asociado";return;
+				} 
+			}
+			
+		// 3  con id circ  agregar a array tipo de carga armar batch  /_post_circuitos_tipocarga_batch_req  
+			foreach ($datos_tipo_carga as $key => $carga) {  
 				$tipocarga[$key]['circ_id'] = $circ_id;
 				$tipocarga[$key]['tica_id'] = $carga;  
-				var_dump($carga);   
 			}
-
 			$resp = $this->Circuitos->Guardar_tipo_carga($tipocarga);
 			if (!$resp['status']) {
 				log_message('ERROR','#TRAZA|CIRCUITOS|Guardar_Circuito() >> ERROR al guardar tipos de carga ');
@@ -102,45 +104,66 @@ class Circuito extends CI_Controller {
   */
   function actulizaCircuitos()
   {
-		log_message('INFO','#TRAZA|CIRCUITO|actulizaCircuitos() >> ');
+			log_message('INFO','#TRAZA|CIRCUITO|actulizaCircuitos() >> ');
+			// actualiza dats de circuito
+				$circuitos = $this->input->post('circuito_edit');
+				$circuitos['usuario_app'] = userNick();
+				$resp = $this->Circuitos->actulizaInfoCircuitos($circuitos);	
+			// borra tipos de carga
+				$circ_id = $circuitos['circ_id'];
+				$respDeletTipoCarga = $this->Circuitos->deleteTiposCarga($circ_id);
+				if(!$respDeletTipoCarga){
+					echo "Error eliminando tipos de RSU...";
+					log_message('ERROR','#TRAZA|CIRCUITO|actulizaCircuitos() >> ERROR eliminando tipos de carga');
+					return;
+				}			
+			// guarda tipos de carga nuevos
+				$datos_tipo_carga = json_decode($this->input->post('tica_edit'));		
+				foreach ($datos_tipo_carga as $key => $carga) {
+					$tipocarga[$key]['circ_id'] = $circ_id;
+					$tipocarga[$key]['tica_id'] = $carga;
+				}
+				$respSetTipoCarga = $this->Circuitos->Guardar_tipo_carga($tipocarga);
+				if(!$respSetTipoCarga){
+					echo "Error al guardar tipos de RSU...";
+					log_message('ERROR','#TRAZA|CIRCUITO|actulizaCircuitos() >> ERROR al guardar tipos de carga');
+					return;
+				}	
+			// anula relacion de ptos criticos con circuitos	
+				$respDelPtosCrit = $this->Circuitos->borrar_PCriticosPorCirc($circ_id);   
+				if(!$respDelPtosCrit){
+					log_message('ERROR','#TRAZA|CIRCUITO|actulizaCircuitos() >> ERROR al anular los Puntos Criticos');
+					echo "Error al anular puntos criticos";
+					return;
+				}	
+			// recorro  array puntos agregando id de circ y guardando de a uno 
+				$datos_puntos_criticos = $this->input->post('ptos_criticos_edit');	
+				if(empty($datos_puntos_criticos)){
+						//recorre datos, crea puntos nuevos y arma array para asociar
+						for ($i=0; $i < count($datos_puntos_criticos); $i++) {   						
+							$pucr_id = $this->Circuitos->Guardar_punto_critico($datos_puntos_criticos[$i])->respuesta->pucr_id;							
+							//si guarda punto critico devuelve pucr_id
+							if ($pucr_id) {
+								$aux[$i]['circ_id'] = $circ_id;
+								$aux[$i]['pucr_id'] = $pucr_id;
+							}else{
+								// trae el pucr_id por nombre y guarda en array para asociar nuevamente						
+								$pucr_id = $this->Circuitos->ObtenerPucr_id($datos_puntos_criticos[$i]['nombre']);
+								$aux[$i]['circ_id'] = $circ_id;
+								$aux[$i]['pucr_id'] = $pucr_id;
+								log_message('DEBUG','#TRAZA|CIRCUITOS|actulizaCircuitos()|NO GUARDO PUNTO NUEVO|: $pucr_id >> '.json_encode($pucr_id));
+							}					
+						}
+						// asociar Id circuito a punto critico
+						$resp = $this->Circuitos->Asociar_punto_critico($aux);
+						if(!$resp['status']){
+								log_message('ERROR','#TRAZA|CIRCUITO|Guardar_Circuito() >> ERROR al asociar puntos criticos');
+								echo "punto no asociado";return;
+						}
+				}			 
 
-		$circuitos = $this->input->post('circuito_edit');	
-		$circuitos['usuario_app'] = userNick();
-		// actualiza dats de circuito
-		$resp = $this->Circuitos->actulizaInfoCircuitos($circuitos);		
-		
-		// borra tipos de carga
-		$circ_id = $circuitos['circ_id'];
-		$respDeletTipoCarga = $this->Circuitos->deleteTiposCarga($circ_id);
-		if(!$respDeletTipoCarga){
-			echo "Error eliminando tipos de RSU...";
-			log_message('ERROR','#TRAZA|CIRCUITO|actulizaCircuitos() >> ERROR eliminando tipos de carga');
-			return;
-		}
-		
-		// guarda tipos de carga nuevos
-		$datos_tipo_carga = json_decode($this->input->post('tica_edit'));		
-		foreach ($datos_tipo_carga as $key => $carga) {
-			$tipocarga[$key]['circ_id'] = $circ_id;
-			$tipocarga[$key]['tica_id'] = $carga;
-		}
-		$respSetTipoCarga = $this->Circuitos->Guardar_tipo_carga($tipocarga);
-		if(!$respSetTipoCarga){
-			echo "Error al guardar tipos de RSU...";
-			log_message('ERROR','#TRAZA|CIRCUITO| >> ERROR al guardar tipos de carga');
-			return;
-		}	
-
-		//TODO: BORRAR PTOS CRITICOS ASOCIADOS A ID DE CRCUITOS
-		//TODO: RECORRER ARAY ASOCIANDO A CIRCUITOS LOS PUNTOS CRITICOS    
-     $ptos = $this->input->post('ptos_criticos_edit');
-		 
-		 echo "ok";
-
-   }
-
-
-
+			echo "ok";
+  }
    
 	/**
 	* Asigna una zona a un determinado circuito

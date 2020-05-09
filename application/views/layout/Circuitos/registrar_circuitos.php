@@ -405,7 +405,13 @@
 									<div class="form-group">															
 											<label for="tica_edit" class="col-sm-4 control-label">Tipo de residuo:</label>
 											<div class="col-sm-8">
-											<select class="form-control select3 habilitar" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_edit"> </select>                     
+											<select class="form-control select3 habilitar" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_edit"> 
+												<?php
+													foreach ($tipoResiduos as $i) {		
+															echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+													}
+												?>
+											</select>                     
 											</div>	
 									</div>
 								<!--__________________________-->		
@@ -444,7 +450,7 @@
 											<form action="cargar_archivo" method="post" enctype="multipart/form-data">	
 												<label for="img_file" class="col-sm-4 control-label" name="img">Imagen:</label>
 												<div class="col-sm-8">
-													<input type="file" class="ocultar" name="img" id="img_file" onchange=convert()>
+													<input type="file" class="ocultar habilitar" name="img" id="img_file" onchange=convert_Edit()>
 													<input type="text" id="input_aux_img64" style="display:none">
 													<input type="text" id="input_aux_zonaID" style="display:none">                                   
 													<img src="" alt="imagen" id="img_base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
@@ -722,7 +728,7 @@
 ////////// 	Guardado	//////////
 
 	// carga tabla genaral de circuitos
-	$("#cargar_tabla").load("<?php //echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
+	$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
 
   //agrega punto critico a la tabla para guardar  
 	function Agregar_punto() {
@@ -754,10 +760,10 @@
 		
 		//TODO: VER VALIDACION DE GUARDADO SIN PUNTOS CRITICOS
 		// valida existencia de ptos criticos en tabla
-		if (datos_puntos_criticos.lenght==0) {
-				alert('No hay Puntos Criticos para Registrar.');
-				return;
-		}
+		// if (datos_puntos_criticos.lenght==0) {
+		// 		alert('No hay Puntos Criticos para Registrar.');
+		// 		return;
+		// }
 		// recorre tabla guardando ptos criticos en array
 		var datos_puntos_criticos = [];		
 		var rows = $('#datos tbody tr');				
@@ -934,7 +940,7 @@
 
 ////// funciones imagen EDICION
 	//cada vez que carga una imagen	
-	async function convert(){       
+	async function convert_Edit(){       
 		
 		var file = document.getElementById('img_file').files[0];
 		
