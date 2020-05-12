@@ -36,7 +36,7 @@ class Vehiculos extends CI_Model
         }
     //________________________________________________________
 
-// ---------------------- FUNCIONES OBTENER ----------------------
+    // ---------------------- FUNCIONES OBTENER ----------------------
 
     // Funcion Obtener condicion vehiculo
         public function obtener_Condicion()

@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
     /**
-    * Representa a la Entidad Vehiculos
+    * Representa a la Entidad Vehiculo
     *
     * @autor Ze Roberto Basañes
     */
-    class Camion extends CI_Controller 
+    class Vehiculo extends CI_Controller 
     {
 
         /**
