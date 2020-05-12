@@ -255,7 +255,7 @@
         $('#chofer').find('option').remove();
     });
 
-	//Script Bootstrap Validacion.-->
+	//Script Bootstrap Validacion.
 
     $('#formTransportistas').bootstrapValidator({
         message: 'This value is not valid',

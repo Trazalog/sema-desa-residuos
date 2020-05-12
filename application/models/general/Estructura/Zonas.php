@@ -57,66 +57,15 @@ public function eliminar_Zona($data){
      return $aux;	
  }
 
-// ---------------------- FUNCIONES CIRCUITOS ----------------------
-
-// Funcion Listar Circuitos (MODIFICAR)
-function Listar_Circuitos()
-{
-    $aux = $this->rest->callAPI("GET",REST."/circuitos");
-    $aux =json_decode($aux["data"]);       
-    return $aux->circuitos->circuito;
 }
-
-// Funcion Guardar Circuito
-//NOOOOOO TOCaaar !!!!!!!!!
-function Guardar_Circuito($data){ 
- 
-    $data["usuario_app"] = userNick();
-    $post["_post_circuitos"] = $data;
-    log_message('DEBUG','#Zonas/Guardar_Circuito: '.json_encode($post));
-    $aux = $this->rest->callAPI("POST",REST."/circuitos", $post);
-    $aux =json_decode($aux["data"]);   
-
+function Actualizar_Zona_Img($data){
+    $post["zona"] = $data;
+    log_message('DEBUG','#Zonas/Actualizar_Zona: '.json_encode($post));
+    $aux = $this->rest->callAPI("PUT",REST."/zonas/update/imagen",$post);
+    $aux =json_decode($aux["status"]);
     return $aux;
 }
 
-// Funcion Guardar Punto Critico
-/////NOOOOOOO TOCAAAARRRR  !!!!!
-function Guardar_punto_critico($data){
-
-   $data["usuario_app"] = userNick();
-    $post["post_puntos_criticos"] = $data;
-    log_message('DEBUG','#Zonas/Guardar_punto_critico: '.json_encode($post));
-    $aux = $this->rest->callAPI("POST",REST."/puntosCriticos", $post);   
-    $aux =json_decode($aux["data"]);   
-    return $aux;       
-    
-}
-
-/////NOOOOOOO TOCAAAARRRR  !!!!!
-// Funcion Asociar punto critico
-function Asociar_punto_critico($data){
-    
-    $arraypuntos["_post_puntoscriticos_circuito"]  = $data;  
-    $post["_post_puntoscriticos_batch_req"]= $arraypuntos;    
-    log_message('DEBUG','#Zonas/Asociar_punto_critico: '.json_encode($post));
-    $aux = $this->rest->callAPI("POST",REST."/_post_puntoscriticos_circuito_batch_req", $post);   
-    return $aux;          
-      
-  }
-
-/////NOOOOOOO TOCAAAARRRR  !!!!!
-  // Funcion Guardar Tipo de carga Circuito
-function Guardar_tipo_carga($data){
-
-    $arraycargas["_post_circuitos_tipocarga"]  = $data;  
-    $post["_post_circuitos_tipocarga_batch_req"]= $arraycargas;
-       
-    log_message('DEBUG','#Zonas/Guardar_tipo_carga: '.json_encode($post));
-    $aux = $this->rest->callAPI("POST",REST."/_post_circuitos_tipocarga_batch_req", $post);
-    return $aux;    
-    
-}
 
 
 // Funcion Botener zonas por departamento
@@ -141,50 +90,29 @@ function Insertar_zona($data){
     }
 
 
-// ---------------------- FUNCIONES OBTENER ----------------------
 
-// Funcion Obtener Circuitos
-public function obtener_Circuitos(){
-    $aux = $this->rest->callAPI("GET",REST."/circuitos/5");
-    $aux =json_decode($aux["data"]);
+}
+
+public function obtenerImagen_Zona_Id($dato){
+    $auxx = $this->rest->callAPI("GET",REST."/zona/get/imagen/$dato");
+    $aux =json_decode($auxx["data"]);
+    
+    return $aux;
+}
+public function obtener_Zona_departamento(){
+    $aux = $this->rest->callAPI("GET",REST."/zonas/departamento/");
     return $aux->zonas->zona;
 }
-
-// Funcion Obtener Punto Critico
-
-public function obtener_Punto_Critico(){
-    $aux = $this->rest->callAPI("GET",REST."/puntosCriticos/1");
     $aux =json_decode($aux["data"]);
-    return $aux->puntos->punto;
-}
-
-// Funcion Obtener Tipo RSU
-public function obtener_RSU(){
-
-    log_message('DEBUG', 'Zonas/obtener_RSU');
-    $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
+public function obtener_Zona(){
+    $aux = $this->rest->callAPI("GET",REST."/zonas");
     $aux =json_decode($aux["data"]);
-    return $aux->valores->valor;
+    return $aux->zonas->Zona;
 }
-
-// Funcion Obtener Vehiculo
-public function obtener_Vehiculo(){
-    $aux = $this->rest->callAPI("GET",REST."/vehiculos");
-    $aux =json_decode($aux["data"]);
-    return $aux->vehiculos->vehiculo;
-}
-
-// Funcion Obtener Chofer
-public function obtener_Chofer(){
-    $aux = $this->rest->callAPI("GET",REST."/choferes");
-    $aux =json_decode($aux["data"]);
-    return $aux->choferes->chofere;
-}
-
 // Funcion Obtener Departamentos
 public function obtener_Departamentos(){
-    $aux = $this->rest->callAPI("GET",REST."/departamentos");
     $aux =json_decode($aux["data"]);
+    $aux = $this->rest->callAPI("GET",REST."/departamentos");
     return $aux->departamentos->departamento;
 }
 

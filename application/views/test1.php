@@ -128,6 +128,9 @@
 </div>
 </div>
 
+
+<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit" id="btnEditar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+
 <!--//--------------------------SCRIPT------------------------------------//-->
 
 
@@ -1660,4 +1663,136 @@ a("p").text("jQuery continua funcionando!");
 
 
 
+<div class="modal fade bs-example-modal-lg" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-blue">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" id="exampleModalLabel">Circuitos</h5>
+        </div>
 
+				<div class="modal-body ">
+					<div class="form-horizontal">
+
+						<div class="col-sm-6">
+							<!--_____________ CODIGO _____________-->
+								<div class="form-group">																
+									<label for="codigo" name="codigo" class="col-sm-4 control-label">Código:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control habilitar" name="codigo" id="codigo_edit">	
+									</div>
+								</div> 
+							<!--___________________________-->
+				
+							<!--_____________ VEHICULO _____________-->
+								<div class="form-group">																
+									<label for="vehiculo" name="vehiculo" class="col-sm-4 control-label">Vehiculo:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control habilitar" id="vehiculo_edit" name="vehiculo" > 
+									</div>
+									<input type="text" class="form-control habilitar hidden" id="vehiculo_edit" name="vehi_id"> 
+								</div>   
+							<!--__________________________-->	 
+						
+							<!--_____________ CHOFER _____________-->
+								<div class="form-group">																
+									<label for="Chofer" name="Chofer" class="col-sm-4 control-label">Chofer:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control habilitar" id="Chofer">
+									</div>	
+								</div>
+							<!--__________________________-->
+						</div>
+
+						<div class="col-sm-6">
+							<!--_____________ TIPO RESIDUOS _____________-->
+								<div class="form-group">															
+									<label for="tipoResiduos" name="tipoResiduos" class="col-sm-4 control-label">Tipo de residuo:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control habilitar" id="tipoResiduos"> 
+									</div>	
+								</div>
+							<!--__________________________-->												
+									
+							<!--_____________ DESCRIPCION _____________-->                 
+								<div class="form-group">
+										<label for="Descripcion" class="col-sm-4 control-label">Descripcion:</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control habilitar" id="tipoResiduos"> 
+										</div>
+								</div>
+							<!--__________________________-->								
+						</div>
+
+						<div class="col-sm-12">
+
+							<!--_____________ IMAGEN _____________-->
+							<div class="form-group pull-left">
+								<label for="Descripcion" class="col-sm-4 control-label">Imágen:</label>
+								<div class="col-sm-8">
+									<input type="file" class="habilitar" id="tipoResiduos"> 
+								</div>
+							</div> 
+							<!--__________________________-->	
+						</div>
+
+					</div>
+
+					<!--_____________ SECCION P. CRITICOS _____________-->							
+					<div class="row">  							
+
+						<div class="col-sm-6">
+							<!--_____________ Nombre _____________-->
+								<div class="form-group">															
+									<label for="tipoResiduos" name="tipoResiduos" class="col-sm-4 control-label">Nombre:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control habilitar" id="tipoResiduos"> 
+									</div>	
+								</div>
+							<!--__________________________-->		
+						</div>	
+						<div class="col-sm-6">
+							<!--_____________ Nombre _____________-->
+								<div class="form-group">															
+									<label for="tipoResiduos" name="tipoResiduos" class="col-sm-4 control-label">Descripcion:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control habilitar" id="tipoResiduos"> 
+									</div>	
+								</div>
+							<!--__________________________-->		
+						</div>		
+
+						<div class="col-md-12">                                          
+						
+							<table id="tabla_puntos_criticos" class="table table-bordered table-striped">
+									<thead class="thead-dark" bgcolor="#eeeeee">																										
+											<th>Nombre</th>
+											<th>Descripcion</th>
+											<th>Ubicacion</th>								
+								</thead>
+							
+								<tbody>
+										
+								</tbody>
+							</table>                                    
+																										 
+						</div>   
+									
+					</div>
+					<!--____________SECCION P. CRITICOS______________-->
+
+
+				</div>			
+
+				<div class="modal-footer">
+					<div class="form-group text-right">
+							<button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnsave">Guardar</button>
+							<button type="submit" class="btn btn-default" id="" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+
+      </div>
+    </div>
+</div>
