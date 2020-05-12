@@ -22,8 +22,6 @@ class Contenedor extends CI_Controller {
       // $data[''] = $this->Contenedores->obtener_();
       $this->load->view('layout/Contenedores/registrar_contenedor',$data); 
     }
-
-   
     // _________________________________________________________
 
     // ---------------- Funcion Registrar Contenedor
@@ -65,30 +63,6 @@ class Contenedor extends CI_Controller {
     }
     // _________________________________________________________
 
-    function Actualizar_Contenedor(){
-      $datos =  $this->input->post('datos');
-      $deletetipo = $this->input->post('deletetipo');
-      $carga_tipo = $this->input->post('datos_tipo_carga');
-      $cont_id = $this->input->post('cont_id');
-      $respcont = $this->Contenedores->actualizar_Contenedor($datos);
-      $respdelete =  $this->Contenedores->borrar_tipo_Carga($deletetipo);
-      foreach ($carga_tipo as $key => $carga) {
-        
-        $tipocarga[$key]['cont_id'] = $cont_id;
-        $tipocarga[$key]['tica_id'] = $carga;
-     
-        }
-
-      $resptipo = $this->Contenedores->Guardar_tipo_carga($tipocarga);
-      if (!$resptipo['status']) {
-        echo "tipo carga no asociado";return;
-      } 
-       if($respcont['status']){
-         echo 'ok';
-        } 
-        else{echo 'error';}
-      
-    }
     // ---------------- Funcion Crear Contenedor
     function Crear_Contenedor()
     {
@@ -100,20 +74,7 @@ class Contenedor extends CI_Controller {
     function Listar_Contenedor()
     {
       $data["contenedores"] = $this->Contenedores->Listar_Contenedor();
-      $data["estados"] = $this->Contenedores->obtener_Estados();
-      $data["carga"] = $this->Contenedores->obtener_Tipo_Carga();
-      //agregue 03-05-20
-      $data["habilitacion"] = $this->Contenedores->Obtener_Habilitacion();
-      //agregue 03-05-20
       $this->load->view('layout/Contenedores/Lista_contenedores',$data);   
-    }
-
-    function Listar_Contenedor_Tabla(){
-      $data["contenedores"] = $this->Contenedores->Listar_Contenedor();
-      $data["estados"] = $this->Contenedores->obtener_Estados();
-      $data["carga"] = $this->Contenedores->obtener_Tipo_Carga();
-      $data["habilitacion"] = $this->Contenedores->Obtener_Habilitacion();
-      $this->load->view('layout/Contenedores/Lista_contenedores_Tabla',$data); 
     }
     //___________________________________________________________
 
@@ -127,12 +88,7 @@ class Contenedor extends CI_Controller {
     // ---------------- Funcion Borrar Contenedor
     function Borrar_Contenedor()
     {
-      $resp = $this->Contenedores->eliminar_Contenedor($this->input->post('datos'));
-      if($resp){
-         echo "ok";
-         }else{
-         echo "error";
-         }
+
     }
     // _________________________________________________________
 
@@ -223,16 +179,6 @@ class Contenedor extends CI_Controller {
       {
 
       }
-
-      // "/**",
-			// 	"*Obtener_estados",
-			// 	"* null ",
-			// 	"* todos los estados",
-			// "*/"
-      // function Obtener_estados(){
-      //   $data['Estados'] = $this->Contenedores->obtener_Estados();
-      //   echo ($data);
-      // }
       // _________________________________________________________
 
   // ---------------- Funciones SOLICITUD PEDIDO DE ORDEN CONTENEDOR --------------------------------//

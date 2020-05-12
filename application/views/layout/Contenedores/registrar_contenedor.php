@@ -143,9 +143,9 @@
                  <!--Tipo carga-->                
                     <div class="form-group">
                         <label for="tipoResiduos">Tipo de residuo:</label>
-                        <div class="input-group date" id="carg">
+                        <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                                <select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="ticco_id" required>
+                                <select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="ticco_id">
                             
                                     <?php
                                         foreach ($Carga as $i) {
@@ -299,7 +299,7 @@
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },*/
-        excluded: ':disabled',
+        //excluded: ':disabled',
         fields: {
             codigo: {
                 message: 'la entrada no es valida',
