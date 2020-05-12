@@ -28,9 +28,6 @@
         {
             log_message('INFO','#TRAZA|VEHICULO|templateVehiculos() >>');
             // $data[''] = $this->Infracciones->obtener_();
-            // $data[''] = $this->Infracciones->obtener_();
-            // $data[''] = $this->Infracciones->obtener_();
-            // $data[''] = $this->Infracciones->obtener_();
 
             $this->load->view('layout/Vehiculos/registrar_vehiculo', $data);
         }

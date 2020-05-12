@@ -19,6 +19,13 @@ class Camiones extends CI_Model
 
     // FUNCIONES OBTENER
 
+        /**
+        * Trae obtener condicion
+        * @param 
+        * @return 
+        */
+        //FALTA AVERIGUAR DE DONDE VIENE ESTA MIERDA
+
         public function obtener_Condicion()
         {
             $aux = $this->rest->callAPI("GET",REST."/transportistas");
@@ -89,6 +96,9 @@ class Camiones extends CI_Model
 		}
     // FUNCIONES OBTENER
 
+
+    //AGREGAR COMENTARIOS Y log_message
+
         // Funcion Obtener carnet
             public function obtener_Carnet()
             {
@@ -112,8 +122,6 @@ class Camiones extends CI_Model
             {
                 $aux = $this->rest->callAPI("GET",REST."/transportistas");
                 $aux =json_decode($aux["data"]);
-                log_message('DEBUG','ZEROBERTO BALA'.json_encode($aux->transportistas));
-                // return $aux->transportistas;
                 return $aux->transportistas->transportista;
             }
         //________________________________________________________
