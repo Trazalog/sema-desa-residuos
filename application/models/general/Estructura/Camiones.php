@@ -17,12 +17,10 @@ class Camiones extends CI_Model
         parent::__construct();
     }
 
-    // FUNCIONES OBTENER
-
         /**
         * Trae obtener condicion
-        * @param 
-        * @return 
+        * @param
+        * @return
         */
         //FALTA AVERIGUAR DE DONDE VIENE ESTA MIERDA
 
