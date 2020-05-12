@@ -42,6 +42,24 @@ class Zona extends CI_Controller {
        }
 
       }
+      //------------------funcion Actualizar Zona
+      function Actualizar_Zona(){
+         $datos =  $this->input->post('datos');
+         $datosimg = $this->input->post('datosImg');
+         $resp = $this->Zonas->Actualizar_Zona($datos);
+         $respimg = $this->Zonas->Actualizar_Zona_Img($datosimg);
+         if($resp){
+            if($respimg){
+               echo "ok";
+            }else{
+               echo "error";
+               }
+         
+         }else{
+            echo "error";
+            }
+         
+      }
    
       // ---------------- Funcion Listar Zona
    
@@ -49,7 +67,22 @@ class Zona extends CI_Controller {
       {
          $data["zonas"] = $this->Zonas->Listar_Zonas();         
          $this->load->view('layout/Zonas/Lista_zona',$data);
+         
       }
+      function Listar_Zona_Tabla()
+      {
+         $data["zonas"] = $this->Zonas->Listar_Zonas();       
+         $this->load->view('layout/Zonas/Lista_zona_tabla',$data);
+         
+      }
+      function MostrarModalEditar(){
+          
+         $dato["dep"]= $this->Zonas->obtener_Departamentos();
+         //$this->load->view('layout/Zonas/registrar_zona',$dato);
+         echo json_encode($dato);
+       
+      }
+      function GetImagen(){
 
    
    
@@ -57,6 +90,27 @@ class Zona extends CI_Controller {
    // --------------------------------- CIRCUITOS ----------------------------------
 
    
+         $id = $this->input->post("zona_id");
+         $dato= $this->Zonas->obtenerImagen_Zona_Id($id);  
+        
+         //$this->load->view('layout/Zonas/registrar_zona',$dato);
+         echo json_encode($dato);
+      }
+      function Eliminar_Zona()
+      {
+        
+         $resp = $this->Zonas->eliminar_Zona($this->input->post('datos'));
+         if($resp){
+            echo "ok";
+            }else{
+            echo "error";
+            }
+      }
+
+
+   
+   
+
    // ---------------- Funciones Obtener ---------------- //
 
    

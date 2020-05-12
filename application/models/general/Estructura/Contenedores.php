@@ -42,7 +42,31 @@ class Contenedores extends CI_Model
     return $aux;    
 
     }
-
+    function actualizar_Contenedor($data){
+        $post["put_contenedor"]= $data;
+        log_message('DEBUG','#Contenedores/Actualizar_Contenedor'.json_encode($post));
+        $aux = $this->rest->callAPI("PUT",REST."/contenedores", $post);
+        return $aux;
+    }
+    //agregue 03-05-20
+    function eliminar_Contenedor($data){
+         $post["_put_contenedores_estado"] = $data;
+         $post2["_put_contenedores_tipocarga_estado"] = $data;
+         log_message('DEBUG','#Contenedores/#eliminar_Contenedor: '.json_encode($post));
+         log_message('DEBUG','#Contenedores/#eliminar_Contenedor_tipocarga: '.json_encode($post2));
+         $aux = $this->rest->callAPI("PUT",REST."/contenedores/estado", $post);
+         $aux2= $this->rest->callAPI("PUT",REST."/contenedores/tipoCarga/estado", $post2);
+         $aux =json_decode($aux["status"]);
+         return $aux;
+    }
+    //agregue 03-05-20
+    function borrar_tipo_Carga($data){
+        $post2["_put_contenedores_tipocarga_estado"] = $data;
+        log_message('DEBUG','#Contenedores/#eliminar_Contenedor_tipocarga: '.json_encode($post2));
+        $aux2= $this->rest->callAPI("PUT",REST."/contenedores/tipoCarga/estado", $post2);
+        $aux =json_decode($aux2["status"]);
+        return $aux;
+    }
 // ---------------------- FUNCIONES OBTENER ----------------------
 
     // Funcion Obtener Estados
@@ -91,14 +115,6 @@ class Contenedores extends CI_Model
     }
     // __________________________________________________________
 
-    // Funcion Obtener Tipo de RSU
-    // public function obtener_Tipo_residuo()
-    // {
-    //     $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
-    //     $aux =json_decode($aux["data"]);
-    //     return $aux->valores->valor;
-		// }
-	
 
     
 
@@ -190,6 +206,7 @@ class Contenedores extends CI_Model
 		//var_dump($aux->tiposCarga->cargas);
 		return $aux->tiposCarga->cargas;
 	}
-	
+    
+   
 
 }
