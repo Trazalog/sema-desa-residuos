@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
-* Representa a la Entidad Choferes
+* Representa a la Entidad Chofer
 *
 * @autor Ze Roberto Basañes
 */
