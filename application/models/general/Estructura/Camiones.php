@@ -94,34 +94,42 @@ class Camiones extends CI_Model
 		}
     // FUNCIONES OBTENER
 
+    // AGREGAR log_message
 
-    //AGREGAR COMENTARIOS Y log_message
+        /**
+        * Funcion Obtener carnet
+        * @param
+        * @return
+        */
+        public function obtener_Carnet()
+        {
+            $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carnet");
+            $aux =json_decode($aux["data"]);
+            return $aux->valores->valor;
+        }
 
-        // Funcion Obtener carnet
-            public function obtener_Carnet()
-            {
-                $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carnet");
-                $aux =json_decode($aux["data"]);
-                return $aux->valores->valor;
-            }
-        //________________________________________________________
+        /**
+        * Funcion Obtener categorias
+        * @param 
+        * @return 
+        */
+        public function obtener_Categoria()
+        {
+            $aux = $this->rest->callAPI("GET",REST."/tablas/categoria_carnet");
+            $aux =json_decode($aux["data"]);
+            return $aux->valores->valor;
+        }
 
-        // Funcion Obtener categorias
-            public function obtener_Categoria()
-            {
-                $aux = $this->rest->callAPI("GET",REST."/tablas/categoria_carnet");
-                $aux =json_decode($aux["data"]);
-                return $aux->valores->valor;
-            }
-        //________________________________________________________
-
-        // Funcion Obtener empresa
-            public function obtener_Empresa()
-            {
-                $aux = $this->rest->callAPI("GET",REST."/transportistas");
-                $aux =json_decode($aux["data"]);
-                return $aux->transportistas->transportista;
-            }
-        //________________________________________________________
+        /**
+        * Funcion Obtener empresa
+        * @param 
+        * @return 
+        */
+        public function obtener_Empresa()
+        {
+            $aux = $this->rest->callAPI("GET",REST."/transportistas");
+            $aux =json_decode($aux["data"]);
+            return $aux->transportistas->transportista;
+        }
 
 }
