@@ -41,7 +41,7 @@ class Dash extends CI_Controller {
                             {
                                 "titulo": "Registrar Circuito",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Estructura/Zona/templateCircuitos"
+                                "link": "general/Estructura/Circuito/templateCircuitos"
                             },
                             {
                                 "titulo": "Registrar Contenedor",

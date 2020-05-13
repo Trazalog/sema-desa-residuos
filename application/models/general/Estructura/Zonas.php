@@ -214,7 +214,7 @@ function obtener_Vehiculo(){
 function obtener_Chofer(){
     $aux = $this->rest->callAPI("GET",REST."/choferes");
     $aux =json_decode($aux["data"]);
-    return $aux->choferes->chofere;
+    return $aux->zonas->Zona;
 }
 //**************
 
@@ -227,6 +227,7 @@ function obtener_Departamentos(){
     log_message('INFO','#TRAZA|Zonas|obtener_Departamentos() >> ');   
     $aux = $this->rest->callAPI("GET",REST."/departamentos");
     $aux =json_decode($aux["data"]);
+    $aux = $this->rest->callAPI("GET",REST."/departamentos");
     return $aux->departamentos->departamento;
 }
 

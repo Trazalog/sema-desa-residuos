@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
-* Representa a la Entidad Camiones
+* Representa a la Entidad Choferes
 *
 * @autor Ze Roberto Basañes
 */
@@ -17,28 +17,13 @@ class Camiones extends CI_Model
         parent::__construct();
     }
 
-        function Listar_Vehiculo()
-        {
-            $aux = $this->rest->callAPI("GET",REST."/vehiculos");
-            $aux =json_decode($aux["data"]);
-            return $aux->vehiculos->vehiculo;
-        }
-    //________________________________________________________
+        /**
+        * Trae obtener condicion
+        * @param
+        * @return
+        */
+        //FALTA AVERIGUAR DE DONDE VIENE ESTA MIERDA
 
-    // Funcion Guardar Vehiculo
-        function Guardar_Vehiculo($data)
-        {
-            $post["post_vehiculo"] = $data;
-            log_message('DEBUG','#Vehiculos/Guardar_Vehiculo:'.json_encode($post));
-            $aux = $this->rest->callAPI("POST",REST."/vehiculos", $post);
-            $aux =json_decode($aux["status"]);
-            return $aux;
-        }
-    //________________________________________________________
-
-// ---------------------- FUNCIONES OBTENER ----------------------
-
-    // Funcion Obtener condicion vehiculo
         public function obtener_Condicion()
         {
             $aux = $this->rest->callAPI("GET",REST."/transportistas");
@@ -46,7 +31,7 @@ class Camiones extends CI_Model
             return $aux->condiciones->condicion;
         }
 
-// ---------------------- CHOFERES ----------------------
+    // CHOFERES 
 
         /**
         * Trae listado de Todos los Choferes
@@ -81,7 +66,8 @@ class Camiones extends CI_Model
         * @param array datos de chofer
         * @return string status del servicio
         */
-        function Modificar_Chofer($chofer){
+        function Modificar_Chofer($chofer)
+        {
             log_message('INFO','#TRAZA|CHOFERES|Modificar_Chofer() >> ');
 			$data['_put_choferes'] = $chofer;			
 			log_message('DEBUG','#Camiones/Modificar_Chofer (datos choferes): '.json_encode($data));		
@@ -95,7 +81,8 @@ class Camiones extends CI_Model
 		* @param int id de chofer
 		* @return string status del servicio
 		*/
-		function Borrar_Chofer($chof_id){
+        function Borrar_Chofer($chof_id)
+        {
 			log_message('INFO','#TRAZA|CHOFERES|Borrar_Chofer() >> ');
 			$comp['chof_id'] = $chof_id;
 			$comp['eliminado'] = "1";			// para habilitar nuevamente cambiar a "0"
@@ -105,35 +92,44 @@ class Camiones extends CI_Model
 			$aux =json_decode($aux["status"]);
 			return $aux;
 		}
-// ---------------------- FUNCIONES OBTENER ----------------------
+    // FUNCIONES OBTENER
 
-    // Funcion Obtener carnet
+    // AGREGAR log_message
+
+        /**
+        * Funcion Obtener carnet
+        * @param
+        * @return
+        */
         public function obtener_Carnet()
         {
             $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carnet");
             $aux =json_decode($aux["data"]);
             return $aux->valores->valor;
         }
-    //________________________________________________________
 
-    // Funcion Obtener categorias
+        /**
+        * Funcion Obtener categorias
+        * @param 
+        * @return 
+        */
         public function obtener_Categoria()
         {
             $aux = $this->rest->callAPI("GET",REST."/tablas/categoria_carnet");
             $aux =json_decode($aux["data"]);
             return $aux->valores->valor;
         }
-    //________________________________________________________
 
-    // Funcion Obtener empresa
+        /**
+        * Funcion Obtener empresa
+        * @param 
+        * @return 
+        */
         public function obtener_Empresa()
         {
             $aux = $this->rest->callAPI("GET",REST."/transportistas");
             $aux =json_decode($aux["data"]);
-            log_message('DEBUG','ZEROBERTO BALA'.json_encode($aux->transportistas));
-            // return $aux->transportistas;
             return $aux->transportistas->transportista;
         }
-    //________________________________________________________
 
 }

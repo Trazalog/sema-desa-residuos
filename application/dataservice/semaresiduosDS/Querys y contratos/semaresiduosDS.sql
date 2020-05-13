@@ -199,7 +199,8 @@ http://34.66.255.127:8280/services/semaresiduosDS
             "zona_id":"$zona_id",
             "vehi_id":"$vehi_id",            
             "dominio": "$dominio",
-            "@tiposCargaCicuitoGet":"$circ_id->circ_id"
+            "@tiposCargaCicuitoGet":"$circ_id->circ_id",
+            "@puntosCriticos": "$circ_id->circ_id"
          }
       ]
     }
@@ -410,11 +411,11 @@ http://34.66.255.127:8280/services/semaresiduosDS
   }
 
 
--- circuito->puntosPorCircuitoGet
+-- circuito->puntosPorCircuito
   recurso: /puntosCriticos/{circ_id}
   metodo: get
 
-  select PC.pucr_id, PC.nombre, PC.descripcion, PC.lat, PC.lng 
+  select PC.nombre, PC.descripcion, PC.lat, PC.lng 
   from log.puntos_criticos PC, log.circuitos_puntos_criticos CPC
   where PC.pucr_id = CPC.pucr_id 
   and CPC.circ_id = CAST(:circ_id AS INTEGER)
@@ -423,8 +424,7 @@ http://34.66.255.127:8280/services/semaresiduosDS
   {
     "puntos":{
       "punto":[
-        {
-          "pucr_id": "$pucr_id",
+        {          
           "nombre": "$nombre",
           "descripcion": "$descripcion",
           "lat": "$lat",
@@ -433,6 +433,47 @@ http://34.66.255.127:8280/services/semaresiduosDS
       ]
     }
   }
+//FIXME: PUNTO Y CIRCUITOS
+- no se puede duplicar el punto critico 
+- no se puede borrar la relacion entre pc y circuitos 
+  x clave foranea en circuitos_puntos_criticos
+
+alternativas
+- update de punto critico de a uno, pero se cual esta y cual no 
+  si agregue alguno o quite otro
+
+-- circuito->Puntos Criticos(deletePuntosPorCircuito) hacer que elimine fisicamete a relacion
+  -- borra la relacion entre puntos criticos y  circuitos
+    //FIXME: ARREGLAR RECURSO Y JSON NOMBRE
+    recurso: /puntosCriticos/circuito
+    metodo: delete
+    -- update log.circuitos_puntos_criticos set eliminado = 1 where circ_id = CAST(:circ_id AS INTEGER) 
+
+    delete from log.circuitos_puntos_criticos where circ_id = CAST(:circ_id AS INTEGER)
+    
+    {
+      "_delete_circuitos_tipocarga":{
+        "circ_id": "87"
+      }
+    }
+
+-- circuito->Puntos Criticos (deletePuntosCriticos) 
+  -- borra puntos criticos por circ_id
+  recurso: /puntosCriticos
+  metodo: delete
+  
+  delete from log.puntos_criticos PC
+  using circuitos_puntos_criticos CPC
+  where PC.pucr_id = CPC.pucr_id
+  and CPC.circ_id = CAST(:circ_id AS INTEGER)
+
+
+
+  {
+      "":{
+        "circ_id": "87"
+      }
+    }
 
 
 
@@ -483,7 +524,7 @@ http://34.66.255.127:8280/services/semaresiduosDS
   }
 
 
--- cirucitoUpdate
+-- circuitoUpdate
   recurso: /circuitos
   metodo: put
 
@@ -519,6 +560,31 @@ http://34.66.255.127:8280/services/semaresiduosDS
     }
   } 
 
+-- circuitosGetImagen
+  recurso: /circuitos/imagen/{circ_id}
+  metodo: get
+  select imagen from log.circuitos where circ_id = CAST(:circ_id AS INTEGER)
+  {
+    "circuito":{
+      "imagen": "$imagen"
+    }
+  }
+
+
+-- circuitoDeleteTipoCarga
+  recurso: recurso: /circuitos/tipoCarga
+  metodo: delete
+  delete from log.tipos_carga_circuitos where circ_id = cast(:circ_id as integer)
+
+  {
+    "_delete_circuitos_tipocarga":{
+      "circ_id": "94"
+    }
+  }
+
+
+
+
 -- contenedoresGet (contenedor con tipo de carga por cont_id)
   recurso: /contenedores
   metodo: get
@@ -550,6 +616,25 @@ http://34.66.255.127:8280/services/semaresiduosDS
           ]
     }
   }
+
+-- contenedoresEstado
+  recurso: /contenedores/estado
+  metodo: put
+  eliminado = "1" para borrar y "0" para activar nuevamente
+  update log.contenedores 
+  set eliminado = cast(:eliminado as INTEGER) 
+  where cont_id = cast(:cont_id as INTEGER)
+
+  {
+    "_put_contenedores_estado":{
+      "eliminado": "1",
+      "cont_id": "45"
+    }
+  }
+
+
+
+
 
   -- ejempo de respuesta
     {"contenedores": {"contenedor": [
@@ -1459,7 +1544,7 @@ http://34.66.255.127:8280/services/semaresiduosDS
     }
   }  
 
-  -- batch request
+  -- batch request (no se usa porq siempre debe tener el id de pto critico nuevo)
   recurso: /_post_puntoscriticos_circuito_batch_req
   metodo: post
 
@@ -1503,6 +1588,17 @@ http://34.66.255.127:8280/services/semaresiduosDS
     }
   } 
 
+-- puntosCriticosGetId
+  recurso: /puntosCriticos/nombre/{nombre}
+  metodo: get
+
+  select pucr_id from log.puntos_criticos where nombre = :nombre
+
+  {
+    "respuesta":{
+      "pucr_id": "163"
+    }
+  }
 
 
 -- puntosCriticosSet

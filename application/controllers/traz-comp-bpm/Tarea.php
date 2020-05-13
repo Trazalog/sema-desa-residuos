@@ -11,7 +11,8 @@ class Tarea extends CI_Controller
       
 
         // SUPERVISOR1 => 102 => Aprueba pedido de Recursos Materiales
-        $data = ['userId' => 102, 'userName' => 'Fernando', 'userLastName' => 'Leiva', 'device' => '', 'permission' => 'Add-View-Del-Edit','id_empresa'=>1];
+				$data = ['userId' => 102, 'userName' => 'Fernando', 'userLastName' => 'Leiva', 'device' => '', 'permission' => 'Add-View-Del-Edit','id_empresa'=>1];
+				
         $this->session->set_userdata('user_data', $data);
     }
 
