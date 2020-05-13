@@ -16,6 +16,7 @@ class Solicitud_Pedido extends CI_Controller {
       $this->load->model('general/TipoResiduos');
       $this->load->model('general/Empresas');
       $this->load->model('general/Sectoresdescarga');
+      $this->load->model('general/Estructura/SolicitudPedidos');
    }
 
    // ---------------- Funcion Registrar Solicitud Pedido
@@ -31,14 +32,20 @@ class Solicitud_Pedido extends CI_Controller {
    {
         
         
-        $data['empresa'] = $this->Empresas->obtener();
-        $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
-        $data['tipoResiduo'] = $this->TipoResiduos->obtener();
-        $data['fecha'] = date('Y-m-d');
-    
+        //$data['tipoResiduo'] = $this->SolicituddPedidos->obtener();
+        //$data['fecha'] = date('Y-m-d');
+                                                          
+        $data['transportista'] = $this->SolicitudPedidos->obtenerTransportista();
         
-        $this->load->view('layout/solicitud_pedido');
+        $this->load->view('layout/Contenedores/solicitud_pedido',$data);
        
    }
+            
+   function obtenerTipoRes(){
+      $tran_id = $this->input->post('id_transportista');
+      $resp = $this->SolicitudPedidos->obtenerTipoResiduos($tran_id);
+      echo json_encode($resp);
+   }
+  
 }
 ?>
