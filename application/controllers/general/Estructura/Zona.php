@@ -31,7 +31,7 @@ class Zona extends CI_Controller {
       {
          log_message('INFO','#TRAZA|Zona|templateZonas() >>');
          $data['Departamentos'] = $this->Zonas->obtener_Departamentos();
-         $data['CircuitosAsignados'] = $this->Zonas->obtener_Circuitos_Asignados();
+        
          $this->load->view('layout/Zonas/registrar_zona',$data);
           
       }

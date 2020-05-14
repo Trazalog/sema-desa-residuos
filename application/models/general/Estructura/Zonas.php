@@ -89,49 +89,7 @@ public function eliminar_Zona($data){
      return $aux;	
  }
 
-//**************
-function Listar_Circuitos()
-{
-    $aux = $this->rest->callAPI("GET",REST."/circuitos");
-    $aux =json_decode($aux["data"]);       
-    return $aux->circuitos->circuito;
-}
-//**************
-//**************
-function Guardar_Circuito($data){ 
- 
-    $data["usuario_app"] = userNick();
-    $post["_post_circuitos"] = $data;
-    log_message('DEBUG','#Zonas/Guardar_Circuito: '.json_encode($post));
-    $aux = $this->rest->callAPI("POST",REST."/circuitos", $post);
-    $aux =json_decode($aux["data"]);   
 
-    return $aux;
-}
-//**************
-//**************
-function Guardar_punto_critico($data){
-
-   $data["usuario_app"] = userNick();
-    $post["post_puntos_criticos"] = $data;
-    log_message('DEBUG','#Zonas/Guardar_punto_critico: '.json_encode($post));
-    $aux = $this->rest->callAPI("POST",REST."/puntosCriticos", $post);   
-    $aux =json_decode($aux["data"]);   
-    return $aux;       
-    
-}
-//**************
-//**************
-function Asociar_punto_critico($data){
-    
-    $arraypuntos["_post_puntoscriticos_circuito"]  = $data;  
-    $post["_post_puntoscriticos_batch_req"]= $arraypuntos;    
-    log_message('DEBUG','#Zonas/Asociar_punto_critico: '.json_encode($post));
-    $aux = $this->rest->callAPI("POST",REST."/_post_puntoscriticos_circuito_batch_req", $post);   
-    return $aux;          
-      
-  }
-//**************
 
 function Guardar_tipo_carga($data){
 
@@ -177,21 +135,7 @@ function Insertar_zona($data){
     
     }
 
-//**************
-function obtener_Circuitos(){
-    $aux = $this->rest->callAPI("GET",REST."/circuitos/5");
-    $aux =json_decode($aux["data"]);
-    return $aux->zonas->zona;
-}
-//**************
 
-//**************
-function obtener_Punto_Critico(){
-    $aux = $this->rest->callAPI("GET",REST."/puntosCriticos/1");
-    $aux =json_decode($aux["data"]);
-    return $aux->puntos->punto;
-}
-//**************
 
 function obtener_RSU(){
     log_message('INFO','#TRAZA|Zonas|obtener_RSU() >> ');   
@@ -200,23 +144,6 @@ function obtener_RSU(){
     $aux =json_decode($aux["data"]);
     return $aux->valores->valor;
 }
-//**************
-
-//**************
-
-function obtener_Vehiculo(){
-    $aux = $this->rest->callAPI("GET",REST."/vehiculos");
-    $aux =json_decode($aux["data"]);
-    return $aux->vehiculos->vehiculo;
-}
-
-//**************
-function obtener_Chofer(){
-    $aux = $this->rest->callAPI("GET",REST."/choferes");
-    $aux =json_decode($aux["data"]);
-    return $aux->zonas->Zona;
-}
-//**************
 
 /**
 		* Obtener departamentos
@@ -255,13 +182,7 @@ function obtener_Zona_departamento(){
     return $aux->zonas->zona;
 }
 
-//**************
-function obtener_Circuitos_Asignados(){
-    $aux = $this->rest->callAPI("GET",REST."/circuitos/5");
-    $aux =json_decode($aux["data"]);
-    return $aux->zonas->zona;
-}
-//**************
+
 
 function obtenerImagen_Zona_Id($dato){
     log_message('INFO','#TRAZA|Zonas|obtenerImagen_Zona_Id() >> ');   
@@ -272,12 +193,6 @@ function obtenerImagen_Zona_Id($dato){
     return $aux;
 }
 
-//**************
-function obtener_Id_Circuito($data){
-  $aux = $this->rest->callAPI("GET",REST."/circuitos/$data");
-  $aux = json_decode($aux["data"]);
-  return $aux->zonas->zona;
-}
-//**************
+
 
 }
