@@ -116,7 +116,7 @@ class Dash extends CI_Controller {
                             {
                                 "titulo": "Vehiculo",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Estructura/Camion/templateVehiculos"
+                                "link": "general/Estructura/Vehiculo/templateVehiculos"
                             },
                             {
                                 "titulo": "Gestion de seguimiento",

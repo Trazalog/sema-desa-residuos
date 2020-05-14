@@ -126,5 +126,5 @@ class Camion extends CI_Controller
         $response = $this->Camiones->Borrar_Chofer($chof_id);
         echo json_encode($response);
     }
-
+}
 ?>

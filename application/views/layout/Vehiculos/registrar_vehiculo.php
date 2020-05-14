@@ -517,7 +517,7 @@
 
 <!--Script de guardado pantalla Registrar Vehiculo-->
 <script>
-    $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Camion/Listar_Vehiculo");
+    $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
 
     function Guardar_Vehiculo() {
 
