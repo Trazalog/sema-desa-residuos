@@ -133,7 +133,7 @@ function Insertar_zona($data){
     $aux =json_decode($aux["status"]);
     return $aux;	
     
-    }
+}
 
 
 
