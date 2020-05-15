@@ -43,11 +43,11 @@ class Vehiculos extends CI_Model
         // ---------------------- FUNCIONES OBTENER ----------------------
 
         // Funcion Obtener condicion vehiculo
-            public function obtener_Condicion()
-            {
-                $aux = $this->rest->callAPI("GET",REST."/transportistas");
-                $aux =json_decode($aux["data"]);
-                return $aux->condiciones->condicion;
-            }
+        public function obtener_Condicion()
+        {
+            $aux = $this->rest->callAPI("GET",REST."/transportistas");
+            $aux =json_decode($aux["data"]);
+            return $aux->condiciones->condicion;
+        }
     }
 ?>
