@@ -41,7 +41,7 @@ class Dash extends CI_Controller {
                             {
                                 "titulo": "Registrar Circuito",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Estructura/Zona/templateCircuitos"
+                                "link": "general/Estructura/Circuito/templateCircuitos"
                             },
                             {
                                 "titulo": "Registrar Contenedor",
@@ -101,7 +101,7 @@ class Dash extends CI_Controller {
                             {
                                 "titulo": "Solicitud de Contenedores ",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Solicitud_Pedido/templateSolicitudPedidos"
+                                "link": "general/Estructura/Solicitud_Pedido/templateSolicitudPedidos"
                             },
                             {
                                 "titulo": "Etapa",
@@ -116,7 +116,7 @@ class Dash extends CI_Controller {
                             {
                                 "titulo": "Vehiculo",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Estructura/Camion/templateVehiculos"
+                                "link": "general/Estructura/Vehiculo/templateVehiculos"
                             },
                             {
                                 "titulo": "Gestion de seguimiento",

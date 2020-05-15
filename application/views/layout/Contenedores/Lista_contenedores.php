@@ -392,6 +392,8 @@ $("#btnsave").click(function(e){
                     if (r == "ok") {
                         $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor_Tabla");
                         alertify.success("Actualizado con exito");
+                        $("#modalEdit").modal('hide');
+                       
 
                       
 
@@ -422,6 +424,7 @@ $("#btndelete").click(function(e){
                         $('#btndelete').hide();
                         $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor_Tabla");
                          alertify.success("Contenedor Eliminado con exito");
+                         $("#modalBorrar").modal('hide');
                     } else {                        
                         alertify.error("error al Eliminar");
                         

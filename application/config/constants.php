@@ -139,15 +139,14 @@ define('DEF_VIEW','traz-comp-bpm/Tarea');
 |
 */
 
+define('REST', 'http://www.trazalog.com.ar:8280/services/semaresiduosDS');
+//define('REST', 'http://www.trazalog.com.ar:8280/services/ProduccionDataService/');
+define('RESTPT', 'http://www.trazalog.com.ar:8280/services/produccionTest/');
+define('REST_TDS', 'http://www.trazalog.com.ar:8280/services/TrazabilidadDataService/');
+define('REST2', 'http://www.trazalog.com.ar:8280/services/ProduccionDataService');
+define('REST3', 'http://www.trazalog.com.ar:8280/services/produccionTest');
+define('REST4', 'http://www.trazalog.com.ar:8280/services/TrazabilidadDataService');
 
-define('REST', 'http://34.66.255.127:8280/services/semaresiduosDS');
-//define('REST', 'http://dev-trazalog.com.ar:8280/services/semaresiduosDS');
-//define('REST', 'http://dev-trazalog.com.ar:8280/services/ProduccionDataService/');
-define('RESTPT', 'http://dev-trazalog.com.ar:8280/services/produccionTest/');
-define('REST_TDS', 'http://dev-trazalog.com.ar:8280/services/TrazabilidadDataService/');
-define('REST2', 'http://dev-trazalog.com.ar:8280/services/ProduccionDataService');
-define('REST3', 'http://dev-trazalog.com.ar:8280/services/produccionTest');
-define('REST4', 'http://dev-trazalog.com.ar:8280/services/TrazabilidadDataService');
 
 define('HOST', 'http://localhost/');
 

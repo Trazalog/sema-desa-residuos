@@ -118,6 +118,5 @@ class Transportistas extends CI_Model
 				return $aux->valores->valor;				
 		}
 
-
 }
 
