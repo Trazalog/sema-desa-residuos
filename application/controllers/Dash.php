@@ -101,7 +101,7 @@ class Dash extends CI_Controller {
                             {
                                 "titulo": "Solicitud de Contenedores ",
                                 "icono": "fa fa-genderless",
-                                "link": "general/Estructura/Solicitud_Pedido/templateSolicitudPedidos"
+                                "link": "general/transporte-bpm/Solicitud_Pedido/templateSolicitudPedidos"
                             },
                             {
                                 "titulo": "Etapa",
