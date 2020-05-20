@@ -58,7 +58,7 @@ class Camiones extends CI_Model
             log_message('DEBUG','#Choferes/Guardar_Chofer: '.json_encode($post));
             $aux = $this->rest->callAPI("POST",REST."/choferes", $post);
             $aux =json_decode($aux["data"]);
-            return $aux->respuesta->chof_id;
+            return $aux;
         }
 
         /**
@@ -81,16 +81,14 @@ class Camiones extends CI_Model
 		* @param int id de chofer
 		* @return string status del servicio
 		*/
-        function Borrar_Chofer($chof_id)
+        function Borrar_Chofer($data)
         {
-			log_message('INFO','#TRAZA|CHOFERES|Borrar_Chofer() >> ');
-			$comp['chof_id'] = $chof_id;
-			$comp['eliminado'] = "1";			// para habilitar nuevamente cambiar a "0"
-			$data['_put_choferes_estado'] = $comp;			
-			log_message('DEBUG','#Camiones/Modificar_Chofer (datos chofer): '.json_encode($data));		
-			$aux = $this->rest->callAPI("PUT",REST."/choferes/estado", $data);
-			$aux =json_decode($aux["status"]);
-			return $aux;
+			log_message('INFO','#TRAZA|Camiones|Borrar_Chofer() >> ');
+            $post["_put_choferes_estado"] = $data;
+            log_message('DEBUG','#Camiones/#Borrar_Chofer: '.json_encode($post));
+            $aux = $this->rest->callAPI("PUT",REST."/choferes/estado", $post);
+            $aux =json_decode($aux["status"]);
+            return $aux;	
 		}
     // FUNCIONES OBTENER
 
@@ -104,7 +102,7 @@ class Camiones extends CI_Model
         public function obtener_Carnet()
         {
             $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carnet");
-            $aux =json_decode($aux["data"]);
+            $aux =json_decode($aux["data"]);           
             return $aux->valores->valor;
         }
 

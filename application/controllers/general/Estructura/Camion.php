@@ -42,27 +42,12 @@ class Camion extends CI_Controller
     {
         log_message('INFO','#TRAZA|CHOFER|Guardar_Chofer() >>');
         $datos =  $this->input->post('datos');
-        $tiposcarga = $this->input->post('tipocarga');        
-        $chof_id = $this->Camiones->Guardar_Chofer($datos);
-        // agregar el id de chofer para asociar a tipo carga
-        if($chof_id){
-            foreach ($tiposcarga as $i=>$tipo_carga) {              
-              $data[$i]['chof_id'] = $chof_id;
-              $data[$i]['tica_id'] = $tipo_carga;              
-            }
-        }else{
-          log_message('ERROR','#TRAZA|CHOFER|Guardar_Chofer() >> $chof_id: '.$chof_id);
-          echo "error";
-          return;
-        }       
-        // asocio tipo de carga a chofer nuevo
-        $resp = $this->Camiones->asociarTipoCarga($data);
-
+        $resp = $this->Camiones->Guardar_Chofer($datos);
         if($resp){
-          echo "ok";
+        echo "ok";
         }else{
-          log_message('ERROR','#TRAZA|CHOFER|Guardar_Chofer() >> $resp: '.$resp);
-          echo "error";
+        log_message('ERROR','#TRAZA|Camion|Guardar_Chofer() >> $resp: '.$resp);
+        echo "error";
         }
     }
 
@@ -75,6 +60,9 @@ class Camion extends CI_Controller
     {
         log_message('INFO','#TRAZA|CHOFER|Listar_Chofer() >>');
         $data["choferes"] = $this->Camiones->Listar_Chofer();
+        $data['carnet'] = $this->Camiones->obtener_Carnet();
+        $data['categoria'] = $this->Camiones->obtener_Categoria();
+        $data['empresa'] = $this->Camiones->obtener_Empresa();
         $this->load->view('layout/Choferes/Lista_choferes',$data);
     }
     // _________________________________________________________
@@ -121,10 +109,18 @@ class Camion extends CI_Controller
     */
     function Borrar_Chofer()
     {
-        log_message('INFO','#TRAZA|CHOFER|Borrar_Chofer() >>');
-        $chof_id = $this->input->post('chof_id');       
-        $response = $this->Camiones->Borrar_Chofer($chof_id);
-        echo json_encode($response);
+        log_message('INFO','#TRAZA|Camion|Borrar_Chofer() >>');
+        // $chof_id = $this->input->post('chof_id');       
+        // $response = $this->Camiones->Borrar_Chofer($chof_id);
+        // echo json_encode($response);
+
+        $resp = $this->Camiones->Borrar_Chofer($this->input->post('datos'));
+        if($resp){
+           echo "ok";
+           }else{
+           log_message('ERROR','#TRAZA|Camion|Borrar_Chofer() >> $resp: '.$resp);
+           echo "error";
+           }
     }
 }
 ?>
