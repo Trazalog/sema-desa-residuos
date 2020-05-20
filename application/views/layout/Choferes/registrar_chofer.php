@@ -20,165 +20,165 @@
 
 <!--- BOX 1 --->
 
-<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
-    <div class="box-header with-border">
-        <div class="box-tittle">
-            <h5>Informacion</h5>
+    <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
+        <div class="box-header with-border">
+            <div class="box-tittle">
+                <h5>Informacion</h5>
+            </div>
+            <div class="box-tools pull-right">
+                <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+                    data-toggle="tooltip" title="" data-original-title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
         </div>
-        <div class="box-tools pull-right">
-            <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
-                data-toggle="tooltip" title="" data-original-title="Remove">
-                <i class="fa fa-times"></i>
-            </button>
-        </div>
-    </div>
 
-​    <!--_____________________________________________________________-->
+    ​    <!--_____________________________________________________________-->
 
-        <div class="box-body">
-            <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-        
-                    <!--Nombre-->
-                        <div class="form-group">
-                            <label for="Nombre">Nombre:</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre">
-                        </div>
-                ​    <!--_____________________________________________________________-->
-
-                    <!--Apellido-->
-                        <div class="form-group">
-                            <label for="Apellido">Apellido:</label>
-                            <input type="text" class="form-control" id="apellido" name="apellido">
-                        </div>
-                ​    <!--_____________________________________________________________-->
-
-                    <!--DNI-->
-                        <div class="form-group">
-                            <label for="DNI">DNI:</label>
-                            <input type="text" class="form-control" id="documento" name="documento">
-                        </div>
-                ​    <!--_____________________________________________________________-->
-
-                    <!--Fecha de nacimiento-->
-                        <div class="form-group">
-                            <label for="FechaNacimiento">Fecha de nacimiento:</label>
-                                <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
+            <div class="box-body">
+                <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+            
+                        <!--Nombre-->
+                            <div class="form-group">
+                                <label for="Nombre">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre">
                             </div>
-                            <input type="date" class="form-control" id="fec_nacimiento" name="fec_nacimiento"></div>
-                        </div>
-                ​    <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
-                    <!--Direccion-->
-                        <div class="form-group">
-                            <label for="Direccion">Direccion:</label>
-                            <input type="text" class="form-control" id="direccion" name="direccion">
-                        </div>
-                ​    <!--_____________________________________________________________-->
+                        <!--Apellido-->
+                            <div class="form-group">
+                                <label for="Apellido">Apellido:</label>
+                                <input type="text" class="form-control" id="apellido" name="apellido">
+                            </div>
+                    ​    <!--_____________________________________________________________-->
 
-                    <!--Celular-->
-                        <div class="form-group">
-                            <label for="Celular">Celular:</label>
-                            <input type="text" class="form-control" id="celular" name="celular">
-                        </div>
-                    <!--_____________________________________________________________-->
+                        <!--DNI-->
+                            <div class="form-group">
+                                <label for="DNI">DNI:</label>
+                                <input type="text" class="form-control" id="documento" name="documento">
+                            </div>
+                    ​    <!--_____________________________________________________________-->
 
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-
-                    <!--Codigo-->
-                        <div class="form-group">
-                            <label for="Codigo">Codigo:</label>
-                            <input type="text" class="form-control" id="codigo" name="codigo">
-                        </div>
-        ​            <!--_____________________________________________________________-->
-
-                    <!--Empresa-->
-                        <div class="form-group">
-                            <label for="Empresa">Empresa:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="tran_id" name="tran_id">
-                                <option value="" disabled selected>-Seleccione opcion-</option>
-                                <?php
-                                    foreach ($empresa as $i) {
-                                        echo '<option value="'.$i->tran_id.'">'.$i->razon_social.'</option>';
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                ​    <!--_____________________________________________________________-->
-
-                    <!--Carnet-->
-                        <div class="form-group">
-                            <label for="Carnet">Carnet:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="carnet" name="carnet">
-                                <option value="" disabled selected>-Seleccione opcion-</option>
-                                <?php
-                                    foreach ($carnet as $i) {
-                                        echo '<option value="'.$i->tabl_id.'">'.$i->valor.'</option>';
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                ​    <!--_____________________________________________________________-->
-
-                    <!--Categoria-->
-                        <div class="form-group">
-                            <label for="Categoria">Categoria:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="cach_id" name="cach_id">
-                                <option value="" disabled selected>-Seleccione opcion-</option>
-                                <?php
-                                    foreach ($categoria as $i) {
-                                        echo '<option value="'.$i->tabl_id.'">'.$i->valor.'</option>';
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                ​    <!--_____________________________________________________________-->
-
-                    <!--Vencimiento-->
-                        <div class="form-group">
-                            <label for="Vencimiento">Vencimiento:</label>
-                            <div class="input-group date">
+                        <!--Fecha de nacimiento-->
+                            <div class="form-group">
+                                <label for="FechaNacimiento">Fecha de nacimiento:</label>
+                                    <div class="input-group date">
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="date" class="form-control pull-right" id="vencimiento" name="vencimiento">
+                                <input type="date" class="form-control" id="fec_nacimiento" name="fec_nacimiento"></div>
                             </div>
-                            <!-- /.input group -->
-                        </div>
-                ​    <!--_____________________________________________________________-->
+                    ​    <!--_____________________________________________________________-->
 
-                    <!--Estado-->
-                        <div class="form-group">
-                            <label for="Habilitacion">Estado:</label>
-                            <input type="text" class="form-control" id="habilitacion" name="habilitacion">
-                        </div>
-                ​    <!--_____________________________________________________________-->
+                        <!--Direccion-->
+                            <div class="form-group">
+                                <label for="Direccion">Direccion:</label>
+                                <input type="text" class="form-control" id="direccion" name="direccion">
+                            </div>
+                    ​    <!--_____________________________________________________________-->
 
-                </div>
+                        <!--Celular-->
+                            <div class="form-group">
+                                <label for="Celular">Celular:</label>
+                                <input type="text" class="form-control" id="celular" name="celular">
+                            </div>
+                        <!--_____________________________________________________________-->
 
-                    <!--_______________________SEPARADOR______________________________________-->            
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
 
-                <div class="col-md-12"><hr></div>
+                        <!--Codigo-->
+                            <div class="form-group">
+                                <label for="Codigo">Codigo:</label>
+                                <input type="text" class="form-control" id="codigo" name="codigo">
+                            </div>
+            ​            <!--_____________________________________________________________-->
 
-                    <!--_______________________SEPARADOR______________________________________-->
+                        <!--Empresa-->
+                            <div class="form-group">
+                                <label for="Empresa">Empresa:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="tran_id" name="tran_id">
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                        foreach ($empresa as $i) {
+                                            echo '<option value="'.$i->tran_id.'">'.$i->razon_social.'</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                    ​    <!--_____________________________________________________________-->
 
-                <div class="col-md-6">
+                        <!--Carnet-->
+                            <div class="form-group">
+                                <label for="Carnet">Carnet:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="carnet" name="carnet">
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                        foreach ($carnet as $i) {
+                                            echo '<option value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                    ​    <!--_____________________________________________________________-->
+
+                        <!--Categoria-->
+                            <div class="form-group">
+                                <label for="Categoria">Categoria:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="cach_id" name="cach_id">
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                        foreach ($categoria as $i) {
+                                            echo '<option value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                    ​    <!--_____________________________________________________________-->
+
+                        <!--Vencimiento-->
+                            <div class="form-group">
+                                <label for="Vencimiento">Vencimiento:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control pull-right" id="vencimiento" name="vencimiento">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                    ​    <!--_____________________________________________________________-->
+
+                        <!--Estado-->
+                            <div class="form-group">
+                                <label for="Habilitacion">Estado:</label>
+                                <input type="text" class="form-control" id="habilitacion" name="habilitacion">
+                            </div>
+                    ​    <!--_____________________________________________________________-->
+
+                    </div>
+
+                        <!--_______________________SEPARADOR______________________________________-->            
+
+                    <div class="col-md-12"><hr></div>
+
+                        <!--_______________________SEPARADOR______________________________________-->
+
+                    <div class="col-md-6">
 
 
-            </form>
-        </div>
+                </form>
+            </div>
 
-                    <!--Boton de guardado-->
-                        <div class="col-md-12"><hr></div><br>
-                        <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Chofer()">Guardar</button>
-                    <!--_____________________________________________________________--> 
+                        <!--Boton de guardado-->
+                            <div class="col-md-12"><hr></div><br>
+                            <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Chofer()">Guardar</button>
+                        <!--_____________________________________________________________--> 
 
+            </div>
         </div>
     </div>
-</div>
 
 <!---//////////////////////////////////////--- FIN BOX---///////////////////////////////////////////////////////----->
 
@@ -194,313 +194,6 @@
             <div class="row"><div class="col-sm-12 table-scroll" id="cargar_tabla">
             </div>
         </div>
-
-<!---//////////////////////////////////////--- FIN TABLA---///////////////////////////////////////////////////////----->
-
-    <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
-    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-blue">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel">Editar Chofer</h5>
-            </div>
-
-            <div class="modal-body">
-
-            <!--__________________ FORMULARIO MODAL ___________________________-->
-
-                <form class="formChoferEdit" id="formChoferEdit"  method="POST" autocomplete="off" class="registerForm">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-
-                        <!--Nombre-->
-                            <div class="form-group">
-                                <label for="Nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="" name="e_nombre">
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Apellido-->
-                            <div class="form-group">
-                                <label for="Apellido">Apellido:</label>
-                                <input type="text" class="form-control" id="" name="e_apellido">
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--DNI-->
-                            <div class="form-group">
-                                <label for="DNI">DNI:</label>
-                                <input type="text" class="form-control" id="" name="e_dni">
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Fecha de nacimiento-->
-                            <div class="form-group">
-                                <label for="FechaNacimiento">Fecha de nacimiento:</label>
-                                <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input type="date" class="form-control" id="" name="e_fecha_nacimiento"></div>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Direccion-->
-                            <div class="form-group">
-                                <label for="Direccion">Direccion:</label>
-                                <input type="text" class="form-control" id="" name="e_direccion">
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Celular-->
-                            <div class="form-group">
-                                <label for="Celular">Celular:</label>
-                                <input type="text" class="form-control" id="" name="e_celular">
-                            </div>
-                        <!--_____________________________________________________________-->
-
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-
-                        <!--Codigo-->
-                            <div class="form-group">
-                                <label for="Codigo">Codigo:</label>
-                                <input type="text" class="form-control" id="" name="e_codigo">
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Empresa-->
-                            <div class="form-group">
-                                <label for="Empresa">Empresa:</label>
-                                <input type="text" class="form-control" id="" name="e_empresa">
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Carnet-->
-                            <div class="form-group">
-                                <label for="carnet" >Carnet:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="" name="e_carnet">
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                    foreach ($carnet as $i) {
-                                        echo '<option>'.$i->nombre.'</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Categoria-->
-                            <div class="form-group">
-                                <label for="Categoria">Categoria:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="" name="Categoria">
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                    foreach ($categoria as $i) {
-                                        echo '<option>'.$i->nombre.'</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Vencimiento-->
-                            <div class="form-group">
-                                <label for="Vencimiento" >Vencimiento:</label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="date" class="form-control pull-right" id="" name="e_vencimiento">
-                                </div>
-                                <!-- /.input group -->
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Habilitacion-->
-                            <div class="form-group">
-                                <label for="Habilitacion">Habilitacion:</label>
-                                <input type="text" class="form-control" id="" name="e_habilitacion">
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Adjuntador de imagenes-->
-                            <!--
-                            <form action="cargar_archivo" method="post" enctype="multipart/form-data" >
-                            <input  type="file"  id="imgarch" name="upload" data-required="true">
-                            </form>
-                            -->
-                    ​    <!--_____________________________________________________________-->
-
-                    </div> 
-                </form>
-
-        <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
-            </div>
-            <div class="col-md-12"><hr></div>
-
-            <div class="modal-footer">
-                <div class="col-md-12">
-                    <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary" id="btnsaveEdit">Guardar</button>                    
-                        <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
-
-<!---//////////////////////////////////////--- MODAL INFORMACION ---///////////////////////////////////////////////////////----->
-
-<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-blue">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel">Informacion Chofer</h5>
-            </div>
-
-            <div class="modal-body">
-
-                <!--__________________ FORMULARIO MODAL ___________________________-->
-
-                <form class="formChofer" id="formChofer"  method="POST" autocomplete="off" class="registerForm">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-
-                        <!--Nombre-->
-                            <div class="form-group">
-                                <label for="Nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="Nombre" name="nombre" readonly>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Apellido-->
-                            <div class="form-group">
-                                <label for="Apellido">Apellido:</label>
-                                <input type="text" class="form-control" id="Apellido" name="apellido" readonly>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--DNI-->
-                            <div class="form-group">
-                                <label for="DNI">DNI:</label>
-                                <input type="text" class="form-control" id="DNI" name="dni" readonly>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Fecha de nacimiento-->
-                            <div class="form-group">
-                                <label for="FechaNacimiento">Fecha de nacimiento:</label>
-                                <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input type="date" class="form-control" id="FechaNacimiento" name="fecha_nacimiento" readonly></div>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Direccion-->
-                            <div class="form-group">
-                                <label for="Direccion">Direccion:</label>
-                                <input type="text" class="form-control" id="Direccion" name="direccion" readonly>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Celular-->
-                            <div class="form-group">
-                                <label for="Celular">Celular:</label>
-                                <input type="text" class="form-control" id="Celular" name="celular" readonly>
-                            </div>
-                        <!--_____________________________________________________________-->
-
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-
-                        <!--Codigo-->
-                            <div class="form-group">
-                                <label for="Codigo">Codigo:</label>
-                                <input type="text" class="form-control" id="Codigo" name="codigo" readonly>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Empresa-->
-                            <div class="form-group">
-                                <label for="Empresa">Empresa:</label>
-                                <input type="text" class="form-control" id="Empresa" name="empresa" readonly>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Carnet-->
-                            <div class="form-group">
-                                <label for="carnet">Carnet:</label>
-                                <input type="text" class="form-control" id="carnet" name="carnet" readonly>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Categoria-->
-                            <div class="form-group">
-                                <label for="Categoria">Categoria:</label>
-                                <input type="text" class="form-control" id="" name="" readonly>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Vencimiento-->
-                            <div class="form-group" >
-                                <label for="Vencimiento">Vencimiento:</label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="date" class="form-control pull-right" id="datepicker" name="vencimiento" readonly>
-                                </div>
-                                <!-- /.input group -->
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Habilitacion-->
-                            <div class="form-group">
-                                <label for="Habilitacion">Habilitacion:</label>
-                                <input type="text" class="form-control" id="Habilitacion" name="habilitacion"readonly>
-                            </div>
-                    ​    <!--_____________________________________________________________-->
-
-                        <!--Adjuntador de imagenes-->
-                            <!-- <form action="cargar_archivo" method="post" enctype="multipart/form-data" >
-                                <input  type="file"  id="imgarch" name="upload" data-required="true">
-                            </form> -->
-                    ​    <!--_____________________________________________________________-->
-
-                    </div>
-                </form>
-
-                <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
-            </div>
-            <div class="col-md-12"><hr></div>
-
-            <div class="modal-footer">
-                <div class="col-md-12">
-                    <div class="form-group text-right">
-                        <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!---//////////////////////////////////////--- FIN MODAL INFORMACION ---///////////////////////////////////////////////////////----->
-
-<!--_____________________________________________________________-->
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
@@ -740,3 +433,4 @@
     DataTable($('#tabla_choferes'))
 </script>
 <!--_____________________________________________________________-->
+
