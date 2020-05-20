@@ -1,4 +1,4 @@
-    <!--__________________HEADER TABLA___________________________-->
+    <!--__________________HEADER TABLA__________________-->
     <table id="tabla_choferes" class="table table-bordered table-striped">
         <thead class="thead-dark" bgcolor="#eeeeee">
             <th>Acciones</th>
@@ -11,7 +11,7 @@
             <th>Estado</th>
         </thead>
 
-        <!--__________________BODY TABLA___________________________-->
+        <!--__________________BODY TABLA__________________-->
 
         <tbody>
             <?php
@@ -19,9 +19,10 @@
             {
                 foreach($choferes as $fila)
                 {
-                echo '<tr data-json:'.json_encode($fila).'>';
+                //echo '<tr data-json:'.json_encode($fila).'>';
+                echo "<tr data-json='".json_encode($fila)."'>";
                 echo    '<td>';
-                echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                         <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
                         <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
 
@@ -40,7 +41,7 @@
         </tbody>
     </table>
 
-<!--__________________FIN TABLA___________________________-->
+<!--__________________FIN TABLA__________________-->
 
 <!---///////--- MODAL EDITAR ---///////--->
     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,7 +55,7 @@
                 </div>
                 <div class="modal-body col-md-12 col-sm-12 col-xs-12">
 
-                    <!--__________________ FORMULARIO MODAL ___________________________-->
+                    <!--__________________ FORMULARIO MODAL __________________-->
                     <form method="POST" autocomplete="off" id="frm_chofer" class="registerForm">	
 
                         <!-- Id de transportista y Usuario-->
@@ -69,21 +70,21 @@
                             <!--Nombre-->
                                 <div class="form-group">
                                     <label for="Nombre">Nombre:</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                    <input type="text" class="form-control" id="nombre_edit" name="nombre">
                                 </div>
                             ​    <!--_____________________________________________________________-->
 
                             <!--Apellido-->
                                 <div class="form-group">
                                     <label for="Apellido">Apellido:</label>
-                                    <input type="text" class="form-control" id="apellido" name="apellido">
+                                    <input type="text" class="form-control" id="apellido_edit" name="apellido">
                                 </div>
                             ​    <!--_____________________________________________________________-->
 
                             <!--DNI-->
                                 <div class="form-group">
                                     <label for="DNI">DNI:</label>
-                                    <input type="text" class="form-control" id="dni" name="dni">
+                                    <input type="text" class="form-control" id="dni_edit" name="dni">
                                 </div>
                             ​    <!--_____________________________________________________________-->
 
@@ -94,21 +95,21 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" class="form-control" id="fec_nacimiento" name="fec_nacimiento"></div>
+                                    <input type="date" class="form-control" id="fec_nacimiento_edit" name="fec_nacimiento"></div>
                                 </div>
                             ​    <!--_____________________________________________________________-->
 
                             <!--Direccion-->
                                 <div class="form-group">
                                     <label for="Direccion">Direccion:</label>
-                                    <input type="text" class="form-control" id="direccion" name="direccion">
+                                    <input type="text" class="form-control" id="direccion_edit" name="direccion">
                                 </div>
                             ​    <!--_____________________________________________________________-->
 
                                 <!--Celular-->
                                     <div class="form-group">
                                         <label for="Celular">Celular:</label>
-                                        <input type="text" class="form-control" id="celular" name="celular">
+                                        <input type="text" class="form-control" id="celular_edit" name="celular">
                                     </div>
                                 <!--_____________________________________________________________-->
 
@@ -118,26 +119,33 @@
                                 <!--Codigo-->
                                     <div class="form-group">
                                         <label for="Codigo">Codigo:</label>
-                                        <input type="text" class="form-control" id="codigo" name="codigo">
+                                        <input type="text" class="form-control" id="codigo_edit" name="codigo">
                                     </div>
                             ​    <!--_____________________________________________________________-->
 
                                 <!--Empresa-->
-                                    <div class="form-group">
-                                        <label for="Empresa">Empresa:</label>
-                                        <input type="text" class="form-control" id="tran_id" name="tran_id">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="Empresa">Empresa:</label>
+                                    <select class="form-control select2 select2-hidden-accesible" id="tran_id_edit" name="tran_id">
+                                        <option value="" disabled selected>-Seleccione opcion-</option>
+                                        <?php
+                                            foreach ($empresa as $emp) {
+                                                echo '<option value="'.$emp->tran_id.'">'.$emp->razon_social.'</option>';
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
                             ​    <!--_____________________________________________________________-->
 
                                 <!--Carnet-->
                                     <div class="form-group">
                                         <label for="Carnet" >Carnet:</label>
-                                        <select class="form-control select2 select2-hidden-accesible" id="carnet" name="carnet">
+                                        <select class="form-control select2 select2-hidden-accesible" id="carnet_edit" name="carnet">
                                             <option value="" disabled selected>-Seleccione opcion-</option>
                                             <?php
-                                            foreach ($carnet as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
-                                            }
+                                                foreach ($carnet as $carn) {
+                                                    echo '<option value="'.$carn->tabl_id.'">'.$carn->valor.'</option>';
+                                                }
                                             ?>
                                         </select>
                                     </div>
@@ -146,12 +154,12 @@
                                 <!--Categoria-->
                                     <div class="form-group">
                                         <label for="Categoria">Categoria:</label>
-                                        <select class="form-control select2 select2-hidden-accesible" id="cach_id" name="cach_id">
+                                        <select class="form-control select2 select2-hidden-accesible" id="cach_id_edit" name="cach_id">
                                             <option value="" disabled selected>-Seleccione opcion-</option>
                                             <?php
-                                            foreach ($categoria as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
-                                            }
+                                                foreach ($categoria as $cate) {
+                                                    echo '<option value="'.$cate->tabl_id.'">'.$cate->valor.'</option>';
+                                                }
                                             ?>
                                         </select>
                                     </div>
@@ -164,7 +172,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="date" class="form-control pull-right" id="vencimiento" name="vencimiento">
+                                            <input type="date" class="form-control pull-right" id="vencimiento_edit" name="vencimiento">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -173,7 +181,7 @@
                                 <!--Habilitacion-->
                                     <div class="form-group">
                                         <label for="Habilitacion">Habilitacion:</label>
-                                        <input type="text" class="form-control" id="habilitacion" name="habilitacion">
+                                        <input type="text" class="form-control" id="habilitacion_edit" name="habilitacion">
                                     </div>
                                 ​<!--_____________________________________________________________-->
                                 </div>	
@@ -193,7 +201,7 @@
 <!---///////--- FIN MODAL EDITAR ---///////--->
 
 <!---///////--- MODAL AVISO ---///////--->
-<div class="modal fade" id="modalaviso">		
+    <div class="modal fade" id="modalaviso">	
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-blue">
@@ -223,8 +231,8 @@
 
 
 
-<script>
 
+<script>
 	// llena modal solo lectura
 	$(".btnInfo").on("click", function() {
 		datajson = $(this).parents("tr").attr("data-json");
@@ -256,62 +264,52 @@
 	//llena modal Editar
 	function llenarModal(datajson){
 
-    data = JSON.parse(datajson);
-    $("input#tran_id").val(data.tran_id);			
-    $("input#razon_social_edit").val(data.razon_social);			
-    $("input#direccion_edit").val(data.direccion);
-    $("input#telefono_edit").val(data.telefono);
-    $("input#descripcion_edit").val(data.descripcion);
-    $("input#contacto_edit").val(data.contacto);
-    $("input#registro_edit").val(data.registro);	
-    $("input#cuit_edit").val(data.cuit);
-    $("input#resolucion_edit").val(data.resolucion);	
-    // formateo fecha en input tipo date
-    var fecha_alta = data.fec_alta.slice(0, 10)	// saco hs y minutos
-    Date.prototype.toDateInputValue = (function() {
-        var local = new Date(fecha_alta);
-        // local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-        return local.toJSON().slice(0, 10);
-    });
-    $('input#fec_alta_edit').val(new Date().toDateInputValue());
-    // formateo fecha en input tipo date
-    var fecha_baja = data.fec_baja_efectiva.slice(0, 10)	// saco hs y minutos
-    Date.prototype.toDateInputValue = (function() {
-        var local = new Date(fecha_baja);
-        // local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-        return local.toJSON().slice(0, 10);
-    });
-    $('input#fec_baja_efectiva').val(new Date().toDateInputValue());
+    
 
-    $.ajax({
-            type: "POST",		
-            url: "general/Estructura/Transportista/obtener_RSU",
-            success: function (result) {					
-                    $('.select4').find('option').remove();							
-                    var tipos = JSON.parse(result);		
-                    var opcGuardadas = [];
-                    // recorro todos los tipos de carga 
-                    $.each(tipos, function(key,rsu){
-                            //agrega las opciones de RSU
-                            $('select#tica_edit').append("<option value='" + rsu.tabl_id + "'>" +rsu.valor+"</option");		
-                            // recorro los tipos de carga asociados
-                            $.each(data.tiposCarga.cargas, function(key,rsu_asociado){
-                                if (rsu_asociado.tica_id == rsu.tabl_id) {	
-                                        opcGuardadas.push(rsu.tabl_id);										
-                                }									
-                            });								
-                    });
-                    // seteo as opciones predeterminadas
-                    $('select#tica_edit').val(opcGuardadas);
-            }
+    data = JSON.parse(datajson);
+
+    console.table('json: ' + data);        
+
+
+    $("input#nombre_edit").val(data.nombre);			
+    $("input#apellido_edit").val(data.apellido);			
+    $("input#dni_edit").val(data.documento);
+    $("input#fec_nacimiento_edit").val(data.fec_nacimiento);
+    $("input#direccion_edit").val(data.direccion);
+    $("input#celular_edit").val(data.celular);
+    $("input#codigo_edit").val(data.codigo);	
+    $("select#tran_id_edit option[value="+ data.tran_id+"]").attr("selected",true);
+    $("select#carnet_edit option[value="+ data.carnet+"]").attr("selected",true);
+    $("select#cach_id_edit option[value="+ data.cach_id+"]").attr("selected",true);
+    $("input#vencimiento_edit").val(data.vencimiento);
+    $("input#habilitacion_edit").val(data.habilitacion);
+
+    // formateo fecha en input tipo date
+    var fec_nacimiento = data.fec_nacimiento.slice(0, 10)	// saco hs y minutos
+    Date.prototype.toDateInputValue = (function() {
+        var local = new Date(fec_nacimiento);
+        // local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0, 10);
     });
+    $('input#fec_nacimiento_edit').val(new Date().toDateInputValue());
+
+    // formateo fecha en input tipo date
+    var vencimiento = data.vencimiento.slice(0, 10)	// saco hs y minutos
+    Date.prototype.toDateInputValue = (function() {
+        var local = new Date(vencimiento);
+        // local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0, 10);
+    });
+    $('input#vencimiento_edit').val(new Date().toDateInputValue());
+
+
 }
 
 	//boton guardar
 	$("#btnsave").on("click", function() {
 		//tomo datos del form y hago objeto
     var chofer = new FormData($('#frm_chofer')[0]);
-    chofer = formToObject(chofer);    
+    chofer = formToObject(chofer);
 		var tipo_carga = $("#tica_edit").val();
 		if ($("#frm_chofer").data('bootstrapValidator').isValid()) {
 				$.ajax({
@@ -341,13 +339,13 @@
 		$("#modalaviso").modal('show');
 	});
 
-	//elimina transp y recarga la tabla
+	//elimina chof y recarga la tabla
 	function eliminar(){
-		var tran_id = $("#chof_delete").val();
+		var chof_id = $("#chof_delete").val();
 		$.ajax({
 				type: "POST",
 				data: {chof_id:chof_id},
-				url: "general/Estructura/Camion/Borrar_Camion",
+				url: "general/Estructura/Camion/Borrar_Chofer",
 				success: function(result) {
 
 					$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Camion/Listar_Camion");
