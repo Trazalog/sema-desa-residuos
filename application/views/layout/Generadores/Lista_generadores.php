@@ -20,11 +20,11 @@
         {
             foreach($generadores as $fila)
             {
-            echo '<tr data-json:'.json_encode($fila).'>';
+            echo "<tr data-json='".json_encode($fila)."'>";
             echo    '<td>';
-            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                    <button type="button" title="Info" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
-                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
+            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                    <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                    <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
             echo   '</td>';
             echo    '<td>'.$fila->razon_social.'</td>';
             echo    '<td>'.$fila->zona_id.'</td>';
@@ -174,7 +174,7 @@
     <!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
     
-    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
@@ -190,111 +190,92 @@
 
             <form method="POST" autocomplete="off" id="formGeneradoresEdit" class="registerForm">
                 <div class="modal-body">
-
-                <!--_____________________________________________________________-->
-                <!--Nombre/Razon social-->
-
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Nombre/Razon social">Nombre / Razon social:</label>
-                                <input type="text" class="form-control" id="E_Nombre/Razon social" name="e_nombre_razon">
-                            </div>
-                        </div>                        
-                    </div>
-
-                <!--_____________________________________________________________-->
-                <!--Registro-->
-
-                <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="CUIT">CUIT:</label>
-                                <input type="text" class="form-control" id="E_CUIT" name="e_cuit">
-                            </div>
-                <!--_____________________________________________________________-->
-                <!--Tipo de residuo-->
-
-                            <div class="form-group">
-                            <label for="Dpto" >Departamento:</label>
-                            <select class="form-control select2 select2-hidden-accesible" name="depa_id" id="Departamento">
-                                <option value="" disabled selected>-Seleccione opcion-</option>
-                                <?php
-                            foreach ($Departamentos as $i) {
-                                echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';
-
+                        <div class="col-md-12 ">
+                            <div class="col-md-6 col-sm-6">
+                            
+                                <div class="form-group">
+                                    <label for="e_nombre_razon">Nombre / Razon social:</label>
+                                    <br>
+                                    <input type="text" class="form-control" id="E_Nombre/Razon social" name="e_nombre_razon">
+                                </div>
                                 
-                            }
-                            ?>
-                            </select>
+                                <div class="form-group">
+                                    <label for="e_cuit">CUIT:</label>
+                                    <br>
+                                    <input type="text" class="form-control" id="E_CUIT" name="e_cuit">
+                                </div>
+
                             </div>
-                         </div>
+                            <!-- ___________________________________________________________________________________________ -->
+                            <div class="col-md-6 col-sm-6">
 
-                <!--_____________________________________________________________-->
-                <!--Descripcion-->
+                                <div class="form-group">
+                                    <label for="Dpto" >Departamento:</label>
+                                        <select class="form-control select2 select2-hidden-accesible" name="depa_id" id="Departamento">
+                                        <option value="" disabled selected>-Seleccione opcion-</option>
+                                                <?php
+                                            foreach ($Departamentos as $i) {
+                                                echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Domicilio" >Domicilio:</label>
-                                <input type="text" class="form-control" id="E_Domicilio" name="e_omicilio">
-                            </div>
+                                                
+                                            }
+                                                ?>
+                                        </select>
+                                </div>
 
-                <!--_____________________________________________________________-->
-                <!--Resolucion-->
+                                <div class="form-group">
+                                        <label for="Domicilio" >Domicilio:</label>
+                                        <input type="text" class="form-control" id="E_Domicilio" name="e_omicilio">
+                                </div>
 
-                            <div class="form-group">
-                                <label for="Zonag" >Zona:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="E_Zonag" name="e_zonag">
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                    foreach ($Zonas as $i) {
-                                        echo '<option  value="'.$i->zona_id.'">'.$i->nombre.'</option>';
-                                    }
-                                    ?>
-                                </select>
                             </div>
                         </div>
-                </div>
-
-                <!--_____________________________________________________________-->
-                <!--Fecha de Alta-->
-
-                <div class="row">                        
-                    <div class="col-md-6">
-                        <label for="Numero de registro">Numero de registro:</label>
-                        <input type="text" class="form-control" id="E_Numero de registro" name="e_numero_registro">
                     </div>
-                    <div class="col-md-6">
-                        <label for="Rubro">Rubro:</label>
-                        <input type="text" class="form-control" id="E_Rubro" name="e_rubro">
-                    </div>
-                </div>
+                           <!-- ____________________________________________________________________________________________ -->
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                        <label for="e_numero_registro">Numero de registro:</label>
+                                        <input type="text" class="form-control" id="E_Numero de registro" name="e_numero_registro">  
+                                </div> 
 
-                <!--_____________________________________________________________-->
-                <!--Fecha de Baja-->
+                                <div class="form-group">
+                                    <label for="Zonag" >Zona:</label>
+                                    <br>
+                                        <select class="form-control select2 select2-hidden-accesible" id="E_Zonag" name="e_zonag">
+                                            <option value="" disabled selected>-Seleccione opcion-</option>
+                                                <?php
+                                                foreach ($Zonas as $i) {
+                                                    echo '<option  value="'.$i->zona_id.'">'.$i->nombre.'</option>';
+                                                }
+                                                ?>
+                                        </select>
+                                </div>                                
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="TipoG" >Tipo:</label>
+                                    <br>
+                                         <select class="form-control select2 select2-hidden-accesible" id="E_TipoG"name="e_tipo">
+                                            <option value="" disabled selected>-Seleccione opcion-</option>
+                                            <?php
+                                            foreach ($TipoG as $i) {
+                                                echo '<option>'.$i->nombre.'</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Tipo de residuos" >Tipo de residuos:</label>
+                                    <input type="text" class="form-control" id="E_Tipo de residuos" name="e_tipo_Residuo">
+                                </div>
+                            </div>
 
-
-                        <div class="col-md-6">
-                            <label for="TipoG" >Tipo:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="E_TipoG"name="e_tipo">
-                                <option value="" disabled selected>-Seleccione opcion-</option>
-                                <?php
-                                foreach ($TipoG as $i) {
-                                    echo '<option>'.$i->nombre.'</option>';
-                                }
-                                ?>
-                            </select>
                         </div>
-
-                        <div class="col-md-6">
-                            <label for="Tipo de residuos" >Tipo de residuos:</label>
-                            <input type="text" class="form-control" id="E_Tipo de residuos" name="e_tipo_Residuo">
-                        </div>
                     </div>
-                    
-                    
                 </div>
-                
             </form>
 
             <!--__________________ FIN FORMULARIO MODAL __________________-->
@@ -313,6 +294,14 @@
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
 
 <!--_____________________________________________________________-->
+<script>
+$(".btnEditar").click(function(e){
+    var data = JSON.parse($(this).parents("tr").attr("data-json")); 
+    console.table(data);
+});
+
+
+</script>
 
 <!--Script Bootstrap Validacion.FORMULARIO MODAL EDITAR -->
 <script>
