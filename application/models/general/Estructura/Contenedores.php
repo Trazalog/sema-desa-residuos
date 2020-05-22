@@ -5,22 +5,20 @@
 * @autor SLedesma
 */
 class Contenedores extends CI_Model
-{   	/**
+{       /**
     * Constructor de Clase
     * @param 
     * @return 
     */
-	function __construct()
-	{
-		parent::__construct();
+    function __construct()
+    {
+        parent::__construct();
     }
-
-    
-		/**
-		* Trae listado de Todos los contenedores
-		* @param 
-		* @return array datos de todos los contenedores
-		*/
+        /**
+        * Trae listado de Todos los contenedores
+        * @param 
+        * @return array datos de todos los contenedores
+        */
     function Listar_Contenedor()
     {   
         log_message('INFO','#TRAZA|Contenedores|Listar_Contenedor() >> '); 
@@ -28,12 +26,11 @@ class Contenedores extends CI_Model
         $aux =json_decode($aux["data"]);       
         return $aux->contenedores->contenedor;
     }
-
     /**
-		* Guarda un nuevo contendor
-		* @param array datos del contenedor
-		* @return string data
-		*/    
+        * Guarda un nuevo contendor
+        * @param array datos del contenedor
+        * @return string data
+        */    
     function Guardar_Contenedor($data)
     {
         // var_dump($data);
@@ -44,30 +41,25 @@ class Contenedores extends CI_Model
         $aux =json_decode($aux["data"]);
         return $aux;
     }
-  
      /**
-		* Guarda tipo de carga
-		* @param array datos tipo de carga
-		* @return array tipo de carga
-		*/  
+        * Guarda tipo de carga
+        * @param array datos tipo de carga
+        * @return array tipo de carga
+        */  
     function Guardar_tipo_carga($data)
     {
     log_message('INFO','#TRAZA|Contenedores|Guardar_Tipo_Carga() >> '); 
     $arraycargas["_post_contenedores_tipocarga"]  = $data;  
     $post["_post_contenedores_tipocarga_batch_req"]= $arraycargas;
-       
     log_message('DEBUG','#Contenedores/Guardar_tipo_carga: '.json_encode($post));
     $aux = $this->rest->callAPI("POST",REST."/_post_contenedores_tipocarga_batch_req", $post);
     return $aux;    
-
     }
-
-    
      /**
-		* Actualiza contenedor
-		* @param array datos del contenedor
-		* @return array contendor
-		*/
+        * Actualiza contenedor
+        * @param array datos del contenedor
+        * @return array contendor
+        */
     function actualizar_Contenedor($data){
         log_message('INFO','#TRAZA|Contenedores|actualizar_Contenedor() >> '); 
         $post["put_contenedor"]= $data;
@@ -75,12 +67,11 @@ class Contenedores extends CI_Model
         $aux = $this->rest->callAPI("PUT",REST."/contenedores", $post);
         return $aux;
     }
-   
      /**
-		* Eliminar contenedor
-		* @param array datos del contenedor
-		* @return string estatus del servicio
-		*/
+        * Eliminar contenedor
+        * @param array datos del contenedor
+        * @return string estatus del servicio
+        */
     function eliminar_Contenedor($data){
          log_message('INFO','#TRAZA|Contenedores|eliminar_Contenedor() >> '); 
          $post["_put_contenedores_estado"] = $data;
@@ -92,12 +83,11 @@ class Contenedores extends CI_Model
          $aux =json_decode($aux["status"]);
          return $aux;
     }
-
      /**
-		* Borra tipo carga del contenedor
-		* @param array datos del tipo de carga del contenedor
-		* @return string estatus del servicio
-		*/    
+        * Borra tipo carga del contenedor
+        * @param array datos del tipo de carga del contenedor
+        * @return string estatus del servicio
+        */    
     function borrar_tipo_Carga($data){
         log_message('INFO','#TRAZA|Contenedores|borrar_tipo_Carga() >> '); 
         $post2["_put_contenedores_tipocarga_estado"] = $data;
@@ -106,12 +96,11 @@ class Contenedores extends CI_Model
         $aux =json_decode($aux2["status"]);
         return $aux;
     }
-
     /**
-		* Obtiene el estado del contenedor 
-		* @param 
-		* @return array estado 
-		*/  
+        * Obtiene el estado del contenedor 
+        * @param 
+        * @return array estado 
+        */  
     function obtener_Estados()
     {
         log_message('INFO','#TRAZA|Contenedores|obtener_Estado() >> '); 
@@ -119,128 +108,27 @@ class Contenedores extends CI_Model
         $aux =json_decode($aux["data"]);
         return $aux->valores->valor;
     }
-
     /**
-		* Obtiene el tipo de carga del contenedor 
-		* @param 
-		* @return array tipo
-		*/
+        * Obtiene el tipo de carga del contenedor 
+        * @param 
+        * @return array tipo
+        */
     function obtener_Tipo_Carga(){
         log_message('INFO','#TRAZA|Contenedores|obtener_Tipo_Carga() >> '); 
         $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
         $aux =json_decode($aux["data"]);
         return $aux->valores->valor;
     }
-   
-    // __________________________________________________________
-
-// ---------------------- Funciones  SOLICITUD PEDIDO mover a SolicitudPedidos ----------------------
-
-    // Funcion Listar SOLICITUD PEDIDO (MODIFICAR)
-		
-		function Listar_Solicitudes_pedido()
-    {
-        $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-        $aux =json_decode($aux["data"]);       
-        return $aux->solicitudes->solicitud;
-    }
-    // __________________________________________________________
-
-    function Listar_Residuos()
-    {
-        $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-        $aux =json_decode($aux["data"]);       
-        return $aux->residuos->residuo;
-    }
-    // __________________________________________________________
-
-    // Funcion Guardar  SOLICITUD PEDIDO
-    function Guardar_Solicitud_pedido($data)
-    {
-        $post["post_solicitud"] = $data;
-        log_message('DEBUG','#Contenedores/Guardar_Solicitud_pedido: '.json_encode($post));
-        $aux = $this->rest->callAPI("POST",REST."/RECURSO", $post);
-        $aux =json_decode($aux["status"]);
-        return $aux;
-    }
-    // __________________________________________________________
-
-
-    
-
-
-
-    function obtener_Contenedores()
-    {
-        $aux = $this->rest->callAPI("GET",REST."/contenedores");
-        $aux =json_decode($aux["data"]);
-        return $aux->contenedores->contenedor;
-    }
- 
-    function obtener_tiporesiduos()
-    {
-        $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-        $aux =json_decode($aux["data"]);
-        return $aux->residuos->residuo;
-    }
-
-
-    // __________________________________________________________
-
-    // Funcion Obtener  Tipo residuos
-     function Obtener_empresas()
-    {
-        $aux = $this->rest->callAPI("GET",REST."/transportistas");
-        $aux =json_decode($aux["data"]);
-        return $aux->transportistas->transportista;
-    }
-    // __________________________________________________________
-
-
-    // Funcion Obtener  Habilitacion
+    /**
+        * Obtiene los tipos de habilitaciones que posee los contendores
+        * @param 
+        * @return array data
+        */
    function Obtener_Habilitacion()
     {
+        log_message('INFO','#TRAZA|Contenedores|Obtener_Habilitacion() >> '); 
         $aux = $this->rest->callAPI("GET",REST."/tablas/habilitacion_contenedor");
         $aux =json_decode($aux["data"]);
         return $aux->valores->valor;
     }
-    // __________________________________________________________
-
-// ---------------------- Funciones  SOLICITUD RETIRO ----------------------
-
-	// Funcion Listar SOLICITUD RETIRO (MODIFICAR)
-
-	// function Listar_Solicitudes_retiro()
-	// {
-			
-	//     $aux = $this->rest->callAPI("GET",REST."/RECURSO");
-	//     $aux =json_decode($aux["data"]);       
-	//     return $aux->->;
-	// }
-
-	//Funcion Guardar  SOLICITUD RETIRO
-	function Guardar_SolicitudRetiro($data){
-
-	    $aux = $this->rest->callAPI("POST",REST."/RECURSO", $datos);
-	    $aux =json_decode($aux["status"]);
-	    return $aux;	
-
-	}
-
-
-	// ---------------------- FUNCIONES OBTENER ----------------------
-
-	// Funcion proximo num de solicitud de retiro	
-	function solicitudRetiroProx(){
-		$aux = $this->rest->callAPI("GET",REST."/solicitudRetiro/prox");
-		$aux =json_decode($aux["data"]);   
-		return $aux->respuesta->nuevo_sore_id;
-	}
-	
-	// Funcion Obtener Transportista
-	
-
-	
-   
-
 }

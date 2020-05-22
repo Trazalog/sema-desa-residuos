@@ -7,20 +7,20 @@
 */
 class Vehiculos extends CI_Model
     {
-        /**
-        * Constructor de Clase
-        * @param 
-        * @return 
-        */
-        function __construct()
-        {
-            parent::__construct();
-        }
+            /**
+            * Constructor de Clase
+            * @param 
+            * @return 
+            */
+            function __construct()
+            {
+                parent::__construct();
+            }
 
             /**
             * Trae listado de Todos los Vehiculos
             * @param 
-            * @return 
+            * @return string data
             */
             function Listar_Vehiculo()
             {
@@ -29,25 +29,53 @@ class Vehiculos extends CI_Model
                 return $aux->vehiculos->vehiculo;
             }
 
-        // Funcion Guardar Vehiculo
-            function Guardar_Vehiculo($data)
+             /**
+            * Guarda un nuevo vehiculo
+            * @param  string data
+            * @return string status
+            */
+            function Guardar_Vehiculos($data)
             {
                 $post["post_vehiculo"] = $data;
-                log_message('DEBUG','#Vehiculos/Guardar_Vehiculo:'.json_encode($post));
+                log_message('DEBUG','#Vehiculos/Guardar_Vehiculos:'.json_encode($post));
                 $aux = $this->rest->callAPI("POST",REST."/vehiculos", $post);
                 $aux =json_decode($aux["status"]);
                 return $aux;
             }
-        //________________________________________________________
+        
+            /**
+            * obtiene los transportistas
+            * @param 
+            * @return string data
+            */
+            public function Obtener_Transportista()
+            {
+                $aux = $this->rest->callAPI("GET",REST."/transportistas");
+                $aux =json_decode($aux["data"]);
+                return $aux->transportistas->transportista;
+            }
 
-        // ---------------------- FUNCIONES OBTENER ----------------------
+             /**
+            * Elimina un vehiculo dado su id
+            * @param  string equi_id , numero
+            * @return string status
+            */
+            function Borrar_vehiculo($data){
+                log_message('INFO','#TRAZA|Vehiculos|Borrar_vehiculo() >> '); 
+                $post["_delete_vehiculos"]= $data;
+                log_message('DEBUG','#Vehiculos/#Borrar_vehiculo: '.json_encode($post));
+                $aux = $this->rest->callAPI("DELETE",REST."/vehiculos", $post);
+                $aux =json_decode($aux["status"]);
+                return $aux;
+            }
 
-        // Funcion Obtener condicion vehiculo
-        public function obtener_Condicion()
-        {
-            $aux = $this->rest->callAPI("GET",REST."/transportistas");
-            $aux =json_decode($aux["data"]);
-            return $aux->condiciones->condicion;
-        }
+            function actualizar_Vehiculo($data){
+                log_message('INFO','#TRAZA|Vehiculos|Actualizar_Vehiculo() >> ');   
+                $post["_put_vehiculos"] = $data;
+                log_message('DEBUG','#Vehiculos/Actualizar_Vehiculo: '.json_encode($post));
+                $aux = $this->rest->callAPI("PUT",REST."/vehiculos", $post);
+                $aux =json_decode($aux["status"]);
+                return $aux;
+            }
     }
 ?>
