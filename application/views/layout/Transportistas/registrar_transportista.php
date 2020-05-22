@@ -80,7 +80,7 @@
 								</div>
 							<!--_____________________________________________-->
 
-							<!--contacto-->
+							<!--cuit-->
 								<div class="form-group">
 										<label for="Contacto" >Cuit:</label>
 										<div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>

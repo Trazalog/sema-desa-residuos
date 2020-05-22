@@ -718,13 +718,6 @@
 	}
 //////// Fin Tratamiento de Imagen en Registrar nuevo circuito
 
-
-
-
-
-
-
-
 ////////// 	Guardado	//////////
 
 	// carga tabla genaral de circuitos
@@ -937,7 +930,6 @@
 
 ////////// 	Fin Guardado	//////////
 
-
 ////// funciones imagen EDICION
 	//cada vez que carga una imagen	
 	async function convert_Edit(){       
@@ -1045,6 +1037,5 @@
 		});
 	}
 ////// fin funciones imagen EDICION
-
 
 </script>

@@ -139,13 +139,13 @@ define('DEF_VIEW','traz-comp-bpm/Tarea');
 |
 */
 
-define('REST', '10.142.0.3:8280/services/semaresiduosDS');
-//define('REST', '10.142.0.3:8280/services/ProduccionDataService/');
-define('RESTPT', '10.142.0.3:8280/services/produccionTest/');
-define('REST_TDS', '10.142.0.3:8280/services/TrazabilidadDataService/');
-define('REST2', '10.142.0.3:8280/services/ProduccionDataService');
-define('REST3', '10.142.0.3:8280/services/produccionTest');
-define('REST4', '10.142.0.3:8280/services/TrazabilidadDataService');
+define('REST', 'http://10.142.0.3:8280/services/semaresiduosDS');
+//define('REST', 'http://10.142.0.3:8280/services/ProduccionDataService/');
+define('RESTPT', 'http://10.142.0.3:8280/services/produccionTest/');
+define('REST_TDS', 'http://10.142.0.3:8280/services/TrazabilidadDataService/');
+define('REST2', 'http://10.142.0.3:8280/services/ProduccionDataService');
+define('REST3', 'http://10.142.0.3:8280/services/produccionTest');
+define('REST4', 'http://10.142.0.3:8280/services/TrazabilidadDataService');
 
 
 define('HOST', 'http://localhost/');
