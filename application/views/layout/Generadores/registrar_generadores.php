@@ -193,7 +193,194 @@
         </form>
     </div>
 </div>
+
 </div>
+<!---//////////////////////////////////////--- MODAL EDITAR ---///////////////////////////////////////////////////////----->
+
+    
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title titulo" id="exampleModalLabel">Editar Generador</h5>
+            </div>
+
+            <div class="modal-body">
+
+            <!--__________________ FORMULARIO MODAL __________________-->
+
+            <form method="POST" autocomplete="off" id="formGeneradoresEdit" class="registerForm">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="col-md-6 col-sm-6">
+                            
+                                <div class="form-group">
+                                    <label for="e_nombre_razon">Nombre / Razon social:</label>
+                                    <br>
+                                    <input type="text" class="form-control habilitar" id="E_Nombre_Razon_social" name="e_nombre_razon">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="e_cuit">CUIT:</label>
+                                    <br>
+                                    <input type="text" class="form-control habilitar" id="E_CUIT" name="e_cuit">
+                                </div>
+                                <div class="form-group">
+                                    <label for="e_lat">Latitud:</label>
+                                    <br>
+                                    <input type="text" class="form-control habilitar" id="E_lat" name="e_lat">
+                                </div>
+                                
+                               
+
+                            </div>
+                            <!-- ___________________________________________________________________________________________ -->
+                            <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                    <label for="TipoG" >Tipo de residuo:</label>
+                                    <br>
+                                         <select class="form-control select2 select2-hidden-accesible habilitar" id="E_TipoResiduo"name="e_tipo">
+                                            <option value="" disabled selected>-seleccione opcion-</option>
+                                            <?php
+                                            foreach ($Tiporesiduo as $d) {
+                                                echo '<option  value="'.$d->tabl_id.'">'.$d->valor.'</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="Dpto" >Departamento:</label>
+                                        <select class="form-control select2 select2-hidden-accesible" name="depa_id" id="Departamento">
+                                        <option value="" disabled selected>-Seleccione opcion-</option>
+                                                <?php
+                                            foreach ($Departamentos as $i) {
+                                                echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';
+
+                                                
+                                            }
+                                                ?>
+                                        </select>
+                                </div> -->
+
+                                <div class="form-group">
+                                        <label for="Domicilio" >Domicilio:</label>
+                                        <input type="text" class="form-control habilitar" id="E_Domicilio" name="e_omicilio">
+                                </div>
+                                <div class="form-group">
+                                    <label for="e_long">longitud:</label>
+                                    <br>
+                                    <input type="text" class="form-control habilitar" id="E_long" name="e_long">
+                                </div>
+                                
+                                    <input type="text" class="form-control habilitar" id="id_gen"  style="display:none">
+                            
+
+                            </div>
+                        </div>
+                    </div>
+                           <!-- ____________________________________________________________________________________________ -->
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                        <label for="e_numero_registro">Numero de registro:</label>
+                                        <input type="text" class="form-control habilitar" id="E_Numero_registro" name="e_numero_registro">  
+                                </div> 
+
+                                <div class="form-group">
+                                    <label for="Zonag" >Zona:</label>
+                                    <br>
+                                        <select class="form-control select2 select2-hidden-accesible habilitar" id="E_Zonag" name="e_zonag">
+                                            <option value="" disabled selected>-seleccione opcion-</option>
+                                                <?php
+                                                foreach ($Zonagenerador as $j) {
+                                                    echo '<option  value="'.$j->zona_id.'">'.$j->nombre.'</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                </div>                                
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="TipoG" >Tipo de generador:</label>
+                                    <br>
+                                         <select class="form-control select2 select2-hidden-accesible habilitar" id="E_TipoG"name="e_tipo">
+                                            <option value="" disabled selected>-seleccione opcion-</option>
+                                            <?php
+                                            foreach ($Tipogenerador as $c) {
+                                                echo '<option  value="'.$c->tabl_id.'">'.$c->valor.'</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TipoG" >Tipo de rubro:</label>
+                                    <br>
+                                         <select class="form-control select2 select2-hidden-accesible habilitar" id="E_TipoR"name="e_tipo">
+                                            <option value="" disabled selected></option>
+                                            <?php
+                                            foreach ($Rubro as $e) {
+                                                echo '<option  value="'.$e->tabl_id.'">'.$e->valor.'</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                </div>
+                               
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!--__________________ FIN FORMULARIO MODAL __________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btnsave_e">Guardar</button>
+                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---//////////////////////////////////////--- FIN MODAL EDITAR ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL BORRAR ---///////////////////////////////////////////////////////----->
+    
+<div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel"> Eliminar Generador</h5>
+            </div>
+            <div class="modal-body">
+
+           <input type="text" id="id_generador" style="display:none">
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletegenerador()">Aceptar</button>
+                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL BORRAR ---///////////////////////////////////////////////////////----->
 
 <!---//////////////////////////////////////---BOX TABLA ---///////////////////////////////////////////////////////----->
 
@@ -363,9 +550,9 @@ $("#btnadd").on("click", function() {
 
 <!---/////////////////////////--- FIN BOOTSRAP VALIDATOR---/////////////////////////----->
 
-<!--_____________________________________________________________-->
 
-<!-- Funcion GUARDAR CIRCUITO -->
+
+<!-- Funcion GUARDAR Generador -->
 <script>
     $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Generador/Listar_Generador");
 
@@ -375,13 +562,11 @@ $("#btnadd").on("click", function() {
 
             var datos = new FormData($('#formGeneradores')[0]);
             datos = formToObject(datos);
-            // datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
             datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
             datos.lat = "110";
             datos.lng = "220";
             console.table(datos);
 
-            //--------------------------------------------------------------
 
             if ($("#formGeneradores").data('bootstrapValidator').isValid()) {
                 $.ajax({
@@ -402,13 +587,83 @@ $("#btnadd").on("click", function() {
                             $("#botonAgregar").removeAttr("disabled");
 
                         } else {
-                            //console.log(r);
+                          
                             alertify.error("error al agregar");
                         }
                     }
                 });
             }
         }
+
+// Funcion Guardar lo que se edito del modal Edit
+        $("#btnsave_e").click(function(e){
+        var generador = new FormData();
+        generador = formToObject(generador);
+        generador.sotr_id = $("#id_gen").val();
+        generador.razon_social =  $("#E_Nombre_Razon_social").val();
+        generador.cuit =  $("#E_CUIT").val();
+        generador.domicilio =  $("#E_Domicilio").val();
+        generador.num_registro =  $("#E_Numero_registro").val();
+        generador.lat =  $("#E_lat").val();
+        generador.lng =  $("#E_long").val();
+        generador.usuario_app = "hugoDS";
+        generador.zona_id =  $("#E_Zonag").val();
+        generador.rubr_id =  $("#E_TipoR").val();
+        generador.tist_id =  $("#E_TipoG").val(); // este es el tipo de generador
+        generador.tica_id =  $("#E_TipoResiduo").val();
+        console.table(generador);
+  
+        $.ajax({
+                type: "POST",
+                data: {generador},
+                url: "general/Estructura/Generador/Actualizar_Generador",
+                success: function (r) {
+                    
+                    console.table(r);
+                    if (r == "ok") {
+                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Generador/Listar_Generador");
+                        alertify.success("Actualizado con exito");
+                        $("#modalEdit").modal('hide');                
+
+                    } else {
+                        
+                        alertify.error("error al actualizar");
+                    }
+                }
+            });
+
+    });
+
+//Funcion para elimiar generador 
+function deletegenerador (){
+    var elimina = new FormData();
+        elimina = formToObject(elimina);
+        elimina.sotr_id = $("#id_generador").val();
+        elimina.eliminado = 1;
+        console.table(elimina);
+        $.ajax({
+                type: "POST",
+                data: {elimina},
+                url: "general/Estructura/Generador/Eliminar_Generador",
+                success: function (r) {
+                    console.table(r);
+                    if(r == "ok") {
+                        $('#btndelete').hide();
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Generador/Listar_Generador");
+                         alertify.success("Contenedor Eliminado con exito");
+                         $("#modalBorrar").modal('hide');
+                    } else {                        
+                        alertify.error("error al Eliminar");
+                        
+                    }
+                }
+            });
+
+
+
+}
+
+
 </script>
 <!--_____________________________________________________________-->
 
@@ -433,6 +688,9 @@ $("#btnadd").on("click", function() {
         $('#chofer').find('option').remove();
     });
 </script>
+
+
+
 <!--_____________________________________________________________-->
 
 <!-- script Datatables -->
