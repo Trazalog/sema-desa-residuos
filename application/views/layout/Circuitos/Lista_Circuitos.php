@@ -37,158 +37,120 @@
 <script>
 	
 	// llena modal solo lectura
-	$(".btnInfo").on("click", function(e){
-		datajson = $(this).parents("tr").attr("data-json");
-		llenarModal(datajson);	
-		blockEdicion();
-	});
+		$(".btnInfo").on("click", function(e){
+			datajson = $(this).parents("tr").attr("data-json");
+			llenarModal(datajson);	
+			blockEdicion();
+		});
 	// llena modal para edicion
-	$(".btnEditar").on("click", function(e) {
-		datajson = $(this).parents("tr").attr("data-json");
-		llenarModal(datajson);
-		habilitarEdicion();
-	});
-	// remueve registro de lista temporal de puntos criticos
-	$(document).on("click", ".fa-minus", function() {             
-			$(this).parents("tr").remove();
-	});
+		$(".btnEditar").on("click", function(e) {
+			datajson = $(this).parents("tr").attr("data-json");
+			llenarModal(datajson);
+			habilitarEdicion();
+		});
+	// remueve registro de taba temporal 
+		$(document).on("click",".fa-minus",function() {
+			$('#tabla_puntos_criticos_edit').DataTable().row( $(this).closest('tr') ).remove().draw();
+		});
 	// bloquea campos en modal
-	function blockEdicion(){
-		$(".habilitar").attr("readonly","readonly");
-		$(".selec_habilitar").attr('disabled', 'disabled');
-		$("#tica_edit").prop("disabled", true); 
-		$("#btn_agregar_edit").hide();
-		$(".fa-minus").click(false);	
-		$('#form_editar_pto_critico').hide();
-		$('#img_file').attr('disabled', 'disabled');
-	}
+		function blockEdicion(){
+			$(".habilitar").attr("readonly","readonly");
+			$(".selec_habilitar").attr('disabled', 'disabled');
+			$("#tica_edit").prop("disabled", true); 
+			$("#btn_agregar_edit").hide();
+			$(".fa-minus").click(false);	
+			$('#form_editar_pto_critico').hide();
+			$("#img_file").attr("disabled", "disabled");
+		}
 	// desbloquea campos en modal
-	function habilitarEdicion(){
-		$('.habilitar').removeAttr("readonly");//
-		$(".selec_habilitar").removeAttr("disabled");
-		$("#tica_edit").prop("disabled", false); 
-		$("#btn_agregar_edit").show();
-		$(".fa-minus").click(true);
-		$('#form_editar_pto_critico').show();	
-		$('#img_file').removeAttr('disabled');
-	}	
+		function habilitarEdicion(){
+			$('.habilitar').removeAttr("readonly");//
+			$(".selec_habilitar").removeAttr("disabled");
+			$("#tica_edit").prop("disabled", false); 
+			$("#btn_agregar_edit").show();
+			$(".fa-minus").click(true);
+			$('#form_editar_pto_critico').show();	
+			$("#img_file").removeAttr("disabled");
+		}	
 	// llena modal Editar
-	function llenarModal(datajson){
+		function llenarModal(datajson){
 
-		data = JSON.parse(datajson); 	
-		// lena los inputs
-		$("#zona_id_edit").val(data.zona_id);
-		$("#circ_id_edit").val(data.circ_id);
-		$("input#codigo_edit").val(data.codigo);	
-		$("input#descripcion_edit").val(data.descripcion);
-		$("#vehi_id_edit option[value="+ data.vehi_id +"]").attr("selected",true);
-		$("#chof_id_edit option[value="+ data.chof_id +"]").attr("selected",true);
+			data = JSON.parse(datajson); 	
+			// lena los inputs
+			$("#zona_id_edit").val(data.zona_id);
+			$("#circ_id_edit").val(data.circ_id);
+			$("input#codigo_edit").val(data.codigo);	
+			$("input#descripcion_edit").val(data.descripcion);
+			$("#vehi_id_edit option[value="+ data.vehi_id +"]").attr("selected",true);
+			$("#chof_id_edit option[value="+ data.chof_id +"]").attr("selected",true);
 
-		// lena input tipo RSU 
-		llenarSelectRsu(data.tiposCarga.carga);
-		// llena tabal de ptos criticos para editar
-		llenarTablaPuntosEdit(data.puntos.punto);
-		// trae imagen si hay aguna guardada
-		llenarImagen(data.circ_id);
-	}	
+			// lena input tipo RSU 
+			llenarSelectRsu(data.tiposCarga.carga);
+			// llena tabal de ptos criticos para editar
+			llenarTablaPuntosEdit(data.puntos.punto);
+			// trae imagen si hay aguna guardada
+			llenarImagen(data.circ_id);
+		}	
 	// lena select multiple con RSU y selcciona los guardados
-	function llenarSelectRsu(tipos){	
-			
-		var opcGuardadas = [];		
-		// recorro los tipos de carga asociados		
-		$.each(tipos, function(key,rsu_asociado){				
-			opcGuardadas.push(rsu_asociado.tica_id);		
-		});					
-		// seteo as opciones predeterminadas
-		$('#tica_edit').val(opcGuardadas);
-		$('#tica_edit').trigger('change');	
-	}
-	// function llenarSelectRsu(){		
-		// 	$.ajax({
-		// 			type: "POST",		
-		// 			url: "general/Estructura/Transportista/obtener_RSU",
-		// 			success: function (result) {					
-		// 					$('#tica_edit').find('option').remove();							
-		// 					var tipos = JSON.parse(result);					
-		// 					var opcGuardadas = [];
-		// 					// recorro todos los tipos de carga 
-		// 					$.each(tipos, function(key,rsu){
-		// 							//agrega las opciones de RSU
-		// 							$('#tica_edit').append("<option value='" + rsu.tabl_id + "'>" +rsu.valor+"</option");		
-		// 							// recorro los tipos de carga asociados
-		// 							$.each(data.tiposCarga.carga, function(key,rsu_asociado){
-		// 								if (rsu_asociado.tica_id == rsu.tabl_id) {	
-		// 										opcGuardadas.push(rsu.tabl_id);										
-		// 								}									
-		// 							});								
-		// 					});
-		// 					// seteo as opciones predeterminadas
-		// 					$('#tica_edit').val(opcGuardadas);
-		// 			}
-		// 	});
-	// }
-	// agrega puntos criticos guardados a la tabla para guardar  
-	function llenarTablaPuntosEdit(data) {
+		function llenarSelectRsu(tipos){	
+				
+			var opcGuardadas = [];		
+			// recorro los tipos de carga asociados		
+			$.each(tipos, function(key,rsu_asociado){				
+				opcGuardadas.push(rsu_asociado.tica_id);		
+			});					
+			// seteo as opciones predeterminadas
+			$('#tica_edit').val(opcGuardadas);
+			$('#tica_edit').trigger('change');	
+		}	
+	// agrega puntos criticos guardados a la tabla para guardar 
+	function llenarTablaPuntosEdit(data) {	
 
-		//$('#tabla_puntos_criticos_edit tbody tr').remove();
+		 var table = $('#tabla_puntos_criticos_edit').DataTable();	
+		 //$('#tabla_puntos_criticos_edit').DataTable().columns.adjust();
+		 table.clear().draw();
 
-		// var selector = $("#tabla_puntos_criticos_edit tbody").DataTable();
-		// selector.find('tr.row_edit').remove();
+		$.each(data,function(index,element){	
 
-		//FIXME: ARREGLAR EL DUPLICADO DE REGISTROS
-
-		var table = $('#tabla_puntos_criticos_edit').DataTable();	
-	
-		$.each(data,function(index,element){
-			//console.info('nombre-> ' + element.nombre);
-			var row =  "<tr class='row_edit' data-json='" +JSON.stringify(element)+ "'>" +
-					"<td> <i class='fa fa-fw fa-minus text-light-blue tablamateriasasignadas_borrar' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
+			console.info('nombre-> ' + element.nombre);
+			if(element.nombre){
+				var row =  "<tr class='row_edit row_borrar' data-json='" +JSON.stringify(element)+ "'>" +
+					"<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
 					"<td>"+ element.nombre +"</td>" +
 					"<td>"+ element.descripcion +"</td>" +
 					"<td>"+ element.lat +"</td>" +
 					"<td>"+ element.lng +"</td>" +            
 					"</tr>";
-			table.row.add($(row)).draw();  
-		});
+				table.row.add($(row)).draw();  
+			}			
+		});		
 
-
-			// var selector = $("#tica_id");
-			// selector.find('option').remove();
-			// selector.append('<option value="" disabled selected>-Seleccione opcion-</option>');
-			// respuesta.forEach(function(e) {
-			// 	selector.append("<option value='" + e.tica_id + "'>" + e.valor + "</option");					
-			// });
-
-
-		
-		//$('#formPuntos')[0].reset();          
 	}
-	// agrega punto critico a la tabla para guardar  
+
+	// agrega datos de un punto critico a la tabla temporal para editar
 	function Agregar_punto_edit() {
 
-		var table = $('#tabla_puntos_criticos_edit').DataTable();	
-		var data = new FormData($('#formPuntos_edit')[0]);
-		data = formToObject(data);
-		var row =  "<tr class='row_edit' data-json=" +JSON.stringify(data)+ ">" +
-					"<td> <i class='fa fa-fw fa-minus text-light-blue tablamateriasasignadas_borrar' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
-					"<td>"+ data.nombre +"</td>" +
-					"<td>"+ data.descripcion +"</td>" +
-					"<td>"+ data.lat +"</td>" +
-					"<td>"+ data.lng +"</td>" +            
+		var table_edit = $('#tabla_puntos_criticos_edit').DataTable();	
+		var data_edit = new FormData($('#formPuntos_edit')[0]);
+		data_edit = formToObject(data_edit);
+		var row =  "<tr class='row_edit row_borrar' data-json=" +JSON.stringify(data_edit)+ ">" +
+					"<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
+					"<td>"+ data_edit.nombre +"</td>" +
+					"<td>"+ data_edit.descripcion +"</td>" +
+					"<td>"+ data_edit.lat +"</td>" +
+					"<td>"+ data_edit.lng +"</td>" +            
 					"</tr>";
-			table.row.add($(row)).draw(); 
-			$('#formPuntos_edit')[0].reset();  
+		table_edit.row.add($(row)).draw(); 
+		$('#formPuntos_edit')[0].reset();  
 	}	
+
 	// guarda Edicion completa		
 	$("#btnsave_edit").on("click", function() {
 
 		// tomo los datos de circuito editados
 		var circuito_edit = new FormData($('#frm_circuito_edit')[0]);
-    circuito_edit = formToObject(circuito_edit);
-		
+    circuito_edit = formToObject(circuito_edit);		
 		circuito_edit.imagen = $("#input_aux_img64").val(); 
-		console.table('foto en guardar edit' + circuito_edit.imagen);
-
 		
 		// tipos de carga asociados
 		var tipoCarga = $("#tica_edit").val();
@@ -200,6 +162,8 @@
 				ptos_criticos_edit.push(getJson(e));
 		});	
 
+		console.table('ptos criticos' + rows);
+
 		$.ajax({
 				type: 'POST',
 				data:{ circuito_edit, tica_edit, ptos_criticos_edit},
@@ -207,7 +171,7 @@
 				success: function(result) {
 							if(result == 'ok'){
 								$("#cargar_tabla").load(
-												"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Lista_Circuitos"
+												"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
 										);
 								alertify.success("Circuito editado con exito...");
 							}else{
@@ -261,7 +225,6 @@
 										$('#zonaAsociar').append("<option value='" + zona.zona_id + "'>" +zona.zona_nom+"</option");	
 									});
 							}
-
 				},
 				error: function(result){
 									
@@ -297,7 +260,7 @@
 		});
 
 	});
-	// Levanta modal eliminar
+	// Levanta modal prevencion eliminar circuito
 	$(".btnEliminar").on("click", function() {
 		datajson = $(this).parents("tr").attr("data-json");
 		data = JSON.parse(datajson);
@@ -444,8 +407,6 @@
 	}
 ////// fin funciones imagen EDICION
 
-	// inicializo datatable edicion
-	DataTable('#tabla_puntos_criticos_edit');
   // script Datatables
   DataTable($('#tabla_circuitos'));	
   // Initialize Select2 Elements

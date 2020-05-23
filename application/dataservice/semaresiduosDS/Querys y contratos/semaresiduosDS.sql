@@ -434,14 +434,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
       ]
     }
   }
-//FIXME: PUNTO Y CIRCUITOS
-- no se puede duplicar el punto critico 
-- no se puede borrar la relacion entre pc y circuitos 
-  x clave foranea en circuitos_puntos_criticos
 
-alternativas
-- update de punto critico de a uno, pero se cual esta y cual no 
-  si agregue alguno o quite otro
 
 -- circuito->Puntos Criticos(deletePuntosPorCircuito) hacer que elimine fisicamete a relacion
   -- borra la relacion entre puntos criticos y  circuitos
@@ -1346,6 +1339,7 @@ alternativas
   metodo: get
   select sotr_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tist_id, tica_id
   from log.solicitantes_transporte
+  where eliminado = 0
 
   {
     "solicitantes_transporte": {

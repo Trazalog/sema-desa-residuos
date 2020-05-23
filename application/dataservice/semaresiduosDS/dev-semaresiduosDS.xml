@@ -89,7 +89,7 @@
       <param name="tran_id" sqlType="STRING"/>
    </query>
    <query id="solicitanteTransporteGet" useConfig="semaresiduosDS">
-      <sql>select sotr_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tist_id, tica_id&#xd;  from log.solicitantes_transporte</sql>
+      <sql>select sotr_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tist_id, tica_id&#xd;  from log.solicitantes_transporte&#xd;where eliminado = 0</sql>
       <result outputType="json">{&#xd;    "solicitantes_transporte": {&#xd;        "solicitante": [&#xd;          {&#xd;            "sotr_id": "$sotr_id",&#xd;            "razon_social": "$razon_social",&#xd;            "cuit": "$cuit",&#xd;            "domicilio": "$domicilio",&#xd;            "num_registro": "$num_registro",&#xd;            "lat": "$lat",&#xd;            "lng": "$lng",&#xd;            "zona_id": "$zona_id",&#xd;            "rubr_id": "$rubr_id",&#xd;            "tist_id": "$tist_id",&#xd;            "tica_id": "$tica_id"	            &#xd;          }&#xd;        ]&#xd;    }&#xd;  }</result>
    </query>
    <query id="solicitanteTransporteSet" useConfig="semaresiduosDS">
