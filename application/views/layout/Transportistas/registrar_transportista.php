@@ -542,20 +542,25 @@
 											</div>											
 											<!--______-->
 										</div>
-									</div>	
-
+									</div>										
+									
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:10px;">
 									
-										<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-											<!-- Cuit -->
+										<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+											<!-- Tipo de Residuos -->
 												<div class="form-group">
 													<label for="tica_edit">Tipos de residuo:</label>		
-													<select class="form-control habilitar select4" multiple="multiple"  data-placeholder="Seleccione tipo residuo" id="tica_edit" style="min-width: 30px; !important">
+													<select class="form-control habilitar select4" multiple="multiple"  data-placeholder="Seleccione tipo residuo" id="tica_edit" style="width: 100%; !important">
+														<?php
+																		foreach ($Rsu as $i) {     
+																				echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+																		}
+																?>
 													</select>
 												</div>											
 											<!--______-->
 										</div>
-									</div>	
+									</div>
 																		
 								</form>
 							<!--__________________ FIN FORMULARIO MODAL ___________________________-->
