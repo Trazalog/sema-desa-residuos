@@ -132,19 +132,3 @@ class Contenedores extends CI_Model
         return $aux->valores->valor;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
