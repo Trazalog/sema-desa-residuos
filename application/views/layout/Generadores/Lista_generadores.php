@@ -27,7 +27,7 @@
                     <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
             echo   '</td>';
             echo    '<td>'.$fila->razon_social.'</td>';
-            echo    '<td>'.$fila->zona_id.'</td>';
+            echo    '<td>'.$fila->depa_nombre.'</td>';
             echo    '<td>'.$fila->num_registro.'</td>';                       
             echo '</tr>';
         }
@@ -53,6 +53,9 @@ $(".btnEditar").click( function(e){
     $("#id_gen").val(data.sotr_id);
     $(".titulo").text('Editar Generador');
     $(".habilitar").removeAttr("readonly");
+    //
+    $(".ocultar").removeAttr("style");
+    $(".mostrar").attr("style","display:none");
     $('#btnsave_e').show(); 
     var tipozona = data.zona_id;
     $("#E_Zonag").val(tipozona);
@@ -79,14 +82,22 @@ $(".btnInfo").click(function(e){
     $(".titulo").text('Informacion Generador');
     $(".habilitar").attr("readonly","readonly"); 
     $('#btnsave_e').hide();
+    //
+    $(".ocultar").attr("style","display:none");
+    $(".mostrar").removeAttr("style");
+    $(".mostrar").attr("readonly","readonly"); 
     var tipozona = data.zona_id;
     $("#E_Zonag").val(tipozona);
+    $("#text_zona").val(data.zona_nombre);
     var tipores = data.tica_id;
     $("#E_TipoResiduo").val(tipores);
+    $("#text_residuos").val(tipores.substr(10,50));
     var tipogen = data.tist_id;
     $("#E_TipoG").val(tipogen);
+    $("#text_generador").val(tipogen.substr(14,50));
     var tiporubro = data.rubr_id;
-    $("#E_TipoR").val(tiporubro);
+    $("#E_TipoR").val(tiporubro);   
+    $("#text_rubro").val(tiporubro.substr(15,50));
  
               
        

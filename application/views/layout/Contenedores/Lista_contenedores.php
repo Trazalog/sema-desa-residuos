@@ -147,17 +147,23 @@
                                     
                                     
                                         
-                                        <div class="form-group">
+                                        <div class="form-group ocultar ">
                                             <label for="tipoResiduos">Tipo de residuo:</label>
                                             <div class="input-group date">
                                                 <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                                                    <select class="form-control select3 habilitar" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tic_id">
+                                                    <select class="form-control select3 habilitar  " multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tic_id">
                                                    
                   
                                                     </select>
+                                                   
+                                                    <!-- <input type="text" class="form-control habilitar" name="" id="tic" multiple> -->
                                             </div>  
                                             
-                                        </div>                                                   
+                                        </div>  
+                                        <div class="form-group txtarea">
+                                        <label for="tipoResiduos">Tipo de residuo:</label>
+                                        <textarea name="" id="tiic" cols="20" rows="6" multiple ></textarea>
+                                        </div>                                                 
                                         <!--_____________________________________________-->
                                        
                                         
@@ -241,7 +247,10 @@ $(".btnInfo").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     var datacarga = JSON.parse($(this).parents("tr").attr("data-carga"));
     $(".habilitar").attr("readonly","readonly"); 
+    $("#tiic").attr("readonly","readonly"); 
+    $(".txtarea").removeAttr("style");
     $(".selectores").attr("style","display:none");
+    $(".ocultar").attr("style","display:none"); 
     $(".ocultarInfo").removeAttr("style");
     $('#btnsave').hide();
     $("#Codigo").val(data.codigo);
@@ -254,6 +263,7 @@ $(".btnInfo").click(function(e){
     $("#habilitacionInfo").val(data.habilitacion);
     $(".titulo").text('Informacion Contenedor');
     $("#estadoInfo").attr("readonly","readonly"); 
+    $("#tiic").val("");
     $("#habilitacionInfo").attr("readonly","readonly"); 
 
     $("#tic_id").find('option').remove();
@@ -269,14 +279,18 @@ $(".btnInfo").click(function(e){
                 {
                 $("#tic_id").append("<option selected value= '"+datacarga[i].tabl_id+"'> " + datacarga[i].valor + "</option>");
                 aux=1;
-                j=tipo.length+1;}
+                j=tipo.length+1;
+                $("#tiic").val(datacarga[i].valor +", "+  $("#tiic").val());
+                }
+
             }
             if(aux==0){
                 $("#tic_id").append("<option value= '"+datacarga[i].tabl_id+"' >" + datacarga[i].valor + "</option>");
             } 
         
         }
-
+  
+      
 });
 
 //BOTON EDITAR
@@ -289,6 +303,8 @@ console.table(data.tipos_carga.tipoCarga);
 console.table(datacarga[0].valor);
 $(".habilitar").removeAttr("readonly");
 $(".selectores").removeAttr("style");
+$(".ocultar").removeAttr("style");
+$(".txtarea").attr("style","display:none");
 $(".ocultarInfo").attr("style","display:none");
 $(".titulo").text('Editar Contenedor'); 
 $('#btnsave').show(); 

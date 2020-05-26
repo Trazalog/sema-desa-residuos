@@ -49,7 +49,10 @@ $(".btnInfo").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     var datacarga = JSON.parse($(this).parents("tr").attr("data-carga"));
     $(".habilitar").attr("readonly","readonly"); 
+    $("#tiic").attr("readonly","readonly"); 
+    $(".txtarea").removeAttr("style");
     $(".selectores").attr("style","display:none");
+    $(".ocultar").attr("style","display:none"); 
     $(".ocultarInfo").removeAttr("style");
     $('#btnsave').hide();
     $("#Codigo").val(data.codigo);
@@ -63,7 +66,7 @@ $(".btnInfo").click(function(e){
     $(".titulo").text('Informacion Contenedor');
     $("#estadoInfo").attr("readonly","readonly"); 
     $("#habilitacionInfo").attr("readonly","readonly"); 
-
+    $("#tiic").val("");
     $("#tic_id").find('option').remove();
 
 
@@ -77,14 +80,18 @@ $(".btnInfo").click(function(e){
                 {
                 $("#tic_id").append("<option selected value= '"+datacarga[i].tabl_id+"'> " + datacarga[i].valor + "</option>");
                 aux=1;
-                j=tipo.length+1;}
+                j=tipo.length+1;
+                $("#tiic").val(datacarga[i].valor +", "+  $("#tiic").val());
+                }
+
             }
             if(aux==0){
                 $("#tic_id").append("<option value= '"+datacarga[i].tabl_id+"' >" + datacarga[i].valor + "</option>");
             } 
         
         }
-
+  
+      
 });
 
 
@@ -98,6 +105,8 @@ console.table(data.tipos_carga.tipoCarga);
 console.table(datacarga[0].valor);
 $(".habilitar").removeAttr("readonly");
 $(".selectores").removeAttr("style");
+$(".ocultar").removeAttr("style");
+$(".txtarea").attr("style","display:none");
 $(".ocultarInfo").attr("style","display:none");
 $(".titulo").text('Editar Contenedor'); 
 $('#btnsave').show(); 
