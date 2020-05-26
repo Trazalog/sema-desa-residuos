@@ -140,7 +140,7 @@ define('DEF_VIEW','traz-comp-bpm/Tarea');
 */
 
 define('REST', 'http://10.142.0.3:8280/services/semaresiduosDS');
-//define('REST', 'http://10.128.0.3:8280/services/ProduccionDataService/');
+//define('REST', 'http://10.142.0.3:8280/services/ProduccionDataService/');
 define('RESTPT', 'http://10.142.0.3:8280/services/produccionTest/');
 define('REST_TDS', 'http://10.142.0.3:8280/services/TrazabilidadDataService/');
 define('REST2', 'http://10.142.0.3:8280/services/ProduccionDataService');

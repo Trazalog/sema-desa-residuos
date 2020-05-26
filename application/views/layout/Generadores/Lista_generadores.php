@@ -2,7 +2,7 @@
 
 
 <table id="tabla_transportistas" class="table table-bordered table-striped">
-    <thead class="thead-dark" bgcolor="#eeeeee">
+  <thead class="thead-dark" bgcolor="#eeeeee">
 
     <th>Acciones</th>
     <th>Nombre / Razon social</th>
@@ -10,11 +10,11 @@
     <th>Registro</th>
     <!-- <th>Tipo</th> -->
 
-    </thead>
+  </thead>
 
-    <!--__________________BODY TABLA__________________-->
+  <!--__________________BODY TABLA__________________-->
 
-    <tbody>
+  <tbody>
     <?php
         if($generadores)
         {
@@ -33,7 +33,7 @@
         }
         }
         ?>
-    </tbody>
+  </tbody>
 </table>
 
 <!--__________________FIN TABLA__________________-->
@@ -227,6 +227,6 @@ $(".btnEliminar").click(function(e){
 </script>
 
 <script>
-    DataTable($('#tabla_transportistas'));
-    // DataTable($('#tabla_'));
+DataTable($('#tabla_transportistas'));
+// DataTable($('#tabla_'));
 </script>

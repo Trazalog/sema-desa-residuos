@@ -1,6 +1,7 @@
 http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 http://trazalog.com.ar:8280/services/semaresiduosDS
 http://34.66.255.127:8280/services/semaresiduosDS
+http://10.142.0.3:8280/services/semaresiduosDS
 
 //TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
   - falta saber de donde sale el destino acta para elegir
@@ -433,14 +434,7 @@ http://34.66.255.127:8280/services/semaresiduosDS
       ]
     }
   }
-//FIXME: PUNTO Y CIRCUITOS
-- no se puede duplicar el punto critico 
-- no se puede borrar la relacion entre pc y circuitos 
-  x clave foranea en circuitos_puntos_criticos
 
-alternativas
-- update de punto critico de a uno, pero se cual esta y cual no 
-  si agregue alguno o quite otro
 
 -- circuito->Puntos Criticos(deletePuntosPorCircuito) hacer que elimine fisicamete a relacion
   -- borra la relacion entre puntos criticos y  circuitos
@@ -1126,35 +1120,43 @@ alternativas
 
 -- choferesGet
   recurso: /choferes
-  metodo: get
-  
-  select chof_id, nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id  
-  from log.choferes     
-  where eliminado = 0
-      
-  {
-    "choferes":{
-        "chofere":[
-          {
-            "chof_id": "$chof_id", 
-            "nombre": "$nombre", 
-            "apellido": "$apellido", 
-            "documento": "$documento", 
-            "fec_nacimiento": "$fec_nacimiento", 
-            "direccion": "$fec_nacimiento", 
-            "celular": "$celular", 
-            "codigo": "$codigo", 
-            "carnet": "$carnet", 
-            "vencimiento": "$vencimiento", 
-            "habilitacion": "$habilitacion", 
-            "imagen": "$imagen", 
-            "tran_id": "$tran_id", 
-            "cach_id": "$cach_id"
-          }
-        ]
-    }    
-  }
+  metodo: get  
+  select CH.chof_id, CH.nombre, CH.apellido, CH.documento, CH.fec_nacimiento, CH.direccion, 
+      CH.celular, CH.codigo, CH.carnet as carn_id, CH.vencimiento, 
+      CH.habilitacion, CH.tran_id, CH.cach_id,
+      T.razon_social,
+      TCAR.valor as carnet, 
+      TCAT.valor as categoria
+    from log.choferes CH, log.transportistas T, core.tablas as TCAR, core.tablas as TCAT
+    where CH.tran_id = T.tran_id 
+    and CH.carnet = TCAR.tabl_id 
+    and CH.cach_id = TCAT.tabl_id 
+    and CH.eliminado = 0 
 
+    {
+      "choferes":{
+          "chofer":[
+            {
+              "chof_id": "$chof_id", 
+              "nombre": "$nombre", 
+              "apellido": "$apellido", 
+              "documento": "$documento", 
+              "fec_nacimiento": "$fec_nacimiento", 
+              "direccion": "$direccion", 
+              "celular": "$celular", 
+              "codigo": "$codigo", 
+              "carn_id": "$carn_id", 
+              "vencimiento": "$vencimiento", 
+              "habilitacion": "$habilitacion",              
+              "tran_id": "$tran_id", 
+              "cach_id": "$cach_id",
+              "razon_social": "$razon_social",
+              "carnet": "$carnet",
+              "categoria": "$categoria"
+            }
+          ]
+      }    
+    }
 
 -- choferesGetPorTransportistas
   recurso: /choferes/{tran_id}
@@ -1207,9 +1209,10 @@ alternativas
 -- choferesUpdate
   recurso: /choferes
   metodo: put
-   update log.choferes
-   set nombre=:nombre, apellido=:apellido, documento=:documento, fec_nacimiento=TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), direccion=:direccion, celular=CAST(:celular AS INTEGER), codigo=CAST(:codigo AS INTEGER), carnet=:carnet, vencimiento=TO_DATE(:vencimiento,'YYYY-MM-DD'), habilitacion=:habilitacion, tran_id=CAST(:tran_id AS INTEGER), cach_id=:cach_id 
-   where chof_id = CAST(:chof_id AS INTEGER) 
+   
+  update log.choferes
+  set nombre=:nombre, apellido=:apellido, documento=:documento, fec_nacimiento=TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), direccion=:direccion, celular=CAST(:celular AS INTEGER), codigo=CAST(:codigo AS INTEGER), carnet=:carnet, vencimiento=TO_DATE(:vencimiento,'YYYY-MM-DD'), habilitacion=:habilitacion, imagen = :imagen, tran_id=CAST(:tran_id AS INTEGER), cach_id=:cach_id, usuario_app = :usuario_app 
+  where chof_id = CAST(:chof_id AS INTEGER)
 
    {
      "chofer":{
@@ -1223,11 +1226,24 @@ alternativas
        "carnet": "45689", 
        "vencimiento": "2020-10-05",
        "habilitacion": "residuos equinos",
+       "imagen": "",
        "tran_id": "2",
        "cach_id": "A1,A2,A3",
-       "chof_id": "6"
+       "chof_id": "6",
+      "usuario_app"
      }
    }
+
+
+-- choferesGetImagen
+  recurso: /choferes/imagen/{chof_id}
+  metodo: get
+  select imagen from log.choferes where chof_id = CAST(:chof_id AS INTEGER)
+  {
+    "choferes":{
+      "imagen": "$imagen"
+    }
+  }
 
 -- choferesUpdateImagen
   recurso: /choferes/update/imagen
@@ -1245,19 +1261,18 @@ alternativas
       }
     }
 
--- choferesEstado
-  recurso: /choferes/estado
-  metodo: put
+-- choferesDelete
+  recurso: /choferes
+  metodo: delete
   
     update 
     log.choferes 
-    set eliminado = CAST(:eliminado AS INTEGER)
+    set eliminado = 1
     where chof_id = CAST(:chof_id AS INTEGER)
 
     {
-      "estado_nuevo":{
-          "chof_id":"2",
-          "eliminado":"1"
+      "_delete_choferes":{
+          "chof_id":"2"          
       }
     }
 
@@ -1324,6 +1339,7 @@ alternativas
   metodo: get
   select sotr_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tist_id, tica_id
   from log.solicitantes_transporte
+  where eliminado = 0
 
   {
     "solicitantes_transporte": {
@@ -2121,7 +2137,7 @@ alternativas
 -- transportistasEstado
   recurso: /transportistas/estado
   metodo: put
-  /* para eliminar un transportista en :eliminado = 1 caso contraio 0 */
+  / para eliminar un transportista en :eliminado = 1 caso contraio 0 */
   update 
   log.transportistas 
   set eliminado = CAST(:eliminado AS INTEGER)
@@ -2284,7 +2300,7 @@ alternativas
 -- vehiculosGetActivos
   recurso: /vehiculos
   metodo: get
-  select equi_id, descripcion, marca, dominio from core.equipos where estado = 'AC'
+  select equi_id, descripcion, marca, dominio, codigo, ubicacion, tran_id, fecha_ingreso from core.equipos where estado = 'AC'
 
   {
     "vehiculos":{
@@ -2293,7 +2309,11 @@ alternativas
             "equi_id": "$equi_id",
             "descripcion": "$descripcion",
             "marca": "$marca",
-            "dominio": "$dominio"
+            "dominio": "$dominio",
+            "codigo":"$codigo",
+            "ubicacion":"$ubicacion",
+            "tran_id":"$tran_id",
+            "fecha_ingreso":"$fecha_ingreso"
           }
       ]
     }
@@ -2319,21 +2339,22 @@ alternativas
   }
   
 -- vehiculosSet
-  recurso: /veh:qiculos
+  recurso: /vehiculos
   metodo: post
-  /vehiculos
-  insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio)
-  values(:descripcion, :marca, :codigo, :ubicacion, :tran_id, :dominio)
+ 
+  insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio, fecha_ingreso)
+  values(:descripcion, :marca, :codigo, :ubicacion, :tran_id, :dominio, TO_DATE(:fecha_ingreso,'YYYY-MM-DD'))
   returning equi_id
   
   {
-    "equipo":{
+    "_post_vehiculos":{
       "descripcion": "Carreton grande",
       "marca": "MAC",
       "codigo": "8924ef",
       "ubicacion": "casa central",
       "tran_id": "3",
-      "dominio": "AMD 456"
+      "dominio": "AMD 456",
+      "fecha_ingreso": "2020-05-21"
     }
   }
   
@@ -2343,7 +2364,38 @@ alternativas
     }
   }
 
+-- vehiculoUpdate
+  recurso: /vehiculos
+  metodo: put
 
+  update core.equipos set descripcion = :descripcion, marca = :marca, codigo = :codigo, ubicacion = :ubicacion, tran_id = CAST(:tran_id AS INTEGER), dominio = :dominio, fecha_ingreso = TO_DATE(:fecha_ingreso,'YYYY-MM-DD'))
+  where equi_id = CAST(:equi_id AS INTEGER)
+
+  {
+    "_put_vehiculos":{
+      "equi_id": "25"
+      "descripcion": "Carreton grande",
+      "marca": "MAC",
+      "codigo": "8924ef",
+      "ubicacion": "casa central",
+      "tran_id": "3",
+      "dominio": "AMD 456",
+      "fecha_ingreso": "2020-05-21"
+    }
+  }
+
+-- vehiculoDelete
+  recurso: /vehiculos
+  metodo: delete
+
+  update core.equipos set estado = 'AN'
+  where equi_id = CAST(:equi_id AS INTEGER)
+
+  {
+    "_delete_vehiculos":{
+      "equi_id": "33"
+    }
+  }
 
 -- zonaGet
   recurso: /zonas

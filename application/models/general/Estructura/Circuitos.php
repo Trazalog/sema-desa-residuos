@@ -201,7 +201,7 @@ class Circuitos extends CI_Model {
   function obtener_Chofer(){
     $aux = $this->rest->callAPI("GET",REST."/choferes");
     $aux =json_decode($aux["data"]);
-    return $aux->choferes->chofere;
+    return $aux->choferes->chofer;
   }
 
   /**

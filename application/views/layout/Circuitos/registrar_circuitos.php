@@ -718,109 +718,102 @@
 	}
 //////// Fin Tratamiento de Imagen en Registrar nuevo circuito
 
-
-
-
-
-
-
-
 ////////// 	Guardado	//////////
 
 	// carga tabla genaral de circuitos
-	$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
+		$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
 
   //agrega punto critico a la tabla para guardar  
-	function Agregar_punto() {
+		function Agregar_punto() {
 
-		$('#puntos_criticos').show();
-		var data = new FormData($('#formPuntos')[0]);
-		data = formToObject(data);
-		var table = $('#datos').DataTable();
-		var row =  `<tr data-json='${JSON.stringify(data)}'> 
-					<td>${data.nombre}</td>
-					<td>${data.descripcion}</td>
-					<td>${data.lat}</td>
-					<td>${data.lng}</td>            
-			</tr>`;
-		table.row.add($(row)).draw();  
-		$('#formPuntos')[0].reset();          
-	}
+			$('#puntos_criticos').show();
+			var data = new FormData($('#formPuntos')[0]);
+			data = formToObject(data);
+			var table = $('#datos').DataTable();
+			var row =  `<tr data-json='${JSON.stringify(data)}'> 
+						<td>${data.nombre}</td>
+						<td>${data.descripcion}</td>
+						<td>${data.lat}</td>
+						<td>${data.lng}</td>            
+				</tr>`;
+			table.row.add($(row)).draw();  
+			$('#formPuntos')[0].reset();          
+		}
 		
   // guarda circuito y puntos criticios nuevos 
-	function Guardar_Circuito() { 
-		
-		// toma tabla tipos de carga
-		var datos_tipo_carga= $('#tica_id').val();  
-		// toma datos form circuitos
-		var datos_circuito = new FormData($('#formCircuitos')[0]);
-		var inpImagen = $('input#imagen');	
-		datos_circuito = formToObject(datos_circuito);
-		datos_circuito.imagen = $("#input_aux_img").val();
-		
-		//TODO: VER VALIDACION DE GUARDADO SIN PUNTOS CRITICOS
-		// valida existencia de ptos criticos en tabla
-		// if (datos_puntos_criticos.lenght==0) {
-		// 		alert('No hay Puntos Criticos para Registrar.');
-		// 		return;
-		// }
-		// recorre tabla guardando ptos criticos en array
-		var datos_puntos_criticos = [];		
-		var rows = $('#datos tbody tr');				
-		rows.each(function(i,e) {  
-				datos_puntos_criticos.push(getJson(e));
-		});		
+		function Guardar_Circuito() { 
+			
+			// toma tabla tipos de carga
+			var datos_tipo_carga= $('#tica_id').val();  
+			// toma datos form circuitos
+			var datos_circuito = new FormData($('#formCircuitos')[0]);
+			var inpImagen = $('input#imagen');	
+			datos_circuito = formToObject(datos_circuito);
+			datos_circuito.imagen = $("#input_aux_img").val();
+			
+			//TODO: VER VALIDACION DE GUARDADO SIN PUNTOS CRITICOS
+			// valida existencia de ptos criticos en tabla
+			// if (datos_puntos_criticos.lenght==0) {
+			// 		alert('No hay Puntos Criticos para Registrar.');
+			// 		return;
+			// }
+			// recorre tabla guardando ptos criticos en array
+			var datos_puntos_criticos = [];		
+			var rows = $('#datos tbody tr');				
+			rows.each(function(i,e) {  
+					datos_puntos_criticos.push(getJson(e));
+			});		
 
-		// valida campos cargados y envia datos
-		if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
-					
-				$.ajax({
-						type: "POST",
-						data: {datos_circuito, datos_puntos_criticos,datos_tipo_carga},							
-						url: "general/Estructura/Circuito/Guardar_Circuito",
-						success: function(r) {
-								console.log(r);
-								if (r == "ok") {
+			// valida campos cargados y envia datos
+			if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
+						
+					$.ajax({
+							type: "POST",
+							data: {datos_circuito, datos_puntos_criticos,datos_tipo_carga},							
+							url: "general/Estructura/Circuito/Guardar_Circuito",
+							success: function(r) {
+									console.log(r);
+									if (r == "ok") {
 
-										$("#cargar_tabla").load(
-												"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Lista_Circuitos"
-										);
-										alertify.success("Agregado con exito");
+											$("#cargar_tabla").load(
+													"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Lista_Circuitos"
+											);
+											alertify.success("Agregado con exito");
 
-										$('#formCircuitos').data('bootstrapValidator').resetForm();
-										$("#formCircuitos")[0].reset();
+											$('#formCircuitos').data('bootstrapValidator').resetForm();
+											$("#formCircuitos")[0].reset();
 
-										$("#boxDatos").hide(500);
-										$("#botonAgregar").removeAttr("disabled");
+											$("#boxDatos").hide(500);
+											$("#botonAgregar").removeAttr("disabled");
 
-								} else {
-										console.log(r);
-										alertify.error("error al agregar");
-								}
-						}
-				});
-		}
-	}  
+									} else {
+											console.log(r);
+											alertify.error("error al agregar");
+									}
+							}
+					});
+			}
+		}  
  
 	// muestra box de datos al dar click en boton agregar
-	$("#botonAgregar").on("click", function() {
-	
-			$("#botonAgregar").attr("disabled", "");
-			//$("#boxDatos").removeAttr("hidden");
-			$("#boxDatos").focus();
-			$("#boxDatos").show();
-	});   
+		$("#botonAgregar").on("click", function() {
+		
+				$("#botonAgregar").attr("disabled", "");
+				//$("#boxDatos").removeAttr("hidden");
+				$("#boxDatos").focus();
+				$("#boxDatos").show();
+		});   
 	
 	// muestra box de datos al dar click en X
-	$("#btnclose").on("click", function() {
-			$("#boxDatos").hide(500);
-			$("#botonAgregar").removeAttr("disabled");
-			$('#formDatos').data('bootstrapValidator').resetForm();
-			$("#formDatos")[0].reset();
-			$('#selecmov').find('option').remove();
+		$("#btnclose").on("click", function() {
+				$("#boxDatos").hide(500);
+				$("#botonAgregar").removeAttr("disabled");
+				$('#formDatos').data('bootstrapValidator').resetForm();
+				$("#formDatos")[0].reset();
+				$('#selecmov').find('option').remove();
 
-	});
-	
+		});
+		
 	// inicializa validador de formulario circuitos
 	$('#formCircuitos').bootstrapValidator({
 			message: 'This value is not valid',
@@ -937,7 +930,6 @@
 
 ////////// 	Fin Guardado	//////////
 
-
 ////// funciones imagen EDICION
 	//cada vez que carga una imagen	
 	async function convert_Edit(){       
@@ -1045,6 +1037,5 @@
 		});
 	}
 ////// fin funciones imagen EDICION
-
 
 </script>

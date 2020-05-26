@@ -138,7 +138,7 @@ class Circuito extends CI_Controller {
 				}	
 			// recorro  array puntos agregando id de circ y guardando de a uno 
 				$datos_puntos_criticos = $this->input->post('ptos_criticos_edit');	
-				if(empty($datos_puntos_criticos)){
+				if(!empty($datos_puntos_criticos)){
 						//recorre datos, crea puntos nuevos y arma array para asociar
 						for ($i=0; $i < count($datos_puntos_criticos); $i++) {   						
 							$pucr_id = $this->Circuitos->Guardar_punto_critico($datos_puntos_criticos[$i])->respuesta->pucr_id;							

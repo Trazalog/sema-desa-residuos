@@ -1,19 +1,19 @@
 <table id="tabla_contenedores" class="table table-bordered table-striped">
-    <thead class="thead-dark" bgcolor="#eeeeee">
+  <thead class="thead-dark" bgcolor="#eeeeee">
 
-        <th>Acciones</th>
-        <th>Codigo / Registro</th>
-        <th>Estado</th>
-        <th>Capacidad</th>
-        <th>Habilitacion</th>
+    <th>Acciones</th>
+    <th>Codigo / Registro</th>
+    <th>Estado</th>
+    <th>Capacidad</th>
+    <th>Habilitacion</th>
 
 
-    </thead>
+  </thead>
 
-    <!--__________________BODY TABLA___________________________-->
+  <!--__________________BODY TABLA___________________________-->
 
-    <tbody>
-        <?php
+  <tbody>
+    <?php
                     if($contenedores)
                     {
                         foreach($contenedores as $fila)
@@ -35,14 +35,14 @@
                     ?>
 
 
-    </tbody>
+  </tbody>
 </table>
 
 <script>
-$(".btnEliminar").click(function(e){
-    var data = JSON.parse($(this).parents("tr").attr("data-json")); 
-    $('#btndelete').show();    
-    $("#id_contenedor").val(data.cont_id);
+$(".btnEliminar").click(function(e) {
+  var data = JSON.parse($(this).parents("tr").attr("data-json"));
+  $('#btndelete').show();
+  $("#id_contenedor").val(data.cont_id);
 });
 //--------------------------------------------------------------------
 $(".btnInfo").click(function(e){
@@ -70,8 +70,8 @@ $(".btnInfo").click(function(e){
     $("#tic_id").find('option').remove();
 
 
-        var tipo = data.tipos_carga.tipoCarga;
-        var aux = 0;
+  var tipo = data.tipos_carga.tipoCarga;
+  var aux = 0;
 
         for(var i=0; i <= datacarga.length-1; i++){
             aux = 0;
@@ -125,33 +125,34 @@ $("#Habilitacion")[0][0].text = data.habilitacion;
 $("#Habilitacion")[0][0].value = data.habil_id;
 
 
-$("#tic_id").find('option').remove();
-var tipo = data.tipos_carga.tipoCarga;
-var aux = 0;
+  $("#tic_id").find('option').remove();
+  var tipo = data.tipos_carga.tipoCarga;
+  var aux = 0;
 
-for(var i=0; i <= datacarga.length-1; i++){
+  for (var i = 0; i <= datacarga.length - 1; i++) {
     aux = 0;
-    for(var j=0; j <=tipo.length-1; j++){
-        if(datacarga[i].valor == tipo[j].rsu)
-        {
-        $("#tic_id").append("<option selected value= '"+datacarga[i].tabl_id+"'> " + datacarga[i].valor + "</option>");
-        aux=1;
-        j=tipo.length+1;}
+    for (var j = 0; j <= tipo.length - 1; j++) {
+      if (datacarga[i].valor == tipo[j].rsu) {
+        $("#tic_id").append("<option selected value= '" + datacarga[i].tabl_id + "'> " + datacarga[i].valor +
+          "</option>");
+        aux = 1;
+        j = tipo.length + 1;
+      }
     }
-    if(aux==0){
-        $("#tic_id").append("<option value= '"+datacarga[i].tabl_id+"' >" + datacarga[i].valor + "</option>");
-    } 
- 
-}
+    if (aux == 0) {
+      $("#tic_id").append("<option value= '" + datacarga[i].tabl_id + "' >" + datacarga[i].valor + "</option>");
+    }
+
+  }
 
 });
-
-
 </script>
 <script>
-    //DataTable($('#tabla_zonas'));
-    $('#tabla_contenedores').DataTable({
-  "aLengthMenu": [ 10, 25, 50, 100 ],
-  "order": [[0, "asc"]],
+//DataTable($('#tabla_zonas'));
+$('#tabla_contenedores').DataTable({
+  "aLengthMenu": [10, 25, 50, 100],
+  "order": [
+    [0, "asc"]
+  ],
 });
 </script>

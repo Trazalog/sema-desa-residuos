@@ -45,8 +45,8 @@
       <result outputType="json">{&#xd;   "circuitos":{&#xd;      "circuito":[&#xd;         {&#xd;            "circ_id":"$circ_id",&#xd;            "codigo":"$codigo",&#xd;            "descripcion":"$descripcion",            &#xd;            "chof_id":"$chof_id",&#xd;            "chofer": "$chofer", &#xd;            "zona_id":"$zona_id",&#xd;            "vehi_id":"$vehi_id",            &#xd;            "dominio": "$dominio",&#xd;            "@tiposCargaCicuitoGet":"$circ_id-&gt;circ_id",&#xd;            "@puntosPorCircuito": "$circ_id-&gt;circ_id"&#xd;        }&#xd;      ]&#xd;   }&#xd;}</result>
    </query>
    <query id="choferesGet" useConfig="semaresiduosDS">
-      <sql>select &#xd;  chof_id, nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id  &#xd;from &#xd;  log.choferes&#xd;where eliminado = 0</sql>
-      <result outputType="json">{&#xd;  "choferes":{&#xd;      "chofere":[&#xd;        {&#xd;          "chof_id": "$chof_id", &#xd;          "nombre": "$nombre", &#xd;          "apellido": "$apellido", &#xd;          "documento": "$documento", &#xd;          "fec_nacimiento": "$fec_nacimiento", &#xd;          "direccion": "$fec_nacimiento", &#xd;          "celular": "$celular", &#xd;          "codigo": "$codigo", &#xd;          "carnet": "$carnet", &#xd;          "vencimiento": "$vencimiento", &#xd;          "habilitacion": "$habilitacion", &#xd;          "imagen": "$imagen", &#xd;          "tran_id": "$tran_id", &#xd;          "cach_id": "$cach_id"&#xd;        }&#xd;      ]&#xd;  }    &#xd;}</result>
+      <sql>select CH.chof_id, CH.nombre, CH.apellido, CH.documento, CH.fec_nacimiento, CH.direccion, &#xd;      CH.celular, CH.codigo, CH.carnet as carn_id, CH.vencimiento, &#xd;      CH.habilitacion, CH.tran_id, CH.cach_id,&#xd;      T.razon_social,&#xd;      TCAR.valor as carnet, &#xd;      TCAT.valor as categoria&#xd;    from log.choferes CH, log.transportistas T, core.tablas as TCAR, core.tablas as TCAT&#xd;    where CH.tran_id = T.tran_id &#xd;    and CH.carnet = TCAR.tabl_id &#xd;    and CH.cach_id = TCAT.tabl_id &#xd;    and CH.eliminado = 0</sql>
+      <result outputType="json"> {&#xd;      "choferes":{&#xd;          "chofer":[&#xd;            {&#xd;              "chof_id": "$chof_id", &#xd;              "nombre": "$nombre", &#xd;              "apellido": "$apellido", &#xd;              "documento": "$documento", &#xd;              "fec_nacimiento": "$fec_nacimiento", &#xd;              "direccion": "$direccion", &#xd;              "celular": "$celular", &#xd;              "codigo": "$codigo", &#xd;              "carn_id": "$carn_id", &#xd;              "vencimiento": "$vencimiento", &#xd;              "habilitacion": "$habilitacion",              &#xd;              "tran_id": "$tran_id", &#xd;              "cach_id": "$cach_id",&#xd;              "razon_social": "$razon_social",&#xd;              "carnet": "$carnet",&#xd;              "categoria": "$categoria"&#xd;            }&#xd;          ]&#xd;      }    &#xd;    }</result>
    </query>
    <query id="choferesSet" useConfig="semaresiduosDS">
       <sql>insert into &#xd;   log.choferes(nombre, apellido, documento, fec_nacimiento, direccion, celular, codigo, carnet, vencimiento, habilitacion, imagen, tran_id, cach_id, usuario_app)&#xd;values(:nombre, :apellido, :documento, TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), :direccion, :celular, CAST(:codigo AS INTEGER), :carnet, TO_DATE(:vencimiento,'YYYY-MM-DD'), :habilitacion, :imagen, CAST(:tran_id AS INTEGER), :cach_id, :usuario_app)&#xd;returning chof_id</sql>
@@ -89,7 +89,7 @@
       <param name="tran_id" sqlType="STRING"/>
    </query>
    <query id="solicitanteTransporteGet" useConfig="semaresiduosDS">
-      <sql>select sotr_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tist_id, tica_id&#xd;  from log.solicitantes_transporte</sql>
+      <sql>select sotr_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tist_id, tica_id&#xd;  from log.solicitantes_transporte&#xd;where eliminado = 0</sql>
       <result outputType="json">{&#xd;    "solicitantes_transporte": {&#xd;        "solicitante": [&#xd;          {&#xd;            "sotr_id": "$sotr_id",&#xd;            "razon_social": "$razon_social",&#xd;            "cuit": "$cuit",&#xd;            "domicilio": "$domicilio",&#xd;            "num_registro": "$num_registro",&#xd;            "lat": "$lat",&#xd;            "lng": "$lng",&#xd;            "zona_id": "$zona_id",&#xd;            "rubr_id": "$rubr_id",&#xd;            "tist_id": "$tist_id",&#xd;            "tica_id": "$tica_id"	            &#xd;          }&#xd;        ]&#xd;    }&#xd;  }</result>
    </query>
    <query id="solicitanteTransporteSet" useConfig="semaresiduosDS">
@@ -162,7 +162,7 @@
       <param name="zona_id" sqlType="STRING"/>
    </query>
    <query id="choferUpdate" useConfig="semaresiduosDS">
-      <sql>update log.choferes&#xd;   set nombre=:nombre, apellido=:apellido, documento=:documento, fec_nacimiento=TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), direccion=:direccion, celular=CAST(:celular AS INTEGER), codigo=CAST(:codigo AS INTEGER), carnet=:carnet, vencimiento=TO_DATE(:vencimiento,'YYYY-MM-DD'), habilitacion=:habilitacion, tran_id=CAST(:tran_id AS INTEGER), cach_id=:cach_id &#xd;   where chof_id = CAST(:chof_id AS INTEGER)</sql>
+      <sql>update log.choferes&#xd;   set nombre=:nombre, apellido=:apellido, documento=:documento, fec_nacimiento=TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), direccion=:direccion, celular=CAST(:celular AS INTEGER), codigo=CAST(:codigo AS INTEGER), carnet=:carnet, vencimiento=TO_DATE(:vencimiento,'YYYY-MM-DD'), habilitacion=:habilitacion, imagen = :imagen, tran_id=CAST(:tran_id AS INTEGER), cach_id=:cach_id, usuario_app = :usuario_app &#xd;   where chof_id = CAST(:chof_id AS INTEGER)</sql>
       <param name="nombre" sqlType="STRING"/>
       <param name="apellido" sqlType="STRING"/>
       <param name="documento" sqlType="STRING"/>
@@ -176,15 +176,12 @@
       <param name="tran_id" sqlType="STRING"/>
       <param name="cach_id" sqlType="STRING"/>
       <param name="chof_id" sqlType="STRING"/>
+      <param name="imagen" optional="false" sqlType="BINARY"/>
+      <param name="usuario_app" sqlType="STRING"/>
    </query>
    <query id="choferesUpdateImagen" useConfig="semaresiduosDS">
       <sql>update &#xd;    log.choferes&#xd;    set imagen = :imagen&#xd;    where chof_id = CAST(:chof_id AS INTEGER)</sql>
       <param name="imagen" optional="false" sqlType="BINARY"/>
-      <param name="chof_id" sqlType="STRING"/>
-   </query>
-   <query id="choferesEstado" useConfig="semaresiduosDS">
-      <sql>update &#xd;    log.choferes &#xd;    set eliminado = CAST(:eliminado AS INTEGER)&#xd;    where chof_id = CAST(:chof_id AS INTEGER)</sql>
-      <param name="eliminado" sqlType="STRING"/>
       <param name="chof_id" sqlType="STRING"/>
    </query>
    <query id="puntosCriticosGet" useConfig="semaresiduosDS">
@@ -241,7 +238,7 @@
       <param name="tran_id" sqlType="STRING"/>
    </query>
    <query id="vehiculosSet" useConfig="semaresiduosDS">
-      <sql>insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio)&#xd;  values(:descripcion, :marca, :codigo, :ubicacion, CAST(:tran_id AS INTEGER), :dominio)&#xd;  returning equi_id</sql>
+      <sql>insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio, fecha_ingreso)&#xd;  values(:descripcion, :marca, :codigo, :ubicacion, cast(:tran_id as integer), :dominio, TO_DATE(:fecha_ingreso,'YYYY-MM-DD'))&#xd;returning equi_id</sql>
       <result outputType="json">{&#xd;  "respuesta":{&#xd;     "equi_id": "$equi_id"&#xd;  }&#xd;}</result>
       <param name="descripcion" sqlType="STRING"/>
       <param name="marca" sqlType="STRING"/>
@@ -249,6 +246,7 @@
       <param name="ubicacion" sqlType="STRING"/>
       <param name="tran_id" sqlType="STRING"/>
       <param name="dominio" sqlType="STRING"/>
+      <param name="fecha_ingreso" sqlType="STRING"/>
    </query>
    <query id="transportistasSetTipoCarga" useConfig="semaresiduosDS">
       <sql>insert into log.tipos_carga_transportistas(tran_id, tica_id) values(CAST(:tran_id AS INTEGER), :tica_id)</sql>
@@ -271,8 +269,8 @@
       <param name="zona_id" sqlType="STRING"/>
    </query>
    <query id="vehiculosGetActivos" useConfig="semaresiduosDS">
-      <sql>select equi_id, descripcion, marca, dominio from core.equipos where estado = 'AC'</sql>
-      <result outputType="json">{&#xd;    "vehiculos":{&#xd;      "vehiculo":[&#xd;          {&#xd;            "equi_id": "$equi_id",&#xd;            "descripcion": "$descripcion",&#xd;            "marca": "$marca",&#xd;            "dominio": "$dominio"&#xd;          }&#xd;      ]&#xd;    }&#xd;  }</result>
+      <sql>select equi_id, descripcion, marca, dominio, codigo, ubicacion, tran_id, fecha_ingreso from core.equipos where estado = 'AC'</sql>
+      <result outputType="json">{&#xd;  "vehiculos":{&#xd;      "vehiculo":[&#xd;          {&#xd;            "equi_id": "$equi_id",&#xd;            "descripcion": "$descripcion",&#xd;            "marca": "$marca",&#xd;            "dominio": "$dominio",&#xd;            "codigo":"$codigo",&#xd;            "ubicacion":"$ubicacion",&#xd;            "tran_id":"$tran_id",&#xd;            "fecha_ingreso":"$fecha_ingreso"&#xd;          }&#xd;      ]&#xd;   }&#xd;}</result>
    </query>
    <query id="zonaGetPorDepto" useConfig="semaresiduosDS">
       <sql>select &#xd;  zonas.zona_id, zonas.nombre from core.zonas &#xd;where &#xd;  eliminado = 0  &#xd;and &#xd;  depa_id = CAST(:depa_id AS INTEGER)</sql>
@@ -561,6 +559,67 @@
       <sql>delete from log.tipos_carga_circuitos where circ_id = cast(:circ_id as integer)</sql>
       <param name="circ_id" sqlType="STRING"/>
    </query>
+   <query id="deletePuntosPorCircuito" useConfig="semaresiduosDS">
+      <sql>delete  from log.circuitos_puntos_criticos where circ_id = CAST(:circ_id AS INTEGER)</sql>
+      <param name="circ_id" sqlType="STRING"/>
+   </query>
+   <query id="puntosCriticosGetId" useConfig="semaresiduosDS">
+      <sql>select pucr_id from log.puntos_criticos where nombre = :nombre</sql>
+      <result outputType="json">{&#xd;    "respuesta":{&#xd;      "pucr_id": "$pucr_id"&#xd;    }&#xd;  }</result>
+      <param name="nombre" sqlType="STRING"/>
+   </query>
+   <query id="inspectoresSet" useConfig="semaresiduosDS">
+      <sql>insert&#xd;	into&#xd;	sma.inspectores (&#xd;	nombre,&#xd;	apellido,&#xd;	direccion,&#xd;	email,&#xd;	dni,&#xd;	movilidad_asignada,&#xd;	usuario_app,&#xd;	depa_id)&#xd;values(&#xd;	:nombre,&#xd;	:apellido,&#xd;	:direccion,&#xd;	:email,&#xd;	:dni,&#xd;	:movilidad_asignada,&#xd;	:usuario_app,&#xd;	:depa_id)&#xd;returning insp_id</sql>
+      <result outputType="json">{"respuesta":{"insp_id":"$insp_id"}}</result>
+      <param name="nombre" sqlType="STRING"/>
+      <param name="apellido" sqlType="STRING"/>
+      <param name="direccion" sqlType="STRING"/>
+      <param name="email" sqlType="STRING"/>
+      <param name="dni" sqlType="STRING"/>
+      <param name="movilidad_asignada" sqlType="STRING"/>
+      <param name="usuario_app" sqlType="STRING"/>
+      <param name="depa_id" sqlType="STRING"/>
+   </query>
+   <query id="inspectoresUpdate" useConfig="semaresiduosDS">
+      <sql>update&#xd;	sma.inspectores&#xd;set&#xd;	nombre = :nombre,&#xd;	apellido = :apellido,&#xd;	direccion = :direccion,&#xd;	email = :email,&#xd;	dni = :dni,&#xd;	movilidad_asignada = :movilidad_asignada,&#xd;	usuario_app = :usuario_app,&#xd;	depa_id = :depa_id&#xd;where&#xd;	insp_id = cast(:insp_id as integer)</sql>
+      <param name="nombre" sqlType="STRING"/>
+      <param name="apellido" sqlType="STRING"/>
+      <param name="direccion" sqlType="STRING"/>
+      <param name="email" sqlType="STRING"/>
+      <param name="dni" sqlType="STRING"/>
+      <param name="movilidad_asignada" sqlType="STRING"/>
+      <param name="usuario_app" sqlType="STRING"/>
+      <param name="insp_id" sqlType="STRING"/>
+      <param name="depa_id" sqlType="STRING"/>
+   </query>
+   <query id="inspectoresDelete" useConfig="semaresiduosDS">
+      <sql>update&#xd;	sma.inspectores&#xd;set&#xd;	eliminado = true&#xd;where&#xd;	insp_id = cast(:insp_id as integer)</sql>
+      <param name="insp_id" sqlType="STRING"/>
+   </query>
+   <query id="vehiculoUpdate" useConfig="semaresiduosDS">
+      <sql>update core.equipos set descripcion = :descripcion, marca = :marca, codigo = :codigo, ubicacion = :ubicacion, tran_id = CAST(:tran_id AS INTEGER), dominio = :dominio, fecha_ingreso = TO_DATE(:fecha_ingreso,'YYYY-MM-DD')&#xd;  where equi_id = CAST(:equi_id AS INTEGER)</sql>
+      <param name="descripcion" sqlType="STRING"/>
+      <param name="marca" sqlType="STRING"/>
+      <param name="codigo" sqlType="STRING"/>
+      <param name="ubicacion" sqlType="STRING"/>
+      <param name="tran_id" sqlType="STRING"/>
+      <param name="dominio" sqlType="STRING"/>
+      <param name="fecha_ingreso" sqlType="STRING"/>
+      <param name="equi_id" sqlType="STRING"/>
+   </query>
+   <query id="vehiculoDelete" useConfig="semaresiduosDS">
+      <sql>update core.equipos set estado = 'AN'&#xd;  where equi_id = CAST(:equi_id AS INTEGER)</sql>
+      <param name="equi_id" sqlType="STRING"/>
+   </query>
+   <query id="choferesGetImagen" useConfig="semaresiduosDS">
+      <sql>select imagen from log.choferes where chof_id = CAST(:chof_id AS INTEGER)</sql>
+      <result outputType="json">{&#xd;    "choferes":{&#xd;      "imagen": "$imagen"&#xd;    }&#xd;  }</result>
+      <param name="chof_id" sqlType="STRING"/>
+   </query>
+   <query id="choferesDelete" useConfig="semaresiduosDS">
+      <sql>update &#xd;    log.choferes &#xd;    set eliminado = 1&#xd;    where chof_id = CAST(:chof_id AS INTEGER)</sql>
+      <param name="chof_id" sqlType="STRING"/>
+   </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
          <with-param name="nombre" query-param="nombre"/>
@@ -736,17 +795,13 @@
          <with-param name="tran_id" query-param="tran_id"/>
          <with-param name="cach_id" query-param="cach_id"/>
          <with-param name="chof_id" query-param="chof_id"/>
+         <with-param name="imagen" query-param="imagen"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
       </call-query>
    </resource>
    <resource method="PUT" path="/choferes/update/imagen">
       <call-query href="choferesUpdateImagen">
          <with-param name="imagen" query-param="imagen"/>
-         <with-param name="chof_id" query-param="chof_id"/>
-      </call-query>
-   </resource>
-   <resource method="PUT" path="/choferes/estado">
-      <call-query href="choferesEstado">
-         <with-param name="eliminado" query-param="eliminado"/>
          <with-param name="chof_id" query-param="chof_id"/>
       </call-query>
    </resource>
@@ -816,6 +871,7 @@
          <with-param name="ubicacion" query-param="ubicacion"/>
          <with-param name="tran_id" query-param="tran_id"/>
          <with-param name="dominio" query-param="dominio"/>
+         <with-param name="fecha_ingreso" query-param="fecha_ingreso"/>
       </call-query>
    </resource>
    <resource method="POST" path="/transportistas/tipo/carga">
@@ -1148,6 +1204,78 @@
    <resource method="DELETE" path="/circuitos/tipoCarga">
       <call-query href="circuitoDeleteTipoCarga">
          <with-param name="circ_id" query-param="circ_id"/>
+      </call-query>
+   </resource>
+   <resource method="DELETE" path="/puntosCriticos">
+      <call-query href="deletePuntosPorCircuito">
+         <with-param name="circ_id" query-param="circ_id"/>
+      </call-query>
+   </resource>
+   <resource method="DELETE" path="/puntosCriticos/circuito">
+      <call-query href="deletePuntosPorCircuito">
+         <with-param name="circ_id" query-param="circ_id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/puntosCriticos/nombre/{nombre}">
+      <call-query href="puntosCriticosGetId">
+         <with-param name="nombre" query-param="nombre"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="/inspectores">
+      <call-query href="inspectoresUpdate">
+         <with-param name="nombre" query-param="nombre"/>
+         <with-param name="apellido" query-param="apellido"/>
+         <with-param name="direccion" query-param="direccion"/>
+         <with-param name="email" query-param="email"/>
+         <with-param name="dni" query-param="dni"/>
+         <with-param name="movilidad_asignada" query-param="movilidad_asignada"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
+         <with-param name="insp_id" query-param="insp_id"/>
+         <with-param name="depa_id" query-param="depa_id"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="/inspectores">
+      <call-query href="inspectoresSet">
+         <with-param name="nombre" query-param="nombre"/>
+         <with-param name="apellido" query-param="apellido"/>
+         <with-param name="direccion" query-param="direccion"/>
+         <with-param name="email" query-param="email"/>
+         <with-param name="dni" query-param="dni"/>
+         <with-param name="movilidad_asignada" query-param="movilidad_asignada"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
+         <with-param name="depa_id" query-param="depa_id"/>
+      </call-query>
+   </resource>
+   <resource method="DELETE" path="/inspectores">
+      <call-query href="inspectoresDelete">
+         <with-param name="insp_id" query-param="insp_id"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="/vehiculos">
+      <call-query href="vehiculoUpdate">
+         <with-param name="descripcion" query-param="descripcion"/>
+         <with-param name="marca" query-param="marca"/>
+         <with-param name="codigo" query-param="codigo"/>
+         <with-param name="ubicacion" query-param="ubicacion"/>
+         <with-param name="tran_id" query-param="tran_id"/>
+         <with-param name="dominio" query-param="dominio"/>
+         <with-param name="fecha_ingreso" query-param="fecha_ingreso"/>
+         <with-param name="equi_id" query-param="equi_id"/>
+      </call-query>
+   </resource>
+   <resource method="DELETE" path="/vehiculos">
+      <call-query href="vehiculoDelete">
+         <with-param name="equi_id" query-param="equi_id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/choferes/imagen/{chof_id}">
+      <call-query href="choferesGetImagen">
+         <with-param name="chof_id" query-param="chof_id"/>
+      </call-query>
+   </resource>
+   <resource method="DELETE" path="/choferes">
+      <call-query href="choferesDelete">
+         <with-param name="chof_id" query-param="chof_id"/>
       </call-query>
    </resource>
 </data>
