@@ -629,7 +629,7 @@
 						notEmpty: {
 							message: 'la entrada no puede ser vacia'
 						},
-						regexp: /^(0|[1-9][0-9]*)$/,
+						regexp:/[0-9]/,  
 					}
 				},
 				tran_id: {

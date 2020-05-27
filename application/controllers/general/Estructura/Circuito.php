@@ -66,10 +66,10 @@ class Circuito extends CI_Controller {
 			$circ_id = $this->Circuitos->Guardar_Circuito($datos_circuitos)->respuesta->circ_id;
 			if ($circ_id == null) {
 				log_message('ERROR','#TRAZA|CIRCUITO|$circ_id >> ERROR '.json_encode($circ_id));
-				echo "Circuito no registrado"; return;
+				echo "Error... Circuito no registrado"; return;
 			} 
 		//  2 guarda puntos criticos si hubiera
-			if(!empty($datos_puntos_criticos)){
+			if(empty($datos_puntos_criticos)){
 				// recorro  array puntos agregando id de circ y guardando de a uno     
 				for ($i=0; $i < count($datos_puntos_criticos); $i++) {        
 					$aux[$i]['circ_id'] = $circ_id;
@@ -77,9 +77,9 @@ class Circuito extends CI_Controller {
 				 }
 				// asociar Id circuito a punto critico
 				$resp = $this->Circuitos->Asociar_punto_critico($aux);
-				if(!$resp['status']){
+				if(!$resp){
 						log_message('ERROR','#TRAZA|CIRCUITO|Guardar_Circuito() >> ERROR al asociar puntos criticos');
-						echo "punto no asociado";return;
+						echo "Error... Punto Crítico no asociado";return;
 				} 
 			}
 			
@@ -89,9 +89,9 @@ class Circuito extends CI_Controller {
 				$tipocarga[$key]['tica_id'] = $carga;  
 			}
 			$resp = $this->Circuitos->Guardar_tipo_carga($tipocarga);
-			if (!$resp['status']) {
+			if (!$resp) {
 				log_message('ERROR','#TRAZA|CIRCUITOS|Guardar_Circuito() >> ERROR al guardar tipos de carga ');
-				echo "tipo carga no asociado";return;
+				echo "Error... Tipo de RSU no asociado";return;
 			}
 
     echo 'ok';
@@ -99,7 +99,7 @@ class Circuito extends CI_Controller {
 	
   /**
   * Actualiza los datos de cicuito y puntos criticos
-  * @param obj info de circuitos y ptus criticos
+  * @param obj info de circuitos y ptos criticos
   * @return string "error" y "ok"
   */
   function actulizaCircuitos()
@@ -138,7 +138,7 @@ class Circuito extends CI_Controller {
 				}	
 			// recorro  array puntos agregando id de circ y guardando de a uno 
 				$datos_puntos_criticos = $this->input->post('ptos_criticos_edit');	
-				if(!empty($datos_puntos_criticos)){
+				if(empty($datos_puntos_criticos)){
 						//recorre datos, crea puntos nuevos y arma array para asociar
 						for ($i=0; $i < count($datos_puntos_criticos); $i++) {   						
 							$pucr_id = $this->Circuitos->Guardar_punto_critico($datos_puntos_criticos[$i])->respuesta->pucr_id;							
@@ -156,7 +156,7 @@ class Circuito extends CI_Controller {
 						}
 						// asociar Id circuito a punto critico
 						$resp = $this->Circuitos->Asociar_punto_critico($aux);
-						if(!$resp['status']){
+						if(!$resp){
 								log_message('ERROR','#TRAZA|CIRCUITO|Guardar_Circuito() >> ERROR al asociar puntos criticos');
 								echo "punto no asociado";return;
 						}

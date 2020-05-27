@@ -68,7 +68,7 @@ class Circuitos extends CI_Model {
     $post["_post_puntoscriticos_batch_req"] = $arraypuntos;    
     log_message('DEBUG','#TRAZA|CIRCUITOS|Asociar_punto_critico():$post >> '.json_encode($post));
     $aux = $this->rest->callAPI("POST",REST."/_post_puntoscriticos_circuito_batch_req", $post);   
-    return $aux;     
+    return $aux['status'];     
   }
 
   /**

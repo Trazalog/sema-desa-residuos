@@ -41,7 +41,7 @@
 											<label for="Codigo">Codigo:</label>
 											<div class="input-group date">
 													<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-													<input type="number" class="form-control" name="codigo" id="codigo" required>
+													<input type="text" class="form-control" name="codigo" id="codigo" required>
 											</div>
 									</div>
 							</div>
@@ -520,7 +520,7 @@
 
 										<!--_____________ Btn agregar _____________-->	
 										<div class="col-md-12">
-											<button type="submit" class="btn btn-default pull-right"id="btn_agregar_edit" onclick="Agregar_punto_edit()">AGREGAR</button>
+											<button type="" class="btn btn-default pull-right"id="btn_agregar_edit" onclick="Agregar_punto_edit()">AGREGAR</button>
 										</div>
 										<!--__________________________-->
 								</form> 
@@ -558,8 +558,8 @@
 
 				<div class="modal-footer">
 					<div class="form-group text-right">
-							<button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnsave_edit">Guardar</button>
-							<button type="submit" class="btn btn-default" id="" data-dismiss="modal">Cerrar</button>
+							<button type="" class="btn btn-primary" data-dismiss="modal" id="btnsave_edit">Guardar</button>
+							<button type="" class="btn btn-default" id="" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 
@@ -751,12 +751,6 @@
 			datos_circuito = formToObject(datos_circuito);
 			datos_circuito.imagen = $("#input_aux_img").val();
 			
-			//TODO: VER VALIDACION DE GUARDADO SIN PUNTOS CRITICOS
-			// valida existencia de ptos criticos en tabla
-			// if (datos_puntos_criticos.lenght==0) {
-			// 		alert('No hay Puntos Criticos para Registrar.');
-			// 		return;
-			// }
 			// recorre tabla guardando ptos criticos en array
 			var datos_puntos_criticos = [];		
 			var rows = $('#datos tbody tr');				
@@ -765,34 +759,29 @@
 			});		
 
 			// valida campos cargados y envia datos
-			if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
+			// if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
 						
 					$.ajax({
 							type: "POST",
 							data: {datos_circuito, datos_puntos_criticos,datos_tipo_carga},							
 							url: "general/Estructura/Circuito/Guardar_Circuito",
-							success: function(r) {
-									console.log(r);
-									if (r == "ok") {
+							success: function(respuesta) {
 
-											$("#cargar_tabla").load(
-													"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Lista_Circuitos"
-											);
-											alertify.success("Agregado con exito");
-
-											$('#formCircuitos').data('bootstrapValidator').resetForm();
-											$("#formCircuitos")[0].reset();
-
-											$("#boxDatos").hide(500);
-											$("#botonAgregar").removeAttr("disabled");
-
+									
+									if (respuesta == "ok") {
+										$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
+										alertify.success("Agregado con exito");
+										$('#formCircuitos').data('bootstrapValidator').resetForm();
+										$("#formCircuitos")[0].reset();
+										$("#boxDatos").hide(500);
+										$("#botonAgregar").removeAttr("disabled");	
 									} else {
-											console.log(r);
-											alertify.error("error al agregar");
+
+										alertify.error(respuesta);	
 									}
-							}
+							}							
 					});
-			}
+			// }
 		}  
  
 	// muestra box de datos al dar click en boton agregar
@@ -813,112 +802,127 @@
 				$('#selecmov').find('option').remove();
 
 		});
+
+
+
+
+	$(document).ready(function() {
+   
+		// inicializa validador de formulario circuitos
+		$('#formCircuitos').bootstrapValidator({
+				message: 'This value is not valid',
+				/*feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+						invalid: 'glyphicon glyphicon-remove',
+						validating: 'glyphicon glyphicon-refresh'
+				},*/
+				//excluded: ':disabled',
+				fields: {
+						codigo: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
+								}
+						},
+						tica_id: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
+								}
+						},
+						descripcion: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
+
+								}
+						},
+						vehi_id: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
+								}
+						},
+						chof_id: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
+								}
+						}
+				}
+		}).on('success.form.bv', function(e) {
+				e.preventDefault();
+				//guardar();
+		}); 
 		
-	// inicializa validador de formulario circuitos
-	$('#formCircuitos').bootstrapValidator({
-			message: 'This value is not valid',
-			/*feedbackIcons: {
-					valid: 'glyphicon glyphicon-ok',
-					invalid: 'glyphicon glyphicon-remove',
-					validating: 'glyphicon glyphicon-refresh'
-			},*/
-			//excluded: ':disabled',
-			fields: {
-					codigo: {
-							message: 'la entrada no es valida',
-							validators: {
-									notEmpty: {
-											message: 'la entrada no puede ser vacia'
-									}
-							}
-					},
-					tica_id: {
-							message: 'la entrada no es valida',
-							validators: {
-									notEmpty: {
-											message: 'la entrada no puede ser vacia'
-									}
-							}
-					},
-					descripcion: {
-							message: 'la entrada no es valida',
-							validators: {
-									notEmpty: {
-											message: 'la entrada no puede ser vacia'
-									}
+		// inicializa validador de form puntos criticos
+		$('#formPuntos').bootstrapValidator({
+				message: 'This value is not valid',
+				/*feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+						invalid: 'glyphicon glyphicon-remove',
+						validating: 'glyphicon glyphicon-refresh'
+				},*/
+				//excluded: ':disabled',
+				fields: {
+						nombre: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
+								}
+						},
+						descripcion: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
 
-							}
-					},
-					vehi_id: {
-							message: 'la entrada no es valida',
-							validators: {
-									notEmpty: {
-											message: 'la entrada no puede ser vacia'
-									}
-							}
-					},
-					chof_id: {
-							message: 'la entrada no es valida',
-							validators: {
-									notEmpty: {
-											message: 'la entrada no puede ser vacia'
-									}
-							}
-					}
-			}
-	}).on('success.form.bv', function(e) {
-			e.preventDefault();
-			guardar();
-	});    
-	
-	// inicializa validador de form puntos criticos
-	$('#formPuntos').bootstrapValidator({
-			message: 'This value is not valid',
-			/*feedbackIcons: {
-					valid: 'glyphicon glyphicon-ok',
-					invalid: 'glyphicon glyphicon-remove',
-					validating: 'glyphicon glyphicon-refresh'
-			},*/
-			//excluded: ':disabled',
-			fields: {
-					nombre: {
-							message: 'la entrada no es valida',
-							validators: {
-									notEmpty: {
-											message: 'la entrada no puede ser vacia'
-									}
-							}
-					},
-					descripcion: {
-							message: 'la entrada no es valida',
-							validators: {
-									notEmpty: {
-											message: 'la entrada no puede ser vacia'
-									}
+								}
+						},
+						lat: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
+								}
+						},
+						lng: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
+								}
+						}
+				}
+		}).on('success.form.bv', function(e) {
+				e.preventDefault();
+				//guardar();
+		})
 
-							}
-					},
-					lat: {
-							message: 'la entrada no es valida',
-							validators: {
-									notEmpty: {
-											message: 'la entrada no puede ser vacia'
-									}
-							}
-					},
-					lng: {
-							message: 'la entrada no es valida',
-							validators: {
-									notEmpty: {
-											message: 'la entrada no puede ser vacia'
-									}
-							}
-					}
-			}
-	}).on('success.form.bv', function(e) {
-			e.preventDefault();
-			guardar();
-	});      
+
+
+
+	});		
+
+
+
+
+	     
 	
 	// inicialliza box2 para agregar punto critico nuevo
 	DataTable($('#datos'));
