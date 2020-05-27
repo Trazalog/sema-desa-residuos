@@ -243,7 +243,7 @@
                             <div class="form-group">
                                     <label for="TipoG" >Tipo de residuo:</label>
                                     <br>
-                                         <select class="form-control select2 select2-hidden-accesible habilitar" id="E_TipoResiduo"name="e_tipo">
+                                         <select class="form-control select2 select2-hidden-accesible habilitar ocultar" id="E_TipoResiduo"name="e_tipo">
                                             <option value="" disabled selected>-seleccione opcion-</option>
                                             <?php
                                             foreach ($Tiporesiduo as $d) {
@@ -251,6 +251,7 @@
                                             }
                                             ?>
                                         </select>
+                                        <input type="text" class="form-control mostrar" id="text_residuos" name="" style="display:none">
                                 </div>
                                 <!-- <div class="form-group">
                                     <label for="Dpto" >Departamento:</label>
@@ -294,7 +295,7 @@
                                 <div class="form-group">
                                     <label for="Zonag" >Zona:</label>
                                     <br>
-                                        <select class="form-control select2 select2-hidden-accesible habilitar" id="E_Zonag" name="e_zonag">
+                                        <select class="form-control select2 select2-hidden-accesible habilitar ocultar" id="E_Zonag" name="e_zonag">
                                             <option value="" disabled selected>-seleccione opcion-</option>
                                                 <?php
                                                 foreach ($Zonagenerador as $j) {
@@ -302,13 +303,14 @@
                                                 }
                                                 ?>
                                             </select>
+                                            <input type="text" class="form-control mostrar" id="text_zona" name="" style="display:none">
                                 </div>                                
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="TipoG" >Tipo de generador:</label>
                                     <br>
-                                         <select class="form-control select2 select2-hidden-accesible habilitar" id="E_TipoG"name="e_tipo">
+                                         <select class="form-control select2 select2-hidden-accesible habilitar ocultar" id="E_TipoG"name="e_tipo">
                                             <option value="" disabled selected>-seleccione opcion-</option>
                                             <?php
                                             foreach ($Tipogenerador as $c) {
@@ -316,11 +318,12 @@
                                             }
                                             ?>
                                         </select>
+                                        <input type="text" class="form-control mostrar" id="text_generador" name="" style="display:none">
                                 </div>
                                 <div class="form-group">
                                     <label for="TipoG" >Tipo de rubro:</label>
                                     <br>
-                                         <select class="form-control select2 select2-hidden-accesible habilitar" id="E_TipoR"name="e_tipo">
+                                         <select class="form-control select2 select2-hidden-accesible ocultar" id="E_TipoR"name="e_tipo">
                                             <option value="" disabled selected></option>
                                             <?php
                                             foreach ($Rubro as $e) {
@@ -328,6 +331,8 @@
                                             }
                                             ?>
                                         </select>
+                                        <input type="text" class="form-control mostrar" id="text_rubro" name="" style="display:none">
+
                                 </div>
                                
                             </div>
