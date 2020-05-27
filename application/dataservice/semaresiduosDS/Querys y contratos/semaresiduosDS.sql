@@ -1210,9 +1210,9 @@ http://10.142.0.3:8280/services/semaresiduosDS
   recurso: /choferes
   metodo: put
    
-  update log.choferes
-  set nombre=:nombre, apellido=:apellido, documento=:documento, fec_nacimiento=TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), direccion=:direccion, celular=CAST(:celular AS INTEGER), codigo=CAST(:codigo AS INTEGER), carnet=:carnet, vencimiento=TO_DATE(:vencimiento,'YYYY-MM-DD'), habilitacion=:habilitacion, imagen = :imagen, tran_id=CAST(:tran_id AS INTEGER), cach_id=:cach_id, usuario_app = :usuario_app 
-  where chof_id = CAST(:chof_id AS INTEGER)
+ update log.choferes
+   set nombre=:nombre, apellido=:apellido, documento=:documento, fec_nacimiento=TO_DATE(:fec_nacimiento,'YYYY-MM-DD'), direccion=:direccion, celular=:celular, codigo=:codigo, carnet=:carnet, vencimiento=TO_DATE(:vencimiento,'YYYY-MM-DD'), habilitacion=:habilitacion, imagen = :imagen, tran_id=CAST(:tran_id AS INTEGER), cach_id=:cach_id, usuario_app = :usuario_app 
+   where chof_id = CAST(:chof_id AS INTEGER)
 
    {
      "chofer":{
@@ -1337,9 +1337,13 @@ http://10.142.0.3:8280/services/semaresiduosDS
 -- (generadores)solicitanteTransporteGet
   recurso: /solicitantesTransporte
   metodo: get
-  select sotr_id, razon_social, cuit, domicilio, num_registro, lat, lng, zona_id, rubr_id, tist_id, tica_id
-  from log.solicitantes_transporte
-  where eliminado = 0
+  select ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, 
+  ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, ST.tica_id, ST.depa_id,
+  D.nombre as depa_nombre, Z.nombre as zona_nombre 
+  from log.solicitantes_transporte ST, core.departamentos D, core.zonas Z
+  where ST.depa_id = D.depa_id 
+  and ST.zona_id = Z.zona_id 
+  and ST.eliminado = 0
 
   {
     "solicitantes_transporte": {
@@ -1353,6 +1357,9 @@ http://10.142.0.3:8280/services/semaresiduosDS
             "lat": "$lat",
             "lng": "$lng",
             "zona_id": "$zona_id",
+            "zona_nombre": "$zona_nombre",
+            "depa_id": "$depa_id",
+            "depa_nombre": "$depa_nombre", 
             "rubr_id": "$rubr_id",
             "tist_id": "$tist_id",
             "tica_id": "$tica_id"	            

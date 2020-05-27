@@ -91,7 +91,7 @@
 			// trae imagen si hay aguna guardada
 			llenarImagen(data.circ_id);
 		}	
-	// lena select multiple con RSU y selcciona los guardados
+	// llena select multiple con RSU y selcciona los guardados
 		function llenarSelectRsu(tipos){	
 				
 			var opcGuardadas = [];		
@@ -162,8 +162,12 @@
 					ptos_criticos_edit.push(getJson(e));
 			});	
 
+			var algo = ptos_criticos_edit;
+			
+			
+			
 			console.table('ptos criticos' + rows);
-
+			debugger;
 			$.ajax({
 					type: 'POST',
 					data:{ circuito_edit, tica_edit, ptos_criticos_edit},
