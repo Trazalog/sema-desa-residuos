@@ -49,11 +49,10 @@ $(".btnInfo").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     var datacarga = JSON.parse($(this).parents("tr").attr("data-carga"));
     $(".habilitar").attr("readonly","readonly"); 
-    $("#tiic").attr("readonly","readonly"); 
-    $(".txtarea").removeAttr("style");
     $(".selectores").attr("style","display:none");
     $(".ocultar").attr("style","display:none"); 
     $(".ocultarInfo").removeAttr("style");
+    $(".ocultar_Info").removeAttr("style");
     $('#btnsave').hide();
     $("#Codigo").val(data.codigo);
     $("#Descripcion").val(data.descripcion);
@@ -66,8 +65,7 @@ $(".btnInfo").click(function(e){
     $(".titulo").text('Informacion Contenedor');
     $("#estadoInfo").attr("readonly","readonly"); 
     $("#habilitacionInfo").attr("readonly","readonly"); 
-    $("#tiic").val("");
-    $("#tic_id").find('option').remove();
+    $("#tic_id_info").find('option').remove();
 
 
   var tipo = data.tipos_carga.tipoCarga;
@@ -78,15 +76,14 @@ $(".btnInfo").click(function(e){
             for(var j=0; j <=tipo.length-1; j++){
                 if(datacarga[i].valor == tipo[j].rsu)
                 {
-                $("#tic_id").append("<option selected value= '"+datacarga[i].tabl_id+"'> " + datacarga[i].valor + "</option>");
+                $("#tic_id_info").append("<option selected value= '"+datacarga[i].tabl_id+"'> " + datacarga[i].valor + "</option>");
                 aux=1;
                 j=tipo.length+1;
-                $("#tiic").val(datacarga[i].valor +", "+  $("#tiic").val());
                 }
 
             }
             if(aux==0){
-                $("#tic_id").append("<option value= '"+datacarga[i].tabl_id+"' >" + datacarga[i].valor + "</option>");
+                $("#tic_id_info").append("<option value= '"+datacarga[i].tabl_id+"' >" + datacarga[i].valor + "</option>");
             } 
         
         }
@@ -106,10 +103,11 @@ console.table(datacarga[0].valor);
 $(".habilitar").removeAttr("readonly");
 $(".selectores").removeAttr("style");
 $(".ocultar").removeAttr("style");
-$(".txtarea").attr("style","display:none");
 $(".ocultarInfo").attr("style","display:none");
 $(".titulo").text('Editar Contenedor'); 
 $('#btnsave').show(); 
+$(".ocultar_Info").attr("style","display:none");
+$("#tic_id").removeAttr("disabled"); 
 //--------------------------------------
 $("#Codigo").val(data.codigo);
 $("#Descripcion").val(data.descripcion);

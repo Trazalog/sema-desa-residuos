@@ -91,7 +91,7 @@ class Dash extends CI_Controller {
 													{
 															"titulo": "ABM Incidencias ",
 															"icono": "fa fa-genderless",
-															"link": "general/Orden/nueva2"
+															"link": "general/Estructura/Incidencia/templateIncidencia"
 													},
 													{
 															"titulo": "ABM Infracciones ",
