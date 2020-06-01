@@ -42,8 +42,6 @@ $(".btnEditar").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
     $(".titulo").text('Editar Vehiculo');
-    $(".textTransinfo").attr("style","display:none");
-    $(".ocultaTransedit").removeAttr("style");
     $('#btnsave_e').show(); 
     $(".habilitar").removeAttr("readonly");
     $("#div_ver").attr("style","display:none");
@@ -58,8 +56,7 @@ $(".btnEditar").click(function(e){
     $("#e_equi_id").val(data.equi_id);
     $("#id_fecha_ingreso").val(data.fecha_ingreso);
     console.table($("#id_fecha_ingreso").val());
-    var tranid = data.tran_id;
-    $("#e_tran_id").val(tranid);    
+    cargartransportistas(data);
     });
 
 //Modal Info
@@ -80,25 +77,8 @@ $(".btnInfo").click(function(e){
     $("#e_ubicacion").val(data.ubicacion);
     $("#e_fechaingreso").val(data.fecha_ingreso);
     $("#id_fecha_ingreso").val(data.fecha_ingreso);
-    $("#tran_id_info").attr("readonly","readonly"); 
     console.table($("#id_fecha_ingreso").val());
-    var tranid = data.tran_id;
-    $("#e_tran_id").val(tranid);
-    $(".ocultaTransedit").attr("style","display:none");
-    $(".textTransinfo").removeAttr("style");
-    //para asiganrle nombre del transportista al input tipo text
-    $("#e_equi_id").val(data.equi_id);
-    var tranid = data.tran_id;
-    $("#e_tran_id").val(tranid);
-    $sel = $("#e_tran_id");
-    for(var j=0; j<= $sel[0].length-1; j++){
-
-        if(data.tran_id == $sel[0][j].value)
-        {
-            $("#tran_id_info").val($sel[0][j].text);
-        }
-    }
-
+    cargartransportistas(data);
     });
 
 

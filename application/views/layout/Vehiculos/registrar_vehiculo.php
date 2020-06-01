@@ -279,24 +279,12 @@
                         </div>
             ​           <!--_____________________________________________________________--> 
 
-                         <div class="form-group ocultaTransedit">
+                         <div class="form-group">
                             <label for="tran_id" >Transportista:</label>
-                            <br>
                             <select class="form-control select2 select2-hidden-accesible" id="e_tran_id" name="tran_id" >
-                                <option value="" disabled selected >-seleccione opcion-</option>
-                                <?php
-                                                            foreach ($transportista as $j) {
-                                                                echo '<option  value="'.$j->tran_id.'">'.$j->razon_social.'</option>';
-                                                            }
-                                ?>
+                                <option value="" selected class="habilitar ocultar " ></option>
                             </select>
                         </div> 
-                        <div class="form-group textTransinfo" style="display:none">
-                            <label for="tran_id_info">Transportista:</label>
-                            <br>
-                            <input type="text"  class="form-control" id="tran_id_info">
-                        
-                        </div>
                      
 
                         <!--Capacidad-->
@@ -408,7 +396,55 @@
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
 
-
+function cargartransportistas($dato){
+    $("#e_tran_id")[0][0].value = ""; 
+    $("#e_tran_id")[0][0].text = "Cargando.."; 
+    $("#tran_ver").val('Cargando..');
+   
+    $.ajax({
+                type: "POST",
+                data: {},
+                url: "general/Estructura/Vehiculo/ObtenerTransportistas",
+                success: function ($dato) {
+                    console.table("json son decodificar: "+$dato);
+                    var res = JSON.parse($dato); // decodifico el dato que obtuve en formato json
+                  
+                    console.table("json decodificado: "+res);                  
+                                      
+                    $select = $("#e_tran_id"); 
+                    console.table($select[0].length);
+                    for(var i=1; i <= $("#e_tran_id")[0].length-1 ;i++){
+                            $("#e_tran_id")[0][i].selected = "false";
+                        }  
+                    if ($dato) {
+                        
+                        for(var i=0; i <= res.tran.length-1; i++){
+                           
+                            if($dato.tran_id == res.tran[i].tran_id){
+                                $select[0][0].selected = "true";
+                                $select[0][0].text = res.tran[i].razon_social;
+                                $select[0][0].value = res.tran[i].tran_id;
+                                $("#tran_ver").val(res.tran[i].razon_social);
+                            }
+                        }
+                       
+                        if($select[0].length == 1)
+                        {
+                            for(var i=0; i <= res.tran.length-1; i++){
+                                
+                              
+                                    $select.append( $('<option />',{ value:res.tran[i].tran_id, text:res.tran[i].razon_social }) );
+                                
+                            }
+                        }
+                      
+                     } else {
+                       
+                        alert("error");
+                    }
+                }
+            });
+}
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
@@ -433,8 +469,6 @@
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
     $(".titulo").text('Editar Vehiculo');
-    $(".textTransinfo").attr("style","display:none");
-    $(".ocultaTransedit").removeAttr("style");
     $('#btnsave_e').show(); 
     $(".habilitar").removeAttr("readonly");
     $("#div_ver").attr("style","display:none");
@@ -449,10 +483,7 @@
     $("#id_fecha_ingreso").val(data.fecha_ingreso);
     console.table($("#id_fecha_ingreso").val());
     $("#e_equi_id").val(data.equi_id);
-    var tranid = data.tran_id;
-    $("#e_tran_id").val(tranid);
-  
-
+    cargartransportistas(data);
     });
 
 //Modal Info
@@ -473,25 +504,8 @@
     $("#e_ubicacion").val(data.ubicacion);
     $("#e_fechaingreso").val(data.fecha_ingreso);
     $("#id_fecha_ingreso").val(data.fecha_ingreso);
-    $("#tran_id_info").attr("readonly","readonly"); 
     console.table($("#id_fecha_ingreso").val());
-    var tranid = data.tran_id;
-    $("#e_tran_id").val(tranid);
-    $(".ocultaTransedit").attr("style","display:none");
-    $(".textTransinfo").removeAttr("style");
-    //para asiganrle nombre del transportista al input tipo text
-    $("#e_equi_id").val(data.equi_id);
-    var tranid = data.tran_id;
-    $("#e_tran_id").val(tranid);
-    $sel = $("#e_tran_id");
-    for(var j=0; j<= $sel[0].length-1; j++){
-
-        if(data.tran_id == $sel[0][j].value)
-        {
-            $("#tran_id_info").val($sel[0][j].text);
-        }
-    }
- 
+    cargartransportistas(data);
     });
 
 //Modal Eliminar
