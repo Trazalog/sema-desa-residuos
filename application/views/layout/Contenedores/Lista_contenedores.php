@@ -111,13 +111,15 @@
                                         <!--Tara-->
                                         <div class="form-group">
                                             <label for="Tara">Tara:</label>
+                                            <br>
                                             <input type="text" class="form-control habilitar" name="" id="Tara">
                                         </div>
                                         <!--_____________________________________________-->
-
+                                        
                                         <!--Estado-->
                                         <div class="form-group">
                                             <label for="Estados">Estado:</label>
+                                            <br>
                                             <select class="form-control select2 select2-hidden-accesible selectores" name=""
                                                 id="Estados">
                                                 <option value="" disabled selected>-Seleccione opcion-</option>
@@ -132,8 +134,10 @@
                                         </div>
                                          <!--Habilitacion-->
                                             <div class="form-group">
+                                              
                                                  <label for="Habilitacion" >Habilitacion:</label>
-                                            
+                                                  <br>   
+                                                     
                                                 <select class="form-control select2 select2-hidden-accesible selectores" name="" id="Habilitacion">
                                                     <option value="" disabled selected>-seleccione opcion-</option>
                                                         <?php
@@ -159,11 +163,22 @@
                                                     <!-- <input type="text" class="form-control habilitar" name="" id="tic" multiple> -->
                                             </div>  
                                             
+                                        </div> 
+                                        
+                                        <div class="form-group ocultar_Info " style="display:none">
+                                            <label for="tipoResiduos">Tipo de residuo:</label>
+                                            <div class="input-group date">
+                                                <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                                                    <select class="form-control select3 habilitar  " multiple="multiple" disabled  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tic_id_info">
+                                                   
+                  
+                                                    </select>
+                                                   
+                                                    <!-- <input type="text" class="form-control habilitar" name="" id="tic" multiple> -->
+                                            </div>  
+                                            
                                         </div>  
-                                        <div class="form-group txtarea">
-                                        <label for="tipoResiduos">Tipo de residuo:</label>
-                                        <textarea name="" id="tiic" cols="20" rows="6" multiple ></textarea>
-                                        </div>                                                 
+                                                                               
                                         <!--_____________________________________________-->
                                        
                                         
@@ -247,10 +262,10 @@ $(".btnInfo").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     var datacarga = JSON.parse($(this).parents("tr").attr("data-carga"));
     $(".habilitar").attr("readonly","readonly"); 
-    $("#tiic").attr("readonly","readonly"); 
-    $(".txtarea").removeAttr("style");
+    $("#tic_id").attr("disabled"); 
     $(".selectores").attr("style","display:none");
     $(".ocultar").attr("style","display:none"); 
+    $(".ocultar_Info").removeAttr("style");
     $(".ocultarInfo").removeAttr("style");
     $('#btnsave').hide();
     $("#Codigo").val(data.codigo);
@@ -263,10 +278,9 @@ $(".btnInfo").click(function(e){
     $("#habilitacionInfo").val(data.habilitacion);
     $(".titulo").text('Informacion Contenedor');
     $("#estadoInfo").attr("readonly","readonly"); 
-    $("#tiic").val("");
     $("#habilitacionInfo").attr("readonly","readonly"); 
 
-    $("#tic_id").find('option').remove();
+    $("#tic_id_info").find('option').remove();
 
 
         var tipo = data.tipos_carga.tipoCarga;
@@ -277,15 +291,14 @@ $(".btnInfo").click(function(e){
             for(var j=0; j <=tipo.length-1; j++){
                 if(datacarga[i].valor == tipo[j].rsu)
                 {
-                $("#tic_id").append("<option selected value= '"+datacarga[i].tabl_id+"'> " + datacarga[i].valor + "</option>");
+                $("#tic_id_info").append("<option selected disabled value= '"+datacarga[i].tabl_id+"'> " + datacarga[i].valor + "</option>");
                 aux=1;
                 j=tipo.length+1;
-                $("#tiic").val(datacarga[i].valor +", "+  $("#tiic").val());
                 }
 
             }
             if(aux==0){
-                $("#tic_id").append("<option value= '"+datacarga[i].tabl_id+"' >" + datacarga[i].valor + "</option>");
+                $("#tic_id_info").append("<option disabled value= '"+datacarga[i].tabl_id+"' >" + datacarga[i].valor + "</option>");
             } 
         
         }
@@ -303,8 +316,9 @@ console.table(data.tipos_carga.tipoCarga);
 console.table(datacarga[0].valor);
 $(".habilitar").removeAttr("readonly");
 $(".selectores").removeAttr("style");
+$("#tic_id").removeAttr("disabled"); 
 $(".ocultar").removeAttr("style");
-$(".txtarea").attr("style","display:none");
+$(".ocultar_Info").attr("style","display:none");
 $(".ocultarInfo").attr("style","display:none");
 $(".titulo").text('Editar Contenedor'); 
 $('#btnsave').show(); 

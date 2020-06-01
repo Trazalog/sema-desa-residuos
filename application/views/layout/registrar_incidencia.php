@@ -179,7 +179,7 @@
             <!--Descripcion-->
 
                 <div class="form-group">
-                    <label for="Descripcion" name="Descripcion">Descripcion:</label>
+                    <label for="Descripcion" name="Descripcion">Transportista:</label>
                     <input type="text" class="form-control" id="descripcion">
                 </div>
 
@@ -187,7 +187,7 @@
             <!--Inspector-->
 
                 <div class="form-group">
-                    <label for="Inspector" name="Inspector">Inspector:</label>
+                    <label for="Inspector" name="Inspector">Generador:</label>
                     <input type="text" class="form-control" id="inspector">
                 </div>
                 
@@ -390,13 +390,14 @@
 
                 <div class="col-md-12">
 
-                    <div class="dt-buttons btn-group  pull-right">
-                        <button class="btn btn-default  buttons-excel buttons-html5" tabindex="0"
-                            aria-controls="example2" type="button " aria-label="Left Align"><span>Excel</span></button>
-                        <button class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="example2"
-                            type="button"><span>PDF</span></button>
-                        <button class="btn btn-default buttons-print" tabindex="0" aria-controls="example2"
-                            type="button"><span>Print</span></button> </div>
+                        <div class="dt-buttons btn-group  pull-right">
+                            <button class="btn btn-default  buttons-excel buttons-html5" tabindex="0"
+                                aria-controls="example2" type="button " aria-label="Left Align"><span>Excel</span></button>
+                            <button class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="example2"
+                                type="button"><span>PDF</span></button>
+                            <button class="btn btn-default buttons-print" tabindex="0" aria-controls="example2"
+                                type="button"><span>Print</span></button> 
+                        </div>
 
                 </div>
 
@@ -406,7 +407,7 @@
 
                 
 
-  <!--__________________HEADER TABLA___________________________-->
+                <!--__________________HEADER TABLA___________________________-->
 
                 <div class="col-md-12 table-scroll">
 
@@ -416,7 +417,7 @@
                         
                         <thead class="thead-dark" bgcolor="#eeeeee">
 
-                            <th>Acciones</th>
+                            
                             <th>Descripcion</th>
                             <th>Tipo de incidencia</th>
                             <th>fecha y hora</th>
@@ -424,7 +425,7 @@
                             <th>Generador</th>
                             <th>Transportista</th>
                             <th>N° Acta</th>
-                            <th>Foto</th>
+                            
 
                         
                         </thead>
@@ -434,12 +435,7 @@
 
                         <tbody id="tablaIncidencia">
                             <tr role="row" class="even" id="primero" hidden>
-                                <td class="sorting_1">
-                                    <button type="button" title="editar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
+                             
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -447,74 +443,10 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="fa fa-picture-o" aria-hidden="true"></span></button>&nbsp
-                                </td>
+                             
                             </tr>
 
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle"
-                                        data-toggle="modal" data-target="#modalEdit"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="fa fa-picture-o" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle"
-                                        data-toggle="modal" data-target="#modalEdit"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="fa fa-picture-o" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1">
-                                    <button type="button" id="btninfo" title="info" class="btn btn-primary btn-circle"
-                                        data-toggle="modal" data-target="#modalEdit"><span
-                                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                <button type="button" title="eliminar" class="btn btn-primary btn-circle"><span
-                                            class="fa fa-picture-o" aria-hidden="true"></span></button>&nbsp
-                                </td>
-                            </tr>
+                           
                         </tbody>
                     </table>
 
@@ -526,6 +458,7 @@
 
 
 
+        </div>  
             <!---//////////////////////////////////////--- FIN BOX 2---///////////////////////////////////////////////////////----->
 
 
@@ -659,7 +592,7 @@ $("#btnclose").on("click", function() {
                 $.ajax({
                     type: "POST",
                     data: datos,
-                    url: "ajax/Registrargenerador/guardarDato",
+                    url: "general/Estructur/Incidencia/guardarDato",
                     success: function(r) {
                         if (r == "ok") {
                             //console.log(datos);
