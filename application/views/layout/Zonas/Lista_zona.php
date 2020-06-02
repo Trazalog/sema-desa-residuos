@@ -90,10 +90,10 @@
                                 <!--Circuito-->
                                 <div class="form-group">
                                     <label for="CircR" name="img">Imagen:</label>
-                                   <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller" id="img_id">
+                                   <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
                                    <input type="text" id="input_aux_img64" style="display:none" >
                                    <input type="text" id="input_aux_zonaID" style="display:none" >                                   
-                                   <img src="" alt="imagen" id="img_base" width="" height="">
+                                   <img src="" alt="no hay imagen! cargue una" id="img_base" width="" height="">
                                    
                                  
                                    
