@@ -14,17 +14,7 @@ class Solicitud_Pedido extends CI_Controller {
 
       parent::__construct();
 
-      $this->load->helper('empresas_helper');
-      $this->load->helper('zonas_helper');
-      $this->load->helper('tipo_residuos_helper');
-      $this->load->helper('circuitos_helper');
-      $this->load->helper('disposiciones_finales_helper');
-      $this->load->model('general/Zonas');
-      $this->load->model('general/Circuitos');
-      $this->load->model('general/DisposisionesFinales');
-      $this->load->model('general/TipoResiduos');
-      $this->load->model('general/Empresas');
-      $this->load->model('general/Sectoresdescarga');
+      
       $this->load->model('general/transporte-bpm/SolicitudPedidos');
    }
 

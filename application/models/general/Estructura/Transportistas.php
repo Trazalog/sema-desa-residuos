@@ -81,7 +81,7 @@ class Transportistas extends CI_Model
 		function Borrar_Transportista($tran_id){
 			log_message('INFO','#TRAZA|TRANSPORTISTAS|Borrar_Transportista() >> ');
 			$comp['tran_id'] = $tran_id;
-			$comp['eliminado'] = "";			// para habilitar nuevamente cambiar a "0"
+			$comp['eliminado'] = "1";			// para habilitar nuevamente cambiar a "0"
 			$data['_put_transportistas_estado'] = $comp;			
 			log_message('DEBUG','#Transportistas/Modificar_Transportista (datos transportista): '.json_encode($data));		
 			$aux = $this->rest->callAPI("PUT",REST."/transportistas/estado", $data);

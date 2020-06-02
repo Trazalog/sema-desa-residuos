@@ -37,13 +37,19 @@
 	// llena modal solo lectura
 		$(".btnInfo").on("click", function() {
 			datajson = $(this).parents("tr").attr("data-json");
+			$(".oculta_info").removeAttr("style");
+			$(".oculta_edit").attr("style","display:none");
 			llenarModal(datajson);	
 			blockEdicion();
+			
+			
 		});
 
 	// llena modal para edicion
 		$(".btnEditar").on("click", function() {
 			datajson = $(this).parents("tr").attr("data-json");
+			$(".oculta_info").attr("style","display:none");
+			$(".oculta_edit").removeAttr("style");
 			llenarModal(datajson);
 			habilitarEdicion();
 		});
@@ -116,28 +122,7 @@
 			});
 		}
 
-	//boton guardar
-		$("#btnsave").on("click", function() {
-			//tomo datos del form y hago objeto
-			var transportista = new FormData($('#frm_transportista')[0]);
-			transportista = formToObject(transportista);    
-			var tipo_carga = $("#tica_edit").val();		
-			if ($("#frm_transportista").data('bootstrapValidator').isValid()) {
-					$.ajax({
-							type: "POST",
-							data: {transportista, tipo_carga},
-							url: "general/Estructura/Transportista/Modificar_Transportista",
-							success: function (result) {
-								if(result == "error_transportista"){
-									alertify.error("Hubo un error a modificar Transportista");
-								}else{
-									$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
-									//alertify.success("Transportista modificado con exito...");
-								}	
-							}
-					});
-			}		
-		});	
+	
 
 	//levanta modal y guarda tran_id
 		$(".btnDelete").on("click", function() {
@@ -150,144 +135,128 @@
 			$("#modalaviso").modal('show');		
 		});
 
-	//elimina transp y recarga la tabla
-		function eliminar(){
-			var tran_id = $("#transp_delete").val();
-			$.ajax({
-					type: "POST",
-					data: {tran_id:tran_id},
-					url: "general/Estructura/Transportista/Borrar_Transportista",
-					success: function(result) {
-						
-						$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");	
-						$("#modalaviso").modal('hide');
-					},
-					error: function(result){
-						$("#modalaviso").modal('hide');
-					}
-			});
-		}
+	
 
-	//Script Bootstrap Validacion.
-		$('#frm_transportista').bootstrapValidator({
-					message: 'This value is not valid',
-					fields: {
-							razon_social: {
-									message: 'la entrada no es valida',
-									validators: {
-											notEmpty: {
-													message: 'la entrada no puede ser vacia'
-											},
-											regexp: {
-													regexp: /[A-Za-z-z0-9]/,
-													message: 'la entrada no debe ser solo numeros'
-											}
-									}
-							},            
-							direccion: {
-									message: 'la entrada no es valida',
-									validators: {
-											notEmpty: {
-													message: 'la entrada no puede ser vacia'
-											},
-											regexp: {
-													regexp: /[A-Za-z-z0-9]/,
-													message: 'la entrada no debe ser un numero entero'
-											}
-									}
-							},
-							telefono: {
-									message: 'la entrada no es valida',
-									validators: {                    
-											regexp: {
-													regexp: /^(0|[1-9][0-9]*)$/,
-													message: 'la entrada debe ser un numero entero'
-											}
-									}
-							},
-							descripcion: {
-								message: 'la entrada no es valida',
-								validators: {
-										notEmpty: {
-												message: 'la entrada no puede ser vacia'
-										},
-										regexp: {
-												regexp: /[A-Za-z]/,
-												message: 'la entrada no debe ser un numero entero'
-										}
-								}
-							},
-							contacto: {
-									message: 'la entrada no es valida',
-									validators: {
-											regexp: {
-													regexp: /^(0|[1-9][0-9]*)$/,
-													message: 'la entrada no debe ser un numero entero'
-											}
-									}
-							},
-							registro: {
-								message: 'la entrada no es valida',
-								validators: {
-										notEmpty: {
-												message: 'la entrada no puede ser vacia'
-										},
-										regexp: {
-												regexp: /[A-Za-z-z0-9]/,
-												message: 'la entrada no debe ser un numero entero'
-										}
-								}
-							},
-							cuit: {
-									message: 'la entrada no es valida',
-									validators: {
-											notEmpty: {
-													message: 'la entrada no puede ser vacia'
-											},
-											regexp: {
-													regexp: /^(0|[1-9][0-9]*)$/,
-													message: 'la entrada no debe ser un numero entero'
-											}
-									}
-							},            
-							resolucion: {
-									message: 'la entrada no es valida',
-									validators: {
-											notEmpty: {
-													message: 'la entrada no puede ser vacia'
-											},
-											regexp: {
-													regexp: /[A-Za-z]/,
-													message: 'la entrada no debe ser un numero entero'
-											}
-									}
-							},            
-							fec_alta: {
-									message: 'la entrada no es valida',
-									validators: {
-											notEmpty: {
-													message: 'la entrada no puede ser vacia'
-											},
-									}
-							},
-							fec_baja: {
-									message: 'la entrada no es valida',
-									validators: {
-											notEmpty: {
-													message: 'la entrada no puede ser vacia'
-											},
-									}
-							}
-					}
-		}).on('success.form.bv', function(e) {
-				e.preventDefault();
-				//guardar();
-		});	
+	// //Script Bootstrap Validacion.
+	// 	$('#frm_transportista').bootstrapValidator({
+	// 				message: 'This value is not valid',
+	// 				fields: {
+	// 						razon_social: {
+	// 								message: 'la entrada no es valida',
+	// 								validators: {
+	// 										notEmpty: {
+	// 												message: 'la entrada no puede ser vacia'
+	// 										},
+	// 										regexp: {
+	// 												regexp: /[A-Za-z-z0-9]/,
+	// 												message: 'la entrada no debe ser solo numeros'
+	// 										}
+	// 								}
+	// 						},            
+	// 						direccion: {
+	// 								message: 'la entrada no es valida',
+	// 								validators: {
+	// 										notEmpty: {
+	// 												message: 'la entrada no puede ser vacia'
+	// 										},
+	// 										regexp: {
+	// 												regexp: /[A-Za-z-z0-9]/,
+	// 												message: 'la entrada no debe ser un numero entero'
+	// 										}
+	// 								}
+	// 						},
+	// 						telefono: {
+	// 								message: 'la entrada no es valida',
+	// 								validators: {                    
+	// 										regexp: {
+	// 												regexp: /^(0|[1-9][0-9]*)$/,
+	// 												message: 'la entrada debe ser un numero entero'
+	// 										}
+	// 								}
+	// 						},
+	// 						descripcion: {
+	// 							message: 'la entrada no es valida',
+	// 							validators: {
+	// 									notEmpty: {
+	// 											message: 'la entrada no puede ser vacia'
+	// 									},
+	// 									regexp: {
+	// 											regexp: /[A-Za-z]/,
+	// 											message: 'la entrada no debe ser un numero entero'
+	// 									}
+	// 							}
+	// 						},
+	// 						contacto: {
+	// 								message: 'la entrada no es valida',
+	// 								validators: {
+	// 										regexp: {
+	// 												regexp: /^(0|[1-9][0-9]*)$/,
+	// 												message: 'la entrada no debe ser un numero entero'
+	// 										}
+	// 								}
+	// 						},
+	// 						registro: {
+	// 							message: 'la entrada no es valida',
+	// 							validators: {
+	// 									notEmpty: {
+	// 											message: 'la entrada no puede ser vacia'
+	// 									},
+	// 									regexp: {
+	// 											regexp: /[A-Za-z-z0-9]/,
+	// 											message: 'la entrada no debe ser un numero entero'
+	// 									}
+	// 							}
+	// 						},
+	// 						cuit: {
+	// 								message: 'la entrada no es valida',
+	// 								validators: {
+	// 										notEmpty: {
+	// 												message: 'la entrada no puede ser vacia'
+	// 										},
+	// 										regexp: {
+	// 												regexp: /^(0|[1-9][0-9]*)$/,
+	// 												message: 'la entrada no debe ser un numero entero'
+	// 										}
+	// 								}
+	// 						},            
+	// 						resolucion: {
+	// 								message: 'la entrada no es valida',
+	// 								validators: {
+	// 										notEmpty: {
+	// 												message: 'la entrada no puede ser vacia'
+	// 										},
+	// 										regexp: {
+	// 												regexp: /[A-Za-z]/,
+	// 												message: 'la entrada no debe ser un numero entero'
+	// 										}
+	// 								}
+	// 						},            
+	// 						fec_alta: {
+	// 								message: 'la entrada no es valida',
+	// 								validators: {
+	// 										notEmpty: {
+	// 												message: 'la entrada no puede ser vacia'
+	// 										},
+	// 								}
+	// 						},
+	// 						fec_baja: {
+	// 								message: 'la entrada no es valida',
+	// 								validators: {
+	// 										notEmpty: {
+	// 												message: 'la entrada no puede ser vacia'
+	// 										},
+	// 								}
+	// 						}
+	// 				}
+	// 	}).on('success.form.bv', function(e) {
+	// 			e.preventDefault();
+	// 			//guardar();
+	// 	});	
 
-	// este script me permite limpiar la validacion una vez cerrado el modal
-		$("#modalEdit").on("hidden.bs.modal", function (e) {
-        $("#formEditDatos").data('bootstrapValidator').resetForm();
-    });
+	// // este script me permite limpiar la validacion una vez cerrado el modal
+	// 	$("#modalEdit").on("hidden.bs.modal", function (e) {
+    //     $("#frm_transportista").data('bootstrapValidator').resetForm();
+    // });
 	
 	//Initialize Select2 Elements
 		$('.select4').select2();

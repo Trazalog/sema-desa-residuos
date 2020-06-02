@@ -85,7 +85,7 @@ class Transportista extends CI_Controller
         $tipo_carga = $this->input->post('tipo_carga');
         $tran_id = $transportista['tran_id']; 
         // actualiza datos trnasportista
-        $response = $this->Transportistas->Modificar_Transportista($transportista, $tran_id); 
+        $response = $this->Transportistas->Modificar_Transportista($transportista); 
          
         if(!$response){
           log_message('ERROR','#TRAZA|TRANSPORTISTA|Modificar_Transportista() >> $response: '.$response);
