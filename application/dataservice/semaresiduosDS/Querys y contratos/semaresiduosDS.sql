@@ -1,7 +1,7 @@
 http://dev-trazalog.com.ar:8280/services/semaresiduosDS
 http://trazalog.com.ar:8280/services/semaresiduosDS
 http://34.66.255.127:8280/services/semaresiduosDS
-http://10.142.0.3:8280/services/semaresiduosDS
+http://10.142.0.7:8280/services/semaresiduosDS
 
 //TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
   - falta saber de donde sale el destino acta para elegir
@@ -1772,8 +1772,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
     {"respuesta": {"nuevo_soco_id": "3"}}
 
--- solicitudContenedorGet  
-  
+-- solicitudContenedorGet 
   recurso: /solicitudContenedores/{usuario_app}
   metodo: get
 
@@ -1857,11 +1856,63 @@ http://10.142.0.3:8280/services/semaresiduosDS
   }}
 
 
+-- solicitudContenedorGetInfo 
+  recurso: /solicitudContenedores/info/{case_id}
+  metodo: get
+  select 
+  SC.soco_id, SC.estado, SC.observaciones, SC.fec_alta, SC.sotr_id, 
+  ST.razon_social, ST.domicilio 
+  from log.solicitudes_contenedor SC, log.solicitantes_transporte ST
+  where SC.sotr_id = ST.sotr_id 
+  and SC.case_id = :case_id 
+  and SC.eliminado = 0
+
+  {
+    "solicitud":{
+      "soco_id": "$soco_id",
+      "estado": "$estado",
+      "observaciones": "$observaciones",
+      "fec_alta": "$fec_alta",
+      "sotr_id": "$sotr_id",
+      "razon_social": "$razon_social",
+      "domicilio": "$domicilio"
+    } 
+  }
 
 
 
 
 
+
+
+
+
+
+-- solicitudContenedoresPorCase
+  recurso: /contenedoresSolicitados/case/{case_id}
+  metodo: get
+  select cs.coso_id, cs.cantidad, cs.fec_alta,  cs.tica_id, cs.soco_id, cs.reci_id, cs.cantidad_acordada,
+  t.valor 
+  from log.contenedores_solicitados cs, core.tablas t 
+  where cs.soco_id = (select soco_id from log.solicitudes_contenedor sc where sc.case_id = :case_id )
+  and cs.tica_id = t.tabl_id 
+
+  {
+    "contenedores":{
+      "contenedor":[  		
+        {
+        "coso_id": "$coso_id",
+        "cantidad": "$cantidad",
+        "fec_alta": "$fec_alta",
+        "tica_id": "$tica_id",
+        "soco_id": "$soco_id",
+        "reci_id": "$reci_id",
+        "cantidad_acordada": "$cantidad_acordada",
+        "valor": "$valor"
+        }
+      ]
+    }
+  }
 
 
 

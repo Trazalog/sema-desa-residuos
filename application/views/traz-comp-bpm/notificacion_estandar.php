@@ -44,14 +44,16 @@
 
             <?php
 
-			echo "<button class='btn btn-success btn-tomar' onclick='tomarTarea()'>Tomar tarea</button>";
+								echo "<button class='btn btn-success btn-tomar' onclick='tomarTarea()'>Tomar tarea</button>";
 
-			echo "<button class='btn btn-danger  btn-soltar' onclick='soltarTarea()'>Soltar tarea</button><br><br>";	
-			
-			?>
+								echo "<button class='btn btn-danger  btn-soltar' onclick='soltarTarea()'>Soltar tarea</button><br><br>";	
+						
+						?>
 
             <div id="view">
+						
                 <?php echo $view ?>
+								
             </div>
             <hr>
             <div class="text-right">

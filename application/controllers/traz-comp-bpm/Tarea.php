@@ -28,6 +28,8 @@ class Tarea extends CI_Controller
     public function detalleTarea($taskId)
     {
 
+			$taskId = 160002;
+
         //PERMISOS PANTALLA
         $data['permission'] = $this->session->userdata('user_data')['permission'];
 
@@ -173,6 +175,11 @@ class Tarea extends CI_Controller
                 $this->load->model(ALM.'Procesos');
                 
                 return $this->Procesos->desplegarVista($tarea);
+						
+						case BPM_PROCESS_ID_TRANSPORTE: 
+								
+								$this->load->model('transporte-bpm/Pedidos');
+								return $this->Pedidos->desplegarVista($tarea);						
 
             default:
 

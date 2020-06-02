@@ -87,16 +87,19 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 #TRAZ-COMP-BPM
 define('BPM', 'traz-comp-bpm/');
 
-define('BONITA_URL', 'http://35.243.231.36:8080/bonita/');
+define('BONITA_URL', 'http://10.142.0.7:8080/bonita/');
 
-define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '6352939331165329370');
+define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '8803232493891311406');
 
 define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '6013058915384903051');
 
+define('BPM_PROCESS_ID_TRANSPORTE', '7505402501704469434');
+
 define('BPM_PROCESS', json_encode(array(
-    '6352939331165329370' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12'],
+    '8803232493891311406' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12'],
     '6013058915384903051' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12'],
     '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A'],
+    '7505402501704469434' => ['nombre' => 'Proc. Transporte', 'color' => '#000000']
 )));
 
 define('BPM_ADMIN_USER', 'almacen.tools');
@@ -139,21 +142,13 @@ define('DEF_VIEW','traz-comp-bpm/Tarea');
 |
 */
 
-define('REST', 'http://10.142.0.3:8280/services/semaresiduosDS');
-//define('REST', 'http://10.142.0.3:8280/services/ProduccionDataService/');
-define('RESTPT', 'http://10.142.0.3:8280/services/produccionTest/');
-define('REST_TDS', 'http://10.142.0.3:8280/services/TrazabilidadDataService/');
-define('REST2', 'http://10.142.0.3:8280/services/ProduccionDataService');
-define('REST3', 'http://10.142.0.3:8280/services/produccionTest');
-define('REST4', 'http://10.142.0.3:8280/services/TrazabilidadDataService');
-
-// define('REST', 'http://10.128.0.3:8280/services/semaresiduosDS');
-// //define('REST', 'http://10.128.0.3:8280/services/ProduccionDataService');
-// define('RESTPT', 'http:/10.128.0.3:8280/services/produccionTest/');
-// define('REST_TDS', 'http://10.128.0.3:8280/services/TrazabilidadDataService/');
-// define('REST2', 'http://10.128.0.3:8280/services/ProduccionDataService');
-// define('REST3', 'http://10.128.0.3:8280/services/produccionTest');
-// define('REST4', 'http://10.128.0.3:8280/services/TrazabilidadDataService');
+define('REST', 'http://10.142.0.7:8280/services/semaresiduosDS');
+//define('REST', 'http://10.142.0.7:8280/services/ProduccionDataService/');
+define('RESTPT', 'http://10.142.0.7:8280/services/produccionTest/');
+define('REST_TDS', 'http://10.142.0.7:8280/services/TrazabilidadDataService/');
+define('REST2', 'http://10.142.0.7:8280/services/ProduccionDataService');
+define('REST3', 'http://10.142.0.7:8280/services/produccionTest');
+define('REST4', 'http://10.142.0.7:8280/services/TrazabilidadDataService');
 
 define('HOST', 'http://localhost/');
 
