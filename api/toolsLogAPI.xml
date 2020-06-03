@@ -1,7 +1,7 @@
 <api xmlns="http://ws.apache.org/ns/synapse" name="toolsLogAPI" context="/tools/log">
    <resource methods="POST" uri-template="/solicitudContenedores">
       <inSequence>
-         <property name="bpmSession" value="$.bpmSession" type="STRING"/>
+         <property name="uri.var.bpmSession" value="$.uri.var.bpmSession" type="STRING"/>
          <log level="custom">
             <property name="donde" value="dentro de solicitudContenedores"/>
             <property name="payload" expression="json-eval($)"/>
@@ -53,7 +53,13 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
-               <property name="TOOLS_ERROR" value="Error toolsLogContenedoresSolicitadosPOST caido" type="STRING"/>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="uri.var.socoid" expression="get-property('soco_id')" type="STRING"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <call>
+                  <endpoint key="toolsLogSolicitudContenedorDELETE"/>
+               </call>
+               <property name="TOOLS_ERROR" value="Error toolsLogSolicitudContenedorDELETE caido, borrando solicitud" type="STRING"/>
                <sequence key="toolsFault"/>
             </else>
          </filter>
@@ -66,7 +72,7 @@
             <format>                 { "nombre_proceso": "Solicitud de Contenedores"     ,"payload" : { "idPedido":"$1"}     ,"session" :"$2"          }     </format>
             <args>
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
-               <arg evaluator="xml" expression="get-property('bpmSession')"/>
+               <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
             </args>
          </payloadFactory>
          <log level="custom" category="DEBUG" description="donde 4">
@@ -85,10 +91,10 @@
          <log level="custom" category="DEBUG" description="donde 4">
             <property name="msg actual 6 despues de BPM" expression="json-eval($)"/>
          </log>
-         <property name="bpmSession" expression="json-eval($.session)" type="STRING"/>
+         <property name="uri.var.caseid" expression="json-eval($.payload.caseId)" type="STRING"/>
+         <property name="uri.var.bpmSession" expression="json-eval($.session)" type="STRING"/>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
-         <property name="bpmCaseId" expression="json-eval($.payload.caseId)" type="STRING"/>
          <payloadFactory media-type="json" description="crear solicitud">
             <format>                               {      "put_solicitudContenedor_caseid":{        "case_id":"$1",         "soco_id":"$2"        }      }      </format>
             <args>
@@ -105,6 +111,20 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="uri.var.socoid" expression="get-property('soco_id')" type="STRING"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <call>
+                  <endpoint key="toolsLogContenedoresSolicitadosDELETE"/>
+               </call>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <log level="custom" category="DEBUG" description="donde 10">
+                  <property name="msg actual 10 eliminando caso de BPM" expression="json-eval($)"/>
+               </log>
+               <call>
+                  <endpoint key="toolsBpmInstanciaDELETE"/>
+               </call>
                <property name="TOOLS_ERROR" value="Error toolsLogSolicitudContenedorCaseidPUT caido" type="STRING"/>
                <sequence key="toolsFault"/>
             </else>
@@ -117,11 +137,11 @@
             <property name="MESSAGE" value="FIRST"/>
          </log>
          <payloadFactory media-type="json" description="Mensaje error">
-            <format>{"respuesta":              { "resultado" : "ok"              , "soco_id":"$1"                 , "case_id":"$2"           , "bpmSession":"$3"   }             }</format>
+            <format>{"respuesta":              { "resultado" : "ok"              , "soco_id":"$1"                 , "case_id":"$2"           , "uri.var.bpmSession":"$3"   }             }</format>
             <args>
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
-               <arg evaluator="xml" expression="get-property('bpmCaseId')"/>
-               <arg evaluator="xml" expression="get-property('bpmSession')"/>
+               <arg evaluator="xml" expression="get-property('uri.var.caseid')"/>
+               <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
             </args>
          </payloadFactory>
          <log level="full"/>
@@ -129,6 +149,324 @@
       </outSequence>
       <faultSequence>
          <property name="TOOLS_ERROR" value="Error generando Solicitud de Contendores" type="STRING"/>
+         <sequence key="toolsFault"/>
+      </faultSequence>
+   </resource>
+   <resource methods="POST" uri-template="/solicitudRetiroContenedores">
+      <inSequence>
+         <property name="uri.var.bpmSession" value="$.uri.var.bpmSession" type="STRING"/>
+         <log level="custom">
+            <property name="donde" value="dentro de solicitudRetiroContenedores"/>
+            <property name="payload" expression="json-eval($)"/>
+         </log>
+         <script language="js">var payload = mc.getPayloadJSON();  mc.setProperty("ORIGINAL_PAYLOAD",JSON.stringify(payload));</script>
+         <payloadFactory media-type="json" description="crear solicitud retiro">
+            <format>       {          "_post_solicitudretiro":{   "usuario_app": "$2"    }     }     </format>
+            <args>
+               <arg evaluator="json" expression="$.solicitudContenedores.usuario_app"/>
+            </args>
+         </payloadFactory>
+         <property name="messageType" value="application/json" scope="axis2"/>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+          <log level="custom" category="DEBUG" description="aca">
+            <property name="msg actual 2 antes solicitud retiro contenedor " expression="json-eval($)"/>
+         </log>
+         <call>
+            <endpoint key="toolsLogSolicitudRetiroContenedoresPOST"/>
+         </call>
+         <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
+            <then/>
+            <else>
+               <property name="TOOLS_ERROR" value="Error toolsLogSolicitudCRetiroontenedorPOST caido" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </else>
+         </filter>
+         <log level="custom" category="DEBUG" description="donde 3">
+            <property name="msg actual 3 despues solicitud retiro contenedor" expression="json-eval($)"/>
+            <property name="sore id" expression="json-eval($.respuesta.sore_id)"/>
+    </log>
+         <property name="setIdEnHijos_elemento_origen" value="solicitudRetiroContenedores" type="STRING"/>
+         <property name="setIdEnHijos_elemento_destino" value="_put_contenedores_entregados_retirar_batch_req" type="STRING"/>
+         <property name="setIdEnHijos_arreglo_origen" value="contenedores" type="STRING"/>
+         <property name="setIdEnHijos_arreglo_destino" value="_put_contenedores_entregados_retirar" type="STRING"/>
+         <property name="setIdEnHijos_propiedad_destino" value="sore_id" type="STRING"/>
+         <property name="setIdEnHijos_id_padre" expression="json-eval($.respuesta.sore_id)" type="STRING"/>
+         <script language="js" key="conf:tools/setIdEnHijos.js" function="setIdEnHijos"/>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 4 antes de contenedores entregados solicitud retiro " expression="json-eval($)"/>
+         </log>
+         <call>
+            <endpoint key="toolsLogContenedoresEntregadosRetirarPOST"/>
+         </call>
+         <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
+            <then/>
+            <else>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="uri.var.soreid" expression="get-property('sore_id')" type="STRING"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <call>
+                  <endpoint key="toolsLogSolicitudRetiroContenedorDELETE"/>
+               </call>
+               <property name="TOOLS_ERROR" value="Error toolsLogContenedoresSolicitadosPOST caido, borrando solicitud" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </else>
+         </filter>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 5 despues de contenedores solicitados" expression="json-eval($)"/>
+         </log>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <payloadFactory media-type="json" description="crear solicitud">
+            <format>                 { "nombre_proceso": "Solicitud de Retiro de Contenedores"     ,"payload" : { "idSolicitudRetiro":"$1"}     ,"session" :"$2"          }     </format>
+            <args>
+               <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+               <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
+            </args>
+         </payloadFactory>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 5 antes de BPM" expression="json-eval($)"/>
+         </log>
+         <call>
+            <endpoint key="toolsBpmInstanciaPOST"/>
+         </call>
+         <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
+            <then/>
+            <else>
+               <property name="TOOLS_ERROR" value="Error toolsBpmInstanciaPOST caido" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </else>
+         </filter>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 6 despues de BPM" expression="json-eval($)"/>
+         </log>
+         <property name="uri.var.caseid" expression="json-eval($.payload.caseId)" type="STRING"/>
+         <property name="uri.var.bpmSession" expression="json-eval($.session)" type="STRING"/>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <payloadFactory media-type="json" description="actualizar solicitud">
+            <format>                               {      "put_solicitudRetiro_caseid":{        "case_id":"$1",         "sore_id":"$2"        }      }      </format>
+            <args>
+               <arg evaluator="json" expression="$.payload.caseId"/>
+               <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+            </args>
+         </payloadFactory>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 7 despues de BPM antes de actualizar caseid" expression="json-eval($)"/>
+         </log>
+         <call>
+            <endpoint key="toolsLogSolicitudRetiroCaseidPUT"/>
+         </call>
+         <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
+            <then/>
+            <else>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="uri.var.soreid" expression="get-property('sore_id')" type="STRING"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <call>
+                  <endpoint key="toolsLogSolicitudRetiroDELETE"/>
+               </call>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <log level="custom" category="DEBUG" description="donde 10">
+                  <property name="msg actual 10 eliminando caso de BPM" expression="json-eval($)"/>
+               </log>
+               <call>
+                  <endpoint key="toolsBpmInstanciaDELETE"/>
+               </call>
+               <property name="TOOLS_ERROR" value="Error toolsLogSolicitudContenedorCaseidPUT caido" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </else>
+         </filter>
+         <log level="full" category="DEBUG" description="salida insequence"/>
+         <loopback/>
+      </inSequence>
+      <outSequence>
+         <log level="full" category="DEBUG">
+            <property name="MESSAGE" value="FIRST"/>
+         </log>
+         <payloadFactory media-type="json" description="Mensaje error">
+            <format>{"respuesta":              { "resultado" : "ok"              , "sore_id":"$1"                 , "case_id":"$2"           , "uri.var.bpmSession":"$3"   }             }</format>
+            <args>
+               <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+               <arg evaluator="xml" expression="get-property('uri.var.caseid')"/>
+               <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
+            </args>
+         </payloadFactory>
+         <log level="full"/>
+         <send/>
+      </outSequence>
+      <faultSequence>
+         <property name="TOOLS_ERROR" value="Error generando Solicitud de Retiro de Contendores" type="STRING"/>
+         <sequence key="toolsFault"/>
+      </faultSequence>
+   </resource>
+    <resource methods="POST" uri-template="/ordenTransporte">
+      <inSequence>
+         <property name="uri.var.bpmSession" value="$.uri.var.bpmSession" type="STRING"/>
+         <log level="custom">
+            <property name="donde" value="dentro de generacion Orden Transporte"/>
+            <property name="payload" expression="json-eval($)"/>
+         </log>
+         <script language="js">var payload = mc.getPayloadJSON();  mc.setProperty("ORIGINAL_PAYLOAD",JSON.stringify(payload));</script>
+         <payloadFactory media-type="json" description="crear ot">
+		 <format>       {          "_post_ordenTransporte":{   
+							"fec_retiro":"$1",
+							"estado":"$2",
+							"caseid":"$3",
+							"difi_id":"$4",
+							"sotr_id":"$5",
+							"equi_id":"$6",
+							"chof_id":"$7",
+			 				"usuario_app": "$8"    }     }     </format>
+
+            <args>
+               <arg evaluator="json" expression="$.ordenTransporte.fec_retiro"/>
+               <arg evaluator="json" expression="$.ordenTransporte.estado"/>
+               <arg evaluator="json" expression="$.ordenTransporte.caseid"/>
+               <arg evaluator="json" expression="$.ordenTransporte.difi_id"/>
+               <arg evaluator="json" expression="$.ordenTransporte.sotr_id"/>
+               <arg evaluator="json" expression="$.ordenTransporte.equi_id"/>
+               <arg evaluator="json" expression="$.ordenTransporte.chof_id"/>
+               <arg evaluator="json" expression="$.ordenTransporte.usuario_app"/>
+            </args>
+         </payloadFactory>
+         <property name="messageType" value="application/json" scope="axis2"/>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+          <log level="custom" category="DEBUG" description="aca">
+            <property name="msg actual 2 antes orden transporte " expression="json-eval($)"/>
+         </log>
+         <call>
+            <endpoint key="toolsLogOrdenTransportePOST"/>
+         </call>
+         <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
+            <then/>
+            <else>
+               <property name="TOOLS_ERROR" value="Error toolsLogOrdenTransportePOST caido" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </else>
+         </filter>
+         <log level="custom" category="DEBUG" description="donde 3">
+            <property name="msg actual 3 despues orden transporte" expression="json-eval($)"/>
+            <property name="ortr id" expression="json-eval($.respuesta.ortr_id)"/>
+    </log>
+         <property name="setIdEnHijos_elemento_origen" value="ordenTransporte" type="STRING"/>
+         <property name="setIdEnHijos_elemento_destino" value="_put_contenedores_retirados_batch_req" type="STRING"/>
+         <property name="setIdEnHijos_arreglo_origen" value="contenedores" type="STRING"/>
+         <property name="setIdEnHijos_arreglo_destino" value="_put_contenedores_retirados" type="STRING"/>
+         <property name="setIdEnHijos_propiedad_destino" value="ortr_id" type="STRING"/>
+         <property name="setIdEnHijos_id_padre" expression="json-eval($.respuesta.ortr_id)" type="STRING"/>
+         <script language="js" key="conf:tools/setIdEnHijos.js" function="setIdEnHijos"/>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 4 antes de contenedores entregados solicitud retiro " expression="json-eval($)"/>
+         </log>
+         <call>
+            <endpoint key="toolsLogContenedoresRetiradosPUT"/>
+         </call>
+         <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
+            <then/>
+            <else>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="uri.var.ortrid" expression="get-property('ortr_id')" type="STRING"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <call>
+                  <endpoint key="toolsLogOrdenTransporteDELETE"/>
+               </call>
+               <property name="TOOLS_ERROR" value="Error toolsLogOrdenTransporteDELETE caido, borrando orden" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </else>
+         </filter>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 5 despues de contenedores retirados" expression="json-eval($)"/>
+         </log>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <payloadFactory media-type="json" description="crear solicitud">
+            <format>                 { "nombre_proceso": "Generación de Orden de Transporte"     ,"payload" : { "idSolicitudRetiro":"$1"}     ,"session" :"$2"          }     </format>
+            <args>
+               <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+               <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
+            </args>
+         </payloadFactory>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 5 antes de BPM" expression="json-eval($)"/>
+         </log>
+         <call>
+            <endpoint key="toolsBpmInstanciaPOST"/>
+         </call>
+         <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
+            <then/>
+            <else>
+               <property name="TOOLS_ERROR" value="Error toolsBpmInstanciaPOST caido" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </else>
+         </filter>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 6 despues de BPM" expression="json-eval($)"/>
+         </log>
+         <property name="uri.var.caseid" expression="json-eval($.payload.caseId)" type="STRING"/>
+         <property name="uri.var.bpmSession" expression="json-eval($.session)" type="STRING"/>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <payloadFactory media-type="json" description="actualizar solicitud">
+            <format>                               {      "put_ordenTransporte_caseid":{        "case_id":"$1",         "ortr_id":"$2"        }      }      </format>
+            <args>
+               <arg evaluator="json" expression="$.payload.caseId"/>
+               <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+            </args>
+         </payloadFactory>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 7 despues de BPM antes de actualizar caseid" expression="json-eval($)"/>
+         </log>
+         <call>
+            <endpoint key="toolsLogOrdenTransporteCaseidPUT"/>
+         </call>
+         <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
+            <then/>
+            <else>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="uri.var.ortrid" expression="get-property('ortr_id')" type="STRING"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <call>
+                  <endpoint key="toolsLogOrdenTransporteDELETE"/>
+               </call>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <log level="custom" category="DEBUG" description="donde 10">
+                  <property name="msg actual 10 eliminando caso de BPM" expression="json-eval($)"/>
+               </log>
+               <call>
+                  <endpoint key="toolsBpmInstanciaDELETE"/>
+               </call>
+               <property name="TOOLS_ERROR" value="Error toolsLogSolicitudContenedorCaseidPUT caido" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </else>
+         </filter>
+         <log level="full" category="DEBUG" description="salida insequence"/>
+         <loopback/>
+      </inSequence>
+      <outSequence>
+         <log level="full" category="DEBUG">
+            <property name="MESSAGE" value="FIRST"/>
+         </log>
+         <payloadFactory media-type="json" description="Mensaje error">
+            <format>{"respuesta":              { "resultado" : "ok"              , "sore_id":"$1"                 , "case_id":"$2"           , "uri.var.bpmSession":"$3"   }             }</format>
+            <args>
+               <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+               <arg evaluator="xml" expression="get-property('uri.var.caseid')"/>
+               <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
+            </args>
+         </payloadFactory>
+         <log level="full"/>
+         <send/>
+      </outSequence>
+      <faultSequence>
+         <property name="TOOLS_ERROR" value="Error generando Solicitud de Retiro de Contendores" type="STRING"/>
          <sequence key="toolsFault"/>
       </faultSequence>
    </resource>
