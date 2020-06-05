@@ -1511,6 +1511,60 @@ values(:descripcion,
 
 {"respuesta":{"incidencia":"$inci_id"}}
 
+-- incidenciasGet
+   recurso: /incidencias
+   metodo: get
+
+select
+	i.inci_id
+	,i.descripcion
+	,i.fecha
+	,i.num_acta
+	,i.adjunto
+	,i.usuario_app 
+	,ti.valor as tipo_incidencia
+	,tc.valor as tipo_carga
+	,td.valor as disposicion_final
+	from
+	ins.incidencias i
+left join  core.tablas ti on ti.tabl_id = i.tiin_id
+left join   core.tablas tc on tc.tabl_id = i.tica_id
+left join core.tablas td on td.tabl_id = i.difi_id 
+	where
+	i.eliminado = 0
+order by
+	i.inci_id
+
+{
+   "incidencias":{
+      "incidencia":[
+         {
+            "inci_id":"$inci_id",
+            "descripcion":"$descripcion",
+            "fecha":"$fecha",
+            "num_acta":"$num_acta",
+            "adjunto":"$adjunto",
+            "usuario_app":"$usuario_app",
+            "tipo_incidencia":"$tipo_incidencia",
+            "tipo_carga":"$tipo_carga",
+            "disposicion_final":"$disposicion_final"
+         }
+      ]
+   }
+}
+
+
+-- incidenciasDelete
+
+   recurso: /incidencias/{inci_id}
+   metodo: delete
+
+update ins.incidencias
+set eliminado = 1
+where inci_id = :inci_id
+
+respuesta: 200 si ok
+
 
 -- inspectoresGet
   //TODO: CONDICIONAL
