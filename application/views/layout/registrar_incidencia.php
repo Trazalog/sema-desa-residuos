@@ -126,7 +126,7 @@
                             <div class="input-group-addon">
                                 <i class="fa  fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control" id="in_fecha">
+                            <input type="date" class="form-control" format="DD-MMMM-YYYY" id="in_fecha">
                         </div>
                     </div>
  
@@ -185,6 +185,8 @@
             <div class="row"><div class="col-sm-12 table-scroll" id="cargar_tabla">
             </div>
         </div>
+    </div>
+</div>
 
 
 
@@ -197,7 +199,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title titulo" id="exampleModalLabel">Editar Vehiculo</h5>
+                <h5 class="modal-title titulo" id="exampleModalLabel">Informacion Incidencia</h5>
             </div>
 
             <div class="modal-body">
@@ -212,92 +214,61 @@
                             <div class="form-group">
                                 <label for="descripcion" >Descripcion:</label>
                                 <br>
-                                <input type="text" class="form-control habilitar" id="e_descripcion" name="descripcion">
+                                <input type="text" class="form-control habilitar" id="inci_descripcion" name="descripcion" readonly>
                             </div>
 
-                            <div class="form-group"  style="display:none">
-                                <input type="text" class="form-control habilitar" id="e_equi_id" >
-                            </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Dominio-->
                             <div class="form-group">
-                                <label for="dominio">Dominio:</label>
+                                <label for="numacta">Numero de Acta:</label>
                                 <br>
-                                <input type="text" class="form-control habilitar" id="e_dominio" name="dominio">
+                                <input type="text" class="form-control habilitar" id="inci_numacta" name="numacta"  readonly>
                             </div>
             ​            <!--_____________________________________________________________-->
 
                         <!--Marca-->
                             <div class="form-group">
-                                <label for="marca" >Marca:</label>
+                                <label for="incidenciatipo" >Tipo de incidecia:</label>
                                 <br>
-                                <input type="text" class="form-control habilitar" id="e_marca" name="marca">
+                                <input type="text" class="form-control habilitar" id="inci_incidencia" name="incidenciatipo"  readonly>
                             </div>
             ​            <!--_____________________________________________________________-->
 
-                        <!--Condicion-->
-                            <!-- <div class="form-group">
-                                <label for="condicion" >Condicion:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="" name="e_condicion" >
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                    // foreach ($condicion as $i) {
-                                    //     echo '<option>'.$i->nombre.'</option>';
-                                    // }
-                                    ?>
-                                </select>
-                            </div> -->
-            ​            <!--_____________________________________________________________-->
+                        
 
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <!--Ubicacion-->
                         <div class="form-group">
-                                <label for="ubicacion">Ubicacion:</label>
-                                <input type="text" class="form-control habilitar" id="e_ubicacion" name="ubicacion" >
+                                <label for="residuostipo">tipo de residuos:</label>
+                                <input type="text" class="form-control habilitar" id="inci_residuos" name="residuostipo"  readonly>
                             </div>
                         <!--_____________________________________________________________-->   
                         <!--Registro-->
                         <div class="form-group">
-                            <label for="codigo" >Codigo:</label>
+                            <label for="disptipo" >disposicion Final:</label>
                             <br>
-                            <input type="text" class="form-control habilitar" id="e_codigo" name="codigo" >
+                            <input type="text" class="form-control habilitar" id="inci_disposicion" name="disptipo"  readonly>
                         </div>
             ​           <!--_____________________________________________________________--> 
 
-                         <div class="form-group ocultaTransedit">
-                            <label for="tran_id" >Transportista:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="e_tran_id" name="tran_id" >
-                                <option value=""  disabled selected  >-seleccione opcion-</option>
-                                <?php 
-                                                            // foreach ($transportista as $j) { 
-                                                            //     echo '<option  value="'.$j->tran_id.'">'.$j->razon_social.'</option>'; 
-                                                            // } 
-                                ?> 
-                            </select>
-                        </div> 
-                        <div class="form-group textTransinfo" style="display:none"> 
-                            <label for="tran_id_info">Transportista:</label> 
-                            <br> 
-                            <input type="text"  class="form-control" id="tran_id_info"> 
-                        </div>
                      
 
                         <!--Fecha de habilitacion-->
                             <div class="form-group" >
-                                <label for="FechaIngreso" >Fecha de Ingreso:</label>
+                                <label for="FechaIngreso" >Fecha:</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control habilitar" name="" id="id_fecha_ingreso">
+                                    <input type="text" class="form-control habilitar" name="" id="inci_fecha"  readonly>
                                     <!-- <input type="date" class="form-control pull-right habilitar" id="e_fechaingreso" name="FechaIngreso"> -->
                                 </div>
-                             
+                              
                             </div>
             ​            <!--_____________________________________________________________-->
-
+                        
 
                     </div>  
                 </div>
@@ -309,7 +280,6 @@
             <div class="col-md-12"><hr></div>
             <div class="modal-footer">
                 <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btnsave_e">Guardar</button>
                     <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -320,32 +290,32 @@
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---//////////////////////////////////////----->
 <!---//////////////////////////////////////--- MODAL BORRAR ---///////////////////////////////////////////////////////----->
     
-<div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-blue">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel"> Eliminar Vehiculo</h5>
-            </div>
-            <div class="modal-body">
-
-           <input type="text" id="id_vehiculo" style="display:none">
-
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
-            </div>
-            <div class="modal-footer">
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletevehiculo()">Aceptar</button>
-                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!---///////--- MODAL AVISO ---///////--->
+<div class="modal fade" id="modalaviso">		
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-blue">
+				<h5 class="modal-title" ><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>Anular</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true" >&times;</span>
+				</button>
+			</div>
+			<input id="id_incidencia" style="display: none;">
+			<div class="modal-body">
+				<center>
+				<h4><p>¿ DESEA ANULAR LA INCIDENCIA ?</p></h4>
+				</center>
+			</div>
+			<div class="modal-footer">
+				<center>
+				<button type="button" class="btn btn-primary" onclick="anularIncidencia()">SI</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+				</center>
+			</div>
+		</div>
+	</div>
 </div>
-
+<!---///////--- FIN MODAL AVISO ---///////--->
 
 <!---//////////////////////////////////////--- FIN MODAL BORRAR ---///////////////////////////////////////////////////////----->
 
@@ -507,7 +477,7 @@
 
 <script>
 
-// $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Incidencia/ListarIncidencias");
+ $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Incidencia/ListarIncidencias");
 
 $("#btnview").on("click", function() {
     $("#btnadd").removeClass("active");
@@ -563,7 +533,30 @@ $("#btnclose").on("click", function() {
 
 
 <script>
+//FUNCION ANULAR INCIDENCIA
+function anularIncidencia()
+{
+  var id_inci = $("#id_incidencia").val();
+  $.ajax({
+                    type: "POST",
+                    data: {id_inci},
+                    url: "general/Estructura/Incidencia/anularIncidencia",
+                    success: function(r) {
+                        if (r == "ok") {
+                            //console.log(datos);
+                            $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Incidencia/ListarIncidencias");
+                            alertify.success("Anulado con exito");
+                            $("#modalaviso").hide(500);
+                        } else {
+                            $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Incidencia/ListarIncidencias");
+                            alertify.error("error al anular");
+                            $("#modalaviso").hide(500);
+                        }
+                    }
+                    
+                });
 
+}
 
 // FUNCION GUARDAR NUEVA INCIDENCIA
         function GuardarIncidencia() {
@@ -571,13 +564,17 @@ $("#btnclose").on("click", function() {
             incidencia = formToObject(incidencia);
             incidencia.descripcion = $("#in_descripcion").val();
             incidencia.fecha = $("#in_fecha").val();
+            var auxfecha = incidencia.fecha[8]+incidencia.fecha[9]+"-"+incidencia.fecha[5]+incidencia.fecha[6]+"-"+incidencia.fecha[0]+incidencia.fecha[1]+incidencia.fecha[2]+incidencia.fecha[3];
+            incidencia.fecha = auxfecha;
+            console.log(incidencia.fecha);
             incidencia.num_acta = $("#in_acta").val();
             incidencia.adjunto = "";
             incidencia.usuario_app = "almacen.tools";
             incidencia.tiin_id = $("#in_tipoincidencia").val();
-            incidencia.tire_id = $("#in_tica_id").val();
+            incidencia.tica_id = $("#in_tica_id").val();
             incidencia.difi_id = $("#in_disp_final").val();
             incidencia.ortr_id = $("#numero_orden").val();
+            //incidencia.fecha = "05-06-2020";
             console.log("datos de incidencia");
             console.log(incidencia);
 
@@ -590,9 +587,22 @@ $("#btnclose").on("click", function() {
                     success: function(r) {
                         if (r == "ok") {
                             //console.log(datos);
+                            $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Incidencia/ListarIncidencias");
                             $('#formIncidencias')[0].reset();
+                            $("#in_tipoincidencia").selectedIndex = 0;
+                            $("#in_tica_id").selectedIndex = 0;
+                            $("#in_disp_final").selectedIndex = 0;
+                            var a =   $("#in_tipoincidencia");
+                            var b = $("#in_tica_id");
+                            var c =  $("#in_disp_final");
+                            $("#in_tipoincidencia").val(a);
+                            $("#in_tica_id").val(b );
+                            $("#in_disp_final").val( c);
                             alertify.success("Agregado con exito");
+                            $("#boxDatos").hide(500);
+                            $("#botonAgregar").removeAttr("disabled");
                         } else {
+                            $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Incidencia/ListarIncidencias");
                             console.log(r);
                             $('#formIncidencias')[0].reset();
                             alertify.error("error al agregar");
@@ -742,6 +752,9 @@ $.ajax({
     DataTable($('#tabla_incidencias'))
 
     DataTable($('#tabla_reportes_incidencia'))
+    
+    DataTable($('#tabla_incidencia'));
+
 
     
 
