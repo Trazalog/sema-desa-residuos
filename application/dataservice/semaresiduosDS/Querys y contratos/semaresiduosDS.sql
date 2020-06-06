@@ -1092,7 +1092,6 @@ http://10.142.0.7:8280/services/semaresiduosDS
 -- contenedoresSolicitadosGet (/solicitudContenedores/{usuario_app}, para pantalla entrega contenedores tambien)
   recurso: /contnedoresSolicitados/{soco_id}
   metodo: get
-
   select 
   CS.coso_id, CS.cantidad, CS.otro, CS.fec_alta, CS.tica_id, CS.soco_id, coalesce (CS.cantidad_acordada, null, 0) as cantidad_acordada, CS.reci_id, T.valor as rsu from log.contenedores_solicitados CS, core.tablas T
   where CS.tica_id = T.tabl_id 
@@ -1117,6 +1116,25 @@ http://10.142.0.7:8280/services/semaresiduosDS
     }  
   }
 
+-- contenedoresSolicitadosUpdateCantidad (pantalla analisis de solicitud de contenedores)
+
+  recurso: /_put_contenedoressolicitados_cantidad_batch_req (/contenedoresSolicitados/cantidad)
+  metodo: put 
+  update log.contenedores_solicitados CS set cantidad_acordada = :cantidad_acordada 
+  where CS.soco_id = CAST(:soco_id as INTEGER)
+  and CS.tica_id  = :tica_id 
+
+  {
+    "_put_contenedoressolicitados_cantidad_batch_req":{
+        "_put_contenedoressolicitados_cantidad":[
+            {
+              "cantidad_acordada": ,
+              "soco_id": ,
+              "tica_id": 
+            }
+          ]
+        }
+  }
 
 -- choferesGet
   recurso: /choferes
@@ -1879,14 +1897,19 @@ http://10.142.0.7:8280/services/semaresiduosDS
     } 
   }
 
+-- solicitudContenedoresSetMotivo
+  recurso: /contenedoresSolicitados/rechazados/motivo
+  metodo: put
+  update log.contenedores_solicitados 
+  set motivo_rechazo = :motivo_rechazo
+  where soco_id = CAST(:soco_id as INTEGER)
 
-
-
-
-
-
-
-
+  {
+    "_put_contenedoressolicitados_rechazados_motivo":{
+      "motivo_rechazo": "motivo ejemplo",
+      "soco_id": "78"
+    }
+  }
 
 -- solicitudContenedoresPorCase
   recurso: /contenedoresSolicitados/case/{case_id}
@@ -1913,9 +1936,6 @@ http://10.142.0.7:8280/services/semaresiduosDS
       ]
     }
   }
-
-
-
 
 
 -- ordTransPorIdGet
@@ -2630,7 +2650,6 @@ http://10.142.0.7:8280/services/semaresiduosDS
   }
 
 -- zonaDelete
-
   recurso: /zonas/estado
   metodo: put
    update core.zonas set eliminado = CAST(:eliminado as INTEGER) where zona_id = CAST(:zona_id as INTEGER)
@@ -2642,6 +2661,13 @@ http://10.142.0.7:8280/services/semaresiduosDS
       "eliminado":"1"   // valor fijo en "1" para borrar, en "0" para habilitar nuevamente
     }  
   }
+
+
+
+{
+   "sePuedeEjecutar":true/false,
+   "entregaSinModificaciones":true/false
+}
 
 
 

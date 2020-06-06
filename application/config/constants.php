@@ -99,12 +99,15 @@ define('BPM_PROCESS', json_encode(array(
     '8803232493891311406' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12'],
     '6013058915384903051' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12'],
     '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A'],
-    '7505402501704469434' => ['nombre' => 'Proc. Transporte', 'color' => '#000000']
+    '7505402501704469434' => ['nombre' => 'Proc. Transporte', 'color' => '#FF3300']
 )));
 
-define('BPM_ADMIN_USER', 'almacen.tools');
-define('BPM_ADMIN_PASS', 'bpm');
-define('BPM_USER_PASS', 'bpm');
+// define('BPM_ADMIN_USER', 'almacen.tools');
+// define('BPM_ADMIN_PASS', 'bpm');
+// define('BPM_USER_PASS', 'bpm');
+define('BPM_ADMIN_USER', 'admin');
+define('BPM_ADMIN_PASS', '123traza');
+define('BPM_USER_PASS', '123');
 
 #ERRORES DE BONITA
 define('ASP_100', 'Fallo Conexión BPM');

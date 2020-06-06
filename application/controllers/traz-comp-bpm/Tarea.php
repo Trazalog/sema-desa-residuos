@@ -7,11 +7,11 @@ class Tarea extends CI_Controller
 
         parent::__construct();
 
-        $this->load->model(BPM.'Tareas');
-      
-
+        $this->load->model(BPM.'Tareas');  
         // SUPERVISOR1 => 102 => Aprueba pedido de Recursos Materiales
-				$data = ['userId' => 102, 'userName' => 'Fernando', 'userLastName' => 'Leiva', 'device' => '', 'permission' => 'Add-View-Del-Edit','id_empresa'=>1];
+				// $data = ['userId' => 102, 'userName' => 'Fernando', 'userLastName' => 'Leiva', 'device' => '', 'permission' => 'Add-View-Del-Edit','id_empresa'=>1];
+
+				$data = ['userId' => 402, 'userName' => 'Transportista', 'userLastName' => '1', 'device' => '', 'permission' => 'Add-View-Del-Edit','id_empresa'=>1];
 				
         $this->session->set_userdata('user_data', $data);
     }
@@ -27,8 +27,6 @@ class Tarea extends CI_Controller
 
     public function detalleTarea($taskId)
     {
-
-			$taskId = 160002;
 
         //PERMISOS PANTALLA
         $data['permission'] = $this->session->userdata('user_data')['permission'];
@@ -73,23 +71,23 @@ class Tarea extends CI_Controller
     public function cerrarTarea($taskId)
     {
 
-        //Obtener Infomracion de Tarea
-        $tarea = $this->bpm->getTarea($taskId)['body'];
+				//Obtener Infomracion de Tarea
+				$tarea = $this->bpm->getTarea($taskId)['data'];
 
         //Formulario desde la Vista
         $form = $this->input->post();
 
-        //Mapeo de Contrato
-        $contrato = $this->getContrato($tarea, $form);
+				//Mapeo de la tarea y Contrato	
+				$tar_mapeada = $this->Tareas->mapeoTarea($tarea);			
+        $contrato = $this->getContrato($tar_mapeada, $form);
 
         //Cerrar Tarea
-        $this->bpm->cerrarTarea($taskId, $contrato);
-
+      //  $this->bpm->cerrarTarea($taskId, $contrato);
+				
     }
 
     public function getContrato($tarea, $form)
-    {
-
+    {			
         switch ($tarea['nombreTarea']) {
             case 'Aprueba pedido de Recursos Materiales':
 
@@ -156,7 +154,24 @@ class Tarea extends CI_Controller
                 return;
 
                 break;
+						//	PROCESO TRANSPORTE
+						
+						case 'Analizar Solicitud':
 
+								$this->load->model('general/transporte-bpm/ProcesoTransportes');
+							
+								$resp = $this->ProcesoTransportes->actualizarSolicitud($form);
+								
+								if (isset($form['motivo'])) {												
+									$respComentario = $this->ProcesoTransportes->motivoRechazo($form);
+								}
+								
+								$contrato = $this->ProcesoTransportes->contratoAnalisisCont($form);								
+
+								return $contrato;
+
+								break;	
+								
             default:
                 # code...
                 break;
@@ -178,8 +193,8 @@ class Tarea extends CI_Controller
 						
 						case BPM_PROCESS_ID_TRANSPORTE: 
 								
-								$this->load->model('transporte-bpm/Pedidos');
-								return $this->Pedidos->desplegarVista($tarea);						
+								$this->load->model('general/transporte-bpm/ProcesoTransportes');
+								return $this->ProcesoTransportes->desplegarVista($tarea);						
 
             default:
 

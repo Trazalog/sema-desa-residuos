@@ -630,6 +630,24 @@
       <result outputType="json">{&#xd;    "solicitud":{&#xd;      "soco_id": "$soco_id",&#xd;      "estado": "$estado",&#xd;      "observaciones": "$observaciones",&#xd;      "fec_alta": "$fec_alta",&#xd;      "sotr_id": "$sotr_id",&#xd;      "razon_social": "$razon_social",&#xd;      "domicilio": "$domicilio"&#xd;    } &#xd;}</result>
       <param name="case_id" sqlType="STRING"/>
    </query>
+   <query id="incidenciaSet" useConfig="semaresiduosDS">
+      <sql>insert&#xd;	into&#xd;	ins.incidencias (descripcion,&#xd;	fecha,&#xd;	num_acta,&#xd;	adjunto,&#xd;	usuario_app,&#xd;	tiin_id,&#xd;	tire_id,&#xd;	difi_id,&#xd;	ortr_id)&#xd;values(:descripcion,&#xd;	to_date(:fecha,'DD-MM-YYYY'),&#xd;	:num_acta,&#xd;	:adjunto,&#xd;	:usuario_app,&#xd;	:tiin_id ,&#xd;	:tire_id ,&#xd;	:difi_id ,&#xd;	cast(:ortr_id as integer)) returning inci_id</sql>
+      <result outputType="json">{"respuesta":{"incidencia":"$inci_id"}}</result>
+      <param name="descripcion" sqlType="STRING"/>
+      <param name="fecha" sqlType="STRING"/>
+      <param name="num_acta" sqlType="STRING"/>
+      <param name="adjunto" optional="false" sqlType="BINARY"/>
+      <param name="usuario_app" sqlType="STRING"/>
+      <param name="tiin_id" sqlType="STRING"/>
+      <param name="tire_id" sqlType="STRING"/>
+      <param name="difi_id" sqlType="STRING"/>
+      <param name="ortr_id" sqlType="STRING"/>
+   </query>
+   <query id="ordenTransporteListaxId" useConfig="semaresiduosDS">
+      <sql>select&#xd;	ot.ortr_id,&#xd;	ot.fec_retiro,&#xd;	ot.caseid,&#xd;	ot.fec_alta,&#xd;	st.razon_social ,&#xd;	st.cuit ,&#xd;	e.dominio ,&#xd;	c.chof_id&#xd;from&#xd;	log.ordenes_transporte ot,&#xd;	log.solicitantes_transporte st ,&#xd;	log.choferes c ,&#xd;	core.equipos e&#xd;where ot.sotr_id = st.sotr_id&#xd;and ot.chof_id = c.documento &#xd;and ot.equi_id = e.equi_id&#xd;and cast(ot.ortr_id as varchar) like '%'||:ortr_id || '%'</sql>
+      <result outputType="json">{&#xd;   "ordenTransporte":{&#xd;      "ordenesTransporte":[&#xd;         {&#xd;            "ortr_id":"$ortr_id",&#xd;            "fec_retiro":"$fec_retiro",&#xd;            "caseid":"$caseid",&#xd;            "fec_alta":"$fec_alta",&#xd;            "razon_social":"$razon_social",&#xd;            "cuit":"$cuit",&#xd;            "dominio":"$dominio",&#xd;            "chof_id":"$chof_id"&#xd;         }&#xd;      ]&#xd;   }&#xd;}</result>
+      <param name="ortr_id" sqlType="STRING"/>
+   </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
          <with-param name="nombre" query-param="nombre"/>
@@ -1296,6 +1314,24 @@
    <resource method="GET" path="/solicitudContenedores/info/{case_id}">
       <call-query href="solicitudContenedorGetInfo">
          <with-param name="case_id" query-param="case_id"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="/incidencias">
+      <call-query href="incidenciaSet">
+         <with-param name="descripcion" query-param="descripcion"/>
+         <with-param name="fecha" query-param="fecha"/>
+         <with-param name="num_acta" query-param="num_acta"/>
+         <with-param name="adjunto" query-param="adjunto"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
+         <with-param name="tiin_id" query-param="tiin_id"/>
+         <with-param name="tire_id" query-param="tire_id"/>
+         <with-param name="difi_id" query-param="difi_id"/>
+         <with-param name="ortr_id" query-param="ortr_id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/ordenesTransporte/lista/{ortr_id}">
+      <call-query href="ordenTransporteListaxId">
+         <with-param name="ortr_id" query-param="ortr_id"/>
       </call-query>
    </resource>
 </data>

@@ -7,7 +7,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="generador" name="">Generador:</label>
-                <input type="text" class="form-control" id="generador" value="<?php echo $infoSolicitud->razon_social; ?>">
+                <input type="text" class="form-control habilitar" id="generador" value="<?php echo $infoSolicitud->razon_social; ?>"  readonly>
             </div>
         </div>
         <!--_____________________________________________-->
@@ -15,7 +15,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="pedido" name=""> Nº Pedido:</label>
-                <input type="text" class="form-control" id="pedido" value="<?php echo $infoSolicitud->soco_id; ?>">
+                <input type="text" class="form-control habilitar" id="pedido" value="<?php echo $infoSolicitud->soco_id; ?>"  readonly>
             </div>
         </div>
         <!--_____________________________________________-->
@@ -23,7 +23,7 @@
         <div class="col-md-6">
           <div class="form-group">
               <label for="domicilio" name="">Direccion:</label>
-              <input type="text" class="form-control" id="domicilio" value="<?php echo $infoSolicitud->domicilio; ?>">
+              <input type="text" class="form-control habilitar" id="domicilio" value="<?php echo $infoSolicitud->domicilio; ?>"  readonly>
           </div>
         </div>
         <!--_____________________________________________-->
@@ -31,7 +31,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="fec_alta" name="">Fecha Retiro:</label>
-                <input type="text" class="form-control" id="fec_alta" value="<?php echo $infoSolicitud->fec_alta; ?>">
+                <input type="text" class="form-control habilitar" id="fec_alta" value="<?php echo $infoSolicitud->fec_alta; ?>"  readonly>
             </div>
         </div>
       <!--_____________________________________________-->
@@ -69,21 +69,6 @@
 								}
 							}
 						?>
-						<!-- <tr>
-								<td>Trident</td>
-								<td>Internet Explorer 4.0</td>
-								<td>Win 95+</td>
-						</tr>
-						<tr>
-								<td>Trident</td>
-								<td>Internet Explorer 5.0</td>
-								<td>Win 95+</td>								
-						</tr>
-						<tr>
-								<td>Trident</td>
-								<td>Internet Explorer 5.5</td>
-								<td>Win 95+</td>							
-						</tr> -->
 				</tbody>
 		</table>
 </div>
@@ -98,9 +83,9 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
 	<!--_____________ Descripcion _____________-->
 		<div class="form-group">															
-			<label for="descripcion_edit_punto" class="col-sm-4 control-label">Motivo rechazo:</label>
+			<label for="motivo" class="col-sm-4 control-label">Motivo rechazo:</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control habilitar" name="descripcion" id="descripcion_edit_punto"> 
+				<input type="text" class="form-control habilitar" name="descripcion" id="motivo"> 
 			</div>	
 		</div>
 	<!--__________________________-->
@@ -110,44 +95,108 @@
 <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 <!--_________________SEPARADOR_________________-->
 
-
-
+<div class="text-right">
+	<button class="btn btn-success estadoTarea" id="acepta" onclick="cerrarAnalisis('acepta')">Acepta Solicitud</button>
+	<button class="btn btn-primary estadoTarea" id="noAcepta" onclick="cerrarAnalisis('rechaza')" style="margin-left:20px;">Rechaza Solicitud</button>
+</div>
 
 <script>
 
+	// deshabilita los botones originales de la notificacion estandar						
+	$(document).ready(function(){
+			$('.btnNotifEstandar').hide();
+	});						
 
-	function juntar(){
-		// tabla = $('#tbl_contenedores').DataTable();
-		// var data = tabla.row();
+	// para guardar						
+	function cerrarAnalisis(opcion){
+	
+		wo();
+		var taskId = $('#taskId').val();
+		var elegido = {opcion: opcion};	
+		var contAcordados = [];		
+		var vacio = 0;
+		var igualCant = 0;
+		var motivo = {};
+		var rows = $('#tbl_contenedores tbody tr');
+		var coincideCant = {};
 
-		// data.each(function(i,e) { 
-			
-		// 	var valor= $(this).find("td").eq(1).html();
-		// 		console.log('valor: ' + valor);
-		// 		var cantidad = $(this).find("td").eq(2).text();
-		// 		console.log('valor: ' + cantidad);
-		
-		// //console.info(rows);
-			
-		// })
-
-
-		// console.table(tabla);
-
-		var rows = $('#tbl_contenedores tbody tr');				
+		// recorre tabla guardando datos para enviar
 		rows.each(function(i,e) {  
-				//ptos_criticos_edit.push(getJson(e));
-				var valor= $(this).find("td").eq(1).html();
-				console.log('valor: ' + valor);
-				var cantidad= $(this).find("td").eq(2).text();
-				console.log('valor: ' + cantidad);
-		
-		//console.info(rows);
-			
-		});
-		console.log('aca tabla para abajo: ');
-		console.table(tabla);
 
+				datajson = $(this).attr("data-json");
+				data = JSON.parse(datajson); 
+				var solicit= $(this).find("td").eq(1).html();			
+				var propuesta= $(this).find("td").eq(2).find("input").val();
+				var tmp = {};
+				tmp.soco_id = data.soco_id;
+				tmp.tica_id = data.tica_id;
+				tmp.cantidad_acordada = propuesta;
+				contAcordados.push(tmp);
+			
+				// si esta vacio el campo propuesta				
+				if(propuesta === ""){	
+					vacio = 1;
+					return vacio; 					
+				}	
+				//si las cantidades no coinciden
+				if (solicit != propuesta) {
+					igualCant += 1;
+				}			
+		});
+
+		// si los campos cantidad estan vacios
+		if (vacio == 1) {
+			alert("Por favor complete el/los campos Cantidad Propuesta");
+			wc();
+			return;
+		}
+
+		//  Si rechaza la solicitud
+		if (opcion == "rechaza") {
+			
+			// si el campo motivo esta vacio
+			var motRech = $('#motivo').val();
+			if(motRech === ""){
+					wc();
+					alert('Por favor ingrese el Motivo de Rechazo');
+					return;
+			}else{
+					motivo.motivo = motRech;
+			}	
+		}else{
+
+			$('#motivo').val("");  // si acepta se vacia el campo motivo
+		}
+
+		// si las cantidades no coinciden
+		if (igualCant > 0) {						
+			coincideCant.cantIguales = 0;					
+		}else{					
+			coincideCant.cantIguales = 1;			
+		}
+
+		$.ajax({
+				type: 'POST',
+				data:{ elegido, coincideCant, contAcordados, motivo },
+				url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
+				success: function(result) {
+									wc();
+									if(result == 'ok'){										
+										alertify.success("Contenedoes actualizados exitosamente...");	
+									}else{
+										alertify.error('Error en completar la Tarea...');
+									}
+								},
+				error: function(result){
+									wc();
+							 },
+				complete: function(){
+									wc();
+										if(existFunction('cerrarTarea')){
+											cerrarTarea();
+										}	
+									}
+		});
 	}
 
 
@@ -160,9 +209,8 @@
 
 <?php
 
-		// var_dump($infoSolicitud);
-
-		// var_dump($infoContenedores);
+		//  var_dump($infoSolicitud);
+		//  var_dump($infoContenedores);
 
 ?>
 
