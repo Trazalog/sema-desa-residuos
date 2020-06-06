@@ -38,8 +38,7 @@ class Incidencia extends CI_Controller {
     {
 
        log_message('INFO','#TRAZA|Vehiculo|Listar_Vehiculo() >>');
-       //CAMBIAR ACA CUANDO ESTE EL GET DE INCIDENCIAS
-       $data["incidencias"] = $this->Vehiculos->Listar_Vehiculo();// el get de incidencias no esta en los servicios falta agregar mientras tanto usare listar vehiculo para que no me de error 
+       $data["incidencia"] = $this->Incidencias->ListarIncidencias(); 
        $this->load->view('layout/Listar_Incidencias', $data);
 
     }
@@ -54,5 +53,15 @@ class Incidencia extends CI_Controller {
       echo json_encode($data);
     }
 
+    function anularIncidencia()
+    {
+      $data = $this->input->post('id_inci');
+      $resp = $this->Incidencias->AnularIncidencia($data);
+      if($resp){
+        echo "ok";
+      }else{
+        echo "error";
+      }
+    }
 }
 ?>
