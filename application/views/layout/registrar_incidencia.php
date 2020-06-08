@@ -291,7 +291,35 @@
 <!---//////////////////////////////////////--- MODAL BORRAR ---///////////////////////////////////////////////////////----->
     
 <!---///////--- MODAL AVISO ---///////--->
-<div class="modal fade" id="modalaviso">		
+<div class="modal fade" id="modalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title titulo" id="exampleModalLabel">Eliminar Incidencia</h5>
+            </div>
+            <input id="id_incidencia" style="display: none;">
+            <div class="modal-body">
+            
+            <center>
+				<h4><p>¿ DESEA ANULAR LA INCIDENCIA ?</p></h4>
+			</center>
+
+            </div>
+            <div class="col-md-12"><hr></div>
+            <div class="modal-footer">
+                <center>
+				    <button type="button" class="btn btn-primary btnanular" onclick="anularIncidencia()">SI</button>
+				    <button type="button" class="btn btn-secondary btnanular" data-dismiss="modal">NO</button>
+				</center>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="modal fade" id="modalaviso">		
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-blue">
@@ -314,7 +342,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <!---///////--- FIN MODAL AVISO ---///////--->
 
 <!---//////////////////////////////////////--- FIN MODAL BORRAR ---///////////////////////////////////////////////////////----->
@@ -536,21 +564,29 @@ $("#btnclose").on("click", function() {
 //FUNCION ANULAR INCIDENCIA
 function anularIncidencia()
 {
-  var id_inci = $("#id_incidencia").val();
+    var incidenciaa = new FormData();
+    incidenciaa = formToObject(incidenciaa);
+    incidenciaa.inci_id = $("#id_incidencia").val();
   $.ajax({
                     type: "POST",
-                    data: {id_inci},
+                    data: {incidenciaa},
                     url: "general/Estructura/Incidencia/anularIncidencia",
                     success: function(r) {
+                      
                         if (r == "ok") {
                             //console.log(datos);
                             $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Incidencia/ListarIncidencias");
                             alertify.success("Anulado con exito");
-                            $("#modalaviso").hide(500);
+                            // $("#modalAnular").hide(500);
+                            $(".btnanular").attr("style","display:none");
+                            
+                            
                         } else {
                             $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Incidencia/ListarIncidencias");
                             alertify.error("error al anular");
-                            $("#modalaviso").hide(500);
+                            $(".btnanular").attr("style","display:none");
+                            
+                            //  $("#modalAnular").hide(500);
                         }
                     }
                     
@@ -710,7 +746,7 @@ function anularIncidencia()
 <script>
 $("#btn_buscar_orden").click(function(e){
 
-alert("click en buscar");
+
 var nroOrden = $("#numero_orden").val();
 console.table(nroOrden);
 $("#disposicion_final").val("adifhafhadkf");
@@ -749,13 +785,15 @@ $.ajax({
 
 <script>
     
-    DataTable($('#tabla_incidencias'))
+    DataTable($('#tabla_incidencias'));
 
-    DataTable($('#tabla_reportes_incidencia'))
+    DataTable($('#tabla_reportes_incidencia'));
     
     DataTable($('#tabla_incidencia'));
 
+    DataTable($('#cargar_tabla'));
 
+    
     
 
 </script>
