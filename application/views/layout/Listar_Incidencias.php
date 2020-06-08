@@ -18,7 +18,7 @@
             echo "<tr data-json='".json_encode($fila)."'>";
             echo    '<td>';
             echo     '<button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
-                      <button type="button" title="anular" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalaviso"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>&nbsp';
+                      <button type="button" title="anular" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalAnular"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>&nbsp';
                 
             echo   '</td>';
             echo    '<td>'.$fila->descripcion.'</td>';   
@@ -46,6 +46,7 @@ $(".btnInfo").click(function(e){
 $(".btnEliminar").click(function(e){
   var data = JSON.parse($(this).parents("tr").attr("data-json")); 
   console.table(data);
+  $(".btnanular").removeAttr("style");
   $("#id_incidencia").val(data.inci_id); 
   
 });
@@ -53,4 +54,5 @@ $(".btnEliminar").click(function(e){
 </script>
 <script>
     DataTable($('#tabla_incidencia'));
+    
 </script>

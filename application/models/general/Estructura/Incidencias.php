@@ -17,7 +17,7 @@ class Incidencias extends CI_Model
 
     public function guardarIncidencias($datos)
     {
-      $post["incidencia"] = $datos;
+      $post["_post_incidencias"] = $datos;
       $aux = $this->rest->callAPI("POST",REST."/incidencias", $post);
       $aux =json_decode($aux["status"]);
       return $aux;
@@ -67,9 +67,10 @@ class Incidencias extends CI_Model
 
     }
 
-    function AnularIncidencia($id)
+    function AnularIncidencia($data)
     {
-      $aux = $this->rest->callAPI("DELETE",REST."/incidencias/$id");
+      $post["_delete_incidencias"] = $data;
+      $aux = $this->rest->callAPI("DELETE",REST."/incidencias",$post);
       $aux =json_decode($aux["status"]);
       return $aux;	
     }
