@@ -14,21 +14,21 @@
 			</div>
 		</div>
 	</div>
-<!-- FIN HEADER -->
+		<!-- FIN HEADER -->
 
-<!--- BOX 1 --->
+		<!--- BOX 1 --->
 	<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
-		<div class="box-header with-border">
-			<div class="box-tittle">
-				<h5>Informacion</h5>
+			<div class="box-header with-border">
+				<div class="box-tittle">
+					<h5>Informacion</h5>
+				</div>
+					<div class="box-tools pull-right">
+					<button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
+						data-toggle="tooltip" title="" data-original-title="Remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
 			</div>
-			<div class="box-tools pull-right">
-				<button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
-					data-toggle="tooltip" title="" data-original-title="Remove">
-					<i class="fa fa-times"></i>
-				</button>
-			</div>
-		</div>
 ​
 		<div class="box-body">
 			<form class="formChofer" id="formChofer" method="POST" autocomplete="off" class="registerForm">
@@ -165,14 +165,14 @@
 				<!--_____________________________________________-->		
 			</form> 
 
-		<!--Boton de guardado-->
+			<!--Boton de guardado-->
 			<div class="col-md-12">
 				<hr>
 			</div><br>
 			<button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Chofer()">Guardar</button>
-		<!--_____________________________________________________________-->
+			<!--_____________________________________________________________-->
 
-	</div>
+		</div>
 	</div>
 	<!-- </div> -->
 <!--- FIN BOX --->
@@ -320,10 +320,10 @@
 							<select class="form-control select2 selec_habilitar select2-hidden-accesible" id="cach_id_edit" name="cach_id">
 								<option value="" disabled selected>-Seleccione opcion-</option>
 								<?php
-									echo ($categoria);
-										foreach ($categoria as $cate) {
-											echo ($cate);										
-												echo '<option value="'.$cate->tabl_id.'">'.$cate->valor.'</option>';
+									
+										foreach ($categoria as $c) {
+																				
+												echo '<option value="'.$c->tabl_id.'">'.$c->valor.'</option>';
 										}
 								?>
 							</select>

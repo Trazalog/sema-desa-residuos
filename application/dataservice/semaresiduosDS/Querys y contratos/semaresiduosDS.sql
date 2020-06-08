@@ -1482,7 +1482,90 @@ http://10.142.0.3:8280/services/semaresiduosDS
         "eliminado": "0"
     }
   }
-   
+  
+-- incidenciaSet
+
+   recurso: /incidencias
+   metodo: post
+
+insert
+	into
+	ins.incidencias (descripcion,
+	fecha,
+	num_acta,
+	adjunto,
+	usuario_app,
+	tiin_id,
+	tire_id,
+	difi_id,
+	ortr_id)
+values(:descripcion,
+	to_date(:fecha,'DD-MM-YYYY'),
+	:num_acta,
+	:adjunto,
+	:usuario_app,
+	:tiin_id ,
+	:tire_id ,
+	:difi_id ,
+	cast(:ortr_id as integer)) returning inci_id
+
+{"respuesta":{"incidencia":"$inci_id"}}
+
+-- incidenciasGet
+   recurso: /incidencias
+   metodo: get
+
+select
+	i.inci_id
+	,i.descripcion
+	,i.fecha
+	,i.num_acta
+	,i.adjunto
+	,i.usuario_app 
+	,ti.valor as tipo_incidencia
+	,tc.valor as tipo_carga
+	,td.valor as disposicion_final
+	from
+	ins.incidencias i
+left join  core.tablas ti on ti.tabl_id = i.tiin_id
+left join   core.tablas tc on tc.tabl_id = i.tica_id
+left join core.tablas td on td.tabl_id = i.difi_id 
+	where
+	i.eliminado = 0
+order by
+	i.inci_id
+
+{
+   "incidencias":{
+      "incidencia":[
+         {
+            "inci_id":"$inci_id",
+            "descripcion":"$descripcion",
+            "fecha":"$fecha",
+            "num_acta":"$num_acta",
+            "adjunto":"$adjunto",
+            "usuario_app":"$usuario_app",
+            "tipo_incidencia":"$tipo_incidencia",
+            "tipo_carga":"$tipo_carga",
+            "disposicion_final":"$disposicion_final"
+         }
+      ]
+   }
+}
+
+
+-- incidenciasDelete
+
+   recurso: /incidencias/{inci_id}
+   metodo: delete
+
+update ins.incidencias
+set eliminado = 1
+where inci_id = :inci_id
+
+respuesta: 200 si ok
+
+
 -- inspectoresGet
   //TODO: CONDICIONAL
   recurso: /inspectores
@@ -1553,6 +1636,139 @@ http://10.142.0.3:8280/services/semaresiduosDS
             ]
           }
   }
+
+
+--ordenTransporteListaxId
+  recurso: /ordenesTransporte/lista/{ortr_id} 
+  metodo: get
+
+select
+	ot.ortr_id,
+	ot.fec_retiro,
+	ot.caseid,
+	ot.fec_alta,
+	st.razon_social ,
+	st.cuit ,
+	e.dominio ,
+	c.chof_id
+from
+	log.ordenes_transporte ot,
+	log.solicitantes_transporte st ,
+	log.choferes c ,
+	core.equipos e
+where ot.sotr_id = st.sotr_id
+and ot.chof_id = c.documento 
+and ot.equi_id = e.equi_id
+and cast(ot.ortr_id as varchar) like '%'||:ortr_id || '%'
+
+{
+   "ordenTransporte":{
+      "ordenesTransporte":[
+         {
+            "ortr_id":"$ortr_id",
+            "fec_retiro":"$fec_retiro",
+            "caseid":"$caseid",
+            "fec_alta":"$fec_alta",
+            "razon_social":"$razon_social",
+            "cuit":"$cuit",
+            "dominio":"$dominio",
+            "chof_id":"$chof_id"
+         }
+      ]
+   }
+}
+
+
+-- ordTransPorIdGet
+  recurso: /ordenTransporte/{ortr_id}
+  metodo: get
+
+  select ortr_id, fec_retiro, caseid, fec_alta, difi_id, sotr_id, equi_id, chof_id from log.ordenes_transporte where ortr_id = CAST(:ortr_id AS INTEGER)
+
+  {"ordenTransp":
+    {
+      "ortr_id": "$ortr_id",
+      "fec_retiro": "$fec_retiro",
+      "caseid": "$caseid",
+      "fec_alta": "$fec_alta",
+      "difi_id": "$difi_id",
+      "sotr_id": "$sotr_id",
+      "equi_id": "$equi_id",
+      "chof_id": "$chof_id"
+    }
+  }
+
+-- ordTransProxId (numero automático próximo)
+  recurso: /ordenTransporte/prox
+  metodo: get
+
+  select COALESCE(NULL,(max(ortr_id) + 1), 1) as nuevo_soco_id from log.solicitudes_contenedor
+
+  {
+    "respuesta":{
+      "nueva_ortr_id": "$nueva_ortr_id"
+    }
+  }
+
+-- ordenTransporteSet
+  recurso: /ordenTransporte
+  metodo: post
+  insert into log.ordenes_transporte (fec_retiro, estado, caseid, difi_id, sotr_id, equi_id, chof_id)
+  values(TO_DATE(:fec_retiro, 'YYYY-MM-DD'), :estado, :caseid, :difi_id, CAST(:sotr_id AS INTEGER), CAST(:equi_id AS INTEGER), :chof_id) returning ortr_id
+
+  {
+    "_post_ordentransporte":
+      {
+        "fec_retiro": "2020-03-23",
+        "estado": "INGRESADO",             
+        "caseid": "00001",                                    // de BPM
+        "difi_id": "disposicion_finalPTA",                    // disposicion final
+        "sotr_id": "1",                                       // solic transporte id
+        "equi_id": "21",                                      // ide de equipo(camión)
+        "chof_id": "18887911"                                 // recordar que es el dni de chofer
+      }
+  }
+
+  {
+    "respuesta":{
+      "ortr_id": "15"
+    }
+  }
+
+-- ordenTransporte->Estado (estados:'EN_TRANSITO', 'INGRESADO', 'DESCARGADO', 'INFRACCION', 'EGRESADO')
+  recurso: tabla/estado_contenedor
+  metodo: get
+  
+  -- ejemplo de respuesta
+  {
+    "valores":{
+        "valor":[
+          {
+            "tabl_id": "estado_contenedorEN_TRANSITO",
+            "valor": "EN_TRANSITO",
+            "valor2": "",
+            "valor3": "",
+            "descripcion": ""
+          },
+          {
+            "tabl_id": "estado_contenedorINGRESADO",
+            "valor": "INGRESADO",
+            "valor2": "",
+            "valor3": "",
+            "descripcion": ""
+          },
+          {
+            "tabl_id": "estado_contenedorDESCARGADO",
+            "valor": "DESCARGADO",
+            "valor2": "",
+            "valor3": "",
+            "descripcion": ""
+          }
+        ]
+    }
+  }
+
+
 
 -- puntosCriticosCircuitosset
   recurso: /puntosCriticos/circuito
@@ -1859,102 +2075,6 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
 
 
-
-
-
-
-
-
-
-
--- ordTransPorIdGet
-  recurso: /ordenTransporte/{ortr_id}
-  metodo: get
-
-  select ortr_id, fec_retiro, caseid, fec_alta, difi_id, sotr_id, equi_id, chof_id from log.ordenes_transporte where ortr_id = CAST(:ortr_id AS INTEGER)
-
-  {"ordenTransp":
-    {
-      "ortr_id": "$ortr_id",
-      "fec_retiro": "$fec_retiro",
-      "caseid": "$caseid",
-      "fec_alta": "$fec_alta",
-      "difi_id": "$difi_id",
-      "sotr_id": "$sotr_id",
-      "equi_id": "$equi_id",
-      "chof_id": "$chof_id"
-    }
-  }
-
--- ordTransProxId (numero automático próximo)
-  recurso: /ordenTransporte/prox
-  metodo: get
-
-  select COALESCE(NULL,(max(ortr_id) + 1), 1) as nuevo_soco_id from log.solicitudes_contenedor
-
-  {
-    "respuesta":{
-      "nueva_ortr_id": "$nueva_ortr_id"
-    }
-  }
-
--- ordenTransporteSet
-  recurso: /ordenTransporte
-  metodo: post
-  insert into log.ordenes_transporte (fec_retiro, estado, caseid, difi_id, sotr_id, equi_id, chof_id)
-  values(TO_DATE(:fec_retiro, 'YYYY-MM-DD'), :estado, :caseid, :difi_id, CAST(:sotr_id AS INTEGER), CAST(:equi_id AS INTEGER), :chof_id) returning ortr_id
-
-  {
-    "_post_ordentransporte":
-      {
-        "fec_retiro": "2020-03-23",
-        "estado": "INGRESADO",             
-        "caseid": "00001",                                    // de BPM
-        "difi_id": "disposicion_finalPTA",                    // disposicion final
-        "sotr_id": "1",                                       // solic transporte id
-        "equi_id": "21",                                      // ide de equipo(camión)
-        "chof_id": "18887911"                                 // recordar que es el dni de chofer
-      }
-  }
-
-  {
-    "respuesta":{
-      "ortr_id": "15"
-    }
-  }
-
--- ordenTransporte->Estado (estados:'EN_TRANSITO', 'INGRESADO', 'DESCARGADO', 'INFRACCION', 'EGRESADO')
-  recurso: tabla/estado_contenedor
-  metodo: get
-  
-  -- ejemplo de respuesta
-  {
-    "valores":{
-        "valor":[
-          {
-            "tabl_id": "estado_contenedorEN_TRANSITO",
-            "valor": "EN_TRANSITO",
-            "valor2": "",
-            "valor3": "",
-            "descripcion": ""
-          },
-          {
-            "tabl_id": "estado_contenedorINGRESADO",
-            "valor": "INGRESADO",
-            "valor2": "",
-            "valor3": "",
-            "descripcion": ""
-          },
-          {
-            "tabl_id": "estado_contenedorDESCARGADO",
-            "valor": "DESCARGADO",
-            "valor2": "",
-            "valor3": "",
-            "descripcion": ""
-          }
-        ]
-    }
-  }
 
 -- transportistasSet
   recurso: /transportistas
