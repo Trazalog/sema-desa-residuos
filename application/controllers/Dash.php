@@ -139,12 +139,32 @@ class Dash extends CI_Controller {
 															"link": "Test/index"
 													}                            
 											]
+									},
+									{
+										"titulo": "Reportes",
+										"icono": "fa fa-circle",
+										"link": "general/Componente",
+										"nivel": 2,
+										"submenu": [
+											{
+												"titulo": "Pesaje de Báscula",
+												"icono": "fa fa-genderless",
+												"link": "Reportes/pesoDeBascula"
+											},
+											{
+												"titulo": "Camiones",
+												"icono": "fa fa-genderless",
+												"link": "Reportes/camiones"
+											}
+										]
 									}
-							]
-						}
+								]
+							}
 				}';
 
 		$aux2  = $this->load->view('layout/menu/mis_tareas', null, true).$this->load->view('layout/menu/aux_menu_alm', null, true);
+
+		// $a= json_decode($aux);
 
 		$data['menu'] = menu(json_decode($aux), $aux2);
 	
