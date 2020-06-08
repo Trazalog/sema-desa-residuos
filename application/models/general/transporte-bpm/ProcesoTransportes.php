@@ -117,9 +117,7 @@ class ProcesoTransportes extends CI_Model
     * @return array con informacion de todos los contenedores pedidos
     */
     function obtenerContSolicitados($case_id)
-    {     
-      //TODO: DESHARDCODEAR
-      $case_id = 8001;
+    {          
       log_message('INFO','#TRAZA|PROCESOTRANSPORTES|obtenerContSolicitados($case_id): $case_id >> '.json_encode($case_id));
       $aux = $this->rest->callAPI("GET",REST."/contenedoresSolicitados/case/".$case_id);
       $aux =json_decode($aux["data"]);
@@ -133,8 +131,6 @@ class ProcesoTransportes extends CI_Model
     */
     function obtenerInFoSolicitud($case_id)
     { 
-      //TODO: DESHARDCODEAR    
-      $case_id = 8001;
       log_message('INFO','#TRAZA|PROCESOTRANSPORTES|obtenerInFoSolicitud($case_id): $case_id >> '.json_encode($case_id));
       $aux = $this->rest->callAPI("GET",REST."/solicitudContenedores/info/".$case_id);
       $aux =json_decode($aux["data"]);

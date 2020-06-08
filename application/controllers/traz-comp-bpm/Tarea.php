@@ -82,7 +82,7 @@ class Tarea extends CI_Controller
         $contrato = $this->getContrato($tar_mapeada, $form);
 
         //Cerrar Tarea
-      //  $this->bpm->cerrarTarea($taskId, $contrato);
+        $this->bpm->cerrarTarea($taskId, $contrato);
 				
     }
 
