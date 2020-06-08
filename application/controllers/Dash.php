@@ -91,7 +91,7 @@ class Dash extends CI_Controller {
 													{
 															"titulo": "ABM Incidencias ",
 															"icono": "fa fa-genderless",
-															"link": "general/Orden/nueva2"
+															"link": "general/Estructura/Incidencia/templateIncidencia"
 													},
 													{
 															"titulo": "ABM Infracciones ",
@@ -101,7 +101,7 @@ class Dash extends CI_Controller {
 													{
 															"titulo": "Solicitud de Contenedores ",
 															"icono": "fa fa-genderless",
-															"link": "general/Estructura/Solicitud_Pedido/templateSolicitudPedidos"
+															"link": "general/transporte-bpm/Solicitud_Pedido/templateSolicitudPedidos"
 													},
 													{
 															"titulo": "Etapa",
@@ -111,7 +111,7 @@ class Dash extends CI_Controller {
 													{
 															"titulo": "Chofer",
 															"icono": "fa fa-genderless",
-															"link": "general/Estructura/Camion/templateChoferes"
+															"link": "general/Estructura/Chofer/templateChoferes"
 													},
 													{
 															"titulo": "Vehiculo",

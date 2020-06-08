@@ -91,11 +91,12 @@
 
                     <!--Adjuntar imagen--> 
                         <div class="col-md-6">
-                            <form action="cargar_archivo" method="post" enctype="multipart/form-data">
-                                <input type="file" name="imagen" id="img_File" onchange="convertA()" style="font-size: smaller" id="img_Id">
+                            <form action="cargar_archivo" method="post" enctype="multipart/form-data"  id="fileimage">
+                                <label for="img_File">Seleccione Imagen</label>
+                                <input type="file" name="imagen" id="img_File" onchange="convertA()" style="font-size: smaller">
                                 <input type="text" id="input_aux_img" style="display:none" >
                             </form>
-                            <img src="" alt="" id="img_Base" width="" height="">
+                            <img src="" alt="" id="imagen" width="" height="">
                         </div>
                     <!--_____________________________________________-->
 
@@ -248,9 +249,9 @@ async function convertA(){
                   var cod = "data:image/jpeg;base64,"+archivo.base64StringFile;
                   //var cod = "data:image/png;base64,"+archivo.base64StringFile;
                     $("#input_aux_img").val(cod);
-                    $("#img_Base").attr("src",$("#input_aux_img").val());
-                    $("#img_Base").attr("width",100);
-                    $("#img_Base").attr("height",100);
+                    $("#imagen").attr("src",$("#input_aux_img").val());
+                    $("#imagen").attr("width",100);
+                    $("#imagen").attr("height",100);
                }else{
                    if(archivo.fileType == "application/pdf"){
                       var cod = "data:application/pdf;base64,"+archivo.base64StringFile;
@@ -323,6 +324,9 @@ async function convertA(){
         // datos = $('#formZonas').serialize();
 
         var datos = new FormData($('#formZonas')[0]);
+        if($("#input_aux_img").val() == ""){
+            alert("Debe seleccionar una imagen");
+        }
 
         datos = formToObject(datos);
         datos.imagen = $("#input_aux_img").val();
@@ -403,8 +407,16 @@ async function convertA(){
                         message: 'la entrada no puede ser vacia'
                     }
                 }
-            }
+            },
+            imagen:{
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
         }
+    }
     }).on('success.form.bv', function (e) {
         e.preventDefault();
         //guardar();

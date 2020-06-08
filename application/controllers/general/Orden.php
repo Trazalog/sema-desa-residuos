@@ -63,12 +63,7 @@ class Orden extends CI_Controller {
     $this->load->view('layout/nueva_vista', $data);
    }
 
-   
-   function nueva2()
-   {
-    
-    $this->load->view('layout/registrar_incidencia', $data);
-   }
+  
    
 }
 ?>
