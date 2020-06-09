@@ -1,4 +1,4 @@
-<?php #info_header('Cabecera Informacion 1',''); ?>
+<?php echo infoGenerador($tarea->caseId); ?>
 <?php #info_header('Cabecera Informacion 2',''); ?>
 <?php #info_header('Cabecera Informacion 3',''); ?>
 <input id="tarea" data-info="" class="hidden">

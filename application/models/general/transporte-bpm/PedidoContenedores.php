@@ -4,7 +4,7 @@
 *
 * @autor Hugo Gallardo
 */
-class ProcesoTransportes extends CI_Model
+class PedidoContenedores extends CI_Model
 {
     /**
     * Constructor de Clase
@@ -28,7 +28,7 @@ class ProcesoTransportes extends CI_Model
 
         case 'Analizar Solicitud':
 
-          log_message('INFO','#TRAZA|PROCESOTRANSPORTES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
+          log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
           $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);
           $tarea->infoContenedores = $this->obtenerContSolicitados($tarea->caseId);
           $resp = $this->load->view('transporte-bpm/proceso/analizaSolicitud', $tarea, true);
@@ -48,12 +48,12 @@ class ProcesoTransportes extends CI_Model
     */
     function actualizarSolicitud($form)
     {     
-      log_message('INFO','#TRAZA|PROCESOTRANSPORTES|actualizarSolicitud($form) >> ');
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|actualizarSolicitud($form) >> ');
       
       $temp['_put_contenedoressolicitados_cantidad'] =  $form["contAcordados"];
       $data['_put_contenedoressolicitados_cantidad_batch_req'] = $temp;
       
-      log_message('DEBUG','#TRAZA|PROCESOTRANSPORTES|actualizarSolicitud($cont_prop): $data >> '.json_encode($data));
+      log_message('DEBUG','#TRAZA|PEDIDOCONTENEDORES|actualizarSolicitud($cont_prop): $data >> '.json_encode($data));
       
       $aux = $this->rest->callAPI("PUT",REST."/_put_contenedoressolicitados_cantidad_batch_req", $data);
       $aux =json_decode($aux["status"]);
@@ -67,7 +67,7 @@ class ProcesoTransportes extends CI_Model
     */
     function contratoAnalisisCont($form)
     {     
-      log_message('INFO','#TRAZA|PROCESOTRANSPORTES|contratoAnalisisCont($form) >> ');
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|contratoAnalisisCont($form) >> ');
       $opcion = $form["elegido"]["opcion"]; //acepta o rechaza
       $igualCant = $form["coincideCant"]["cantIguales"]; // 1 o 0      
             
@@ -97,7 +97,7 @@ class ProcesoTransportes extends CI_Model
     */
     function motivoRechazo($form)
     {     
-      log_message('INFO','#TRAZA|PROCESOTRANSPORTES|motivoRechazo($form) >> ');
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|motivoRechazo($form) >> ');
 
       $temp["motivo_rechazo"] = $form["motivo"]["motivo"]; 
       $temp["soco_id"] = $form["contAcordados"][0]["soco_id"]; 
@@ -118,7 +118,7 @@ class ProcesoTransportes extends CI_Model
     */
     function obtenerContSolicitados($case_id)
     {          
-      log_message('INFO','#TRAZA|PROCESOTRANSPORTES|obtenerContSolicitados($case_id): $case_id >> '.json_encode($case_id));
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|obtenerContSolicitados($case_id): $case_id >> '.json_encode($case_id));
       $aux = $this->rest->callAPI("GET",REST."/contenedoresSolicitados/case/".$case_id);
       $aux =json_decode($aux["data"]);
       return $aux->contenedores->contenedor;
@@ -131,7 +131,7 @@ class ProcesoTransportes extends CI_Model
     */
     function obtenerInFoSolicitud($case_id)
     { 
-      log_message('INFO','#TRAZA|PROCESOTRANSPORTES|obtenerInFoSolicitud($case_id): $case_id >> '.json_encode($case_id));
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|obtenerInFoSolicitud($case_id): $case_id >> '.json_encode($case_id));
       $aux = $this->rest->callAPI("GET",REST."/solicitudContenedores/info/".$case_id);
       $aux =json_decode($aux["data"]);
       return $aux->solicitud;

@@ -191,10 +191,22 @@ class Tarea extends CI_Controller
                 
                 return $this->Procesos->desplegarVista($tarea);
 						
-						case BPM_PROCESS_ID_TRANSPORTE: 
+						case BPM_PROCESS_ID_PEDIDO_CONTENEDORES: 
 								
-								$this->load->model('general/transporte-bpm/ProcesoTransportes');
-								return $this->ProcesoTransportes->desplegarVista($tarea);						
+								$this->load->model('general/transporte-bpm/PedidoContenedores');
+								return $this->PedidoContenedores->desplegarVista($tarea);
+								
+						case BPM_PROCESS_ID_RETIRO_CONTENEDORES: 
+						
+							$this->load->model('general/transporte-bpm/RetiroContenedores');
+							//return $this->ProcesoTransportes->desplegarVista($tarea);	
+							break;	
+
+						case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE: 
+							
+							$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');
+							//return $this->ProcesoTransportes->desplegarVista($tarea);	
+							break;
 
             default:
 
@@ -203,7 +215,7 @@ class Tarea extends CI_Controller
                 break;
 
         }
-    }
+    }	
 
     public function guardarComentario()
     {

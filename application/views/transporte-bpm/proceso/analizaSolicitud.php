@@ -1,45 +1,5 @@
 <h4>Analiza Solicitud de Contenedores</h4>
 
-<!--_____________ Formulario informacion _____________-->
-<form class="formNombre1" id="IDnombre">  
-    <div class="col-md-12">
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="generador" name="">Generador:</label>
-                <input type="text" class="form-control habilitar" id="generador" value="<?php echo $infoSolicitud->razon_social; ?>"  readonly>
-            </div>
-        </div>
-        <!--_____________________________________________-->
-				
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="pedido" name=""> Nº Pedido:</label>
-                <input type="text" class="form-control habilitar" id="pedido" value="<?php echo $infoSolicitud->soco_id; ?>"  readonly>
-            </div>
-        </div>
-        <!--_____________________________________________-->
-
-        <div class="col-md-6">
-          <div class="form-group">
-              <label for="domicilio" name="">Direccion:</label>
-              <input type="text" class="form-control habilitar" id="domicilio" value="<?php echo $infoSolicitud->domicilio; ?>"  readonly>
-          </div>
-        </div>
-        <!--_____________________________________________-->
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="fec_alta" name="">Fecha Retiro:</label>
-                <input type="text" class="form-control habilitar" id="fec_alta" value="<?php echo $infoSolicitud->fec_alta; ?>"  readonly>
-            </div>
-        </div>
-      <!--_____________________________________________-->
-        
-    </div>
-</form>
-<!--_____________ fin forulario _____________-->
-
 <!--_________________SEPARADOR_________________-->
 <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 <!--_________________SEPARADOR_________________-->
