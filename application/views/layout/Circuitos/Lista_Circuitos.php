@@ -174,10 +174,11 @@
 					url: "general/Estructura/Circuito/actulizaCircuitos",
 					success: function(result) {
 								if(result == 'ok'){
+									alertify.success("Circuito editado con exito...");
 									$("#cargar_tabla").load(
 													"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
 											);
-									alertify.success("Circuito editado con exito...");
+									
 								}else{
 									alertify.error("Error al editar Circuito...");
 								}
@@ -285,9 +286,12 @@
 					success: function(result) {
 								if(result == "ok"){
 									$("#modalaviso").modal('hide');
+									alertify.success("circuito eliminado con exito...");
 									$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");	
+									
 								}else{
 									$("#modalaviso").modal('hide');	
+									alertify.success("error al eliminar...");
 								}
 					},
 					error: function(result){
