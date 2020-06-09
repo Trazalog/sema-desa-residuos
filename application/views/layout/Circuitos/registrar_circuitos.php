@@ -131,7 +131,7 @@
 							<div class="col-md-12">
 								<form action="cargar_archivo" method="post" enctype="multipart/form-data">
 										<input type="file" id="img_File" onchange=convertA() style="font-size: smaller">
-										<input type="text" name="imagen" id="input_aux_img" style="display:none" >
+										<input type="text" name="imagen" id="input_aux_img" style="display:none" name="input_aux_img" >
 								</form>
 								<img src="" alt="" id="img_Base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
 							</div>
@@ -453,7 +453,7 @@
 													<input type="file" class="ocultar habilitar" name="img" id="img_file" onchange=convert_Edit()>
 													<input type="text" id="input_aux_img64" style="display:none">
 													<input type="text" id="input_aux_zonaID" style="display:none">                                   
-													<img src="" alt="imagen" id="img_base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
+													<img src="" alt="imagen" id="img_base" width="" height="" style="margin-top: 20px;border-radius: 8px;" name="img_base">
 												</div>
 											</form>		
 										</div>									
@@ -757,10 +757,15 @@
 			rows.each(function(i,e) {  
 					datos_puntos_criticos.push(getJson(e));
 			});		
-
+			console.table(datos_circuito.imagen);
+			
 			// valida campos cargados y envia datos
-			// if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
-						
+			if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
+				
+				if(datos_circuito.imagen == "")
+				{
+					alert("ATENCION! no cargo ninguna Imagen, Por favor cargue una");
+				}else{
 					$.ajax({
 							type: "POST",
 							data: {datos_circuito, datos_puntos_criticos,datos_tipo_carga},							
@@ -781,7 +786,9 @@
 									}
 							}							
 					});
-			// }
+				}
+				
+			 }else{alert("Hay campos de Informacion vacios! Por favor completelos");}
 		}  
  
 	// muestra box de datos al dar click en boton agregar
@@ -853,6 +860,14 @@
 						},
 						chof_id: {
 								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
+								}
+						},
+						input_aux_img:{
+								message:'No puede estar vacio',
 								validators: {
 										notEmpty: {
 												message: 'la entrada no puede ser vacia'

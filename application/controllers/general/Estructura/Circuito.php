@@ -69,7 +69,7 @@ class Circuito extends CI_Controller {
 				echo "Error... Circuito no registrado"; return;
 			} 
 		//  2 guarda puntos criticos si hubiera
-			if(empty($datos_puntos_criticos)){
+			if(!empty($datos_puntos_criticos)){
 				// recorro  array puntos agregando id de circ y guardando de a uno     
 				for ($i=0; $i < count($datos_puntos_criticos); $i++) {        
 					$aux[$i]['circ_id'] = $circ_id;
