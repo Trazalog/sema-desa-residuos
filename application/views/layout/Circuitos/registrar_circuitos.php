@@ -424,6 +424,8 @@
 											</div>
 									</div>
 								<!--__________________________-->	
+								<!--_____________ Zona Acosiada a circuito _____________-->                 
+								
 								
 								<!--_____________ ZONA _____________-->                 
 								<!-- <div class="form-group">
@@ -444,6 +446,17 @@
 
 							</div>
 						</form>	
+						<div class="col-sm-6">	
+						  	
+								<div class="form-group">
+												<label for="zona_asociada_edit" class="col-sm-4 control-label">Zona Asociada:</label>
+												<br>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" name="zona_asociada_edit" id="zona_asociada_edit" readonly placeholder="zona asociada"> 
+												</div>
+								</div>
+							<									
+						</div>
 							<!--_____________ IMAGEN _____________-->
 								<div class="col-sm-12">	
 										<div class="form-group pull-left">
@@ -590,7 +603,12 @@
 											<label for="depAsociar" class="col-sm-4 control-label">Departamento:</label>
 											<div class="col-sm-8">
 												<select class="form-control select2 select2-hidden-accesible" name="depa_id" id="depAsociar">
-													<option value="" disabled selected>-Seleccione opcion-</option>												
+													<option value="" disabled selected>-Seleccione opcion-</option>
+													<?php
+													foreach ($Departamentos as $f) {
+															echo '<option  value="'.$f->depa_id.'">'.$f->nombre.'</option>';
+													}
+													?>												
 												</select>
 																	
 											</div>	
@@ -1056,5 +1074,38 @@
 		});
 	}
 ////// fin funciones imagen EDICION
+
+	// Asocia zona a circuito
+	$("#btnsaveAsociacion").on("click", function() {
+		
+		var idcircuito	= $('#circ_id_asociar').val();	
+		var idzona = $('#zonaAsociar option:selected').val();
+		
+		var circ_zona = new Object();
+		circ_zona.circ_id = idcircuito;
+		circ_zona.zona_id = idzona;	
+
+		console.table('array objeto no se: ' + circ_zona);
+
+		$.ajax({
+				type: 'POST',
+				data:{circ_zona},
+				url: "general/Estructura/Circuito/Asignar_Zona",
+				success: function(result) {					
+							if(result == 'ok'){
+								alertify.success("Zona asociada con exito...!!!!!");
+								$("#cargar_tabla").load(
+												"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
+										);
+							}else{
+								alertify.error("Hubo error en la Asociacion...");
+							}
+				},
+				error: function(result){
+									
+				}
+		});
+
+	});
 
 </script>
