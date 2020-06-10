@@ -39,6 +39,7 @@
 	// llena modal solo lectura
 		$(".btnInfo").on("click", function(e){
 			datajson = $(this).parents("tr").attr("data-json");
+			console.table(datajson);
 			llenarModal(datajson);	
 			blockEdicion();
 		});
@@ -74,8 +75,9 @@
 		}	
 	// llena modal Editar
 		function llenarModal(datajson){
-
+			$("#zona_asociada_edit").val("cargando zona asociada...");
 			data = JSON.parse(datajson); 	
+			var id_zona = data.zona_id;
 			// lena los inputs
 			$("#zona_id_edit").val(data.zona_id);
 			$("#circ_id_edit").val(data.circ_id);
@@ -83,6 +85,26 @@
 			$("input#descripcion_edit").val(data.descripcion);
 			$("#vehi_id_edit option[value="+ data.vehi_id +"]").attr("selected",true);
 			$("#chof_id_edit option[value="+ data.chof_id +"]").attr("selected",true);
+			$.ajax({
+					type: 'POST',
+					data:{id_zona},
+					url: "general/Estructura/Circuito/obtenerZonaid",
+					success: function($result){
+					
+								console.table($result);
+								if($result != "null"){
+								// console.table("json son decodificar: "+$result);
+                    			var res = JSON.parse($result); // decodifico el dato que obtuve en formato json
+                  				// console.table("json decodificado: "+res);
+								// console.table(res.nombre);
+								$("#zona_asociada_edit").val(res.nombre);
+								}else{
+								 console.table("no trajo nada");
+								 $("#zona_asociada_edit").val("Sin zona asociada!");					
+								}     
+					}
+					
+			});
 
 			// lena input tipo RSU 
 			llenarSelectRsu(data.tiposCarga.carga);
@@ -129,7 +151,6 @@
 
 	// agrega datos de un punto critico a la tabla temporal para editar
 		function Agregar_punto_edit() {
-
 			var table_edit = $('#tabla_puntos_criticos_edit').DataTable();	
 			var data_edit = new FormData($('#formPuntos_edit')[0]);
 			data_edit = formToObject(data_edit);
@@ -146,7 +167,7 @@
 
 	// guarda Edicion completa		
 		$("#btnsave_edit").on("click", function() {
-
+			debugger;
 			// tomo los datos de circuito editados
 			var circuito_edit = new FormData($('#frm_circuito_edit')[0]);
 			circuito_edit = formToObject(circuito_edit);		
@@ -167,13 +188,13 @@
 			
 			
 			console.table('ptos criticos' + rows);
-			debugger;
+		
 			$.ajax({
 					type: 'POST',
 					data:{ circuito_edit, tica_edit, ptos_criticos_edit},
 					url: "general/Estructura/Circuito/actulizaCircuitos",
 					success: function(result) {
-								if(result == 'ok'){
+								if(result == "ok"){
 									alertify.success("Circuito editado con exito...");
 									$("#cargar_tabla").load(
 													"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
@@ -189,31 +210,16 @@
 			});
 
 		});
-	// trae array con departamentos y lena el select depAsociar
-		$(".btnAsociar").on("click", function() {
+	
+		 $(".btnAsociar").on("click", function() {
 			
-			//guardo id de circuito en modal para usar en asociacion
-			datajson = $(this).parents("tr").attr("data-json");
-			data = JSON.parse(datajson);
-			$('#circ_id_asociar').val(data.circ_id);
+		
+			 datajson = $(this).parents("tr").attr("data-json");
+			 data = JSON.parse(datajson);
+			 $('#circ_id_asociar').val(data.circ_id);
 			
-			$.ajax({
-					type: 'POST',
-					//data:{: },
-					url: "general/Estructura/Circuito/obtener_Departamentos",
-					success: function(result) {
-								if(result){
-										console.table( ' resultado: ' + result);
-										$.each(JSON.parse(result), function(key,dep){									
-											$('#depAsociar').append("<option value='" + dep.depa_id + "'>" +dep.nombre+"</option");	
-										});
-								}
-					},
-					error: function(result){
-										
-					}
-			});	
-		});
+		
+		 });
 	// llena select de zonas por id de depto
 		$('#depAsociar').change(function(e){
 			e.preventDefault();
@@ -224,6 +230,8 @@
 					data:{depa_id: depa_id},
 					url: "general/Estructura/Circuito/obtener_Zona_departamento",
 					success: function(result) {
+						// var sel = document.getElementById("zonaAsociar");
+  						// sel.remove(sel.selectedIndex);
 						if(result){
 										console.table( ' resultado: ' + result);
 										$.each(JSON.parse(result), function(key,zona){
@@ -236,35 +244,7 @@
 					}
 			});
 		});
-	// Asocia zona a circuito
-		$("#btnsaveAsociacion").on("click", function() {
-		
-			var idcircuito	= $('#circ_id_asociar').val();	
-			var idzona = $('#zonaAsociar option:selected').val();
-			
-			var circ_zona = new Object();
-			circ_zona.circ_id = idcircuito;
-			circ_zona.zona_id = idzona;	
 
-			console.table('array objeto no se: ' + circ_zona);
-
-			$.ajax({
-					type: 'POST',
-					data:{circ_zona},
-					url: "general/Estructura/Circuito/Asignar_Zona",
-					success: function(result) {					
-								if(result == 'ok'){
-									alertify.success("Zona asociada con exito...");
-								}else{
-									alertify.error("Hubo error en la Asociacion...");
-								}
-					},
-					error: function(result){
-										
-					}
-			});
-
-		});
 	// Levanta modal prevencion eliminar circuito
 		$(".btnEliminar").on("click", function() {
 			datajson = $(this).parents("tr").attr("data-json");
