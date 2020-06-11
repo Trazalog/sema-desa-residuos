@@ -91,7 +91,7 @@
 					url: "general/Estructura/Circuito/obtenerZonaid",
 					success: function($result){
 					
-								console.table($result);
+								//console.table($result);
 								if($result != "null"){
 								// console.table("json son decodificar: "+$result);
                     			var res = JSON.parse($result); // decodifico el dato que obtuve en formato json
@@ -113,6 +113,9 @@
 			// trae imagen si hay aguna guardada
 			llenarImagen(data.circ_id);
 		}	
+		function doSomething() {
+			console.table("This will be logged every 5 seconds");
+		}
 	// llena select multiple con RSU y selcciona los guardados
 		function llenarSelectRsu(tipos){	
 				
@@ -167,7 +170,7 @@
 
 	// guarda Edicion completa		
 		$("#btnsave_edit").on("click", function() {
-			debugger;
+			
 			// tomo los datos de circuito editados
 			var circuito_edit = new FormData($('#frm_circuito_edit')[0]);
 			circuito_edit = formToObject(circuito_edit);		
@@ -180,14 +183,23 @@
 			var ptos_criticos_edit = [];		
 			var rows = $('#tabla_puntos_criticos_edit tbody tr');				
 			rows.each(function(i,e) {  
-					ptos_criticos_edit.push(getJson(e));
+				console.table('ptos criticos' + ptos_criticos_edit);
+				// setTimeout(doSomething, 9000);
+				// setTimeout(doSomething, 9000);
+				setTimeout(doSomething, 9000);
+				var a = getJson(e);
+				// setTimeout(doSomething, 9000);
+				// setTimeout(doSomething, 9000);
+				setTimeout(doSomething, 9000);
+				ptos_criticos_edit.push(a);
+				setTimeout(doSomething, 9000);
 			});	
 
-			var algo = ptos_criticos_edit;
+			// var algo = ptos_criticos_edit;
 			
 			
 			
-			console.table('ptos criticos' + rows);
+			console.table('ptos criticos' + ptos_criticos_edit);
 		
 			$.ajax({
 					type: 'POST',

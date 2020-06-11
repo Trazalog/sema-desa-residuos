@@ -69,6 +69,7 @@ class Circuito extends CI_Controller {
 				echo "Error... Circuito no registrado"; return;
 			} 
 		//  2 guarda puntos criticos si hubiera
+		if($datos_puntos_criticos[0] != "false"){
 			if(!empty($datos_puntos_criticos)){
 				// recorro  array puntos agregando id de circ y guardando de a uno     
 				for ($i=0; $i < count($datos_puntos_criticos); $i++) {        
@@ -82,6 +83,7 @@ class Circuito extends CI_Controller {
 						echo "Error... Punto Crítico no asociado";return;
 				} 
 			}
+		}
 			
 		// 3  con id circ  agregar a array tipo de carga armar batch  /_post_circuitos_tipocarga_batch_req  
 			foreach ($datos_tipo_carga as $key => $carga) {  
