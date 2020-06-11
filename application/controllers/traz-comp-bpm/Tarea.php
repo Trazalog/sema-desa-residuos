@@ -154,19 +154,19 @@ class Tarea extends CI_Controller
                 return;
 
                 break;
-						//	PROCESO TRANSPORTE
+						//	PROCESO PEDIDO CONTENEDORES
 						
 						case 'Analizar Solicitud':
 
-								$this->load->model('general/transporte-bpm/ProcesoTransportes');
+								$this->load->model('general/transporte-bpm/PedidoContenedores');
 							
-								$resp = $this->ProcesoTransportes->actualizarSolicitud($form);
+								$resp = $this->PedidoContenedores->actualizarSolicitud($form);
 								
 								if (isset($form['motivo'])) {												
-									$respComentario = $this->ProcesoTransportes->motivoRechazo($form);
+									$respComentario = $this->PedidoContenedores->motivoRechazo($form);
 								}
 								
-								$contrato = $this->ProcesoTransportes->contratoAnalisisCont($form);								
+								$contrato = $this->PedidoContenedores->contratoAnalisisCont($form);								
 
 								return $contrato;
 

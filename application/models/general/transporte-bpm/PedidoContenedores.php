@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) { exit('No direct script access allowed');}
 /**
-* Representa a las tareas del Proceso Transportes
+* Representa a las tareas del Proceso Pedido Contenedores
 *
 * @autor Hugo Gallardo
 */

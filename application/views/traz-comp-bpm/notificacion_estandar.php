@@ -1,5 +1,5 @@
-<?php echo infoGenerador($tarea->caseId); ?>
-<?php #info_header('Cabecera Informacion 2',''); ?>
+<?php echo infoProceso($tarea); ?>
+<?php echo infoEntidadesProceso($tarea); ?>
 <?php #info_header('Cabecera Informacion 3',''); ?>
 <input id="tarea" data-info="" class="hidden">
 <input type="text" class="form-control hidden" id="asignado" value="<?php echo $tarea->idUsuarioAsignado?>">

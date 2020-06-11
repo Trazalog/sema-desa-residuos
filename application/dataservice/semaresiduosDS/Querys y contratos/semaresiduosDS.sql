@@ -1501,75 +1501,115 @@ http://10.142.0.7:8280/services/semaresiduosDS
     }
   }
   
+
+-- solicitanteTransporteGetPorCaseId (CABECERA GENERADOR)
+  recurso: /solicitantesTransporte/case/{case_id}
+  metodo: get
+
+  select  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, 
+		TTIPO.valor as tipo_generador, 		
+		DEPA.nombre as departamento,
+		ZONA.nombre as zona,
+		TRUB.valor as rubro
+  from 
+      log.solicitantes_transporte ST, 
+      core.tablas TTIPO, 
+      core.departamentos DEPA, 
+      core.zonas ZONA,
+      core.tablas TRUB
+  where ST.sotr_id = (select SC.sotr_id from log.solicitudes_contenedor SC where SC.case_id = :case_id)
+  and ST.tist_id = TTIPO.tabl_id 
+  and ST.depa_id = DEPA.depa_id
+  and ST.zona_id = ZONA.zona_id 
+  and ST.rubr_id = TRUB.tabl_id 
+  and ST.eliminado = 0
+
+  {
+    "generador":{
+      "sotr_id": "$sotr_id",
+      "razon_social": "$razon_social",
+      "cuit": "$cuit",
+      "domicilio": "$domicilio",
+      "num_registro": "$num_registro",
+      "tipo_generador": "$tipo_generador",
+      "departamento": "$departamento",
+      "zona": "$zona",
+      "rubro": "$rubro"
+    }
+  }
+
+
+
+
 -- incidenciaSet
 
    recurso: /incidencias
    metodo: post
 
-insert
-	into
-	ins.incidencias (descripcion,
-	fecha,
-	num_acta,
-	adjunto,
-	usuario_app,
-	tiin_id,
-	tire_id,
-	difi_id,
-	ortr_id)
-values(:descripcion,
-	to_date(:fecha,'DD-MM-YYYY'),
-	:num_acta,
-	:adjunto,
-	:usuario_app,
-	:tiin_id ,
-	:tire_id ,
-	:difi_id ,
-	cast(:ortr_id as integer)) returning inci_id
+  insert
+    into
+    ins.incidencias (descripcion,
+    fecha,
+    num_acta,
+    adjunto,
+    usuario_app,
+    tiin_id,
+    tire_id,
+    difi_id,
+    ortr_id)
+  values(:descripcion,
+    to_date(:fecha,'DD-MM-YYYY'),
+    :num_acta,
+    :adjunto,
+    :usuario_app,
+    :tiin_id ,
+    :tire_id ,
+    :difi_id ,
+    cast(:ortr_id as integer)) returning inci_id
 
-{"respuesta":{"incidencia":"$inci_id"}}
+  {"respuesta":{"incidencia":"$inci_id"}}
 
 -- incidenciasGet
    recurso: /incidencias
    metodo: get
 
-select
-	i.inci_id
-	,i.descripcion
-	,i.fecha
-	,i.num_acta
-	,i.adjunto
-	,i.usuario_app 
-	,ti.valor as tipo_incidencia
-	,tc.valor as tipo_carga
-	,td.valor as disposicion_final
-	from
-	ins.incidencias i
-left join  core.tablas ti on ti.tabl_id = i.tiin_id
-left join   core.tablas tc on tc.tabl_id = i.tica_id
-left join core.tablas td on td.tabl_id = i.difi_id 
-	where
-	i.eliminado = 0
-order by
-	i.inci_id
+  select
+    i.inci_id
+    ,i.descripcion
+    ,i.fecha
+    ,i.num_acta
+    ,i.adjunto
+    ,i.usuario_app 
+    ,ti.valor as tipo_incidencia
+    ,tc.valor as tipo_carga
+    ,td.valor as disposicion_final
+    from
+    ins.incidencias i
+  left join  core.tablas ti on ti.tabl_id = i.tiin_id
+  left join   core.tablas tc on tc.tabl_id = i.tica_id
+  left join core.tablas td on td.tabl_id = i.difi_id 
+    where
+    i.eliminado = 0
+  order by
+    i.inci_id
 
-{
-   "incidencias":{
-      "incidencia":[
-         {
-            "inci_id":"$inci_id",
-            "descripcion":"$descripcion",
-            "fecha":"$fecha",
-            "num_acta":"$num_acta",
-            "adjunto":"$adjunto",
-            "usuario_app":"$usuario_app",
-            "tipo_incidencia":"$tipo_incidencia",
-            "tipo_carga":"$tipo_carga",
-            "disposicion_final":"$disposicion_final"
-         }
-      ]
-   }
-}
+  {
+    "incidencias":{
+        "incidencia":[
+          {
+              "inci_id":"$inci_id",
+              "descripcion":"$descripcion",
+              "fecha":"$fecha",
+              "num_acta":"$num_acta",
+              "adjunto":"$adjunto",
+              "usuario_app":"$usuario_app",
+              "tipo_incidencia":"$tipo_incidencia",
+              "tipo_carga":"$tipo_carga",
+              "disposicion_final":"$disposicion_final"
+          }
+        ]
+    }
+  }
 
 
 -- incidenciasDelete
@@ -1577,11 +1617,11 @@ order by
    recurso: /incidencias/{inci_id}
    metodo: delete
 
-update ins.incidencias
-set eliminado = 1
-where inci_id = :inci_id
+  update ins.incidencias
+  set eliminado = 1
+  where inci_id = :inci_id
 
-respuesta: 200 si ok
+  respuesta: 200 si ok
 
 
 -- inspectoresGet
@@ -1656,45 +1696,45 @@ respuesta: 200 si ok
   }
 
 
---ordenTransporteListaxId
+-- ordenTransporteListaxId
   recurso: /ordenesTransporte/lista/{ortr_id} 
   metodo: get
 
-select
-	ot.ortr_id,
-	ot.fec_retiro,
-	ot.caseid,
-	ot.fec_alta,
-	st.razon_social ,
-	st.cuit ,
-	e.dominio ,
-	c.chof_id
-from
-	log.ordenes_transporte ot,
-	log.solicitantes_transporte st ,
-	log.choferes c ,
-	core.equipos e
-where ot.sotr_id = st.sotr_id
-and ot.chof_id = c.documento 
-and ot.equi_id = e.equi_id
-and cast(ot.ortr_id as varchar) like '%'||:ortr_id || '%'
+  select
+    ot.ortr_id,
+    ot.fec_retiro,
+    ot.caseid,
+    ot.fec_alta,
+    st.razon_social ,
+    st.cuit ,
+    e.dominio ,
+    c.chof_id
+  from
+    log.ordenes_transporte ot,
+    log.solicitantes_transporte st ,
+    log.choferes c ,
+    core.equipos e
+  where ot.sotr_id = st.sotr_id
+  and ot.chof_id = c.documento 
+  and ot.equi_id = e.equi_id
+  and cast(ot.ortr_id as varchar) like '%'||:ortr_id || '%'
 
-{
-   "ordenTransporte":{
-      "ordenesTransporte":[
-         {
-            "ortr_id":"$ortr_id",
-            "fec_retiro":"$fec_retiro",
-            "caseid":"$caseid",
-            "fec_alta":"$fec_alta",
-            "razon_social":"$razon_social",
-            "cuit":"$cuit",
-            "dominio":"$dominio",
-            "chof_id":"$chof_id"
-         }
-      ]
-   }
-}
+  {
+    "ordenTransporte":{
+        "ordenesTransporte":[
+          {
+              "ortr_id":"$ortr_id",
+              "fec_retiro":"$fec_retiro",
+              "caseid":"$caseid",
+              "fec_alta":"$fec_alta",
+              "razon_social":"$razon_social",
+              "cuit":"$cuit",
+              "dominio":"$dominio",
+              "chof_id":"$chof_id"
+          }
+        ]
+    }
+  }
 
 
 -- ordTransPorIdGet
@@ -2511,6 +2551,28 @@ and cast(ot.ortr_id as varchar) like '%'||:ortr_id || '%'
         "tran_id": "3"
     }
   ]}}
+
+
+-- transportistaGetPorCaseId
+  recurso: /transportistas/case/{case_id}
+  metodo: get
+
+  select 
+	TR.razon_social, TR.cuit, TR.direccion, TR.resolucion, TR.registro 
+  from log.transportistas TR
+  where TR.tran_id = (select SC.tran_id from log.solicitudes_contenedor SC where case_id = :case_id)
+  
+  {
+    "transportista":{
+      "razon_social": "$razon_social",
+      "cuit": "$cuit",
+      "direccion": "$direccion",
+      "resolucion": "$resolucion",
+      "registro": "$registro"
+    }  
+  }
+
+
 
 -- tablasGet
 

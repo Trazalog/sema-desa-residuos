@@ -62,7 +62,7 @@
 
 <script>
 
-	// deshabilita los botones originales de la notificacion estandar						
+	//deshabilita los botones originales de la notificacion estandar						
 	$(document).ready(function(){
 			$('.btnNotifEstandar').hide();
 	});						
@@ -140,6 +140,7 @@
 				data:{ elegido, coincideCant, contAcordados, motivo },
 				url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
 				success: function(result) {
+					alert(result);
 									wc();
 									if(result == 'ok'){										
 										alertify.success("Contenedoes actualizados exitosamente...");	
