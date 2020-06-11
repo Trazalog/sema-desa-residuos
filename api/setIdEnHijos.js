@@ -30,7 +30,7 @@ function setIdEnHijos (mc) {
                        var sourceArray =   mc.getProperty("setIdEnHijos_arreglo_origen");
                        var targetArray =   mc.getProperty("setIdEnHijos_arreglo_destino");
                        var targetProperty =   mc.getProperty("setIdEnHijos_propiedad_destino");
-		       var idpadre = parseInt(mc.getProperty("setIdEnHijos_id_padre"));                     
+		       var idPadre = mc.getProperty("setIdEnHijos_id_padre");                     
 		       var payloadtmp = mc.getProperty("ORIGINAL_PAYLOAD");              
 		       
 	               // parseo el mensaje original para armar el nuevo mensaje
@@ -47,10 +47,14 @@ function setIdEnHijos (mc) {
 	               
 	               // recorro el arreglo agregando la propiedad y valor destino
 		       for (i = 0; i < results[sourceArray].length; ++i)     {               
-		       		objetoActual = results[sourceArray][i];                 
-		       		var objectoDestino = new Object();   
-             			Object.assign(objetoDestino,objetoActual);
-		       		objetoDestino[targetProperty] = Math.floor(idPadre);                 
+				log.info("1");
+		       		objetoActual = results[sourceArray][i];  
+				log.info("2");
+			        objetoDestino = new Object();
+				for(var k in objetoActual) objetoDestino[k]=objetoActual[k];
+				log.info("3");
+		       		objetoDestino[targetProperty] = idPadre;                 
+				log.info("4");
 				response[i] = objetoDestino;          
 				}         
 
@@ -69,4 +73,8 @@ function setIdEnHijos (mc) {
                          	return false;
 			}
 }
+
+
+
+
 
