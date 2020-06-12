@@ -268,5 +268,12 @@ class Circuitos extends CI_Model {
     return $aux->zonas->zona;
   }
 
+  function obtener_zonaid($zona_id)
+  {
+    $aux = $this->rest->callAPI("GET",REST."/zonas/$zona_id");
+    $aux =json_decode($aux["data"]);
+    return $aux->zona;
+  }
+
 
 }
