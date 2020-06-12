@@ -1,5 +1,5 @@
-<?php #info_header('Cabecera Informacion 1',''); ?>
-<?php #info_header('Cabecera Informacion 2',''); ?>
+<?php echo infoProceso($tarea); ?>
+<?php echo infoEntidadesProceso($tarea); ?>
 <?php #info_header('Cabecera Informacion 3',''); ?>
 <input id="tarea" data-info="" class="hidden">
 <input type="text" class="form-control hidden" id="asignado" value="<?php echo $tarea->idUsuarioAsignado?>">
@@ -44,19 +44,21 @@
 
             <?php
 
-			echo "<button class='btn btn-success btn-tomar' onclick='tomarTarea()'>Tomar tarea</button>";
+								echo "<button class='btn btn-success btn-tomar' onclick='tomarTarea()'>Tomar tarea</button>";
 
-			echo "<button class='btn btn-danger  btn-soltar' onclick='soltarTarea()'>Soltar tarea</button><br><br>";	
-			
-			?>
+								echo "<button class='btn btn-danger  btn-soltar' onclick='soltarTarea()'>Soltar tarea</button><br><br>";	
+						
+						?>
 
             <div id="view">
+						
                 <?php echo $view ?>
+								
             </div>
             <hr>
             <div class="text-right">
-                <button class="btn btn-primary" onclick="cerrar()">Cerrar</button>
-                <button class="btn btn-success" onclick="if(existFunction('cerrarTarea'))cerrarTarea()">Hecho</button>
+                <button class="btn btn-primary btnNotifEstandar" onclick="cerrar()">Cerrar</button>
+                <button class="btn btn-success btnNotifEstandar" onclick="if(existFunction('cerrarTarea'))cerrarTarea()">Hecho</button>
             </div>
 
         </div>
