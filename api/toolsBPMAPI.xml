@@ -50,16 +50,16 @@
          <sequence key="toolsFault"/>
       </faultSequence>
    </resource>
-   <resource methods="DELETE" uri-template="/proceso/instancia/{uri.var.caseid}">
+   <resource methods="DELETE" uri-template="/proceso/instancia">
       <inSequence>
          <log level="custom" description="msg entrada">
-            <property name="caseid" expression="$ctx:uri.var.caseid"/>
+            <property name="caseid" expression="json-eval($.caseid)"/>
             <property name="session" expression="json-eval($.session)"/>
          </log>
-         <property name="caseid" expression="$ctx:uri.var.caseid"/>
+         <property name="caseid" expression="json-eval($.caseid)"/>
          <property name="session" expression="json-eval($.session)"/>
          <header name="Accept" scope="transport" value="application/json"/>
-         <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="deletecase_url" expression="fn:concat('/API/bpm/case/',$ctx:uri.var.caseid)" scope="default" type="STRING"/>
+         <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="deletecase_url" expression="fn:concat('/API/bpm/case/',$ctx:caseid)" scope="default" type="STRING"/>
          <log level="custom">
             <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="url a invocar delete case" expression="get-property('deletecase_url')"/>
          </log>
