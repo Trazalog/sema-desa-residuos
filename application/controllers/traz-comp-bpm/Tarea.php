@@ -185,7 +185,7 @@ class Tarea extends CI_Controller
         switch ($tarea->processId) {
             
             #Pedido de Materiales
-            case '6352939331165329370':
+            case BPM_PROCESS_ID_PEDIDOS_NORMALES:
 
                 $this->load->model(ALM.'Procesos');
                 
@@ -199,13 +199,13 @@ class Tarea extends CI_Controller
 						case BPM_PROCESS_ID_RETIRO_CONTENEDORES: 
 						
 							$this->load->model('general/transporte-bpm/RetiroContenedores');
-							//return $this->ProcesoTransportes->desplegarVista($tarea);	
+						
 							break;	
 
 						case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE: 
 							
 							$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');
-							//return $this->ProcesoTransportes->desplegarVista($tarea);	
+						
 							break;
 
             default:
