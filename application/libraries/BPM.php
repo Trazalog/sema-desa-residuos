@@ -38,7 +38,8 @@ class BPM
 
         $url = BONITA_URL . 'API/bpm/humanTask/' . $id;
 
-        $rsp = $this->REST->callAPI('GET', $url, false, $this->loggin(userNick(), userPass()));
+				$rsp = $this->REST->callAPI('GET', $url, false, $this->loggin(userNick(), userPass()));
+				
 
         if (!$rsp['status']) {
 

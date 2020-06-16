@@ -55,9 +55,9 @@ class Incidencia extends CI_Controller {
 
     function anularIncidencia()
     {
-      $data = $this->input->post('id_inci');
+      $data = $this->input->post('incidenciaa');
       $resp = $this->Incidencias->AnularIncidencia($data);
-      if($resp){
+      if($resp == 1){
         echo "ok";
       }else{
         echo "error";
