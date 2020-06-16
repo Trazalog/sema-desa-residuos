@@ -115,10 +115,101 @@ class Koolreport extends CI_Model
             $aux[$i]->id = $valor->tabl_id;
             $i++;
         }
-        $data['filtro']->destino = $aux;
+        $data['filtro']->destinos = $aux;
 
 
         $data['op'] = "pesoDeBascula";
+
+        return $data;
+    }
+
+    public function getCantidadIncidencias($data)
+    {
+        return $data;
+    }
+    public function getIncidencias()
+    {
+        $url = "http://localhost:8080/incidencias";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        $aux->incidencias->incidencia = $rsp->incidencias->incidencia;
+
+        $a = $this->getCantidadIncidencias(count($aux->incidencias->incidencia));
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIAS| #ARRAY: >>' . $aux);
+
+        return $aux;
+    }
+
+    public function getFiltrosIncidencias()
+    {
+        $url = "http://localhost:8080/departamentos";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        $aux = null;
+        $i = 0;
+        foreach ($rsp->departamentos->departamento as $valor)
+        {
+            $aux[$i]->nombre = $valor->nombre;
+            $aux[$i]->id = $valor->id;
+            $i++;
+        }
+        $data['filtro']->municipios = $aux;
+        $data['cantidadMunicipios'] = $i;
+
+        $url = "http://localhost:8080/tablas/tipo_incidencia";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        $aux = null;
+        $i = 0;
+        foreach ($rsp->valores->valor as $valor)
+        {
+            $aux[$i]->nombre = $valor->valor;
+            $aux[$i]->id = $valor->tabl_id;
+            $i++;
+        }
+        $data['filtro']->tiposIncidencias = $aux;
+
+        $url = 'http://localhost:8080/solicitantesTransporte';
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        $aux = null;
+        $i = 0;
+        foreach ($rsp->solicitantesTransporte->solicitanteTransporte as $valor)
+        {
+            $aux[$i]->nombre = $valor->nombre;
+            $aux[$i]->id = $valor->sotr_id;
+            $i++;
+        }
+        $data['filtro']->solicitantesTransporte = $aux;
+
+        $url = 'http://localhost:8080/zonas';
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        $aux = null;
+        $i=0;
+        foreach ($rsp->zonas->zona as $valor)
+        {
+            $aux[$i]->nombre = $valor->nombre;
+            $aux[$i]->id = $valor->zona_id;
+            $i++;
+        }
+        $data['filtro']->zonas = $aux;
+        $data['cantidadZonas'] = $i;
+
+        $url = 'http://localhost:8080/transportistas';
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        $aux = null;
+        $i = 0;
+        foreach ($rsp->transportistas->transportista as $valor)
+        {
+            $aux[$i]->nombre = $valor->nombre;
+            $aux[$i]->id = $valor->tran_id;
+            $i++;
+        }
+        $data['filtro']->transportistas = $aux;
+
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIAS| #ARRAY: >>' . $data);
 
         return $data;
     }

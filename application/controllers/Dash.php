@@ -147,14 +147,14 @@ class Dash extends CI_Controller {
 										"nivel": 2,
 										"submenu": [
 											{
-												"titulo": "Pesaje de Báscula",
+												"titulo": "Pesajes de Báscula",
 												"icono": "fa fa-genderless",
 												"link": "Reportes/pesoDeBascula"
 											},
 											{
-												"titulo": "Camiones",
+												"titulo": "Incidencias",
 												"icono": "fa fa-genderless",
-												"link": "Reportes/camiones"
+												"link": "Reportes/incidencia"
 											}
 										]
 									}

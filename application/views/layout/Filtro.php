@@ -82,6 +82,7 @@
         autoclose: true
     })
 
+
     function filtrar() {
         var data = new FormData($('#formulario')[0]);
         data = formToObject(data);
