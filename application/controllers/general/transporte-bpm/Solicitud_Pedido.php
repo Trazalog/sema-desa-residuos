@@ -69,6 +69,7 @@ class Solicitud_Pedido extends CI_Controller {
    function registrarSolicitud()
    {
       log_message('INFO','#TRAZA|Solicitud_Pedido|registrarSolicitud() >> '); 
+      $circuitos = userNick();
       $resp = $this->SolicitudPedidos->RegistrarContenedor($this->input->post('datos'));
       if(!$resp){
          echo json_encode($resp);
@@ -90,6 +91,21 @@ class Solicitud_Pedido extends CI_Controller {
       log_message('INFO','#TRAZA|Solicitud_Pedido|obtenerTipoResTodos() >> '); 
       $resp=$this->SolicitudPedidos->obtener_Tipo_Carga();
       echo json_encode($resp);
+   }
+
+   function obtenersolitransp()
+   {
+      log_message('INFO','#TRAZA|Solicitud_Pedido|obtenersolitransp() >> '); 
+      $resp = $this->SolicitudPedidos->Obtenersoltransp($this->input->post('user'));
+      // $usuario = userNick(); colocar estas dos lineas cuando userNick funcione bien y borrar la anterior por el momento esta harckodeado con HugoDS
+      // $resp = $this->SolicitudPedidos->Obtenersoltransp($usuario);
+      if(!$resp){
+         echo json_encode($resp);
+      }
+      else{
+         log_message('ERROR','#TRAZA|Solicitud|obtenersolitransp() >> $resp: '.$resp);
+         echo 'error';
+      }
    }
 
 }

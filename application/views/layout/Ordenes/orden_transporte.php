@@ -117,9 +117,9 @@
                                     <select class="form-control select2 select2-hidden-accesible" id="chofer">
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         <?php
-                                        // foreach ($Chofer as $i) {
-                                        //     echo '<option  value="'.$i->chof_id.'">'.$i->nombre.'</option>';
-                                        // }
+                                        foreach ($chofer as $i) {
+                                            echo '<option  value="'.$i->chof_id.'">'.$i->nombre.'</option>';
+                                        }
                                         ?>
                                     </select>
                                 </div>
@@ -129,16 +129,15 @@
                             <div class="col-md-6">
 
                             
-                                <div class="form-group">                            
-                                <label for="">Fecha y Hora <strong style="color: #dd4b39"></strong>:</label>                        
-                                
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    <input type="text" name="fecha" id="fecha" class="form-control" />
-                                    </div> 
-                                </div>
+                            <div class="form-group">
+                                        <label for="fecha" class="form-label">Fecha de Retiro:</label>
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="date" class="form-control"   name="fecha" id="Fecha">
+                                            </div>
+							</div>
                             
                             </div>
                         </form>
@@ -168,10 +167,11 @@
 
                     <form class="formOrden" id="formOrden" name="formOrden">
 
-                        <div class="col-md-12 col-sm-12 col-xs-12">     
+                        <div class="col-md-12 col-sm-12 col-xs-12">   
+                          
                             <!--_______________________-->
                             <!--Numero-->
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <!-- <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="Nro" class="form-label">Nro:</label>
                                     <div class="input-group date">
@@ -182,20 +182,20 @@
                                             class="form-control" readonly>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!--_______________________-->
                             <!--Fecha-->
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <!-- <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="fecha" class="form-label">Fecha:</label>
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="glyphicon glyphicon-check"></i>
-                                        </div>
-                                        <input type="date" id="fecha" value="<?php //echo $fecha;?>" class="form-control">
-                                    </div>
+                                <label for="fecha" class="form-label">Fecha de Retiro:</label>
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="date" class="form-control"   name="fecha" id="Fecha">
+                                            </div>
                                 </div>
-                            </div>
+                            </div> -->
                             
                         </div>
 
@@ -216,10 +216,10 @@
                                         <select class="form-control" id="dispfinal">
                                             <option value="" disabled selected>-Seleccione opcion-</option>
                                             <?php
-                                        // foreach ($disposicionFinal as $i) {
-                                        //     echo '<option>'.$i->nombre.'</option>';
-                                        // }
-                                        ?>
+                                        foreach ($dispfinal as $j) {
+                                            echo '<option value="'.$j->tabl_id.'">'.$j->valor.'</option>';
+                                        }
+                                    ?>
                                         </select>
                                     </div>
                                 </div>
@@ -247,17 +247,17 @@
                         <!--Tipo residuo-->
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="tipores" class="form-label">Tipo residuo:</label>
+                                <label for="equipo" class="form-label">Equipo:</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
                                         <i class="glyphicon glyphicon-check"></i>
                                     </div>
-                                    <select class="form-control select2 select2-hidden-accesible" id="tipores"
+                                    <select class="form-control select2 select2-hidden-accesible" id="equipo"
                                         name="tipo_residuo" required>
                                         <option value="" disabled selected>-Seleccione opcion-</option>
                                         <?php
-                                        foreach ($Tiporesiduo as $i) {
-                                            echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+                                        foreach ($equipo as $c) {
+                                            echo '<option  value="'.$c->equi_id.'">'.$i->codigo.'</option>';
                                         }
                                         ?>
                                     </select>
@@ -265,7 +265,7 @@
                             </div>
                             <!--_______________________-->
                             <!--Porcentaje llenado-->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="porcentajell" class="form-label">% de llenado:</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -274,23 +274,29 @@
                                     <input type="number" step="0.0001" id="porcentajell" name="porcent_llenado"
                                         class="form-control" required>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-md-6  col-sm-6 col-xs-12">
                             <!--_______________________-->
                             <!--Contenedor-->
                             <div class="form-group">
-                                <label for="contenedor" class="form-label">Contenedor:</label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="glyphicon glyphicon-check"></i>
-                                    </div>
-                                    <input type="number" id="contenedor" name="contenedor" class="form-control" required>
-                                </div>
+                                    <label for="cont_ent">Contenedores:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="glyphicon glyphicon-check"></i>
+                                            </div>
+                                            <select class="form-control select2 select2-hidden-accesible" name="cont_ent" id="cont_ent">
+                                            <?php
+                                            foreach ($contenedores as $c) {     
+                                                    echo '<option  value="'.$c->cont_id.'">'.$c->codigo.'</option>';
+                                            }
+                                            ?>
+                                            </select>
+                                        </div>
                             </div>
                             <!--_______________________-->
                             <!--Metros cubicos-->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="metroscubicos" class="form-label">Metros cubicos:</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -299,7 +305,7 @@
                                     <input type="number" step="0.0001" name="metroscubicos" class="form-control"
                                         id="metroscubicos" min="0" required>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
