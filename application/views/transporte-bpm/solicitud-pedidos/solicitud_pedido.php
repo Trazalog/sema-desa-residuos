@@ -60,7 +60,29 @@
 									</div>
 							</div>
 							<!--_____________________________________________-->
-						
+							<!--TRANSPORTISTA-->
+							<div class="col-md-6 col-sm-6 col-xs-12">
+											    <div class="form-group">
+
+													<label for="transportista" class="form-label">transportista:</label>
+                                                            <div class="input-group date">
+                                                                <div class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-check"></i>
+                                                                </div>
+                                                                <select class="form-control select2 select2-hidden-accesible" id="transportista_id" name="transportista"
+                                                                    required onchange="obtenertipocarga()">
+                               
+                                                                    <?php
+                                                                        foreach ($transportista as $i) {
+                                                                        echo '<option value="'.$i->tran_id.'">'.$i->razon_social.'</option>';
+                                                            
+                                                                        }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+											    </div>
+									</div>
+									<!--_____________________________________________-->
 
 							<!--_________________SEPARADOR_________________-->
 							<div class="col-md-12">
@@ -93,7 +115,7 @@
 							<form class="formPedidos" id="formPedidos">
 					
 									<!--TRANSPORTISTA-->
-									<div class="col-md-5 col-sm-5 col-xs-12">
+									<!-- <div class="col-md-5 col-sm-5 col-xs-12">
 											    <div class="form-group">
 
 													<label for="transportista" class="form-label">transportista:</label>
@@ -113,7 +135,7 @@
                                                                 </select>
                                                             </div>
 											    </div>
-									</div>
+									</div> -->
 									<!--_____________________________________________-->
 									
 									<!--TIPO RESIDUOS-->
@@ -142,7 +164,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="glyphicon glyphicon-check"></i>
                                                         </div>
-                                                            <input type="number" class="form-control"   name="cantidad" id="Tipo de residuos">
+                                                            <input type="number" class="form-control cant"   name="cantidad" id="Tipo de residuos">
                                                     </div>          
 											</div>
 									</div>
@@ -183,8 +205,13 @@
 									<div class="box-body table-responsive">											
 											<table class="table table-striped" id="tabla_contenedores">
 													<thead class="thead-dark" bgcolor="#eeeeee">
-															<th>Tipo de Rsiduo</th>
 															<th>Cantidad Solicitada</th>
+															<th>otro</th>
+															<th>usuario_app</th>
+															<th>tica_id</th>
+															
+															
+															
 													</thead>	
 													<tbody>	</tbody>
 											</table>										
@@ -314,12 +341,21 @@ $("#botonAgregar").click(function(e){
 function Agregar_pedido() {
 console.table($("#tipores").val());
 $('#pedidos').show();
-var data = new FormData($('#formPedidos')[0]);
+var data = new FormData();
 data = formToObject(data);
+data.usuario_app = "hugoDS";
+data.otro ="";
+data.tica_id = $("#tipores").val();
+data.cantidad = $(".cant").val();
 var table = $('#tabla_contenedores').DataTable();
 var row =  `<tr data-json='${JSON.stringify(data)}'> 
-            <td>${data.tipo_residuo}</td>
-            <td>${data.cantidad}</td>          
+				<td>${data.cantidad}</td>
+				<td>${data.otro}</td>  
+				<td>${data.usuario_app}</td>
+				<td>${data.tica_id}</td>
+            
+			
+			         
     </tr>`;
 table.row.add($(row)).draw();  
 $('#formPedidos')[0].reset();          
@@ -331,20 +367,49 @@ $('#formPedidos')[0].reset();
 
 
 <script>
+// funcion para obtener sotrid, no funciona por que hay dos servicios con el mismo nombre ej: /solicitantesTransporte/hugoDS y  /solicitantesTransporte/{soco_id}
+function obtenersotrid(){
+	var user = "hugoDS"; // harkodeado cuando userNick este funcionando bien comentar en el controller la funcion que llama 
+	var res;
+	$.ajax({
+		type: "POST",
+		data: {user},
+		url: "general/transporte-bpm/Solicitud_Pedido/obtenersolitransp",
+		success: function(r) {
+								debugger;
+								console.log(r);
+								if (r != "error") {
+									var data = JSON.parse(r);
+									console.table(data);
+									res = data; 
+										
+										
 
+
+								} else {
+										console.log(r);
+										alertify.error("error");
+								}
+						}
+	});
+	return res; 
+}
 function Guardar_pedidoContenedor(){
-
+	debugger;
+	var sotrid = obtenersotrid();
 	var datos = new FormData();
     datos = formToObject(datos);
-    datos.sotr_id = $("#Nro").val();
-    datos.observaciones = $("#observaciones").val();
-	datos.usuarioAp = "HugoDS";
-	datos.bpmSession = ""; 
+	datos.observaciones = $("#observaciones").val();
+	datos.usuario_app = "HugoDS";
+    datos.sotr_id = 38;
+  	datos.tran_id = $("#transportista_id").val();
     // recorre tabla guardando los contenedores pedidos en array
 		var datos_contenedores = [];		
-		var rows = $('#datos tbody tr');				
+		var rows = $('#tabla_contenedores tbody tr');				
 		rows.each(function(i,e) {  
 				datos_contenedores.push(getJson(e));
+				// datos_contenedores.push("usuarioAp:");
+				// datos_contenedores.push("otro:");
 		});	
 	datos.contenedores = datos_contenedores;
 		
