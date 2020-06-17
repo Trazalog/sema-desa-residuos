@@ -115,6 +115,11 @@
                   <i class="glyphicon glyphicon-check"></i>
                 </div>
                 <select class="form-control select2 select2-hidden-accesible" name="cont_ent" id="cont_ent">
+                <?php
+										foreach ($contenedores as $c) {     
+												echo '<option  value="'.$c->cont_id.'">'.$c->codigo.'</option>';
+										}
+									?>
                 </select>
               </div>
             </div>
@@ -184,7 +189,6 @@
       <!--__________________HEADER TABLA___________________________-->
       <table class="table table-striped" id="tbl_cont">
         <thead class="thead-dark" bgcolor="#eeeeee">
-          <th>Acciones</th>
           <th>Contenedor</th>
           <th>% de llenado</th>
           <th>Mts3</th>
@@ -575,38 +579,38 @@
   });
 
   // carga contenedores dependiendo de RSU	
-  $("#tica_id").change(function() {
+  // $("#tica_id").change(function() {
 
-    var tica_id = this.value;
-    alert(tica_id);
+  //   var tica_id = this.value;
+  //   alert(tica_id);
 
-    $.ajax({
-      type: "POST",
-      data: {
-        tica_id: tica_id
-      },
-      dataType: 'json',
-      url: "general/Estructura/Contenedor/",
-      success: function(respuesta) {
+  //   $.ajax({
+  //     type: "POST",
+  //     data: {
+  //       tica_id: tica_id
+  //     },
+  //     dataType: 'json',
+  //     url: "general/Estructura/Contenedor/",
+  //     success: function(respuesta) {
 
-        var selector_cont = $("#cont_ent");
-        selector_cont.find('option').remove();
-        selector_cont.append('<option value="" disabled selected>-Seleccione opcion-</option>');
-        respuesta.forEach(function(e) {
-          selector_cont.append("<option value='" + e.cont_id + "'>" + e.codigo + "</option");
-        });
-      },
-      error: function() {
-        var selector_cont = $("#cont_ent");
-        selector_cont.find('option').remove();
-        selector_cont.append('<option value="" disabled selected>-Sin contenedores de este RSU-</option>');
-      },
-      complete: function() {
+  //       var selector_cont = $("#cont_ent");
+  //       selector_cont.find('option').remove();
+  //       selector_cont.append('<option value="" disabled selected>-Seleccione opcion-</option>');
+  //       respuesta.forEach(function(e) {
+  //         selector_cont.append("<option value='" + e.cont_id + "'>" + e.codigo + "</option");
+  //       });
+  //     },
+  //     error: function() {
+  //       var selector_cont = $("#cont_ent");
+  //       selector_cont.find('option').remove();
+  //       selector_cont.append('<option value="" disabled selected>-Sin contenedores de este RSU-</option>');
+  //     },
+  //     complete: function() {
 
-      }
-    });
+  //     }
+  //   });
 
-  });
+  // });
 
 
 
@@ -619,14 +623,17 @@
 
     // }
     $('#contenedores').show();
-    var data = new FormData($('#formPedidos')[0]);
+    //var data = new FormData($('#formPedidos')[0]);
+    var data = new FormData();
     data = formToObject(data);
+    data.porc_llenado = $("#porcentaje").val();
+    data.mts_cubicos = $("#metros_cub").val();
+    data.cont_id = $("#cont_ent").val();
     var table = $('#tbl_cont').DataTable();
     var row = `<tr data-json='${JSON.stringify(data)}'>  
-						<td><i class="fa fa-fw fa-minus text-light-blue" style="cursor: pointer; margin-left: 15px;" title="Borrar"></i></td>
-						<td>${data.cont_ent}</td>
-						<td>${data.porcentaje}</td>
-						<td>${data.metros_cub}</td>		
+						<td>${data.cont_id}</td>
+						<td>${data.porc_llenado}</td>
+						<td>${data.mts_cubicos}</td>		
 				</tr>`;
     table.row.add($(row)).draw();
     $('#formPedidos')[0].reset();
@@ -639,12 +646,20 @@
 
 
   function guardar() {
+    debugger;
+    var datos = new FormData();
+    datos = formToObject(datos);
+	  datos.usuario_app = "HugoDS";
+    datos.sotr_id = 38;
 
     var datos_contenedor = [];
-    var rows_cont = $('#tbl_cont tbody tr');
-    rows_cont.each(function(i, e) {
-      datos_contenedor.push(getJson(e));
-    });
+    var rows = $('#tbl_cont tbody tr');
+    rows.each(function(i,e) {  
+				datos_contenedor.push(getJson(e));
+				// datos_contenedores.push("usuarioAp:");
+				// datos_contenedores.push("otro:");
+		});	
+	datos.contenedores = datos_contenedor;
 
     console.table(datos_contenedor);
 
@@ -657,10 +672,8 @@
 
     $.ajax({
       type: "POST",
-      data: {
-        datos_contenedor
-      },
-      url: "general/Estructura/Contenedor/Guardar_SolicitudRetiro",
+      data: {datos},
+      url: "general/transporte-bpm/SolicitudRetiro/Guardar_SolicitudRetiro",
       success: function(respuesta) {
         console.log(respuesta);
         if (respuesta == "ok") {
@@ -669,6 +682,9 @@
             "<?php echo base_url(); ?>index.php/general"
           );
           alertify.success("Agregado con exito");
+          $("#formPedidos")[0].reset();
+          $("#boxDatos").hide(500);
+          $("#botonAgregar").removeAttr("disabled");
 
           //  $('#formCircuitos').data('bootstrapValidator').resetForm();
           //  $("#formCircuitos")[0].reset();

@@ -839,14 +839,6 @@ $('#formGeneradores').bootstrapValidator({
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
             </div>
 
 

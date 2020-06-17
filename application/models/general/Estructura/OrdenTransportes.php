@@ -85,7 +85,37 @@ public function obtener_numero_orden(){
     return $aux->respuesta->nueva_ortr_id;
 }
 
+function obtenerChofer()
+{
+    $aux = $this->rest->callAPI("GET",REST."/choferes");
+    $aux =json_decode($aux["data"]);
+    return $aux->choferes->chofer;
+}
 
+function obtenerdispfinal()
+{
+        log_message('INFO','#TRAZA|Contenedores|obtener_Estado() >> '); 
+      $aux = $this->rest->callAPI("GET",REST."/tablas/disposicion_final");
+      $aux =json_decode($aux["data"]);
+      return $aux->valores->valor;
+}
+
+function obtenerEquipo()
+{
+    log_message('INFO','#TRAZA|Contenedores|obtener_Estado() >> '); 
+      $aux = $this->rest->callAPI("GET",REST."/vehiculos");
+      $aux =json_decode($aux["data"]);
+      return $aux->vehiculos->vehiculo;
+    
+}
+
+function obtenerContenedores()
+{
+    log_message('INFO','#TRAZA|SolicitudesRetiro|obtenerContenedor >> ');
+    $aux = $this->rest->callAPI("GET",REST."/contenedores");
+    $aux =json_decode($aux["data"]);
+    return $aux->contenedores->contenedor;	
+}
 // Funcion Obtener Empresa
 
 // public function obtener_empresa(){

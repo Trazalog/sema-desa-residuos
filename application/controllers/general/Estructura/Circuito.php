@@ -69,7 +69,8 @@ class Circuito extends CI_Controller {
 				echo "Error... Circuito no registrado"; return;
 			} 
 		//  2 guarda puntos criticos si hubiera
-			if(empty($datos_puntos_criticos)){
+		if($datos_puntos_criticos[0] != "false"){
+			if(!empty($datos_puntos_criticos)){
 				// recorro  array puntos agregando id de circ y guardando de a uno     
 				for ($i=0; $i < count($datos_puntos_criticos); $i++) {        
 					$aux[$i]['circ_id'] = $circ_id;
@@ -82,6 +83,7 @@ class Circuito extends CI_Controller {
 						echo "Error... Punto Crítico no asociado";return;
 				} 
 			}
+		}
 			
 		// 3  con id circ  agregar a array tipo de carga armar batch  /_post_circuitos_tipocarga_batch_req  
 			foreach ($datos_tipo_carga as $key => $carga) {  
@@ -134,11 +136,13 @@ class Circuito extends CI_Controller {
 				if(!$respDelPtosCrit){
 					log_message('ERROR','#TRAZA|CIRCUITO|actulizaCircuitos() >> ERROR al anular los Puntos Criticos');
 					echo "Error al anular puntos criticos";
-					return;
+					 return;
 				}	
 			// recorro  array puntos agregando id de circ y guardando de a uno 
 				$datos_puntos_criticos = $this->input->post('ptos_criticos_edit');	
-				if(empty($datos_puntos_criticos)){
+				if($datos_puntos_criticos[0] != "false"){
+				if(!empty($datos_puntos_criticos)){
+					
 						//recorre datos, crea puntos nuevos y arma array para asociar
 						for ($i=0; $i < count($datos_puntos_criticos); $i++) {   						
 							$pucr_id = $this->Circuitos->Guardar_punto_critico($datos_puntos_criticos[$i])->respuesta->pucr_id;							
@@ -160,7 +164,9 @@ class Circuito extends CI_Controller {
 								log_message('ERROR','#TRAZA|CIRCUITO|Guardar_Circuito() >> ERROR al asociar puntos criticos');
 								echo "punto no asociado";return;
 						}
-				}			 
+						
+				}
+			}			 
 
 			echo "ok";
   }
@@ -247,5 +253,10 @@ class Circuito extends CI_Controller {
 		 echo json_encode($resp);
 	 }
 
+	 function obtenerZonaid(){
+		log_message('INFO','#TRAZA|CIRCUITO|obtenerZonaid() >> ');
+		$resp = $this->Circuitos->obtener_zonaid($this->input->post('id_zona'));
+		echo json_encode($resp);
+	 }
 
 } 

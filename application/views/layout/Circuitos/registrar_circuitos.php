@@ -131,7 +131,7 @@
 							<div class="col-md-12">
 								<form action="cargar_archivo" method="post" enctype="multipart/form-data">
 										<input type="file" id="img_File" onchange=convertA() style="font-size: smaller">
-										<input type="text" name="imagen" id="input_aux_img" style="display:none" >
+										<input type="text" name="imagen" id="input_aux_img" style="display:none" name="input_aux_img" >
 								</form>
 								<img src="" alt="" id="img_Base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
 							</div>
@@ -424,6 +424,8 @@
 											</div>
 									</div>
 								<!--__________________________-->	
+								<!--_____________ Zona Acosiada a circuito _____________-->                 
+								
 								
 								<!--_____________ ZONA _____________-->                 
 								<!-- <div class="form-group">
@@ -444,6 +446,17 @@
 
 							</div>
 						</form>	
+						<div class="col-sm-6">	
+						  	
+								<div class="form-group">
+												<label for="zona_asociada_edit" class="col-sm-4 control-label">Zona Asociada:</label>
+												<br>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" name="zona_asociada_edit" id="zona_asociada_edit" readonly placeholder="zona asociada"> 
+												</div>
+								</div>
+							<									
+						</div>
 							<!--_____________ IMAGEN _____________-->
 								<div class="col-sm-12">	
 										<div class="form-group pull-left">
@@ -453,7 +466,7 @@
 													<input type="file" class="ocultar habilitar" name="img" id="img_file" onchange=convert_Edit()>
 													<input type="text" id="input_aux_img64" style="display:none">
 													<input type="text" id="input_aux_zonaID" style="display:none">                                   
-													<img src="" alt="imagen" id="img_base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
+													<img src="" alt="imagen" id="img_base" width="" height="" style="margin-top: 20px;border-radius: 8px;" name="img_base">
 												</div>
 											</form>		
 										</div>									
@@ -590,7 +603,12 @@
 											<label for="depAsociar" class="col-sm-4 control-label">Departamento:</label>
 											<div class="col-sm-8">
 												<select class="form-control select2 select2-hidden-accesible" name="depa_id" id="depAsociar">
-													<option value="" disabled selected>-Seleccione opcion-</option>												
+													<option value="" disabled selected>-Seleccione opcion-</option>
+													<?php
+													foreach ($Departamentos as $f) {
+															echo '<option  value="'.$f->depa_id.'">'.$f->nombre.'</option>';
+													}
+													?>												
 												</select>
 																	
 											</div>	
@@ -757,10 +775,15 @@
 			rows.each(function(i,e) {  
 					datos_puntos_criticos.push(getJson(e));
 			});		
-
+			console.table(datos_circuito.imagen);
+			
 			// valida campos cargados y envia datos
-			// if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
-						
+			if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
+				
+				if(datos_circuito.imagen == "")
+				{
+					alert("ATENCION! no cargo ninguna Imagen, Por favor cargue una");
+				}else{
 					$.ajax({
 							type: "POST",
 							data: {datos_circuito, datos_puntos_criticos,datos_tipo_carga},							
@@ -781,7 +804,9 @@
 									}
 							}							
 					});
-			// }
+				}
+				
+			 }else{alert("Hay campos de Informacion vacios! Por favor completelos");}
 		}  
  
 	// muestra box de datos al dar click en boton agregar
@@ -853,6 +878,14 @@
 						},
 						chof_id: {
 								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}
+								}
+						},
+						input_aux_img:{
+								message:'No puede estar vacio',
 								validators: {
 										notEmpty: {
 												message: 'la entrada no puede ser vacia'
@@ -1041,5 +1074,38 @@
 		});
 	}
 ////// fin funciones imagen EDICION
+
+	// Asocia zona a circuito
+	$("#btnsaveAsociacion").on("click", function() {
+		
+		var idcircuito	= $('#circ_id_asociar').val();	
+		var idzona = $('#zonaAsociar option:selected').val();
+		
+		var circ_zona = new Object();
+		circ_zona.circ_id = idcircuito;
+		circ_zona.zona_id = idzona;	
+
+		console.table('array objeto no se: ' + circ_zona);
+
+		$.ajax({
+				type: 'POST',
+				data:{circ_zona},
+				url: "general/Estructura/Circuito/Asignar_Zona",
+				success: function(result) {					
+							if(result == 'ok'){
+								alertify.success("Zona asociada con exito...!!!!!");
+								$("#cargar_tabla").load(
+												"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
+										);
+							}else{
+								alertify.error("Hubo error en la Asociacion...");
+							}
+				},
+				error: function(result){
+									
+				}
+		});
+
+	});
 
 </script>
