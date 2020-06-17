@@ -1,0 +1,1 @@
+TypeError: Cannot find function assign in object function Object() { [native code for Object.Object, arity=1] }

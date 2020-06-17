@@ -21,7 +21,7 @@ function habilitar() {
 function deshabilitar() {
     $(".btn-soltar").hide();
     $(".btn-tomar").show();
-    $('#view').css('pointer-events', 'none');
+    //$('#view').css('pointer-events', 'none');
 }
 
 function tomarTarea() {

@@ -17,7 +17,7 @@
         <property expression="$ctx:bpmconf//password"
             name="uri.var.password"
             xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
-        <log level="custom">
+        <log category="DEBUG" level="custom">
             <property expression="get-property('uri.var.usuario')"
                 name="usuario" xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
             <property expression="get-property('uri.var.password')"
@@ -50,59 +50,66 @@
         <property expression="fn:concat($ctx:bpm_url,$func:recurso)"
             name="uri.var.recurso_url" scope="default" type="STRING"
             xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
-        <log category="DEBUG" level="custom">
+        <log category="INFO" level="custom">
             <property expression="get-property('uri.var.recurso_url')"
                 name="url a invocar"
+                xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
+        </log>
+        <payloadFactory media-type="json">
+            <format>$1</format>
+            <args>
+                <arg evaluator="xml" expression="$func:payload"
+                    literal="false"
+                    xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
+            </args>
+        </payloadFactory>
+        <log category="DEBUG" level="custom">
+            <property expression="json-eval($)" name="body request"
+                xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
+            <property expression="get-property('transport', 'Cookie')"
+                name="cookie request"
+                xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
+            <property
+                expression="get-property('transport', 'X-Bonita-API-Token')"
+                name="x-boni request"
                 xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
         </log>
         <switch source="$func:method"
             xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd">
             <case regex="GET">
-                <log category="DEBUG" level="custom">
-                    <property expression="json-eval($)" name="body get"/>
-                    <property
-                        expression="get-property('transport', 'Cookie')" name="cookie get"/>
-                    <property
-                        expression="get-property('transport', 'X-Bonita-API-Token')" name="x-boni get"/>
-                </log>
                 <call>
                     <endpoint>
                         <http method="GET" uri-template="{uri.var.recurso_url}"/>
                     </endpoint>
                 </call>
-                <log category="DEBUG" level="custom">
-                    <property expression="json-eval($)" name="body salida get"/>
-                </log>
             </case>
-            <default>
-                <payloadFactory media-type="json">
-                    <format>$1</format>
-                    <args>
-                        <arg evaluator="xml" expression="$func:payload" literal="false"/>
-                    </args>
-                </payloadFactory>
-                <log category="DEBUG" level="custom">
-                    <property expression="json-eval($)" name="body post"/>
-                    <property
-                        expression="get-property('transport', 'Cookie')" name="cookie post"/>
-                    <property
-                        expression="get-property('transport', 'X-Bonita-API-Token')" name="x-boni post"/>
-                </log>
+            <case regex="POST">
                 <call>
                     <endpoint>
                         <http method="POST" uri-template="{uri.var.recurso_url}"/>
                     </endpoint>
                 </call>
-                <log category="DEBUG" level="custom">
-                    <property expression="json-eval($)" name="body salida post"/>
-                </log>
-            </default>
+            </case>
+            <case regex="PUT">
+                <call>
+                    <endpoint>
+                        <http method="PUT" uri-template="{uri.var.recurso_url}"/>
+                    </endpoint>
+                </call>
+            </case>
+            <case regex="DELETE">
+                <call>
+                    <endpoint>
+                        <http method="DELETE" uri-template="{uri.var.recurso_url}"/>
+                    </endpoint>
+                </call>
+            </case>
         </switch>
         <switch source="get-property('axis2', 'HTTP_SC')"
             xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd">
-            <case  regex="2[0-9][0-9]"/>
+            <case regex="2[0-9][0-9]"/>
             <case regex="401">
-                <log category="DEBUG" level="custom">
+                <log level="custom">
                     <property name="sesion vencida" value="sesion vencida"/>
                 </log>
                 <header name="Accept" scope="transport" value="text/html"/>
@@ -131,8 +138,10 @@
                         </log>
                     </case>
                     <default>
-                    	<property expression="fn:concat('Error login de Bonita: ',get-property('axis2', 'HTTP_SC'))" name="TOOLS_ERROR"  type="STRING"/>
-         		<sequence key="toolsFault"/>
+                        <property
+                            expression="fn:concat('Error login de Bonita: ',get-property('axis2', 'HTTP_SC'))"
+                            name="TOOLS_ERROR" type="STRING"/>
+                        <sequence key="toolsFault"/>
                     </default>
                 </switch>
                 <log category="DEBUG" level="custom">
@@ -149,51 +158,57 @@
                     name="X-Bonita-API-Token" scope="transport"/>
                 <property expression="$ctx:bonitaCookies" name="Cookie" scope="transport"/>
                 <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+                <payloadFactory media-type="json">
+                    <format>$1</format>
+                    <args>
+                        <arg evaluator="xml" expression="$func:payload" literal="false"/>
+                    </args>
+                </payloadFactory>
+                <log category="DEBUG" level="custom">
+                    <property expression="json-eval($)" name="body request"/>
+                    <property
+                        expression="get-property('transport', 'Cookie')" name="cookie request"/>
+                    <property
+                        expression="get-property('transport', 'X-Bonita-API-Token')" name="x-boni request"/>
+                </log>
                 <switch source="$func:method">
                     <case regex="GET">
-                        <log category="DEBUG" level="custom">
-                            <property expression="json-eval($)" name="body get"/>
-                            <property
-                                expression="get-property('transport', 'Cookie')" name="cookie get"/>
-                            <property
-                                expression="get-property('transport', 'X-Bonita-API-Token')" name="x-boni get"/>
-                        </log>
                         <call>
                             <endpoint>
                                 <http method="GET" uri-template="{uri.var.recurso_url}"/>
                             </endpoint>
                         </call>
                     </case>
-                    <default>
-                        <payloadFactory media-type="json">
-                            <format>$1</format>
-                            <args>
-                                <arg evaluator="xml"
-                                    expression="$func:payload" literal="false"/>
-                            </args>
-                        </payloadFactory>
-                        <log category="DEBUG" level="custom">
-                            <property expression="json-eval($)" name="body post"/>
-                            <property
-                                expression="get-property('transport', 'Cookie')" name="cookie post"/>
-                            <property
-                                expression="get-property('transport', 'X-Bonita-API-Token')" name="x-boni post"/>
-                        </log>
+                    <case regex="POST">
                         <call>
                             <endpoint>
                                 <http method="POST" uri-template="{uri.var.recurso_url}"/>
                             </endpoint>
                         </call>
-                    </default>
+                    </case>
+                    <case regex="PUT">
+                        <call>
+                            <endpoint>
+                                <http method="PUT" uri-template="{uri.var.recurso_url}"/>
+                            </endpoint>
+                        </call>
+                    </case>
+                    <case regex="DELETE">
+                        <call>
+                            <endpoint>
+                                <http method="DELETE" uri-template="{uri.var.recurso_url}"/>
+                            </endpoint>
+                        </call>
+                    </case>
                 </switch>
             </case>
-                <default>
-                 	<property name="TOOLS_ERROR" value="Error Bonita caido" type="STRING"/>
-               		<sequence key="toolsFault"/>
-                </default>
-
+            <default>
+                <property name="TOOLS_ERROR" type="STRING" value="Error Bonita caido"/>
+                <sequence key="toolsFault"/>
+            </default>
         </switch>
-        <filter regex="2[0-9][0-9]" source="get-property('axis2', 'HTTP_SC')"
+        <filter regex="2[0-9][0-9]"
+            source="get-property('axis2', 'HTTP_SC')"
             xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd">
             <then>
                 <enrich>
@@ -214,11 +229,11 @@
                             expression="get-property('resultPayload')" literal="false"/>
                     </args>
                 </payloadFactory>
-                <log level="full"/>
+                <log category="DEBUG" level="full"/>
             </then>
             <else>
-                    	<property value="Error al invocar al BPM, verifique si esta disponible" name="TOOLS_ERROR"  type="STRING"/>
-         		<sequence key="toolsFault"/>
+                <property name="TOOLS_ERROR" type="STRING" value="Error al invocar al BPM, verifique si esta disponible"/>
+                <sequence key="toolsFault"/>
             </else>
         </filter>
     </sequence>
