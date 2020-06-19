@@ -118,19 +118,19 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="imgchof" class="form-label">Chofer:</label>
-                            <img src="<?php base_url() ?>files/" id="imgchof" height="60" width="60">
+                            <img src="<?php base_url() ?>files/chofer2.png" id="imgchof" height="60" width="60">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="imgmovil" class="form-label">Vehiculo:</label>
-                            <img src="<?php //base_url() ?>files/" id="imgmovil" height="60" width="60">
+                            <img src="<?php base_url() ?>files/vehiculo.png" id="imgmovil" height="60" width="60">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="cont" class="form-label">Contenedor:</label>
-                            <img src="<?php //base_url() ?>files/" id="imgmovil" height="60" width="60">
+                            <img src="<?php base_url() ?>files/chofer2.png" id="imgmovil" height="60" width="60">
                         </div>
                     </div>
                 </div>

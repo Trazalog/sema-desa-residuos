@@ -1,5 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+* cabeceras informacion Generadores y Transpoortistas
+*
+* @autor Hugo Gallardo
+*/
 if(!function_exists('infoentidadesproceso')){
    
     function infoentidadesproceso($tarea){		
@@ -103,6 +108,18 @@ if(!function_exists('infoentidadesproceso')){
                               <div class="form-group">
                                   <label for="rubro" name="">Rubro:</label>
                                   <input type="text" class="form-control habilitar" id="rubro" value="<?php echo $aux_gen->generador->rubro; ?>"  readonly>
+                              </div>
+                            </div>
+                            <!--_____________________________________________-->
+
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="rubro" name="">Tipos de RSU:</label>
+                                  <input type="text" class="form-control habilitar" id="rubro" value="<?php 
+                                  foreach ($aux_gen->generador->tiposCarga->carga as $tipocarga) {
+                                        echo $tipocarga->valor.', ';
+                                      }
+                                   ?>"  readonly>
                               </div>
                             </div>
                             <!--_____________________________________________-->

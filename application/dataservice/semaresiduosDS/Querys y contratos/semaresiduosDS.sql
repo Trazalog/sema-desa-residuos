@@ -1,7 +1,8 @@
-http://dev-trazalog.com.ar:8280/services/semaresiduosDS
-http://trazalog.com.ar:8280/services/semaresiduosDS
-http://34.66.255.127:8280/services/semaresiduosDS
+endpoint de Desarrollo
 http://10.142.0.7:8280/services/semaresiduosDS
+
+endpoint de Test
+http://10.142.0.3:8280/services/semaresiduosDS
 
 //TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
   - falta saber de donde sale el destino acta para elegir
@@ -1356,7 +1357,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
   recurso: /solicitantesTransporte
   metodo: get
   select ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, 
-  ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, ST.tica_id, ST.depa_id,
+  ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, ST.depa_id,
   D.nombre as depa_nombre, Z.nombre as zona_nombre 
   from log.solicitantes_transporte ST, core.departamentos D, core.zonas Z
   where ST.depa_id = D.depa_id 
@@ -1380,7 +1381,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
             "depa_nombre": "$depa_nombre", 
             "rubr_id": "$rubr_id",
             "tist_id": "$tist_id",
-            "tica_id": "$tica_id"	            
+            "@solicitanteTransporteGetTipoCarga": "$sotr_id->sotr_id"	            
           }
         ]
     }
@@ -1466,7 +1467,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
   update 
   log.solicitantes_transporte 
   set 
-  razon_social=:razon_social, cuit=:cuit, domicilio = :domicilio, num_registro=:num_registro, lat=:lat, lng=:lng, usuario_app=:usuario_app, zona_id=CAST(:zona_id AS INTEGER), rubr_id=:rubr_id, tist_id=:tist_id, tica_id=:tica_id
+  razon_social=:razon_social, cuit=:cuit, domicilio = :domicilio, num_registro=:num_registro, lat=:lat, lng=:lng, usuario_app=:usuario_app, zona_id=CAST(:zona_id AS INTEGER), rubr_id=:rubr_id, tist_id=:tist_id
   where (sotr_id=CAST(:sotr_id AS INTEGER))
 
   {
@@ -1502,7 +1503,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
   }
   
 
--- solicitanteTransporteGetPorCaseId (CABECERA GENERADOR)
+-- (generadores)solicitanteTransporteGetPorCaseId (CABECERA GENERADOR)
   recurso: /solicitantesTransporte/case/{case_id}
   metodo: get
 
@@ -1534,11 +1535,62 @@ http://10.142.0.7:8280/services/semaresiduosDS
       "tipo_generador": "$tipo_generador",
       "departamento": "$departamento",
       "zona": "$zona",
-      "rubro": "$rubro"
+      "rubro": "$rubro",
+      "@solicitanteTransporteGetTipoCarga": "$sotr_id->sotr_id"
     }
   }
 
+-- (generadores)solicitanteTransporteGetTipoCarga (CABECERA GENERADOR Y LISTADO GENERAL)
+  recurso: no hay recurso asociado solo la query
+  metodo: 
 
+  select T.valor, T.tabl_id 
+  from log.tipos_carga_generadores TCG, core.tablas T
+  where TCG.tica_id = T.tabl_id 
+  and TCG.sotr_id = CAST(:sotr_id as INTEGER)
+
+
+  {"tiposCarga":    
+    {
+      "carga":[
+        {
+        "tabl_id": "$tabl_id",
+        "valor": "$valor" 		
+        } 
+      ]
+    }
+  } 
+
+-- (generadores)solicitanteTransporteSetTipoCarga
+  recurso: /_post_solicitantestransporte_tipocarga_batch_req
+  metodo: post
+
+  insert into log.tipos_carga_generadores(sotr_id, tica_id) 
+  values(cast(:sotr_id as INTEGER), :tica_id)
+
+  -- contrato json
+  {
+    "_post_solicitantestransporte_tipocarga_batch_req":{
+        "_post_solicitantestransporte_tipocarga":[
+          {
+            "sotr_id": "40",
+            "tica_id": "tipo_cargaResiduos Patologicos"
+          }
+        ]
+    }
+  }
+
+-- (generadores)solicitanteTransporteDeleteTipoCarga
+  recurso: /solicitantesTransporte/tipoCarga
+  metodo: delete
+  delete from log.tipos_carga_generadores where sotr_id = cast(:sotr_id as integer)  
+  
+  -- ejemplo contrato
+  {
+    "_delete_solicitantestransporte_tipocarga":{
+      "sotr_id": "40"
+    }
+  }
 
 
 -- incidenciaSet
@@ -2624,7 +2676,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
     }
   }
 
-// TODO: ACA ESTOY
+
 
 -- solicitudRetiroProx
   recurso: /solicitudRetiro/prox
@@ -2942,10 +2994,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
 
 
 
-{
-   "sePuedeEjecutar":true/false,
-   "entregaSinModificaciones":true/false
-}
+
 
 
 

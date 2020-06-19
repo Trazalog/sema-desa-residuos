@@ -41,9 +41,10 @@
 
 <script>
 
+
 $(".btnEditar").click( function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
-    console.table(data);
+   
     $("#E_Nombre_Razon_social").val(data.razon_social);
     $("#E_CUIT").val(data.cuit);
     $("#E_Numero_registro").val(data.num_registro);
@@ -53,22 +54,23 @@ $(".btnEditar").click( function(e){
     $("#id_gen").val(data.sotr_id);
     $(".titulo").text('Editar Generador');
     $(".habilitar").removeAttr("readonly");
-    //
     $(".ocultar").removeAttr("style");
     $(".mostrar").attr("style","display:none");
     $('#btnsave_e').show(); 
     var tipozona = data.zona_id;
-    $("#E_Zonag").val(tipozona);
-    var tipores = data.tica_id;
-    $("#E_TipoResiduo").val(tipores);
-    var tipogen = data.tist_id;
+    $("#E_Zonag").val(tipozona);   
+
+		// lena input tipo RSU 
+		llenarSelectRsu(data.tiposCarga.carga);	
+    // habilita el input
+    $("#tica_edit").prop("disabled", false);
+    
+		var tipogen = data.tist_id;
     $("#E_TipoG").val(tipogen);
     var tiporubro = data.rubr_id;
     $("#E_TipoR").val(tiporubro);
-
-
-
 });
+
 $(".btnInfo").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
@@ -88,10 +90,14 @@ $(".btnInfo").click(function(e){
     $(".mostrar").attr("readonly","readonly"); 
     var tipozona = data.zona_id;
     $("#E_Zonag").val(tipozona);
-    $("#text_zona").val(data.zona_nombre);
-    var tipores = data.tica_id;
-    $("#E_TipoResiduo").val(tipores);
-    $("#text_residuos").val(tipores.substr(10,50));
+    $("#text_zona").val(data.zona_nombre);   
+		
+		// llena input tipo RSU 
+		llenarSelectRsu(data.tiposCarga.carga);	
+    // deshabilita el input
+		$("#tica_edit").prop("disabled", true); 
+	 
+	  $("#text_residuos").val(tipores.substr(10,50));
     var tipogen = data.tist_id;
     $("#E_TipoG").val(tipogen);
     $("#text_generador").val(tipogen.substr(14,50));
@@ -109,6 +115,20 @@ $(".btnEliminar").click(function(e){
     $('#btndelete').show();    
     $("#id_generador").val(data.sotr_id);
 });
+
+// llena select multiple con RSU y selcciona los guardados
+function llenarSelectRsu(tipos){	
+		
+	var opcGuardadas = [];		
+	// recorro los tipos de carga asociados		
+	$.each(tipos, function(key,rsu_asociado){				
+		opcGuardadas.push(rsu_asociado.tabl_id);		
+	});	
+		
+	// seteo as opciones predeterminadas
+	$('#tica_edit').val(opcGuardadas);
+	$('#tica_edit').trigger('change');	
+}	
 
 </script>
 
