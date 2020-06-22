@@ -214,4 +214,32 @@ class Koolreport extends CI_Model
         return $data;
     }
 
+    public function getTransportistas()
+    {
+        $url = 'http://localhost:8080/transportistas';
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        return $rsp;
+    }
+
+    public function getIncidenciasPorTransportista($transportista)
+    {
+        $url = "http://localhost:8080/incidencias";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        // $aux = $rsp->incidencias->incidencia;
+        $i = 0;
+        foreach($rsp->incidencias->incidencia as $valor)
+        {
+            if($valor->transportista == $transportista)
+            {
+                $aux[] = $rsp->incidencias->incidencia[$i];
+            }
+            $i++;
+        }
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIASPORTRANSPORTISTA| #ARRAY: >>' . $aux);
+
+        return $aux;
+    }
+
 }

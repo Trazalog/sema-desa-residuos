@@ -2,6 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 require APPPATH . "/reports/pesoDeBascula/PesoDeBascula.php";
 require APPPATH . "/reports/incidencia/Incidencia.php";
+require APPPATH . "/reports/incidenciaPorTransportista/IncidenciaPorTransportista.php";
 
 class Reportes extends CI_Controller
 {
@@ -103,5 +104,47 @@ class Reportes extends CI_Controller
         $this->load->view('reportes/filtro', $data);
     }
 
+    public function incidenciaPorTransportista()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#INCIDENCIAPORTRANSPORTISTA|');
+        
+        $aux = $this->input->post('data');
+        $desde = $aux['datepickerDesde'];
+        $hasta = $aux['datepickerHasta'];
+
+        if($desde || $hasta)
+        {
+            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $data = $this->Koolreport->getTransportistas()->transportistas->transportista;
+            $url = CONSTANTE.'/ordenTrabajo?desde='.$desde.'&hasta='.$hasta;
+            foreach($data as $valor)
+            {
+                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorTransportista($valor->nombre,$url);
+            }
+            $reporte = new IncidenciaPorTransportista($aux);
+            $reporte->run()->render();
+        }else
+        {
+            $data = $this->Koolreport->getTransportistas()->transportistas->transportista;
+            $url = CONSTANTE.'desde//hasta';
+            foreach($data as $valor)
+            {
+                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorTransportista($valor->nombre,$url);
+            }
+            $reporte = new IncidenciaPorTransportista($aux);
+            $reporte->run()->render();
+        }
+
+        
+    }
+
+    public function filtroIncidenciaPorTransportista()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROINCIDENCIAPORTRANSPORTISTA|');
+        $data['calendarioDesde'] = true;
+        $data['calendarioHasta'] = true;
+        $this->load->view('reportes/filtro',$data);
+    }
 
 }

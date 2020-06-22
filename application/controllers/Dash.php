@@ -155,6 +155,11 @@ class Dash extends CI_Controller {
 												"titulo": "Incidencias",
 												"icono": "fa fa-genderless",
 												"link": "Reportes/incidencia"
+											},
+											{
+												"titulo": "Incidencias por transportista",
+												"icono": "fa fa-genderless",
+												"link": "Reportes/incidenciaPorTransportista"
 											}
 										]
 									}
