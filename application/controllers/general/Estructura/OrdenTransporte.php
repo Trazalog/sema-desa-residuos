@@ -72,23 +72,34 @@ class OrdenTransporte extends CI_Controller {
           
       }
    
-       // ---------------- Funcion Registrar Orden Transporte
+       
    
-       function Guardar_RecepcionOrden()
+       function Guardar_ordentransporte()
        {
 
-        
+        $resp = $this->OrdenTransportes->Guardar_ordenTransportes($this->input->post('datos'));
+        if(!$resp){
+          echo "ok";
+       }
+       else{
+          log_message('ERROR','#TRAZA|Solicitud|Eliminar_Zona() >> $resp: '.$resp);
+          echo 'error';
+       }
            
        }
    
-       
-      // ---------------- Funcion Listar Recepcion Orden
-   
-      function Listar_RecepcionOrden()
-      {
-          
-          
-      }       
+       function ObtenerinfoOt()
+       {
+         $resp = $this->OrdenTransportes->ObtenerOTpordominio($this->input->post('dom_id'));
+         echo json_encode($resp);
+       }
+        
+       function GetChoferyTransportista()
+       {
+        $resp['chofer'] = $this->OrdenTransportes->Obtenerchofertran_id($this->input->post('tran_id'));
+        $resp['transp'] = $this->OrdenTransportes->Obtenertranspo_id($this->input->post('tran_id'));
+        echo json_encode($resp);
+       }
 
        
    
