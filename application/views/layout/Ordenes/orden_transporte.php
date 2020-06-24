@@ -45,110 +45,9 @@
 
         <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
 
-            <div class="row">
-
-                <div class="col-md-12 col-sm-12 col-xs-12">
-
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="box box-primary animated fadeInLeft">
-                            <div class="box-header with-border">
-                                <h4>Transportistas</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <form class="formTransportista" id="formTransportista">
-
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        
-                            <div class="col-md-6">
-                                <!--_______________________-->
-                                <!--Empresa-->
-                                <div class="form-group">
-                                    <label for="selecemp" class="form-label">Empresa:</label>
-                                    <select multiple="" class="form-control" id="selecemp" name="empresa">
-                                        <?php
-                                        // foreach ($empresa as $i) {
-                                        //     echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
-                                        // }
-                                        ?>
-                                    </select>
-                                </div>
-                                <!--_______________________-->
-                                <!--Numero Registro-->
-                                <div class="form-group">
-                                    <label for="registron" class="form-label">Registro n°:</label>
-                                    <input type="text" name="registron" id="registron" readonly class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <!--_______________________-->
-                                <!--movilidad-->
-                                <div class="form-group">
-                                    <label for="selecmov">Movilidad:</label>
-                                    <select multiple="" class="form-control" id="selecmov">
-                                    <?php
-                                        // foreach ($vehiculo as $i) {
-                                        //     echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
-                                        // }
-                                        ?>
-                                    </select>
-                                </div>
-                                <!--_______________________-->
-                                <!--Dominio-->
-                                <div class="form-group">
-                                    <label for="dominio" class="form-label">Dominio:</label>
-                                    <input type="text" name="dominio" id="dominio" readonly class="form-control">
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-12">
-                                <hr>
-                            </div>
-
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <!--_______________________-->
-                                <!--Dominio-->
-
-                                <div class="form-group">
-                                    <label for="chofer" class="form-label">Chofer:</label>
-                                    <select class="form-control select2 select2-hidden-accesible" id="chofer">
-                                        <option value="" disabled selected>-Seleccione opcion-</option>
-                                        <?php
-                                        // foreach ($Chofer as $i) {
-                                        //     echo '<option  value="'.$i->chof_id.'">'.$i->nombre.'</option>';
-                                        // }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-6">
-
-                            
-                                <div class="form-group">                            
-                                <label for="">Fecha y Hora <strong style="color: #dd4b39"></strong>:</label>                        
-                                
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    <input type="text" name="fecha" id="fecha" class="form-control" />
-                                    </div> 
-                                </div>
-                            
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>    
+          
             
-        <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
+        
            
 
             <!--**********************************************-->
@@ -161,17 +60,71 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="box box-primary animated fadeInLeft">
                             <div class="box-header with-border">
-                                <h4>Datos</h4>
+                                <h4>Orden de transporte</h4>
                             </div>
                         </div>
                     </div>
 
                     <form class="formOrden" id="formOrden" name="formOrden">
 
-                        <div class="col-md-12 col-sm-12 col-xs-12">     
+                        <div class="col-md-12 col-sm-12 col-xs-12">   
+                                <div class="col-md-6 ">
+                                    <!--_______________________-->
+                                    <!--Dominio-->
+                                    <div class="form-group">
+                                        <label for="chofer" class="form-label">Chofer:</label>
+                                        <select class="form-control select2 select2-hidden-accesible" id="chofer">
+                                            <option value="" disabled selected>-Seleccione opcion-</option>
+                                            <?php
+                                            // foreach ($chofer as $i) {
+                                            //     echo '<option  value="'.$i->documento.'">'.$i->nombre.'</option>';
+                                            // }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                     <label for="transp" class="form-label">Transportista:</label>
+                                     <input type="text" class="form-control"   name="nro" id="transp" readonly>
+                                     </div>
+                                    
+                                   
+                                </div>
+                                <div class="col-md-6">
+
+                                
+                                    <div class="form-group">
+                                                <label for="fecha" class="form-label">Fecha de Retiro:</label>
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="date" class="form-control"   name="fecha" id="Fecha">
+                                                    </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="equipo" class="form-label">Camion:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="glyphicon glyphicon-check"></i>
+                                            </div>
+                                                <select class="form-control select2 select2-hidden-accesible" id="equipo"
+                                                    name="tipo_residuo" required>
+                                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                                    <?php
+                                                    foreach ($equipo as $d) {
+                                                        echo '<option  value="'.$d->equi_id.'">'.$d->dominio.'</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                     </div>
+                                     
+                                  
+                                
+                                </div>
                             <!--_______________________-->
                             <!--Numero-->
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <!-- <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="Nro" class="form-label">Nro:</label>
                                     <div class="input-group date">
@@ -182,20 +135,20 @@
                                             class="form-control" readonly>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!--_______________________-->
                             <!--Fecha-->
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <!-- <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="fecha" class="form-label">Fecha:</label>
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="glyphicon glyphicon-check"></i>
-                                        </div>
-                                        <input type="date" id="fecha" value="<?php //echo $fecha;?>" class="form-control">
-                                    </div>
+                                <label for="fecha" class="form-label">Fecha de Retiro:</label>
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="date" class="form-control"   name="fecha" id="Fecha">
+                                            </div>
                                 </div>
-                            </div>
+                            </div> -->
                             
                         </div>
 
@@ -216,10 +169,10 @@
                                         <select class="form-control" id="dispfinal">
                                             <option value="" disabled selected>-Seleccione opcion-</option>
                                             <?php
-                                        // foreach ($disposicionFinal as $i) {
-                                        //     echo '<option>'.$i->nombre.'</option>';
-                                        // }
-                                        ?>
+                                        foreach ($dispfinal as $j) {
+                                            echo '<option value="'.$j->tabl_id.'">'.$j->valor.'</option>';
+                                        }
+                                    ?>
                                         </select>
                                     </div>
                                 </div>
@@ -246,26 +199,10 @@
                         <!--_______________________-->
                         <!--Tipo residuo-->
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="tipores" class="form-label">Tipo residuo:</label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="glyphicon glyphicon-check"></i>
-                                    </div>
-                                    <select class="form-control select2 select2-hidden-accesible" id="tipores"
-                                        name="tipo_residuo" required>
-                                        <option value="" disabled selected>-Seleccione opcion-</option>
-                                        <?php
-                                        foreach ($Tiporesiduo as $i) {
-                                            echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
+                           
                             <!--_______________________-->
                             <!--Porcentaje llenado-->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="porcentajell" class="form-label">% de llenado:</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -274,23 +211,29 @@
                                     <input type="number" step="0.0001" id="porcentajell" name="porcent_llenado"
                                         class="form-control" required>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-md-6  col-sm-6 col-xs-12">
                             <!--_______________________-->
                             <!--Contenedor-->
-                            <div class="form-group">
-                                <label for="contenedor" class="form-label">Contenedor:</label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="glyphicon glyphicon-check"></i>
-                                    </div>
-                                    <input type="number" id="contenedor" name="contenedor" class="form-control" required>
-                                </div>
-                            </div>
+                            <!-- <div class="form-group">
+                                    <label for="cont_ent">Contenedores:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="glyphicon glyphicon-check"></i>
+                                            </div>
+                                            <select class="form-control select2 select2-hidden-accesible" name="cont_ent" id="cont_ent">
+                                            <?php
+                                            // foreach ($contenedores as $c) {     
+                                            //         echo '<option  value="'.$c->cont_id.'">'.$c->codigo.'</option>';
+                                            //}
+                                            ?>
+                                            </select>
+                                        </div>
+                            </div> -->
                             <!--_______________________-->
                             <!--Metros cubicos-->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="metroscubicos" class="form-label">Metros cubicos:</label>
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -299,7 +242,7 @@
                                     <input type="number" step="0.0001" name="metroscubicos" class="form-control"
                                         id="metroscubicos" min="0" required>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -313,32 +256,70 @@
 
             <!--_______________________-->
 
-            <div class="row">
+            <!-- <div class="row"> -->
 
                 <!--_______________________-->
                 <!--BOTON AGREGAR-->
 
-                <div class="col-md-10 col-lg-11 col-xs-12"></div>
-                <div class="col-md-2 col-lg-1 col-xs-12 text-center">
-                    <div class="form-group">
+                <!-- <div class="col-md-10 col-lg-11 col-xs-12"></div>
+                <div class="col-md-2 col-lg-1 col-xs-12 text-center"> -->
+                    <!-- <div class="form-group">
                         <button class="btn btn-primary btn-circle" onclick="Agregar_Residuo()" aria-label="Left Align">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </button>
                         <small for="agregar" class="form-label">Agregar</small>
-                    </div>
+                    </div> -->
 
-                </div>
-            </div>
+                <!-- </div>
+            </div> -->
 
             <!--_______________________-->
 
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <!-- <div class="col-md-12 col-sm-12 col-xs-12">
                 <hr>
-            </div>
+            </div> -->
 
             <!--_______________________-->
 
             </form>
+            
+<!--_________________BTN AGREGAR_________________-->
+<!-- <div class="col-md-12"> -->
+  <!-- <button type="submit" class="btn btn-primary btn-circle pull-right" onclick="Agregar_contenedor()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button> -->
+  <!-- <button type="submit" class="btn btn-default pull-right" onclick="">AGREGAR</button> -->
+<!-- </div> -->
+
+<!--_________________SEPARADOR_________________-->
+<div class="col-md-12 col-sm-12 col-xs-12"> <br></div>
+<!--_________________SEPARADOR_________________-->
+
+<!--_________________Tabla para enviar_________________-->
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="box " id="contenedores" style="display:none">
+    <!-- <div class="box " id="contenedores"> -->
+    <div class="box-body table-responsive">
+      <!--__________________HEADER TABLA___________________________-->
+      <table class="table table-striped" id="tbl_cont">
+        <thead class="thead-dark" bgcolor="#eeeeee">
+        <th>Acciones</th>
+          <th>Contenedor</th>
+          <th>tipo carga</th>
+          <th>porcentaje llenado</th>
+          <th>mts cubicos</th>
+        </thead>
+        <!--__________________BODY TABLA___________________________-->
+        <tbody>
+
+        </tbody>
+      </table>
+      <!--__________________FIN TABLA___________________________-->
+    </div>
+  </div>
+</div>
+<!--_________________Tabla para enviar_________________-->
+<!--_________________SEPARADOR_________________-->
+<div class="col-md-12 col-sm-12 col-xs-12"> <br></div>
+<!--_________________SEPARADOR_________________-->
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <button type="submit" class="btn btn-primary pull-right"
@@ -428,9 +409,149 @@
 
 <!--_____________________________________________________________-->
 <!-- REGISTRAR Orden Transporte-->
+<script>
+function obtenerchoftran($aux)
+{
+    
+$.ajax({
+      type: "POST",
+      data: {tran_id: $aux},
+      dataType: 'json',
+      url: "general/Estructura/OrdenTransporte/GetChoferyTransportista",
+      success: function($datos) {
+         
+          var res = $datos;
+          console.table(res.chofer);
+          console.table(res.chofer[1].nom_chofer);
+          console.table(res.chofer.length);
+          console.table(res.transp.razon_social);
+          $("#transp").val(res.transp.razon_social);
+          for(var c =0; c<res.chofer.length; c++){
+            console.table(res.chofer[c].nom_chofer);
+            $('#chofer').append("<option value='" + res.chofer[c].documento + "'>" +res.chofer[c].nom_chofer+"</option");
 
+          }
+        //   console.table(resp.vehiculoAsignadoARetiro.descripcion);
+        //   console.table(resp.vehiculoAsignadoARetiro.codigo);
+        //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor[0].mts_cubicos);
+        //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor);
+        //   Agregar_contenedor(resp);
+      
+      },
+      error: function() {
+							
+      },
+      complete: function() {
+
+      }
+})
+}
+
+$("#equipo").change(function(){
+   
+// var dominio_equipo = this.value;
+ var dominio_equipo = this.selectedOptions[0].textContent;
+var aux;
+$.ajax({
+      type: "POST",
+      data: {dom_id: dominio_equipo},
+      dataType: 'json',
+      url: "general/Estructura/OrdenTransporte/ObtenerinfoOt",
+      success: function($respuesta) {
+        //   debugger;
+        // var respuesta = JSON.parse($respuesta);
+          var resp = $respuesta;
+          aux = resp.vehiculoAsignadoARetiro.tran_id;
+          console.table(resp);
+          console.table(resp.vehiculoAsignadoARetiro.descripcion);
+          console.table(resp.vehiculoAsignadoARetiro.codigo);
+        //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor[0].mts_cubicos);
+        //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor);
+          Agregar_contenedor(resp);
+      
+      },
+      error: function() {
+							
+      },
+      complete: function() {
+        obtenerchoftran(aux);
+      }
+    });
+
+   
+
+})
+
+</script>
 
 <script>
+// remueve registro de tabla temporal 
+$(document).on("click",".fa-minus",function() {
+			$('#tbl_cont').DataTable().row( $(this).closest('tr') ).remove().draw();
+		});
+
+// funcion agregar contenedores a tabla 
+function Agregar_contenedor($datos) {
+
+// if(){ validar que los campos no esten vaciosal momento de agregar
+console.table($datos);
+// }
+$('#contenedores').show();
+//var data = new FormData($('#formPedidos')[0]);
+var data = new FormData();
+data = formToObject(data);
+for(var i=0; i<$datos.vehiculoAsignadoARetiro.contenedores.contenedor.length; i++){
+    var data = new FormData();
+    data = formToObject(data);
+    data.cont_id = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].cont_id;
+    data.tipo_carga = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].tipo_carga;
+    data.porc_llenado = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].porc_llenado;
+    data.mts_cubicos = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].mts_cubicos;
+    var table = $('#tbl_cont').DataTable();
+    var row = `<tr data-json='${JSON.stringify(data)}'>  
+                        <td><i class="fa fa-wa fa-minus text-light-blue" style="cursor: pointer; margin-left: 15px;" title="Quitar"></i></td>        
+                        <td>${data.cont_id}</td>
+                        <td>${data.tipo_carga}</td>
+                        <td>${data.porc_llenado}</td>
+                        <td>${data.mts_cubicos}</td>		
+                </tr>`;
+                
+    table.row.add($(row)).draw();
+}
+// data.cont_id = $datos.vehiculoAsignadoARetiro.
+// // data.cont_id = $("#cont_ent").val();
+// var table = $('#tbl_cont').DataTable();
+// var row = `<tr data-json='${JSON.stringify(data)}'>  
+//                     <td><i class="fa fa-wa fa-minus text-light-blue" style="cursor: pointer; margin-left: 15px;" title="Quitar"></i></td>        
+//                     <td>${data.cont_id}</td>		
+//             </tr>`;
+            
+// table.row.add($(row)).draw();
+// $('#formTransportista')[0].reset();
+}
+
+//CODIGO PARA PROBAR CUANDO ESTE EL SERVICIO...AGREGA A LA TABLA LOS CONT QUE VIENEN EN EL JSON
+//EL SERV DE BONITA DEBERIA AGREGARSE tipo_carga, porc_llenado, mts_cubico para que funcione bien 
+// for(var i=0; i<res.contenedores.lenght; i++)
+// {
+//     var data = new FormData();
+//     data = formToObject(data);
+//     data.cont_id = res.contenedores[i].cont_id;
+//     data.tipo_carga = res.contendores[i].tipo_carga;
+//     data.porc_llenado = res.contenedores[i].porc_llenado;
+//     data.mts_cubicos = res.contendores[i].mts_cubicos;
+//     var table = $('#tbl_cont').DataTable();
+//     var row = `<tr data-json='${JSON.stringify(data)}'>  
+//                         <td><i class="fa fa-wa fa-minus text-light-blue" style="cursor: pointer; margin-left: 15px;" title="Quitar"></i></td>        
+//                         <td>${data.cont_id}</td>
+//                         <td>${data.tipo_carga}</td>
+//                         <td>${data.porc_llenado}</td>
+//                         <td>${data.mts_cubico}</td>		
+//                 </tr>`;
+                
+//     table.row.add($(row)).draw();
+// }
+
 function Agregar_Residuo() {
 
     $('#puntos_criticos').show();
@@ -447,8 +568,82 @@ function Agregar_Residuo() {
         </tr>`
     );
 
-    $('#formPuntos')[0].reset();
+    // $('#formPuntos')[0].reset();
     $('select').select2().trigger('change');
+}
+
+function Guardar_Orden_transporte(){
+    var datos = new FormData();
+    datos = formToObject(datos);
+	debugger; 
+            
+    datos.fec_retiro = $("#Fecha").val();
+    var auxfecha = datos.fec_retiro[8]+datos.fec_retiro[9]+"-"+datos.fec_retiro[5]+datos.fec_retiro[6]+"-"+datos.fec_retiro[0]+datos.fec_retiro[1]+datos.fec_retiro[2]+datos.fec_retiro[3]; 
+    datos.fec_retiro = auxfecha;
+    datos.difi_id = $("#dispfinal").val();
+    datos.sotr_id = 38;
+    datos.equi_id = $("#equipo").val();
+    datos.chof_id = $("#chofer").val();
+    datos.usuario_app = "HugoDS";
+    
+
+    var datos_contenedor = [];
+    var rows = $('#tbl_cont tbody tr');
+    console.table(rows[0].dataset.json);
+    var auxx = JSON.parse(rows[0].dataset.json);
+    console.table(auxx);
+    console.table(auxx.cont_id);
+    // console.table(rows[0].dataset.json.cont_id);
+    console.table(rows.length);
+    var cont = new FormData();
+    cont = formToObject(cont);
+    for(var c=0; c<rows.length; c++){
+       auxx = JSON.parse(rows[c].dataset.json);
+       cont.cont_id =  auxx.cont_id;
+       datos_contenedor.push(cont);
+    }
+    console.log(cont.cont_id);
+    // rows.each(function(i,e) {  
+	// 			datos_contenedor.push(getJson(e));
+	// 			// datos_contenedores.push("usuarioAp:");
+	// 			// datos_contenedores.push("otro:");
+	// 	});	
+	datos.contenedores = datos_contenedor;
+
+    console.table(datos_contenedor);
+
+    if (datos_contenedor.lenght == 0) {
+      alert('Sin Datos para Registrar.');
+      return;
+    }
+
+    $.ajax({
+      type: "POST",
+      data: {datos},
+      url: "general/Estructura/OrdenTransporte/Guardar_ordentransporte",
+      success: function(respuesta) {
+        console.log(respuesta);
+        if (respuesta == "ok") {
+            
+         
+          alertify.success("Agregado con exito");
+          $("#formPuntos")[0].reset();
+          $("#boxDatos").hide(500);
+          $("#botonAgregar").removeAttr("disabled");
+
+          //  $('#formCircuitos').data('bootstrapValidator').resetForm();
+          //  $("#formCircuitos")[0].reset();
+
+
+          //  $("#boxDatos").hide(500);
+          //  $("#botonAgregar").removeAttr("disabled");
+
+        } else {
+          console.log(respuesta);
+          alertify.error("error al agregar");
+        }
+      }
+    });
 }
 
 

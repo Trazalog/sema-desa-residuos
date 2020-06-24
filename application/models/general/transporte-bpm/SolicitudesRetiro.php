@@ -55,5 +55,22 @@ class SolicitudesRetiro extends CI_Model {
     return $aux->tiposCarga->cargas;				
   }
 
-    
+  function obtenerContenedor()
+  {
+    log_message('INFO','#TRAZA|SolicitudesRetiro|obtenerContenedor >> ');
+    $aux = $this->rest->callAPI("GET",REST."/contenedores");
+    $aux =json_decode($aux["data"]);
+    return $aux->contenedores->contenedor;				
+  }
+
+  function Guardar_solicitudRetiro($data)
+  {
+    $post["solicitudRetiroContenedores"] = $data;      
+    log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> '); 
+    log_message('DEBUG','#SolicitudPedidos/RegistrarContenedor: '.json_encode($post));
+    // $aux = $this->rest->callAPI("POST",REST."/solicitudContenedores", $post); //servicio que llamaba antes de que caiga el server
+    $aux = $this->rest->callAPI("POST",API_URL."/solicitudRetiroContenedores",$post);
+    $aux =json_decode($aux);
+    return $aux;
+  }
 }
