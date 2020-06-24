@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require APPPATH . "/reports/pesoDeBascula/PesoDeBascula.php";
 require APPPATH . "/reports/incidencia/Incidencia.php";
 require APPPATH . "/reports/incidenciaPorTransportista/IncidenciaPorTransportista.php";
+require APPPATH . "/reports/incidenciaPorMunicipio/IncidenciaPorMunicipio.php";
 
 class Reportes extends CI_Controller
 {
@@ -135,13 +136,54 @@ class Reportes extends CI_Controller
             $reporte = new IncidenciaPorTransportista($aux);
             $reporte->run()->render();
         }
-
-        
     }
 
     public function filtroIncidenciaPorTransportista()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROINCIDENCIAPORTRANSPORTISTA|');
+        $data['calendarioDesde'] = true;
+        $data['calendarioHasta'] = true;
+        $this->load->view('reportes/filtro',$data);
+    }
+
+    public function incidenciaPorMunicipio()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#INCIDENCIAPORMUNICIPIO|');
+        
+        $aux = $this->input->post('data');
+
+        //debe traer el mes y el año
+        $desde = $aux['datepickerDesde'];
+        $hasta = $aux['datepickerHasta'];
+
+        if($desde || $hasta)
+        {
+            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $data = $this->Koolreport->getMunicipios()->departamentos->departamento;
+            $url = CONSTANTE.'/ordenTrabajo?desde='.$desde.'&hasta='.$hasta;
+            foreach($data as $valor)
+            {
+                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorMunicipio($valor->nombre,$url);
+            }
+            $reporte = new IncidenciaPorMunicipio($aux);
+            $reporte->run()->render();
+        }else
+        {
+            $data = $this->Koolreport->getMunicipios()->departamentos->departamento;
+            $url = CONSTANTE.'desde//hasta';
+            foreach($data as $valor)
+            {
+                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorMunicipio($valor->nombre,$url);
+            }
+            $reporte = new IncidenciaPorMunicipio($aux);
+            $reporte->run()->render();
+        }
+    }
+
+    public function filtroIncidenciaPorMunicipio()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROINCIDENCIAPORMUNICIPIO|');
         $data['calendarioDesde'] = true;
         $data['calendarioHasta'] = true;
         $this->load->view('reportes/filtro',$data);

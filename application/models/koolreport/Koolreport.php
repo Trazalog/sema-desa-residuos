@@ -119,7 +119,7 @@ class Koolreport extends CI_Model
 
 
         $data['op'] = "pesoDeBascula";
-
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETFILTROSPESOS| #ARRAY: >>' . $data);
         return $data;
     }
 
@@ -209,13 +209,14 @@ class Koolreport extends CI_Model
         }
         $data['filtro']->transportistas = $aux;
 
-        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIAS| #ARRAY: >>' . $data);
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETFILTROSINCIDENCIAS| #ARRAY: >>' . $data);
 
         return $data;
     }
 
     public function getTransportistas()
     {
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETTRANSPORTISTA');
         $url = 'http://localhost:8080/transportistas';
         $rsp = $this->rest->callApi('GET', $url);
         $rsp = json_decode($rsp['data']);
@@ -238,6 +239,34 @@ class Koolreport extends CI_Model
             $i++;
         }
         log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIASPORTRANSPORTISTA| #ARRAY: >>' . $aux);
+
+        return $aux;
+    }
+
+    public function getMunicipios()
+    {
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETMUNICIPIO');
+        $url = 'http://localhost:8080/departamentos';
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        return $rsp;
+    }
+
+    public function getIncidenciasPorMunicipio($municipio)
+    {
+        $url = "http://localhost:8080/incidencias";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        $i = 0;
+        foreach($rsp->incidencias->incidencia as $valor)
+        {
+            if($valor->departamento == $municipio)
+            {
+                $aux[] = $rsp->incidencias->incidencia[$i];
+            }
+            $i++;
+        }
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIASPORMUNICIPIO| #ARRAY: >>' . $aux);
 
         return $aux;
     }
