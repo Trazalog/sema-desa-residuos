@@ -50,7 +50,7 @@
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                                         foreach ($zona as $i) {
-                                            echo '<option>'.$i->nombre.'</option>';
+                                            echo '<option value="'.$i->zona_id.'">'.$i->nombre.'</option>';
                                         }
                                         ?>
                         </select>
@@ -61,8 +61,8 @@
                             name="tiporesiduo" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                            foreach ($tipoResiduo as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
+                                            foreach ($tipoResiduo as $j) {
+                                                echo '<option value="'.$j->tabl_id.'">'.$j->valor.'</option>';
                                             }
                                     ?>
                         </select>
@@ -80,8 +80,8 @@
                             required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                        foreach ($disposicionFinal as $i) {
-                                            echo '<option>'.$i->nombre.'</option>';
+                                        foreach ($disposicionFinal as $a) {
+                                            echo '<option value="'.$a->tabl_id.'">'.$a->valor.'</option>';
                                             }
                                         ?>
                         </select>
@@ -92,8 +92,8 @@
                             required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                            foreach ($circuito as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
+                                            foreach ($circuito as $c) {
+                                                echo '<option value="'.$c->circ_id.'">'.$c->codigo.'</option>';
                                             }
                                     ?>
                         </select>
@@ -126,23 +126,30 @@
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label for="selecemp" class="form-label">Empresa:</label>
-                        <select size="3" class="form-control" id="selecemp" name="empresa" required>
+                        <select class="form-control select2 select2-hidden-accesible" id="emp" name="empresa"
+                            required>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                            foreach ($empresa as $i) {
-                                echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
-                            }
-                            ?>
+                                            foreach ($empresa as $k) {
+                                                echo '<option value="'.$k->tran_id.'">'.$k->razon_social.'</option>';
+                                            }
+                                    ?>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="registron" class="form-label">Registro n°:</label>
                         <input type="text" class="form-control" id="registron" name="numreg" readonly>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="chofer" class="form-label">Chofer:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="chofer" name="chofer"
                             required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
+                                            foreach ($chofer as $t) {
+                                                echo '<option value="'.$t->chof_id.'">'.$t->nombre.'</option>';
+                                            }
+                                    ?>
                         </select>
                     </div>
                 </div>
@@ -152,10 +159,10 @@
                         <select size="3" class="form-control" id="selecmov" name="movilidad" required>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="dominio" class="form-label">Dominio:</label>
                         <input type="text" class="form-control" name="dominio" id="dominio" name="dominio" readonly>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -426,6 +433,35 @@
 </div>
 
 <!-- script que muestra datos en modal edit -->
+<script>
+$("#emp").change(function(){
+    var empresa_id = $("#emp").val();
+    var resp;
+    $.ajax({
+        type: "POST",
+        data: {id_empresa: empresa_id},
+        dataType: 'json',
+        url: "general/Orden/ObtenerVehixtran_id",
+        success: function($respuesta) {
+          debugger;
+        //   var respuesta = JSON.parse($respuesta);
+          resp = $respuesta;
+          console.table(resp[0].equi_id);
+      
+        },
+        error: function() {
+                                
+        },
+        complete: function() {
+              $('#selecmov').append("<option value='" + resp[0].equi_id + "'>" +resp[0].marca+"</option");
+        }
+
+    });
+});
+
+</script>
+
+
 <script>
     function clickedit(aux) {
         //limpia los select para cargar datos especificos

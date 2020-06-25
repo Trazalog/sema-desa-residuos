@@ -15,6 +15,7 @@ class Orden extends CI_Controller {
       $this->load->model('general/TipoResiduos');
       $this->load->model('general/Empresas');
       $this->load->model('general/Sectoresdescarga');
+      $this->load->model('general/Estructura/TemplateOrdenTP');
    }
 
    function ordenT()
@@ -28,11 +29,12 @@ class Orden extends CI_Controller {
 
    function templateOt()
    {
-       $data['empresa'] = $this->Empresas->obtener();
-       $data['circuito'] = $this->Circuitos->obtener();
-       $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
-       $data['tipoResiduo'] = $this->TipoResiduos->obtener();
-       $data['zona'] = $this->Zonas->obtener();
+       $data['empresa'] = $this->TemplateOrdenTP->obtenerEmpresa();
+       $data['circuito'] = $this->TemplateOrdenTP->obtenerCircuito();
+       $data['disposicionFinal'] = $this->TemplateOrdenTP->obtenerDispFinal();
+       $data['tipoResiduo'] = $this->TemplateOrdenTP->obtenerTipoRes();
+       $data['zona'] = $this->TemplateOrdenTP->obtenerZona();
+       $data['chofer'] = $this->TemplateOrdenTP->obtenerChofer();
        $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/template_ot',$data);
    }
@@ -63,6 +65,13 @@ class Orden extends CI_Controller {
     $this->load->view('layout/nueva_vista', $data);
    }
 
+   function obtenerVehixTran_id()
+   {
+    $resp = $this->TemplateOrdenTP->ObtenerVehixtran_id($this->input->post('id_empresa'));
+    if($resp){
+        echo json_encode($resp);
+    }
+   }
   
    
 }
