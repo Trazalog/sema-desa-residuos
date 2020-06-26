@@ -115,5 +115,57 @@ function ObtenerVehixtran_id($tran_id)
     $aux =json_decode($aux["data"]);
     return $aux->vehiculos->vehiculo;
 }
+
+function RegistrarTemplateOT($datos)
+{
+    $post["templateOt"]= $data;
+    $aux = $this->rest->callAPI("POST",REST."/RegistrarTemplateOT", $post);
+    $aux =json_decode($aux["status"]);
+    return $aux;
+}
+
+function Listar_templateOT()
+{
+    $aux = $this->rest->callAPI("GET",REST."/templateOT");
+    $aux =json_decode($aux["data"]);
+    return $aux;
+}
+
+function actualizar_templateOT($data)
+{
+    log_message('INFO','#TRAZA|TemplateOrdenTP|actualizar_templateOT() >> ');   
+    $post["_put_templateot"] = $data;
+    log_message('DEBUG','#TemplateOrdenTP/actualizar_templateOT: '.json_encode($post));
+    $aux = $this->rest->callAPI("PUT",REST."/REcurso", $post);
+    $aux =json_decode($aux["status"]);
+    return $aux;
+}
+
+function obtenerEmpresaxid($tran_id)
+{
+    $aux = $this->rest->callAPI("GET",REST."/transportistas/$tran_id");
+    $aux =json_decode($aux["data"]);
+    return $aux->transportista;
+}
+function obtenerCircuitoxid($circ_id)
+{
+    $aux = $this->rest->callAPI("GET",REST."/circuitos/$circ_id");
+    $aux =json_decode($aux["data"]);
+    return $aux->circuito;
+}
+function obtenerZonaxid($zona_id)
+{
+    $aux = $this->rest->callAPI("GET",REST."/zonas/$zona_id");
+    $aux =json_decode($aux["data"]);
+    return $aux->zona;
+}
+function obtenerChoferxid($tran_id)
+{
+    $aux = $this->rest->callAPI("GET",REST."/choferes/$tran_id");
+    $aux =json_decode($aux["data"]);
+    return $aux->choferes->chofer;
+}
+
+
 }
 

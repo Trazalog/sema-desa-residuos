@@ -67,12 +67,57 @@ class Orden extends CI_Controller {
 
    function obtenerVehixTran_id()
    {
+    
     $resp = $this->TemplateOrdenTP->ObtenerVehixtran_id($this->input->post('id_empresa'));
     if($resp){
         echo json_encode($resp);
     }
    }
-  
+
+   function RegistrarTemplateOt()
+   {
+     
+       $resp = $this->TemplateOrdenTP->RegistrarTemplateOT($this->input->post('datos'));
+       if($resp)
+       {echo "ok";}
+       else{
+           echo "error";
+       }
+   }
+  function Listar_templateOt()
+  {
+    log_message('INFO','#TRAZA|Vehiculo|Listar_Vehiculo() >>');
+    $data["templateot"] = $this->TemplateOrdenTP->Listar_templateOT();
+    $this->load->view('layout/Listar_templateOT',$data);
+  }
+
+  function ActualizarTemplateOt()
+  {
+    log_message('INFO','#TRAZA|TemplateOrdenTP|ActualizarTemplateOt() >>'); 
+    $datos =  $this->input->post('datosEdit');
+    $resp = $this->TemplateOrdenTP->actualizar_templateOT($datos);
+    if($resp){
+        echo "ok";
+    }else{
+    log_message('ERROR','#TRAZA|TemplateOrdenTP|ActualizarTemplateOt() >> $resp: '.$resp);
+    echo "error";
+    }
+  }
+
+  function getDatosparaInfo()
+  {
+    $zona_id = $this->input->post('zona_id');
+    $circ_id = $this->input->post('circ_id');
+    $chof_id = $this->input->post('chof_id');
+    $tran_id = $this->input->post('tran_id');
+    $equi_id = $this->input->post('equi_id');
+    $data['empresa'] = $this->TemplateOrdenTP->obtenerEmpresaxid($tran_id);
+    $data['circuito'] = $this->TemplateOrdenTP->obtenerCircuitoxid($circ_id);
+    $data['movilidad'] = $this->TemplateOrdenTP->ObtenerVehixtran_id($tran_id);
+    $data['zona'] = $this->TemplateOrdenTP->obtenerZonaxid($zona_id);
+    $data['chofer'] = $this->TemplateOrdenTP->obtenerChoferxid($tran_id);
+    echo json_encode($data);
+  }
    
 }
 ?>
