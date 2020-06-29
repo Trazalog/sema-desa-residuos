@@ -2194,6 +2194,22 @@ http://10.142.0.7:8280/services/semaresiduosDS
   }
 
 
+-- solicitudContenedorEstadoUpdate" 
+recurso PUT /solicitudesContenedor/estado
+
+
+update log.solicitudes_contenedor&#xd;set estado = :estado&#xd;where soco_id = cast(:soco_id as integer)
+
+retorna 200 si ok
+
+{"_put_solicitudescontenedor_estado":{
+	"soco_id":"114",
+	"estado":"SOLICITADA"
+}
+}
+
+
+
 -- ordTransPorIdGet
   recurso: /ordenTransporte/{ortr_id}
   metodo: get
@@ -2225,6 +2241,19 @@ http://10.142.0.7:8280/services/semaresiduosDS
     }
   }
 
+
+
+
+--ordenTransporteEstadoUpdate" 
+      update log.ordenes_transporte&#xd;set estado = :estado&#xd;where ortr_id = cast(:ortr_id as integer)
+
+{"_put_ordenesTransporte_estado":{
+	"ortr_id":"21",
+	"estado":"SOLICITADA"
+}
+}
+
+retorna
 -- ordenTransporteSet
   recurso: /ordenTransporte
   metodo: post
@@ -2842,6 +2871,18 @@ HTTP/1.1 202 Accepted
   }
   --ejemplo de respuesta
   {"respuesta": {"sore_id": "9"}}
+
+
+--solicitudRetiroEstadoUpdate
+      update log.solicitudes_retiro&#xd;set estado = :estado&#xd;where sore_id = cast(:sore_id as integer)
+
+{"_put_solicitudesretiro_estado":{
+	"sore_id":"24",
+	"estado":"SOLICITADA"
+}
+}
+
+retorna 200 si ok
 
 -- updateSolicitudRetiroContenedores
   recurso:
