@@ -118,52 +118,55 @@ function ObtenerVehixtran_id($tran_id)
 
 function RegistrarTemplateOT($datos)
 {
-    $post["templateOt"]= $data;
-    $aux = $this->rest->callAPI("POST",REST."/RegistrarTemplateOT", $post);
+    $usuario_app = userNick();
+    $sotr = $this->rest->callAPI("GET",REST."/solicitantesTransporte/$usuario_app");
+    $sotraux =json_decode($sotr["data"]);
+    $sotr = $sotraux->solicitantes_transporte->solicitante;
+    $sotr_id = $sotr->sotr_id;
+    // $datos.sotr_id = $sotr_id;
+    $datos->usuario_app = $usuario_app;
+    $post["_post_templatesOrdenTransporte"]= $datos;
+    $aux = $this->rest->callAPI("POST",REST."/templatesOrdenTransporte", $post);
     $aux =json_decode($aux["status"]);
     return $aux;
 }
 
 function Listar_templateOT()
 {
-    $aux = $this->rest->callAPI("GET",REST."/templateOT");
+    $usuario_app = userNick();
+    $sotr = $this->rest->callAPI("GET",REST."/solicitantesTransporte/$usuario_app");
+    $sotraux =json_decode($sotr["data"]);
+    $sotr = $sotraux->solicitantes_transporte->solicitante;
+    $sotr_id = $sotr->sotr_id;
+    $aux = $this->rest->callAPI("GET",REST."/templatesOrdenTransporte/list/solicitanteTransporte/38");
     $aux =json_decode($aux["data"]);
-    return $aux;
+    return $aux->templatesOrdenTransporte->templateOrdenTransporte;
 }
 
 function actualizar_templateOT($data)
 {
+    $usuario_app = userNick();
+    // $sotr = $this->rest->callAPI("GET",REST."/solicitantesTransporte/$usuario_app");
+    // $sotraux =json_decode($sotr["data"]);
+    // $sotr = $sotraux->solicitantes_transporte->solicitante;
+    // $sotr_id = $sotr->sotr_id;
+    $data->usuario_app = $usuario_app;
     log_message('INFO','#TRAZA|TemplateOrdenTP|actualizar_templateOT() >> ');   
-    $post["_put_templateot"] = $data;
+    $post["_put_templatesOrdenTransporte"] = $data;
     log_message('DEBUG','#TemplateOrdenTP/actualizar_templateOT: '.json_encode($post));
-    $aux = $this->rest->callAPI("PUT",REST."/REcurso", $post);
+    $aux = $this->rest->callAPI("PUT",REST."/templatesOrdenTransporte", $post);
     $aux =json_decode($aux["status"]);
     return $aux;
 }
 
-function obtenerEmpresaxid($tran_id)
+function Eliminar_templateOT($data)
 {
-    $aux = $this->rest->callAPI("GET",REST."/transportistas/$tran_id");
-    $aux =json_decode($aux["data"]);
-    return $aux->transportista;
-}
-function obtenerCircuitoxid($circ_id)
-{
-    $aux = $this->rest->callAPI("GET",REST."/circuitos/$circ_id");
-    $aux =json_decode($aux["data"]);
-    return $aux->circuito;
-}
-function obtenerZonaxid($zona_id)
-{
-    $aux = $this->rest->callAPI("GET",REST."/zonas/$zona_id");
-    $aux =json_decode($aux["data"]);
-    return $aux->zona;
-}
-function obtenerChoferxid($tran_id)
-{
-    $aux = $this->rest->callAPI("GET",REST."/choferes/$tran_id");
-    $aux =json_decode($aux["data"]);
-    return $aux->choferes->chofer;
+    log_message('INFO','#TRAZA|TemplateOrdenTP|actualizar_templateOT() >> ');   
+    $post["_delete_templateOrdenTransporte"] = $data;
+    log_message('DEBUG','#TemplateOrdenTP/actualizar_templateOT: '.json_encode($post));
+    $aux = $this->rest->callAPI("DELETE",REST."/templatesOrdenTransporte", $post);
+    $aux =json_decode($aux["status"]);
+    return $aux;
 }
 
 

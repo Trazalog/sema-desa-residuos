@@ -67,6 +67,11 @@
                                     ?>
                         </select>
                     </div>
+                    <div class="form-group">
+                    <label for="observaciones" class="form-label">Observaciones:</label>
+                    <input type="text" id="obs">
+                    <input type="text" id="teot_id" style="display:none">
+                    </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
@@ -147,7 +152,7 @@
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                                             foreach ($chofer as $t) {
-                                                echo '<option value="'.$t->chof_id.'">'.$t->nombre.'</option>';
+                                                echo '<option value="'.$t->documento.'">'.$t->nombre.'</option>';
                                             }
                                     ?>
                         </select>
@@ -284,6 +289,11 @@
                                                         ?>
                                 </select>
                             </div>
+                            <div class="form-group">
+                            <label for="tiporesiduoo" class="form-label">Observaciones:</label>
+                            <input type="text" id="obsedit">
+                            <input type="text" id="teot_id"  style="display:none">
+                            </div>
                         </div>
                         <div class="col-md-6 col-xs-12">
                             <div class="form-group">
@@ -345,7 +355,7 @@
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
                                                                  foreach ($chofer as $t) {
-                                                                    echo '<option value="'.$t->chof_id.'">'.$t->nombre.'</option>';
+                                                                    echo '<option value="'.$t->documento.'">'.$t->nombre.'</option>';
                                                                 }
                                                         ?>
                                 </select>
@@ -385,10 +395,10 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="fechita" class="form-label">Fecha:</label>
                             <input type="text" id="fechainfo" class="form-control input-sm" readonly>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="zonita" class="form-label">Zona:</label>
                             <input type="text" id="zonainfo" class="form-control input-sm" readonly>
@@ -443,7 +453,7 @@
             </div>
             <div class="modal-body">
 
-           <input type="text" id="id_vehiculo" style="display:none">
+           <input type="text" id="id_templateot" style="display:none">
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
@@ -474,8 +484,6 @@ $("#emp").change(function(){
         dataType: 'json',
         url: "general/Orden/ObtenerVehixtran_id",
         success: function($respuesta) {
-          debugger;
-        //   var respuesta = JSON.parse($respuesta);
           resp = $respuesta;
           console.table(resp[0].equi_id);
           console.table(resp.length);
@@ -502,8 +510,6 @@ $("#empedit").change(function(){
         dataType: 'json',
         url: "general/Orden/ObtenerVehixtran_id",
         success: function($respuesta) {
-          debugger;
-        //   var respuesta = JSON.parse($respuesta);
           resp = $respuesta;
           console.table(resp[0].equi_id);
           console.table(resp.length);
@@ -522,16 +528,19 @@ $("#empedit").change(function(){
 });
 
 $("#btnregistrar").click(function(e){
-    debugger;
+   
     var datosTemplate = new FormData();
     datosTemplate = formToObject(datosTemplate);
-    datosTemplate.zona_id = $("#zona").val();
+    //datosTemplate.zona_id = $("#zona").val();
+    datosTemplate.usuario_app = "hugoDS";
+    datosTemplate.observaciones = $("#obs").val();
     datosTemplate.tica_id = $("#tiporesiduo").val();
     datosTemplate.difi_id = $("#dispfinal").val();
     datosTemplate.circ_id = $("#circuito").val();
-    datosTemplate.tran_id = $("#emp").val();
+    //datosTemplate.tran_id = $("#emp").val();
     datosTemplate.equi_id = $("#selecmov").val();
     datosTemplate.chof_id = $("#chofer").val();
+    datosTemplate.sotr_id = "38";
     console.table(datosTemplate);
     $.ajax({
         type: "POST",
@@ -541,9 +550,10 @@ $("#btnregistrar").click(function(e){
         success: function(r) {
         console.table(r);
         if(r == "ok"){
+            
             $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
-            alertify.success("Actualizado con exito");
-                        $("#modalEdit").modal('hide');
+            alertify.success("Registrado con exito");
+             $("#formDatos").modal('hide');
                         // $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor");
                         // alertify.success("Agregado con exito");
 
@@ -553,15 +563,9 @@ $("#btnregistrar").click(function(e){
                         // $("#boxDatos").hide(500);
                         // $("#botonAgregar").removeAttr("disabled");
         }else{
-            // alertify.error("error al agregar");
+             alertify.error("error al agregar");
         }
       
-        },
-        error: function() {
-                                
-        },
-        complete: function() {
-           
         }
 
     });
@@ -573,13 +577,16 @@ $("#btnregistrar").click(function(e){
 $("#btnsavedit").click(function(e){
     var datosTemEdit = new FormData();
     datosTemEdit = formToObject(datosTemEdit);
-    datosTemEdit.zona_id = $("#zona").val();
-    datosTemEdit.tica_id = $("#tiporesiduo").val();
-    datosTemEdit.difi_id = $("#dispfinal").val();
-    datosTemEdit.circ_id = $("#circuito").val();
-    datosTemEdit.tran_id = $("#emp").val();
-    datosTemEdit.equi_id = $("#selecmov").val();
-    datosTemEdit.chof_id = $("#chofer").val();
+    // datosTemEdit.zona_id = $("#zona").val();
+    datosTemEdit.usuario_app = "hugoDS";
+    datosTemEdit.observaciones = $("#obsedit").val();
+    datosTemEdit.tica_id = $("#tiporesiduoedit").val();
+    datosTemEdit.difi_id = $("#dispfinaledit").val();
+    datosTemEdit.circ_id = $("#circuitoedit").val();
+    // datosTemEdit.tran_id = $("#emp").val();
+    datosTemEdit.equi_id = $("#movedit").val();
+    datosTemEdit.chof_id = $("#choferedit").val();
+    datosTemEdit.teot_id = $("#teot_id").val();
         console.table(datosTemEdit);
         //faltaria la ubicaion, el codigo y tran_id
         $.ajax({
@@ -605,7 +612,36 @@ $("#btnsavedit").click(function(e){
             });
 
     });
+$("#btndelete").click(function(e){
+    var datosTemDelete = new FormData();
+    datosTemDelete = formToObject(datosTemDelete);
+    // datosTemEdit.zona_id = $("#zona").val();
+    datosTemDelete.teot_id = $("#id_templateot").val();
+  
+        //faltaria la ubicaion, el codigo y tran_id
+        $.ajax({
+                type: "POST",
+                data: {datosDelete: datosTemDelete},
+                url: "general/Orden/EliminarTemplateOt",
+                success: function (r) {
+                    
+                    console.table(r);
+                    if (r == "ok") {
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
+                        alertify.success("Borrado con exito");
+                        $("#modalBorrar").modal('hide');
+                       
 
+                      
+
+                    } else {
+                        
+                        alertify.error("error al Borrar");
+                    }
+                }
+            });
+
+});
 
 </script>
 
@@ -847,7 +883,7 @@ $("#btnsavedit").click(function(e){
         }
     }).on('success.form.bv', function (e) {
         e.preventDefault();
-        guardar();
+        // guardar();
     });
 </script>
 <!-- script bootstrap validator -->
@@ -1047,89 +1083,89 @@ $("#btnsavedit").click(function(e){
 </script>
 <!-- Script Agregar datos -->
 <script>
-    function guardar() {
+    // function guardar() {
 
-        datos = $('#formDatos').serialize();
+    //     datos = $('#formDatos').serialize();
 
-        //datos para mostrar a modo de ejemplo para DEMO---------------
-        //Serialize the Form
-        var values = {};
-        $.each($("#formDatos").serializeArray(), function (i, field) {
-            values[field.name] = field.value;
-        });
-        //Value Retrieval Function
-        var getValue = function (valueName) {
-            return values[valueName];
-        };
-        //Retrieve the Values
-        var empresa = getValue("empresa");
-        var zona = getValue("zona");
-        var circuito = getValue("circuito");
-        var movilidad = getValue("movilidad");
-        var numreg = getValue("numreg");
-        var dominio = getValue("dominio");
-        var chofer = getValue("chofer");
-        var fecha = getValue("fecha");
-        var dispfinal = getValue("dispfinal");
-        var tiporesiduo = getValue("tiporesiduo");
-        var num = getValue("nro");
+    //     //datos para mostrar a modo de ejemplo para DEMO---------------
+    //     //Serialize the Form
+    //     var values = {};
+    //     $.each($("#formDatos").serializeArray(), function (i, field) {
+    //         values[field.name] = field.value;
+    //     });
+    //     //Value Retrieval Function
+    //     var getValue = function (valueName) {
+    //         return values[valueName];
+    //     };
+    //     //Retrieve the Values
+    //     var empresa = getValue("empresa");
+    //     var zona = getValue("zona");
+    //     var circuito = getValue("circuito");
+    //     var movilidad = getValue("movilidad");
+    //     var numreg = getValue("numreg");
+    //     var dominio = getValue("dominio");
+    //     var chofer = getValue("chofer");
+    //     var fecha = getValue("fecha");
+    //     var dispfinal = getValue("dispfinal");
+    //     var tiporesiduo = getValue("tiporesiduo");
+    //     var num = getValue("nro");
 
-        var aux = parseInt(localStorage.getItem('aux'));
+    //     var aux = parseInt(localStorage.getItem('aux'));
 
-        localStorage.setItem('num' + aux, num);
-        localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
-        localStorage.setItem('dispfinal' + aux, dispfinal);
-        localStorage.setItem('fecha' + aux, fecha);
-        localStorage.setItem('chofer' + aux, chofer);
-        localStorage.setItem('dominio' + aux, dominio);
-        localStorage.setItem('numreg' + aux, numreg);
-        localStorage.setItem('movilidad' + aux, movilidad);
-        localStorage.setItem('circuito' + aux, circuito);
-        localStorage.setItem('zona' + aux, zona);
-        localStorage.setItem('empresa' + aux, empresa);
+    //     localStorage.setItem('num' + aux, num);
+    //     localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
+    //     localStorage.setItem('dispfinal' + aux, dispfinal);
+    //     localStorage.setItem('fecha' + aux, fecha);
+    //     localStorage.setItem('chofer' + aux, chofer);
+    //     localStorage.setItem('dominio' + aux, dominio);
+    //     localStorage.setItem('numreg' + aux, numreg);
+    //     localStorage.setItem('movilidad' + aux, movilidad);
+    //     localStorage.setItem('circuito' + aux, circuito);
+    //     localStorage.setItem('zona' + aux, zona);
+    //     localStorage.setItem('empresa' + aux, empresa);
 
-        //--------------------------------------------------------------
+    //     //--------------------------------------------------------------
 
-        if ($("#formDatos").data('bootstrapValidator').isValid()) {
-            $.ajax({
-                type: "POST",
-                data: datos,
-                url: "ajax/Ordentrabajo/guardarDato",
-                success: function (r) {
-                    if (r == "ok") {
+    //     if ($("#formDatos").data('bootstrapValidator').isValid()) {
+    //         $.ajax({
+    //             type: "POST",
+    //             data: datos,
+    //             url: "ajax/Ordentrabajo/guardarDato",
+    //             success: function (r) {
+    //                 if (r == "ok") {
                         
-                        //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
-                        var t = $('#example2').DataTable();
-                        var fila = t.row.add([
-                            zona,
-                            circuito,
-                            empresa,
-                            movilidad,
-                            chofer,
-                            //agrega los iconos correspondientes
-                            '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
-                        ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
-                        t.draw(false);
+    //                     //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
+    //                     var t = $('#example2').DataTable();
+    //                     var fila = t.row.add([
+    //                         zona,
+    //                         circuito,
+    //                         empresa,
+    //                         movilidad,
+    //                         chofer,
+    //                         //agrega los iconos correspondientes
+    //                         '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
+    //                     ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
+    //                     t.draw(false);
 
-                        aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
-                        localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
+    //                     aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
+    //                     localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
 
-                        $('#formDatos').data('bootstrapValidator').resetForm();
-                        $("#formDatos")[0].reset();
-                        $('#selecmov').find('option').remove();
-                        $('#chofer').find('option').remove();
-                        $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
-                        $("#boxDatos").hide(500);
-                        $("#botonAgregar").removeAttr("disabled");
-                        alertify.success("Agregado con exito");
-                    } else {
-                        //console.log(r);
-                        alertify.error("error al agregar");
-                    }
-                }
-            });
-        }
-    }
+    //                     $('#formDatos').data('bootstrapValidator').resetForm();
+    //                     $("#formDatos")[0].reset();
+    //                     $('#selecmov').find('option').remove();
+    //                     $('#chofer').find('option').remove();
+    //                     $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
+    //                     $("#boxDatos").hide(500);
+    //                     $("#botonAgregar").removeAttr("disabled");
+    //                     alertify.success("Agregado con exito");
+    //                 } else {
+    //                     //console.log(r);
+    //                     alertify.error("error al agregar");
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }
 </script>
 
 <script>
