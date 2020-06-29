@@ -1087,7 +1087,32 @@ http://10.142.0.3:8280/services/semaresiduosDS
             "codigo": "112233",
             "cont_id": "44"
           }
-        ]}}
+        ]
+      }
+  }
+
+-- contenedoresEntregadosAsignaarVehiculo
+  recurso: /contenedoresEntregados/vehiculo
+  /_put_contenedoresentregados_vehiculo_batch_req
+  metodo: put
+
+  update log.contenedores_entregados 
+  set equi_id = CAST(:equi_id as INTEGER)
+  where coen_id = CAST(:coen_id as INTEGER)
+
+{
+  "_put_contenedoresentregados_vehiculo_batch_req": {
+      "_put_contenedoresentregados_vehiculo": [
+          {
+            "equi_id": "",
+            "coen_id": ""
+          }
+      ]
+  }
+}
+
+
+
 
 
 -- contenedoresSolicitadosGet (/solicitudContenedores/{usuario_app}, para pantalla entrega contenedores tambien)
@@ -1348,9 +1373,31 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }
 
 
+-- contenedoresEntregadosGetPorCaseId (pantalla retiro contenedores->PROCESO RETIRO CONTENEDORES)
+  recurso: /contenedoresEntregados/case/{case_id}
+  metodo: get
 
+  select CE.coen_id, CE.cont_id, CE.porc_llenado, CE.mts_cubicos, CE.tica_id, T.valor 
+  from log.contenedores_entregados CE, core.tablas T
+  where CE.sore_id = (select SR.sore_id from log.solicitudes_retiro SR where SR.case_id = :case_id ) 
+  and CE.tica_id = T.tabl_id 
+  and CE.ortr_id is null
+  and CE.equi_id is null
 
-
+  {
+    "contenedoresEntregados":{
+        "contenedor":[
+          {
+            "coen_id": "$coen_id",
+            "cont_id": "$cont_id",
+            "porc_llenado": "$porc_llenado",
+            "mts_cubicos": "$mts_cubicos",
+            "tica_id": "$tica_id",
+            "valor": "$valor"
+          }
+        ]
+    }
+  }
 
 
 -- (generadores)solicitanteTransporteGet
@@ -1411,13 +1458,14 @@ http://10.142.0.3:8280/services/semaresiduosDS
     "razon_social": "Residuos Caballos Salvajes"
   }}
 
--- (generadores)solicitanteTransportePorUsuario  
+-- (generadores) solicitanteTransporteGetPorUsr(MODIFICADO HARDCODEADO SOLO A SOTR_ID)
   recurso: /solicitantesTransporte/{usuario_app}  (ej: /solicitantesTransporte/hugoDS)
   metodo: get
-  select ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, ST.tica_id, D.nombre as depa_nom
+  select 
+  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, D.nombre as depa_nom
   from log.solicitantes_transporte ST, core.departamentos D 
   where usuario_app = :usuario_app 
-  and ST.depa_id = D.depa_id 
+  and ST.depa_id = D.depa_id
 
   {
     "solicitantes_transporte": {
@@ -1433,7 +1481,6 @@ http://10.142.0.3:8280/services/semaresiduosDS
             "zona_id": "$zona_id",
             "rubr_id": "$rubr_id",
             "tist_id": "$tist_id",
-            "tica_id": "$tica_id",
             "depa_nom": "$depa_nom"	            
           }
         ]
@@ -1503,7 +1550,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
   }
   
 
--- (generadores)solicitanteTransporteGetPorCaseId (CABECERA GENERADOR)
+-- (generadores)solicitanteTransporteGetPorCaseId (CABECERA GENERADOR->SOLICITUD CONTENEDORES)
   recurso: /solicitantesTransporte/case/{case_id}
   metodo: get
 
@@ -1524,6 +1571,49 @@ http://10.142.0.3:8280/services/semaresiduosDS
   and ST.zona_id = ZONA.zona_id 
   and ST.rubr_id = TRUB.tabl_id 
   and ST.eliminado = 0
+
+  {
+    "generador":{
+      "sotr_id": "$sotr_id",
+      "razon_social": "$razon_social",
+      "cuit": "$cuit",
+      "domicilio": "$domicilio",
+      "num_registro": "$num_registro",
+      "tipo_generador": "$tipo_generador",
+      "departamento": "$departamento",
+      "zona": "$zona",
+      "rubro": "$rubro",
+      "@solicitanteTransporteGetTipoCarga": "$sotr_id->sotr_id"
+    }
+  }
+
+-- (generadores)solicitanteTransporteGetPorCaseIdRetiro(CABECERA GENERADOR->RETIRO CONTENEDORES)
+  recurso: /solicitantesTransporte/proceso/retiro/case/{case_id}
+  metodo:
+
+  select  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro,
+          TTIPO.valor as tipo_generador,
+          DEPA.nombre as departamento,
+          ZONA.nombre as zona,
+          TRUB.valor as rubro
+  from 
+        log.solicitantes_transporte ST,
+        core.tablas TTIPO,
+        core.departamentos DEPA, 
+        core.zonas ZONA,
+        core.tablas TRUB
+  where      
+      ST.sotr_id = (select SR.sotr_id from log.solicitudes_retiro SR where SR.case_id = :case_id)
+  and 
+      ST.tist_id = TTIPO.tabl_id	
+  and 
+      ST.depa_id = DEPA.depa_id
+  and 
+      ST.zona_id = ZONA.zona_id 
+  and 
+      ST.rubr_id = TRUB.tabl_id 
+  and 
+      ST.eliminado = 0
 
   {
     "generador":{
@@ -2182,7 +2272,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
   }}
 
 
--- solicitudContenedorGetInfo 
+-- solicitudContenedorGetInfo (CABECERA PROCCESO->SOLICITUD CONTENEDORES)
   recurso: /solicitudContenedores/info/{case_id}
   metodo: get
   select 
@@ -2204,6 +2294,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
       "domicilio": "$domicilio"
     } 
   }
+  
 
 -- solicitudContenedoresSetMotivo
   recurso: /contenedoresSolicitados/rechazados/motivo
@@ -2624,6 +2715,30 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }  
   }
 
+-- transportistaGetPorCaseIdRetiro(CABECERA TRANSPORTISTA -> RETIRO CONTENEDORES)
+  recurso: /transportistas/proceso/retiro/case/{case_id}
+  metodo:
+
+  select TR.razon_social, TR.cuit, TR.direccion, TR.resolucion, TR.registro 
+  from log.transportistas TR, log.contenedores C
+  where TR.tran_id = C.tran_id 
+  and C.cont_id = (select CE.cont_id 
+          from log.contenedores_entregados CE
+          where CE.sore_id = (select SR.sore_id 
+                    from log.solicitudes_retiro SR 
+                    where SR.case_id  = :case_id)
+          order by Ce.cont_id limit 1)
+
+
+  {
+    "transportista":{
+      "razon_social": "$razon_social",
+      "cuit": "$cuit",
+      "direccion": "$direccion",
+      "resolucion": "$resolucion",
+      "registro": "$registro"
+    }  
+  }
 
 
 -- tablasGet
@@ -2698,6 +2813,28 @@ http://10.142.0.3:8280/services/semaresiduosDS
   --ejemplo de respuesta
   {"respuesta": {"sore_id": "9"}}
 
+-- solicitudRetiroGetPorCaseRetiro (CABECERA PROCESO-> RETIRO CONTENEDORES)
+  resurso: /solicitudRetiro/proceso/retiro/case/{case_id}
+  metodo:
+  select SR.sore_id, SR.fec_alta 
+  from log.solicitudes_retiro SR
+  where case_id = :case_id 
+
+  {
+    "solicitud_retiro":{
+      "sore_id": "$sore_id",
+      "fec_alta": "$fec_alta"
+    }
+  }
+
+
+
+
+
+
+
+
+
 -- updateSolicitudRetiroContenedores
   recurso:
   metodo:
@@ -2745,6 +2882,36 @@ http://10.142.0.3:8280/services/semaresiduosDS
       ]
     }
   }
+
+-- vehiculosGetPorTransportistaUsr
+
+  recurso: /vehiculos/transp/usr/{usuario_app}
+  metodo: get
+
+  select E.equi_id, E.descripcion, E.marca, E.dominio 
+  from core.equipos E
+  where E.tran_id = (select TR.tran_id 
+            from log.transportistas TR
+            where TR.usuario_app = :usuario_app)	
+  and estado = 'AC'
+
+  {
+    "vehiculos":{
+      "vehiculo":[
+          {
+            "equi_id": "$equi_id",
+            "descripcion": "$descripcion",
+            "marca": "$marca",
+            "dominio": "$dominio"
+          }
+      ]
+    }
+  }
+
+
+
+
+
   
 -- vehiculosSet
   recurso: /vehiculos

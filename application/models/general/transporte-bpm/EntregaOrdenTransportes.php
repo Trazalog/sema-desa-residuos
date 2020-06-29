@@ -14,7 +14,7 @@ class EntregaOrdenTransportes extends CI_Model {
   parent::__construct();
   }
 
-
+ 
 
 
 

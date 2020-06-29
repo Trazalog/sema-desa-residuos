@@ -53,7 +53,8 @@ class Tarea extends CI_Controller
         //DESPLEGAR VISTA
         $data['view'] = $this->deplegarVista($tarea);
         $this->load->view(BPM.'notificacion_estandar', $data);
-    }
+				
+			}
 
     public function tomarTarea()
     {
@@ -80,10 +81,11 @@ class Tarea extends CI_Controller
 				//Mapeo de la tarea y Contrato	
 				$tar_mapeada = $this->Tareas->mapeoTarea($tarea);			
         $contrato = $this->getContrato($tar_mapeada, $form);
-
+			
         //Cerrar Tarea
-        $this->bpm->cerrarTarea($taskId, $contrato);
+				$rsp = $this->bpm->cerrarTarea($taskId, $contrato);
 				
+				echo json_encode($rsp);
     }
 
     public function getContrato($tarea, $form)
@@ -170,8 +172,20 @@ class Tarea extends CI_Controller
 
 								return $contrato;
 
-								break;	
+								break;
+						
+						//  PROCESO RETIRO CONTENEDORES		
+
+						case 'Retira contenedores':	
 								
+								$this->load->model('general/transporte-bpm/RetiroContenedores');
+
+								$resp = $this->RetiroContenedores->actualizarContenedores($form);
+								log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Retira contenedores: $resp >> '.json_encode($resp));
+								$contrato = $this->RetiroContenedores->contratoRetiro($form);
+								log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Retira contenedores: $contrato >> '.json_encode($contrato));
+								return $contrato;
+								break;
             default:
                 # code...
                 break;
@@ -197,15 +211,13 @@ class Tarea extends CI_Controller
 								return $this->PedidoContenedores->desplegarVista($tarea);
 								
 						case BPM_PROCESS_ID_RETIRO_CONTENEDORES: 
-						
+							//TODO: estoy ACA
 							$this->load->model('general/transporte-bpm/RetiroContenedores');
-						
+							return $this->RetiroContenedores->desplegarVista($tarea);
 							break;	
 
 						case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE: 
-							
 							$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');
-						
 							break;
 
             default:

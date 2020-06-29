@@ -14,13 +14,16 @@ if(!function_exists('infoproceso')){
 			
 			switch ($processId) {
 				case BPM_PROCESS_ID_PEDIDO_CONTENEDORES:
-						log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|obtenerInFoSolicitud($case_id): $case_id >> '.json_encode($case_id));
+						log_message('INFO','#TRAZA|INFOPROCESO_HELPER|/solicitudContenedores/info/.$case_id): $case_id >> '.json_encode($case_id));
 						$aux = $ci->rest->callAPI("GET",REST."/solicitudContenedores/info/".$case_id);
 						$aux =json_decode($aux["data"]);
 					break;
 				
 				case BPM_PROCESS_ID_RETIRO_CONTENEDORES:
-					# code...
+						log_message('INFO','#TRAZA|INFOPROCESO_HELPER|/solicitudRetiro/proceso/retiro/case/.$case_id): $case_id >> '.json_encode($case_id));
+						$aux = $ci->rest->callAPI("GET",REST."/solicitudRetiro/proceso/retiro/case/".$case_id);
+						$data =json_decode($aux["data"]);
+						$aux = $data->solicitud_retiro;						
 					break;
 					
 				case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE:
@@ -53,7 +56,7 @@ if(!function_exists('infoproceso')){
 
 									case BPM_PROCESS_ID_PEDIDO_CONTENEDORES: 
 							?>
-										<!--_____________ Formulario Solicitud _____________-->
+										<!--_____________ Formulario Solicitud Contenedor_____________-->
 										<form class="formNombre1" id="IDnombre">  
 											<div class="col-md-12">
 			
@@ -96,7 +99,29 @@ if(!function_exists('infoproceso')){
 										break;
 
 									case BPM_PROCESS_ID_RETIRO_CONTENEDORES:
-										# code...
+							?>			
+										<!--_____________ Formulario Solicitud Retiro_____________-->
+										<form class="formNombre1" id="IDnombre">  
+												<div class="col-md-12">
+
+														<div class="col-md-6">
+																<div class="form-group">
+																		<label for="generador" name="">Nº Solicitud Retiro:</label>
+																		<input type="text" class="form-control habilitar" id="generador" value="<?php echo $aux->sore_id; ?>"  readonly>
+																</div>
+														</div>
+														<!--_____________________________________________-->
+														
+														<div class="col-md-6">
+																<div class="form-group">
+																		<label for="pedido" name=""> Fecha Alta:</label>
+																		<input type="text" class="form-control habilitar" id="pedido" value="<?php echo $aux->fec_alta; ?>"  readonly>
+																</div>
+														</div>
+														<!--_____________________________________________-->
+												</div>
+										</form> 
+							<?php			
 										break;
 											
 									case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE:
