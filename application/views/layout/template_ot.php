@@ -69,6 +69,7 @@
                     </div>
                     <div class="form-group">
                     <label for="observaciones" class="form-label">Observaciones:</label>
+                    <br>
                     <input type="text" id="obs">
                     <input type="text" id="teot_id" style="display:none">
                     </div>
@@ -291,6 +292,7 @@
                             </div>
                             <div class="form-group">
                             <label for="tiporesiduoo" class="form-label">Observaciones:</label>
+                            <br>
                             <input type="text" id="obsedit">
                             <input type="text" id="teot_id"  style="display:none">
                             </div>
@@ -532,7 +534,7 @@ $("#btnregistrar").click(function(e){
     var datosTemplate = new FormData();
     datosTemplate = formToObject(datosTemplate);
     //datosTemplate.zona_id = $("#zona").val();
-    datosTemplate.usuario_app = "hugoDS";
+    datosTemplate.usuario_app = "HugoDS";
     datosTemplate.observaciones = $("#obs").val();
     datosTemplate.tica_id = $("#tiporesiduo").val();
     datosTemplate.difi_id = $("#dispfinal").val();
@@ -545,23 +547,17 @@ $("#btnregistrar").click(function(e){
     $.ajax({
         type: "POST",
         data: {datos: datosTemplate},
-        dataType: 'json',
         url: "general/Orden/RegistrarTemplateOt",
         success: function(r) {
         console.table(r);
-        if(r == "ok"){
+        if(r == "Ok"){
             
             $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
             alertify.success("Registrado con exito");
-             $("#formDatos").modal('hide');
-                        // $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor");
-                        // alertify.success("Agregado con exito");
-
-                        // $('#formContenedores').data('bootstrapValidator').resetForm();
-                        // $("#formContenedores")[0].reset();
-
-                        // $("#boxDatos").hide(500);
-                        // $("#botonAgregar").removeAttr("disabled");
+            $('#formDatos').data('bootstrapValidator').resetForm();
+            $("#formDatos")[0].reset();
+            $("#boxDatos").hide(500);
+            $("#botonAgregar").removeAttr("disabled");
         }else{
              alertify.error("error al agregar");
         }
