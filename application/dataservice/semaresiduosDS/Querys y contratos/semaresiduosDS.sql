@@ -2194,6 +2194,22 @@ http://10.142.0.7:8280/services/semaresiduosDS
   }
 
 
+-- solicitudContenedorEstadoUpdate" 
+recurso PUT /solicitudesContenedor/estado
+
+
+update log.solicitudes_contenedor&#xd;set estado = :estado&#xd;where soco_id = cast(:soco_id as integer)
+
+retorna 200 si ok
+
+{"_put_solicitudescontenedor_estado":{
+	"soco_id":"114",
+	"estado":"SOLICITADA"
+}
+}
+
+
+
 -- ordTransPorIdGet
   recurso: /ordenTransporte/{ortr_id}
   metodo: get
@@ -2225,6 +2241,19 @@ http://10.142.0.7:8280/services/semaresiduosDS
     }
   }
 
+
+
+
+--ordenTransporteEstadoUpdate" 
+      update log.ordenes_transporte&#xd;set estado = :estado&#xd;where ortr_id = cast(:ortr_id as integer)
+
+{"_put_ordenesTransporte_estado":{
+	"ortr_id":"21",
+	"estado":"SOLICITADA"
+}
+}
+
+retorna
 -- ordenTransporteSet
   recurso: /ordenTransporte
   metodo: post
@@ -2282,6 +2311,203 @@ http://10.142.0.7:8280/services/semaresiduosDS
         ]
     }
   }
+
+
+
+--templatesOrdenTransporteListGet
+GET /templatesOrdenTransporte/list/solicitanteTransporte/{sotr_id}
+SELECT
+	tot.teot_id
+	, zo.descripcion zona
+	, zo.zona_id zona_id
+	, ci.codigo || ' ' || ci.descripcion circuito
+	, ci.zona_id
+	, t.valor tipo_carga
+	, t.tabl_id tica_id
+	, t2.valor disposicion_final
+	, t2.tabl_id difi_id
+	, tr.descripcion || ' cuit:' || tr.cuit transportista
+	, tr.tran_id tran_id
+	, ch.documento chof_id
+	, ch.apellido || ', ' || ch.nombre nombre_chofer
+	, eq.dominio || ' ' || eq.codigo || ' ' || eq.marca || ' ' || eq.descripcion equipo
+	, eq.equi_id equi_id
+FROM
+	log.circuitos ci
+LEFT JOIN core.zonas zo ON
+	zo.zona_id = ci.zona_id
+	, log.templates_orden_transporte tot
+	, log.choferes ch
+	, core.tablas t
+	, core.tablas t2
+	, log.transportistas tr
+	, core.equipos eq
+WHERE
+	tot.chof_id = ch.documento
+	AND tot.circ_id = ci.circ_id
+	AND tot.tica_id = t.tabl_id
+	AND tot.difi_id = t2.tabl_id
+	AND tot.equi_id = eq.equi_id
+	AND eq.tran_id = tr.tran_id
+        AND tot.eliminado = 0
+	AND tot.sotr_id = CAST(:sotr_id AS integer)
+
+Respuesta:
+{"templatesOrdenTransporte": {"templateOrdenTransporte": [
+      {
+      "transportista": "transportista 2 cuit:123456",
+      "tica_id": "tipos_cargaResiduos Urbanos",
+      "tran_id": "47",
+      "tipo_carga": "Residuos Urbanos",
+      "zona_id": null,
+      "equi_id": "40",
+      "zona": null,
+      "nombre_chofer": ", sergio",
+      "circuito": "2345qwer qwrqr",
+      "chof_id": "23565",
+      "equipo": "asf 34 asf asd",
+      "difi_id": "disposicion_finalPTA",
+      "teot_id": "2",
+      "disposicion_final": "PTA"
+   },
+      {
+      "transportista": "transportista 2 cuit:123456",
+      "tica_id": "tipos_cargaResiduos Urbanos",
+      "tran_id": "47",
+      "tipo_carga": "Residuos Urbanos",
+      "zona_id": null,
+      "equi_id": "40",
+      "zona": null,
+      "nombre_chofer": ", sergio",
+      "circuito": "2345qwer qwrqr",
+      "chof_id": "23565",
+      "equipo": "asf 34 asf asd",
+      "difi_id": "disposicion_finalPTA",
+      "teot_id": "3",
+      "disposicion_final": "PTA"
+   }
+]}}
+
+--templateOrdenTransporteGet
+recurso /templatesOrdenTransporte/{teot_id}
+SELECT
+	tot.teot_id
+	, zo.descripcion zona
+	, zo.zona_id zona_id
+	, ci.codigo || ' ' || ci.descripcion circuito
+	, ci.zona_id
+	, t.valor tipo_carga
+	, t.tabl_id tica_id
+	, t2.valor disposicion_final
+	, t2.tabl_id difi_id
+	, tr.descripcion || ' cuit:' || tr.cuit transportista
+	, tr.tran_id tran_id
+	, ch.documento chof_id
+	, ch.apellido || ', ' || ch.nombre nombre_chofer
+	, eq.dominio || ' ' || eq.codigo || ' ' || eq.marca || ' ' || eq.descripcion equipo
+	, eq.equi_id equi_id
+FROM
+	log.circuitos ci
+LEFT JOIN core.zonas zo ON
+	zo.zona_id = ci.zona_id
+	, log.templates_orden_transporte tot
+	, log.choferes ch
+	, core.tablas t
+	, core.tablas t2
+	, log.transportistas tr
+	, core.equipos eq
+WHERE
+	tot.chof_id = ch.documento
+	AND tot.circ_id = ci.circ_id
+	AND tot.tica_id = t.tabl_id
+	AND tot.difi_id = t2.tabl_id
+	AND tot.equi_id = eq.equi_id
+	AND eq.tran_id = tr.tran_id
+AND tot.eliminado = 0
+and tot.teot_id = cast(:teot_id as integer)
+
+Respuesta:
+{"templateOrdenTransporte": {
+   "transportista": "transportista 2 cuit:123456",
+   "tica_id": "tipos_cargaResiduos Urbanos",
+   "tran_id": "47",
+   "tipo_carga": "Residuos Urbanos",
+   "zona_id": null,
+   "equi_id": "40",
+   "zona": null,
+   "nombre_chofer": ", sergio",
+   "circuito": "2345qwer qwrqr",
+   "chof_id": "23565",
+   "equipo": "asf 34 asf asd",
+   "difi_id": "disposicion_finalPTA",
+   "teot_id": "3",
+   "disposicion_final": "PTA"
+}}
+
+--templateOrdenTransporteSet
+recurso /semaresiduosDS/templatesOrdenTransporte 
+INSERT
+	INTO
+	log.templates_orden_transporte ( observaciones, usuario_app, circ_id, equi_id, chof_id, tica_id, difi_id, sotr_id )
+VALUES( :observaciones, :usuario_app, CAST(:circ_id AS integer), CAST( :equi_id AS integer), :chof_id, :tica_id, :difi_id, CAST( :sotr_id AS integer) ) returning teot_id
+
+{
+"_post_templatesOrdenTransporte":{
+ "observaciones":"sarcangue",
+ "usuario_app":"usuario_app",
+ "circ_id":"182",
+ "chof_id":"23565",
+ "equi_id":"40",
+ "tica_id":"tipos_cargaResiduos Urbanos",
+ "difi_id":"disposicion_finalPTA",
+ "sotr_id":"39"}
+}
+
+Respuesta:
+{"respuesta": {"teot_id": "3"}}
+
+--templatesOrdenTransporteUpdate
+recurso PUT /templatesOrdenTransporte
+UPDATE log.templates_orden_transporte
+SET observaciones=:observaciones
+, usuario_app=:usuario_app
+, circ_id=cast(:circ_id AS integer)
+, equi_id=cast(:equi_id AS integer)
+, chof_id=:chof_id 
+, tica_id=:tica_id 
+, difi_id=:difi_id 
+WHERE teot_id = CAST(:teot_id AS integer);
+
+{
+"_put_templatesOrdenTransporte":{
+ "observaciones":"sarcangue",
+ "usuario_app":"usuario_app",
+ "circ_id":"182",
+ "chof_id":"23565",
+ "equi_id":"40",
+ "tica_id":"tipos_cargaResiduos Urbanos",
+ "difi_id":"disposicion_finalPTA",
+ "teot_id":"1"}
+}
+
+Respuesta
+HTTP/1.1 202 Accepted
+
+--templateOrdenTransporteDelete
+recurso DELETE /templatesOrdenTransporte 
+
+UPDATE log.templates_orden_transporte
+SET eliminado = 1
+WHERE teot_id = CAST(:teot_id AS integer);
+
+{"_delete_templateOrdenTransporte":{
+	"teot_id":"1"
+}
+}
+
+Respuesta
+HTTP/1.1 202 Accepted
+
 
 -- transportistasSet
   recurso: /transportistas
@@ -2645,6 +2871,18 @@ http://10.142.0.7:8280/services/semaresiduosDS
   }
   --ejemplo de respuesta
   {"respuesta": {"sore_id": "9"}}
+
+
+--solicitudRetiroEstadoUpdate
+      update log.solicitudes_retiro&#xd;set estado = :estado&#xd;where sore_id = cast(:sore_id as integer)
+
+{"_put_solicitudesretiro_estado":{
+	"sore_id":"24",
+	"estado":"SOLICITADA"
+}
+}
+
+retorna 200 si ok
 
 -- updateSolicitudRetiroContenedores
   recurso:
