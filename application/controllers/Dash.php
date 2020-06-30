@@ -74,6 +74,12 @@ class Dash extends CI_Controller {
 															"link": "general/Orden/templateOt"
 													},
 													{
+															"titulo": "Orden Municipales Masivas",
+															"icono": "fa fa-genderless",
+															"link": "general/Estructura/OrdenMuniMasivas/templateOrdenMuniMasivas"
+
+													},
+													{
 															"titulo": "Control de descarga",
 															"icono": "fa fa-genderless",
 															"link": "general/Orden/controlDeDescarga"
