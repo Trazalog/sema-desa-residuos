@@ -50,7 +50,7 @@
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
                                         foreach ($zona as $i) {
-                                            echo '<option>'.$i->nombre.'</option>';
+                                            echo '<option value="'.$i->zona_id.'">'.$i->nombre.'</option>';
                                         }
                                         ?>
                         </select>
@@ -61,11 +61,17 @@
                             name="tiporesiduo" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                            foreach ($tipoResiduo as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
+                                            foreach ($tipoResiduo as $j) {
+                                                echo '<option value="'.$j->tabl_id.'">'.$j->valor.'</option>';
                                             }
                                     ?>
                         </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="observaciones" class="form-label">Observaciones:</label>
+                    <br>
+                    <input type="text" id="obs">
+                    <input type="text" id="teot_id" style="display:none">
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
@@ -80,8 +86,8 @@
                             required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                        foreach ($disposicionFinal as $i) {
-                                            echo '<option>'.$i->nombre.'</option>';
+                                        foreach ($disposicionFinal as $a) {
+                                            echo '<option value="'.$a->tabl_id.'">'.$a->valor.'</option>';
                                             }
                                         ?>
                         </select>
@@ -92,8 +98,8 @@
                             required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                            foreach ($circuito as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
+                                            foreach ($circuito as $c) {
+                                                echo '<option value="'.$c->circ_id.'">'.$c->codigo.'</option>';
                                             }
                                     ?>
                         </select>
@@ -126,23 +132,30 @@
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label for="selecemp" class="form-label">Empresa:</label>
-                        <select size="3" class="form-control" id="selecemp" name="empresa" required>
+                        <select class="form-control select2 select2-hidden-accesible" id="emp" name="empresa"
+                            required>
+                            <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                            foreach ($empresa as $i) {
-                                echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
-                            }
-                            ?>
+                                            foreach ($empresa as $k) {
+                                                echo '<option value="'.$k->tran_id.'">'.$k->razon_social.'</option>';
+                                            }
+                                    ?>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="registron" class="form-label">Registro n°:</label>
                         <input type="text" class="form-control" id="registron" name="numreg" readonly>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="chofer" class="form-label">Chofer:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="chofer" name="chofer"
                             required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
+                            <?php
+                                            foreach ($chofer as $t) {
+                                                echo '<option value="'.$t->documento.'">'.$t->nombre.'</option>';
+                                            }
+                                    ?>
                         </select>
                     </div>
                 </div>
@@ -152,28 +165,39 @@
                         <select size="3" class="form-control" id="selecmov" name="movilidad" required>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="dominio" class="form-label">Dominio:</label>
                         <input type="text" class="form-control" name="dominio" id="dominio" name="dominio" readonly>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
             <div class="col-md-12"><hr></div>
             <div class="modal-footer">
                 <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                    <button type="submit" class="btn btn-primary" id="btnregistrar">Guardar</button>
                 </div>
             </div>
         </div>
     </form>
+  </div>
+ </div>
 </div>
 <!--  Box 3-->
-<div class="row">
+    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6"></div>
+                </div>
+                <div class="row"><div class="col-sm-12 table-scroll" id="cargar_tabla">
+                </div>
+    </div>
+    </div>
+<!-- <div class="row">
     <div class="col-xs-12">
-        <div class="box box-primary animated fadeInLeft">
+        <div class="box box-primary animated fadeInLeft"> -->
             <!-- /.box-header -->
-            <div class="box-body">
+            <!-- <div class="box-body">
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
                         <div class="col-sm-6"></div>
@@ -214,12 +238,13 @@
                     </div>
                     <br>
                 </div>
-            </div>
+            </div> -->
             <!-- /.box-body -->
-        </div>
+        <!-- </div> -->
         <!-- /.box -->
-    </div>
-</div>
+    <!-- </div>
+</div> -->
+
 <!-- Modal editar-->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -236,62 +261,68 @@
 
                     <div class="row">
                         <div class="col-md-6 col-xs-12">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="nroo" class="form-label">Nro:</label>
                                 <input type="number" size="10" type="text" name="nro" id="nroo" min="0"
                                     class="form-control" auto required pattern="^(0|[1-9][0-9]*)$">
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="zonaa" class="form-label">Zona:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="zonaa" name="zona"
+                                <select class="form-control select2 select2-hidden-accesible" id="zonaedit" name="zona"
                                     required>
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                                            foreach ($zona as $i) {
-                                                                echo '<option>'.$i->nombre.'</option>';
-                                                            }
+                                                           foreach ($zona as $i) {
+                                                            echo '<option value="'.$i->zona_id.'">'.$i->nombre.'</option>';
+                                                        }
                                                             ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="tiporesiduoo" class="form-label">Tipo de residuo:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="tiporesiduoo"
+                                <select class="form-control select2 select2-hidden-accesible" id="tiporesiduoedit"
                                     name="tiporesiduo" required>
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                                                foreach ($tipoResiduo as $i) {
-                                                                    echo '<option>'.$i->nombre.'</option>';
+                                                                 foreach ($tipoResiduo as $j) {
+                                                                    echo '<option value="'.$j->tabl_id.'">'.$j->valor.'</option>';
                                                                 }
                                                         ?>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                            <label for="tiporesiduoo" class="form-label">Observaciones:</label>
+                            <br>
+                            <input type="text" id="obsedit">
+                            <input type="text" id="teot_id"  style="display:none">
                             </div>
                         </div>
                         <div class="col-md-6 col-xs-12">
                             <div class="form-group">
                                 <label for="fechaa" class="form-label">Fecha:</label>
-                                <input type="date" id="fechaa" name="fecha" value="<?php echo $fecha;?>"
+                                <input type="date" id="fechaedit" name="fecha" value="<?php echo $fecha;?>"
                                     class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="dispfinall" class="form-label">Disposicion final:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="dispfinall"
+                                <select class="form-control select2 select2-hidden-accesible" id="dispfinaledit"
                                     name="dispfinal" required>
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                                            foreach ($disposicionFinal as $i) {
-                                                                echo '<option>'.$i->nombre.'</option>';
+                                                            foreach ($disposicionFinal as $a) {
+                                                                echo '<option value="'.$a->tabl_id.'">'.$a->valor.'</option>';
                                                                 }
                                                             ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="circuitoo" class="form-label">Circuito:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="circuitoo"
+                                <select class="form-control select2 select2-hidden-accesible" id="circuitoedit"
                                     name="circuito" required>
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                                                foreach ($circuito as $i) {
-                                                                    echo '<option>'.$i->nombre.'</option>';
+                                                                 foreach ($circuito as $c) {
+                                                                    echo '<option value="'.$c->circ_id.'">'.$c->codigo.'</option>';
                                                                 }
                                                         ?>
                                 </select>
@@ -307,45 +338,44 @@
                         <br>
                         <div class="col-md-6 col-xs-12">
                             <div class="form-group">
-                                <label for="selecempp" class="form-label">Empresa:</label>
-                                <select size="3" class="form-control" id="selecempp" name="empresa" required>
-                                    <?php                                               
-                                                foreach ($empresa as $i) {
-                                                    echo '<option value="'.$i->nom->nom_emp.'" class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
-                                                    
-                                                }
-                                                ?>
-                                </select>
+                                <label for="selecemp" class="form-label">Empresa:</label>
+                                <select class="form-control select2 select2-hidden-accesible" id="empedit" name="empresa"
+                                 required>
+                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                         <?php
+                                            foreach ($empresa as $k) {
+                                                echo '<option value="'.$k->tran_id.'">'.$k->razon_social.'</option>';
+                                            }
+                                         ?>
+                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="registronn" class="form-label">Registro n°:</label>
-                                <input type="text" class="form-control" id="registronn" name="numreg" readonly>
-                            </div>
+                            
                             <div class="form-group">
                                 <label for="choferr" class="form-label">Chofer:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="choferr" name="chofer"
+                                <select class="form-control select2 select2-hidden-accesible" id="choferedit" name="chofer"
                                     required>
                                     <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                                                 foreach ($chofer as $t) {
+                                                                    echo '<option value="'.$t->documento.'">'.$t->nombre.'</option>';
+                                                                }
+                                                        ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6 col-xs-12">
                             <div class="form-group">
                                 <label for="selecmovv" class="form-label">Movilidad:</label>
-                                <select size="3" class="form-control" id="selecmovv" name="movilidad" required>
+                                <select size="3" class="form-control" id="movedit" name="movilidad" required>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="dominioo" class="form-label">Dominio:</label>
-                                <input type="text" class="form-control" name="dominio" id="dominioo" name="dominio"
-                                    readonly>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                        <button type="submit" class="btn btn-primary" id="btnsavedit">Guardar</button>
                         <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -367,51 +397,39 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="nro" class="form-label">Nro:</label>
-                            <input type="text" id="num" class="form-control input-sm" readonly>
-                        </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="fechita" class="form-label">Fecha:</label>
-                            <input type="text" id="fechita" class="form-control input-sm" readonly>
-                        </div>
+                            <input type="text" id="fechainfo" class="form-control input-sm" readonly>
+                        </div> -->
                         <div class="form-group">
                             <label for="zonita" class="form-label">Zona:</label>
-                            <input type="text" id="zonita" class="form-control input-sm" readonly>
+                            <input type="text" id="zonainfo" class="form-control input-sm" readonly>
                         </div>
                         <div class="form-group">
                             <label for="dispofinal" class="form-label">Disposicion final</label>
-                            <input type="text" id="dispofinal" class="form-control input-sm" readonly>
+                            <input type="text" id="dispofinalinfo" class="form-control input-sm" readonly>
                         </div>
                         <div class="form-group">
                             <label for="tipores" class="form-label">Tipo de residuo:</label>
-                            <input type="text" id="tipores" class="form-control input-sm" readonly>
+                            <input type="text" id="tiporesinfo" class="form-control input-sm" readonly>
                         </div>
                         <div class="form-group">
                             <label for="circuit" class="form-label">Circuito:</label>
-                            <input type="text" id="circuit" class="form-control input-sm" readonly>
+                            <input type="text" id="circinfo" class="form-control input-sm" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="empresita" class="form-label">Empresa:</label>
-                            <input type="text" id="empresita" class="form-control input-sm" readonly>
+                            <input type="text" id="empinfo" class="form-control input-sm" readonly>
                         </div>
                         <div class="form-group">
                             <label for="movi" class="form-label">Movilidad:</label>
-                            <input type="text" id="movi" class="form-control input-sm" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="reg" class="form-label">Registro n°:</label>
-                            <input type="text" id="reg" class="form-control input-sm" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="dom" class="form-label">Dominio:</label>
-                            <input type="text" id="dom" class="form-control input-sm" readonly>
+                            <input type="text" id="movinfo" class="form-control input-sm" readonly>
                         </div>
                         <div class="form-group">
                             <label for="chof" class="form-label">Chofer:</label>
-                            <input type="text" id="chof" class="form-control input-sm" readonly>
+                            <input type="text" id="chofinfo" class="form-control input-sm" readonly>
                         </div>
                     </div>
                 </div>
@@ -424,8 +442,206 @@
         </div>
     </div>
 </div>
+<!---//////////////////////////////////////--- MODAL BORRAR ---///////////////////////////////////////////////////////----->
+    
+<div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel"> Eliminar Template</h5>
+            </div>
+            <div class="modal-body">
+
+           <input type="text" id="id_templateot" style="display:none">
+
+            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletevehiculo()">Aceptar</button>
+                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---//////////////////////////////////////--- FIN MODAL BORRAR ---///////////////////////////////////////////////////////----->
 
 <!-- script que muestra datos en modal edit -->
+<script>
+ $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
+
+$("#emp").change(function(){
+    var empresa_id = $("#emp").val();
+    var resp;
+    $.ajax({
+        type: "POST",
+        data: {id_empresa: empresa_id},
+        dataType: 'json',
+        url: "general/Orden/ObtenerVehixtran_id",
+        success: function($respuesta) {
+          resp = $respuesta;
+          console.table(resp[0].equi_id);
+          console.table(resp.length);
+      
+        },
+        error: function() {
+                                
+        },
+        complete: function() {
+            for(var i=0; i<resp.length; i++){
+              $('#selecmov').append("<option value='" + resp[i].equi_id + "'>" +"Marca: "+resp[i].marca+" Dominio: "+resp[i].dominio+"</option");
+            }
+        }
+
+    });
+});
+
+$("#empedit").change(function(){
+    var empresa_id = $("#empedit").val();
+    var resp;
+    $.ajax({
+        type: "POST",
+        data: {id_empresa: empresa_id},
+        dataType: 'json',
+        url: "general/Orden/ObtenerVehixtran_id",
+        success: function($respuesta) {
+          resp = $respuesta;
+          console.table(resp[0].equi_id);
+          console.table(resp.length);
+      
+        },
+        error: function() {
+                                
+        },
+        complete: function() {
+            for(var i=0; i<resp.length; i++){
+              $('#movedit').append("<option value='" + resp[i].equi_id + "'>" +"Marca: "+resp[i].marca+" Dominio: "+resp[i].dominio+"</option");
+            }
+        }
+
+    });
+});
+
+$("#btnregistrar").click(function(e){
+   
+    var datosTemplate = new FormData();
+    datosTemplate = formToObject(datosTemplate);
+    //datosTemplate.zona_id = $("#zona").val();
+    datosTemplate.usuario_app = "HugoDS";
+    datosTemplate.observaciones = $("#obs").val();
+    datosTemplate.tica_id = $("#tiporesiduo").val();
+    datosTemplate.difi_id = $("#dispfinal").val();
+    datosTemplate.circ_id = $("#circuito").val();
+    //datosTemplate.tran_id = $("#emp").val();
+    datosTemplate.equi_id = $("#selecmov").val();
+    datosTemplate.chof_id = $("#chofer").val();
+    datosTemplate.sotr_id = "38";
+    console.table(datosTemplate);
+    $.ajax({
+        type: "POST",
+        data: {datos: datosTemplate},
+        url: "general/Orden/RegistrarTemplateOt",
+        success: function(r) {
+        console.table(r);
+        if(r == "Ok"){
+            
+            $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
+            alertify.success("Registrado con exito");
+            $('#formDatos').data('bootstrapValidator').resetForm();
+            $("#formDatos")[0].reset();
+            $("#boxDatos").hide(500);
+            $("#botonAgregar").removeAttr("disabled");
+        }else{
+             alertify.error("error al agregar");
+        }
+      
+        }
+
+    });
+});
+
+
+//Funcion Editar el vehiculo
+
+$("#btnsavedit").click(function(e){
+    var datosTemEdit = new FormData();
+    datosTemEdit = formToObject(datosTemEdit);
+    // datosTemEdit.zona_id = $("#zona").val();
+    datosTemEdit.usuario_app = "hugoDS";
+    datosTemEdit.observaciones = $("#obsedit").val();
+    datosTemEdit.tica_id = $("#tiporesiduoedit").val();
+    datosTemEdit.difi_id = $("#dispfinaledit").val();
+    datosTemEdit.circ_id = $("#circuitoedit").val();
+    // datosTemEdit.tran_id = $("#emp").val();
+    datosTemEdit.equi_id = $("#movedit").val();
+    datosTemEdit.chof_id = $("#choferedit").val();
+    datosTemEdit.teot_id = $("#teot_id").val();
+        console.table(datosTemEdit);
+        //faltaria la ubicaion, el codigo y tran_id
+        $.ajax({
+                type: "POST",
+                data: {datosEdit: datosTemEdit},
+                url: "general/Orden/ActualizarTemplateOt",
+                success: function (r) {
+                    
+                    console.table(r);
+                    if (r == "ok") {
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
+                        alertify.success("Actualizado con exito");
+                        $("#modalEdit").modal('hide');
+                       
+
+                      
+
+                    } else {
+                        
+                        alertify.error("error al actualizar");
+                    }
+                }
+            });
+
+    });
+$("#btndelete").click(function(e){
+    var datosTemDelete = new FormData();
+    datosTemDelete = formToObject(datosTemDelete);
+    // datosTemEdit.zona_id = $("#zona").val();
+    datosTemDelete.teot_id = $("#id_templateot").val();
+  
+        //faltaria la ubicaion, el codigo y tran_id
+        $.ajax({
+                type: "POST",
+                data: {datosDelete: datosTemDelete},
+                url: "general/Orden/EliminarTemplateOt",
+                success: function (r) {
+                    
+                    console.table(r);
+                    if (r == "ok") {
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
+                        alertify.success("Borrado con exito");
+                        $("#modalBorrar").modal('hide');
+                       
+
+                      
+
+                    } else {
+                        
+                        alertify.error("error al Borrar");
+                    }
+                }
+            });
+
+});
+
+</script>
+
+
 <script>
     function clickedit(aux) {
         //limpia los select para cargar datos especificos
@@ -663,7 +879,7 @@
         }
     }).on('success.form.bv', function (e) {
         e.preventDefault();
-        guardar();
+        // guardar();
     });
 </script>
 <!-- script bootstrap validator -->
@@ -863,89 +1079,89 @@
 </script>
 <!-- Script Agregar datos -->
 <script>
-    function guardar() {
+    // function guardar() {
 
-        datos = $('#formDatos').serialize();
+    //     datos = $('#formDatos').serialize();
 
-        //datos para mostrar a modo de ejemplo para DEMO---------------
-        //Serialize the Form
-        var values = {};
-        $.each($("#formDatos").serializeArray(), function (i, field) {
-            values[field.name] = field.value;
-        });
-        //Value Retrieval Function
-        var getValue = function (valueName) {
-            return values[valueName];
-        };
-        //Retrieve the Values
-        var empresa = getValue("empresa");
-        var zona = getValue("zona");
-        var circuito = getValue("circuito");
-        var movilidad = getValue("movilidad");
-        var numreg = getValue("numreg");
-        var dominio = getValue("dominio");
-        var chofer = getValue("chofer");
-        var fecha = getValue("fecha");
-        var dispfinal = getValue("dispfinal");
-        var tiporesiduo = getValue("tiporesiduo");
-        var num = getValue("nro");
+    //     //datos para mostrar a modo de ejemplo para DEMO---------------
+    //     //Serialize the Form
+    //     var values = {};
+    //     $.each($("#formDatos").serializeArray(), function (i, field) {
+    //         values[field.name] = field.value;
+    //     });
+    //     //Value Retrieval Function
+    //     var getValue = function (valueName) {
+    //         return values[valueName];
+    //     };
+    //     //Retrieve the Values
+    //     var empresa = getValue("empresa");
+    //     var zona = getValue("zona");
+    //     var circuito = getValue("circuito");
+    //     var movilidad = getValue("movilidad");
+    //     var numreg = getValue("numreg");
+    //     var dominio = getValue("dominio");
+    //     var chofer = getValue("chofer");
+    //     var fecha = getValue("fecha");
+    //     var dispfinal = getValue("dispfinal");
+    //     var tiporesiduo = getValue("tiporesiduo");
+    //     var num = getValue("nro");
 
-        var aux = parseInt(localStorage.getItem('aux'));
+    //     var aux = parseInt(localStorage.getItem('aux'));
 
-        localStorage.setItem('num' + aux, num);
-        localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
-        localStorage.setItem('dispfinal' + aux, dispfinal);
-        localStorage.setItem('fecha' + aux, fecha);
-        localStorage.setItem('chofer' + aux, chofer);
-        localStorage.setItem('dominio' + aux, dominio);
-        localStorage.setItem('numreg' + aux, numreg);
-        localStorage.setItem('movilidad' + aux, movilidad);
-        localStorage.setItem('circuito' + aux, circuito);
-        localStorage.setItem('zona' + aux, zona);
-        localStorage.setItem('empresa' + aux, empresa);
+    //     localStorage.setItem('num' + aux, num);
+    //     localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
+    //     localStorage.setItem('dispfinal' + aux, dispfinal);
+    //     localStorage.setItem('fecha' + aux, fecha);
+    //     localStorage.setItem('chofer' + aux, chofer);
+    //     localStorage.setItem('dominio' + aux, dominio);
+    //     localStorage.setItem('numreg' + aux, numreg);
+    //     localStorage.setItem('movilidad' + aux, movilidad);
+    //     localStorage.setItem('circuito' + aux, circuito);
+    //     localStorage.setItem('zona' + aux, zona);
+    //     localStorage.setItem('empresa' + aux, empresa);
 
-        //--------------------------------------------------------------
+    //     //--------------------------------------------------------------
 
-        if ($("#formDatos").data('bootstrapValidator').isValid()) {
-            $.ajax({
-                type: "POST",
-                data: datos,
-                url: "ajax/Ordentrabajo/guardarDato",
-                success: function (r) {
-                    if (r == "ok") {
+    //     if ($("#formDatos").data('bootstrapValidator').isValid()) {
+    //         $.ajax({
+    //             type: "POST",
+    //             data: datos,
+    //             url: "ajax/Ordentrabajo/guardarDato",
+    //             success: function (r) {
+    //                 if (r == "ok") {
                         
-                        //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
-                        var t = $('#example2').DataTable();
-                        var fila = t.row.add([
-                            zona,
-                            circuito,
-                            empresa,
-                            movilidad,
-                            chofer,
-                            //agrega los iconos correspondientes
-                            '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
-                        ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
-                        t.draw(false);
+    //                     //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
+    //                     var t = $('#example2').DataTable();
+    //                     var fila = t.row.add([
+    //                         zona,
+    //                         circuito,
+    //                         empresa,
+    //                         movilidad,
+    //                         chofer,
+    //                         //agrega los iconos correspondientes
+    //                         '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
+    //                     ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
+    //                     t.draw(false);
 
-                        aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
-                        localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
+    //                     aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
+    //                     localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
 
-                        $('#formDatos').data('bootstrapValidator').resetForm();
-                        $("#formDatos")[0].reset();
-                        $('#selecmov').find('option').remove();
-                        $('#chofer').find('option').remove();
-                        $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
-                        $("#boxDatos").hide(500);
-                        $("#botonAgregar").removeAttr("disabled");
-                        alertify.success("Agregado con exito");
-                    } else {
-                        //console.log(r);
-                        alertify.error("error al agregar");
-                    }
-                }
-            });
-        }
-    }
+    //                     $('#formDatos').data('bootstrapValidator').resetForm();
+    //                     $("#formDatos")[0].reset();
+    //                     $('#selecmov').find('option').remove();
+    //                     $('#chofer').find('option').remove();
+    //                     $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
+    //                     $("#boxDatos").hide(500);
+    //                     $("#botonAgregar").removeAttr("disabled");
+    //                     alertify.success("Agregado con exito");
+    //                 } else {
+    //                     //console.log(r);
+    //                     alertify.error("error al agregar");
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }
 </script>
 
 <script>
