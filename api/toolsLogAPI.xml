@@ -201,7 +201,7 @@
             <property name="MESSAGE" value="FIRST"/>
          </log>
          <payloadFactory media-type="json" description="Mensaje error">
-            <format>{"respuesta":              { "resultado" : "ok"              , "soco_id":"$1"                 , "case_id":"$2"           , "uri.var.bpmSession":"$3"   }             }</format>
+            <format>{"respuesta":              { "resultado" : "ok"              , "soco_id":"$1"                 , "case_id":"$2"           , "bpmSession":"$3"   }             }</format>
             <args>
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
                <arg evaluator="xml" expression="get-property('uri.var.caseid')"/>
@@ -402,7 +402,7 @@
             <property name="MESSAGE" value="FIRST"/>
          </log>
          <payloadFactory media-type="json" description="Mensaje error">
-            <format>{"respuesta":              { "resultado" : "ok"              , "sore_id":"$1"                 , "case_id":"$2"           , "uri.var.bpmSession":"$3"   }             }</format>
+            <format>{"respuesta":              { "resultado" : "ok"              , "sore_id":"$1"                 , "case_id":"$2"           , "bpmSession":"$3"   }             }</format>
             <args>
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
                <arg evaluator="xml" expression="get-property('uri.var.caseid')"/>
@@ -623,7 +623,7 @@
             <property name="MESSAGE" value="FIRST"/>
          </log>
          <payloadFactory media-type="json" description="Mensaje error">
-            <format>{"respuesta":              { "resultado" : "ok"              , "ortr_id":"$1"                 , "case_id":"$2"           , "uri.var.bpmSession":"$3"   }             }</format>
+            <format>{"respuesta":              { "resultado" : "ok"              , "ortr_id":"$1"                 , "case_id":"$2"           , "bpmSession":"$3"   }             }</format>
             <args>
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
                <arg evaluator="xml" expression="get-property('uri.var.caseid')"/>
