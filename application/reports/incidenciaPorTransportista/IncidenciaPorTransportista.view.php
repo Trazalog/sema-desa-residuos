@@ -101,7 +101,7 @@ use \koolreport\widgets\koolphp\Card;
                                             // "showFooter" => true, // cambiar true por "top" para ubicarlo en la parte superior
                                             "headers" => array(
                                                 array(
-                                                    "".$clave => array("colSpan" => 6),
+                                                    "".$clave.", ".sizeof($valor)." incidencias" => array("colSpan" => 6),
                                                     // "Other Information" => array("colSpan" => 2),
                                                 )
                                             ), // Para desactivar encabezado reemplazar "headers" por "showHeader"=>false

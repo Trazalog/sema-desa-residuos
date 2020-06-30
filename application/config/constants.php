@@ -175,3 +175,7 @@ define('FILES', 'files/');
 define('PORT', ':3000/');
 
 // define('REST', 'http://localhost'.PORT);
+
+#FECHA BASE PARA FILTRO DE MES Y AÑO
+
+define('ANIO_BASE','2017');

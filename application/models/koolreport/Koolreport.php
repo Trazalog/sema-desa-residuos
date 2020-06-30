@@ -271,4 +271,45 @@ class Koolreport extends CI_Model
         return $aux;
     }
 
+    public function getZonas()
+    {
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETZONAS');
+        $url = 'http://localhost:8080/zonas';
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        return $rsp;
+    }
+
+    public function getIncidenciasPorZona($zona)
+    {
+        $url = "http://localhost:8080/incidencias";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        $i = 0;
+        foreach($rsp->incidencias->incidencia as $valor)
+        {
+            if($valor->zona == $zona)
+            {
+                $aux[] = $rsp->incidencias->incidencia[$i];
+            }
+            $i++;
+        }
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIASPORZONA| #ARRAY: >>' . $aux);
+
+        return $aux;
+    }
+
+    public function getFiltroMyA()
+    {
+        $aux["mes"] = array("enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
+        for($i = ANIO_BASE; $i <= date('Y'); $i++)
+        {
+            $aux["año"][$i - ANIO_BASE] = $i;
+        }
+        $data->filtro = $aux;
+        // $data->funcion = 'incidenciaPorZona';
+        // $json = json_enconde($aux);
+        return $data;
+    }
+
 }

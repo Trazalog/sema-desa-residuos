@@ -4,6 +4,7 @@ require APPPATH . "/reports/pesoDeBascula/PesoDeBascula.php";
 require APPPATH . "/reports/incidencia/Incidencia.php";
 require APPPATH . "/reports/incidenciaPorTransportista/IncidenciaPorTransportista.php";
 require APPPATH . "/reports/incidenciaPorMunicipio/IncidenciaPorMunicipio.php";
+require APPPATH . "/reports/incidenciaPorZona/IncidenciaPorZona.php";
 
 class Reportes extends CI_Controller
 {
@@ -141,8 +142,10 @@ class Reportes extends CI_Controller
     public function filtroIncidenciaPorTransportista()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROINCIDENCIAPORTRANSPORTISTA|');
-        $data['calendarioDesde'] = true;
-        $data['calendarioHasta'] = true;
+        // $data['calendarioDesde'] = true;
+        // $data['calendarioHasta'] = true;
+        $data = $this->Koolreport->getFiltroMyA();
+        $data->funcion = 'incidenciaPorTransportista';
         $this->load->view('reportes/filtro',$data);
     }
 
@@ -184,8 +187,51 @@ class Reportes extends CI_Controller
     public function filtroIncidenciaPorMunicipio()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROINCIDENCIAPORMUNICIPIO|');
-        $data['calendarioDesde'] = true;
-        $data['calendarioHasta'] = true;
+        // $data['calendarioDesde'] = true;
+        // $data['calendarioHasta'] = true;
+        $data = $this->Koolreport->getFiltroMyA();
+        $data->funcion = 'incidenciaPorMunicipio';
+        $this->load->view('reportes/filtro',$data);
+    }
+
+    public function incidenciaPorZona()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#INCIDENCIAPORZONA|');
+        //filtro puede traer mes o año
+        $filtro = $this->input->post('data');
+
+        // $desde = $aux['datepickerDesde'];
+        // $hasta = $aux['datepickerHasta'];
+        if($filtro)
+        {
+            // $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            // $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $data = $this->Koolreport->getZonas()->zonas->zona;
+            $url = CONSTANTE.'/incidenciaPorZona?filtro='.$filtro;
+            foreach($data as $valor)
+            {
+                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorZona($valor->nombre,$url);
+            }
+            $reporte = new IncidenciaPorZona($aux);
+            $reporte->run()->render();
+        }else
+        {
+            $data = $this->Koolreport->getZonas()->zonas->zona;
+            $url = CONSTANTE.'desde//hasta';
+            foreach($data as $valor)
+            {
+                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorZona($valor->nombre,$url);
+            }
+            $reporte = new IncidenciaPorZona($aux);
+            $reporte->run()->render();
+        }
+    }
+
+    public function filtroIncidenciaPorZona()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROINCIDENCIAPORZONA|');
+        $data = $this->Koolreport->getFiltroMyA();
+        $data->funcion = 'incidenciaPorZona';
         $this->load->view('reportes/filtro',$data);
     }
 
