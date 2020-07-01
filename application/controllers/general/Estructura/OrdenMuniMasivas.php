@@ -23,11 +23,11 @@ class OrdenMuniMasivas extends CI_Controller {
     function templateOrdenMuniMasivas()
     {
       log_message('INFO','#TRAZA|OrdenMuniMasivas|templateOrdenMuniMasivas() >>'); 
-      $data['Carga'] = $this->OrdenesMuniMasivas->obtener_Tipo_Carga();
-      $data['Zona'] = $this->OrdenesMuniMasivas->obtener_Zona();
-      //$data['Estado'] = $this->OrdenesMuniMasivas->obtener_Estado();
-      $data['Circuito'] = $this->OrdenesMuniMasivas->obtener_Circuito();
-      $this->load->view('layout/Ordenes/OMuniMasivas',$data); 
+      // $data['Carga'] = $this->OrdenesMuniMasivas->obtener_Tipo_Carga();
+      // $data['Zona'] = $this->OrdenesMuniMasivas->obtener_Zona();
+      // //$data['Estado'] = $this->OrdenesMuniMasivas->obtener_Estado();
+      // $data['Circuito'] = $this->OrdenesMuniMasivas->obtener_Circuito();
+      $this->load->view('layout/Ordenes/OMuniMasivas'); 
     }
 
      /**
@@ -38,9 +38,21 @@ class OrdenMuniMasivas extends CI_Controller {
       function Listar_OrdenesMuniMasivas()
       {
         log_message('INFO','#TRAZA|Contenedor|Listar_Contenedor() >>');
-        // $data["contenedores"] = $this->Contenedores->Listar_Contenedor();
-        $this->load->view('layout/Ordenes/ListaOMuniMasivas');   
+        $data["templates"] = $this->OrdenesMuniMasivas->Listar_OT();
+        $data['fecha'] = date('Y-m-d');
+        $this->load->view('layout/Ordenes/ListaOMuniMasivas',$data);   
       }
+      function EjecutarOTs()
+      {
+        log_message('INFO','#TRAZA|Contenedor|Listar_Contenedor() >>');
+        $resp = $this->OrdenesMuniMasivas->Ejecutar_OT($this->input->post('datos'));
+      }
+      // function ListartemplateporFiltros()
+      // {
+      //   log_message('INFO','#TRAZA|Contenedor|Borrar_Contenedor() >>');
+      //   $data['templates'] = $this->OrdenesMuniMasivas->Templatefiltradas($this->input->post('datos'));
+      //   //$this->load->view('layout/Ordenes/ListaOMuniMasivas'); 
+      // }
 
 }
 ?>
