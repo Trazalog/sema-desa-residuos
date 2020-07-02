@@ -312,4 +312,20 @@ class Koolreport extends CI_Model
         return $data;
     }
 
+    public function getToneladasEntregadas()
+    {
+        // $municipios = $this->getMunicipios();
+        // $transportistas = $this->getTransportistas();
+        // $pesos = $this->getPesosDeBascula();
+        // foreach($pesos as $pe)
+        // {
+        //     $aux[$pesos->transportista][$pesos->departamento] = ;
+        // }
+
+        $url = "http://localhost:8080/departamentos/pesajes";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        return $rsp;
+    }
+
 }
