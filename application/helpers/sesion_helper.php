@@ -17,7 +17,7 @@ if(!function_exists('userNick')){
     
     function userNick()
     {
-        return 'transportista1'; //!HARDCODE
+        return 'hugoDS'; //!HARDCODE
         $ci =& get_instance();			
         $userdata  = $ci->session->userdata('user_data');
 		return  $userdata[0]['usrNick'];
