@@ -1295,15 +1295,30 @@ http://10.142.0.7:8280/services/semaresiduosDS
     }
 
 
+--contenedoresEntregadosSet" 
+  recurso: /contenedores/entregados/entregar
+  metodo: post
+      insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)&#xd;  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))&#xd;returning coen_id;
+
 -- contenedoresEntregaSet 
 
-  recurso: /entregaContenedores
-  metodo: post
 
   insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id )
   values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id)
   returning coen_id
 
+{"_post_contenedores_entregados_entregar":{
+	"fec_entrega":"01/01/2020",
+	"cont_id":"104",
+	"usuario_app":"rodete",
+	"soco_id":"86",
+	"tica_id":"tipos_cargaResiduos Tecnologicos",
+	"equi_id_entrega":"40"
+	}
+}
+
+
+{"respuesta": {"coen_id": "20"}}
 
   -- ejemplo
 
@@ -1558,7 +1573,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
     difi_id,
     ortr_id)
   values(:descripcion,
-    to_date(:fecha,'DD-MM-YYYY'),
+    to_date(:fecha,'YYYY-MM-DD'),
     :num_acta,
     :adjunto,
     :usuario_app,
@@ -2322,6 +2337,7 @@ SELECT
 	, zo.zona_id zona_id
 	, ci.codigo || ' ' || ci.descripcion circuito
 	, ci.zona_id
+        , ci.circ_id circ_id
 	, t.valor tipo_carga
 	, t.tabl_id tica_id
 	, t2.valor disposicion_final
@@ -2332,11 +2348,15 @@ SELECT
 	, ch.apellido || ', ' || ch.nombre nombre_chofer
 	, eq.dominio || ' ' || eq.codigo || ' ' || eq.marca || ' ' || eq.descripcion equipo
 	, eq.equi_id equi_id
+	, eq.cont_id cont_id
+	, ot.ortr_id 
 FROM
 	log.circuitos ci
 LEFT JOIN core.zonas zo ON
 	zo.zona_id = ci.zona_id
 	, log.templates_orden_transporte tot
+LEFT JOIN log.ordenes_transporte ot ON tot.teot_id = ot.teot_id 
+AND date_trunc('day',ot.fec_alta) = date_trunc('day',now()) 
 	, log.choferes ch
 	, core.tablas t
 	, core.tablas t2
@@ -2349,42 +2369,105 @@ WHERE
 	AND tot.difi_id = t2.tabl_id
 	AND tot.equi_id = eq.equi_id
 	AND eq.tran_id = tr.tran_id
-        AND tot.eliminado = 0
+         AND tot.eliminado = 0
 	AND tot.sotr_id = CAST(:sotr_id AS integer)
 
 Respuesta:
 {"templatesOrdenTransporte": {"templateOrdenTransporte": [
       {
       "transportista": "transportista 2 cuit:123456",
-      "tica_id": "tipos_cargaResiduos Urbanos",
+      "tica_id": "tipo_cargaResiduos Quimicos",
+      "circ_id": "148",
       "tran_id": "47",
-      "tipo_carga": "Residuos Urbanos",
-      "zona_id": null,
-      "equi_id": "40",
-      "zona": null,
-      "nombre_chofer": ", sergio",
-      "circuito": "2345qwer qwrqr",
-      "chof_id": "23565",
-      "equipo": "asf 34 asf asd",
+      "ortr_id": null,
+      "tipo_carga": "Residuos Quimicos",
+      "zona_id": "109",
+      "equi_id": "39",
+      "zona": "desc",
+      "nombre_chofer": "led, pepe",
+      "circuito": "1IIMZ desc",
+      "chof_id": "2134545",
+      "equipo": "wqe324 wqwer peugeot automovil",
       "difi_id": "disposicion_finalPTA",
-      "teot_id": "2",
-      "disposicion_final": "PTA"
+      "teot_id": "17",
+      "disposicion_final": "PTA",
+      "cont_id": null
    },
       {
       "transportista": "transportista 2 cuit:123456",
-      "tica_id": "tipos_cargaResiduos Urbanos",
+      "tica_id": "tipo_cargaResiduos Quimicos",
+      "circ_id": "168",
       "tran_id": "47",
-      "tipo_carga": "Residuos Urbanos",
-      "zona_id": null,
-      "equi_id": "40",
-      "zona": null,
-      "nombre_chofer": ", sergio",
-      "circuito": "2345qwer qwrqr",
-      "chof_id": "23565",
-      "equipo": "asf 34 asf asd",
+      "ortr_id": null,
+      "tipo_carga": "Residuos Quimicos",
+      "zona_id": "109",
+      "equi_id": "39",
+      "zona": "desc",
+      "nombre_chofer": "Fierro Delgado, Rosamel",
+      "circuito": "BtaW444 desc123",
+      "chof_id": "21206850",
+      "equipo": "wqe324 wqwer peugeot automovil",
       "difi_id": "disposicion_finalPTA",
-      "teot_id": "3",
-      "disposicion_final": "PTA"
+      "teot_id": "13",
+      "disposicion_final": "PTA",
+      "cont_id": null
+   },
+      {
+      "transportista": "transportista 2 cuit:123456",
+      "tica_id": "tipo_cargaResiduos Quimicos",
+      "circ_id": "176",
+      "tran_id": "47",
+      "ortr_id": null,
+      "tipo_carga": "Residuos Quimicos",
+      "zona_id": "117",
+      "equi_id": "39",
+      "zona": "desc",
+      "nombre_chofer": "Fierro Delgado, Rosamel",
+      "circuito": "45545 circuito 5151",
+      "chof_id": "21206850",
+      "equipo": "wqe324 wqwer peugeot automovil",
+      "difi_id": "disposicion_finalPTA",
+      "teot_id": "8",
+      "disposicion_final": "PTA",
+      "cont_id": null
+   },
+      {
+      "transportista": "una empresa soida como el agua cuit:2022020202",
+      "tica_id": "tipo_cargaEscombros",
+      "circ_id": "186",
+      "tran_id": "51",
+      "ortr_id": null,
+      "tipo_carga": "Escombros",
+      "zona_id": null,
+      "equi_id": "43",
+      "zona": null,
+      "nombre_chofer": "led, pepe",
+      "circuito": "BtaW445thk dfssg",
+      "chof_id": "2134545",
+      "equipo": "APT345 23456 Iveco Camion Rojo",
+      "difi_id": "disposicion_finalPTA",
+      "teot_id": "18",
+      "disposicion_final": "PTA",
+      "cont_id": null
+   },
+      {
+      "transportista": "una empresa soida como el agua cuit:2022020202",
+      "tica_id": "tipo_cargaOrganico",
+      "circ_id": "149",
+      "tran_id": "51",
+      "ortr_id": null,
+      "tipo_carga": "Organico",
+      "zona_id": "110",
+      "equi_id": "42",
+      "zona": "we",
+      "nombre_chofer": "led, pepe",
+      "circuito": "123abcd6 descripcion",
+      "chof_id": "2134545",
+      "equipo": "TKG123 234457676786 Chevrolet Camion Verde",
+      "difi_id": "disposicion_finalPTA",
+      "teot_id": "7",
+      "disposicion_final": "PTA",
+      "cont_id": null
    }
 ]}}
 
@@ -2396,6 +2479,7 @@ SELECT
 	, zo.zona_id zona_id
 	, ci.codigo || ' ' || ci.descripcion circuito
 	, ci.zona_id
+        , ci.circ_id circ_id
 	, t.valor tipo_carga
 	, t.tabl_id tica_id
 	, t2.valor disposicion_final
@@ -2406,11 +2490,15 @@ SELECT
 	, ch.apellido || ', ' || ch.nombre nombre_chofer
 	, eq.dominio || ' ' || eq.codigo || ' ' || eq.marca || ' ' || eq.descripcion equipo
 	, eq.equi_id equi_id
+	, eq.cont_id cont_id
+	, ot.ortr_id 
 FROM
 	log.circuitos ci
 LEFT JOIN core.zonas zo ON
 	zo.zona_id = ci.zona_id
 	, log.templates_orden_transporte tot
+LEFT JOIN log.ordenes_transporte ot ON tot.teot_id = ot.teot_id 
+AND date_trunc('day',ot.fec_alta) = date_trunc('day',now()) 
 	, log.choferes ch
 	, core.tablas t
 	, core.tablas t2
@@ -2430,7 +2518,9 @@ Respuesta:
 {"templateOrdenTransporte": {
    "transportista": "transportista 2 cuit:123456",
    "tica_id": "tipos_cargaResiduos Urbanos",
+   "circ_id": "182",
    "tran_id": "47",
+   "ortr_id": "74",
    "tipo_carga": "Residuos Urbanos",
    "zona_id": null,
    "equi_id": "40",
@@ -2440,8 +2530,9 @@ Respuesta:
    "chof_id": "23565",
    "equipo": "asf 34 asf asd",
    "difi_id": "disposicion_finalPTA",
-   "teot_id": "3",
-   "disposicion_final": "PTA"
+   "teot_id": "1",
+   "disposicion_final": "PTA",
+   "cont_id": null
 }}
 
 --templateOrdenTransporteSet
@@ -3210,6 +3301,7 @@ retorna 200 si ok
    "sePuedeEjecutar":true/false,
    "entregaSinModificaciones":true/false
 }
+
 
 
 
