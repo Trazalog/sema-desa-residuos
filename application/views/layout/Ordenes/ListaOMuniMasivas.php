@@ -1,5 +1,8 @@
 <div id="lista_cont">
 <div id="tabla">
+        <div>
+            <input type="date" id="fecha" name="fecha" value="<?php echo $fecha;?>" class="form-control" required>
+        </div>
 <table id="tabla_contenedores" class="table table-bordered table-striped">
     <thead class="thead-dark" bgcolor="#eeeeee">
         <th><span class="glyphicon glyphicon-ok" aria-hidden="true" id="select"></span></th>
@@ -69,54 +72,51 @@
 <!--__________________FIN TABLA___________________________-->
 <script>
 
-async function llamarEjecutarOTs ($data)
+function llamarEjecutarOTs ($data)
 {
 
-    var d = $data;
-    var TeotId = new FormData();
-        TeotId  = formToObject(TeotId );
+    // var TeotId = new FormData();
+    //     TeotId  = formToObject(TeotId);
 
-        var cont = new FormData();
-        cont  = formToObject(cont );
-        cont.cont_id = "104";
-        TeotId.fec_retiro =$("#fecha").val();
-        TeotId.difi_id = d.difi_id;
-        TeotId.sotr_id = 38;
-        TeotId.equi_id =d.equi_id;
-        TeotId.chof_id =d.chof_id;
-        TeotId.usuario_app = "hugoDS";
-        TeotId.teot_id = d.teot_id;
-        TeotId.contenedores = cont    
+    //     var cont = new FormData();
+    //     cont  = formToObject(cont);
+    //     cont.cont_id = d.cont_id;
+    //     TeotId.fec_retiro =$("#fecha").val();
+    //     TeotId.difi_id = d.difi_id;
+    //     TeotId.sotr_id = 38;
+    //     TeotId.equi_id =d.equi_id;
+    //     TeotId.chof_id =d.chof_id;
+    //     TeotId.usuario_app = "hugoDS";
+    //     TeotId.teot_id = d.teot_id;
+    //     TeotId.contenedores = cont;    
 
         $.ajax({
                 type: "POST",
-                data: {datos: TeotId},
+                data: {data: $data},
                 url: "general/Estructura/OrdenMuniMasivas/EjecutarOTs",
                 success: function (r) {
-                    
                     console.table(r);
                     if (r == "ok") {
-                        //$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
-                        alertify.success("Actualizado con exito");
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/OrdenMuniMasivas/Listar_OrdenesMuniMasivas");
+                        alertify.success("Ejecutadas con exito");
                         // $("#modalEdit").modal('hide');
                        
 
                       
 
                     } else {
-                        
-                        alertify.error("error al actualizar");
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/OrdenMuniMasivas/Listar_OrdenesMuniMasivas");
+                        alertify.error("error al ejecutar");
                     }
                 },
-                complete: function() {
-                
-                }
             });
 }
  function EjecutarOTs()
 {
-    console.table($("input:checkbox:checked"));
-    // var aux = []; 
+    
+    var aux = []; 
+    var datoSelect = new FormData();
+        datoSelect  = formToObject(datoSelect);
     $("input:checkbox:checked").each( function() { 
 
         var datos = $(this).parents("tr").attr("data-json");		
@@ -124,77 +124,11 @@ async function llamarEjecutarOTs ($data)
         if (datos != null) {	
         var d = JSON.parse(datos);
         console.table(d.teot_id);
-        // aux.push(d.teot_id);
-        //  llamarEjecutarOTs(d);
-            //OBTENER ACA TODOS LA CUAESTION SELECCIONADA Y PASAR TODO ESO A CONTROLLER Y AHI CON FOREACH RECORRER E IR LLAMANDO AL SERVICIO
-        var TeotId = new FormData();
-        TeotId  = formToObject(TeotId );
-
-        var cont = new FormData();
-        cont  = formToObject(cont );
-        cont.cont_id = "104";
-        TeotId.fec_retiro ="10-10-2020";
-        TeotId.difi_id = d.difi_id;
-        TeotId.sotr_id = 38;
-        TeotId.equi_id =d.equi_id;
-        TeotId.chof_id =d.chof_id;
-        TeotId.usuario_app = "hugoDS";
-        TeotId.teot_id = d.teot_id;
-        TeotId.contenedores = cont    
-
-        $.ajax({
-                type: "POST",
-                data: {datos: TeotId},
-                url: "general/Estructura/OrdenMuniMasivas/EjecutarOTs",
-                success: function (r) {
-                    
-                    console.table(r);
-                    if (r == "ok") {
-                        //$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
-                        alertify.success("Actualizado con exito");
-                        // $("#modalEdit").modal('hide');
-                       
-
-                      
-
-                    } else {
-                        
-                        alertify.error("error al actualizar");
-                    }
-                },
-                complete: function() {
-                
-                }
-            });
-                
+        aux.push(d);
         }	
     });
-    // console.table(aux);
-    // var TeotId = new FormData();
-    // TeotId  = formToObject(TeotId );
-    // TeotId.teot_ids = aux;
-    //  $.ajax({
-    //             type: "POST",
-    //             data: {datos: TeotId},
-    //             url: "general/Estructura/OrdenMuniMasivas/EjecutarOTs",
-    //             success: function (r) {
-                    
-    //                 console.table(r);
-    //                 if (r == "ok") {
-    //                     //$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
-    //                     alertify.success("Actualizado con exito");
-    //                     // $("#modalEdit").modal('hide');
-                       
-
-                      
-
-    //                 } else {
-                        
-    //                     alertify.error("error al actualizar");
-    //                 }
-    //             }
-    //         });
-
+    datoSelect.datos = aux;
+    llamarEjecutarOTs(datoSelect);
 }
 
 $(".btnInfo").click(function(e){

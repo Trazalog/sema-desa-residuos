@@ -82,9 +82,13 @@ class OrdenesMuniMasivas extends CI_Model
         $sotraux =json_decode($sotr["data"]);
         $id_sotr = $sotraux->solicitantes_transporte->sotr_id;
         $data["sotr_id"]=$id_sotr;
+        $data["usuario_app"] = $usuario_app;
         $post["ordenTransporte"] = $data; 
-        $resp = $this->rest->callAPI("GET",API_URL."/ordenTransporte",$post);
+        $resp = $this->rest->callAPI("POST",API_URL."/ordenTransporte",$post);
         $aux = json_decode($resp["status"]);
-        echo $aux;
+        if($aux == 1)
+        {return 1;}
+        else{return 0;}
+        
     }
 }

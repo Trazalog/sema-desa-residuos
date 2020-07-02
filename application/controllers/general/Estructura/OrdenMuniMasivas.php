@@ -44,8 +44,28 @@ class OrdenMuniMasivas extends CI_Controller {
       }
       function EjecutarOTs()
       {
-        log_message('INFO','#TRAZA|Contenedor|Listar_Contenedor() >>');
-        $resp = $this->OrdenesMuniMasivas->Ejecutar_OT($this->input->post('datos'));
+        $data = $this->input->post('data');
+        $aux = 0;
+        foreach ($data["datos"] as $valor)
+        {
+          $masivas["difi_id"] = $valor["difi_id"];
+          $masivas["sotr_id"] = $valor["sotr_id"];
+          $masivas["equi_id"] = $valor["equi_id"];
+          $masivas["chof_id"] = $valor["chof_id"];
+          $masivas["usuario_app"] = "hugoDS";
+          $masivas["teot_id"] = $valor["teot_id"];
+          $cont["cont_id"] = $valor["cont_id"];
+          $masivas["contenedores"] = $cont;
+          $masivas["fec_retiro"] =  date('d-m-Y');
+          $resp = $this->OrdenesMuniMasivas->Ejecutar_OT($masivas);
+          $aux =$aux + $resp;
+        }
+        if($aux != 0)
+        {echo "ok";}
+        else
+        {echo "error";}
+        // log_message('INFO','#TRAZA|Contenedor|Listar_Contenedor() >>');
+        // $resp = $this->OrdenesMuniMasivas->Ejecutar_OT($data);
       }
       // function ListartemplateporFiltros()
       // {

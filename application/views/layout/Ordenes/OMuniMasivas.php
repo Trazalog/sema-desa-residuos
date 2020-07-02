@@ -9,10 +9,7 @@
 </div>
 
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
-        <div>
-        <input type="date" id="fecha" name="fecha" value="<?php echo $fecha;?>" class="form-control"
-                            required style="dilpay:none">
-        </div>
+        
         <!-- SEPARADOR -->
         <div class="col-sm-12"></div>
         <!-- SEPARADOR -->
