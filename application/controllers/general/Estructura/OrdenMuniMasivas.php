@@ -52,6 +52,7 @@ class OrdenMuniMasivas extends CI_Controller {
           $masivas["sotr_id"] = $valor["sotr_id"];
           $masivas["equi_id"] = $valor["equi_id"];
           $masivas["chof_id"] = $valor["chof_id"];
+          $masivas["tran_id"] = $valor["tran_id"];
           $masivas["usuario_app"] = "hugoDS";
           $masivas["teot_id"] = $valor["teot_id"];
           $cont["cont_id"] = $valor["cont_id"];

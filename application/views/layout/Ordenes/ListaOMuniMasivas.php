@@ -74,21 +74,12 @@
 
 function llamarEjecutarOTs ($data)
 {
-
-    // var TeotId = new FormData();
-    //     TeotId  = formToObject(TeotId);
-
-    //     var cont = new FormData();
-    //     cont  = formToObject(cont);
-    //     cont.cont_id = d.cont_id;
-    //     TeotId.fec_retiro =$("#fecha").val();
-    //     TeotId.difi_id = d.difi_id;
-    //     TeotId.sotr_id = 38;
-    //     TeotId.equi_id =d.equi_id;
-    //     TeotId.chof_id =d.chof_id;
-    //     TeotId.usuario_app = "hugoDS";
-    //     TeotId.teot_id = d.teot_id;
-    //     TeotId.contenedores = cont;    
+console.table($data);
+if($data["datos"]=="")
+{
+    console.table("vacio");
+    alertify.error("no hay ordenes seleccionadas para ejecutar");
+}else{
 
         $.ajax({
                 type: "POST",
@@ -110,6 +101,7 @@ function llamarEjecutarOTs ($data)
                     }
                 },
             });
+    }
 }
  function EjecutarOTs()
 {
