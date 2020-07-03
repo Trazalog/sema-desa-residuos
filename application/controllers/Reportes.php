@@ -252,4 +252,9 @@ class Reportes extends CI_Controller
         }
     }
 
+    public function toneladasPorGenerador()
+    {
+        
+    }
+
 }
