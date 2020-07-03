@@ -34,7 +34,11 @@ class OrdenTransportes extends CI_Model
     function ObtenerOTpordominio($data)
     {
         // $sotr_id = $this->rest->callAPI("GET",REST."/solicitantesTransporte/hugoDS");
-        $aux = $this->rest->callAPI("GET",REST."/vehiculo/asignadoARetiro/$data/solicitanteTransporte/38");
+        $usuario_app = userNick();
+        $sotr = $this->rest->callAPI("GET",REST."/solicitantesTransporte/$usuario_app");
+        $sotraux =json_decode($sotr["data"]);
+        $id_sotr = $sotraux->solicitantes_transporte->sotr_id;
+        $aux = $this->rest->callAPI("GET",REST."/vehiculo/asignadoARetiro/$data/solicitanteTransporte/$id_sotr");
         $aux =json_decode($aux["data"]);
         return $aux;
     }

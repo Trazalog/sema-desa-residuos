@@ -112,7 +112,7 @@
                                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                                     <?php
                                                     foreach ($equipo as $d) {
-                                                        echo '<option  value="'.$d->equi_id.'">'.$d->dominio.'</option>';
+                                                        echo '<option  value="'.$d->dominio.'">'.$d->equi_id.'</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -419,7 +419,7 @@ $.ajax({
       dataType: 'json',
       url: "general/Estructura/OrdenTransporte/GetChoferyTransportista",
       success: function($datos) {
-         
+         debugger;
           var res = $datos;
           console.table(res.chofer);
           console.table(res.chofer[1].nom_chofer);
@@ -448,20 +448,21 @@ $.ajax({
 }
 
 $("#equipo").change(function(){
-   
+ debugger;  
 // var dominio_equipo = this.value;
  var dominio_equipo = this.selectedOptions[0].textContent;
+ var dom_equipo = $("#equipo").val();
 var aux;
 $.ajax({
       type: "POST",
-      data: {dom_id: dominio_equipo},
+      data: {dom_id: dom_equipo},
       dataType: 'json',
       url: "general/Estructura/OrdenTransporte/ObtenerinfoOt",
       success: function($respuesta) {
         //   debugger;
         // var respuesta = JSON.parse($respuesta);
           var resp = $respuesta;
-          aux = resp.vehiculoAsignadoARetiro.tran_id;
+          aux = resp.vehiculoAsignadoARetiro.tran_id; // esto guardarlo en algun input oculto
           console.table(resp);
           console.table(resp.vehiculoAsignadoARetiro.descripcion);
           console.table(resp.vehiculoAsignadoARetiro.codigo);
@@ -582,10 +583,11 @@ function Guardar_Orden_transporte(){
     datos.fec_retiro = auxfecha;
     datos.difi_id = $("#dispfinal").val();
     datos.sotr_id = 38;
-    datos.equi_id = $("#equipo").val();
+    var dominio_equipo = $("#equipo").selectedOptions[0].textContent;
+    datos.equi_id = dominio_equipo;
     datos.chof_id = $("#chofer").val();
     datos.usuario_app = "HugoDS";
-    
+    //aca agregarle el cont_id
 
     var datos_contenedor = [];
     var rows = $('#tbl_cont tbody tr');
