@@ -32,9 +32,24 @@ class PedidoContenedores extends CI_Model
           $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);
           $tarea->infoContenedores = $this->obtenerContSolicitados($tarea->caseId);
           $resp = $this->load->view('transporte-bpm/proceso/analizaSolicitud', $tarea, true);
+          
+          //para probar confirma pedido modificado
+          // $soco_id= $tarea->infoSolicitud->soco_id; 
+          // $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
+          // $resp = $this->load->view('transporte-bpm/proceso/confirmaPedidoModificado', $tarea, true);
+         
           return $resp;
           break;
-        
+
+        case 'Confirma Pedido Modificado':
+        log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
+        $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);  
+        $soco_id= $tarea->infoSolicitud->soco_id; 
+        $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
+        $resp = $this->load->view('transporte-bpm/proceso/confirmaPedidoModificado', $tarea, true);
+        return $resp;
+        break;
+
         default:
           # code...
           break;
@@ -137,6 +152,18 @@ class PedidoContenedores extends CI_Model
       return $aux->solicitud;
     }
 
+    /**
+    * Devuelve informacion de Solicitud de Contenedor modificados (cant propuesta)
+    * @param string soco_id
+    * @return array informacion de solicitud de contenedores modificados (cant propuesta)
+    */
+    function obtenerContSolicitadosConfirma($soco_id)
+    {
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|obtenerContSolicitadosConfirma($soco_id): $soco_id >> '.json_encode($soco_id));
+      $aux = $this->rest->callAPI("GET",REST."/contenedoresSolicitados/$soco_id");
+      $aux =json_decode($aux["data"]);
+      return $aux->contSolicitados->contenedor;
+    }
 
 
 }    
