@@ -21,12 +21,13 @@ use \koolreport\widgets\koolphp\Card;
 
                     <div class="box box-primary">
 
-                        <div class="box-header">
-                            <h3 class="box-title">
+                        <div class="box-title"><br>
+                        <h2 style="text-align:center">Reporte de toneladas entregadas por transportisa</h2>
+                            <!-- <h3 class="box-title">
                                 <i class="fa fa-list"></i>
 
                                 Reportes
-                            </h3>
+                            </h3>-->
                         </div>
 
                         <div class="col-md-12">
@@ -47,17 +48,17 @@ use \koolreport\widgets\koolphp\Card;
                                     echo "<br><h3>Transportista:&nbsp;$valor->nombre:&nbsp;$valor->pesajeTotal Tn</h3><br>";
                                     if($valor != null)
                                     {
-                                        foreach($valor->departamentos->departamento as $depa)
+                                        foreach($valor->departamentos->departamento as $key => $depa)
                                         {
                                             if($depa != null)
                                             {
+                                                echo "<a onclick=\"$('#$clave$key').toggle();\"  style='font-size:15px'><i class='fa fa-plus'></i> Municipalidad: $depa->nombre, $depa->pesaje Tn </a><br><br>";
+                                                // $dato = $clave . $key;
+                                                // echo "<a onclick='apertura($dato)'  style='font-size:15px'><i class='fa fa-plus'></i> Municipalidad: $depa->nombre, $depa->pesaje Tn </a><br><br>";
+                                                echo "<div class='collapse' id='$clave$key'>";
                                                 Table::create(array(
                                                     "dataStore" => $depa->residuos->residuo,
                                                     "headers" => array(
-                                                        array(
-                                                            "Municipalidad: ".$depa->nombre.", ".$depa->pesaje." Tn" => array("colSpan" => 6),
-                                                            // "Other Information" => array("colSpan" => 2),
-                                                        )
                                                     ), // Para desactivar encabezado reemplazar "headers" por "showHeader"=>false
                                                     "columns" => array(
                                                         "tipo_carga" => array(
@@ -71,10 +72,11 @@ use \koolreport\widgets\koolphp\Card;
                                                         )
                                                     ),
                                                     "cssClass" => array(
-                                                        "table" => "table-striped table-scroll table-hover  table-responsive dataTables_wrapper form-inline table-scroll table-responsive dt-bootstrap dataTable",
+                                                        "table" => "table-striped table-scroll table-hover table-responsive dataTables_wrapper form-inline table-scroll table-responsive dt-bootstrap dataTable",
                                                         "th" => "sorting"
                                                     )
                                                 ));
+                                                echo '</div>';
                                             }
                                         }
                                     }
@@ -103,19 +105,30 @@ use \koolreport\widgets\koolphp\Card;
     </div>
 
     <script>
+    $('tr > td').each(function() {
+        if ($(this).text() == 0) {
+            $(this).text('-');
+            $(this).css('text-align', 'center');
+        }
+    });
 
-        $('tr > td').each(function() {
-            if ($(this).text() == 0) {
-                $(this).text('-');
-                $(this).css('text-align', 'center');
-            }
-        });
-
-        $('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroIncidenciaPorZona');
+		$('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroIncidenciaPorZona');
+		
+		// function apertura(idTabla) {
+		// 	$('#' + idTabla).toggle();	
+		// 	// var tabla = $('#' + idTabla);
+		// 	// console.table(tabla);
+		// 	// DataTable(tabla);		
+		// 	// tabla.DataTable();
+		// 	console.log("asd");
+		// 	DataTable($('.dataTable'));
+		// 	// debug();
+		// }
     </script>
 
+<!-- convierte las tablas en dataTable para utilizar buscador y filtro -->
     <script>
-        DataTable($('.dataTable'))
+    // DataTable($('.dataTable'))
     </script>
 
 </body>
