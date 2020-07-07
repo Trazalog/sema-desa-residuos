@@ -34,6 +34,8 @@ class Contenedores extends CI_Model
     function Guardar_Contenedor($data)
     {
         // var_dump($data);
+        $usuario = userNick();
+        $data["usuario_app"] = $usuario;
         log_message('INFO','#TRAZA|Contenedores|Guardar_Contenedor() >> '); 
         $post["post_contenedor"] = $data;       
         log_message('DEBUG','#Contenedores/Guardar_Contenedor'.json_encode($post));
@@ -130,5 +132,22 @@ class Contenedores extends CI_Model
         $aux = $this->rest->callAPI("GET",REST."/tablas/habilitacion_contenedor");
         $aux =json_decode($aux["data"]);
         return $aux->valores->valor;
+    }
+
+    function obtener_transportista()
+    {
+        log_message('INFO','#TRAZA|Contenedores|Obtener_Habilitacion() >> '); 
+        $aux = $this->rest->callAPI("GET",REST."/transportistas");
+        $aux =json_decode($aux["data"]);
+        return $aux->transportistas->transportista;
+    }
+
+    function obtenerImagen_Cont_Id($cont_id)
+    {
+        log_message('INFO','#TRAZA|Zonas|obtenerImagen_Zona_Id() >> ');   
+        log_message('DEBUG','#Zonas/obtenerImagen_Zona_Id: '.json_encode($dato)); 
+        $auxx = $this->rest->callAPI("GET",REST."/contenedores/get/imagen/$cont_id");
+        $aux =json_decode($auxx["data"]);
+        return $aux;
     }
 }

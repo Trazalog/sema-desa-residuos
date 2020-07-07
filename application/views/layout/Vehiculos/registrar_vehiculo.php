@@ -72,7 +72,14 @@
                             </select>
                         </div>
             ​        <!--_____________________________________________________________-->
-
+                                    <!--Tara-->
+                    <div class="form-group">
+                        <label for="Tara" >Tara:</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                                <input type="number" class="form-control" name="tara" id="tara">
+                        </div>
+                    </div>
                     <!--Condicion-->
                         <!-- <div class="form-group">
                             <label for="condicion" >Condicion:</label>
@@ -144,7 +151,15 @@
                            
                         </div>
             ​        <!--_____________________________________________________________-->
-
+                          <!--Adjuntar imagen--> 
+                        <div class="form-group">
+                            <form action="cargar_archivo" method="post" enctype="multipart/form-data"  id="fileimage">
+                                <label for="img_File">Seleccione Imagen</label>
+                                <input type="file" name="imagen" id="img_File" onchange="convertA()" style="font-size: smaller">
+                                <input type="text" id="input_aux_img" style="display:none" >
+                            </form>
+                            <img src="" alt="" id="imagen" width="" height="">
+                        </div>
                    
 
                 </div>
@@ -233,7 +248,14 @@
                                 <input type="text" class="form-control habilitar" id="e_dominio" name="dominio">
                             </div>
             ​            <!--_____________________________________________________________-->
-
+                         <!--Tara-->
+                        <div class="form-group">
+                            <label for="Tara" >Tara:</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                                    <input type="number" class="form-control habilitar" name="tara" id="taraedit">
+                            </div>
+                        </div>
                         <!--Marca-->
                             <div class="form-group">
                                 <label for="marca" >Marca:</label>
@@ -241,7 +263,17 @@
                                 <input type="text" class="form-control habilitar" id="e_marca" name="marca">
                             </div>
             ​            <!--_____________________________________________________________-->
-
+                                    <div class="form-group">
+                                                <label for="CircR" name="img">Imagen:</label>
+                                                <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
+                                                <input type="text" id="input_aux_img64" style="display:none" >
+                                                <input type="text" id="input_aux_zonaID" style="display:none" >                                   
+                                                <img src="" alt="no hay imagen! cargue una" id="img_base" width="" height="">
+                                   
+                                 
+                                   
+                                   
+                                        </div>
                         <!--Condicion-->
                             <!-- <div class="form-group">
                                 <label for="condicion" >Condicion:</label>
@@ -405,6 +437,65 @@
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
+//Convertir a base64 el archivo Imagen
+function GetFile(file){
+		var reader = new FileReader();
+		return new Promise((resolve, reject) => {
+			reader.onerror = () => {
+				reader.abort();
+				reject(new Error("Error parsing file"));
+			}
+			reader.onload = function() {
+				//This will result in an array that will be recognized by C#.NET WebApi as a byte[]
+				let bytes = Array.from(new Uint8Array(this.result));
+				//if you want the base64encoded file you would use the below line:
+				let base64StringFile = btoa(bytes.map((item) => String.fromCharCode(item)).join(""));
+				//Resolve the promise with your custom file structure
+				resolve({
+					bytes: bytes,
+					base64StringFile: base64StringFile,
+					fileName: file.name,
+					fileType: file.type
+				});
+			}
+			reader.readAsArrayBuffer(file);
+		});
+	}
+
+async function convertA(){
+       
+       
+       var file = document.getElementById('img_File').files[0];
+       console.table(document.getElementById('img_File').files[0]);
+           if (file) {
+               var archivo = await GetFile(file);
+               console.table(archivo);
+               if(archivo.fileType == "image/jpeg"){
+                  var cod = "data:image/jpeg;base64,"+archivo.base64StringFile;
+                  //var cod = "data:image/png;base64,"+archivo.base64StringFile;
+                    $("#input_aux_img").val(cod);
+                    $("#imagen").attr("src",$("#input_aux_img").val());
+                    $("#imagen").attr("width",100);
+                    $("#imagen").attr("height",100);
+               }else{
+                   if(archivo.fileType == "application/pdf"){
+                      var cod = "data:application/pdf;base64,"+archivo.base64StringFile;
+                   }
+                 
+               }
+               
+                $("#input_aux_img").val(cod);
+                console.table($("#input_aux_img").val());
+                
+               
+           }
+          
+           
+           
+   }
+
+</script>
+<script>
 
 
     $("#botonAgregar").on("click", function() {
@@ -449,6 +540,8 @@
     $("#e_equi_id").val(data.equi_id);
     var tranid = data.tran_id; 
     $("#e_tran_id").val(tranid); 
+    $("#taraedit").val(data.tara); 
+    ExtraerImagen(data);
     });
 
 //Modal Info
@@ -487,6 +580,8 @@
             $("#tran_id_info").val($sel[0][j].text); 
         } 
     } 
+    $("#taraedit").val(data.tara); 
+    ExtraerImagen(data);
     });
 
 //Modal Eliminar
@@ -500,66 +595,7 @@
 
 </script>
 ​<!--_____________________________________________________________-->
-<script>
-function GetFile(file){
-		var reader = new FileReader();
-		return new Promise((resolve, reject) => {
-			reader.onerror = () => {
-				reader.abort();
-				reject(new Error("Error parsing file"));
-			}
-			reader.onload = function() {
-				//This will result in an array that will be recognized by C#.NET WebApi as a byte[]
-				let bytes = Array.from(new Uint8Array(this.result));
-				//if you want the base64encoded file you would use the below line:
-				let base64StringFile = btoa(bytes.map((item) => String.fromCharCode(item)).join(""));
-				//Resolve the promise with your custom file structure
-				resolve({
-					bytes: bytes,
-					base64StringFile: base64StringFile,
-					fileName: file.name,
-					fileType: file.type
-				});
-			}
-			reader.readAsArrayBuffer(file);
-		});
-	}
 
-async function convertA(){
-       
-       
-       var file = document.getElementById('img_File').files[0];
-       console.table(document.getElementById('img_File').files[0]);
-           if (file) {
-               var archivo = await GetFile(file);
-               console.table(archivo);
-               if(archivo.fileType == "image/jpeg"){
-                  var cod = "data:image/jpeg;base64,"+archivo.base64StringFile;
-                  //var cod = "data:image/png;base64,"+archivo.base64StringFile;
-                    $("#input_aux_img").val(cod);
-                    $("#img_Base").attr("src",$("#input_aux_img").val());
-                    $("#img_Base").attr("width",100);
-                    $("#img_Base").attr("height",100);
-               }else{
-                   if(archivo.fileType == "application/pdf"){
-                      var cod = "data:application/pdf;base64,"+archivo.base64StringFile;
-                   }
-                 
-               }
-               
-                $("#input_aux_img").val(cod);
-                console.table($("#input_aux_img").val());
-                
-               
-           }
-          
-           
-           
-   }
-
-
-
-</script>
 
 <!--Script de guardado pantalla Registrar Vehiculo-->
 <script>
@@ -569,6 +605,8 @@ async function convertA(){
 
         var datos = new FormData($('#formVehiculo')[0]);
         datos = formToObject(datos);
+        datos.imagen = $("#input_aux_img").val();
+        datos.tara = $("#tara").val();
         //datos.imagen = $("#input_aux_img").val();
         //datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
         
@@ -620,6 +658,8 @@ async function convertA(){
         vehiculo.tran_id =  $("#e_tran_id").val();
         vehiculo.dominio = $("#e_dominio").val();
         vehiculo.fecha_ingreso = $("#id_fecha_ingreso").val();
+        vehiculo.imagen =  $("#input_aux_img64").val();
+        vehiculo.tara =  $("#taraedit").val();
         console.table(vehiculo);
         //faltaria la ubicaion, el codigo y tran_id
         $.ajax({

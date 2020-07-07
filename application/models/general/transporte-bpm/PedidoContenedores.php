@@ -41,7 +41,7 @@ class PedidoContenedores extends CI_Model
           return $resp;
           break;
 
-        case 'Confirma Pedido Modificado':
+        case 'Confirmar pedido modificado':
         log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
         $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);  
         $soco_id= $tarea->infoSolicitud->soco_id; 

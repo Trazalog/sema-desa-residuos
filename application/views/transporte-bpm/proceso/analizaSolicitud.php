@@ -69,7 +69,7 @@
 
 	// para guardar						
 	function cerrarAnalisis(opcion){
-	
+		debugger;
 		wo();
 		var taskId = $('#taskId').val();
 		var elegido = {opcion: opcion};	

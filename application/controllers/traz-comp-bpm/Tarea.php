@@ -84,7 +84,7 @@ class Tarea extends CI_Controller
 
         //Cerrar Tarea
         $this->bpm->cerrarTarea($taskId, $contrato);
-		echo "ok";		
+				
     }
 
     public function getContrato($tarea, $form)

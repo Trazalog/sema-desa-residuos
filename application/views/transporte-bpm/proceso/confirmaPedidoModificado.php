@@ -9,7 +9,7 @@
 		<div class="form-group">															
 			<label for="Generador" class="col-sm-4 control-label">Generador:</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control habilitar" name="Generador" value="<?php echo $infoSolicitud->razon_social?>" id="generador"> 
+				<input type="text" class="form-control habilitar" name="Generador" value="<?php echo $infoSolicitud->razon_social?>" id="generador" readonly> 
 			</div>	
 		</div>
 	<!--__________________________-->
@@ -17,7 +17,7 @@
 		<div class="form-group">															
 			<label for="NroPedido" class="col-sm-4 control-label">Nro Pedido:</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control habilitar" name="NroPedido" value="<?php echo $infoSolicitud->sotr_id?>" id="nroPedido"> 
+				<input type="text" class="form-control habilitar" name="NroPedido" value="<?php echo $infoSolicitud->sotr_id?>" id="nroPedido" readonly> 
 			</div>	
 		</div>
 	<!--__________________________-->
@@ -25,7 +25,7 @@
 		<div class="form-group">															
 			<label for="Direcc" class="col-sm-4 control-label">Direccion:</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control habilitar" name="Direcc" value="<?php echo $infoSolicitud->domicilio?>" id="Direccion"> 
+				<input type="text" class="form-control habilitar" name="Direcc" value="<?php echo $infoSolicitud->domicilio?>" id="Direccion" readonly> 
 			</div>	
 		</div>
 	<!--__________________________-->
@@ -33,7 +33,7 @@
 		<div class="form-group">															
 			<label for="Fecha_ret" class="col-sm-4 control-label">Fecha de retiro:</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control habilitar" name="Fecha_ret" value="<?php echo $infoSolicitud->fec_alta?>" id="FechaRet"> 
+				<input type="text" class="form-control habilitar" name="Fecha_ret" value="<?php echo $infoSolicitud->fec_alta?>" id="FechaRet" format="YYYY-MM-DD" readonly> 
 			</div>	
 		</div>
 	<!--__________________________-->
@@ -83,7 +83,7 @@
 		<div class="form-group">															
 			<label for="motivo" class="col-sm-4 control-label">Motivo rechazo:</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control habilitar" name="descripcion" value="<?php echo $infoSolicitud->observaciones?>" id="motivo"> 
+				<input type="text" class="form-control habilitar" name="descripcion" value="<?php echo $infoSolicitud->observaciones?>" id="motivo" readonly> 
                 
 			</div>	
 		</div>
@@ -104,6 +104,34 @@
 // Datatable	
 DataTable($('#tbl_contenedores'));	
 
-
+function cerrarConfirma(opcion)
+{
+	debugger;
+	var taskId = $('#taskId').val();
+	var elegido = {opcion: opcion};	
+	$.ajax({
+				type: 'POST',
+				data:{ elegido },
+				// url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
+				success: function(result) {
+					alert(result);
+									wc();
+									if(result == 'ok'){										
+										alertify.success("Modificacion de Contenedores aceptados exitosamente...");	
+									}else{
+										alertify.error('Error en completar la Tarea...');
+									}
+								},
+				error: function(result){
+									wc();
+							 },
+				complete: function(){
+									wc();
+										if(existFunction('cerrarTarea')){
+											cerrarTarea();
+										}	
+									}
+		});
+}
 
 </script>
