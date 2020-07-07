@@ -27,12 +27,8 @@ use \koolreport\widgets\koolphp\Card;
 
                     <div class="box box-primary">
 
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                <i class="fa fa-list"></i>
-
-                                Reportes
-                            </h3>
+                        <div class="box-title"><br>
+                            <h2 class="col-md-12" style="text-align:center">Reporte de incidencias por zona</h2>
                         </div>
 
                         <div class="col-md-12">
@@ -45,64 +41,25 @@ use \koolreport\widgets\koolphp\Card;
 
                         <!--_________________TABLA_________________-->
 
+                        <div class="col-md-12">
+                            <hr>
+                        </div>
+
                         <div class="box-body">
                             <div class="col-md-12">
                                 <?php
-                                // Table::create(array(
-                                //     "dataStore" => $this->dataStore('data_incidenciaPorTransportista_table'),
-                                //     // "themeBase" => "bs4",
-                                //     // "showFooter" => true, // cambiar true por "top" para ubicarlo en la parte superior
-                                //     "headers" => array(
-                                //         array(
-                                //             "Reporte de peso de bascula" => array("colSpan" => 6),
-                                //             // "Other Information" => array("colSpan" => 2),
-                                //         )
-                                //     ), // Para desactivar encabezado reemplazar "headers" por "showHeader"=>false
-                                //     "columns" => array(
-                                //         "inci_id" => array(
-                                //             "label" => "Nro"
-                                //         ),
-                                //         "descripcion" => array(
-                                //             "label" => "Descripción"
-                                //         ),
-                                //         "tipoDeIncidencia" => array(
-                                //             "label" => "Tipo de incidencia"
-                                //         ),
-                                //         "fechaHora" => array(
-                                //             "label" => "Fecha y hora"
-                                //         ),
-                                //         "inspector" => array(
-                                //             "label" => "Inspector"
-                                //         ),
-                                //         "transportista" => array(
-                                //             "label" => "Transportista"
-                                //         ),
-                                //         "generador" => array(
-                                //             "label" => "Generador"
-                                //         )
-                                //     ),
-                                //     "cssClass" => array(
-                                //         // "table" => "table-bordered table-striped table-hover dataTable",
-                                //         "table" => "table-striped table-scroll table-hover  table-responsive dataTables_wrapper form-inline table-scroll table-responsive dt-bootstrap dataTable",
-                                //         "th" => "sorting"
-                                //         // "tr" => "cssItem"
-                                //         // "tf" => "cssFooter"
-                                //     )
-                                // ));
-                                ?>
-                                <?php
                                 foreach($report->params->incidencias as $clave => $valor)
                                 {
+                                    echo "<a onclick=\"$('#".str_replace(" ","-",$clave)."').toggle();  $('th').click();\" style='font-size:15px;'><i class='fa fa-plus'></i> <p style='color: black; display:inline'>$clave, ".sizeof($valor)." incidencias</p></a><br><br>";
                                     if($valor != null)
                                     {
+                                        echo "<div class='collapse' id='".str_replace(" ","-",$clave)."'>";
                                         Table::create(array(
                                             "dataStore" => $valor,
                                             // "themeBase" => "bs4",
                                             // "showFooter" => true, // cambiar true por "top" para ubicarlo en la parte superior
                                             "headers" => array(
                                                 array(
-                                                    "".$clave.", ".sizeof($valor)." incidencias" => array("colSpan" => 6),
-                                                    // "Other Information" => array("colSpan" => 2),
                                                 )
                                             ), // Para desactivar encabezado reemplazar "headers" por "showHeader"=>false
                                             "columns" => array(
@@ -130,12 +87,13 @@ use \koolreport\widgets\koolphp\Card;
                                             ),
                                             "cssClass" => array(
                                                 // "table" => "table-bordered table-striped table-hover dataTable",
-                                                "table" => "table-striped table-scroll table-hover  table-responsive dataTables_wrapper form-inline table-scroll table-responsive dt-bootstrap dataTable",
+                                                "table" => "table-striped table-scroll table-hover  table-responsive",
                                                 "th" => "sorting"
                                                 // "tr" => "cssItem"
                                                 // "tf" => "cssFooter"
                                             )
                                         ));
+                                        echo '</div>';
                                     }
                                 }
                                 ?>
@@ -171,10 +129,7 @@ use \koolreport\widgets\koolphp\Card;
         });
 
         $('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroIncidenciaPorTransportista');
+        // convierte la tabla en data table para usar las funciones de ordenar por columna y buscar
+        $('table').dataTable();
     </script>
-
-    <script>
-        DataTable($('.dataTable'))
-    </script>
-
 </body>

@@ -5,7 +5,7 @@ require APPPATH . "/reports/incidencia/Incidencia.php";
 require APPPATH . "/reports/incidenciaPorTransportista/IncidenciaPorTransportista.php";
 require APPPATH . "/reports/incidenciaPorMunicipio/IncidenciaPorMunicipio.php";
 require APPPATH . "/reports/incidenciaPorZona/IncidenciaPorZona.php";
-require APPPATH . "/reports/toneladasEntregadas/ToneladasEntregadas.php";
+require APPPATH . "/reports/toneladasPorTransportista/ToneladasPorTransportista.php";
 
 class Reportes extends CI_Controller
 {
@@ -229,32 +229,49 @@ class Reportes extends CI_Controller
         $this->load->view('reportes/filtro',$data);
     }
 
-    public function toneladasEntregadas()
+    public function toneladasPorTransportista()
     {
-        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#TONELADASENTREGADAS|');
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#TONELADASPORTRANSPORTISTA|');
         //filtro puede traer mes o año
         $filtro = $this->input->post('data');
 
         if($filtro)
         {
             $data = $this->Koolreport->getZonas()->zonas->zona;
-            if(is_numeric($filtro))$url = CONSTANTE.'/toneladasEntregadas?anio='.$filtro;
-            else $url = CONSTANTE.'/toneladasEntregadas?mes='.$filtro;
-            $data = $this->Koolreport->getToneladasEntregadas($url);
-            $reporte = new ToneladasEntregadas($data);
+            if(is_numeric($filtro))$url = CONSTANTE.'/toneladasPorTransportista?anio='.$filtro;
+            else $url = CONSTANTE.'/toneladasPorTransportista?mes='.$filtro;
+            $data = $this->Koolreport->getToneladasPorTransportista($url);
+            $reporte = new ToneladasPorTransportista($data);
             $reporte->run()->render();
         }else
         {
             $url = CONSTANTE.'desde//hasta';
-            $data = $this->Koolreport->getToneladasEntregadas($url);
-            $reporte = new ToneladasEntregadas($data);
+            $data = $this->Koolreport->getToneladasPorTransportista($url);
+            $reporte = new ToneladasPorTransportista($data);
             $reporte->run()->render();
         }
     }
 
     public function toneladasPorGenerador()
     {
-        
-    }
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#TONELADASPORGENERADOR|');
+        //filtro puede traer mes o año
+        $filtro = $this->input->post('data');
 
+        if($filtro)
+        {
+            $data = $this->Koolreport->getZonas()->zonas->zona;
+            if(is_numeric($filtro))$url = CONSTANTE.'/toneladasPorTransportista?anio='.$filtro;
+            else $url = CONSTANTE.'/toneladasPorTransportista?mes='.$filtro;
+            $data = $this->Koolreport->getToneladasPorTransportista($url);
+            $reporte = new ToneladasPorTransportista($data);
+            $reporte->run()->render();
+        }else
+        {
+            $url = CONSTANTE.'desde//hasta';
+            $data = $this->Koolreport->getToneladasPorTransportista($url);
+            $reporte = new ToneladasPorTransportista($data);
+            $reporte->run()->render();
+        }
+    }
 }

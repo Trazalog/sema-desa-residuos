@@ -178,12 +178,12 @@ class Dash extends CI_Controller {
 												"link": "Reportes/incidenciaPorZona"
 											},
 											{
-												"titulo": "Toneladas entregadas",
+												"titulo": "Tn. entr. por transportista",
 												"icono": "fa fa-genderless",
-												"link": "Reportes/toneladasEntregadas"
+												"link": "Reportes/toneladasPorTransportista"
 											},
 											{
-												"titulo": "Toneladas entregadas",
+												"titulo": "Tn. entr. por generador",
 												"icono": "fa fa-genderless",
 												"link": "Reportes/toneladasPorGenerador"
 											}

@@ -21,17 +21,13 @@ use \koolreport\widgets\koolphp\Card;
 
                     <div class="box box-primary">
 
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                <i class="fa fa-list"></i>
+                    <div class="box-title"><br>
+                        <h2 class="col-md-12" style="text-align:center">Reporte de incidencias por zona</h2>
+                    </div>
 
-                                Reportes
-                            </h3>
-                        </div>
-
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
 
                         <!--_________________FILTRO_________________-->
 
@@ -39,19 +35,23 @@ use \koolreport\widgets\koolphp\Card;
 
                         <!--_________________TABLA_________________-->
 
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+
                         <div class="box-body">
                             <div class="col-md-12">
                                 <?php
                                 foreach($report->params->incidencias as $clave => $valor)
                                 {
+                                    echo "<a onclick=\"$('#".str_replace(" ","-",$clave)."').toggle();  $('th').click();\" style='font-size:15px;'><i class='fa fa-plus'></i> <p style='color: black; display:inline'>$clave, ".sizeof($valor)." incidencias</p></a><br><br>";
                                     if($valor != null)
                                     {
+                                        echo "<div class='collapse' id='".str_replace(" ","-",$clave)."'>";
                                         Table::create(array(
                                             "dataStore" => $valor,
                                             "headers" => array(
                                                 array(
-                                                    "".$clave.", ".sizeof($valor)." incidencias" => array("colSpan" => 6),
-                                                    // "Other Information" => array("colSpan" => 2),
                                                 )
                                             ), // Para desactivar encabezado reemplazar "headers" por "showHeader"=>false
                                             "columns" => array(
@@ -78,11 +78,13 @@ use \koolreport\widgets\koolphp\Card;
                                                 )
                                             ),
                                             "cssClass" => array(
-                                                "table" => "table-striped table-scroll table-hover  table-responsive dataTables_wrapper form-inline table-scroll table-responsive dt-bootstrap dataTable",
+                                                "table" => "table-striped table-scroll table-hover  table-responsive",
                                                 "th" => "sorting"
                                             )
                                         ));
+                                        echo '</div>';
                                     }
+                                    
                                 }
                                 ?>
                             </div>
@@ -92,7 +94,6 @@ use \koolreport\widgets\koolphp\Card;
 
 
                         <div class="col-md-12">
-                            <br>
                             <div class="box box-primary">
                             </div>
                         </div>
@@ -106,21 +107,15 @@ use \koolreport\widgets\koolphp\Card;
 
         </div>
     </div>
-
     <script>
-
         $('tr > td').each(function() {
             if ($(this).text() == 0) {
                 $(this).text('-');
                 $(this).css('text-align', 'center');
             }
         });
-
         $('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroIncidenciaPorZona');
+        // convierte la tabla en data table para usar las funciones de ordenar por columna y buscar
+        $('table').dataTable();
     </script>
-
-    <script>
-        DataTable($('.dataTable'))
-    </script>
-
 </body>
