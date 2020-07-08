@@ -77,5 +77,13 @@ class Vehiculos extends CI_Model
                 $aux =json_decode($aux["status"]);
                 return $aux;
             }
+            function obtenerImagen_Vehi_Id($equi_id)
+            {
+                log_message('INFO','#TRAZA|Vehiculo|obtenerImagen_Vehi_Id() >> ');   
+                log_message('DEBUG','#Vehiculo/obtenerImagen_Vehi_Id: '.json_encode($equi_id)); 
+                $auxx = $this->rest->callAPI("GET",REST."/vehiculos/imagen/$equi_id");
+                $aux =json_decode($auxx["data"]);
+                return $aux;
+            }
     }
 ?>

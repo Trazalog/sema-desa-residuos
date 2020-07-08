@@ -19,10 +19,10 @@ class Orden extends CI_Controller {
 
    function ordenT()
    {
-       $data['empresa'] = $this->Empresas->obtener();
-       $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
-       $data['tipoResiduo'] = $this->TipoResiduos->obtener();
-       $data['fecha'] = date('Y-m-d');
+    //    $data['empresa'] = $this->Empresas->obtener();
+    //    $data['disposicionFinal'] = $this->DisposisionesFinales->obtener();
+    //    $data['tipoResiduo'] = $this->TipoResiduos->obtener();
+    //    $data['fecha'] = date('Y-m-d');
        $this->load->view('layout/orden_transporte', $data);
    }
 
@@ -55,8 +55,9 @@ class Orden extends CI_Controller {
 
    function registrarRecepcionDeOrden()
    {
-       $data['zonaDescarga'] = $this->Sectoresdescarga->obtener();
-       $this->load->view('layout/registrar_recepcion_de_orden', $data);
+    //    $data['zonaDescarga'] = $this->Sectoresdescarga->obtener();
+    //    $this->load->view('layout/Ordenes/recepcion_de_orden', $data);
+    $this->load->view('layout/Ordenes/recepcion_de_orden');
    }
    function Controldedescarga()
    {

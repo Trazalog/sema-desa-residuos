@@ -50,10 +50,11 @@
                         <select class="form-control select2 select2-hidden-accesible" id="zona" name="zona" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                        foreach ($zona as $i) {
-                                            echo '<option>'.$i->nombre.'</option>';
-                                        }
-                                        ?>
+                                        // foreach ($zona as $i) {
+                                        //     echo '<option>'.$i->nombre.'</option>';
+                                        // }
+																				// 
+																				?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -62,9 +63,9 @@
                             name="tiporesiduo" required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                            foreach ($tipoResiduo as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
-                                            }
+                                            // foreach ($tipoResiduo as $i) {
+                                            //     echo '<option>'.$i->nombre.'</option>';
+                                            // }
                                     ?>
                         </select>
                     </div>
@@ -81,9 +82,9 @@
                             required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                        foreach ($disposicionFinal as $i) {
-                                            echo '<option>'.$i->nombre.'</option>';
-                                            }
+                                        // foreach ($disposicionFinal as $i) {
+                                        //     echo '<option>'.$i->nombre.'</option>';
+                                        //     }
                                         ?>
                         </select>
                     </div>
@@ -93,9 +94,9 @@
                             required>
                             <option value="" disabled selected>-Seleccione opcion-</option>
                             <?php
-                                            foreach ($circuito as $i) {
-                                                echo '<option>'.$i->nombre.'</option>';
-                                            }
+                                            // foreach ($circuito as $i) {
+                                            //     echo '<option>'.$i->nombre.'</option>';
+                                            // }
                                     ?>
                         </select>
                     </div>
@@ -129,9 +130,9 @@
                         <label for="selecemp" class="form-label">Empresa:</label>
                         <select size="3" class="form-control" id="selecemp" name="empresa" required>
                             <?php
-                            foreach ($empresa as $i) {
-                                echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
-                            }
+                            // foreach ($empresa as $i) {
+                            //     echo '<option class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                            // }
                             ?>
                         </select>
                     </div>
@@ -248,9 +249,9 @@
                                     required>
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                                            foreach ($zona as $i) {
-                                                                echo '<option>'.$i->nombre.'</option>';
-                                                            }
+                                                            // foreach ($zona as $i) {
+                                                            //     echo '<option>'.$i->nombre.'</option>';
+                                                            // }
                                                             ?>
                                 </select>
                             </div>
@@ -260,9 +261,9 @@
                                     name="tiporesiduo" required>
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                                                foreach ($tipoResiduo as $i) {
-                                                                    echo '<option>'.$i->nombre.'</option>';
-                                                                }
+                                                                // foreach ($tipoResiduo as $i) {
+                                                                //     echo '<option>'.$i->nombre.'</option>';
+                                                                // }
                                                         ?>
                                 </select>
                             </div>
@@ -279,9 +280,9 @@
                                     name="dispfinal" required>
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                                            foreach ($disposicionFinal as $i) {
-                                                                echo '<option>'.$i->nombre.'</option>';
-                                                                }
+                                                            // foreach ($disposicionFinal as $i) {
+                                                            //     echo '<option>'.$i->nombre.'</option>';
+                                                            //     }
                                                             ?>
                                 </select>
                             </div>
@@ -291,9 +292,9 @@
                                     name="circuito" required>
                                     <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                                                foreach ($circuito as $i) {
-                                                                    echo '<option>'.$i->nombre.'</option>';
-                                                                }
+                                                                // foreach ($circuito as $i) {
+                                                                //     echo '<option>'.$i->nombre.'</option>';
+                                                                // }
                                                         ?>
                                 </select>
                             </div>
@@ -311,10 +312,10 @@
                                 <label for="selecempp" class="form-label">Empresa:</label>
                                 <select size="3" class="form-control" id="selecempp" name="empresa" required>
                                     <?php                                               
-                                                foreach ($empresa as $i) {
-                                                    echo '<option value="'.$i->nom->nom_emp.'" class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
+                                                // foreach ($empresa as $i) {
+                                                //     echo '<option value="'.$i->nom->nom_emp.'" class="emp" data-json=\''.json_encode($i).'\'>'.$i->nom->nom_emp.'</option>';
                                                     
-                                                }
+                                                // }
                                                 ?>
                                 </select>
                             </div>

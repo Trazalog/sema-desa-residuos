@@ -26,6 +26,7 @@ class Contenedor extends CI_Controller {
       $data['Estados'] = $this->Contenedores->obtener_Estados();
       $data['Habilitacion'] = $this->Contenedores->Obtener_Habilitacion();
       $data['Carga'] = $this->Contenedores->obtener_Tipo_Carga();
+      $data['transportista'] = $this->Contenedores->obtener_transportista();
       $this->load->view('layout/Contenedores/registrar_contenedor',$data); 
     }
      /**
@@ -130,6 +131,13 @@ class Contenedor extends CI_Controller {
          log_message('ERROR','#TRAZA|Contenedor|Borrar_Contenedor() >> $resp: '.$resp); 
          echo "error";
          }
+    }
+
+    function GetImagen(){
+         log_message('INFO','#TRAZA|Contenedores|GetImagen() >>'); 
+         $id = $this->input->post("cont_id");
+         $dato= $this->Contenedores->obtenerImagen_Cont_Id($id);  
+         echo json_encode($dato);
     }
 }
 ?>

@@ -42,7 +42,9 @@
   -- inspectores
   truncate sma.inspectores;
 
-
+-- ELIMINAR TABLAS SOBRANTES
+drop table core.transportistas cascade
+drop table core.transportistas_tipo_residuos cascade
 
 
 
