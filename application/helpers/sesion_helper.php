@@ -4,7 +4,7 @@ if(!function_exists('userId')){
 
     function userId()
     {
-        return 401;//402 401
+        return 402;//402 401
         //return 301;//!HARDCODE
 
         $ci =& get_instance();			

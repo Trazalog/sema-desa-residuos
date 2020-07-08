@@ -67,7 +67,7 @@
     </div>
     <!-- /. box -->
     <div id="miniView" class="view col-xs-8">
-            <p>aqui</p>
+            
     </div>
 </div>
 

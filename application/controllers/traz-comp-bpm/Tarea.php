@@ -171,7 +171,16 @@ class Tarea extends CI_Controller
 
 								return $contrato;
 
-								break;	
+                                break;	
+                        case 'Confirmar pedido modificado':
+                            
+                               $this->load->model('general/transporte-bpm/PedidoContenedores');
+
+                               $contrato = $this->PedidoContenedores->contratoConfirmaPedido($form);	
+
+                               return $contrato;
+
+                               break;
 								
             default:
                 # code...
@@ -191,6 +200,7 @@ class Tarea extends CI_Controller
                 $this->load->model(ALM.'Procesos');
                 
                 return $this->Procesos->desplegarVista($tarea);
+                break;
 						
 						case BPM_PROCESS_ID_PEDIDO_CONTENEDORES: 
                             $this->load->model('general/transporte-bpm/PedidoContenedores');	

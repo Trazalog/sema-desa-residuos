@@ -140,9 +140,10 @@
 				data:{ elegido, coincideCant, contAcordados, motivo },
 				url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
 				success: function(result) {
+					debugger;
 					alert(result);
 									wc();
-									if(result == 'ok'){										
+									if(result == ''){										
 										alertify.success("Contenedoes actualizados exitosamente...");	
 									}else{
 										alertify.error('Error en completar la Tarea...');

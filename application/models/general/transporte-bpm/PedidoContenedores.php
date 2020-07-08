@@ -105,6 +105,20 @@ class PedidoContenedores extends CI_Model
       return $contrato;
     }
 
+    function contratoConfirmaPedido($form)
+    {
+      $opcion = $form["elegido"]["opcion"]; //acepta o rechaza
+      if ($opcion == 'acepta') {
+        $ejecutar = true;
+      }else {
+        $ejecutar = false;  
+      }  
+      $contrato = array(
+        "confirmaPedido" => $ejecutar
+      ); 
+      return $contrato;
+
+    }
     /**
     * guarda en BD el motivo de rechazo del analisis de solicitud decontenedores
     * @param string motivo de rechazo

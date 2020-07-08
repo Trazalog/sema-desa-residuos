@@ -112,12 +112,14 @@ function cerrarConfirma(opcion)
 	$.ajax({
 				type: 'POST',
 				data:{ elegido },
-				// url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
+				url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
 				success: function(result) {
+					
 					alert(result);
+
 									wc();
-									if(result == 'ok'){										
-										alertify.success("Modificacion de Contenedores aceptados exitosamente...");	
+									if(result == ''){										
+										alertify.success("Tarea completada exitosamente...");	
 									}else{
 										alertify.error('Error en completar la Tarea...');
 									}
