@@ -186,10 +186,8 @@
                             data-toggle="modal" data-target="#modalIncidencia">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                          
-                        </button>
-
-                       
-                        </div> 
+                        </button>                       
+                    </div> 
                     </div>
                 </div>
             </div>

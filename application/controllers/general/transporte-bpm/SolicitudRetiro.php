@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 /**
-* Represent a Solicitud de REtiro de Contenedores
+* Represent a Solicitud de Retiro de Contenedores
 *
 * @autor Hugo Gallardo
 */

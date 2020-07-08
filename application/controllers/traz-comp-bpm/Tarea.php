@@ -54,7 +54,8 @@ class Tarea extends CI_Controller
         //DESPLEGAR VISTA
         $data['view'] = $this->deplegarVista($tarea);
         $this->load->view(BPM.'notificacion_estandar', $data);
-    }
+				
+			}
 
     public function tomarTarea()
     {
@@ -81,10 +82,11 @@ class Tarea extends CI_Controller
 				//Mapeo de la tarea y Contrato	
 				$tar_mapeada = $this->Tareas->mapeoTarea($tarea);			
         $contrato = $this->getContrato($tar_mapeada, $form);
-
+			
         //Cerrar Tarea
-        $this->bpm->cerrarTarea($taskId, $contrato);
+				$rsp = $this->bpm->cerrarTarea($taskId, $contrato);
 				
+				//echo json_encode($rsp);
     }
 
     public function getContrato($tarea, $form)
@@ -160,28 +162,53 @@ class Tarea extends CI_Controller
 						case 'Analizar Solicitud':
 
 								
-                                $this->load->model('general/transporte-bpm/PedidoContenedores');
-								$resp = $this->PedidoContenedores->actualizarSolicitud($form);
+									$this->load->model('general/transporte-bpm/PedidoContenedores');
+									$resp = $this->PedidoContenedores->actualizarSolicitud($form);
+									
+									if (isset($form['motivo'])) {												
+										$respComentario = $this->PedidoContenedores->motivoRechazo($form);
+									}
+									
+									$contrato = $this->PedidoContenedores->contratoAnalisisCont($form);								
+
+									return $contrato;
+
+									break;
+                                
+						case 'Confirmar pedido modificado':
+
+									$this->load->model('general/transporte-bpm/PedidoContenedores');
+
+									$contrato = $this->PedidoContenedores->contratoConfirmaPedido($form);	
+
+									return $contrato;
+
+									break;
+						
+						//  PROCESO RETIRO CONTENEDORES		
+
+						case 'Retira contenedores':	
 								
-								if (isset($form['motivo'])) {												
-									$respComentario = $this->PedidoContenedores->motivoRechazo($form);
-								}
-								
-								$contrato = $this->PedidoContenedores->contratoAnalisisCont($form);								
+									$this->load->model('general/transporte-bpm/RetiroContenedores');
 
-								return $contrato;
+									$resp = $this->RetiroContenedores->actualizarContenedores($form);
+									log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Retira contenedores: $resp >> '.json_encode($resp));
+									$contrato = $this->RetiroContenedores->contratoRetiro($form);
+									log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Retira contenedores: $contrato >> '.json_encode($contrato));
+									return $contrato;
+									break;
 
-                                break;	
-                        case 'Confirmar pedido modificado':
-                            
-                               $this->load->model('general/transporte-bpm/PedidoContenedores');
+						//  PROCESO ENTREGA DE ORDENES DE TRANSPORTE
+					
+						case 'Registra Ingreso':
+									$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');	
+									$resp = $this->EntregaOrdenTransportes->entregaOrdenTransporte($form);
+									log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Registra Ingreso: $resp  >> '.json_encode($resp));
+									$contrato = $this->EntregaOrdenTransportes->contratoIngreso($form);
+									log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Registra Ingreso: $contrato >> '.json_encode($contrato));
+									return $contrato;
+									break;								
 
-                               $contrato = $this->PedidoContenedores->contratoConfirmaPedido($form);	
-
-                               return $contrato;
-
-                               break;
-								
             default:
                 # code...
                 break;
@@ -207,16 +234,15 @@ class Tarea extends CI_Controller
                             return $this->PedidoContenedores->desplegarVista($tarea);
                         break;
 						case BPM_PROCESS_ID_RETIRO_CONTENEDORES: 
-						
-							$this->load->model('general/transporte-bpm/RetiroContenedores');
-						
-							break;	
+							
+								$this->load->model('general/transporte-bpm/RetiroContenedores');
+								return $this->RetiroContenedores->desplegarVista($tarea);
+								break;	
 
 						case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE: 
-							
-							$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');
-						
-							break;
+								$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');
+								return $this->EntregaOrdenTransportes->desplegarVista($tarea);
+								break;
 
             default:              
                 

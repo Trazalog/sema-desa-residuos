@@ -163,25 +163,22 @@
                     <input type="text" class="form-control" name="num_registro" id="num_registro">
                     </div>
                 </div>
-                <!--_____________________________________________-->
+                <!--_____________________________________________--> 
 
-                <!--Tipo de residuos-->
-                <div class="form-group">
-                    <label for="Tipo de residuos">Tipo de residuos:</label>
-                    <div class="input-group date">
-                        <div class="input-group-addon">
-                            <i class="glyphicon glyphicon-check"></i>
-                        </div>
-                        <select class="form-control select2 select2-hidden-accesible" name="tica_id" id="tica_id">
-                            <option value="" disabled selected>-Seleccione opcion-</option>
-                            <?php
-                            foreach ($Tiporesiduo as $i) {
-                                echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
+								<!--Tipo de residuo-->								
+								<div class="form-group">
+										<label for="tipoResiduos">Tipo de residuo:</label>
+										<div class="input-group date">
+												<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+												<select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_id">															
+														<?php
+																foreach ($Tiporesiduo as $residuo) {		
+																		echo '<option  value="'.$residuo->tabl_id.'">'.$residuo->valor.'</option>';
+																}
+														?>
+												</select>
+										</div>
+								</div>
                 <!--_____________________________________________-->
 
             </div>
@@ -240,32 +237,20 @@
                             </div>
                             <!-- ___________________________________________________________________________________________ -->
                             <div class="col-md-6 col-sm-6">
-                            <div class="form-group">
-                                    <label for="TipoG" >Tipo de residuo:</label>
-                                    <br>
-                                         <select class="form-control select2 select2-hidden-accesible habilitar ocultar" id="E_TipoResiduo"name="e_tipo">
-                                            <option value="" disabled selected>-seleccione opcion-</option>
-                                            <?php
-                                            foreach ($Tiporesiduo as $d) {
-                                                echo '<option  value="'.$d->tabl_id.'">'.$d->valor.'</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                        <input type="text" class="form-control mostrar" id="text_residuos" name="" style="display:none">
-                                </div>
-                                <!-- <div class="form-group">
-                                    <label for="Dpto" >Departamento:</label>
-                                        <select class="form-control select2 select2-hidden-accesible" name="depa_id" id="Departamento">
-                                        <option value="" disabled selected>-Seleccione opcion-</option>
-                                                <?php
-                                            foreach ($Departamentos as $i) {
-                                                echo '<option  value="'.$i->depa_id.'">'.$i->nombre.'</option>';
-
-                                                
-                                            }
-                                                ?>
-                                        </select>
-                                </div> -->
+                           
+																<div class="form-group">
+																		<label for="tipoResiduos">Tipo de residuo:</label>
+																		<div class="input-group date">
+																				<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+																				<select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_edit">															
+																						<?php
+																								foreach ($Tiporesiduo as $residuo) {		
+																										echo '<option  value="'.$residuo->tabl_id.'">'.$residuo->valor.'</option>';
+																								}
+																						?>
+																				</select>
+																		</div>
+																</div>
 
                                 <div class="form-group">
                                         <label for="Domicilio" >Domicilio:</label>
@@ -564,7 +549,7 @@ $("#btnadd").on("click", function() {
         function Guardar_Generador() {
 
             // datos = $('#form').serialize();
-
+						//FIXME: AGREGAR CAMPOS LAT Y LONG
             var datos = new FormData($('#formGeneradores')[0]);
             datos = formToObject(datos);
             datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
@@ -572,11 +557,12 @@ $("#btnadd").on("click", function() {
             datos.lng = "220";
             console.table(datos);
 
+						var datos_tipo_carga = $("#tica_id").val();
 
             if ($("#formGeneradores").data('bootstrapValidator').isValid()) {
                 $.ajax({
                     type: "POST",
-                    data: {datos},
+                    data: {datos, datos_tipo_carga},
                     url: "general/Estructura/Generador/Guardar_Generador",
                     success: function (r) {
                         console.log(r);
@@ -615,12 +601,14 @@ $("#btnadd").on("click", function() {
         generador.zona_id =  $("#E_Zonag").val();
         generador.rubr_id =  $("#E_TipoR").val();
         generador.tist_id =  $("#E_TipoG").val(); // este es el tipo de generador
-        generador.tica_id =  $("#E_TipoResiduo").val();
+        //generador.tica_id =  $("#E_TipoResiduo").val();
         console.table(generador);
-  
+				
+				var datos_tipo_carga = $("#tica_edit").val();
+
         $.ajax({
                 type: "POST",
-                data: {generador},
+                data: {generador, datos_tipo_carga},
                 url: "general/Estructura/Generador/Actualizar_Generador",
                 success: function (r) {
                     
@@ -700,6 +688,8 @@ function deletegenerador (){
 
 <!-- script Datatables -->
 <script>
+//Initialize Select2 Elements
+$('.select3').select2();
     DataTable($('#tabla_generadores'))
 </script>
 
