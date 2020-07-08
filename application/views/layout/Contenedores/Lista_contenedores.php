@@ -164,6 +164,17 @@
                                             </div>  
                                             
                                         </div> 
+                                        <div class="form-group">
+                                                <label for="CircR" name="img">Imagen:</label>
+                                                <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
+                                                <input type="text" id="input_aux_img64" style="display:none" >
+                                                <input type="text" id="input_aux_zonaID" style="display:none" >                                   
+                                                <img src="" alt="no hay imagen! cargue una" id="img_base" width="" height="">
+                                   
+                                 
+                                   
+                                   
+                                        </div>
                                         
                                         <div class="form-group ocultar_Info " style="display:none">
                                             <label for="tipoResiduos">Tipo de residuo:</label>
@@ -241,8 +252,146 @@
 
 
 <!---//////////////////////////////////////--- FIN MODAL BORRAR ---///////////////////////////////////////////////////////----->
+<script>
+//Convertir a base64 el archivo Imagen
+function getFile(file){
+		var reader = new FileReader();
+		return new Promise((resolve, reject) => {
+			reader.onerror = () => {
+				reader.abort();
+				reject(new Error("Error parsing file"));
+			}
+			reader.onload = function() {
+				//This will result in an array that will be recognized by C#.NET WebApi as a byte[]
+				let bytes = Array.from(new Uint8Array(this.result));
+				//if you want the base64encoded file you would use the below line:
+				let base64StringFile = btoa(bytes.map((item) => String.fromCharCode(item)).join(""));
+				//Resolve the promise with your custom file structure
+				resolve({
+					bytes: bytes,
+					base64StringFile: base64StringFile,
+					fileName: file.name,
+					fileType: file.type
+				});
+			}
+			reader.readAsArrayBuffer(file);
+		});
+	}
 
 
+</script>
+<script>
+
+function cargarImg(){
+   
+    var val = $("#input_aux_img64").val();
+
+    console.table(val);
+    $("#img_base").attr("src",val);
+   
+    return;
+   
+}
+</script>
+
+<script>
+async function convert(){
+       
+ 
+     var file = document.getElementById('img_file').files[0];
+     console.table(document.getElementById('img_file').files[0]);
+         if (file) {
+             var archivo = await getFile(file);
+             console.table(archivo);
+             if(archivo.fileType == "image/jpeg"){
+                var cod = "data:image/jpeg;base64,"+archivo.base64StringFile;
+                //var cod = "data:image/png;base64,"+archivo.base64StringFile;
+             }else{
+                 if(archivo.fileType == "application/pdf"){
+                    var cod = "data:application/pdf;base64,"+archivo.base64StringFile;
+                 }
+               
+             }
+             
+             console.table(archivo.fileType);
+              
+              console.table(cod);
+              $("#input_aux_img64").val(cod);
+              console.table($("#input_aux_img64").val());
+              $("#img_base").attr("src",$("#input_aux_img64").val());
+              $("#img_base").attr("width",100);
+              $("#img_base").attr("height",100);
+             
+         }
+        
+         
+         
+ }
+
+
+function pdf($img_b64){
+    var aux_link = "";
+    for(var i=25; i <= $img_b64.length-1; i++){
+                        aux_link = aux_link + $img_b64[i];
+                         }
+                         img = "data:application/pdf;base64,"+aux_link;
+                        
+                         var ref = img;
+                         ref= ref+"G";
+                         $("#input_aux_img64").val(ref);
+                         console.table("aca con la G agregada"+ref);
+                         $("#pdf").attr("href",ref);
+                         $("#img_base").attr("src",$("#input_aux_img64").val());
+                         $("#img_base").attr("width",100);
+                         $("#img_base").attr("height",100);
+}
+function jpg($img_b64){
+    var aux_link = "/";
+    for(var i=21; i <= $img_b64.length-1; i++){
+                        aux_link = aux_link + $img_b64[i];
+                         }
+                         img = "data:image/jpeg;base64,"+aux_link;
+                         $("#input_aux_img64").val(img);
+                         $("#img_base").attr("src",$("#input_aux_img64").val());
+                         $("#img_base").attr("width",100);
+                         $("#img_base").attr("height",100);
+                         var ref = $("#input_aux_img64").val();
+                         $("#pdf").attr("href",ref);
+
+}
+
+</script>
+<script>
+function ExtraerImagen($data)
+{
+    $.ajax({
+                type: "POST",
+                data: {cont_id: $data.cont_id},
+                url: "general/Estructura/Contenedor/GetImagen",
+                success: function ($dato) {
+                    
+                    
+                    var res = JSON.parse($dato);
+                    console.table(res);
+                    console.table(res.respuesta.imagen);
+                   
+                     var img_b64 = res.respuesta.imagen;
+            
+                   
+                   if(img_b64[4]=='a'){
+                    pdf(img_b64);
+                   }else{
+                       if(img_b64[4]=='i'){jpg(img_b64);}
+                   }
+                    
+                    console.table("Como queda src final: "+img_b64);
+                }
+            });
+}
+
+
+
+</script>
 
 
 <script>
@@ -259,6 +408,8 @@ $(".btnEliminar").click(function(e){
 //BOTON VER INFO
 
 $(".btnInfo").click(function(e){
+    var aux2 = null;
+    $("#input_aux_img64").val(aux2);
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     var datacarga = JSON.parse($(this).parents("tr").attr("data-carga"));
     $(".habilitar").attr("readonly","readonly"); 
@@ -303,11 +454,13 @@ $(".btnInfo").click(function(e){
         
         }
   
-      
+ExtraerImagen(data);
 });
 
 //BOTON EDITAR
 $(".btnEditar").click(function(e){
+var aux2 = null;
+$("#input_aux_img64").val(aux2);
 var data = JSON.parse($(this).parents("tr").attr("data-json"));  
 var datacarga = JSON.parse($(this).parents("tr").attr("data-carga"));
 //para seguimiento despues borrar
@@ -355,7 +508,7 @@ for(var i=0; i <= datacarga.length-1; i++){
     } 
  
 }
-
+ExtraerImagen(data);
 });
 
 
@@ -379,6 +532,7 @@ $("#btnsave").click(function(e){
     datos.tara = $("#Tara").val();
     datos.cont_id = $("#cont_id").val();
     datos.usuario_app = "hugoDS"; 
+    datos.imagen = $("#input_aux_img64").val();
     var cont_id = $("#cont_id").val();
     if($("#Estados").val() != null)
     {   
