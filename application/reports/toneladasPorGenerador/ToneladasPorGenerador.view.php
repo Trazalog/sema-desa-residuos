@@ -21,17 +21,13 @@ use \koolreport\widgets\koolphp\Card;
 
                     <div class="box box-primary">
 
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                <i class="fa fa-list"></i>
+                    <div class="box-title"><br>
+                        <h2 class="col-md-12" style="text-align:center">Reporte de toneladas entregadas por generador</h2>
+                    </div>
 
-                                Reportes
-                            </h3>
-                        </div>
-
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
 
                         <!--_________________FILTRO_________________-->
 
@@ -39,24 +35,28 @@ use \koolreport\widgets\koolphp\Card;
 
                         <!--_________________TABLA_________________-->
 
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+
                         <div class="box-body">
                             <div class="col-md-12">
                                 <?php
-                                foreach($report->params->transportistas->transportista as $clave => $valor)
+                                foreach($report->params->solicitantesTransporte->solicitanteTransporte as $clave => $valor)
                                 {
-                                    echo "<br><h3>Transportista:&nbsp;$valor->nombre:&nbsp;$valor->pesajeTotal Tn</h3><br>";
+                                    echo "<br><h3>Generador:&nbsp;$valor->nombre:&nbsp;$valor->pesajeTotal Tn</h3><br>";
                                     if($valor != null)
                                     {
-                                        foreach($valor->departamentos->departamento as $depa)
+                                        foreach($valor->departamentos->departamento as $key => $depa)
                                         {
                                             if($depa != null)
                                             {
+                                                echo "<a onclick=\"$('#$clave$key').toggle();  $('th').click();\"  style='font-size:15px'><i class='fa fa-plus'></i> <p style='color:black; display:inline'>Municipalidad: $depa->nombre, $depa->pesaje Tn</p></a><br><br>";
+                                                echo "<div class='collapse' id='$clave$key'>";
                                                 Table::create(array(
                                                     "dataStore" => $depa->residuos->residuo,
                                                     "headers" => array(
                                                         array(
-                                                            "Municipalidad: ".$depa->nombre.", ".$depa->pesaje." Tn" => array("colSpan" => 6),
-                                                            // "Other Information" => array("colSpan" => 2),
                                                         )
                                                     ), // Para desactivar encabezado reemplazar "headers" por "showHeader"=>false
                                                     "columns" => array(
@@ -71,10 +71,10 @@ use \koolreport\widgets\koolphp\Card;
                                                         )
                                                     ),
                                                     "cssClass" => array(
-                                                        "table" => "table-striped table-scroll table-hover  table-responsive dataTables_wrapper form-inline table-scroll table-responsive dt-bootstrap dataTable",
-                                                        "th" => "sorting"
+                                                        "table" => "table-striped table-scroll table-hover table-responsive"
                                                     )
                                                 ));
+                                                echo '</div>';
                                             }
                                         }
                                     }
@@ -87,7 +87,6 @@ use \koolreport\widgets\koolphp\Card;
 
 
                         <div class="col-md-12">
-                            <br>
                             <div class="box box-primary">
                             </div>
                         </div>
@@ -103,19 +102,15 @@ use \koolreport\widgets\koolphp\Card;
     </div>
 
     <script>
-
-        $('tr > td').each(function() {
-            if ($(this).text() == 0) {
-                $(this).text('-');
-                $(this).css('text-align', 'center');
-            }
-        });
-
-        $('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroIncidenciaPorZona');
+    $('tr > td').each(function() {
+        if ($(this).text() == 0) {
+            $(this).text('-');
+            $(this).css('text-align', 'center');
+        }
+    });
+		$('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroIncidenciaPorZona');
+        // convierte la tabla en data table para usar las funciones de ordenar por columna y buscar
+        $('table').dataTable();
+      
     </script>
-
-    <script>
-        DataTable($('.dataTable'))
-    </script>
-
 </body>

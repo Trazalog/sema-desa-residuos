@@ -108,7 +108,7 @@ use \koolreport\widgets\koolphp\Card;
             $(this).css('text-align', 'center');
         }
     });
-		$('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroIncidenciaPorZona');
+		$('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroToneladasPorTransportista');
         // convierte la tabla en data table para usar las funciones de ordenar por columna y buscar
         $('table').dataTable();
       

@@ -6,6 +6,8 @@ require APPPATH . "/reports/incidenciaPorTransportista/IncidenciaPorTransportist
 require APPPATH . "/reports/incidenciaPorMunicipio/IncidenciaPorMunicipio.php";
 require APPPATH . "/reports/incidenciaPorZona/IncidenciaPorZona.php";
 require APPPATH . "/reports/toneladasPorTransportista/ToneladasPorTransportista.php";
+require APPPATH . "/reports/toneladasPorGenerador/ToneladasPorGenerador.php";
+require APPPATH . "/reports/toneladasPorResiduo/ToneladasPorResiduo.php";
 
 class Reportes extends CI_Controller
 {
@@ -237,7 +239,6 @@ class Reportes extends CI_Controller
 
         if($filtro)
         {
-            $data = $this->Koolreport->getZonas()->zonas->zona;
             if(is_numeric($filtro))$url = CONSTANTE.'/toneladasPorTransportista?anio='.$filtro;
             else $url = CONSTANTE.'/toneladasPorTransportista?mes='.$filtro;
             $data = $this->Koolreport->getToneladasPorTransportista($url);
@@ -252,26 +253,68 @@ class Reportes extends CI_Controller
         }
     }
 
+    public function filtroToneladasPorTransportista()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROTONELADASPORTRANSPORTISTA|');
+        $data = $this->Koolreport->getFiltroMyA();
+        $data->funcion = 'toneladasPorTransportista';
+        $this->load->view('reportes/filtro',$data);
+    }
+
     public function toneladasPorGenerador()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#TONELADASPORGENERADOR|');
         //filtro puede traer mes o año
         $filtro = $this->input->post('data');
-
         if($filtro)
         {
-            $data = $this->Koolreport->getZonas()->zonas->zona;
-            if(is_numeric($filtro))$url = CONSTANTE.'/toneladasPorTransportista?anio='.$filtro;
-            else $url = CONSTANTE.'/toneladasPorTransportista?mes='.$filtro;
-            $data = $this->Koolreport->getToneladasPorTransportista($url);
-            $reporte = new ToneladasPorTransportista($data);
+            if(is_numeric($filtro))$url = CONSTANTE.'/toneladasPorGenerador?anio='.$filtro;
+            else $url = CONSTANTE.'/toneladasPorGenerador?mes='.$filtro;
+            $data = $this->Koolreport->getToneladasPorGenerador($url);
+            $reporte = new ToneladasPorGenerador($data);
             $reporte->run()->render();
         }else
         {
             $url = CONSTANTE.'desde//hasta';
-            $data = $this->Koolreport->getToneladasPorTransportista($url);
-            $reporte = new ToneladasPorTransportista($data);
+            $data = $this->Koolreport->getToneladasPorGenerador($url);
+            $reporte = new ToneladasPorGenerador($data);
             $reporte->run()->render();
         }
+    }
+
+    public function filtroToneladasPorGenerador()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROTONELADASPORGENERADOR|');
+        $data = $this->Koolreport->getFiltroMyA();
+        $data->funcion = 'toneladasPorGenerador';
+        $this->load->view('reportes/filtro',$data);
+    }
+
+    public function toneladasPorResiduos()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#TONELADASPORRESIDUOS|');
+        $filtro = $this->input->post('data');
+        if($filtro)
+        {
+            if(is_numeric($filtro))$url = CONSTANTE.'/toneladasPorResiduo?anio='.$filtro;
+            else $url = CONSTANTE.'/toneladasPorResiduo?mes='.$filtro;
+            $data = $this->Koolreport->getToneladasPorResiduo($url);
+            $reporte = new ToneladasPorResiduo($data);
+            $reporte->run()->render();
+        }else
+        {
+            $url = CONSTANTE.'desde//hasta';
+            $data = $this->Koolreport->getToneladasPorResiduo($url)->tiposDeCarga->tipoDeCarga;
+            $reporte = new ToneladasPorResiduo($data);
+            $reporte->run()->render();
+        }
+    }
+
+    public function filtroToneladasPorResiduo()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROTONELADASPORRESIDUOS|');
+        $data = $this->Koolreport->getFiltroMyA();
+        $data->funcion = 'toneladasPorResiduos';
+        $this->load->view('reportes/filtro',$data);
     }
 }

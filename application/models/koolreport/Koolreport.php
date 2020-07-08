@@ -318,4 +318,20 @@ class Koolreport extends CI_Model
         return $rsp;
     }
 
+    public function getToneladasPorGenerador()
+    {
+        $url = "http://localhost:8080/solicitantesTransporte";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        return $rsp;
+    }
+
+    public function getToneladasPorResiduo()
+    {
+        $url = "http://localhost:8080/tipoDeCarga/porMunicipios";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        return $rsp;
+    }
+
 }

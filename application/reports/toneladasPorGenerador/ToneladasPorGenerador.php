@@ -6,7 +6,7 @@ use \koolreport\processes\Limit;
 use \koolreport\processes\OnlyColumn;
 
 //Define the class
-class ToneladasEntregadas extends \koolreport\KoolReport
+class ToneladasPorGenerador extends \koolreport\KoolReport
 {
     use \koolreport\codeigniter\Friendship;
 
@@ -19,10 +19,10 @@ class ToneladasEntregadas extends \koolreport\KoolReport
 
     protected function settings()
     {
-        log_message('DEBUG', '#RECIDUOS| #TONELADASENTREGADAS.PHP|#TONELADASENTREGADAS|#SETTINGS| #INGRESO');
+        log_message('DEBUG', '#RECIDUOS| #TONELADASPORGENERADOR.PHP|#TONELADASPORGENERADOR|#SETTINGS| #INGRESO');
         $json = $this->params;
 
-        foreach($json->transportistas as $data)
+        foreach($json->solicitantesTransporte as $data)
         {
             $a = '';
             return array(
@@ -40,10 +40,10 @@ class ToneladasEntregadas extends \koolreport\KoolReport
 
     protected function setup()
     {
-        log_message('DEBUG', '#RECIDUOS| #TONELADASENTREGADAS.PHP|#TONELADASENTREGADAS|#SETUP| #INGRESO');
+        log_message('DEBUG', '#RECIDUOS| #TONELADASPORGENERADOR.PHP|#TONELADASPORGENERADOR|#SETUP| #INGRESO');
 
         $this->src("apiarray")
 
-        ->pipe($this->dataStore("data_toneladasEntregadas_table"));
+        ->pipe($this->dataStore("data_toneladasPorGenerador_table"));
     }
 }
