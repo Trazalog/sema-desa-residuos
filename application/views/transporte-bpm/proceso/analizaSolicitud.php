@@ -69,7 +69,7 @@
 
 	// para guardar						
 	function cerrarAnalisis(opcion){
-	
+		debugger;
 		wo();
 		var taskId = $('#taskId').val();
 		var elegido = {opcion: opcion};	
@@ -142,7 +142,7 @@
 				success: function(result) {
 									//alert(result);
 									wc();
-									if(result == 'ok'){										
+									if(result == ''){										
 										alertify.success("Contenedoes actualizados exitosamente...");	
 									}else{
 										alertify.error('Error en completar la Tarea...');

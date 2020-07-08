@@ -26,18 +26,26 @@ class SolicitudRetiro extends CI_Controller {
   {
     $data['transportista'] = $this->SolicitudesRetiro->obtener_Transportista();
     $data['nuevo_sore_id'] = $this->SolicitudesRetiro->solicitudRetiroProx();
+    $data['contenedores'] =  $this->SolicitudesRetiro->obtenerContenedor();
     $this->load->view('transporte-bpm/SolicitudRetiro/Registrar_solicitud_retiro', $data);
   }
    
  
   function Guardar_SolicitudRetiro()
   {
-    $solicitud = $this->input->post('datos_contenedor');
-    var_dump($solicitud);
+    // $solicitud = $this->input->post('datos');
+    // var_dump($solicitud);
     
-    $usuario['usuario_app'] = 'hugoDS';
+    // $usuario['usuario_app'] = 'hugoDS';
 
-    $sore_id = $this->Contenedores->Guardar_SolicitudRetiro();
+    $resp = $this->SolicitudesRetiro->Guardar_solicitudRetiro($this->input->post('datos'));
+    if(!$resp){
+      echo "ok";
+   }
+   else{
+      log_message('ERROR','#TRAZA|Solicitud|Eliminar_Zona() >> $resp: '.$resp);
+      echo 'error';
+   }
       
   }
     

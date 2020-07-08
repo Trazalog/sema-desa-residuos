@@ -364,6 +364,7 @@
       <param name="usuario_app" sqlType="STRING"/>
    </query>
    <query id="ordTransSet" useConfig="semaresiduosDS">
+      <sql>INSERT&#xd;	INTO&#xd;	log.ordenes_transporte (fec_retiro, estado, difi_id, sotr_id, equi_id, chof_id, teot_id, tran_id, usuario_app)&#xd;SELECT&#xd;	TO_DATE(:fec_retiro, 'MM-DD-YYYY')&#xd;	, 'EN_TRANSITO'&#xd;	, :difi_id&#xd;	, CAST(:sotr_id AS INTEGER)&#xd;	, CAST(:equi_id AS INTEGER)&#xd;	, :chof_id&#xd;	, CASE&#xd;		WHEN teot.teotid IS NULL OR teot.teotid= '' THEN NULL&#xd;		ELSE CAST (teot.teotid AS integer)&#xd;	END&#xd;        ,:tran_id&#xd;	, :usuario_app&#xd;FROM&#xd;	(SELECT	:teot_id teotid) teot &#xd;RETURNING ortr_id</sql>
       <sql>INSERT&#xd;	INTO&#xd;	log.ordenes_transporte (fec_retiro, estado, difi_id, sotr_id, equi_id, chof_id, teot_id, tran_id, usuario_app)&#xd;SELECT&#xd;	TO_DATE(:fec_retiro, 'MM-DD-YYYY')&#xd;	, 'EN_TRANSITO'&#xd;	, :difi_id&#xd;	, CAST(:sotr_id AS INTEGER)&#xd;	, CAST(:equi_id AS INTEGER)&#xd;	, :chof_id&#xd;	, CASE&#xd;		WHEN teot.teotid IS NULL OR teot.teotid= '' THEN NULL&#xd;		ELSE CAST (teot.teotid AS integer)&#xd;	END&#xd;        ,cast(:tran_id as integer)&#xd;	, :usuario_app&#xd;FROM&#xd;	(SELECT	:teot_id teotid) teot &#xd;RETURNING ortr_id</sql>
       <result outputType="json">{&#xd;    "respuesta":{&#xd;      "ortr_id": "$ortr_id"&#xd;    }&#xd;}</result>
       <param name="fec_retiro" sqlType="STRING"/>
@@ -1710,3 +1711,4 @@
       </call-query>
    </resource>
 </data>
+

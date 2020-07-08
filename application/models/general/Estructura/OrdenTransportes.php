@@ -20,6 +20,28 @@ class OrdenTransportes extends CI_Model
     
 // Funcion Guardar Orden
 
+    function Guardar_ordenTransportes($data)
+    {
+        $post["ordenTransporte"] = $data;      
+        log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> '); 
+        log_message('DEBUG','#SolicitudPedidos/RegistrarContenedor: '.json_encode($post));
+        // $aux = $this->rest->callAPI("POST",REST."/solicitudContenedores", $post); //servicio que llamaba antes de que caiga el server
+        $aux = $this->rest->callAPI("POST",API_URL."/ordenTransporte",$post);
+        $aux =json_decode($aux);
+        return $aux;
+    }
+
+    function ObtenerOTpordominio($data)
+    {
+        // $sotr_id = $this->rest->callAPI("GET",REST."/solicitantesTransporte/hugoDS");
+        $usuario_app = userNick();
+        $sotr = $this->rest->callAPI("GET",REST."/solicitantesTransporte/$usuario_app");
+        $sotraux =json_decode($sotr["data"]);
+        $id_sotr = $sotraux->solicitantes_transporte->sotr_id;
+        $aux = $this->rest->callAPI("GET",REST."/vehiculo/asignadoARetiro/$data/solicitanteTransporte/$id_sotr");
+        $aux =json_decode($aux["data"]);
+        return $aux;
+    }
 function Guardar_OrdenT(){
 
         // $post["post_ordenT"] = $data;
@@ -85,7 +107,53 @@ public function obtener_numero_orden(){
     return $aux->respuesta->nueva_ortr_id;
 }
 
+function obtenerChofer()
+{
+    $aux = $this->rest->callAPI("GET",REST."/choferes");
+    $aux =json_decode($aux["data"]);
+    return $aux->choferes->chofer;
+}
 
+function obtenerdispfinal()
+{
+        log_message('INFO','#TRAZA|Contenedores|obtener_Estado() >> '); 
+      $aux = $this->rest->callAPI("GET",REST."/tablas/disposicion_final");
+      $aux =json_decode($aux["data"]);
+      return $aux->valores->valor;
+}
+
+function obtenerEquipo()
+{
+    log_message('INFO','#TRAZA|Contenedores|obtener_Estado() >> '); 
+      $aux = $this->rest->callAPI("GET",REST."/vehiculos");
+      $aux =json_decode($aux["data"]);
+      return $aux->vehiculos->vehiculo;
+    
+}
+
+function obtenerContenedores()
+{
+    log_message('INFO','#TRAZA|SolicitudesRetiro|obtenerContenedor >> ');
+    $aux = $this->rest->callAPI("GET",REST."/contenedores");
+    $aux =json_decode($aux["data"]);
+    return $aux->contenedores->contenedor;	
+}
+
+function Obtenerchofertran_id($tran_id)
+{
+    log_message('INFO','#TRAZA|SolicitudesRetiro|obtenerContenedor >> ');
+    $aux = $this->rest->callAPI("GET",REST."/choferes/$tran_id");
+    $aux =json_decode($aux["data"]);
+    return $aux->choferes->chofer;	
+}
+
+function Obtenertranspo_id($tran_id)
+{
+    log_message('INFO','#TRAZA|SolicitudesRetiro|obtenerContenedor >> ');
+    $aux = $this->rest->callAPI("GET",REST."/transportistas/$tran_id");
+    $aux =json_decode($aux["data"]);
+    return $aux->transportista;	
+}
 // Funcion Obtener Empresa
 
 // public function obtener_empresa(){

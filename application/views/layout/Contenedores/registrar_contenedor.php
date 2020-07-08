@@ -78,7 +78,15 @@
                         </div>
                     </div>
                 <!--__________________________________________________________________________________________-->
-               
+                <!--Adjuntar imagen--> 
+                <div class="form-group">
+                            <form action="cargar_archivo" method="post" enctype="multipart/form-data"  id="fileimage">
+                                <label for="img_File">Seleccione Imagen</label>
+                                <input type="file" name="imagen" id="img_File" onchange="convertA()" style="font-size: smaller">
+                                <input type="text" id="input_aux_img" style="display:none" >
+                            </form>
+                            <img src="" alt="" id="imagen" width="" height="">
+                </div>
                 <!--Asociar Recipiente-->
                     <!--<div class="form-group">
                         <label for="Recipiente">Asociar Recipiente:</label>
@@ -93,6 +101,7 @@
                             </select>
                         </div>
                     </div>-->
+
                 <!--__________________________________________________________________________________________-->
 
             </div>
@@ -139,7 +148,25 @@
                         </div>
                     </div>
                 <!--__________________________________________________________________________________________-->
+                <!--__________________________________________________________________________________________-->
 
+                <!--Habilitacion-->
+                <div class="form-group">
+                        <label for="transportista" >Transportista:</label>
+                        <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                            <select class="form-control select2 select2-hidden-accesible" name="transportista" id="tran_id">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                        foreach ($transportista as $k) {
+                                            echo '<option  value="'.$k->tran_id.'">'.$k->razon_social.'</option>';
+                                        }
+                                    ?>
+                            </select>
+                        </div>
+                    </div>
+                <!--__________________________________________________________________________________________-->
+               
+                
                  <!--Tipo carga-->                
                     <div class="form-group">
                         <label for="tipoResiduos">Tipo de residuo:</label>
@@ -218,7 +245,65 @@
 <!---//////////////////////////////////////--- SCRIPTS ---///////////////////////////////////////////////////////----->
 
 <!--__________________________________________________________________________________________-->
+<script>
+//Convertir a base64 el archivo Imagen
+function GetFile(file){
+		var reader = new FileReader();
+		return new Promise((resolve, reject) => {
+			reader.onerror = () => {
+				reader.abort();
+				reject(new Error("Error parsing file"));
+			}
+			reader.onload = function() {
+				//This will result in an array that will be recognized by C#.NET WebApi as a byte[]
+				let bytes = Array.from(new Uint8Array(this.result));
+				//if you want the base64encoded file you would use the below line:
+				let base64StringFile = btoa(bytes.map((item) => String.fromCharCode(item)).join(""));
+				//Resolve the promise with your custom file structure
+				resolve({
+					bytes: bytes,
+					base64StringFile: base64StringFile,
+					fileName: file.name,
+					fileType: file.type
+				});
+			}
+			reader.readAsArrayBuffer(file);
+		});
+	}
 
+async function convertA(){
+       
+       
+       var file = document.getElementById('img_File').files[0];
+       console.table(document.getElementById('img_File').files[0]);
+           if (file) {
+               var archivo = await GetFile(file);
+               console.table(archivo);
+               if(archivo.fileType == "image/jpeg"){
+                  var cod = "data:image/jpeg;base64,"+archivo.base64StringFile;
+                  //var cod = "data:image/png;base64,"+archivo.base64StringFile;
+                    $("#input_aux_img").val(cod);
+                    $("#imagen").attr("src",$("#input_aux_img").val());
+                    $("#imagen").attr("width",100);
+                    $("#imagen").attr("height",100);
+               }else{
+                   if(archivo.fileType == "application/pdf"){
+                      var cod = "data:application/pdf;base64,"+archivo.base64StringFile;
+                   }
+                 
+               }
+               
+                $("#input_aux_img").val(cod);
+                console.table($("#input_aux_img").val());
+                
+               
+           }
+          
+           
+           
+   }
+
+</script>
 <!-- Script Boton Agregar-->
 <script>
     //Script Boton Agregar
@@ -252,9 +337,14 @@
 
         var datos = new FormData($('#formContenedores')[0]);
         datos = formToObject(datos);
-        // datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
+        datos.imagen =  $("#input_aux_img").val();
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario         
-        datos.tran_id = 47;
+        datos.tran_id = $("#tran_id").val();
+        datos.fec_alta = $("#fec_alta").val();
+        datos.habilitacion = $("#habilitacion").val(); 
+        datos.tara = $("#tara").val();
+        datos.esco_id = $("#esco_id").val();
+
         console.table(datos);
         console.table(datos_tipo_carga);
 

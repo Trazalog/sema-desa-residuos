@@ -93,7 +93,7 @@ define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '8803232493891311406');
 
 define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '6013058915384903051');
 
-define('BPM_PROCESS_ID_PEDIDO_CONTENEDORES', '5286710446401474345');
+define('BPM_PROCESS_ID_PEDIDO_CONTENEDORES', '5268088305538274604'); //5286710446401474345 "5268088305538274604"
 
 define('BPM_PROCESS_ID_RETIRO_CONTENEDORES', '4817856371144276175');
 
@@ -103,6 +103,7 @@ define('BPM_PROCESS', json_encode(array(
     '8803232493891311406' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12'],
     '6013058915384903051' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12'],
     '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A'],
+    '5268088305538274604' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300'],
     '5286710446401474345' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300'],
     '4817856371144276175' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#FF3300'],
     '5525269319148713590' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#FF3300']    

@@ -289,7 +289,7 @@ function ExtraerImg($zona){
                 url: "general/Estructura/Zona/GetImagen",
                 success: function ($dato) {
                     
-                
+                    debugger;
                     var res = JSON.parse($dato);
                     console.table(res);
                     console.table(res.respuesta.imagen);
