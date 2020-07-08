@@ -85,7 +85,7 @@ class Tarea extends CI_Controller
         //Cerrar Tarea
 				$rsp = $this->bpm->cerrarTarea($taskId, $contrato);
 				
-				echo json_encode($rsp);
+				//echo json_encode($rsp);
     }
 
     public function getContrato($tarea, $form)
@@ -186,6 +186,18 @@ class Tarea extends CI_Controller
 								log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Retira contenedores: $contrato >> '.json_encode($contrato));
 								return $contrato;
 								break;
+
+						//  PROCESO ENTREGA DE ORDENES DE TRANSPORTE
+					
+						case 'Registra Ingreso':
+								$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');	
+								$resp = $this->EntregaOrdenTransportes->entregaOrdenTransporte($form);
+								log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Registra Ingreso: $resp  >> '.json_encode($resp));
+								$contrato = $this->EntregaOrdenTransportes->contratoIngreso($form);
+								log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Registra Ingreso: $contrato >> '.json_encode($contrato));
+								return $contrato;
+								break;								
+
             default:
                 # code...
                 break;
@@ -211,14 +223,15 @@ class Tarea extends CI_Controller
 								return $this->PedidoContenedores->desplegarVista($tarea);
 								
 						case BPM_PROCESS_ID_RETIRO_CONTENEDORES: 
-							//TODO: estoy ACA
-							$this->load->model('general/transporte-bpm/RetiroContenedores');
-							return $this->RetiroContenedores->desplegarVista($tarea);
-							break;	
+							
+								$this->load->model('general/transporte-bpm/RetiroContenedores');
+								return $this->RetiroContenedores->desplegarVista($tarea);
+								break;	
 
 						case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE: 
-							$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');
-							break;
+								$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');
+								return $this->EntregaOrdenTransportes->desplegarVista($tarea);
+								break;
 
             default:
 

@@ -120,22 +120,16 @@
 							</div>
 							<!--_________________SEPARADOR_________________-->
 
-							<!--Adjuntador de imagenes-->
-							<!-- <div class="col-md-12">
-									<div class="col-md-6 col-sm-6 col-xs-12">									
-											<input type="file" id="imagen" name="imagen" value=" ">		
-									</div>
-							</div> -->
-					</form>		
-							<!--Adjuntar imagen--> 
-							<div class="col-md-12">
-								<form action="cargar_archivo" method="post" enctype="multipart/form-data">
-										<input type="file" id="img_File" onchange=convertA() style="font-size: smaller">
-										<input type="text" name="imagen" id="input_aux_img" style="display:none" name="input_aux_img" >
-								</form>
-								<img src="" alt="" id="img_Base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
+							</form>		
+									<!--Adjuntar imagen--> 
+									<div class="col-md-12">
+										<form action="cargar_archivo" method="post" enctype="multipart/form-data">
+												<input type="file" id="img_File" onchange=convertA() style="font-size: smaller">
+												<input type="text" name="imagen" id="input_aux_img" style="display:none" name="input_aux_img" >
+							</form>
+							<img src="" alt="" id="img_Base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
 							</div>
-				<!--_____________________________________________-->					
+						<!--_____________________________________________-->					
 					
 					<!--_____________ SEPARADOR _____________-->
 					<div class="col-md-12 col-sm-12 col-xs-12"> <br> <br></div>

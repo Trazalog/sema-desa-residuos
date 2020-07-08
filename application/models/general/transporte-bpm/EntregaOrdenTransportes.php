@@ -5,20 +5,184 @@
 * @autor Hugo Gallardo
 */
 class EntregaOrdenTransportes extends CI_Model {
+  
   /**
   * Constructor de Clase
   * @param 
   * @return 
   */
   function __construct(){
-  parent::__construct();
+    parent::__construct();
+  
   }
 
- 
+  /**
+  * Desplige vista unica por tarea en notificacion estandar
+  * @param array con tarea de bpm
+  * @return view de acuerdo a tarea especifica
+  */
+  function desplegarVista($tarea)
+  {     
+    log_message('INFO','#TRAZA|| >> ');
+    switch ($tarea->nombreTarea) {
+
+      case 'Registra Ingreso':
+
+        log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
+        $tarea->infoOTransporte = $this->obtenerInFoOTransporte($tarea->caseId);
+        // dataimage/jpegbase64  20 formato que trae
+        // 'data:image/jpeg;base64,' formato que tomael src del tag img
+        $imagen = $tarea->infoOTransporte->img_chofer;        
+        $newImgChof = substr_replace($imagen, 'data:image/jpeg;base64,', 0, 20);        
+        $tarea->infoOTransporte->img_chofer = $newImgChof;
+
+        $imagen_vehi = $tarea->infoOTransporte->img_vehiculo;
+        $newImgVehi = substr_replace($imagen_vehi, 'data:image/jpeg;base64,', 0, 20);
+        $tarea->infoOTransporte->img_vehiculo = $newImgVehi;
+
+        $tarea->infoContenedores = $this->obtenerContEntregados($tarea->caseId);
+        $tarea->sectoresDescarga = $this->obtenerSectoresDescarga();
+        $tarea->infoOT = $this->obtenerInfoOTIncidencia($tarea->caseId);
+        $tarea->tipoCarga = $this->obtenerTipoCarga();
+        $tarea->tipoIncidencia = $this->obtenerTipoIncidencia();
+        $resp = $this->load->view('transporte-bpm/proceso/registraIngreso', $tarea, true);
+        return $resp;
+        break;
+      
+      default:
+        # code...
+        break;
+    }  
+  }
+
+  /**
+  * Actualiza info encontenedores entregados
+  * @param array con info de los contenedores entregados y donde
+  * @return string status de servicio 
+  */
+  function entregaOrdenTransporte($form)
+  {     
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTES|entregaOrdenTransporte() >> ');
+    $data['_put_contenedoresentregados_registra_ingreso'] = $form['data'];
+    $aux = $this->rest->callAPI("PUT",REST."/contenedoresEntregados/registra/ingreso", $data);
+    $aux =json_decode($aux["status"]);
+    return $aux;
+  }
+
+  /**
+  * devuelve contrato de cierre tarea registra ingreso
+  * @param array datso de form enviado
+  * @return array vontrato de cierre tarea registra ingreso contenedor
+  */
+  function contratoIngreso($form)
+  {     
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|contratoIngreso($form) >> '); 
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|contratoIngreso($form): $form >> '.json_encode($form));   
+    $contrato["sectorDescarga"] = $form['data']["difi_id"];
+    return $contrato;
+  }
 
 
+  // ---------------------- FUNCIONES OBTENER ----------------------
 
-
-
+  /**
+  * Obtiene la info de la orden de transporte
+  * @param string case_id
+  * @return array info de orden transporte
+  */
+  function obtenerInFoOTransporte($caseId)
+  {     
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInFoOTransporte($caseId) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInFoOTransporte($caseId): $caseId  >> '.json_encode($caseId));
+    $aux = $this->rest->callAPI("GET",REST."/ordenTransporte/info/entrega/case/".$caseId);
+    $aux =json_decode($aux["data"]);
+    return $aux->ordenTransporte;    
+  }
   
+  /**
+  * devuelve array con contenedores entregados 
+  * @param string case_id
+  * @return array con contenedores entregados
+  */
+  function obtenerContEntregados($caseId)
+  {     
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerContEntregados($caseId) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerContEntregados($caseId): $caseId >> '.json_encode($caseId));
+    $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/info/entrega/case/".$caseId);
+    $aux =json_decode($aux["data"]);
+    return $aux->contenedores->contenedor;    
+  }
+
+  /**
+  * Devuelve sectores de descarga
+  * @param   
+  * @return array con sectores de descarga
+  */
+  function obtenerSectoresDescarga()
+  {     
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerSectoresDescarga() >> ');
+    $aux = $this->rest->callAPI("GET",REST."/tablas/sector_descarga");
+    $aux = json_decode($aux["data"]);
+    return $aux->valores->valor;
+  }
+
+  /**
+  * Devuelve info de Otransporte para agregar una incidencia
+  * @param string case_id 
+  * @return array con info de Orden Transporte
+  */
+  function obtenerInfoOTIncidencia($caseId)
+  {     
+
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInfoOTIncidencia($caseId) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInfoOTIncidencia($caseId): $caseId  >> '.json_encode($caseId));
+    $aux = $this->rest->callAPI("GET",REST."/ordenTransporte/case/".$caseId);
+    $aux = json_decode($aux["data"]);
+    $date = new DateTime($aux->ordenTransporte->fec_alta);
+    $aux->ordenTransporte->fec_alta = $date->format('Y-m-d');  
+    return $aux->ordenTransporte;
+  }
+
+  /**
+  * Devuelve tipos de carga
+  * @param 
+  * @return array con tipos de carga
+  */
+  function obtenerTipoCarga()
+  {     
+
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerTipoCarga() >> ');
+    $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
+    $aux =json_decode($aux["data"]);
+    return $aux->valores->valor;    
+  }
+  
+  /**
+  * Devuelve tipos de incidencia 
+  * @param 
+  * @return array con tipos de incidencia
+  */
+  function obtenerTipoIncidencia()
+  {     
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerTipoIncidencia() >> ');
+    $aux = $this->rest->callAPI("GET",REST."/tablas/tipos_incidencia");
+    $aux =json_decode($aux["data"]);
+    return $aux->valores->valor;
+  }
+
+  /**
+  * devuelve imagende uncontenedore entregdo por id
+  * @param int coen_id
+  * @return base64 imagen de contenedor entregado
+  */
+  function obtenerImagenContenedor($coen_id)      
+  {     
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerImagenContenedor($coen_id) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerImagenContenedor($coen_id): $coen_id >> '.json_encode($coen_id));     
+    $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/ingreso/".$coen_id);
+    $aux =json_decode($aux["data"]);
+    return $aux->imag_contenedor->imagen;
+  }
+
+
 }

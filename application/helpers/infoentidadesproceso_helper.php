@@ -33,7 +33,12 @@ if(!function_exists('infoentidadesproceso')){
               $aux_tran =json_decode($aux_tran["data"]);
             break;
           case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE:
-            # code...
+
+              $aux_gen = $ci2->rest->callAPI("GET",REST."/solicitantesTransporte/proceso/ingreso/case/".$ent_case_id);
+              $aux_gen =json_decode($aux_gen["data"]);
+
+              $aux_tran = $ci2->rest->callAPI("GET",REST."/transportistas/proceso/ingreso/case/".$ent_case_id);
+              $aux_tran =json_decode($aux_tran["data"]);              
             break;        
           default:
             # code...

@@ -90,11 +90,6 @@
 <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 <!--_________________SEPARADOR_________________-->
 
-<!--_________________ Guardar _________________-->
-<!-- <div class="col-md-12">
-		<button class="btn btn-primary pull-right" onclick="guardar()">guardar</button>
-</div> -->
-<!--__________________________________-->
 
 <div class="text-right">	
 	<button class="btn btn-primary estadoTarea" id="noAcepta" onclick="guardar()" style="margin-left:20px;">Entregar</button>

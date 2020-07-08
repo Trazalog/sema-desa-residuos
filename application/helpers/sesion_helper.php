@@ -4,7 +4,8 @@ if(!function_exists('userId')){
 
     function userId()
     {
-        return 402;
+        return 501;
+        //return 402;
         //return 301;//!HARDCODE
 
         $ci =& get_instance();			
@@ -17,6 +18,7 @@ if(!function_exists('userNick')){
     
     function userNick()
     {
+        return 'bascula';
         return 'transportista1'; //!HARDCODE
         $ci =& get_instance();			
         $userdata  = $ci->session->userdata('user_data');

@@ -14,12 +14,14 @@ if(!function_exists('infoproceso')){
 			
 			switch ($processId) {
 				case BPM_PROCESS_ID_PEDIDO_CONTENEDORES:
+
 						log_message('INFO','#TRAZA|INFOPROCESO_HELPER|/solicitudContenedores/info/.$case_id): $case_id >> '.json_encode($case_id));
 						$aux = $ci->rest->callAPI("GET",REST."/solicitudContenedores/info/".$case_id);
 						$aux =json_decode($aux["data"]);
 					break;
 				
 				case BPM_PROCESS_ID_RETIRO_CONTENEDORES:
+
 						log_message('INFO','#TRAZA|INFOPROCESO_HELPER|/solicitudRetiro/proceso/retiro/case/.$case_id): $case_id >> '.json_encode($case_id));
 						$aux = $ci->rest->callAPI("GET",REST."/solicitudRetiro/proceso/retiro/case/".$case_id);
 						$data =json_decode($aux["data"]);
@@ -27,14 +29,22 @@ if(!function_exists('infoproceso')){
 					break;
 					
 				case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE:
-					# code...
+
+						log_message('INFO','#TRAZA|INFOPROCESO_HELPER|/ordenTransporte/info/entrega/case/".$case_id : $case_id >> '.json_encode($case_id));
+						
+						$aux = $ci->rest->callAPI("GET",REST."/ordenTransporte/info/entrega/case/".$case_id);
+						$data =json_decode($aux["data"]);
+						$aux = $data->ordenTransporte;
+						
+						$aux_cont = $ci->rest->callAPI("GET",REST."/contenedoresEntregados/info/entrega/case/".$case_id);
+						$data_cont =json_decode($aux_cont["data"]);
+						$aux_cont = $data_cont->contenedores->contenedor;
 					break;
 				
 				default:
 					# code...
 					break;
-			}
-			
+			}			
 
 			?>
 
@@ -125,7 +135,98 @@ if(!function_exists('infoproceso')){
 										break;
 											
 									case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE:
-										# code...
+							?>			
+										<!--_____________ Formulario Solicitud Retiro_____________-->
+										<form class="formNombre1" id="IDnombre">  
+											
+												<div class="col-md-12">
+
+														<div class="col-md-6">
+																<div class="form-group">
+																		<label for="O_Transporte" name="">Nº Orden de Transporte:</label>
+																		<input type="text" class="form-control habilitar" id="O_Transporte" value="<?php echo $aux->ortr_id; ?>"  readonly>
+																</div>
+														</div>
+														<!--_____________________________________________-->
+														
+														<div class="col-md-6">
+																<div class="form-group">
+																		<label for="f_Alta" name=""> Fecha Alta:</label>
+																		<input type="text" class="form-control habilitar" id="f_Alta" value="<?php echo $aux->fec_alta; ?>"  readonly>
+																</div>
+														</div>
+														<!--_____________________________________________-->
+												</div>
+
+
+												<div class="col-md-12">
+
+														<div class="col-md-6">
+																<div class="form-group">
+																		<label for="patente" name="">Dominio:</label>
+																		<input type="text" class="form-control habilitar" id="patente" value="<?php echo $aux->dominio; ?>"  readonly>
+																</div>
+														</div>
+														<!--_____________________________________________-->
+														
+														<div class="col-md-6">
+																<div class="form-group">
+																		<label for="desc_vehiculo" name=""> Descripcion:</label>
+																		<input type="text" class="form-control habilitar" id="desc_vehiculo" value="<?php echo $aux->descripcion; ?>"  readonly>
+																</div>
+														</div>
+														<!--_____________________________________________-->
+												</div>
+
+
+												<div class="col-md-12">
+
+														<div class="col-md-6">
+																<div class="form-group">
+																		<label for="nom_chof" name="">Nombre Chofer:</label>
+																		<input type="text" class="form-control habilitar" id="nom_chof" value="<?php echo $aux->nom_chofer; ?>"  readonly>
+																</div>
+														</div>
+														<!--_____________________________________________-->
+														
+														<div class="col-md-6">
+																<div class="form-group">
+																		<label for="f_Alta" name=""> DNI:</label>
+																		<input type="text" class="form-control habilitar" id="f_Alta" value="<?php echo $aux->documento; ?>"  readonly>
+																</div>
+														</div>
+														<!--_____________________________________________-->
+												</div>
+										</form> 
+
+										<!--_____________ Tabla de Contenedores a Entregar_____________-->
+										<table id="" class="table table-bordered table-striped">
+                        <thead class="thead-dark" bgcolor="#eeeeee">
+													<th>Contenedor</th>
+													<th>Codigo</th>
+													<th>Tipo RSU</th>
+													<th>% Llenado</th>
+													<th>mts3</th> 
+                        </thead>                       
+
+												<tbody>		
+							<?php						
+												if($aux_cont){
+													foreach($aux_cont as $fila)
+													{
+															echo '<tr>';
+															echo '<td>'.$fila->cont_id.'</td>';
+															echo '<td>'.$fila->codigo.'</td>';
+															echo '<td>'.$fila->tipo_carga.'</td>';
+															echo '<td>'.$fila->porc_llenado.'</td>';
+															echo '<td>'.$fila->mts_cubicos.'</td>';
+															echo '</tr>';
+													}
+                    		}
+							?>			
+												<tbody>
+										</table>			
+							<?php	
 										break;		
 									
 									default:
