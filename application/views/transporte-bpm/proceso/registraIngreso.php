@@ -18,7 +18,7 @@
           <div class="col-md-4 col-md-6 mb-4 mb-lg-0">
               <div class="form-group">
                   <label for="dominio" class="form-label">Dominio:</label>
-                  <input type="text" name="" id="dominio" min="0" class="form-control" value="<?php echo $infoOTransporte->dominio; ?>">
+                  <input type="text" name="" id="dominio" min="0" class="form-control" value="<?php echo $infoOTransporte->dominio; ?>" readonly>
               </div>
           </div>
 
@@ -28,7 +28,7 @@
           <div class="col-md-4 col-md-6 mb-4 mb-lg-0">
               <div class="form-group">
                   <label for="cont_restantes" class="form-label">Contenedores Restantes:</label>
-                  <input type="text" name="" id="cont_restantes" min="0" class="form-control" required>
+                  <input type="text" name="" id="cont_restantes" min="0" class="form-control" required readonly>
               </div>
           </div>
 
@@ -109,14 +109,14 @@
           <div class="col-md-4 col-md-6 mb-4 mb-lg-0">
               <div class="form-group">
                   <label for="tara" class="form-label">Tara:</label>
-                  <input type="text" name="" id="tara" min="0" class="form-control" value="<?php echo  $infoOTransporte->tara; ?>" required>
+                  <input type="text" name="" id="tara" min="0" class="form-control" value="<?php echo  $infoOTransporte->tara; ?>" required readonly>
               </div>
           </div>
 
           <div class="col-md-4 col-md-6 mb-4 mb-lg-0">
               <div class="form-group">
                   <label for="peso_neto" class="form-label">Neto:</label>
-                  <input type="text" name="peso_neto" id="peso_neto" min="0" class="form-control" required>
+                  <input type="text" name="peso_neto" id="peso_neto" min="0" class="form-control" required readonly>
               </div>
           </div>
 

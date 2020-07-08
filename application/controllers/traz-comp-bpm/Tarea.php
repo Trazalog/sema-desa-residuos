@@ -162,42 +162,52 @@ class Tarea extends CI_Controller
 						case 'Analizar Solicitud':
 
 								
-                                $this->load->model('general/transporte-bpm/PedidoContenedores');
-								$resp = $this->PedidoContenedores->actualizarSolicitud($form);
-								
-								if (isset($form['motivo'])) {												
-									$respComentario = $this->PedidoContenedores->motivoRechazo($form);
-								}
-								
-								$contrato = $this->PedidoContenedores->contratoAnalisisCont($form);								
+									$this->load->model('general/transporte-bpm/PedidoContenedores');
+									$resp = $this->PedidoContenedores->actualizarSolicitud($form);
+									
+									if (isset($form['motivo'])) {												
+										$respComentario = $this->PedidoContenedores->motivoRechazo($form);
+									}
+									
+									$contrato = $this->PedidoContenedores->contratoAnalisisCont($form);								
 
-								return $contrato;
+									return $contrato;
 
-								break;
+									break;
+                                
+						case 'Confirmar pedido modificado':
+
+									$this->load->model('general/transporte-bpm/PedidoContenedores');
+
+									$contrato = $this->PedidoContenedores->contratoConfirmaPedido($form);	
+
+									return $contrato;
+
+									break;
 						
 						//  PROCESO RETIRO CONTENEDORES		
 
 						case 'Retira contenedores':	
 								
-								$this->load->model('general/transporte-bpm/RetiroContenedores');
+									$this->load->model('general/transporte-bpm/RetiroContenedores');
 
-								$resp = $this->RetiroContenedores->actualizarContenedores($form);
-								log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Retira contenedores: $resp >> '.json_encode($resp));
-								$contrato = $this->RetiroContenedores->contratoRetiro($form);
-								log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Retira contenedores: $contrato >> '.json_encode($contrato));
-								return $contrato;
-								break;
+									$resp = $this->RetiroContenedores->actualizarContenedores($form);
+									log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Retira contenedores: $resp >> '.json_encode($resp));
+									$contrato = $this->RetiroContenedores->contratoRetiro($form);
+									log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Retira contenedores: $contrato >> '.json_encode($contrato));
+									return $contrato;
+									break;
 
 						//  PROCESO ENTREGA DE ORDENES DE TRANSPORTE
 					
 						case 'Registra Ingreso':
-								$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');	
-								$resp = $this->EntregaOrdenTransportes->entregaOrdenTransporte($form);
-								log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Registra Ingreso: $resp  >> '.json_encode($resp));
-								$contrato = $this->EntregaOrdenTransportes->contratoIngreso($form);
-								log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Registra Ingreso: $contrato >> '.json_encode($contrato));
-								return $contrato;
-								break;								
+									$this->load->model('general/transporte-bpm/EntregaOrdenTransportes');	
+									$resp = $this->EntregaOrdenTransportes->entregaOrdenTransporte($form);
+									log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Registra Ingreso: $resp  >> '.json_encode($resp));
+									$contrato = $this->EntregaOrdenTransportes->contratoIngreso($form);
+									log_message('DEBUG','#TRAZA|TAREA|getContrato($tarea, $form)/Registra Ingreso: $contrato >> '.json_encode($contrato));
+									return $contrato;
+									break;								
 
             default:
                 # code...

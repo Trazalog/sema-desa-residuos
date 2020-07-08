@@ -53,7 +53,7 @@ if(!function_exists('infoproceso')){
 					<div class="panel-heading" role="tab" id="headingOne">
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-								Proceso
+								Proceso <?php echo ' - Orden Transporte Nº: '.$aux->ortr_id; ?>
 							</a>
 						</h4>
 					</div>
