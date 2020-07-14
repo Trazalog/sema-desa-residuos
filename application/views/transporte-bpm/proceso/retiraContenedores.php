@@ -177,7 +177,7 @@ function guardar(){
 	$.ajax({
 			type: 'POST',
 			data:{ contAsign, retiro },
-			url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
+			url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 			success: function(result) {
 						wc();
 					

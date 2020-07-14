@@ -108,17 +108,18 @@ define('BPM_PROCESS', json_encode(array(
     '6013058915384903051' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
     '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
 
-    '5286710446401474345' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300', 'proyecto'=>'', 'model'=>'RSU_Tareas'],
-    '4817856371144276175' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#FF3300', 'proyecto'=>'', 'model'=>'RSU_Tareas'],
-    '5525269319148713590' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#FF3300', 'proyecto'=>'', 'model'=>'RSU_Tareas']    
+    '5268088305538274604' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'PedidoContenedores'],
+    '4817856371144276175' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'RetiroContenedores'],
+    '5525269319148713590' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'EntregaOrdenTransportes']    
 )));
+
 
 // define('BPM_ADMIN_USER', 'almacen.tools');
 // define('BPM_ADMIN_PASS', 'bpm');
-define('BPM_USER_PASS', 'bpm');
+//define('BPM_USER_PASS', 'bpm');
 define('BPM_ADMIN_USER', 'admin');
 define('BPM_ADMIN_PASS', '123traza');
-//define('BPM_USER_PASS', '123');
+define('BPM_USER_PASS', '123');
 
 #ERRORES DE BONITA
 define('ASP_100', 'Fallo Conexión BPM');

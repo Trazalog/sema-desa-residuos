@@ -1,12 +1,7 @@
 
 <h4>Registra Ingreso</h4>
-<?php
 
-	//var_dump($infoOT);
-
-?>
 <!-- ____________________________ GRUPO 1 ____________________________ -->
-
 
 <div class="col-md-12">
 
@@ -144,8 +139,6 @@
           </select>
       </div>
 			<!-- ________________________________________________________ -->
-	
-			
 			
 			<div class="form-group text-center">
 					<label> Incidencia:</label>					
@@ -153,9 +146,7 @@
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>						
 					</button> 
 			</div>
-			<!-- ________________________________________________________ -->						
-
-
+			<!-- ________________________________________________________ -->		
 
     </div>
 
@@ -335,12 +326,12 @@
 			$.ajax({
 					type: 'POST',
 					data:{ data },
-					url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
+					url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 					success: function(result) {
 								wc();
 								if(result == 'OK'){
-
 									alertify.success('Contenedor ingresado con exito...');
+									existFunction('cerrarTarea');
 								}
 					},
 					error: function(result){
