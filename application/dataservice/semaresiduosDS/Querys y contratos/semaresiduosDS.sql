@@ -1297,6 +1297,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
 
 --contenedoresEntregadosSet" 
   recurso: /contenedores/entregados/entregar
+  _post_contenedores_entrega_batch_req
   metodo: post
       insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)&#xd;  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))&#xd;returning coen_id;
 
@@ -1323,28 +1324,31 @@ http://10.142.0.7:8280/services/semaresiduosDS
   -- ejemplo
 
     {
-      "_post_contenedores_entrega_batch_req":{
-          "_post_contenedores_entrega":[
+      "_post_contenedores_entregados_entregar_batch_req":{
+          "_post_contenedores_entregados_entregar":[
             {
               "fec_entrega": "2020-04-02",
               "cont_id": "43",
               "usuario_app": "hugoDS",
               "soco_id": "2",
-              "tica_id": "tipo_cargaOrganico"
+              "tica_id": "tipo_cargaOrganico",
+              "equi_id_entrega":"40"
             },
             {
               "fec_entrega": "2020-04-02",
               "cont_id": "44",
               "usuario_app": "hugoDS",
               "soco_id": "2",
-              "tica_id": "tipo_cargaOrganico"
+              "tica_id": "tipo_cargaOrganico",
+              "equi_id_entrega":"40"
             },
             {
               "fec_entrega": "2020-04-02",
               "cont_id": "43",
               "usuario_app": "hugoDS",
               "soco_id": "2",
-              "tica_id": "tipo_cargaOrganico"
+              "tica_id": "tipo_cargaOrganico",
+              "equi_id_entrega":"40"
             }
           ]
       }

@@ -181,6 +181,15 @@ class Tarea extends CI_Controller
                                return $contrato;
 
                                break;
+                        case 'Entregar contenedores':
+
+                               $this->load->model('general/transporte-bpm/PedidoContenedores');
+                               
+                               $contrato = $this->PedidoContenedores->contratoEntregaContenedor($form);	
+                               
+                               return $contrato;
+                               
+                               break;
 								
             default:
                 # code...
@@ -230,5 +239,17 @@ class Tarea extends CI_Controller
     public function guardarComentario()
     {
         echo $this->bpm->guardarComentario($this->input->post());
+    }
+    public function GuardaContEntregado(){
+        $this->load->model('general/transporte-bpm/PedidoContenedores');
+        log_message('INFO','#TRAZA|Tarea|GuardaContEntregados() >> ');
+        $datos_contenedores =  $this->input->post('cont_entregados_listo'); 
+        $resp = $this->PedidoContenedores->GuardarContEntregados($datos_contenedores);
+        if($resp == 1){
+         echo 1;
+        }else{
+         echo 0;   
+        }
+
     }
 }

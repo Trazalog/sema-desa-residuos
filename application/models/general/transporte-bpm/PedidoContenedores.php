@@ -50,6 +50,18 @@ class PedidoContenedores extends CI_Model
         return $resp;
         break;
 
+        case 'Entregar contenedores':
+        log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
+        $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);  
+        $soco_id= $tarea->infoSolicitud->soco_id;
+        $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
+        $tarea->infoContenedoresEntregados = $this->obtenerContEntregados($soco_id);
+        $tarea->camion = $this->ObtenerCamiones();
+        $tarea->contenedores =$this->ObtenerContenedores();
+        $resp = $this->load->view('transporte-bpm/proceso/entregaContenedor', $tarea, true);
+        return $resp;
+        break;
+        
         default:
           # code...
           break;
@@ -119,6 +131,18 @@ class PedidoContenedores extends CI_Model
       return $contrato;
 
     }
+
+    function contratoEntregaContenedor($form)
+    {
+      $opcion = $form["elegido"]["opcion"]; //acepta o rechaza
+      if ($opcion == 'acepta') {
+        $ejecutar = false;
+        $contrato = array(
+          "entregaPendiente" => $ejecutar
+        ); 
+      }
+      return $contrato;
+    }
     /**
     * guarda en BD el motivo de rechazo del analisis de solicitud decontenedores
     * @param string motivo de rechazo
@@ -177,6 +201,36 @@ class PedidoContenedores extends CI_Model
       $aux = $this->rest->callAPI("GET",REST."/contenedoresSolicitados/$soco_id");
       $aux =json_decode($aux["data"]);
       return $aux->contSolicitados->contenedor;
+    }
+    function obtenerContEntregados($soco_id)
+    {
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|obtenerContEntregados($soco_id): $soco_id >> '.json_encode($soco_id));
+      $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/$soco_id");
+      $aux =json_decode($aux["data"]);
+      return $aux->contenedores->contenedor;
+    }
+    function ObtenerCamiones()
+    {
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|ObtenerCamiones()');
+      $aux = $this->rest->callAPI("GET",REST."/vehiculos");
+      $aux =json_decode($aux["data"]);
+      return $aux->vehiculos->vehiculo;
+    }
+    function ObtenerContenedores()
+    {
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|ObtenerContenedores()');
+      $aux = $this->rest->callAPI("GET",REST."/contenedores");
+      $aux =json_decode($aux["data"]);
+      return $aux->contenedores->contenedor;
+    }
+    function GuardarContEntregados($datos)
+    {
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|GuardarContEntregados() >> ');
+      $data["_post_contenedores_entregados_entregar"] = $datos;
+      $dato["_post_contenedores_entregados_entregar_batch_req"] = $data;
+      $aux = $this->rest->callAPI("POST",REST."/_post_contenedores_entregados_entregar_batch_req", $dato);
+      $aux =json_decode($aux["status"]);
+      return $aux;
     }
 
 
