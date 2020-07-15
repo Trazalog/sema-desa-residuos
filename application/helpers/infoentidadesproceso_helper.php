@@ -1,18 +1,49 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+* cabeceras informacion Generadores y Transpoortistas
+*
+* @autor Hugo Gallardo
+*/
 if(!function_exists('infoentidadesproceso')){
    
     function infoentidadesproceso($tarea){		
 	
       $ci2 =& get_instance();
       $ent_case_id = $tarea->caseId;
-      $processId = $tarea->processId;
-      
-      $aux_gen = $ci2->rest->callAPI("GET",REST."/solicitantesTransporte/case/".$ent_case_id);
-      $aux_gen =json_decode($aux_gen["data"]);
+      $processId = $tarea->processId;      
 
-      $aux_tran = $ci2->rest->callAPI("GET",REST."/transportistas/case/".$ent_case_id);
-      $aux_tran =json_decode($aux_tran["data"]);
+      switch ($processId) {
+
+          case BPM_PROCESS_ID_PEDIDO_CONTENEDORES:
+
+              $aux_gen = $ci2->rest->callAPI("GET",REST."/solicitantesTransporte/case/".$ent_case_id);
+              $aux_gen =json_decode($aux_gen["data"]);
+
+              $aux_tran = $ci2->rest->callAPI("GET",REST."/transportistas/case/".$ent_case_id);
+              $aux_tran =json_decode($aux_tran["data"]);
+            break;
+
+          case BPM_PROCESS_ID_RETIRO_CONTENEDORES:
+            
+              $aux_gen = $ci2->rest->callAPI("GET",REST."/solicitantesTransporte/proceso/retiro/case/".$ent_case_id);
+              $aux_gen =json_decode($aux_gen["data"]);
+              
+              $aux_tran = $ci2->rest->callAPI("GET",REST."/transportistas/proceso/retiro/case/".$ent_case_id);
+              $aux_tran =json_decode($aux_tran["data"]);
+            break;
+          case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE:
+
+              $aux_gen = $ci2->rest->callAPI("GET",REST."/solicitantesTransporte/proceso/ingreso/case/".$ent_case_id);
+              $aux_gen =json_decode($aux_gen["data"]);
+
+              $aux_tran = $ci2->rest->callAPI("GET",REST."/transportistas/proceso/ingreso/case/".$ent_case_id);
+              $aux_tran =json_decode($aux_tran["data"]);              
+            break;        
+          default:
+            # code...
+            break;
+      }      
       
     ?>  
 
@@ -103,6 +134,18 @@ if(!function_exists('infoentidadesproceso')){
                               <div class="form-group">
                                   <label for="rubro" name="">Rubro:</label>
                                   <input type="text" class="form-control habilitar" id="rubro" value="<?php echo $aux_gen->generador->rubro; ?>"  readonly>
+                              </div>
+                            </div>
+                            <!--_____________________________________________-->
+
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="rubro" name="">Tipos de RSU:</label>
+                                  <input type="text" class="form-control habilitar" id="rubro" value="<?php 
+                                  foreach ($aux_gen->generador->tiposCarga->carga as $tipocarga) {
+                                        echo $tipocarga->valor.', ';
+                                      }
+                                   ?>"  readonly>
                               </div>
                             </div>
                             <!--_____________________________________________-->

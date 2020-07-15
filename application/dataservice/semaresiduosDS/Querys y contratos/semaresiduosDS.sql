@@ -1,7 +1,8 @@
-http://dev-trazalog.com.ar:8280/services/semaresiduosDS
-http://trazalog.com.ar:8280/services/semaresiduosDS
-http://34.66.255.127:8280/services/semaresiduosDS
+endpoint de Desarrollo
 http://10.142.0.7:8280/services/semaresiduosDS
+
+endpoint de Test
+http://10.142.0.3:8280/services/semaresiduosDS
 
 //TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
   - falta saber de donde sale el destino acta para elegir
@@ -626,9 +627,18 @@ http://10.142.0.7:8280/services/semaresiduosDS
     }
   }
 
+-- contenedoresImagenPorId
+  recurso: /contenedores/get/imagen/{cont_id}
+  metodo: get
 
+  select imagen from log.contenedores
+  where cont_id = CAST(:cont_id AS INTEGER)
 
-
+  {
+    "respuesta":{
+        "imagen": "$imagen"
+    }
+  }
 
   -- ejempo de respuesta
     {"contenedores": {"contenedor": [
@@ -802,12 +812,15 @@ http://10.142.0.7:8280/services/semaresiduosDS
     }
   }
 
--- contenedoresSet (alta contenedores)
+-- contenedoresSet (alta contenedores) 
+  
+  
   recurso: /contenedores
   metodo: post
   insert into log.contenedores(codigo, descripcion, capacidad, anio_elaboracion, tara, habilitacion, fec_alta, usuario_app, esco_id, tran_id)
-  values(CAST(:codigo as INTEGER), :descripcion, CAST(:capacidad as float8), TO_DATE(:anio_elaboracion,'YYYY-MM-DD'), CAST(:tara as float8), :habilitacion, TO_DATE(:fec_alta,'YYYY-MM-DD'), :usuario_app, :esco_id, CAST(:tran_id as INTEGER))
+  values(CAST(:codigo as INTEGER), :descripcion, CAST(:capacidad as float8), TO_DATE(:anio_elaboracion,'YYYY-MM-DD'), CAST(:tara as float8), :habilitacion, TO_DATE(:fec_alta,'YYYY-MM-DD'), :usuario_app, :esco_id, CAST(:tran_id AS INTEGER), :imagen)
   returning cont_id
+  
 
   {"post_contenedor":
     {
@@ -820,7 +833,8 @@ http://10.142.0.7:8280/services/semaresiduosDS
       "habilitacion":"habilitacion_contenedorUso",
       "fec_alta":"2021-05-01",
       "usuario_app":"hugoDS",
-      "tran_id": "2"
+      "tran_id": "2",
+      "imagen": ""
       }
   }
 
@@ -913,9 +927,12 @@ http://10.142.0.7:8280/services/semaresiduosDS
   recurso:/contenedores
   metodo: put
 
+ 
+
   update log.contenedores 
-  set codigo = CAST(:codigo as INTEGER), descripcion = :descripcion, capacidad = CAST(:capacidad as float8), tara = CAST(:tara as float8), habilitacion = :habilitacion, usuario_app = :usuario_app, esco_id = :esco_id, anio_elaboracion = TO_DATE(:anio_elaboracion,'YYYY-MM-DD')
+  set codigo = CAST(:codigo as INTEGER), descripcion = :descripcion, capacidad = CAST(:capacidad as float8), tara = CAST(:tara as float8), habilitacion = :habilitacion, usuario_app = :usuario_app, esco_id = :esco_id, anio_elaboracion = TO_DATE(:anio_elaboracion,'YYYY-MM-DD'), imagen = :imagen
   where cont_id = CAST(:cont_id as INTEGER)
+
 
 
   {"put_contenedor":
@@ -928,12 +945,13 @@ http://10.142.0.7:8280/services/semaresiduosDS
       "habilitacion":"habilitacion_contenedorUso",
       "usuario_app":"hugoDS",
       "esco_id":"estado_contenedorINGRESADO",
-      "anio_elaboracion":"2019-01-01"
+      "anio_elaboracion":"2019-01-01",
+      "imagen": ""
     }
   }
 
  
-//TODO: REVISAR ESTO POR LA MULTIPICIDAD DE RESIDUOS QUE LLEVA CADA CONTENEDOR
+
 -- contenedoresGetPorTransp (contenedores por transporte y tipo de residuo agrupado por tipo de residuo)
 
   recurso: /contenedores/transportista/{tran_id}
@@ -1086,7 +1104,104 @@ http://10.142.0.7:8280/services/semaresiduosDS
             "codigo": "112233",
             "cont_id": "44"
           }
-        ]}}
+        ]
+      }
+  }
+
+-- contenedoresEntregadosAsignaarVehiculo
+  recurso: /contenedoresEntregados/vehiculo
+  /_put_contenedoresentregados_vehiculo_batch_req
+  metodo: put
+
+  update log.contenedores_entregados 
+  set equi_id = CAST(:equi_id as INTEGER)
+  where coen_id = CAST(:coen_id as INTEGER)
+
+  {
+    "_put_contenedoresentregados_vehiculo_batch_req": {
+        "_put_contenedoresentregados_vehiculo": [
+            {
+              "equi_id": "",
+              "coen_id": ""
+            }
+        ]
+    }
+  }
+
+-- contenedoresEntregadosInfoEntregaCase
+  recurso: /contenedoresEntregados/info/entrega/case/{case_id}
+  metodo: get
+
+  select 
+      CE.coen_id, CE.porc_llenado, CE.mts_cubicos,C.cont_id, C.codigo, T.valor as tipo_carga
+  from 
+      log.contenedores C, log.contenedores_entregados CE, core.tablas T
+  where 
+      C.cont_id = CE.cont_id 
+  and 
+      CE.ortr_id = (select OT.ortr_id from log.ordenes_transporte OT
+            where OT.case_id = :case_id )
+  and 
+      CE.tica_id = T.tabl_id 
+            
+  and 
+      CE.peso_neto is null
+  and 
+      CE.difi_id is null
+  and 
+      CE.sector_descarga is null                
+
+  {
+    "contenedores":{
+        "contenedor":[
+          {
+            "coen_id": "$coen_id",
+            "porc_llenado": "$porc_llenado",
+            "mts_cubicos": "$mts_cubicos",
+            "cont_id": "$cont_id",
+            "codigo": "$codigo",
+            "tipo_carga": "$tipo_carga"            
+          }
+        ] 
+    }
+  }
+
+
+-- contenedoresEntregadosRegistraIngreso (registra ingreso de contenedores en bascula PTA)
+  recurso: /contenedoresEntregados/ingreso/{coen_id}
+  metodo: put
+
+  update log.contenedores_entregados 
+  set peso_neto = CAST(:peso_neto AS FLOAT4), difi_id = :difi_id, sector_descarga = :sector_descarga 
+  where coen_id = CAST(:coen_id as INTEGER)
+
+  {
+    "_put_contenedoresentregados_registra_ingreso":{
+      "peso_neto": "$peso_neto",
+      "difi_id": "$difi_id",
+      "sector_descarga": "$sector_descarga"
+      "coen_id": "$coen_id"
+    }
+  }
+
+-- contenedoresEntregadosGetImgPorCoen_id (Trae imagen pot coen_id) 
+  recurso: /contenedoresEntregados/ingreso/{coen_id}
+  metodo: get
+
+  select imagen 
+  from log.contenedores C, log.contenedores_entregados CE 
+  where C.cont_id = CE.cont_id 
+  and CE.coen_id = CAST(:coen_id as INTEGER)
+
+  {
+	  "imag_contenedor":{
+		  "imagen": "$imagen"
+    }
+  }
+
+
+
+
 
 
 -- contenedoresSolicitadosGet (/solicitudContenedores/{usuario_app}, para pantalla entrega contenedores tambien)
@@ -1302,27 +1417,28 @@ http://10.142.0.7:8280/services/semaresiduosDS
       insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)&#xd;  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))&#xd;returning coen_id;
 
 -- contenedoresEntregaSet 
-
+  recurso: /contenedores/entregados/entregar
 
   insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id )
   values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id)
-  returning coen_id
+  --returning coen_id
 
-{"_post_contenedores_entregados_entregar":{
-	"fec_entrega":"01/01/2020",
-	"cont_id":"104",
-	"usuario_app":"rodete",
-	"soco_id":"86",
-	"tica_id":"tipos_cargaResiduos Tecnologicos",
-	"equi_id_entrega":"40"
-	}
-}
+  {"_post_contenedores_entregados_entregar":{
+    "fec_entrega":"01/01/2020",
+    "cont_id":"104",
+    "usuario_app":"rodete",
+    "soco_id":"86",
+    "tica_id":"tipos_cargaResiduos Tecnologicos",
+    "equi_id_entrega":"40"
+    }
+  }
 
 
-{"respuesta": {"coen_id": "20"}}
+  --{"respuesta": {"coen_id": "20"}}
 
   -- ejemplo
 
+    recurso batch: /_post_contenedores_entregados_entregar_batch_req
     {
       "_post_contenedores_entregados_entregar_batch_req":{
           "_post_contenedores_entregados_entregar":[
@@ -1366,16 +1482,38 @@ http://10.142.0.7:8280/services/semaresiduosDS
     }
 
 
+-- contenedoresEntregadosGetPorCaseId (pantalla retiro contenedores->PROCESO RETIRO CONTENEDORES)
+  recurso: /contenedoresEntregados/case/{case_id}
+  metodo: get
 
+  select CE.coen_id, CE.cont_id, CE.porc_llenado, CE.mts_cubicos, CE.tica_id, T.valor 
+  from log.contenedores_entregados CE, core.tablas T
+  where CE.sore_id = (select SR.sore_id from log.solicitudes_retiro SR where SR.case_id = :case_id ) 
+  and CE.tica_id = T.tabl_id 
+  and CE.ortr_id is null
+  and CE.equi_id is null
 
-
+  {
+    "contenedoresEntregados":{
+        "contenedor":[
+          {
+            "coen_id": "$coen_id",
+            "cont_id": "$cont_id",
+            "porc_llenado": "$porc_llenado",
+            "mts_cubicos": "$mts_cubicos",
+            "tica_id": "$tica_id",
+            "valor": "$valor"
+          }
+        ]
+    }
+  }
 
 
 -- (generadores)solicitanteTransporteGet
   recurso: /solicitantesTransporte
   metodo: get
   select ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, 
-  ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, ST.tica_id, ST.depa_id,
+  ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, ST.depa_id,
   D.nombre as depa_nombre, Z.nombre as zona_nombre 
   from log.solicitantes_transporte ST, core.departamentos D, core.zonas Z
   where ST.depa_id = D.depa_id 
@@ -1399,7 +1537,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
             "depa_nombre": "$depa_nombre", 
             "rubr_id": "$rubr_id",
             "tist_id": "$tist_id",
-            "tica_id": "$tica_id"	            
+            "@solicitanteTransporteGetTipoCarga": "$sotr_id->sotr_id"	            
           }
         ]
     }
@@ -1429,13 +1567,14 @@ http://10.142.0.7:8280/services/semaresiduosDS
     "razon_social": "Residuos Caballos Salvajes"
   }}
 
--- (generadores)solicitanteTransportePorUsuario  
+-- (generadores)solicitanteTransporteGetPorUsr(MODIFICADO HARDCODEADO SOLO A SOTR_ID)
   recurso: /solicitantesTransporte/{usuario_app}  (ej: /solicitantesTransporte/hugoDS)
   metodo: get
-  select ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, ST.tica_id, D.nombre as depa_nom
+  select 
+  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, D.nombre as depa_nom
   from log.solicitantes_transporte ST, core.departamentos D 
   where usuario_app = :usuario_app 
-  and ST.depa_id = D.depa_id 
+  and ST.depa_id = D.depa_id
 
   {
     "solicitantes_transporte": {
@@ -1451,7 +1590,6 @@ http://10.142.0.7:8280/services/semaresiduosDS
             "zona_id": "$zona_id",
             "rubr_id": "$rubr_id",
             "tist_id": "$tist_id",
-            "tica_id": "$tica_id",
             "depa_nom": "$depa_nom"	            
           }
         ]
@@ -1485,7 +1623,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
   update 
   log.solicitantes_transporte 
   set 
-  razon_social=:razon_social, cuit=:cuit, domicilio = :domicilio, num_registro=:num_registro, lat=:lat, lng=:lng, usuario_app=:usuario_app, zona_id=CAST(:zona_id AS INTEGER), rubr_id=:rubr_id, tist_id=:tist_id, tica_id=:tica_id
+  razon_social=:razon_social, cuit=:cuit, domicilio = :domicilio, num_registro=:num_registro, lat=:lat, lng=:lng, usuario_app=:usuario_app, zona_id=CAST(:zona_id AS INTEGER), rubr_id=:rubr_id, tist_id=:tist_id
   where (sotr_id=CAST(:sotr_id AS INTEGER))
 
   {
@@ -1521,7 +1659,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
   }
   
 
--- solicitanteTransporteGetPorCaseId (CABECERA GENERADOR)
+-- (generadores)solicitanteTransporteGetPorCaseId (CABECERA GENERADOR->SOLICITUD CONTENEDORES)
   recurso: /solicitantesTransporte/case/{case_id}
   metodo: get
 
@@ -1553,11 +1691,151 @@ http://10.142.0.7:8280/services/semaresiduosDS
       "tipo_generador": "$tipo_generador",
       "departamento": "$departamento",
       "zona": "$zona",
-      "rubro": "$rubro"
+      "rubro": "$rubro",
+      "@solicitanteTransporteGetTipoCarga": "$sotr_id->sotr_id"
     }
   }
 
+-- (generadores)solicitanteTransporteGetPorCaseIdRetiro(CABECERA GENERADOR->RETIRO CONTENEDORES)
+  recurso: /solicitantesTransporte/proceso/retiro/case/{case_id}
+  metodo:
 
+  select  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro,
+          TTIPO.valor as tipo_generador,
+          DEPA.nombre as departamento,
+          ZONA.nombre as zona,
+          TRUB.valor as rubro
+  from 
+        log.solicitantes_transporte ST,
+        core.tablas TTIPO,
+        core.departamentos DEPA, 
+        core.zonas ZONA,
+        core.tablas TRUB
+  where      
+      ST.sotr_id = (select SR.sotr_id from log.solicitudes_retiro SR where SR.case_id = :case_id)
+  and 
+      ST.tist_id = TTIPO.tabl_id	
+  and 
+      ST.depa_id = DEPA.depa_id
+  and 
+      ST.zona_id = ZONA.zona_id 
+  and 
+      ST.rubr_id = TRUB.tabl_id 
+  and 
+      ST.eliminado = 0
+
+  {
+    "generador":{
+      "sotr_id": "$sotr_id",
+      "razon_social": "$razon_social",
+      "cuit": "$cuit",
+      "domicilio": "$domicilio",
+      "num_registro": "$num_registro",
+      "tipo_generador": "$tipo_generador",
+      "departamento": "$departamento",
+      "zona": "$zona",
+      "rubro": "$rubro",
+      "@solicitanteTransporteGetTipoCarga": "$sotr_id->sotr_id"
+    }
+  }
+
+-- (generadores)solicitanteTransporteGetPorCaseIdIngreso(CABECERA GENERADOR->INGRESO CONTENEDORES)
+
+  recurso: /solicitantesTransporte/proceso/ingreso/case/{case_id}
+  metodo: get
+
+  select  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro,
+          TTIPO.valor as tipo_generador,
+          DEPA.nombre as departamento,
+          ZONA.nombre as zona,
+          TRUB.valor as rubro
+  from 
+        log.solicitantes_transporte ST,
+        core.tablas TTIPO,
+        core.departamentos DEPA, 
+        core.zonas ZONA,
+        core.tablas TRUB
+  where      
+      ST.sotr_id = (select OT.sotr_id 
+                    from log.ordenes_transporte OT
+                    where OT.case_id = :case_id)
+  and 
+      ST.tist_id = TTIPO.tabl_id	
+  and 
+      ST.depa_id = DEPA.depa_id
+  and 
+      ST.zona_id = ZONA.zona_id 
+  and 
+      ST.rubr_id = TRUB.tabl_id 
+  and 
+      ST.eliminado = 0
+
+  {
+    "generador":{
+      "sotr_id": "$sotr_id",
+      "razon_social": "$razon_social",
+      "cuit": "$cuit",
+      "domicilio": "$domicilio",
+      "num_registro": "$num_registro",
+      "tipo_generador": "$tipo_generador",
+      "departamento": "$departamento",
+      "zona": "$zona",
+      "rubro": "$rubro",
+      "@solicitanteTransporteGetTipoCarga": "$sotr_id->sotr_id"
+    }
+  }
+
+-- (generadores)solicitanteTransporteGetTipoCarga (CABECERA GENERADOR Y LISTADO GENERAL)
+  recurso: no hay recurso asociado solo la query
+  metodo: 
+
+  select T.valor, T.tabl_id 
+  from log.tipos_carga_generadores TCG, core.tablas T
+  where TCG.tica_id = T.tabl_id 
+  and TCG.sotr_id = CAST(:sotr_id as INTEGER)
+
+
+  {"tiposCarga":    
+    {
+      "carga":[
+        {
+        "tabl_id": "$tabl_id",
+        "valor": "$valor" 		
+        } 
+      ]
+    }
+  } 
+
+-- (generadores)solicitanteTransporteSetTipoCarga
+  recurso: /_post_solicitantestransporte_tipocarga_batch_req
+  metodo: post
+
+  insert into log.tipos_carga_generadores(sotr_id, tica_id) 
+  values(cast(:sotr_id as INTEGER), :tica_id)
+
+  -- contrato json
+  {
+    "_post_solicitantestransporte_tipocarga_batch_req":{
+        "_post_solicitantestransporte_tipocarga":[
+          {
+            "sotr_id": "40",
+            "tica_id": "tipo_cargaResiduos Patologicos"
+          }
+        ]
+    }
+  }
+
+-- (generadores)solicitanteTransporteDeleteTipoCarga
+  recurso: /solicitantesTransporte/tipoCarga
+  metodo: delete
+  delete from log.tipos_carga_generadores where sotr_id = cast(:sotr_id as integer)  
+  
+  -- ejemplo contrato
+  {
+    "_delete_solicitantestransporte_tipocarga":{
+      "sotr_id": "40"
+    }
+  }
 
 
 -- incidenciaSet
@@ -1573,7 +1851,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
     adjunto,
     usuario_app,
     tiin_id,
-    tire_id,
+    tica_id,
     difi_id,
     ortr_id)
   values(:descripcion,
@@ -1756,22 +2034,25 @@ http://10.142.0.7:8280/services/semaresiduosDS
   }
 
 
--- ordTransPorIdGet
-  recurso: /ordenTransporte/{ortr_id}
+-- ordTransGetPorCase
+  recurso: /ordenTransporte/case/{case_id}
   metodo: get
 
-  select ortr_id, fec_retiro, caseid, fec_alta, difi_id, sotr_id, equi_id, chof_id from log.ordenes_transporte where ortr_id = CAST(:ortr_id AS INTEGER)
+  select OT.ortr_id, OT.fec_retiro, OT.case_id, OT.fec_alta, 
+  OT.difi_id, T.valor as difi_nombre, OT.sotr_id
+  from log.ordenes_transporte OT, core.tablas T
+  where OT.case_id = :case_id 
+  and OT.difi_id = T.tabl_id
 
   {"ordenTransp":
     {
       "ortr_id": "$ortr_id",
       "fec_retiro": "$fec_retiro",
-      "caseid": "$caseid",
+      "case_id": "$case_id",
       "fec_alta": "$fec_alta",
       "difi_id": "$difi_id",
-      "sotr_id": "$sotr_id",
-      "equi_id": "$equi_id",
-      "chof_id": "$chof_id"
+      "difi_nombre": "$difi_nombre",
+      "sotr_id": "$sotr_id"      
     }
   }
 
@@ -1844,6 +2125,36 @@ http://10.142.0.7:8280/services/semaresiduosDS
         ]
     }
   }
+
+-- ordenTransporteInfoEntrega
+  recurso: /ordenTransporte/info/entrega/case/{case_id}
+  metodo: get
+
+  select OT.ortr_id, OT.fec_alta,  
+        E.dominio, E.descripcion, E.imagen as img_vehiculo, E.tara , 
+        CH.imagen as img_chofer, concat(CH.nombre, ' ', CH.apellido) as nom_chofer, CH.documento 
+  from log.ordenes_transporte OT, core.equipos E, log.choferes CH
+  where OT.case_id = :case_id 
+  and OT.equi_id = E.equi_id 
+  and OT.chof_id = CH.documento 
+  and OT.eliminado = 0
+
+  {
+    "ordenTransporte":{
+      "ortr_id": "$ortr_id",
+      "fec_alta": "$fec_alta",
+      "dominio": "$dominio",
+      "descripcion": "$descripcion",
+      "img_vehiculo": "$img_vehiculo",
+      "tara": "$tara",
+      "img_chofer": "$img_chofer",
+      "nom_chofer": "$nom_chofer",
+      "documento": "$documento"      
+    }
+  }
+
+
+
 
 
 
@@ -2149,7 +2460,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
   }}
 
 
--- solicitudContenedorGetInfo 
+-- solicitudContenedorGetInfo (CABECERA PROCCESO->SOLICITUD CONTENEDORES)
   recurso: /solicitudContenedores/info/{case_id}
   metodo: get
   select 
@@ -2171,6 +2482,7 @@ http://10.142.0.7:8280/services/semaresiduosDS
       "domicilio": "$domicilio"
     } 
   }
+  
 
 -- solicitudContenedoresSetMotivo
   recurso: /contenedoresSolicitados/rechazados/motivo
@@ -2893,6 +3205,56 @@ HTTP/1.1 202 Accepted
     }  
   }
 
+-- transportistaGetPorCaseIdRetiro(CABECERA TRANSPORTISTA -> RETIRO CONTENEDORES)
+  recurso: /transportistas/proceso/retiro/case/{case_id}
+  metodo:
+
+  select TR.razon_social, TR.cuit, TR.direccion, TR.resolucion, TR.registro 
+  from log.transportistas TR, log.contenedores C
+  where TR.tran_id = C.tran_id 
+  and C.cont_id = (select CE.cont_id 
+          from log.contenedores_entregados CE
+          where CE.sore_id = (select SR.sore_id 
+                    from log.solicitudes_retiro SR 
+                    where SR.case_id  = :case_id)
+          order by Ce.cont_id limit 1)
+
+
+  {
+    "transportista":{
+      "razon_social": "$razon_social",
+      "cuit": "$cuit",
+      "direccion": "$direccion",
+      "resolucion": "$resolucion",
+      "registro": "$registro"
+    }  
+  }
+
+
+-- transportistaGetPorCaseIdIngreso(CABECERA TRANSPORTISTA -> INGRESO CONTENEDORES)  
+  recurso: /transportistas/proceso/ingreso/case/{case_id}
+  metodo: get
+
+  select TR.razon_social, TR.cuit, TR.direccion, TR.resolucion, TR.registro 
+  from log.transportistas TR
+  where tran_id = (select OT.tran_id 
+            from log.ordenes_transporte OT
+            where OT.case_id = :case_id )
+
+  {
+    "transportista":{
+      "razon_social": "$razon_social",
+      "cuit": "$cuit",
+      "direccion": "$direccion",
+      "resolucion": "$resolucion",
+      "registro": "$registro"
+    }  
+  }
+
+
+
+
+
 
 
 -- tablasGet
@@ -2945,7 +3307,7 @@ HTTP/1.1 202 Accepted
     }
   }
 
-// TODO: ACA ESTOY
+
 
 -- solicitudRetiroProx
   recurso: /solicitudRetiro/prox
@@ -2967,6 +3329,19 @@ HTTP/1.1 202 Accepted
   --ejemplo de respuesta
   {"respuesta": {"sore_id": "9"}}
 
+-- solicitudRetiroGetPorCaseRetiro (CABECERA PROCESO-> RETIRO CONTENEDORES)
+  resurso: /solicitudRetiro/proceso/retiro/case/{case_id}
+  metodo:
+  select SR.sore_id, SR.fec_alta 
+  from log.solicitudes_retiro SR
+  where case_id = :case_id 
+
+  {
+    "solicitud_retiro":{
+      "sore_id": "$sore_id",
+      "fec_alta": "$fec_alta"
+  }
+    }
 
 --solicitudRetiroEstadoUpdate
       update log.solicitudes_retiro&#xd;set estado = :estado&#xd;where sore_id = cast(:sore_id as integer)
@@ -2989,7 +3364,7 @@ retorna 200 si ok
 -- vehiculosGetActivos
   recurso: /vehiculos
   metodo: get
-  select equi_id, descripcion, marca, dominio, codigo, ubicacion, tran_id, fecha_ingreso from core.equipos where estado = 'AC'
+  select equi_id, descripcion, marca, dominio, codigo, ubicacion, tran_id, fecha_ingreso,  from core.equipos where estado = 'AC'
 
   {
     "vehiculos":{
@@ -3052,13 +3427,43 @@ retorna 200 si ok
       ]
     }
   }
+
+-- vehiculosGetPorTransportistaUsr
+
+  recurso: /vehiculos/transp/usr/{usuario_app}
+  metodo: get
+
+  select E.equi_id, E.descripcion, E.marca, E.dominio 
+  from core.equipos E
+  where E.tran_id = (select TR.tran_id 
+            from log.transportistas TR
+            where TR.usuario_app = :usuario_app)	
+  and estado = 'AC'
+
+  {
+    "vehiculos":{
+      "vehiculo":[
+          {
+            "equi_id": "$equi_id",
+            "descripcion": "$descripcion",
+            "marca": "$marca",
+            "dominio": "$dominio"
+          }
+      ]
+    }
+  }
+
+
+
+
+
   
 -- vehiculosSet
   recurso: /vehiculos
   metodo: post
  
-  insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio, fecha_ingreso)
-  values(:descripcion, :marca, :codigo, :ubicacion, :tran_id, :dominio, TO_DATE(:fecha_ingreso,'YYYY-MM-DD'))
+  insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio, fecha_ingreso, tara, imagen)
+  values(:descripcion, :marca, :codigo, :ubicacion, CAST(:tran_id AS INTEGER), :dominio, TO_DATE(:fecha_ingreso,'YYYY-MM-DD'), CAST(:tara as float8), :imagen)
   returning equi_id
   
   {
@@ -3069,7 +3474,9 @@ retorna 200 si ok
       "ubicacion": "casa central",
       "tran_id": "3",
       "dominio": "AMD 456",
-      "fecha_ingreso": "2020-05-21"
+      "fecha_ingreso": "2020-05-21",
+      "tara": "200.50",
+      "imagen": ""
     }
   }
   
@@ -3083,8 +3490,14 @@ retorna 200 si ok
   recurso: /vehiculos
   metodo: put
 
-  update core.equipos set descripcion = :descripcion, marca = :marca, codigo = :codigo, ubicacion = :ubicacion, tran_id = CAST(:tran_id AS INTEGER), dominio = :dominio, fecha_ingreso = TO_DATE(:fecha_ingreso,'YYYY-MM-DD'))
+  update core.equipos set descripcion = :descripcion, marca = :marca, codigo = :codigo, ubicacion = :ubicacion, tran_id = CAST(:tran_id AS INTEGER), dominio = :dominio, fecha_ingreso = TO_DATE(:fecha_ingreso,'YYYY-MM-DD')), tara = CAST(:tara as float8), imagen = :imagen
   where equi_id = CAST(:equi_id AS INTEGER)
+
+
+  update core.equipos set descripcion = :descripcion, marca = :marca, codigo = :codigo, ubicacion = :ubicacion, tran_id = CAST(:tran_id AS INTEGER), dominio = :dominio, fecha_ingreso = TO_DATE(:fecha_ingreso,'YYYY-MM-DD'), tara = CAST(:tara as float8), imagen = :imagen
+  where equi_id = CAST(:equi_id AS INTEGER)
+
+
 
   {
     "_put_vehiculos":{
@@ -3095,9 +3508,26 @@ retorna 200 si ok
       "ubicacion": "casa central",
       "tran_id": "3",
       "dominio": "AMD 456",
-      "fecha_ingreso": "2020-05-21"
+      "fecha_ingreso": "2020-05-21",
+      "tara": "2000.000",
+      "imagen": ""
     }
   }
+
+
+-- vehiculosGetImagen
+
+  recurso: /vehiculos/imagen/{equi_id}
+  metodo: get
+  select imagen from core.equipos where equi_id = CAST(:equi_id AS INTEGER)
+  {
+    "vehiculos":{
+      "imagen": "$imagen"
+    }
+  }
+
+
+
 
 -- vehiculoDelete
   recurso: /vehiculos
@@ -3301,10 +3731,6 @@ retorna 200 si ok
 
 
 
-{
-   "sePuedeEjecutar":true/false,
-   "entregaSinModificaciones":true/false
-}
 
 
 

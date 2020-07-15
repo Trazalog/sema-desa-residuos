@@ -15,7 +15,7 @@ class SolicitudPedidos extends CI_Model
 		parent::__construct();
     }
 
-      /**
+    /**
 		* carga Lista solicitudes_Pedido
 		* @param  string user
 		* @return string data
@@ -32,7 +32,7 @@ class SolicitudPedidos extends CI_Model
        
     }
 
-      /**
+    /**
 		* Guarda solicitud_Pedido
 		* @param array datos del pedido
 		* @return string status
@@ -47,12 +47,12 @@ class SolicitudPedidos extends CI_Model
         return $aux;
     }
     
-      /**
+    /**
 		* Obtiene Transportistas
 		* @param 
 		* @return array data
 		*/
-	function obtenerTransportista(){
+	  function obtenerTransportista(){
         //FIXME: DESHARDCODEAR USUARIO
         log_message('INFO','#TRAZA|SolicitudPedidos|obtenerTransportista() >> '); 
 		$usuario_app  = "hugoDS";
@@ -61,7 +61,7 @@ class SolicitudPedidos extends CI_Model
 		return $aux->transportistas->transportista;
     }
 
-      /**
+    /**
 		* Obtiene los tipo de carga
 		* @param 
 		* @return array data
@@ -73,7 +73,7 @@ class SolicitudPedidos extends CI_Model
         return $aux->valores->valor;
     }
    
-      /**
+    /**
 		* Obtiene tipos de residuos
 		* @param int id del transportista
 		* @return array data
@@ -86,7 +86,7 @@ class SolicitudPedidos extends CI_Model
         return $aux->tiposCarga->cargas;
     }
   
-      /**
+    /**
 		* Registra un nuevo contenedor
 		* @param  array datos del contenedor
 		* @return array data
@@ -106,23 +106,6 @@ class SolicitudPedidos extends CI_Model
       $aux = $this->rest->callAPI("GET",REST."/solicitantesTransporte/hugoDS");
       $aux =json_decode($aux["data"]);
       return $aux->solicitantes_transporte->solicitante;
-    }
-    // // Funcion obtenesr RSU habilitado por transportista futuro uso
-	// function obtener_Tipo_residuo($tran_id)
-	// {
-	// 	$aux = $this->rest->callAPI("GET",REST."/transportistas/".$tran_id."/tipo/carga");
-	// 	$aux =json_decode($aux["data"]);
-	// 	//var_dump($aux->tiposCarga->cargas);
-	// 	return $aux->tiposCarga->cargas;
-    // }
-
-    //esta forma es como esta hecho al principio futuro uso
-    // function obtener_Transportista(){
-	// 	//FIXME: DESHARDCODEAR USUARIO
-	// 	$usuario_app  = "hugoDS";
-	// 	$aux = $this->rest->callAPI("GET",REST."/transportistas/generador/".$usuario_app);
-	// 	$aux =json_decode($aux["data"]);    
-	// 	return $aux->transportistas->transportista;
-    // }
+    }   
     
 }

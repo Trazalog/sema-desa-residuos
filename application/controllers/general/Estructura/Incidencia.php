@@ -27,6 +27,7 @@ class Incidencia extends CI_Controller {
       public function guardarIncidencia()
     {
         $datos =  $this->input->post('incidencia');
+        $datos['usuario_app'] = userNick();
         $resp = $this->Incidencias->guardarIncidencias($datos);
         if($resp){
           echo "ok";

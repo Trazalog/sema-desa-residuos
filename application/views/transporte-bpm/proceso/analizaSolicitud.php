@@ -69,7 +69,7 @@
 
 	// para guardar						
 	function cerrarAnalisis(opcion){
-		debugger;
+		//debugger;
 		wo();
 		var taskId = $('#taskId').val();
 		var elegido = {opcion: opcion};	
@@ -138,10 +138,9 @@
 		$.ajax({
 				type: 'POST',
 				data:{ elegido, coincideCant, contAcordados, motivo },
-				url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
+				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 				success: function(result) {
-					debugger;
-					alert(result);
+									//alert(result);
 									wc();
 									if(result == ''){										
 										alertify.success("Contenedoes actualizados exitosamente...");	

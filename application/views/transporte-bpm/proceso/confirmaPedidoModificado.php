@@ -1,4 +1,4 @@
-<h4>Confirma Contenedores Modificados</h4>
+<h4>Confirma Pedido Modificado</h4>
 
 <!--_________________SEPARADOR_________________-->
 <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
@@ -101,6 +101,11 @@
 
 
 <script>
+//deshabilita los botones originales de la notificacion estandar						
+$(document).ready(function(){
+	$('.btnNotifEstandar').hide();
+});	
+
 // Datatable	
 DataTable($('#tbl_contenedores'));	
 
@@ -112,13 +117,13 @@ function cerrarConfirma(opcion)
 	$.ajax({
 				type: 'POST',
 				data:{ elegido },
-				url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
+				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 				success: function(result) {
 					
-					alert(result);
+									alert(result);
 
 									wc();
-									if(result == ''){										
+									if( result.status ){										
 										alertify.success("Tarea completada exitosamente...");	
 									}else{
 										alertify.error('Error en completar la Tarea...');

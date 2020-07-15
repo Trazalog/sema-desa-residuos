@@ -18,6 +18,66 @@ class PedidoContenedores extends CI_Model
     }
 
     /**
+    * configuracion de la info que muestra la bandeja de entradas por PROCESO
+    * @param array $tarea info de tarea en BPM  
+    * @return array con info de configuracion de datos para la bandeja de entrada
+    */
+    public function map($tarea)
+    {
+        $data['descripcion'] = 'soy una descripcion';
+
+        $aux = new StdClass();
+        $aux->color = 'warning';
+        $aux->texto = 'yayayayaya';
+        $data['info'][] = $aux;
+        return $data;
+    } 
+     
+    /**
+   * Atualiza info en BD y devuelve contrato para cierre de tareas segun las mismas 
+   * @param array $tarea y $form con info para actualizar
+   * @return array $contrato para cierre de tarea en BPM
+   */
+    public function getContrato($tarea, $form)
+    {
+        switch ($tarea->nombreTarea) {
+
+            case 'Analizar Solicitud':
+
+                  $response = $this->actualizarSolicitud($form);
+                  if (isset($form['motivo'])) {												
+                    $respComentario = $this->motivoRechazo($form);
+                  }
+                  $contrato = $this->contratoAnalisisCont($form);
+                  return $contrato;
+                  break;
+
+            case 'Confirmar pedido modificado':
+
+                  $contrato = $this->contratoConfirmaPedido($form);
+                  return $contrato;        
+                  break;  
+
+            case 'Entregar contenedores':
+
+              
+                  break;     
+                  
+            default:
+                  # code...
+                  break;
+        }
+    }
+
+                 
+									
+									
+																
+
+									
+
+
+    /**
     * Despliega datos de tareas en maquetacion segun tarea especifica, para completar en notificacion estandar
     * @param array con info de tarea  
     * @return view vista (maquetacion y datos) de la tarea especifica
@@ -42,13 +102,13 @@ class PedidoContenedores extends CI_Model
           break;
 
         case 'Confirmar pedido modificado':
-        log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
-        $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);  
-        $soco_id= $tarea->infoSolicitud->soco_id; 
-        $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
-        $resp = $this->load->view('transporte-bpm/proceso/confirmaPedidoModificado', $tarea, true);
-        return $resp;
-        break;
+          log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
+          $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);  
+          $soco_id= $tarea->infoSolicitud->soco_id; 
+          $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
+          $resp = $this->load->view('transporte-bpm/proceso/confirmaPedidoModificado', $tarea, true);
+          return $resp;
+          break;
 
         case 'Entregar contenedores':
         log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
@@ -117,6 +177,11 @@ class PedidoContenedores extends CI_Model
       return $contrato;
     }
 
+    /**
+    * Devuelve contrato de cierre tarea en BPM
+    * @param array $form datos de respuesta pantalla
+    * @return array $contrato de cierre con opcion elegida
+    */
     function contratoConfirmaPedido($form)
     {
       $opcion = $form["elegido"]["opcion"]; //acepta o rechaza
