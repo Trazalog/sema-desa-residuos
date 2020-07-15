@@ -147,14 +147,15 @@ function jpg($img_b64){
 </script>
 <script>
 function ExtraerImagen($data)
-{
+{   $(".fa-spinner").show();
+    $("#img_base").hide();
     $.ajax({
                 type: "POST",
                 data: {vehi_id: $data.equi_id},
                 url: "general/Estructura/Vehiculo/GetImagen",
                 success: function ($dato) {
                     
-                    
+                    $(".fa-spinner").hide();
                     var res = JSON.parse($dato);
                     console.table(res["vehiculos"].imagen);
                     
@@ -167,7 +168,7 @@ function ExtraerImagen($data)
                    }else{
                        if(img_b64[4]=='i'){jpg(img_b64);}
                    }
-                    
+                    $("#img_base").show();
                     console.table("Como queda src final: "+img_b64);
                 }
             });
@@ -182,6 +183,12 @@ function ExtraerImagen($data)
 $(".btnEditar").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
+    var fecha = data.fecha_ingreso;
+    var fechaaux="";
+    for(var i=0; i<fecha.length-6;i++)
+    {
+        fechaaux= fechaaux + fecha[i];
+    }
     $(".titulo").text('Editar Vehiculo');
     $(".textTransinfo").attr("style","display:none"); 
     $(".ocultaTransedit").removeAttr("style"); 
@@ -195,9 +202,9 @@ $(".btnEditar").click(function(e){
     $("#e_dominio").val(data.dominio);
     $("#e_codigo").val(data.codigo);
     $("#e_ubicacion").val(data.ubicacion);
-    $("#e_fechaingreso").val(data.fecha_ingreso);
+    $("#e_fechaingreso").val(fechaaux);
     $("#e_equi_id").val(data.equi_id);
-    $("#id_fecha_ingreso").val(data.fecha_ingreso);
+    $("#id_fecha_ingreso").val(fechaaux);
     console.table($("#id_fecha_ingreso").val());
     var tranid = data.tran_id; 
     $("#e_tran_id").val(tranid);
@@ -209,6 +216,12 @@ $(".btnEditar").click(function(e){
 $(".btnInfo").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
+    var fecha = data.fecha_ingreso;
+    var fechaaux="";
+    for(var i=0; i<fecha.length-6;i++)
+    {
+        fechaaux= fechaaux + fecha[i];
+    }
     $(".titulo").text('Informacion Vehiculo');
     $('#btnsave_e').hide();
     $(".habilitar").attr("readonly","readonly"); 
@@ -221,8 +234,8 @@ $(".btnInfo").click(function(e){
     $("#e_dominio").val(data.dominio);
     $("#e_codigo").val(data.codigo);
     $("#e_ubicacion").val(data.ubicacion);
-    $("#e_fechaingreso").val(data.fecha_ingreso);
-    $("#id_fecha_ingreso").val(data.fecha_ingreso);
+    $("#e_fechaingreso").val(fechaaux);
+    $("#id_fecha_ingreso").val(fechaaux);
     $("#tran_id_info").attr("readonly","readonly"); 
     console.table($("#id_fecha_ingreso").val());
     var tranid = data.tran_id; 
