@@ -84,11 +84,11 @@
 									//echo "<tr data-json= >";
 									    
 										if($infoContenedoresEntregados)
-										{
+										{   
 											foreach($infoContenedoresEntregados as $a)
 											{
 												if($fila->valor == $a->valor )
-												{
+												{   
 													if($fila->cantidad_acordada - $a->cant_entregados == 0)
 													{echo '<td><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></td>';}
 													else{
@@ -97,6 +97,7 @@
 													 echo 	 "</td>";
 													}
 												}else{
+													
 												  if(count($infoContenedores) != count($infoContenedoresEntregados))
 												  {
 													echo    '<td>';
@@ -116,11 +117,11 @@
 										echo "<td>".$fila->valor."</td>";
 										echo "<td>".$fila->cantidad_acordada."</td>";	
 										if($infoContenedoresEntregados)
-										{
+										{   
 											foreach($infoContenedoresEntregados as $a)
 											{
 												if($fila->valor == $a->valor )
-												{
+												{	
 													$aux = $fila->cantidad_acordada - $a->cant_entregados; 
 													if($aux == 0)
 													{echo "<td>0</td>";}
@@ -128,6 +129,7 @@
 													 echo "<td>".$aux."</td>";	
 													}
 												}else{
+													
 													if(count($infoContenedores) != count($infoContenedoresEntregados))
 													{
 														echo "<td>".$fila->cantidad_acordada."</td>";
@@ -396,7 +398,7 @@ function RealizarEntrega()
 function CerrarTarea()
 {
 	var opcion = 'acepta';
-	alert("dentro de cerrar");
+	alert("La Tarea se esta por cerrar");
 	var taskId = $('#taskId').val();
 	var elegido = {opcion: opcion};	
 	$.ajax({

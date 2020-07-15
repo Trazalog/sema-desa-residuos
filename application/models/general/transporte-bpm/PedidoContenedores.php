@@ -202,6 +202,12 @@ class PedidoContenedores extends CI_Model
       $aux =json_decode($aux["data"]);
       return $aux->contSolicitados->contenedor;
     }
+
+    /**
+    * Devuelve informacion de Contenedores Entregados (cant entregadas hasta el momento)
+    * @param string soco_id
+    * @return array informacion de solicitud de contenedores entregados (cant entregada)
+    */
     function obtenerContEntregados($soco_id)
     {
       log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|obtenerContEntregados($soco_id): $soco_id >> '.json_encode($soco_id));
@@ -209,6 +215,12 @@ class PedidoContenedores extends CI_Model
       $aux =json_decode($aux["data"]);
       return $aux->contenedores->contenedor;
     }
+
+    /**
+    * Devuelve informacion de Camiones (todos los equipos)
+    * @param 
+    * @return array informacion de camiones (todos los equipos)
+    */
     function ObtenerCamiones()
     {
       log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|ObtenerCamiones()');
@@ -216,6 +228,12 @@ class PedidoContenedores extends CI_Model
       $aux =json_decode($aux["data"]);
       return $aux->vehiculos->vehiculo;
     }
+
+    /**
+    * Devuelve informacion de Contenedores (todos los contenedores)
+    * @param 
+    * @return array informacion de  contenedores (todos los contenedores)
+    */
     function ObtenerContenedores()
     {
       log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|ObtenerContenedores()');
@@ -223,6 +241,12 @@ class PedidoContenedores extends CI_Model
       $aux =json_decode($aux["data"]);
       return $aux->contenedores->contenedor;
     }
+
+      /**
+    * Guarda informacion de Contenedores a entregar 
+    * @param array datos de los contenedores a entregar
+    * @return json status
+    */
     function GuardarContEntregados($datos)
     {
       log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|GuardarContEntregados() >> ');
