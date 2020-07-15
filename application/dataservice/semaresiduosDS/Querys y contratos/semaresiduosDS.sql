@@ -1416,50 +1416,54 @@ http://10.142.0.3:8280/services/semaresiduosDS
       insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)&#xd;  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))&#xd;returning coen_id;
 
 -- contenedoresEntregaSet 
-
+  recurso: /contenedores/entregados/entregar
 
   insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id )
   values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id)
-  returning coen_id
+  --returning coen_id
 
-{"_post_contenedores_entregados_entregar":{
-	"fec_entrega":"01/01/2020",
-	"cont_id":"104",
-	"usuario_app":"rodete",
-	"soco_id":"86",
-	"tica_id":"tipos_cargaResiduos Tecnologicos",
-	"equi_id_entrega":"40"
-	}
-}
+  {"_post_contenedores_entregados_entregar":{
+    "fec_entrega":"01/01/2020",
+    "cont_id":"104",
+    "usuario_app":"rodete",
+    "soco_id":"86",
+    "tica_id":"tipos_cargaResiduos Tecnologicos",
+    "equi_id_entrega":"40"
+    }
+  }
 
 
-{"respuesta": {"coen_id": "20"}}
+  --{"respuesta": {"coen_id": "20"}}
 
   -- ejemplo
 
+    recurso batch: /_post_contenedores_entregados_entregar_batch_req
     {
-      "_post_contenedores_entrega_batch_req":{
-          "_post_contenedores_entrega":[
+      "_post_contenedores_entregados_entregar_batch_req":{
+          "_post_contenedores_entregados_entregar":[
             {
               "fec_entrega": "2020-04-02",
               "cont_id": "43",
               "usuario_app": "hugoDS",
               "soco_id": "2",
-              "tica_id": "tipo_cargaOrganico"
+              "tica_id": "tipo_cargaOrganico",
+              "equi_id_entrega":"40"
             },
             {
               "fec_entrega": "2020-04-02",
               "cont_id": "44",
               "usuario_app": "hugoDS",
               "soco_id": "2",
-              "tica_id": "tipo_cargaOrganico"
+              "tica_id": "tipo_cargaOrganico",
+              "equi_id_entrega":"40"
             },
             {
               "fec_entrega": "2020-04-02",
               "cont_id": "43",
               "usuario_app": "hugoDS",
               "soco_id": "2",
-              "tica_id": "tipo_cargaOrganico"
+              "tica_id": "tipo_cargaOrganico",
+              "equi_id_entrega":"40"
             }
           ]
       }

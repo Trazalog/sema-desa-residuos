@@ -14,6 +14,47 @@ class RetiroContenedores extends CI_Model {
     parent::__construct();
   }
 
+ 
+  /**
+  * configuracion de la info que muestra la bandeja de entradas por PROCESO
+  * @param array $tarea info de tarea en BPM  
+  * @return array con info de configuracion de datos para la bandeja de entrada
+  */
+  public function map($tarea)
+  {
+      $data['descripcion'] = 'soy una descripcion';
+
+      $aux = new StdClass();
+      $aux->color = 'warning';
+      $aux->texto = 'yayayayaya';
+      $data['info'][] = $aux;
+      return $data;
+  }
+
+  /**
+ * Devuelve contrato para cierre de tarea en BPM y actualiza info en BD 
+ * @param array $tarea con datos de tarea en BPM y $form con info para actualizar la BD
+ * @return array $contrato con contrato para cierre dee area en BPM 
+ */
+  public function getContrato($tarea, $form)
+  {
+    switch ($tarea->nombreTarea) {
+        
+      case 'Retira contenedores':
+        
+            $resp = $this->actualizarContenedores($form);
+            log_message('DEBUG','#TRAZA|RETIROCONTENEDORES|getContrato($tarea, $form)/Retira contenedores: $resp >> '.json_encode($resp));
+            $contrato = $this->contratoRetiro($form);
+            log_message('DEBUG','#TRAZA|RETIROCONTENEDORES|getContrato($tarea, $form)/Retira contenedores: $contrato >> '.json_encode($contrato));
+            return $contrato;           
+            break;       
+            
+      default:
+              # code...
+              break;
+    }
+  }
+
    /**
   * Despliega datos de tareas en maquetacion segun tarea especifica, para completar en notificacion estandar
   * @param array con info de tarea  
@@ -41,7 +82,7 @@ class RetiroContenedores extends CI_Model {
   }
 
   /**
-  * Actaliza los contenedores entregados
+  * Actualiza los contenedores entregados
   * @param array id contenedores y dominio de vehiculos
   * @return string status de respuesta del servicio
   */

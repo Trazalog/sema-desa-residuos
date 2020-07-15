@@ -17,18 +17,63 @@ class EntregaOrdenTransportes extends CI_Model {
   }
 
   /**
+  * configuracion de la info que muestra la bandeja de entradas por PROCESO
+  * @param array $tarea info de tarea en BPM  
+  * @return array con info de configuracion de datos para la bandeja de entrada
+  */
+  public function map($tarea)
+  {
+      $data['descripcion'] = 'Ingreso de contenedores a PTA';
+      $aux = new StdClass();
+      $aux->color = 'warning';
+      $aux->texto = 'TERSU-BPM03 - Generación Orden de Transporte';
+      $data['info'][] = $aux;
+      return $data;
+  }
+  
+  /**
+  * Devuelve contrato de cierre tarea, ademas graba en BD lo necesario
+  * @param array $tarea con info tarea BPM, $form info a guardar en BD
+  * @return 
+  */
+  public function getContrato($tarea, $form)
+  {
+      log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTES|getContrato($tarea, $form) >> ');
+
+      switch ($tarea->nombreTarea) {
+          
+          case 'Registra Ingreso':
+          
+            $resp = $this->entregaOrdenTransporte($form);
+            if (!$resp) {
+              log_message('ERROR','#TRAZA|ENTREGAORDENTRANSPORTES|getContrato($tarea, $form)/Registra Ingreso >> ERROR ');
+              return;
+              break; 
+            }
+            $contrato = $this->contratoIngreso($form);
+            return $contrato;
+            break;    
+            
+          
+          default:
+                # code...
+                break;
+      }
+  }
+
+  /**
   * Desplige vista unica por tarea en notificacion estandar
   * @param array con tarea de bpm
   * @return view de acuerdo a tarea especifica
   */
   function desplegarVista($tarea)
   {     
-    log_message('INFO','#TRAZA|| >> ');
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|desplegarVista($tarea) >> ');
     switch ($tarea->nombreTarea) {
 
       case 'Registra Ingreso':
 
-        log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
+        log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|desplegarVista($tarea)|Registra Ingreso: $tarea >> '.json_encode($tarea));
         $tarea->infoOTransporte = $this->obtenerInFoOTransporte($tarea->caseId);
         // dataimage/jpegbase64  20 formato que trae
         // 'data:image/jpeg;base64,' formato que tomael src del tag img
@@ -63,6 +108,7 @@ class EntregaOrdenTransportes extends CI_Model {
   function entregaOrdenTransporte($form)
   {     
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTES|entregaOrdenTransporte() >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|entregaOrdenTransporte($form): $form >> '.json_encode($form));  
     $data['_put_contenedoresentregados_registra_ingreso'] = $form['data'];
     $aux = $this->rest->callAPI("PUT",REST."/contenedoresEntregados/registra/ingreso", $data);
     $aux =json_decode($aux["status"]);
@@ -81,7 +127,6 @@ class EntregaOrdenTransportes extends CI_Model {
     $contrato["sectorDescarga"] = $form['data']["difi_id"];
     return $contrato;
   }
-
 
   // ---------------------- FUNCIONES OBTENER ----------------------
 
@@ -149,8 +194,7 @@ class EntregaOrdenTransportes extends CI_Model {
   * @return array con tipos de carga
   */
   function obtenerTipoCarga()
-  {     
-
+  {   
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerTipoCarga() >> ');
     $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
     $aux =json_decode($aux["data"]);
@@ -171,7 +215,7 @@ class EntregaOrdenTransportes extends CI_Model {
   }
 
   /**
-  * devuelve imagende uncontenedore entregdo por id
+  * devuelve imagen de un contenedor entregado por id
   * @param int coen_id
   * @return base64 imagen de contenedor entregado
   */
