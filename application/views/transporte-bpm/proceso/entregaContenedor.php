@@ -343,6 +343,21 @@ function OK()
 	
 }
 
+function RecargarVista()
+{
+	debugger;
+	var taskId = $('#taskId').val();
+	$.ajax({
+
+			url: 'traz-comp-bpm/Proceso/detalleTarea/' + taskId,
+			success: function(result) {
+					
+													
+			}
+			
+	});
+}
+
 function RealizarEntrega()
 {
 			debugger;
@@ -383,17 +398,35 @@ function RealizarEntrega()
 							$.ajax({
 							type: "POST",
 							data: {cont_entregados_listo},							
-							url: "traz-comp-bpm/Tarea/GuardaContEntregado",
+							url: "general/transporte-bpm/EntregaContenedor/GuardaContEntregado",
 							success: function(respuesta) {
+								if(respuesta == 1)
+								{
+									alertify.success("Contenedor Entregado exitosamente...");
+									
+
+								}else{
+									alertify.error('Error al entregar Contenedor...');
+								}
 					
 					
-					
+							},
+							complete: function(){
+								RecargarVista();
 							}
 						});
 						}
 						
 					}
 	
+}
+function cerrarTareaTodo()
+{
+	if ($('#miniView').length == 0) {
+        linkTo('<?php echo BPM ?>Tarea');
+    } else {
+        if(existFunction('closeView')) closeView();
+    }
 }
 function CerrarTarea()
 {
@@ -404,16 +437,18 @@ function CerrarTarea()
 	$.ajax({
 				type: 'POST',
 				data:{ elegido },
-				url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
+				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 				success: function(result) {
 					
 					alert(result);
 
 									wc();
-									if(result == ''){										
+									if(result == '{"status":true,"msj":"OK","data":false}'){										
 										alertify.success("Tarea completada exitosamente...");	
+										cerrarTareaTodo();	
 									}else{
 										alertify.error('Error en completar la Tarea...');
+										
 									}
 								},
 				error: function(result){

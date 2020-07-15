@@ -19,7 +19,7 @@ if(!function_exists('userNick')){
     function userNick()
     {
         //return 'bascula';
-        //return 'generador1';
+        // return 'generador1';
         return 'transportista1';
         $ci =& get_instance();			
         $userdata  = $ci->session->userdata('user_data');
