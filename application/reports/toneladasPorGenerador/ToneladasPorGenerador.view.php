@@ -110,7 +110,6 @@ use \koolreport\widgets\koolphp\Card;
     });
 		$('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroIncidenciaPorZona');
         // convierte la tabla en data table para usar las funciones de ordenar por columna y buscar
-        $('table').dataTable();
-      
+        $('.table').dataTable();
     </script>
 </body>

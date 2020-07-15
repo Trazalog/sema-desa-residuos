@@ -214,33 +214,13 @@ class Koolreport extends CI_Model
         return $data;
     }
 
-    public function getTransportistas()
-    {
-        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETTRANSPORTISTA');
-        $url = 'http://localhost:8080/transportistas';
-        $rsp = $this->rest->callApi('GET', $url);
-        $rsp = json_decode($rsp['data']);
-        return $rsp;
-    }
-
     public function getIncidenciasPorTransportista($transportista)
     {
-        $url = "http://localhost:8080/incidencias";
+        $url = "http://localhost:8080/transportista/incidencias";
         $rsp = $this->rest->callApi('GET', $url);
         $rsp = json_decode($rsp['data']);
-        // $aux = $rsp->incidencias->incidencia;
-        $i = 0;
-        foreach($rsp->incidencias->incidencia as $valor)
-        {
-            if($valor->transportista == $transportista)
-            {
-                $aux[] = $rsp->incidencias->incidencia[$i];
-            }
-            $i++;
-        }
-        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIASPORTRANSPORTISTA| #ARRAY: >>' . $aux);
-
-        return $aux;
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIASPORTRANSPORTISTA|');
+        return $rsp;
     }
 
     public function getMunicipios()
@@ -252,51 +232,22 @@ class Koolreport extends CI_Model
         return $rsp;
     }
 
-    public function getIncidenciasPorMunicipio($municipio)
+    public function getIncidenciasPorMunicipio()
     {
-        $url = "http://localhost:8080/incidencias";
+        $url = "http://localhost:8080/departamento/incidencias";
         $rsp = $this->rest->callApi('GET', $url);
         $rsp = json_decode($rsp['data']);
-        $i = 0;
-        foreach($rsp->incidencias->incidencia as $valor)
-        {
-            if($valor->departamento == $municipio)
-            {
-                $aux[] = $rsp->incidencias->incidencia[$i];
-            }
-            $i++;
-        }
-        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIASPORMUNICIPIO| #ARRAY: >>' . $aux);
-
-        return $aux;
-    }
-
-    public function getZonas()
-    {
-        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETZONAS');
-        $url = 'http://localhost:8080/zonas';
-        $rsp = $this->rest->callApi('GET', $url);
-        $rsp = json_decode($rsp['data']);
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIASPORMUNICIPIO|');
         return $rsp;
     }
 
-    public function getIncidenciasPorZona($zona)
+    public function getIncidenciasPorZona()
     {
-        $url = "http://localhost:8080/incidencias";
+        $url = "http://localhost:8080/zona/incidencias";
         $rsp = $this->rest->callApi('GET', $url);
         $rsp = json_decode($rsp['data']);
-        $i = 0;
-        foreach($rsp->incidencias->incidencia as $valor)
-        {
-            if($valor->zona == $zona)
-            {
-                $aux[] = $rsp->incidencias->incidencia[$i];
-            }
-            $i++;
-        }
-        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIASPORZONA| #ARRAY: >>' . $aux);
-
-        return $aux;
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETINCIDENCIASPORZONA|');
+        return $rsp;
     }
 
     public function getFiltroMyA()
@@ -315,6 +266,7 @@ class Koolreport extends CI_Model
         $url = "http://localhost:8080/departamentos/pesajes";
         $rsp = $this->rest->callApi('GET', $url);
         $rsp = json_decode($rsp['data']);
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETTONELADASPORTRANSPORTISTA|');
         return $rsp;
     }
 
@@ -323,6 +275,7 @@ class Koolreport extends CI_Model
         $url = "http://localhost:8080/solicitantesTransporte";
         $rsp = $this->rest->callApi('GET', $url);
         $rsp = json_decode($rsp['data']);
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETTONELADASPORGENERADOR|');
         return $rsp;
     }
 
@@ -331,6 +284,7 @@ class Koolreport extends CI_Model
         $url = "http://localhost:8080/tipoDeCarga/porMunicipios";
         $rsp = $this->rest->callApi('GET', $url);
         $rsp = json_decode($rsp['data']);
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETTONELADASPORRESIDUO|');
         return $rsp;
     }
 

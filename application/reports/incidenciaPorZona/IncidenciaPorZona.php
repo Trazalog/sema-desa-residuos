@@ -22,15 +22,16 @@ class IncidenciaPorZona extends \koolreport\KoolReport
         log_message('DEBUG', '#RECIDUOS| #INCIDENCIAPORZONA.PHP|#INCIDENCIAPORZONA|#SETTINGS| #INGRESO');
         $json = $this->params;
 
-        foreach($json->incidencias as $data)
+        foreach($json as $data)
         {
-            $a = '';
+            $a = $data->incidencias->incidencia;
+            $b = '';
             return array(
                 "dataSources" => array(
                     "apiarray" => array(
                         "class" => '\koolreport\datasources\ArrayDataSource',
                         "dataFormat" => "associate",
-                        "data" => $data,
+                        "data" => $a,
                     )
                 )
             );

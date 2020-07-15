@@ -122,27 +122,27 @@ class Dash extends CI_Controller {
 												"link": "Reportes/incidenciaPorTransportista"
 											},
 											{
-												"titulo": "Incidencias por Municipio",
+												"titulo": "Incidencias por municipio",
 												"icono": "fa fa-genderless",
 												"link": "Reportes/incidenciaPorMunicipio"
 											},
 											{
-												"titulo": "Incidencias por Zona",
+												"titulo": "Incidencias por zona",
 												"icono": "fa fa-genderless",
 												"link": "Reportes/incidenciaPorZona"
 											},
 											{
-												"titulo": "Tn. entr. por transportista",
+												"titulo": "Tn. por transportista",
 												"icono": "fa fa-genderless",
 												"link": "Reportes/toneladasPorTransportista"
 											},
 											{
-												"titulo": "Tn. entr. por generador",
+												"titulo": "Tn. por generador",
 												"icono": "fa fa-genderless",
 												"link": "Reportes/toneladasPorGenerador"
 											},
 											{
-												"titulo": "Tn. por residuo y municipio",
+												"titulo": "Tn. por residuo",
 												"icono": "fa fa-genderless",
 												"link": "Reportes/toneladasPorResiduos"
 											}

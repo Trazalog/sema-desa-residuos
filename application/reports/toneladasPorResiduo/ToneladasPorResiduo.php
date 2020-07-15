@@ -21,16 +21,16 @@ class ToneladasPorResiduo extends \koolreport\KoolReport
     {
         log_message('DEBUG', '#RECIDUOS| #TONELADASPORRESIDUO.PHP|#TONELADASPORRESIDUO|#SETTINGS| #INGRESO');
         $json = $this->params;
-
-        foreach($json->departamentos as $data)
+        foreach($json as $data)
         {
-            $a = '';
+            $a = $data->departamentos->departamento;
+            $b = '';
             return array(
                 "dataSources" => array(
                     "apiarray" => array(
                         "class" => '\koolreport\datasources\ArrayDataSource',
                         "dataFormat" => "associate",
-                        "data" => $data,
+                        "data" => $a,
                     )
                 )
             );

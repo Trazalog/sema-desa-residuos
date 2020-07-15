@@ -114,30 +114,18 @@ class Reportes extends CI_Controller
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#INCIDENCIAPORTRANSPORTISTA|');
         //filtro debe tener mes o año
         $filtro = $this->input->post('data');
-        // $desde = $aux['datepickerDesde'];
-        // $hasta = $aux['datepickerHasta'];
         if($filtro)
         {
-            // $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
-            // $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
-            $data = $this->Koolreport->getTransportistas()->transportistas->transportista;
             if(is_numeric($filtro))$url = CONSTANTE.'/incidenciaPorTransportista?anio='.$filtro;
             else $url = CONSTANTE.'/incidenciaPorTransportista?mes='.$filtro;
-            foreach($data as $valor)
-            {
-                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorTransportista($valor->nombre,$url);
-            }
-            $reporte = new IncidenciaPorTransportista($aux);
+            $data = $this->Koolreport->getIncidenciaPorTransportista($url)->transportistas->transportista;
+            $reporte = new IncidenciaPorTransportista($data);
             $reporte->run()->render();
         }else
         {
-            $data = $this->Koolreport->getTransportistas()->transportistas->transportista;
             $url = CONSTANTE.'desde//hasta';
-            foreach($data as $valor)
-            {
-                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorTransportista($valor->nombre,$url);
-            }
-            $reporte = new IncidenciaPorTransportista($aux);
+            $data = $this->Koolreport->getIncidenciasPorTransportista($url)->transportistas->transportista;
+            $reporte = new IncidenciaPorTransportista($data);
             $reporte->run()->render();
         }
     }
@@ -145,8 +133,6 @@ class Reportes extends CI_Controller
     public function filtroIncidenciaPorTransportista()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROINCIDENCIAPORTRANSPORTISTA|');
-        // $data['calendarioDesde'] = true;
-        // $data['calendarioHasta'] = true;
         $data = $this->Koolreport->getFiltroMyA();
         $data->funcion = 'incidenciaPorTransportista';
         $this->load->view('reportes/filtro',$data);
@@ -157,31 +143,18 @@ class Reportes extends CI_Controller
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#INCIDENCIAPORMUNICIPIO|');
         //debe traer el mes y el año
         $filtro = $this->input->post('data');
-        // $desde = $aux['datepickerDesde'];
-        // $hasta = $aux['datepickerHasta'];
-
-        if($desde || $hasta)
+        if($filtro)
         {
-            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
-            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
-            $data = $this->Koolreport->getMunicipios()->departamentos->departamento;
             if(is_numeric($filtro))$url = CONSTANTE.'/incidenciaPorMunicipio?anio='.$filtro;
             else $url = CONSTANTE.'/incidenciaPorMunicipio?mes='.$filtro;
-            foreach($data as $valor)
-            {
-                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorMunicipio($valor->nombre,$url);
-            }
-            $reporte = new IncidenciaPorMunicipio($aux);
+            $data = $this->Koolreport->getIncidenciasPorMunicipio($url)->departamentos->departamento;
+            $reporte = new IncidenciaPorMunicipio($data);
             $reporte->run()->render();
         }else
         {
-            $data = $this->Koolreport->getMunicipios()->departamentos->departamento;
             $url = CONSTANTE.'desde//hasta';
-            foreach($data as $valor)
-            {
-                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorMunicipio($valor->nombre,$url);
-            }
-            $reporte = new IncidenciaPorMunicipio($aux);
+            $data = $this->Koolreport->getIncidenciasPorMunicipio($url)->departamentos->departamento;
+            $reporte = new IncidenciaPorMunicipio($data);
             $reporte->run()->render();
         }
     }
@@ -201,24 +174,16 @@ class Reportes extends CI_Controller
         $filtro = $this->input->post('data');
         if($filtro)
         {
-            $data = $this->Koolreport->getZonas()->zonas->zona;
             if(is_numeric($filtro))$url = CONSTANTE.'/incidenciaPorZona?anio='.$filtro;
             else $url = CONSTANTE.'/incidenciaPorZona?mes='.$filtro;
-            foreach($data as $valor)
-            {
-                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorZona($valor->nombre,$url);
-            }
-            $reporte = new IncidenciaPorZona($aux);
+            $data = $this->Koolreport->getIncidenciasPorZona($url)->zonas->zona;
+            $reporte = new IncidenciaPorZona($data);
             $reporte->run()->render();
         }else
         {
-            $data = $this->Koolreport->getZonas()->zonas->zona;
             $url = CONSTANTE.'desde//hasta';
-            foreach($data as $valor)
-            {
-                $aux->incidencias[$valor->nombre.''] = $this->Koolreport->getIncidenciasPorZona($valor->nombre,$url);
-            }
-            $reporte = new IncidenciaPorZona($aux);
+            $data = $this->Koolreport->getIncidenciasPorZona($url)->zonas->zona;
+            $reporte = new IncidenciaPorZona($data);
             $reporte->run()->render();
         }
     }
@@ -298,7 +263,7 @@ class Reportes extends CI_Controller
         {
             if(is_numeric($filtro))$url = CONSTANTE.'/toneladasPorResiduo?anio='.$filtro;
             else $url = CONSTANTE.'/toneladasPorResiduo?mes='.$filtro;
-            $data = $this->Koolreport->getToneladasPorResiduo($url);
+            $data = $this->Koolreport->getToneladasPorResiduo($url)->tiposDeCarga->tipoDeCarga;
             $reporte = new ToneladasPorResiduo($data);
             $reporte->run()->render();
         }else
