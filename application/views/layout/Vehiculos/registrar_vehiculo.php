@@ -215,7 +215,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-blue">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close cerrar_modal_e" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h5 class="modal-title titulo" id="exampleModalLabel">Editar Vehiculo</h5>
@@ -233,31 +233,31 @@
                                         <div class="form-group">
                                             <label for="descripcion" >Descripcion:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" id="e_descripcion" name="descripcion">
+                                            <input type="text" class="form-control habilitar" id="e_descripcion" name="e_descripcion">
                                         </div>
 
                                         <div class="form-group"  style="display:none">
-                                            <input type="text" class="form-control habilitar" id="e_equi_id" >
+                                            <input type="text" class="form-control habilitar" id="e_equi_id" name="e_equi_id" >
                                         </div>
                                     <!--Dominio-->
                                         <div class="form-group">
                                             <label for="dominio">Dominio:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" id="e_dominio" name="dominio">
+                                            <input type="text" class="form-control habilitar" id="e_dominio" name="e_dominio">
                                         </div>           ​            
                                     <!--Tara-->
                                     <div class="form-group">
                                         <label for="Tara" >Tara:</label>
                                         
                                         <br>
-                                                <input type="number" class="form-control habilitar" name="tara" id="taraedit">
+                                                <input type="number" class="form-control habilitar" name="taraedit" id="taraedit">
                                         
                                     </div>
                                     <!--Marca-->
                                         <div class="form-group">
                                             <label for="marca" >Marca:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" id="e_marca" name="marca">
+                                            <input type="text" class="form-control habilitar" id="e_marca" name="e_marca">
                                         </div>       
                                                
 
@@ -266,18 +266,18 @@
                                     <!--Ubicacion-->
                                     <div class="form-group">
                                             <label for="ubicacion">Ubicacion:</label>
-                                            <input type="text" class="form-control habilitar" id="e_ubicacion" name="ubicacion" >
+                                            <input type="text" class="form-control habilitar" id="e_ubicacion" name="e_ubicacion" >
                                         </div>
                                     <!--Registro-->
                                     <div class="form-group">
                                         <label for="codigo" >Codigo:</label>
                                         <br>
-                                        <input type="text" class="form-control habilitar" id="e_codigo" name="codigo" >
+                                        <input type="text" class="form-control habilitar" id="e_codigo" name="e_codigo" >
                                     </div>
                                     <!--TRansportista-->
                                     <div class="form-group ocultaTransedit">
                                         <label for="tran_id" >Transportista:</label>
-                                        <select class="form-control select2 select2-hidden-accesible" id="e_tran_id" name="tran_id" >
+                                        <select class="form-control select2 select2-hidden-accesible" id="e_tran_id" name="e_tran_id" >
                                             <option value=""  disabled selected  >-seleccione opcion-</option>
                                             <?php 
                                                                         foreach ($transportista as $j) { 
@@ -296,7 +296,7 @@
                                             <label for="FechaIngreso" >Fecha de Ingreso:</label>
                                             <div class="input-group date">
                                             
-                                                <input type="date" class="form-control habilitar" name="" id="id_fecha_ingreso">
+                                                <input type="date" class="form-control habilitar" name="id_fecha_ingreso" id="id_fecha_ingreso">
                                             
                                             </div>
                                         
@@ -323,7 +323,7 @@
                     <div class="col-md-12"><hr></div>
                         <div class="form-group text-bootom">
                             <button type="submit" class="btn btn-primary" id="btnsave_e">Guardar</button>
-                            <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-default cerrar_modal_edit" id="btnsave" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -459,6 +459,15 @@ async function convertA(){
         $('#chofer').find('option').remove();
     });
 
+    $(".cerrar_modal_edit").click(function(e){
+    $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
+   
+    });
+
+    $(".cerrar_modal_e").click(function(e){
+    $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
+   
+});
 //Modal Editar
     $(".btnEditar").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
@@ -616,27 +625,72 @@ async function convertA(){
         vehiculo.tara =  $("#taraedit").val();
         console.table(vehiculo);
         //faltaria la ubicaion, el codigo y tran_id
-        $.ajax({
-                type: "POST",
-                data: {vehiculo},
-                url: "general/Estructura/Vehiculo/Actualizar_Vehiculo",
-                success: function (r) {
+        var aux =0; 
+        if(vehiculo.descripcion != "")
+        {
+            if(vehiculo.dominio != "")
+            {
+                if(vehiculo.tara != "")
+                {
+                    if(vehiculo.marca != "")
+                    {
+                        if(vehiculo.ubicacion != "")
+                        {
+                            if(vehiculo.codigo != "")
+                            {
+                                if(vehiculo.tran_id != "")
+                                {
+                                    if(vehiculo.fecha_ingreso != "")
+                                    {
+                                        aux = 1;
                     
-                    console.table(r);
-                    if (r == "ok") {
-                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
-                        alertify.success("Actualizado con exito");
-                        $("#modalEdit").modal('hide');
-                       
-
-                      
-
-                    } else {
-                        
-                        alertify.error("error al actualizar");
+                                    }
+                    
+                                }
+                    
+                            }
+                    
+                        }
+                    
                     }
+                    
                 }
-            });
+            }
+        
+        }
+        if(aux == 1)
+        {
+            if( vehiculo.imagen != "")
+            {
+                    $.ajax({
+                        type: "POST",
+                        data: {vehiculo},
+                        url: "general/Estructura/Vehiculo/Actualizar_Vehiculo",
+                        success: function (r) {
+                            
+                            console.table(r);
+                            if (r == "ok") {
+                                $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
+                                alertify.success("Actualizado con exito");
+                                $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
+                                $("#modalEdit").modal('hide');
+                                
+
+                            
+
+                            } else {
+                                
+                                alertify.error("error al actualizar");
+                                $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
+                            }
+                        }
+                    });
+            }else{
+                alert("Atencion!!! No ha cargado una imagen");
+            }
+        }else{
+                alert("Atencion!!! hay un campo que esta vacio");
+        }
 
     });
 
@@ -912,32 +966,28 @@ async function convertA(){
                     }
                 }
             },
+            taraedit: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                      
+                }
+            },
             e_marca: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
                     },
-                      /*stringLength: {
-                          min: 6,
-                          max: 30,
-                          message: 'The username must be more than 6 and less than 30 characters long'
-                      },*/
                     regexp: {
                         regexp: /[A-Za-z]/,
                         message: 'la entrada no debe ser un numero entero'
                     }
                 }
             },
-            e_condicion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                }
-            },
-            e_modelo: {
+            e_ubicacion: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -954,58 +1004,32 @@ async function convertA(){
                     }
                 }
             },
-            e_capacidad: {
+            e_codigo: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
-                    },
-                      /*stringLength: {
-                          min: 6,
-                          max: 30,
-                          message: 'The username must be more than 6 and less than 30 characters long'
-                      },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
+                     }
+                    //   /*stringLength: {
+                    //       min: 6,
+                    //       max: 30,
+                    //       message: 'The username must be more than 6 and less than 30 characters long'
+                    //   },*/
+                    // regexp: {
+                    //     regexp: /^(0|[1-9][0-9]*)$/,
+                    //     message: 'la entrada no debe ser un numero entero'
+                    // }
                 }
             },
-            e_tara: {
+            e_tran_id: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
-                    },
-                      /*stringLength: {
-                          min: 6,
-                          max: 30,
-                          message: 'The username must be more than 6 and less than 30 characters long'
-                      },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
                     }
                 }
             },
-            e_habilitacion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                      /*stringLength: {
-                          min: 6,
-                          max: 30,
-                          message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            },
-            e_registro: {
+            id_fecha_ingreso: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -1016,23 +1040,6 @@ async function convertA(){
                           max: 30,
                           message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                }
-            },
-            e_fechahabilitacion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                      /*stringLength: {
-                          min: 6,
-                          max: 30,
-                          message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
                 }
             }
         }

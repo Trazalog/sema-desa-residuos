@@ -64,6 +64,7 @@
             <form method="POST" id="formModalEdit" autocomplete="off" id="" class="registerForm">
                 <div class="modal-body">
                     <div class="row">
+                        
                         <div class="col-md-12 ">
                             <div class="col-md-6 col-sm-6">
 
@@ -325,8 +326,8 @@ function ExtraerImg($zona){
                     console.table("Como queda src final: "+img_b64);
                     var auxx = $("#input_aux_img64").val();
                     $("#etiqueta").attr("href",auxx);
-                    var auxxx = "_blank";
-                    $("#etiqueta").attr("target",auxxx);
+                    // var auxxx = "_blank";
+                    // $("#etiqueta").attr("target",auxxx);
                 }
             });
 
@@ -463,6 +464,7 @@ $("#btnsave").click(function(e){
                             } else {
                                 //console.log(r);
                                 alertify.error("error al Modificar");
+                                $("#formModalEdit").data('bootstrapValidator').resetForm();
                             }
                         }
                     });
