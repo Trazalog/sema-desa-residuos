@@ -360,11 +360,10 @@
    </query>
    <query id="solicitudContenedorGet" useConfig="semaresiduosDS">
       <sql>select soco_id, estado, observaciones, fec_alta, sotr_id from log.solicitudes_contenedor SC where usuario_app = :usuario_app</sql>
-      <result outputType="json">{&#xd;    "sol_cont":{&#xd;      "soco_id": "$soco_id", &#xd;      "estado": "$estado", &#xd;      "observaciones": "$observaciones", &#xd;      "fec_alta": "$fec_alta", &#xd;      "sotr_id": "$sotr_id",&#xd;      "@contenedoresSolicitadosGet": "$soco_id-&gt;soco_id"&#xd;    }&#xd;  }</result>
+      <result outputType="json">{&#xd;   "sols_cont":{&#xd;      "sol_cont":[&#xd;         {&#xd;            "soco_id":"$soco_id",&#xd;            "estado":"$estado",&#xd;            "observaciones":"$observaciones",&#xd;            "fec_alta":"$fec_alta",&#xd;            "sotr_id":"$sotr_id",&#xd;            "@contenedoresSolicitadosGet":"$soco_id-&gt;soco_id"&#xd;         }&#xd;      ]&#xd;   }&#xd;}</result>
       <param name="usuario_app" sqlType="STRING"/>
    </query>
    <query id="ordTransSet" useConfig="semaresiduosDS">
-      <sql>INSERT&#xd;	INTO&#xd;	log.ordenes_transporte (fec_retiro, estado, difi_id, sotr_id, equi_id, chof_id, teot_id, tran_id, usuario_app)&#xd;SELECT&#xd;	TO_DATE(:fec_retiro, 'MM-DD-YYYY')&#xd;	, 'EN_TRANSITO'&#xd;	, :difi_id&#xd;	, CAST(:sotr_id AS INTEGER)&#xd;	, CAST(:equi_id AS INTEGER)&#xd;	, :chof_id&#xd;	, CASE&#xd;		WHEN teot.teotid IS NULL OR teot.teotid= '' THEN NULL&#xd;		ELSE CAST (teot.teotid AS integer)&#xd;	END&#xd;        ,:tran_id&#xd;	, :usuario_app&#xd;FROM&#xd;	(SELECT	:teot_id teotid) teot &#xd;RETURNING ortr_id</sql>
       <sql>INSERT&#xd;	INTO&#xd;	log.ordenes_transporte (fec_retiro, estado, difi_id, sotr_id, equi_id, chof_id, teot_id, tran_id, usuario_app)&#xd;SELECT&#xd;	TO_DATE(:fec_retiro, 'MM-DD-YYYY')&#xd;	, 'EN_TRANSITO'&#xd;	, :difi_id&#xd;	, CAST(:sotr_id AS INTEGER)&#xd;	, CAST(:equi_id AS INTEGER)&#xd;	, :chof_id&#xd;	, CASE&#xd;		WHEN teot.teotid IS NULL OR teot.teotid= '' THEN NULL&#xd;		ELSE CAST (teot.teotid AS integer)&#xd;	END&#xd;        ,cast(:tran_id as integer)&#xd;	, :usuario_app&#xd;FROM&#xd;	(SELECT	:teot_id teotid) teot &#xd;RETURNING ortr_id</sql>
       <result outputType="json">{&#xd;    "respuesta":{&#xd;      "ortr_id": "$ortr_id"&#xd;    }&#xd;}</result>
       <param name="fec_retiro" sqlType="STRING"/>
@@ -401,8 +400,7 @@
       <param name="tran_id" sqlType="STRING"/>
    </query>
    <query id="contenedoresEntregadosSet" useConfig="semaresiduosDS">
-      <sql>insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)&#xd;  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))&#xd;returning coen_id;</sql>
-      <result outputType="json">{"respuesta":{"coen_id":"$coen_id"}}</result>
+      <sql>insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)&#xd;  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))</sql>
       <param name="fec_entrega" sqlType="STRING"/>
       <param name="cont_id" sqlType="STRING"/>
       <param name="usuario_app" sqlType="STRING"/>
@@ -836,6 +834,13 @@
       <sql>select imagen from core.equipos where equi_id = CAST(:equi_id AS INTEGER)</sql>
       <result outputType="json">{&#xd;    "vehiculos":{&#xd;      "imagen": "$imagen"&#xd;    }&#xd;  }</result>
       <param name="equi_id" sqlType="STRING"/>
+   </query>
+   <query id="contenedoresEntregadosDescargarUpdate" useConfig="semaresiduosDS">
+      <sql>SELECT prd.cambiar_recipiente(ce.batch_id,:p_reci_id_destino,2000,1,:p_usuario_app,'false',ce.mts_cubicos)&#xd;FROM log.contenedores_entregados ce &#xd;WHERE ce.ortr_id = :ortr_id &#xd;AND ce.cont_id = :cont_id;</sql>
+      <param name="p_reci_id_destino" sqlType="STRING"/>
+      <param name="p_usuario_app" sqlType="STRING"/>
+      <param name="ortr_id" sqlType="STRING"/>
+      <param name="cont_id" sqlType="STRING"/>
    </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">

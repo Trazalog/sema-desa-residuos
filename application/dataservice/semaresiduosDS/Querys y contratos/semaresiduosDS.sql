@@ -1064,6 +1064,18 @@ http://10.142.0.3:8280/services/semaresiduosDS
       ]
     }
   }
+--contenedoresEntregadosDescargarUpdate
+ recurso /contenedoresEntregados/descargar
+ metodo: PUT
+
+SELECT prd.cambiar_recipiente(ce.batch_id,:p_reci_id_destino,2000,1,:p_usuario_app,'false',ce.mts_cubicos)&#xd;FROM log.contenedores_entregados ce &#xd;WHERE ce.ortr_id = :ortr_id &#xd;AND ce.cont_id = :cont_id;
+
+  { "_put_contenedoresEntregados_descargar":{
+      "p_reci_id_destino" :""
+      "p_usuario_app" :""
+      "ortr_id" :""
+      "cont_id" :""
+}}
 
 -- contenedoresEntregadosPorTicaId (contenedores entregados por tipo de carga y usuario_app)
   recurso: /contenedoresEntregados/tipocarga/tipo_cargaOrganico/usr/hugoDS
