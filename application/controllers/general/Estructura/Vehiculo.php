@@ -107,5 +107,13 @@
             echo json_encode($dato);
         }
 
+        function GetImagen()
+        {
+            log_message('INFO','#TRAZA|Vehiculo|GetImagen() >>'); 
+            $id = $this->input->post("vehi_id");
+            $dato= $this->Vehiculos->obtenerImagen_Vehi_Id($id);  
+            echo json_encode($dato);
+        }
+
     }
 ?>

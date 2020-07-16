@@ -61,7 +61,7 @@ class Chofer extends CI_Controller
     {
         log_message('INFO','#TRAZA|CHOFER|Listar_Chofer() >>');
         $data["choferes"] = $this->Choferes->Listar_Chofer();        
-        $this->load->view('layout/Choferes/Lista_choferes',$data);
+        $this->load->view('layout/Choferes/lista_choferes',$data);
     }
     // _________________________________________________________
 

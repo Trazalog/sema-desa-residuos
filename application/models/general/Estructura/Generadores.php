@@ -11,9 +11,9 @@ class Generadores extends CI_Model
     * @param 
     * @return 
     */
-	function __construct()
-	{
-		parent::__construct();
+		function __construct()
+		{
+			parent::__construct();
     }
 
     /**
@@ -41,9 +41,25 @@ class Generadores extends CI_Model
         $post["post_generador"] = $data;           
         log_message('DEBUG','#Generadores/Guardar_Generadores: '.json_encode($post));
         $aux = $this->rest->callAPI("POST",REST."/solicitantesTransporte", $post);
-        $aux =json_decode($aux["status"]);       
-        return $aux; 
-    }
+        $aux =json_decode($aux["data"]);       
+        return $aux->respuesta->sotr_id; 
+		}
+		
+		/**
+		* Guarda batch de tipos de carga asociado a un generador (solicitante de transporte)
+		* @param array tipos de carga y sotro_id
+		* @return 'status' de respuesta servicio
+		*/
+		function guardar_tipo_carga($data)
+		{     
+			log_message('INFO','#TRAZA|GENERADORES|guardar_tipo_carga($data) >> ');
+			$arraycargas['_post_solicitantestransporte_tipocarga'] = $data;
+			$post['_post_solicitantestransporte_tipocarga_batch_req'] = $arraycargas;
+			log_message('DEBUG','#TRAZA|GENERADORES|guardar_tipo_carga($data): $post >> '.json_encode($post));
+			$aux = $this->rest->callAPI("POST",REST."/_post_solicitantestransporte_tipocarga_batch_req", $post);
+			$aux =json_decode($aux["status"]);
+			return $aux;
+		}
 
 
     /**
@@ -129,7 +145,23 @@ class Generadores extends CI_Model
         $aux = $this->rest->callAPI("PUT",REST."/solicitantesTransporte", $post);
         $aux =json_decode($aux["status"]);
         return $aux;
-    }
+		}
+		
+		/**
+		* Borra tipos de carga asociados a generador
+		* @param array tipos carga
+		* @return string status de respuesta del servicio
+		*/
+		function borrar_tipos_carga($data)
+		{     
+			log_message('INFO','#TRAZA|GENERADORES|borrar_tipos_carga($data) >> ');
+
+			$sotr["sotr_id"] = $data;
+			$contrato["_delete_solicitantestransporte_tipocarga"] = $sotr;
+			$aux = $this->rest->callAPI("DELETE",REST."/solicitantesTransporte/tipoCarga", $contrato);
+			$aux =json_decode($aux["status"]);
+			return $aux;			
+		}
 
     /**
     * Borra un  generador

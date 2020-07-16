@@ -93,24 +93,30 @@ define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '8803232493891311406');
 
 define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '6013058915384903051');
 
-define('BPM_PROCESS_ID_PEDIDO_CONTENEDORES', '7249247964587490635');
+define('BPM_PROCESS_ID_PEDIDO_CONTENEDORES', '5268088305538274604'); 
 
-define('BPM_PROCESS_ID_RETIRO_CONTENEDORES', '7944291190306733231');
+define('BPM_PROCESS_ID_RETIRO_CONTENEDORES', '4817856371144276175');
 
-define('BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE', '8193923681036291671');
+define('BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE', '5525269319148713590');
+
+#COMPONENTE ALMACENES
+define('ALM', 'traz-comp-almacen/');
+define('viewOT', false);
 
 define('BPM_PROCESS', json_encode(array(
-    '8803232493891311406' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12'],
-    '6013058915384903051' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12'],
-    '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A'],
-    '7249247964587490635' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300'],
-    '7944291190306733231' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#FF3300'],
-    '8193923681036291671' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#FF3300']    
+    '8803232493891311406' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
+    '6013058915384903051' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
+    '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
+
+    '5268088305538274604' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'PedidoContenedores'],
+    '4817856371144276175' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'RetiroContenedores'],
+    '5525269319148713590' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'EntregaOrdenTransportes']    
 )));
+
 
 // define('BPM_ADMIN_USER', 'almacen.tools');
 // define('BPM_ADMIN_PASS', 'bpm');
-// define('BPM_USER_PASS', 'bpm');
+//define('BPM_USER_PASS', 'bpm');
 define('BPM_ADMIN_USER', 'admin');
 define('BPM_ADMIN_PASS', '123traza');
 define('BPM_USER_PASS', '123');
@@ -140,7 +146,7 @@ define('MNOM', 'RSD');
 define('NOM', 'Residuos');
 
 //Vista por Defecto
-define('DEF_VIEW','traz-comp-bpm/Tarea');
+define('DEF_VIEW',BPM.'Proceso');
 
 /*
 |--------------------------------------------------------------------------
@@ -161,10 +167,6 @@ define('REST4', 'http://10.142.0.7:8280/services/TrazabilidadDataService');
 define('API_URL', 'http://10.142.0.7:8280/tools/log');
 
 define('HOST', 'http://localhost/');
-
-#COMPONENTE ALMACENES
-define('ALM', 'traz-comp-almacen/');
-define('viewOT', false);
 
 #COMPONENTE FORMULARIOS
 define('FRM', 'traz-comp-form/');

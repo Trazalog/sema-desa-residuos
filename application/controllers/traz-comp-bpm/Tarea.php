@@ -8,6 +8,7 @@ class Tarea extends CI_Controller
         parent::__construct();
 
         $this->load->model(BPM.'Tareas');  
+       
         // SUPERVISOR1 => 102 => Aprueba pedido de Recursos Materiales
 				// $data = ['userId' => 102, 'userName' => 'Fernando', 'userLastName' => 'Leiva', 'device' => '', 'permission' => 'Add-View-Del-Edit','id_empresa'=>1];
 
@@ -158,8 +159,8 @@ class Tarea extends CI_Controller
 						
 						case 'Analizar Solicitud':
 
-								$this->load->model('general/transporte-bpm/PedidoContenedores');
-							
+								
+                                $this->load->model('general/transporte-bpm/PedidoContenedores');
 								$resp = $this->PedidoContenedores->actualizarSolicitud($form);
 								
 								if (isset($form['motivo'])) {												
@@ -170,7 +171,25 @@ class Tarea extends CI_Controller
 
 								return $contrato;
 
-								break;	
+                                break;	
+                        case 'Confirmar pedido modificado':
+                            
+                               $this->load->model('general/transporte-bpm/PedidoContenedores');
+
+                               $contrato = $this->PedidoContenedores->contratoConfirmaPedido($form);	
+
+                               return $contrato;
+
+                               break;
+                        case 'Entregar contenedores':
+
+                               $this->load->model('general/transporte-bpm/PedidoContenedores');
+                               
+                               $contrato = $this->PedidoContenedores->contratoEntregaContenedor($form);	
+                               
+                               return $contrato;
+                               
+                               break;
 								
             default:
                 # code...
@@ -190,12 +209,12 @@ class Tarea extends CI_Controller
                 $this->load->model(ALM.'Procesos');
                 
                 return $this->Procesos->desplegarVista($tarea);
+                break;
 						
 						case BPM_PROCESS_ID_PEDIDO_CONTENEDORES: 
-								
-								$this->load->model('general/transporte-bpm/PedidoContenedores');
-								return $this->PedidoContenedores->desplegarVista($tarea);
-								
+                            $this->load->model('general/transporte-bpm/PedidoContenedores');	
+                            return $this->PedidoContenedores->desplegarVista($tarea);
+                        break;
 						case BPM_PROCESS_ID_RETIRO_CONTENEDORES: 
 						
 							$this->load->model('general/transporte-bpm/RetiroContenedores');
@@ -208,9 +227,9 @@ class Tarea extends CI_Controller
 						
 							break;
 
-            default:
-
-                return $this->load->view(BPM.'view_proceso/test', $data, true);
+            default:              
+                
+                 return $this->load->view(BPM.'view_proceso/test', $data, true);
 
                 break;
 
@@ -220,5 +239,17 @@ class Tarea extends CI_Controller
     public function guardarComentario()
     {
         echo $this->bpm->guardarComentario($this->input->post());
+    }
+    public function GuardaContEntregado(){
+        $this->load->model('general/transporte-bpm/PedidoContenedores');
+        log_message('INFO','#TRAZA|Tarea|GuardaContEntregados() >> ');
+        $datos_contenedores =  $this->input->post('cont_entregados_listo'); 
+        $resp = $this->PedidoContenedores->GuardarContEntregados($datos_contenedores);
+        if($resp == 1){
+         echo 1;
+        }else{
+         echo 0;   
+        }
+
     }
 }

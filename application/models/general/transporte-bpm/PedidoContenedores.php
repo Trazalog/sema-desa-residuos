@@ -18,6 +18,68 @@ class PedidoContenedores extends CI_Model
     }
 
     /**
+    * configuracion de la info que muestra la bandeja de entradas por PROCESO
+    * @param array $tarea info de tarea en BPM  
+    * @return array con info de configuracion de datos para la bandeja de entrada
+    */
+    public function map($tarea)
+    {
+        $data['descripcion'] = 'soy una descripcion';
+
+        $aux = new StdClass();
+        $aux->color = 'warning';
+        $aux->texto = 'yayayayaya';
+        $data['info'][] = $aux;
+        return $data;
+    } 
+     
+    /**
+   * Atualiza info en BD y devuelve contrato para cierre de tareas segun las mismas 
+   * @param array $tarea y $form con info para actualizar
+   * @return array $contrato para cierre de tarea en BPM
+   */
+    public function getContrato($tarea, $form)
+    {
+        switch ($tarea->nombreTarea) {
+
+            case 'Analizar Solicitud':
+
+                  $response = $this->actualizarSolicitud($form);
+                  if (isset($form['motivo'])) {												
+                    $respComentario = $this->motivoRechazo($form);
+                  }
+                  $contrato = $this->contratoAnalisisCont($form);
+                  return $contrato;
+                  break;
+
+            case 'Confirmar pedido modificado':
+
+                  $contrato = $this->contratoConfirmaPedido($form);
+                  return $contrato;        
+                  break;  
+
+            case 'Entregar contenedores':
+                  $contrato = $this->PedidoContenedores->contratoEntregaContenedor($form);	
+                                  
+                  return $contrato;
+              
+                  break;     
+                  
+            default:
+                  # code...
+                  break;
+        }
+    }
+
+                 
+									
+									
+																
+
+									
+
+
+    /**
     * Despliega datos de tareas en maquetacion segun tarea especifica, para completar en notificacion estandar
     * @param array con info de tarea  
     * @return view vista (maquetacion y datos) de la tarea especifica
@@ -32,8 +94,35 @@ class PedidoContenedores extends CI_Model
           $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);
           $tarea->infoContenedores = $this->obtenerContSolicitados($tarea->caseId);
           $resp = $this->load->view('transporte-bpm/proceso/analizaSolicitud', $tarea, true);
+          
+          //para probar confirma pedido modificado
+          // $soco_id= $tarea->infoSolicitud->soco_id; 
+          // $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
+          // $resp = $this->load->view('transporte-bpm/proceso/confirmaPedidoModificado', $tarea, true);
+         
           return $resp;
           break;
+
+        case 'Confirmar pedido modificado':
+          log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
+          $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);  
+          $soco_id= $tarea->infoSolicitud->soco_id; 
+          $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
+          $resp = $this->load->view('transporte-bpm/proceso/confirmaPedidoModificado', $tarea, true);
+          return $resp;
+          break;
+
+        case 'Entregar contenedores':
+        log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
+        $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);  
+        $soco_id= $tarea->infoSolicitud->soco_id;
+        $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
+        $tarea->infoContenedoresEntregados = $this->obtenerContEntregados($soco_id);
+        $tarea->camion = $this->ObtenerCamiones();
+        $tarea->contenedores =$this->ObtenerContenedores();
+        $resp = $this->load->view('transporte-bpm/proceso/entregaContenedor', $tarea, true);
+        return $resp;
+        break;
         
         default:
           # code...
@@ -91,6 +180,37 @@ class PedidoContenedores extends CI_Model
     }
 
     /**
+    * Devuelve contrato de cierre tarea en BPM
+    * @param array $form datos de respuesta pantalla
+    * @return array $contrato de cierre con opcion elegida
+    */
+    function contratoConfirmaPedido($form)
+    {
+      $opcion = $form["elegido"]["opcion"]; //acepta o rechaza
+      if ($opcion == 'acepta') {
+        $ejecutar = true;
+      }else {
+        $ejecutar = false;  
+      }  
+      $contrato = array(
+        "confirmaPedido" => $ejecutar
+      ); 
+      return $contrato;
+
+    }
+
+    function contratoEntregaContenedor($form)
+    {
+      $opcion = $form["elegido"]["opcion"]; //acepta o rechaza
+      if ($opcion == 'acepta') {
+        $ejecutar = false;
+        $contrato = array(
+          "entregaPendiente" => $ejecutar
+        ); 
+      }
+      return $contrato;
+    }
+    /**
     * guarda en BD el motivo de rechazo del analisis de solicitud decontenedores
     * @param string motivo de rechazo
     * @return 
@@ -137,6 +257,72 @@ class PedidoContenedores extends CI_Model
       return $aux->solicitud;
     }
 
+    /**
+    * Devuelve informacion de Solicitud de Contenedor modificados (cant propuesta)
+    * @param string soco_id
+    * @return array informacion de solicitud de contenedores modificados (cant propuesta)
+    */
+    function obtenerContSolicitadosConfirma($soco_id)
+    {
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|obtenerContSolicitadosConfirma($soco_id): $soco_id >> '.json_encode($soco_id));
+      $aux = $this->rest->callAPI("GET",REST."/contenedoresSolicitados/$soco_id");
+      $aux =json_decode($aux["data"]);
+      return $aux->contSolicitados->contenedor;
+    }
+
+    /**
+    * Devuelve informacion de Contenedores Entregados (cant entregadas hasta el momento)
+    * @param string soco_id
+    * @return array informacion de solicitud de contenedores entregados (cant entregada)
+    */
+    function obtenerContEntregados($soco_id)
+    {
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|obtenerContEntregados($soco_id): $soco_id >> '.json_encode($soco_id));
+      $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/$soco_id");
+      $aux =json_decode($aux["data"]);
+      return $aux->contenedores->contenedor;
+    }
+
+    /**
+    * Devuelve informacion de Camiones (todos los equipos)
+    * @param 
+    * @return array informacion de camiones (todos los equipos)
+    */
+    function ObtenerCamiones()
+    {
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|ObtenerCamiones()');
+      $aux = $this->rest->callAPI("GET",REST."/vehiculos");
+      $aux =json_decode($aux["data"]);
+      return $aux->vehiculos->vehiculo;
+    }
+
+    /**
+    * Devuelve informacion de Contenedores (todos los contenedores)
+    * @param 
+    * @return array informacion de  contenedores (todos los contenedores)
+    */
+    function ObtenerContenedores()
+    {
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|ObtenerContenedores()');
+      $aux = $this->rest->callAPI("GET",REST."/contenedores");
+      $aux =json_decode($aux["data"]);
+      return $aux->contenedores->contenedor;
+    }
+
+      /**
+    * Guarda informacion de Contenedores a entregar 
+    * @param array datos de los contenedores a entregar
+    * @return json status
+    */
+    function GuardarContEntregados($datos)
+    {
+      log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|GuardarContEntregados() >> ');
+      $data["_post_contenedores_entregados_entregar"] = $datos;
+      $dato["_post_contenedores_entregados_entregar_batch_req"] = $data;
+      $aux = $this->rest->callAPI("POST",REST."/_post_contenedores_entregados_entregar_batch_req", $dato);
+      $aux =json_decode($aux["status"]);
+      return $aux;
+    }
 
 
 }    
