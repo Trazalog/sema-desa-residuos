@@ -18,18 +18,41 @@ class PedidoContenedores extends CI_Model
     }
 
     /**
+    * Despliega cabeceras usando helpers
+    * @param array $tarea con info de tarea desde BPM   
+    * @return view cabeceras con info
+    */
+    function desplegarCabecera($tarea)
+    {
+      $resp = infoproceso($tarea).infoentidadesproceso($tarea);
+      return $resp;
+    } 
+
+    /**
     * configuracion de la info que muestra la bandeja de entradas por PROCESO
     * @param array $tarea info de tarea en BPM  
     * @return array con info de configuracion de datos para la bandeja de entrada
     */
     public function map($tarea)
     {
-        $data['descripcion'] = 'soy una descripcion';
+        $data['descripcion'] = 'soy una descripcion';        
 
+        $aux_sol_cont = $this->obtenerInfoSolContenedores($tarea)->solicitud;
         $aux = new StdClass();
         $aux->color = 'warning';
-        $aux->texto = 'yayayayaya';
+        $aux->texto = 'Estado: '.$aux_sol_cont->estado;
         $data['info'][] = $aux;
+        
+        $aux = new StdClass();
+        $aux->color = 'success';
+        $aux->texto = 'Fecha Solic.: '.$aux_sol_cont->fec_alta;
+        $data['info'][] = $aux;
+        
+        $aux = new StdClass();
+        $aux->color = 'primary';
+        $aux->texto = 'Solicitante: '.$aux_sol_cont->razon_social;
+        $data['info'][] = $aux;
+        
         return $data;
     } 
      
@@ -69,16 +92,8 @@ class PedidoContenedores extends CI_Model
         }
     }
 
-                 
-									
-									
-																
-
-									
-
-
     /**
-    * Despliega datos de tareas en maquetacion segun tarea especifica, para completar en notificacion estandar
+    * Despliega datos de tareas en maquetacion segun tarea especifica, para notif estandar
     * @param array con info de tarea  
     * @return view vista (maquetacion y datos) de la tarea especifica
     */
@@ -91,20 +106,15 @@ class PedidoContenedores extends CI_Model
           log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
           $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);
           $tarea->infoContenedores = $this->obtenerContSolicitados($tarea->caseId);
-          $resp = $this->load->view('transporte-bpm/proceso/analizaSolicitud', $tarea, true);
-          
-          //para probar confirma pedido modificado
-          // $soco_id= $tarea->infoSolicitud->soco_id; 
-          // $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
-          // $resp = $this->load->view('transporte-bpm/proceso/confirmaPedidoModificado', $tarea, true);
-         
+          $info_proceso = $this->obtenerInfoSolContenedores($tarea);
+          $resp = $this->load->view('transporte-bpm/proceso/analizaSolicitud', $tarea, true);                   
           return $resp;
           break;
 
         case 'Confirmar pedido modificado':
           log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
           $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);  
-          $soco_id= $tarea->infoSolicitud->soco_id; 
+          $soco_id = $tarea->infoSolicitud->soco_id; 
           $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
           $resp = $this->load->view('transporte-bpm/proceso/confirmaPedidoModificado', $tarea, true);
           return $resp;
@@ -249,5 +259,47 @@ class PedidoContenedores extends CI_Model
       return $aux->contSolicitados->contenedor;
     }
 
+
+    // ---------------------- FUNCIONES BANDEJA DE ENTRADA ----------------------
+    
+    /**
+    * Devuelve info de Solicitud Contenedores para configuracion Bandeja Entrada 
+    * @param array $tarea con info de tarea BPM 
+    * @return array con info de solicitud de transporte
+    */
+    function obtenerInfoSolContenedores($tarea)
+    {     
+      
+      $case_id = $tarea->caseId;     
+      $aux_sol_cont = $this->rest->callAPI("GET",REST."/solicitudContenedores/info/".$case_id);
+      $aux_sol_cont =json_decode($aux_sol_cont["data"]);
+      return $aux_sol_cont;
+    }
+
+    /**
+    * Develve info Generador(solicitante Transporte) para cabecera de Entidad-Proceso
+    * @param $tarea con info de tarea BPM
+    * @return $aux_tran con info generador
+    */
+    // function obtenerGenerador($tarea){
+
+    //   $ent_case_id = $tarea->caseId;       
+    //   $aux_gen = $this->rest->callAPI("GET",REST."/solicitantesTransporte/case/".$ent_case_id);
+    //   $aux_gen =json_decode($aux_gen["data"]);
+    //   return $aux_gen;
+    // }
+    
+    /**
+    * Devuelve info Transportista para cabecera de Entidad-Proceso
+    * @param $tarea con info de tarea BPM
+    * @return array $aux_tran con info transportista
+    */
+    // function obtenerTransportista($tarea){
+
+    //   $ent_case_id = $tarea->caseId;
+    //   $aux_tran = $this->rest->callAPI("GET",REST."/transportistas/case/".$ent_case_id);
+    //   $aux_tran =json_decode($aux_tran["data"]);
+    //   return $aux_tran;
+    // }
 
 }    

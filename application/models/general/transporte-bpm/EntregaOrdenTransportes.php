@@ -17,18 +17,43 @@ class EntregaOrdenTransportes extends CI_Model {
   }
 
   /**
+  * Despliega cabeceras usando helpers
+  * @param array $tarea con info de tarea desde BPM   
+  * @return view cabeceras con info
+  */
+  function desplegarCabecera($tarea)
+  {
+    $resp = infoproceso($tarea).infoentidadesproceso($tarea);
+    return $resp;
+  } 
+
+  /**
   * configuracion de la info que muestra la bandeja de entradas por PROCESO
   * @param array $tarea info de tarea en BPM  
   * @return array con info de configuracion de datos para la bandeja de entrada
   */
   public function map($tarea)
-  {
-      $data['descripcion'] = 'Ingreso de contenedores a PTA';
-      $aux = new StdClass();
-      $aux->color = 'warning';
-      $aux->texto = 'TERSU-BPM03 - Generación Orden de Transporte';
-      $data['info'][] = $aux;
-      return $data;
+  {   
+    $data['descripcion'] = 'Ingreso de contenedores a PTA';
+
+    $aux_OT = $this->obtenerInfoEntrega($tarea);
+
+    $aux = new StdClass();
+    $aux->color = 'warning';
+    $aux->texto = 'Estado: '.$aux_OT->estado;
+    $data['info'][] = $aux;
+
+    $aux = new StdClass();
+    $aux->color = 'success';
+    $aux->texto = 'Ord. Transporte: '.$aux_OT->ortr_id;
+    $data['info'][] = $aux;
+
+    $aux = new StdClass();
+    $aux->color = 'primary';
+    $aux->texto = 'Dominio: '.$aux_OT->dominio;
+    $data['info'][] = $aux;
+
+    return $data;
   }
   
   /**
@@ -229,4 +254,37 @@ class EntregaOrdenTransportes extends CI_Model {
   }
 
 
+  // ---------------------- FUNCIONES BANDEJA DE ENTRADA ----------------------
+
+  /**
+  * Devuelve info de Orden de Transporte para configuracion Bandeja Entrada 
+  * @param array $tarea con info de tarea BPM 
+  * @return array con info de solicitud de transporte
+  */
+  function obtenerInfoEntrega($tarea){
+
+    $case_id = $tarea->caseId; 
+    $aux = $this->rest->callAPI("GET",REST."/ordenTransporte/info/entrega/case/".$case_id);
+    $data =json_decode($aux["data"]);
+    $aux_OT = $data->ordenTransporte;
+    return $aux_OT;
+  }
+            
+            
+
+    // obtenerContEntregados($tarea)
+    // $aux_cont = $this->rest->callAPI("GET",REST."/contenedoresEntregados/info/entrega/case/".$case_id);
+    // $data_cont =json_decode($aux_cont["data"]);
+    // $aux_cont = $data_cont->contenedores->contenedor; 
+
+    // obtenerGenerador($tarea)
+    // $aux_gen = $this->rest->callAPI("GET",REST."/solicitantesTransporte/proceso/ingreso/case/".$ent_case_id);
+    // $aux_gen =json_decode($aux_gen["data"]);
+
+    // obtenerTransportista($tarea)
+    // $aux_tran = $this->rest->callAPI("GET",REST."/transportistas/proceso/ingreso/case/".$ent_case_id);
+    // $aux_tran =json_decode($aux_tran["data"]); 
+
+            
+            
 }
