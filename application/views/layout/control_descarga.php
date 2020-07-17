@@ -181,80 +181,36 @@
             </div>
         </div>
         <br>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>JB-098-01</h3>
-                        <p>OT: 345</p>
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Tareas <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a role="button">Volcar</a></li>
-                                <li><a role="button" onclick="modalMover()">Mover</a></li>
-                                <!-- <li role="separator" class="divider"></li> -->
-                                <li><a role="button" onclick="modalRedireccionar()">Redireccionar</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>BT-090-11</h3>
-                        <p>OT: 346</p>
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Tareas <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a role="button">Volcar</a></li>
-                                <li><a role="button" onclick="modalMover()">Mover</a></li>
-                                <!-- <li role="separator" class="divider"></li> -->
-                                <li><a role="button" onclick="modalRedireccionar()">Redireccionar</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>TT-038-01</h3>
-                        <p>OT: 346</p>
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Tareas <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a role="button">Volcar</a></li>
-                                <li><a role="button" onclick="modalMover()">Mover</a></li>
-                                <!-- <li role="separator" class="divider"></li> -->
-                                <li><a role="button" onclick="modalRedireccionar()">Redireccionar</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>CC-028-10</h3>
-                        <p>OT: 347</p>
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Tareas <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a role="button">Volcar</a></li>
-                                <li><a role="button" onclick="modalMover()">Mover</a></li>
-                                <!-- <li role="separator" class="divider"></li> -->
-                                <li><a role="button" onclick="modalRedireccionar()">Redireccionar</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--  -->
+        <?php
+        $col = 8;
+        $row = 8;
+        $array=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+        for($j=0; $j<$row; $j++)
+        {
+
+            $idcol =0;
+            echo '<div class="row">';
+            for($i=0; $i<$col; $i++)
+            {     $idcol = $i+1;
+                  $idcol = $array[$j] . $idcol  ;  
+                    echo '<div class="col-xs-2" style="margin-right: -5rem;">';
+                            echo'<div class="thumbnail" style="margin-right: 3rem;">';
+                                echo'<div class="caption">';
+                                        echo '<h3>'.$idcol.'</h3>';
+                                    
+                                            echo'<button type="button" class="btn btn-default">Tareas</button>';
+                                        
+                                        
+                                    echo'</div>';
+                                echo'</div>';
+                            echo'</div>';
+    
+            }
+            echo '</div>';
+        }
+        ?>
+        <!--  -->
     </div>
 </div>
 
