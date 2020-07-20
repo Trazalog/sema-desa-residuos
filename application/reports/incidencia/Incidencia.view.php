@@ -137,7 +137,7 @@ use \koolreport\widgets\koolphp\Card;
     </script>
 
     <script>
-        DataTable($('.dataTable'))
+        DataTable($('.dataTable'));
     </script>
 
 </body>

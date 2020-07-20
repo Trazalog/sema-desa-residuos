@@ -112,12 +112,14 @@ class Reportes extends CI_Controller
     public function incidenciaPorTransportista()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#INCIDENCIAPORTRANSPORTISTA|');
-        //filtro debe tener mes o año
         $filtro = $this->input->post('data');
-        if($filtro)
+        $desde = $filtro['datepickerDesde'];
+        $hasta = $filtro['datepickerHasta'];
+        if($hasta || $desde)
         {
-            if(is_numeric($filtro))$url = CONSTANTE.'/incidenciaPorTransportista?anio='.$filtro;
-            else $url = CONSTANTE.'/incidenciaPorTransportista?mes='.$filtro;
+            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $url = CONSTANTE.'/incidenciaPorTransportista?desde='.$desde.'&hasta'.$hasta;
             $data = $this->Koolreport->getIncidenciaPorTransportista($url)->transportistas->transportista;
             $reporte = new IncidenciaPorTransportista($data);
             $reporte->run()->render();
@@ -133,26 +135,30 @@ class Reportes extends CI_Controller
     public function filtroIncidenciaPorTransportista()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROINCIDENCIAPORTRANSPORTISTA|');
-        $data = $this->Koolreport->getFiltroMyA();
-        $data->funcion = 'incidenciaPorTransportista';
-        $this->load->view('reportes/filtro',$data);
+        $data['calendarioDesde'] = true;
+        $data['calendarioHasta'] = true;
+        $data['reporte'] = 'incidenciaPorTransportista';
+        $this->load->view('layout/Filtro',$data);
     }
 
     public function incidenciaPorMunicipio()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#INCIDENCIAPORMUNICIPIO|');
-        //debe traer el mes y el año
         $filtro = $this->input->post('data');
-        if($filtro)
+        $desde = $filtro['datepickerDesde'];
+        $hasta = $filtro['datepickerHasta'];
+        if($hasta || $desde)
         {
-            if(is_numeric($filtro))$url = CONSTANTE.'/incidenciaPorMunicipio?anio='.$filtro;
-            else $url = CONSTANTE.'/incidenciaPorMunicipio?mes='.$filtro;
+            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $url = CONSTANTE.'/incidenciaPorMunicipio?desde='.$desde.'&hasta'.$hasta;
             $data = $this->Koolreport->getIncidenciasPorMunicipio($url)->departamentos->departamento;
             $reporte = new IncidenciaPorMunicipio($data);
             $reporte->run()->render();
         }else
         {
             $url = CONSTANTE.'desde//hasta';
+            $url = CONSTANTE.'/incidenciaPorMunicipio?desde='.$desde.'&hasta'.$hasta;
             $data = $this->Koolreport->getIncidenciasPorMunicipio($url)->departamentos->departamento;
             $reporte = new IncidenciaPorMunicipio($data);
             $reporte->run()->render();
@@ -162,20 +168,23 @@ class Reportes extends CI_Controller
     public function filtroIncidenciaPorMunicipio()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROINCIDENCIAPORMUNICIPIO|');
-        $data = $this->Koolreport->getFiltroMyA();
-        $data->funcion = 'incidenciaPorMunicipio';
-        $this->load->view('reportes/filtro',$data);
+        $data['calendarioDesde'] = true;
+        $data['calendarioHasta'] = true;
+        $data['reporte'] = 'incidenciaPorMunicipio';
+        $this->load->view('layout/Filtro',$data);
     }
 
     public function incidenciaPorZona()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#INCIDENCIAPORZONA|');
-        //filtro puede traer mes o año
         $filtro = $this->input->post('data');
-        if($filtro)
+        $desde = $filtro['datepickerDesde'];
+        $hasta = $filtro['datepickerHasta'];
+        if($hasta || $desde)
         {
-            if(is_numeric($filtro))$url = CONSTANTE.'/incidenciaPorZona?anio='.$filtro;
-            else $url = CONSTANTE.'/incidenciaPorZona?mes='.$filtro;
+            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $url = CONSTANTE.'/incidenciaPorZona?desde='.$desde.'&hasta'.$hasta;
             $data = $this->Koolreport->getIncidenciasPorZona($url)->zonas->zona;
             $reporte = new IncidenciaPorZona($data);
             $reporte->run()->render();
@@ -191,21 +200,23 @@ class Reportes extends CI_Controller
     public function filtroIncidenciaPorZona()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROINCIDENCIAPORZONA|');
-        $data = $this->Koolreport->getFiltroMyA();
-        $data->funcion = 'incidenciaPorZona';
-        $this->load->view('reportes/filtro',$data);
+        $data['calendarioDesde'] = true;
+        $data['calendarioHasta'] = true;
+        $data['reporte'] = 'incidenciaPorZona';
+        $this->load->view('layout/Filtro',$data);
     }
 
     public function toneladasPorTransportista()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#TONELADASPORTRANSPORTISTA|');
-        //filtro puede traer mes o año
         $filtro = $this->input->post('data');
-
-        if($filtro)
+        $desde = $filtro['datepickerDesde'];
+        $hasta = $filtro['datepickerHasta'];
+        if($hasta || $desde)
         {
-            if(is_numeric($filtro))$url = CONSTANTE.'/toneladasPorTransportista?anio='.$filtro;
-            else $url = CONSTANTE.'/toneladasPorTransportista?mes='.$filtro;
+            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $url = CONSTANTE.'/toneladasPorTransportista?desde='.$desde.'&hasta'.$hasta;
             $data = $this->Koolreport->getToneladasPorTransportista($url);
             $reporte = new ToneladasPorTransportista($data);
             $reporte->run()->render();
@@ -221,20 +232,23 @@ class Reportes extends CI_Controller
     public function filtroToneladasPorTransportista()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROTONELADASPORTRANSPORTISTA|');
-        $data = $this->Koolreport->getFiltroMyA();
-        $data->funcion = 'toneladasPorTransportista';
-        $this->load->view('reportes/filtro',$data);
+        $data['calendarioDesde'] = true;
+        $data['calendarioHasta'] = true;
+        $data['reporte'] = 'toneladasPorTransportista';
+        $this->load->view('layout/Filtro',$data);
     }
 
     public function toneladasPorGenerador()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#TONELADASPORGENERADOR|');
-        //filtro puede traer mes o año
         $filtro = $this->input->post('data');
-        if($filtro)
+        $desde = $filtro['datepickerDesde'];
+        $hasta = $filtro['datepickerHasta'];
+        if($hasta || $desde)
         {
-            if(is_numeric($filtro))$url = CONSTANTE.'/toneladasPorGenerador?anio='.$filtro;
-            else $url = CONSTANTE.'/toneladasPorGenerador?mes='.$filtro;
+            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $url = CONSTANTE.'/toneladasPorGenerador?hasta='.$hasta.'&desde'.$desde;
             $data = $this->Koolreport->getToneladasPorGenerador($url);
             $reporte = new ToneladasPorGenerador($data);
             $reporte->run()->render();
@@ -250,19 +264,23 @@ class Reportes extends CI_Controller
     public function filtroToneladasPorGenerador()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROTONELADASPORGENERADOR|');
-        $data = $this->Koolreport->getFiltroMyA();
-        $data->funcion = 'toneladasPorGenerador';
-        $this->load->view('reportes/filtro',$data);
+        $data['calendarioDesde'] = true;
+        $data['calendarioHasta'] = true;
+        $data['reporte'] = 'toneladasPorGenerador';
+        $this->load->view('layout/Filtro',$data);
     }
 
     public function toneladasPorResiduos()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#TONELADASPORRESIDUOS|');
         $filtro = $this->input->post('data');
+        $desde = $filtro['datepickerDesde'];
+        $hasta = $filtro['datepickerHasta'];
         if($filtro)
         {
-            if(is_numeric($filtro))$url = CONSTANTE.'/toneladasPorResiduo?anio='.$filtro;
-            else $url = CONSTANTE.'/toneladasPorResiduo?mes='.$filtro;
+            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $url = CONSTANTE.'/toneladasPorResiduo?desde='.$desde.'&hasta'.$hasta;
             $data = $this->Koolreport->getToneladasPorResiduo($url)->tiposDeCarga->tipoDeCarga;
             $reporte = new ToneladasPorResiduo($data);
             $reporte->run()->render();
@@ -278,8 +296,9 @@ class Reportes extends CI_Controller
     public function filtroToneladasPorResiduo()
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROTONELADASPORRESIDUOS|');
-        $data = $this->Koolreport->getFiltroMyA();
-        $data->funcion = 'toneladasPorResiduos';
-        $this->load->view('reportes/filtro',$data);
+        $data['calendarioDesde'] = true;
+        $data['calendarioHasta'] = true;
+        $data['reporte'] = 'toneladasPorResiduos';
+        $this->load->view('layout/Filtro',$data);
     }
 }

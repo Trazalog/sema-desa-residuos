@@ -33,8 +33,8 @@ use \koolreport\widgets\koolphp\Card;
                             foreach($report->params as $clave => $valor)
                             {
                                 $a = '';
-                                echo "<a onclick=\"$('#".str_replace(" ","-",$valor->nombre)."').toggle();  $('th').click();\" style='font-size:15px;'><i class='fa fa-plus'></i> <p style='color: black; display:inline'>$valor->nombre, ".$valor->cantidadIncidencias." incidencias</p></a><br><br>";
-                                echo "<div class='collapse' id='".str_replace(" ","-",$valor->nombre)."'>";
+                                echo "<strong><a class='prueba' onclick=\"$('#".str_replace(" ","-",$valor->nombre)."').toggle();  $('th').click();\" style='font-size:18px;'><i class='fa fa-minus'></i> <p style='color: black; display:inline'>$valor->nombre, ".$valor->cantidadIncidencias." incidencias</p></a></strong><br><br>";
+                                echo "<div id='".str_replace(" ","-",$valor->nombre)."'>";
                                 if($valor != null)
                                 {
                                     Table::create(array(
@@ -98,5 +98,12 @@ use \koolreport\widgets\koolphp\Card;
         $('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroIncidenciaPorZona');
         // convierte la tabla en data table para usar las funciones de ordenar por columna y buscar
         $('.table').dataTable();
+
+        $('.prueba').click(function() {
+        var ban = $(this).find('i').hasClass('fa-plus');
+        $(this).find('i').remove();
+        if (ban) $(this).prepend('<i class="fa fa-minus"></i>');
+        else $(this).prepend('<i class="fa fa-plus"></i>');
+    });
     </script>
 </body>

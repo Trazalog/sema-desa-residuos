@@ -44,15 +44,15 @@ use \koolreport\widgets\koolphp\Card;
                                 <?php
                                 foreach($report->params->solicitantesTransporte->solicitanteTransporte as $clave => $valor)
                                 {
-                                    echo "<br><h3>Generador:&nbsp;$valor->nombre:&nbsp;$valor->pesajeTotal Tn</h3><br>";
+                                    echo "<br><h4><strong>Generador:&nbsp;$valor->nombre:&nbsp;$valor->pesajeTotal Tn</strong></h4><br>";
                                     if($valor != null)
                                     {
                                         foreach($valor->departamentos->departamento as $key => $depa)
                                         {
                                             if($depa != null)
                                             {
-                                                echo "<a onclick=\"$('#$clave$key').toggle();  $('th').click();\"  style='font-size:15px'><i class='fa fa-plus'></i> <p style='color:black; display:inline'>Municipalidad: $depa->nombre, $depa->pesaje Tn</p></a><br><br>";
-                                                echo "<div class='collapse' id='$clave$key'>";
+                                                echo "<a class='prueba' onclick=\"$('#$clave$key').toggle();  $('th').click();\"  style='font-size:17px'><i class='fa fa-minus'></i> <p style='color:black; display:inline'>Municipalidad: $depa->nombre, $depa->pesaje Tn</p></a><br><br>";
+                                                echo "<div id='$clave$key'>";
                                                 Table::create(array(
                                                     "dataStore" => $depa->residuos->residuo,
                                                     "headers" => array(
@@ -111,5 +111,12 @@ use \koolreport\widgets\koolphp\Card;
 		$('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroIncidenciaPorZona');
         // convierte la tabla en data table para usar las funciones de ordenar por columna y buscar
         $('.table').dataTable();
+
+        $('.prueba').click(function() {
+            var ban = $(this).find('i').hasClass('fa-plus');
+            $(this).find('i').remove();
+            if (ban) $(this).prepend('<i class="fa fa-minus"></i>');
+            else $(this).prepend('<i class="fa fa-plus"></i>');
+        });
     </script>
 </body>
