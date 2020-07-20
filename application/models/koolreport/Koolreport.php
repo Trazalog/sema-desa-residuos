@@ -288,4 +288,13 @@ class Koolreport extends CI_Model
         return $rsp;
     }
 
+    public function getToneladasPorEmpresa()
+    {
+        $url = "http://localhost:8080/tipoDeCarga/porEmpresa";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETTONELADASPOREMPRESA|');
+        return $rsp;
+    }
+
 }

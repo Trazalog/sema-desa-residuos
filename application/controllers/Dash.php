@@ -142,9 +142,14 @@ class Dash extends CI_Controller {
 												"link": "Reportes/toneladasPorGenerador"
 											},
 											{
-												"titulo": "Tn. por residuo",
+												"titulo": "Tn. por municipio",
 												"icono": "fa fa-genderless",
 												"link": "Reportes/toneladasPorResiduos"
+											},
+											{
+												"titulo": "Tn. por empresa",
+												"icono": "fa fa-genderless",
+												"link": "Reportes/toneladasPorEmpresa"
 											}
 										]
 									}

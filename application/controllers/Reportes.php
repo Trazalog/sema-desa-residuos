@@ -8,6 +8,7 @@ require APPPATH . "/reports/incidenciaPorZona/IncidenciaPorZona.php";
 require APPPATH . "/reports/toneladasPorTransportista/ToneladasPorTransportista.php";
 require APPPATH . "/reports/toneladasPorGenerador/ToneladasPorGenerador.php";
 require APPPATH . "/reports/toneladasPorResiduo/ToneladasPorResiduo.php";
+require APPPATH . "/reports/toneladasPorEmpresa/ToneladasPorEmpresa.php";
 
 class Reportes extends CI_Controller
 {
@@ -299,6 +300,38 @@ class Reportes extends CI_Controller
         $data['calendarioDesde'] = true;
         $data['calendarioHasta'] = true;
         $data['reporte'] = 'toneladasPorResiduos';
+        $this->load->view('layout/Filtro',$data);
+    }
+
+    public function toneladasPorEmpresa()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#TONELADASPOREMPRESA|');
+        $filtro = $this->input->post('data');
+        $desde = $filtro['datepickerDesde'];
+        $hasta = $filtro['datepickerHasta'];
+        if($desde || $hasta)
+        {
+            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $url = CONSTANTE.'/toneladasPorEmpresa?desde='.$desde.'&hasta'.$hasta;
+            $data = $this->Koolreport->getToneladasPorEmpresa($url)->tiposDeCarga->tipoDeCarga;
+            $reporte = new ToneladasPorEmpresa($data);
+            $reporte->run()->render();
+        }else
+        {
+            $url = CONSTANTE.'desde//hasta';
+            $data = $this->Koolreport->getToneladasPorEmpresa($url)->tiposDeCarga->tipoDeCarga;
+            $reporte = new ToneladasPorEmpresa($data);
+            $reporte->run()->render();
+        }
+    }
+
+    public function filtroToneladasPorEmpresa()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROTONELADASPOREMPRESA|');
+        $data['calendarioDesde'] = true;
+        $data['calendarioHasta'] = true;
+        $data['reporte'] = 'toneladasPorEmpresa';
         $this->load->view('layout/Filtro',$data);
     }
 }

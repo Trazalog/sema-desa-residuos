@@ -17,7 +17,7 @@ use \koolreport\widgets\koolphp\Card;
                 <div class="box box-solid">
                     <div class="box box-primary">
                         <div class="box-title"><br>
-                            <h2 class="col-md-12" style="text-align:center">Reporte de toneladas recepcionadas por residuo y municipio
+                            <h2 class="col-md-12" style="text-align:center">Reporte de toneldas recepcionadas por residuo y empresa
                             </h2>
                         </div>
                         <div class="col-md-12">
@@ -41,12 +41,12 @@ use \koolreport\widgets\koolphp\Card;
                                         if($valor != null)
                                         {
                                             Table::create(array(
-                                                "dataStore" => $valor->departamentos->departamento,
+                                                "dataStore" => $valor->empresas->empresa,
                                                 "headers" => array(
                                                 ), // Para desactivar encabezado reemplazar "headers" por "showHeader"=>false
                                                 "columns" => array(
                                                     "nombre" => array(
-                                                        "label" => "Municipalidad"
+                                                        "label" => "Empresa"
                                                     ),
                                                     "fecha" => array(
                                                         "label" => "Fecha"
