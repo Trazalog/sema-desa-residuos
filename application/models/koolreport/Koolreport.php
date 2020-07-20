@@ -297,4 +297,12 @@ class Koolreport extends CI_Model
         return $rsp;
     }
 
+    public function getToneladasPorDisposicion()
+    {
+        $url = "http://localhost:8080/tipoDeCarga/porDisposicionFinal";
+        $rsp = $this->rest->callApi('GET', $url);
+        $rsp = json_decode($rsp['data']);
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETTONELADASPORDISPOSICION|');
+        return $rsp;
+    }
 }

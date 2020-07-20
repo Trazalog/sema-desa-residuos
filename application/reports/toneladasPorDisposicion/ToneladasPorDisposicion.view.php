@@ -17,7 +17,7 @@ use \koolreport\widgets\koolphp\Card;
                 <div class="box box-solid">
                     <div class="box box-primary">
                         <div class="box-title"><br>
-                            <h2 class="col-md-12" style="text-align:center">Reporte de toneldas recepcionadas por residuo y empresa
+                            <h2 class="col-md-12" style="text-align:center">Reporte de toneldas recepcionadas por residuo y disposiciones
                             </h2>
                         </div>
                         <div class="col-md-12">
@@ -41,7 +41,7 @@ use \koolreport\widgets\koolphp\Card;
                                         if($valor != null)
                                         {
                                             Table::create(array(
-                                                "dataStore" => $valor->empresas->empresa,
+                                                "dataStore" => $valor->destinos_finales->destino_final,
                                                 "headers" => array(
                                                 ), // Para desactivar encabezado reemplazar "headers" por "showHeader"=>false
                                                 "columns" => array(
@@ -84,7 +84,7 @@ use \koolreport\widgets\koolphp\Card;
             $(this).css('text-align', 'center');
         }
     });
-    $('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroToneladasPorEmpresa');
+    $('filtro').load('<?php echo base_url() ?>index.php/Reportes/filtroToneladasPorDisposicion');
     // convierte la tabla en data table para usar las funciones de ordenar por columna y buscar
     // $('table').dataTable().fnDestroy();
     $('.table').dataTable();

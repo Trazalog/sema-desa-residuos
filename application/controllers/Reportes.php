@@ -9,6 +9,7 @@ require APPPATH . "/reports/toneladasPorTransportista/ToneladasPorTransportista.
 require APPPATH . "/reports/toneladasPorGenerador/ToneladasPorGenerador.php";
 require APPPATH . "/reports/toneladasPorResiduo/ToneladasPorResiduo.php";
 require APPPATH . "/reports/toneladasPorEmpresa/ToneladasPorEmpresa.php";
+require APPPATH . "/reports/toneladasPorDisposicion/ToneladasPorDisposicion.php";
 
 class Reportes extends CI_Controller
 {
@@ -332,6 +333,38 @@ class Reportes extends CI_Controller
         $data['calendarioDesde'] = true;
         $data['calendarioHasta'] = true;
         $data['reporte'] = 'toneladasPorEmpresa';
+        $this->load->view('layout/Filtro',$data);
+    }
+
+    public function toneladasPorDisposicion()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#TONELADASPORDISPOSICION|');
+        $filtro = $this->input->post('data');
+        $desde = $filtro['datepickerDesde'];
+        $hasta = $filtro['datepickerHasta'];
+        if($desde || $hasta)
+        {
+            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+            $url = CONSTANTE.'/toneladasPorDisposicion?desde='.$desde.'&hasta'.$hasta;
+            $data = $this->Koolreport->getToneladasPorDisposicion($url)->tiposDeCarga->tipoDeCarga;
+            $reporte = new ToneladasPorDisposicion($data);
+            $reporte->run()->render();
+        }else
+        {
+            $url = CONSTANTE.'desde//hasta';
+            $data = $this->Koolreport->getToneladasPorDisposicion($url)->tiposDeCarga->tipoDeCarga;
+            $reporte = new ToneladasPorDisposicion($data);
+            $reporte->run()->render();
+        }
+    }
+
+    public function filtroToneladasPorDisposicion()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#FILTROTONELADASPORDISPOSICION|');
+        $data['calendarioDesde'] = true;
+        $data['calendarioHasta'] = true;
+        $data['reporte'] = 'toneladasPorDisposicion';
         $this->load->view('layout/Filtro',$data);
     }
 }
