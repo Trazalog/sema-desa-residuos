@@ -1412,6 +1412,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
 --contenedoresEntregadosSet" 
   recurso: /contenedores/entregados/entregar
+  _post_contenedores_entrega_batch_req
   metodo: post
       insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)&#xd;  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))&#xd;returning coen_id;
 
