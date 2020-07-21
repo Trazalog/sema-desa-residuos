@@ -1128,6 +1128,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }
   }
 
+//TODO: FIME ARREGLAR SECTOR DE DESCARGA
 -- contenedoresEntregadosInfoEntregaCase
   recurso: /contenedoresEntregados/info/entrega/case/{case_id}
   metodo: get
@@ -1168,17 +1169,17 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
 
 -- contenedoresEntregadosRegistraIngreso (registra ingreso de contenedores en bascula PTA)
-  recurso: /contenedoresEntregados/ingreso/{coen_id}
+  recurso: /contenedoresEntregados/registra/ingreso 
   metodo: put
 
   update log.contenedores_entregados 
-  set peso_neto = CAST(:peso_neto AS FLOAT4), difi_id = :difi_id, sector_descarga = :sector_descarga 
+  set peso_neto = CAST(:peso_neto AS FLOAT4), difi_id = :difi_id, depo_id = :depo_id 
   where coen_id = CAST(:coen_id as INTEGER)
 
   {
     "_put_contenedoresentregados_registra_ingreso":{
       "peso_neto": "$peso_neto",
-      "difi_id": "$difi_id",
+      "depo_id": "$depo_id",
       "sector_descarga": "$sector_descarga"
       "coen_id": "$coen_id"
     }
@@ -1250,6 +1251,35 @@ http://10.142.0.3:8280/services/semaresiduosDS
           ]
         }
   }
+
+
+
+
+
+
+
+-- getDepositosEstablecimiento
+  recurso: http://10.142.0.7:8280/services/PRDDataService/depositos_establecimiento/{esta_id}
+
+  SELECT a.depo_id, a.descripcion, e.esta_id, e.nombre
+  FROM alm.alm_depositos a 
+  join prd.establecimientos e on e.esta_id = a.esta_id
+  WHERE e.esta_id = CAST(:esta_id as integer)
+  AND a.eliminado = false
+
+  {
+    "depositos":{
+        "deposito":[
+          {
+              "depo_id":"$depo_id",
+              "descripcion":"$descripcion",
+              "esta_id":"$esta_id",
+              "esta_nombre":"$nombre"
+          }
+        ]
+    }
+  }
+
 
 -- choferesGet
   recurso: /choferes
@@ -1410,7 +1440,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }
 
 
---contenedoresEntregadosSet" 
+-- contenedoresEntregadosSet" 
   recurso: /contenedores/entregados/entregar
   metodo: post
       insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)&#xd;  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))&#xd;returning coen_id;
@@ -2153,10 +2183,6 @@ http://10.142.0.3:8280/services/semaresiduosDS
   }
 
 
-
-
-
-
 -- puntosCriticosCircuitosset
   recurso: /puntosCriticos/circuito
   metodo: post
@@ -2525,18 +2551,18 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
 
 -- solicitudContenedorEstadoUpdate" 
-recurso PUT /solicitudesContenedor/estado
+    recurso PUT /solicitudesContenedor/estado
 
 
-update log.solicitudes_contenedor&#xd;set estado = :estado&#xd;where soco_id = cast(:soco_id as integer)
+    update log.solicitudes_contenedor&#xd;set estado = :estado&#xd;where soco_id = cast(:soco_id as integer)
 
-retorna 200 si ok
+    retorna 200 si ok
 
-{"_put_solicitudescontenedor_estado":{
-	"soco_id":"114",
-	"estado":"SOLICITADA"
-}
-}
+  {"_put_solicitudescontenedor_estado":{
+    "soco_id":"114",
+    "estado":"SOLICITADA"
+  }
+  }
 
 
 
@@ -2575,15 +2601,15 @@ retorna 200 si ok
 
 
 --ordenTransporteEstadoUpdate" 
-      update log.ordenes_transporte&#xd;set estado = :estado&#xd;where ortr_id = cast(:ortr_id as integer)
+  update log.ordenes_transporte&#xd;set estado = :estado&#xd;where ortr_id = cast(:ortr_id as integer)
 
-{"_put_ordenesTransporte_estado":{
-	"ortr_id":"21",
-	"estado":"SOLICITADA"
-}
-}
+  {"_put_ordenesTransporte_estado":{
+    "ortr_id":"21",
+    "estado":"SOLICITADA"
+  }
+  }
 
-retorna
+  retorna
 -- ordenTransporteSet
   recurso: /ordenTransporte
   metodo: post

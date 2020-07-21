@@ -111,7 +111,7 @@ class EntregaOrdenTransportes extends CI_Model {
         $tarea->infoOTransporte->img_vehiculo = $newImgVehi;
 
         $tarea->infoContenedores = $this->obtenerContEntregados($tarea->caseId);
-        $tarea->sectoresDescarga = $this->obtenerSectoresDescarga();
+        $tarea->depositos = $this->obtenerDepositos();
         $tarea->infoOT = $this->obtenerInfoOTIncidencia($tarea->caseId);
         $tarea->tipoCarga = $this->obtenerTipoCarga();
         $tarea->tipoIncidencia = $this->obtenerTipoIncidencia();
@@ -143,13 +143,13 @@ class EntregaOrdenTransportes extends CI_Model {
   /**
   * devuelve contrato de cierre tarea registra ingreso
   * @param array datso de form enviado
-  * @return array vontrato de cierre tarea registra ingreso contenedor
+  * @return array contrato de cierre tarea registra ingreso contenedor
   */
   function contratoIngreso($form)
   {     
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|contratoIngreso($form) >> '); 
     log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|contratoIngreso($form): $form >> '.json_encode($form));   
-    $contrato["sectorDescarga"] = $form['data']["difi_id"];
+    $contrato["depo_id"] = $form['data']["depo_id"];
     return $contrato;
   }
 
@@ -188,12 +188,14 @@ class EntregaOrdenTransportes extends CI_Model {
   * @param   
   * @return array con sectores de descarga
   */
-  function obtenerSectoresDescarga()
-  {     
+  function obtenerDepositos()
+  { 
+    //FIXME: DESHARDCODEAR ESTABLECIMEINTO 1
+    $esta_id = 1;
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerSectoresDescarga() >> ');
-    $aux = $this->rest->callAPI("GET",REST."/tablas/sector_descarga");
+    $aux = $this->rest->callAPI("GET",REST_PRD."/depositos_establecimiento/".$esta_id);
     $aux = json_decode($aux["data"]);
-    return $aux->valores->valor;
+    return $aux->depositos->deposito;
   }
 
   /**
@@ -272,18 +274,18 @@ class EntregaOrdenTransportes extends CI_Model {
             
             
 
-    // obtenerContEntregados($tarea)
-    // $aux_cont = $this->rest->callAPI("GET",REST."/contenedoresEntregados/info/entrega/case/".$case_id);
-    // $data_cont =json_decode($aux_cont["data"]);
-    // $aux_cont = $data_cont->contenedores->contenedor; 
+  // obtenerContEntregados($tarea)
+  // $aux_cont = $this->rest->callAPI("GET",REST."/contenedoresEntregados/info/entrega/case/".$case_id);
+  // $data_cont =json_decode($aux_cont["data"]);
+  // $aux_cont = $data_cont->contenedores->contenedor; 
 
-    // obtenerGenerador($tarea)
-    // $aux_gen = $this->rest->callAPI("GET",REST."/solicitantesTransporte/proceso/ingreso/case/".$ent_case_id);
-    // $aux_gen =json_decode($aux_gen["data"]);
+  // obtenerGenerador($tarea)
+  // $aux_gen = $this->rest->callAPI("GET",REST."/solicitantesTransporte/proceso/ingreso/case/".$ent_case_id);
+  // $aux_gen =json_decode($aux_gen["data"]);
 
-    // obtenerTransportista($tarea)
-    // $aux_tran = $this->rest->callAPI("GET",REST."/transportistas/proceso/ingreso/case/".$ent_case_id);
-    // $aux_tran =json_decode($aux_tran["data"]); 
+  // obtenerTransportista($tarea)
+  // $aux_tran = $this->rest->callAPI("GET",REST."/transportistas/proceso/ingreso/case/".$ent_case_id);
+  // $aux_tran =json_decode($aux_tran["data"]); 
 
             
             

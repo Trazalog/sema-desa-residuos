@@ -164,6 +164,7 @@ define('REST2', 'http://10.142.0.7:8280/services/ProduccionDataService');
 define('REST3', 'http://10.142.0.7:8280/services/produccionTest');
 define('REST4', 'http://10.142.0.7:8280/services/TrazabilidadDataService');
 define('API_URL', 'http://10.142.0.7:8280/tools/log');
+define('REST_PRD', 'http://10.142.0.7:8280/services/sema/PRDDataService');
 
 define('HOST', 'http://localhost/');
 
