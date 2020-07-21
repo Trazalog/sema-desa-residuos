@@ -1141,7 +1141,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
       C.cont_id = CE.cont_id 
   and 
       CE.ortr_id = (select OT.ortr_id from log.ordenes_transporte OT
-            where OT.case_id = :case_id )
+                    where OT.case_id = :case_id )
   and 
       CE.tica_id = T.tabl_id 
             
@@ -1150,7 +1150,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
   and 
       CE.difi_id is null
   and 
-      CE.sector_descarga is null                
+      CE.depo_id is null                
 
   {
     "contenedores":{
