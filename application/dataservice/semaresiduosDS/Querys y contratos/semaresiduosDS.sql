@@ -1064,6 +1064,21 @@ http://10.142.0.3:8280/services/semaresiduosDS
       ]
     }
   }
+--contenedoresEntregadosDescargarUpdate
+ recurso /contenedoresEntregados/descargar
+ metodo: PUT
+
+SELECT prd.cambiar_recipiente(ce.batch_id,:p_reci_id_destino,2000,1,:p_usuario_app,'false',ce.mts_cubicos)
+FROM log.contenedores_entregados ce 
+WHERE ce.ortr_id = :ortr_id 
+AND ce.cont_id = :cont_id;
+
+  { "_put_contenedoresEntregados_descargar":{
+      "p_reci_id_destino" :""
+      "p_usuario_app" :""
+      "ortr_id" :""
+      "cont_id" :""
+}}
 
 -- contenedoresEntregadosPorTicaId (contenedores entregados por tipo de carga y usuario_app)
   recurso: /contenedoresEntregados/tipocarga/tipo_cargaOrganico/usr/hugoDS
@@ -1127,6 +1142,27 @@ http://10.142.0.3:8280/services/semaresiduosDS
         ]
     }
   }
+
+--contenedoresEntregadosDescargarEnRecipiente
+   recurso /contenedoresEntregados/descargar/recipiente
+   metodo PUT
+SELECT prd.cambiar_recipiente(ce.batch_id,cast(:reci_id_destino as integer),2000,1,:usuario_app,'false'::varchar)
+FROM log.contenedores_entregados ce 
+WHERE ce.ortr_id = cast(:ortr_id as integer) 
+AND ce.cont_id = cast(:cont_id as integer);
+
+   retorna 202 si ok
+--contenedoresEntregadosDescagarUpdate
+   recurso /contenedoresEntregados/descargar
+   metodo POST
+
+update log.contenedores_entregados
+set foto=:foto
+,tiva_id=:tiva_id
+,observaciones_descarga=:observaciones_descarga
+where ortr_id = cast(:ortr_id as integer)
+and cont_id =cast(:cont_id as integer)
+   retorna 202 si ok
 
 -- contenedoresEntregadosInfoEntregaCase
   recurso: /contenedoresEntregados/info/entrega/case/{case_id}
@@ -1414,7 +1450,9 @@ http://10.142.0.3:8280/services/semaresiduosDS
   recurso: /contenedores/entregados/entregar
   _post_contenedores_entrega_batch_req
   metodo: post
-      insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)&#xd;  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))&#xd;returning coen_id;
+      insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)
+  values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))
+returning coen_id;
 
 -- contenedoresEntregaSet 
   recurso: /contenedores/entregados/entregar
@@ -2529,7 +2567,9 @@ http://10.142.0.3:8280/services/semaresiduosDS
 recurso PUT /solicitudesContenedor/estado
 
 
-update log.solicitudes_contenedor&#xd;set estado = :estado&#xd;where soco_id = cast(:soco_id as integer)
+update log.solicitudes_contenedor
+set estado = :estado
+where soco_id = cast(:soco_id as integer)
 
 retorna 200 si ok
 
@@ -2576,7 +2616,9 @@ retorna 200 si ok
 
 
 --ordenTransporteEstadoUpdate" 
-      update log.ordenes_transporte&#xd;set estado = :estado&#xd;where ortr_id = cast(:ortr_id as integer)
+      update log.ordenes_transporte
+set estado = :estado
+where ortr_id = cast(:ortr_id as integer)
 
 {"_put_ordenesTransporte_estado":{
 	"ortr_id":"21",
@@ -3344,7 +3386,9 @@ HTTP/1.1 202 Accepted
     }
 
 --solicitudRetiroEstadoUpdate
-      update log.solicitudes_retiro&#xd;set estado = :estado&#xd;where sore_id = cast(:sore_id as integer)
+      update log.solicitudes_retiro
+set estado = :estado
+where sore_id = cast(:sore_id as integer)
 
 {"_put_solicitudesretiro_estado":{
 	"sore_id":"24",
