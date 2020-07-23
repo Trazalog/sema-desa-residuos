@@ -422,7 +422,7 @@ $.ajax({
          debugger;
           var res = $datos;
           console.table(res.chofer);
-          console.table(res.chofer[1].nom_chofer);
+        //   console.table(res.chofer[1].nom_chofer);
           console.table(res.chofer.length);
           console.table(res.transp.razon_social);
           $("#transp").val(res.transp.razon_social);
@@ -452,6 +452,7 @@ $("#equipo").change(function(){
 // var dominio_equipo = this.value;
  var dominio_equipo = this.selectedOptions[0].textContent;
  var dom_equipo = $("#equipo").val();
+ console.table(dom_equipo);
 var aux;
 $.ajax({
       type: "POST",
@@ -498,6 +499,7 @@ function Agregar_contenedor($datos) {
 console.table($datos);
 // }
 $('#contenedores').show();
+debugger;
 //var data = new FormData($('#formPedidos')[0]);
 var data = new FormData();
 data = formToObject(data);
@@ -583,7 +585,7 @@ function Guardar_Orden_transporte(){
     datos.fec_retiro = auxfecha;
     datos.difi_id = $("#dispfinal").val();
     datos.sotr_id = 38;
-    var dominio_equipo = $("#equipo").selectedOptions[0].textContent;
+    var dominio_equipo = $("#equipo").val();
     datos.equi_id = dominio_equipo;
     datos.chof_id = $("#chofer").val();
     datos.usuario_app = "HugoDS";

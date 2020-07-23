@@ -98,8 +98,10 @@ class EntregaOrdenTransportes extends CI_Model {
 
         log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|desplegarVista($tarea)|Certifica Vuelco: $tarea >> '.json_encode($tarea));
         $tarea->infoOTransporteCont = $this->obtenerInFoOTransporteCont($tarea->caseId);
+        $tarea->infoOTransporte = $this->obtenerInFoOTransporte($tarea->caseId);
         $tarea->TamDeposito = $this->obtenerTamañoDeposito($tarea->infoOTransporteCont[0]->depo_id);
         $tarea->Recipientes = $this->obtenerRecipientes($tarea->infoOTransporteCont[0]->depo_id);
+        $tarea->tipoValorizado = $this->obtenerValorizado();
         $resp = $this->load->view('transporte-bpm/proceso/certificadoVuelco', $tarea, true);
         return $resp;
         break; 
@@ -261,5 +263,32 @@ class EntregaOrdenTransportes extends CI_Model {
     $aux =json_decode($aux["data"]);
     return $aux->contenedores->contenedor;   
   }
+
+  function CertificadoVuelco($data)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInFoOTransporte($caseId) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInFoOTransporte($caseId): $caseId  >> '.json_encode($caseId));
+    $dato[]['_put_contenedoresEntregados_descargar'] = $data['_put_contenedoresEntregados_descargar'];
+    $dato[]['_post_contenedoresEntregados_descargar_recipiente'] = $data['_post_contenedoresEntregados_descargar_recipiente'];
+   
+    // $date['request_box'] = $dato;
+    $rsp = requestBox(REST_PRD.'/', $dato);
+    $aux = $rsp;
+    // $aux2 = $this->rest->callAPI("POST",REST_PRD."/request_box", $date);
+    // $aux1 = $this->rest->callAPI("PUT",REST_PRD."/contenedoresEntregados/descargar", $dato1);
+    
+    // $aux3 =json_decode($aux1["status"]);
+    // $aux4 =json_decode($aux1["status"]);
+       
+  }
+
+  function obtenerValorizado()
+  {
+        log_message('INFO','#TRAZA|EntregaOrdenTransportes|obtenerValorizado() >> '); 
+        $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga_valorizado");
+        $aux =json_decode($aux["data"]);
+        return $aux->valores->valor;
+  }
+
 }
 
