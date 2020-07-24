@@ -50,7 +50,7 @@ if(!function_exists('validarSesion')){
     function validarSesion(){
         $ci = &get_instance();
         $userdata = $ci->session->userdata('user_data');
-        if(empty($userdata)) redirect(base_url().'Login');
+        if(empty($userdata['email'])) redirect(base_url().'login/main/logout/'); 
     }
 
 }

@@ -1128,7 +1128,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }
   }
 
-//TODO: FIME ARREGLAR SECTOR DE DESCARGA
+
 -- contenedoresEntregadosInfoEntregaCase
   recurso: /contenedoresEntregados/info/entrega/case/{case_id}
   metodo: get
@@ -1184,6 +1184,48 @@ http://10.142.0.3:8280/services/semaresiduosDS
       "coen_id": "$coen_id"
     }
   }
+
+
+-- contenedoresEntregadosInfoVuelcoCase (pantalla de certificado de vuelco)
+  recurso: /contenedoresEntregados/info/vuelco/case/{case_id}
+  metodo: get
+
+  select 
+      CE.coen_id, CE.porc_llenado, CE.depo_id, CE.mts_cubicos,C.cont_id, C.codigo, T.valor as tipo_carga
+  from 
+      log.contenedores C, log.contenedores_entregados CE, core.tablas T
+  where 
+      C.cont_id = CE.cont_id 
+  and 
+      CE.ortr_id = (select OT.ortr_id from log.ordenes_transporte OT
+                    where OT.case_id = :case_id )
+  and 
+      CE.tica_id = T.tabl_id             
+  and 
+      CE.peso_neto is null
+  and 
+      CE.difi_id is null
+  and 
+      CE.tiva_id is null    
+  
+  {
+    "contenedores":{
+        "contenedor":[
+          {
+            "coen_id": "$coen_id",
+            "porc_llenado": "$porc_llenado",
+            "depo_id": "$depo_id",
+            "mts_cubicos": "$mts_cubicos",
+            "cont_id": "$cont_id",
+            "codigo": "$codigo",
+            "tipo_carga": "$tipo_carga"            
+          }
+        ] 
+    }
+  }
+
+
+
 
 -- contenedoresEntregadosGetImgPorCoen_id (Trae imagen pot coen_id) 
   recurso: /contenedoresEntregados/ingreso/{coen_id}

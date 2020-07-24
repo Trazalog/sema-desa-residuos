@@ -10,6 +10,7 @@ class Dash extends CI_Controller {
 
 	function index(){
 		
+		
 		$aux = '{"menuP" : {
 							"menuH": [
 									{
@@ -17,7 +18,12 @@ class Dash extends CI_Controller {
 											"icono": "fa fa-circle",
 											"link": "general/Componente",
 											"nivel": 2,
-											"submenu":[												
+											"submenu":[	
+													{
+														"titulo": "Usuarios",
+														"icono": "fa fa-genderless",
+														"link": "login/main/users"
+												 	},												
 													{
 															"titulo": "Chofer",
 															"icono": "fa fa-genderless",
@@ -104,7 +110,7 @@ class Dash extends CI_Controller {
 						}
 				}';
 
-		$aux2  = $this->load->view('layout/menu/mis_tareas', null, true).$this->load->view('layout/menu/aux_menu_alm', null, true);
+		$aux2  =$this->load->view('layout/menu/usuarios_menu', null, true).$this->load->view('layout/menu/mis_tareas', null, true).$this->load->view('layout/menu/aux_menu_alm', null, true);
 
 		$data['menu'] = menu(json_decode($aux), $aux2);
 	

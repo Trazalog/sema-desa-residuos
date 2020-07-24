@@ -172,6 +172,10 @@ define('HOST', 'http://localhost/');
 define('FRM', 'traz-comp-form/');
 define('FILES', 'files/');
 
+# DNATO
+define('LOGIN', true);
+define('DNATO', 'http://localhost/dnato/');
+
 
 define('PORT', ':3000/');
 
