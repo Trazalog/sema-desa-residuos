@@ -211,191 +211,124 @@
 
     <!---//////////////////////////////////////--- MODAL EDITAR ---//////////////////////////////////////----->
 
-    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-blue">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title titulo" id="exampleModalLabel">Editar Vehiculo</h5>
-            </div>
-
-            <div class="modal-body">
-
-            <!--__________________ FORMULARIO MODAL __________________-->
-
-            <form class="formVehiculoEdit" id="formVehiculoEdit"  method="POST" autocomplete="off" class="registerForm">
-                <div class="modal-body">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-        
-                        <!--Descripcion-->
-                            <div class="form-group">
-                                <label for="descripcion" >Descripcion:</label>
-                                <br>
-                                <input type="text" class="form-control habilitar" id="e_descripcion" name="descripcion">
-                            </div>
-
-                            <div class="form-group"  style="display:none">
-                                <input type="text" class="form-control habilitar" id="e_equi_id" >
-                            </div>
-            ​            <!--_____________________________________________________________-->
-
-                        <!--Dominio-->
-                            <div class="form-group">
-                                <label for="dominio">Dominio:</label>
-                                <br>
-                                <input type="text" class="form-control habilitar" id="e_dominio" name="dominio">
-                            </div>
-            ​            <!--_____________________________________________________________-->
-                         <!--Tara-->
-                        <div class="form-group">
-                            <label for="Tara" >Tara:</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                                    <input type="number" class="form-control habilitar" name="tara" id="taraedit">
-                            </div>
-                        </div>
-                        <!--Marca-->
-                            <div class="form-group">
-                                <label for="marca" >Marca:</label>
-                                <br>
-                                <input type="text" class="form-control habilitar" id="e_marca" name="marca">
-                            </div>
-            ​            <!--_____________________________________________________________-->
-                                    <div class="form-group">
-                                                <label for="CircR" name="img">Imagen:</label>
-                                                <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
-                                                <input type="text" id="input_aux_img64" style="display:none" >
-                                                <input type="text" id="input_aux_zonaID" style="display:none" >                                   
-                                                <img src="" alt="no hay imagen! cargue una" id="img_base" width="" height="">
-                                   
-                                 
-                                   
-                                   
-                                        </div>
-                        <!--Condicion-->
-                            <!-- <div class="form-group">
-                                <label for="condicion" >Condicion:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="" name="e_condicion" >
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                    foreach ($condicion as $i) {
-                                        echo '<option>'.$i->nombre.'</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div> -->
-            ​            <!--_____________________________________________________________-->
-
-                        <!--Modelo-->
-                            <!-- <div class="form-group">
-                                <label for="Modelo" >Modelo:</label>
-                                <input type="text" class="form-control" id="" name="e_modelo">
-                            </div> -->
-            ​            <!--_____________________________________________________________-->
-
+        <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-blue">
+                        <button type="button" class="close cerrar_modal_e" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title titulo" id="exampleModalLabel">Editar Vehiculo</h5>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <!--Ubicacion-->
-                        <div class="form-group">
-                                <label for="ubicacion">Ubicacion:</label>
-                                <input type="text" class="form-control habilitar" id="e_ubicacion" name="ubicacion" >
-                            </div>
-                        <!--_____________________________________________________________-->   
-                        <!--Registro-->
-                        <div class="form-group">
-                            <label for="codigo" >Codigo:</label>
-                            <br>
-                            <input type="text" class="form-control habilitar" id="e_codigo" name="codigo" >
-                        </div>
-            ​           <!--_____________________________________________________________--> 
 
-                         <div class="form-group ocultaTransedit">
-                            <label for="tran_id" >Transportista:</label>
-                            <select class="form-control select2 select2-hidden-accesible" id="e_tran_id" name="tran_id" >
-                                <option value=""  disabled selected  >-seleccione opcion-</option>
-                                <?php 
-                                                            foreach ($transportista as $j) { 
-                                                                echo '<option  value="'.$j->tran_id.'">'.$j->razon_social.'</option>'; 
-                                                            } 
-                                ?> 
-                            </select>
-                        </div> 
-                        <div class="form-group textTransinfo" style="display:none"> 
-                            <label for="tran_id_info">Transportista:</label> 
-                            <br> 
-                            <input type="text"  class="form-control" id="tran_id_info"> 
-                        </div>
-                     
+                    <div class="modal-body">
 
-                        <!--Capacidad-->
-                            <!-- <div class="form-group">
-                                <label for="Capacidad" >Capacidad:</label>
-                                <input type="text" class="form-control" id="" name="e_capacidad">
-                            </div> -->
-            ​            <!--_____________________________________________________________-->
+                        <!--__________________ FORMULARIO MODAL __________________-->
 
-                        <!--Tara-->
-                            <!-- <div class="form-group">
-                                <label for="Tara" >Tara:</label>
-                                <input type="text" class="form-control" id="" name="e_tara" >
-                            </div> -->
-            ​            <!--_____________________________________________________________-->
+                        <form class="formVehiculoEdit" id="formVehiculoEdit"  method="POST" autocomplete="off" class="registerForm">
+                            <div class="modal-body">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                    
+                                    <!--Descripcion-->
+                                        <div class="form-group">
+                                            <label for="descripcion" >Descripcion:</label>
+                                            <br>
+                                            <input type="text" class="form-control habilitar" id="e_descripcion" name="e_descripcion">
+                                        </div>
 
-                        <!--Habilitacion-->
-                            <!-- <div class="form-group">
-                                <label for="Habilitacion" >Habilitacion:</label>
-                                <input type="text" class="form-control" id="" name="e_habilitacion" >
-                            </div> -->
-            ​            <!--_____________________________________________________________-->
-
-                        <!--Registro-->
-                            <!-- <div class="form-group">
-                                <label for="Registro" >Registro:</label>
-                                <input type="text" class="form-control" id="" name="e_registro" >
-                            </div> -->
-            ​            <!--_____________________________________________________________-->
-
-                        <!--Fecha de habilitacion-->
-                            <div class="form-group" >
-                                <label for="FechaIngreso" >Fecha de Ingreso:</label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
+                                        <div class="form-group"  style="display:none">
+                                            <input type="text" class="form-control habilitar" id="e_equi_id" name="e_equi_id" >
+                                        </div>
+                                    <!--Dominio-->
+                                        <div class="form-group">
+                                            <label for="dominio">Dominio:</label>
+                                            <br>
+                                            <input type="text" class="form-control habilitar" id="e_dominio" name="e_dominio">
+                                        </div>           ​            
+                                    <!--Tara-->
+                                    <div class="form-group">
+                                        <label for="Tara" >Tara:</label>
+                                        
+                                        <br>
+                                                <input type="number" class="form-control habilitar" name="taraedit" id="taraedit">
+                                        
                                     </div>
-                                    <input type="text" class="form-control habilitar" name="" id="id_fecha_ingreso">
-                                    <!-- <input type="date" class="form-control pull-right habilitar" id="e_fechaingreso" name="FechaIngreso"> -->
+                                    <!--Marca-->
+                                        <div class="form-group">
+                                            <label for="marca" >Marca:</label>
+                                            <br>
+                                            <input type="text" class="form-control habilitar" id="e_marca" name="e_marca">
+                                        </div>       
+                                               
+
                                 </div>
-                             
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!--Ubicacion-->
+                                    <div class="form-group">
+                                            <label for="ubicacion">Ubicacion:</label>
+                                            <input type="text" class="form-control habilitar" id="e_ubicacion" name="e_ubicacion" >
+                                        </div>
+                                    <!--Registro-->
+                                    <div class="form-group">
+                                        <label for="codigo" >Codigo:</label>
+                                        <br>
+                                        <input type="text" class="form-control habilitar" id="e_codigo" name="e_codigo" >
+                                    </div>
+                                    <!--TRansportista-->
+                                    <div class="form-group ocultaTransedit">
+                                        <label for="tran_id" >Transportista:</label>
+                                        <select class="form-control select2 select2-hidden-accesible" id="e_tran_id" name="e_tran_id" >
+                                            <option value=""  disabled selected  >-seleccione opcion-</option>
+                                            <?php 
+                                                                        foreach ($transportista as $j) { 
+                                                                            echo '<option  value="'.$j->tran_id.'">'.$j->razon_social.'</option>'; 
+                                                                        } 
+                                            ?> 
+                                        </select>
+                                    </div> 
+                                    <div class="form-group textTransinfo" style="display:none"> 
+                                        <label for="tran_id_info">Transportista:</label> 
+                                        <br> 
+                                        <input type="text"  class="form-control" id="tran_id_info"> 
+                                    </div>
+                                    <!--Fecha de habilitacion-->
+                                        <div class="form-group" >
+                                            <label for="FechaIngreso" >Fecha de Ingreso:</label>
+                                            <div class="input-group date">
+                                            
+                                                <input type="date" class="form-control habilitar" name="id_fecha_ingreso" id="id_fecha_ingreso">
+                                            
+                                            </div>
+                                        
+                                        </div>
+                                         <!--__________________SEPARADOR__________________-->            
+
+                                         <div class="col-md-12"><hr></div>
+
+                                    
+                                        <div class="form-group">
+                                            <label for="CircR" name="img">Imagen:</label>
+                                            <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller;" id="files" style="color:transparent;">
+                                            <input type="text" id="input_aux_img64" style="display:none" >
+                                            <input type="text" id="input_aux_zonaID" style="display:none" > 
+                                            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>  
+                                            <br>                                
+                                            <img src="" alt="no hay imagen! cargue una" id="img_base" width="" height="">
+                                        </div>
+                                </div>  
                             </div>
-            ​            <!--_____________________________________________________________-->
-
-                        <!--Adjuntador de imagenes-->
-                            <!-- <div class="form-group">
-                                <form action="cargar_archivo" method="post" enctype="multipart/form-data" style="width: 200px; font-weight: lighter;">
-                                    <input  type="file"  id="imgarch" name="upload" data-required="true">
-                                </form>
-                            </div> -->
-            ​            <!--_____________________________________________________________-->
-
-                    </div>  
-                </div>
-            </form>
-
-            <!--__________________ FIN FORMULARIO MODAL __________________-->
-
-            </div>
-            <div class="col-md-12"><hr></div>
-            <div class="modal-footer">
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btnsave_e">Guardar</button>
-                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal">Cerrar</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    <div class="col-md-12"><hr></div>
+                        <div class="form-group text-bootom">
+                            <button type="submit" class="btn btn-primary" id="btnsave_e">Guardar</button>
+                            <button type="submit" class="btn btn-default cerrar_modal_edit" id="btnsave" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
 <!---//////////////////////////////////////--- FIN MODAL EDITAR ---//////////////////////////////////////----->
 <!---//////////////////////////////////////--- MODAL BORRAR ---///////////////////////////////////////////////////////----->
@@ -411,9 +344,9 @@
             </div>
             <div class="modal-body">
 
-           <input type="text" id="id_vehiculo" style="display:none">
+                <input type="text" id="id_vehiculo" style="display:none">
 
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
+                    <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
             </div>
             <div class="modal-footer">
@@ -437,6 +370,15 @@
 
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
+
+// deshabilita img y spinner	
+$(document).ready(function(){		
+                var aux= "";	
+				$("#img_base").val(aux);
+				$(".fa-spinner").hide();
+               
+		});
+
 //Convertir a base64 el archivo Imagen
 function GetFile(file){
 		var reader = new FileReader();
@@ -517,10 +459,25 @@ async function convertA(){
         $('#chofer').find('option').remove();
     });
 
+    $(".cerrar_modal_edit").click(function(e){
+    $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
+   
+    });
+
+    $(".cerrar_modal_e").click(function(e){
+    $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
+   
+});
 //Modal Editar
     $(".btnEditar").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
+    var fecha = data.fecha_ingreso;
+    var fechaaux="";
+    for(var i=0; i<fecha.length-6;i++)
+    {
+        fechaaux= fechaaux + fecha[i];
+    }
     $(".titulo").text('Editar Vehiculo');
     $('#btnsave_e').show(); 
     $(".habilitar").removeAttr("readonly");
@@ -534,8 +491,8 @@ async function convertA(){
     $("#e_dominio").val(data.dominio);
     $("#e_codigo").val(data.codigo);
     $("#e_ubicacion").val(data.ubicacion);
-    $("#e_fechaingreso").val(data.fecha_ingreso);
-    $("#id_fecha_ingreso").val(data.fecha_ingreso);
+    $("#e_fechaingreso").val(fechaaux);
+    $("#id_fecha_ingreso").val(fechaaux);
     console.table($("#id_fecha_ingreso").val());
     $("#e_equi_id").val(data.equi_id);
     var tranid = data.tran_id; 
@@ -548,6 +505,12 @@ async function convertA(){
     $(".btnInfo").click(function(e){
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
+    var fecha = data.fecha_ingreso;
+    var fechaaux="";
+    for(var i=0; i<fecha.length-6;i++)
+    {
+        fechaaux= fechaaux + fecha[i];
+    }
     $(".titulo").text('Informacion Vehiculo');
     $('#btnsave_e').hide();
     $(".habilitar").attr("readonly","readonly"); 
@@ -560,8 +523,8 @@ async function convertA(){
     $("#e_dominio").val(data.dominio);
     $("#e_codigo").val(data.codigo);
     $("#e_ubicacion").val(data.ubicacion);
-    $("#e_fechaingreso").val(data.fecha_ingreso);
-    $("#id_fecha_ingreso").val(data.fecha_ingreso);
+    $("#e_fechaingreso").val(fechaaux);
+    $("#id_fecha_ingreso").val(fechaaux);
     $("#tran_id_info").attr("readonly","readonly");  
     console.table($("#id_fecha_ingreso").val());
     var tranid = data.tran_id; 
@@ -662,27 +625,72 @@ async function convertA(){
         vehiculo.tara =  $("#taraedit").val();
         console.table(vehiculo);
         //faltaria la ubicaion, el codigo y tran_id
-        $.ajax({
-                type: "POST",
-                data: {vehiculo},
-                url: "general/Estructura/Vehiculo/Actualizar_Vehiculo",
-                success: function (r) {
+        var aux =0; 
+        if(vehiculo.descripcion != "")
+        {
+            if(vehiculo.dominio != "")
+            {
+                if(vehiculo.tara != "")
+                {
+                    if(vehiculo.marca != "")
+                    {
+                        if(vehiculo.ubicacion != "")
+                        {
+                            if(vehiculo.codigo != "")
+                            {
+                                if(vehiculo.tran_id != "")
+                                {
+                                    if(vehiculo.fecha_ingreso != "")
+                                    {
+                                        aux = 1;
                     
-                    console.table(r);
-                    if (r == "ok") {
-                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
-                        alertify.success("Actualizado con exito");
-                        $("#modalEdit").modal('hide');
-                       
-
-                      
-
-                    } else {
-                        
-                        alertify.error("error al actualizar");
+                                    }
+                    
+                                }
+                    
+                            }
+                    
+                        }
+                    
                     }
+                    
                 }
-            });
+            }
+        
+        }
+        if(aux == 1)
+        {
+            if( vehiculo.imagen != "")
+            {
+                    $.ajax({
+                        type: "POST",
+                        data: {vehiculo},
+                        url: "general/Estructura/Vehiculo/Actualizar_Vehiculo",
+                        success: function (r) {
+                            
+                            console.table(r);
+                            if (r == "ok") {
+                                $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
+                                alertify.success("Actualizado con exito");
+                                $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
+                                $("#modalEdit").modal('hide');
+                                
+
+                            
+
+                            } else {
+                                
+                                alertify.error("error al actualizar");
+                                $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
+                            }
+                        }
+                    });
+            }else{
+                alert("Atencion!!! No ha cargado una imagen");
+            }
+        }else{
+                alert("Atencion!!! hay un campo que esta vacio");
+        }
 
     });
 
@@ -958,32 +966,28 @@ async function convertA(){
                     }
                 }
             },
+            taraedit: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                      
+                }
+            },
             e_marca: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
                     },
-                      /*stringLength: {
-                          min: 6,
-                          max: 30,
-                          message: 'The username must be more than 6 and less than 30 characters long'
-                      },*/
                     regexp: {
                         regexp: /[A-Za-z]/,
                         message: 'la entrada no debe ser un numero entero'
                     }
                 }
             },
-            e_condicion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                }
-            },
-            e_modelo: {
+            e_ubicacion: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -1000,58 +1004,32 @@ async function convertA(){
                     }
                 }
             },
-            e_capacidad: {
+            e_codigo: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
-                    },
-                      /*stringLength: {
-                          min: 6,
-                          max: 30,
-                          message: 'The username must be more than 6 and less than 30 characters long'
-                      },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
+                     }
+                    //   /*stringLength: {
+                    //       min: 6,
+                    //       max: 30,
+                    //       message: 'The username must be more than 6 and less than 30 characters long'
+                    //   },*/
+                    // regexp: {
+                    //     regexp: /^(0|[1-9][0-9]*)$/,
+                    //     message: 'la entrada no debe ser un numero entero'
+                    // }
                 }
             },
-            e_tara: {
+            e_tran_id: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
                         message: 'la entrada no puede ser vacia'
-                    },
-                      /*stringLength: {
-                          min: 6,
-                          max: 30,
-                          message: 'The username must be more than 6 and less than 30 characters long'
-                      },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
                     }
                 }
             },
-            e_habilitacion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                      /*stringLength: {
-                          min: 6,
-                          max: 30,
-                          message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
-                }
-            },
-            e_registro: {
+            id_fecha_ingreso: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -1062,23 +1040,6 @@ async function convertA(){
                           max: 30,
                           message: 'The username must be more than 6 and less than 30 characters long'
                     },*/
-                }
-            },
-            e_fechahabilitacion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    },
-                      /*stringLength: {
-                          min: 6,
-                          max: 30,
-                          message: 'The username must be more than 6 and less than 30 characters long'
-                    },*/
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/,
-                        message: 'la entrada no debe ser un numero entero'
-                    }
                 }
             }
         }

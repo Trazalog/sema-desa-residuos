@@ -109,8 +109,8 @@ define('BPM_PROCESS', json_encode(array(
     '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
 
     '5268088305538274604' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'PedidoContenedores'],
-    '4817856371144276175' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'RetiroContenedores'],
-    '5525269319148713590' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'EntregaOrdenTransportes']    
+    '4817856371144276175' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#ABC51A', 'proyecto'=>'general/transporte-bpm/', 'model'=>'RetiroContenedores'], 
+    '5525269319148713590' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#1A56C5', 'proyecto'=>'general/transporte-bpm/', 'model'=>'EntregaOrdenTransportes']     
 )));
 
 
@@ -165,6 +165,7 @@ define('REST2', 'http://10.142.0.7:8280/services/ProduccionDataService');
 define('REST3', 'http://10.142.0.7:8280/services/produccionTest');
 define('REST4', 'http://10.142.0.7:8280/services/TrazabilidadDataService');
 define('API_URL', 'http://10.142.0.7:8280/tools/log');
+define('REST_PRD', 'http://10.142.0.7:8280/services/sema/PRDDataService');
 
 define('HOST', 'http://localhost/');
 

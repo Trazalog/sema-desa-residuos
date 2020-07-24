@@ -30,6 +30,7 @@ class OrdenTransporte extends CI_Controller {
         $data['dispfinal'] = $this->OrdenTransportes->obtenerdispfinal();
         $data['equipo'] = $this->OrdenTransportes->obtenerEquipo();
         $data['contenedores'] = $this->OrdenTransportes->obtenerContenedores();
+        $data['sotrid'] = $this->OrdenTransportes->obtenerSotrid();
         $this->load->view('layout/Ordenes/orden_transporte',$data);
         
         
@@ -101,7 +102,11 @@ class OrdenTransporte extends CI_Controller {
         echo json_encode($resp);
        }
 
-       
+       function Obtenerteot()
+       {
+        $resp = $this->OrdenTransportes->ObtenerTeot($this->input->post('sotr_id'));
+        echo json_encode($resp);
+       }
    
 
 }
