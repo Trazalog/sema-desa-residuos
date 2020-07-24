@@ -183,8 +183,8 @@
         <br>
         <!--  -->
         <?php
-        $col = 8;
-        $row = 8;
+        $col = 3;
+        $row = 3;
         $array=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
         for($j=0; $j<$row; $j++)
         {
@@ -232,24 +232,24 @@
                             <div class="form-group">
                                 <label for="nro" class="form-label">Vehiculo:</label>
                                 <input size="10" type="text" name="vehiculomover" id="vehiculomover" min="0" class="form-control input-sm"
-                                    required>
+                                   >
                             </div>
                             <div class="form-group">
                                 <label for="nro" class="form-label">Area de inicio:</label>
                                 <input size="10" type="text" name="areainiciomover" id="areainiciomover" min="0" class="form-control input-sm"
-                                    required>
+                                  >
                             </div>
                             <div class="form-group">
                                 <label for="nro" class="form-label">Area de fin:</label>
                                 <input size="10" type="text" name="areafinmover" id="areafinmover" min="0" class="form-control input-sm"
-                                    required>
+                                  >
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary" id="btnsavemodalmov">Guardar</button>
+                        <button type="button" class="btn btn-primary" id="btnsavemodalmov">Guardar</button>
                         <button type="button" class="btn btn-default" id="btnclosemodalmov"
                             data-dismiss="modal">Cerrar</button>
                     </div>
@@ -420,18 +420,90 @@
                 <h5 class="modal-title" id="exampleModalLabel">Adjuntar imagen</h5>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-3">
+                <!-- <div class="row"> -->
+                    <!-- <div class="col-md-3">
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group text-center">
-                            <input class="form-control" type="file" class=" input-sm" id="file" name="file"
-                                accept=".jpg, .jpeg, .png">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                    </div>
-                </div>
+                    <div class="col-md-6"> -->
+                        <!-- <div class="form-group text-center"> -->
+                        
+                            <!-- <input class="form-control" type="file" class=" input-sm" id="file" name="file"
+                                accept=".jpg, .jpeg, .png"> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                    <!-- <div class="col-md-3">
+                    </div> -->
+                <!-- </div> -->
+                <?php
+                            $deposito = [];
+                            $col = 3;
+                            $row = 3;
+                            $aux = 0;
+                            $aux2 = 0;
+                            $array=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+                        
+                            
+                                for($j=0; $j<$row; $j++)
+                                {
+                                    $aux2=0;
+                                    $aux=0;
+                                    $idcol =0;
+                                    foreach($Recipientes as $fila)
+                                    {   
+                                        if($fila->row == $j+1 && $fila->row != null){
+                                            $aux = 1;
+                                            $deposito[] = $fila;
+                                        }
+                                    }
+                                    echo '<div class="row">';
+                                    for($i=0; $i<$col; $i++)
+                                    {   $idcol = $i+1;
+                                        $idcol = "BOX" . $array[$j] . $idcol  ;  
+                                
+                                            echo '<div class="col-xs-2" style="margin-right: -5rem; width: 23.666667%;">';
+                                                    echo'<div class="thumbnail" style="margin-right: 3rem;">';
+                                                        echo'<div class="caption">';
+                                                                echo '<h5 style="font-size: 12px;">'.$idcol.'</h5>';
+                                                                if($aux == 1){
+                                                                    for($t=0;$t<count($deposito);$t++)
+                                                                    {
+                                                                        if($deposito[$t]->col == $i+1)
+                                                                        {   $sumai = $i+1;
+                                                                            $sumaj = $j+1;
+                                                                            $ij = $sumaj.$sumai;
+                                                                            $suma = $sumaj."/".$sumai."@".$idcol;
+                                                                            if($deposito[$t]->estado == "VACIO"){
+                                                                                $aux2 = 1;                                                  
+                                                                                echo "<input class='btnvolcar btnMatrizSelreci $ij' type='button' name='Volcar' id='$suma'  data-json=".json_encode($deposito[$t])."  value='Volcar' onclick='btnVolcar(this)' style='border-radius: 15px; color: #040cff; '/>";
+                                                                                // echo"<button type='button' class='btn btn-default btnvolcar' style='font-size: 10px;' id='$idcol'>Volcar</button>";
+                                                                            }else{
+                                                                                $aux2= 1;
+                                                                                // echo "<input class='btnmover btnMatriz $ij'  type='button' name='Mover' id='$suma' value='Mover' onclick='btnMover(this)' style='border-radius: 15px; color: red; '/>";
+                                                                                // echo"<button type='button' class='btn btn-default btnMover' style='font-size: 10px;' id='$idcol'>Mover</button>";
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    if($aux2 == 0){
+                                                                        //   echo'<button type="button" class="btn btn-default"></button>';
+                                                                    }
+                                                                
+                                                                }else{
+                                                                      echo'<button type="button" class="btn btn-default" onclick="btnVolcar(this)">volcar</button>';
+                                                                } 
+                                                                
+                                                                
+                                                                    //   echo'<button type="button" class="btn btn-default">Volcar</button>';
+                                                                
+                                                                
+                                                            echo'</div>';
+                                                        echo'</div>';
+                                                    echo'</div>';
+                            
+                                    }
+                                    echo '</div>';
+                                    unset($deposito);
+                                }
+                            
+                        ?>
             </div>
             <div class="modal-footer">
                 <div class="form-group text-right">
@@ -658,5 +730,16 @@
         $(".btnadjuntar").attr("disabled", "");
         $("#boxDatos").focus();
         $("#boxDatos").show();
+    });
+
+    function btnVolcar(comp)
+    {
+        $("#modalAdjImagen").modal("hide");
+        $("#modalMover").modal("show");
+        
+    }
+    $("#btnsavemodalmov").click(function(e){
+        $("#modalMover").modal("hide");
+        $("#modalAdjImagen").modal("show");
     });
 </script>

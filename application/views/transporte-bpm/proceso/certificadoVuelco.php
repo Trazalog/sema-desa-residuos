@@ -12,6 +12,7 @@
 				<input type="text" class="form-control habilitar" name="Camion" value="<?php echo $infoOTransporte->dominio?>" id="camion_id" readonly> 
                 <input type="text" style="display:none" id="dato_cont_id" value="<?php echo $infoOTransporteCont[0]->cont_id?>">
                 <input type="text" style="display:none" id="reci_id">
+                <input type="text" style="display:none" id="id_reci_mov">
 			<!-- </div>	 -->
 		</div>
     </div>
@@ -60,7 +61,8 @@
     <div class="col-md-4">
         <div class="form-group">
             <button type="button" title="cancelarsel" calss="btn btn-primary btn-circle" id="cancelarsel"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></button>
-             <input type="text" style="display:none;" id="idBox">                           
+             <input type="text" style="display:none;" id="idBox">
+             <input type="text" style="display:none;" id="idReciinicio">                           
         </div>
     </div>
 </div>
@@ -238,6 +240,7 @@
                                 <label for="nro" class="form-label">Area de fin:</label>
                                 <input size="10" type="text" name="areafinmover" id="areafinmover" min="0" class="form-control input-sm"
                                     required>
+                                    <button class="btn btn-primary" id="btnrecidestino">Seleccionar Area fin a mover</button>
                             </div>
                         </div>
                     </div>
@@ -358,6 +361,110 @@
         </div>
     </div>
 </div>
+<!-- Modal Seleccionar recipiente destino -->
+<div class="modal fade" id="modalReciDestino" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Selecciona Box Destino</h5>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6"> -->
+                        <!-- <div class="form-group text-center"> -->
+                          <!--aca va el php que pinta la matriz de recipientes -->
+                          <?php
+                            $deposito = [];
+                            $col = $TamDeposito->col;
+                            $row = $TamDeposito->row;
+                            $aux = 0;
+                            $aux2 = 0;
+                            $array=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+                        
+                            
+                                for($j=0; $j<$row; $j++)
+                                {
+                                    $aux2=0;
+                                    $aux=0;
+                                    $idcol =0;
+                                    foreach($Recipientes as $fila)
+                                    {   
+                                        if($fila->row == $j+1 && $fila->row != null){
+                                            $aux = 1;
+                                            $deposito[] = $fila;
+                                        }
+                                    }
+                                    echo '<div class="row">';
+                                    for($i=0; $i<$col; $i++)
+                                    {   $idcol = $i+1;
+                                        $idcol = "BOX" . $array[$j] . $idcol  ;  
+                                
+                                            echo '<div class="col-xs-2" style="margin-right: -5rem; width: 23.666667%;">';
+                                                    echo'<div class="thumbnail" style="margin-right: 3rem;">';
+                                                        echo'<div class="caption">';
+                                                                echo '<h5 style="font-size: 12px;">'.$idcol.'</h5>';
+                                                                if($aux == 1){
+                                                                    for($t=0;$t<count($deposito);$t++)
+                                                                    {
+                                                                        if($deposito[$t]->col == $i+1)
+                                                                        {   $sumai = $i+1;
+                                                                            $sumaj = $j+1;
+                                                                            $ij = $sumaj.$sumai;
+                                                                            $suma = $sumaj."/".$sumai."@".$idcol;
+                                                                            if($deposito[$t]->estado == "VACIO"){
+                                                                                $aux2 = 1;                                                  
+                                                                                echo "<input class='btnvolcar btnMatrizSelreci $ij' type='button' name='Volcar' id='$suma'  data-json=".json_encode($deposito[$t])."  value='Volcar' onclick='btnVolcarRecidest(this)' style='border-radius: 15px; color: #040cff; '/>";
+                                                                                // echo"<button type='button' class='btn btn-default btnvolcar' style='font-size: 10px;' id='$idcol'>Volcar</button>";
+                                                                            }else{
+                                                                                $aux2= 1;
+                                                                                // echo "<input class='btnmover btnMatriz $ij'  type='button' name='Mover' id='$suma' value='Mover' onclick='btnMover(this)' style='border-radius: 15px; color: red; '/>";
+                                                                                // echo"<button type='button' class='btn btn-default btnMover' style='font-size: 10px;' id='$idcol'>Mover</button>";
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    if($aux2 == 0){
+                                                                        //  echo'<button type="button" class="btn btn-default"></button>';
+                                                                    }
+                                                                
+                                                                }else{
+                                                                    //  echo'<button type="button" class="btn btn-default"></button>';
+                                                                } 
+                                                                
+                                                                
+                                                                    //  echo'<button type="button" class="btn btn-default">Volcar</button>';
+                                                                
+                                                                
+                                                            echo'</div>';
+                                                        echo'</div>';
+                                                    echo'</div>';
+                            
+                                    }
+                                    echo '</div>';
+                                    unset($deposito);
+                                }
+                            
+                        ?>
+                        <!-- </div>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div> -->
+            </div>
+            <div class="modal-footer">
+                <div class="form-group text-right">
+                    <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 <script>
 
 function ReDirecciona()
@@ -385,16 +492,34 @@ function btnMover (comp)
     $("#modalMover").modal('show');
     let id = comp.id;
     var idfinal = "";
-    for(var i=0; i<id.length;i++)
-    {
+    // for(var i=0; i<id.length;i++)
+    // {
 
-        idfinal = idfinal + id[i];
-        if(id[i]=="@")
-        {
-            i=id.length;
-        }
+    //     idfinal = idfinal + id[i];
+    //     if(id[i]=="@")
+    //     {
+    //         i=id.length;
+    //     }
         
-    }
+    // }
+
+    // obtiene el id del boton que se selecciono
+    for(var i=0; i<id.length;i++)
+        {
+            if(id[i]!="/"){
+                if(id[i]!="@")
+                {
+                    idfinal = idfinal + id[i];
+                }
+            
+            }
+        
+            if(id[i]=="@")
+            {
+                i=id.length;
+            }
+        }
+    // Obtengo el nombre del box para asignarle en el modal al input areainiciomover 
     var aux=0;
     var idnom = "";
     for(var j=0; j<id.length; j++)
@@ -412,12 +537,20 @@ function btnMover (comp)
     console.table("btnMover");
     console.table(id.length);
     $("#areainiciomover").val(idnom);
+    $("#id_reci_mov").val(idfinal);
+
+    
 }
+
+// --------------------------------------------------------
+
 function btnVolcar (comp)
 {
     let id = comp.id;
     console.table("btnVolcar");
     var idfinal = "";
+
+    // obtiene el id del boton que se selecciono
     for(var i=0; i<id.length;i++)
     {
         if(id[i]!="/"){
@@ -433,23 +566,14 @@ function btnVolcar (comp)
             i=id.length;
         }
     }
-    // var idid = '"#';
-    // for(var t=0; t<id.length; t++)
-    // {
-        
-    //         idid = idid + id[t];
-        
-    // } 
-    // idid = idid + '"';   
-    // console.table(idid);
-    // var b = "btnMatriz";
+  
     
-     $("#idBox").val(idfinal);
-     $("."+idfinal).attr("style","background: #56bd4f");
-     $(".btnMatriz").attr("disabled", "");
-     datareci = JSON.parse($("."+idfinal).attr("data-json"));
+     $("#idBox").val(idfinal); // Guarda el id en un input que esta oculto
+     $("."+idfinal).attr("style","background: #56bd4f"); // cambio el color de fondo del boton
+     $(".btnMatriz").attr("disabled", ""); // a todos lo demas botones que de hecho todos tienen la misma clase btnMatriz se los desactiva
+     datareci = JSON.parse($("."+idfinal).attr("data-json")); // aca obtenego todos los datos de ese recipiente
      console.table(datareci);
-     $("#reci_id").val(datareci.reci_id);
+     $("#reci_id").val(datareci.reci_id); // en este input guardo el id del recipiente que luego usare 
      console.table($("#reci_id").val());
 
     //  var a = idfinal;
@@ -565,6 +689,60 @@ function Certificado()
         }
     });
 
+}
+
+
+
+</script>
+
+<!-- funciones para el Mover -->
+<script>
+$("#btnrecidestino").click(function(e){
+    $("#modalReciDestino").modal('show');
+});
+
+function btnVolcarRecidest(comp)
+{
+    let id = comp.id;
+    console.table("btnVolcar");
+    var idfinale = "";
+    for(var i=0; i<id.length;i++)
+    {
+        if(id[i]!="/"){
+            if(id[i]!="@")
+            {
+                idfinale = idfinale + id[i];
+            }
+        
+        }
+      
+        if(id[i]=="@")
+        {
+            i=id.length;
+        }
+    }
+    $("#idBox").val(idfinale);
+    $("."+idfinale).attr("value","Mover");
+    var idreciinicio =  $("#id_reci_mov").val();
+    $("."+idreciinicio).attr("value","Volcar");
+
+    var aux=0;
+    var idnomb = "";
+    for(var j=0; j<id.length; j++)
+    {
+        if(aux == 1)
+        {
+            idnomb = idnomb + id[j];
+        }
+        if(id[j]=="@")
+        {
+            aux = 1;
+        }
+       
+    }
+
+    $("#areainiciomover").val(idnomb);
+    $("#modalReciDestino").modal('hide');
 }
 
 
