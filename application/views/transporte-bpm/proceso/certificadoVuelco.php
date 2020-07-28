@@ -62,7 +62,7 @@
         <div class="form-group">
             <button type="button" title="cancelarsel" calss="btn btn-primary btn-circle" id="cancelarsel"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></button>
              <input type="text" style="display:none;" id="idBox">
-             <input type="text" style="display:none;" id="idReciinicio">                           
+             <input type="text" style="display:none;" id="idRecDestino">                           
         </div>
     </div>
 </div>
@@ -721,7 +721,7 @@ function btnVolcarRecidest(comp)
             i=id.length;
         }
     }
-    $("#idBox").val(idfinale);
+    $("#idRecDestino").val(idfinale);
     $("."+idfinale).attr("value","Mover");
     var idreciinicio =  $("#id_reci_mov").val();
     $("."+idreciinicio).attr("value","Volcar");

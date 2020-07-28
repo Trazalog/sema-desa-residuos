@@ -128,12 +128,12 @@
 
     <div class="form-group">
       <div class="col-md-4 col-md-6 mb-4 mb-lg-0">
-          <label for="sector_descarga" class="form-label">Sector de Descarga:</label>
-          <select class="form-control select2 select2-hidden-accesible" id="sector_descarga" name="sector_descarga" required>
+          <label for="deposito" class="form-label">Sector de Descarga:</label>
+          <select class="form-control select2 select2-hidden-accesible" id="deposito" name="deposito" required>
               <option value="" disabled selected>-Seleccione opcion-</option>
               <?php
-                  foreach ($sectoresDescarga as $sector) {
-                      echo '<option value="'.$sector->tabl_id.'">'.$sector->valor.'</option>';
+                  foreach ($depositos as $deposito) {
+                      echo '<option value="'.$deposito->depo_id.'">'.$deposito->descripcion.'</option>';
                   }
               ?>
           </select>
@@ -320,8 +320,10 @@
 			var data= {};
 			data.peso_neto = $("#peso_neto").val();
 			data.difi_id = $("#difi_id").val();
-			data.sector_descarga = $("#sector_descarga").val();
-			data.coen_id = $("#coen_id").val();
+			data.depo_id = $("#deposito").val();
+			TODO:
+			// data.coen_id = $("#coen_id").val();
+			data.coen_id = 9;
 
 			$.ajax({
 					type: 'POST',

@@ -97,7 +97,7 @@ class SolicitudPedidos extends CI_Model
         log_message('DEBUG','#SolicitudPedidos/RegistrarContenedor: '.json_encode($post));
         // $aux = $this->rest->callAPI("POST",REST."/solicitudContenedores", $post); //servicio que llamaba antes de que caiga el server
         $aux = $this->rest->callAPI("POST",API_URL."/solicitudContenedores",$post);
-        $aux =json_decode($aux);
+        $aux =json_decode($aux["status"]);
         return $aux;
     }
 
