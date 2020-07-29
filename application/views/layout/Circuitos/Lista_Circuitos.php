@@ -46,6 +46,10 @@
 	// llena modal para edicion
 		$(".btnEditar").on("click", function(e) {
 			datajson = $(this).parents("tr").attr("data-json");
+			$('#form_editar_pto_critico').show();	
+			$("#btnsave_edit").show();
+			$("#img_file").removeAttr("readonly");
+			$("#img_file").removeAttr("disabled");
 			llenarModal(datajson);
 			habilitarEdicion();
 		});
@@ -62,6 +66,7 @@
 			$(".fa-minus").click(false);	
 			$('#form_editar_pto_critico').hide();
 			$("#img_file").attr("disabled", "disabled");
+			$("#btnsave_edit").hide();
 		}
 	// desbloquea campos en modal
 		function habilitarEdicion(){
@@ -71,7 +76,9 @@
 			$("#btn_agregar_edit").show();
 			$(".fa-minus").click(true);
 			$('#form_editar_pto_critico').show();	
+			$("#img_file").removeAttr("readonly");
 			$("#img_file").removeAttr("disabled");
+			$("#btnsave_edit").show();
 		}	
 	// llena modal Editar
 		function llenarModal(datajson){
@@ -154,6 +161,22 @@
 
 	// agrega datos de un punto critico a la tabla temporal para editar
 		function Agregar_punto_edit() {
+			var aux = 0;
+			if($("#descripcion_edit_punto").val() != "")
+			{
+				if($("#nombre_edit_pto").val() != "")
+				{
+					if($("#latitud_edit_pto").val() != "")
+					{
+						if($("#long_edit_pto").val() != "")
+						{
+							aux = 1;
+						}
+					}
+
+				}
+			}
+			if(aux!=0){
 			var table_edit = $('#tabla_puntos_criticos_edit').DataTable();	
 			var data_edit = new FormData($('#formPuntos_edit')[0]);
 			data_edit = formToObject(data_edit);
@@ -166,6 +189,9 @@
 						"</tr>";
 			table_edit.row.add($(row)).draw(); 
 			$('#formPuntos_edit')[0].reset();  
+			}else{
+				alert("Atencion!!! hay un campo de puntos criticos vacio");
+			}
 		}	
 
 	// guarda Edicion completa		
@@ -175,7 +201,6 @@
 			var circuito_edit = new FormData($('#frm_circuito_edit')[0]);
 			circuito_edit = formToObject(circuito_edit);		
 			circuito_edit.imagen = $("#input_aux_img64").val(); 
-			
 			// tipos de carga asociados
 			var tipoCarga = $("#tica_edit").val();
 			var tica_edit = JSON.stringify(tipoCarga);
@@ -196,30 +221,65 @@
 			});	
 
 			// var algo = ptos_criticos_edit;
+			var aux =0; 
+			if($("#codigo_edit").val() != "")
+			{
+				
+					if($("#descripcion_edit").val()!= "")
+					{
+						aux = 1;
+						
+					}
+				
 			
+			}
 			
 			
 			console.table('ptos criticos' + ptos_criticos_edit);
 		
-			$.ajax({
-					type: 'POST',
-					data:{ circuito_edit, tica_edit, ptos_criticos_edit},
-					url: "general/Estructura/Circuito/actulizaCircuitos",
-					success: function(result) {
-								if(result == "ok"){
-									alertify.success("Circuito editado con exito...");
-									$("#cargar_tabla").load(
-													"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
-											);
-									
-								}else{
-									alertify.error("Error al editar Circuito...");
+			if(aux == 1){
+				
+				if( circuito_edit.imagen != "")
+				{   
+					if($("#tica_edit").val() != "")
+					{
+						$.ajax({
+								type: 'POST',
+								data:{ circuito_edit, tica_edit, ptos_criticos_edit},
+								url: "general/Estructura/Circuito/actulizaCircuitos",
+								success: function(result) {
+											if(result == "ok"){
+												debugger;
+													alertify.success("Circuito editado con exito...");
+												$("#cargar_tabla").load(
+																"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
+														);
+											
+												$("#modalEdit").data('bootstrapValidator').resetForm();
+												$("#formPuntos_edit").data('bootstrapValidator').resetForm();
+											}else{
+												debugger;
+												alertify.error("Error al editar Circuito...");
+												$("#modalEdit").data('bootstrapValidator').resetForm();
+												$("#formPuntos_edit").data('bootstrapValidator').resetForm();
+											}
+								},
+								error: function(result){
+													
 								}
-					},
-					error: function(result){
-										
+						});
+					}else{
+						alert("Atencion!!! tipo de residuos esta vacio ");
 					}
-			});
+				}else{
+            	alert("Atencion!!! No ha cargado una imagen");
+        		}
+
+			}else{
+				$("#modalEdit").data('bootstrapValidator').resetForm();
+        	alert("Atencion!!! hay un campo que esta vacio");
+			
+    		}
 
 		});
 	

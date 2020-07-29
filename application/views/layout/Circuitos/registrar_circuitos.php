@@ -329,7 +329,7 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-blue">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="close close_modal_edit" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 						</button>
 						<h5 class="modal-title" id="exampleModalLabel">Circuitos</h5>
@@ -399,7 +399,7 @@
 									<div class="form-group">															
 											<label for="tica_edit" class="col-sm-4 control-label">Tipo de residuo:</label>
 											<div class="col-sm-8">
-											<select class="form-control select3 habilitar" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_edit"> 
+											<select class="form-control select3 habilitar" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"   id="tica_edit"> 
 												<?php
 													foreach ($tipoResiduos as $i) {		
 															echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
@@ -566,7 +566,7 @@
 				<div class="modal-footer">
 					<div class="form-group text-right">
 							<button type="" class="btn btn-primary" data-dismiss="modal" id="btnsave_edit">Guardar</button>
-							<button type="" class="btn btn-default" id="" data-dismiss="modal">Cerrar</button>
+							<button type="" class="btn btn-default cerrarModalEdit" id="" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 
@@ -672,6 +672,16 @@
 
 
 <script>
+$(".cerrarModalEdit").click(function(e){
+    $("#modalEdit").data('bootstrapValidator').resetForm();
+	// $("#formPuntos_edit").data('bootstrapValidator').resetForm();
+   
+});
+$(".close_modal_edit").click(function(e){
+    $("#modalEdit").data('bootstrapValidator').resetForm();
+	// $("#formPuntos_edit").data('bootstrapValidator').resetForm();
+   
+});
 
 //////// Tratamiento de Imagen en Registrar nuevo circuito
 	async function convertA(){      
@@ -1102,4 +1112,43 @@
 
 	});
 
+</script>
+<script>
+    $('#modalEdit').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            codigo: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+
+			descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            }
+        
+    }
+    }).on('success.form.bv', function (e) {
+        e.preventDefault();
+        //guardar();
+    });
+</script>
+<script>
+DataTable($('#tabla_puntos_criticos_edit'));	
+  // Initialize Select2 Elements
+  	$('.select3').select2();
 </script>
