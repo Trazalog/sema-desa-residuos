@@ -189,8 +189,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="nro" class="form-label">Sector de fin:</label>
-                                <input size="10" type="text" name="sectorfinred" id="sectorfinred" min="0" class="form-control input-sm"
-                                >
+                                <select class="form-control select2 select2-hidden-accesible" name="depositos" id="deposito_id">
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                    <?php
+                                        foreach ($depositos as $j) {
+                                            echo '<option  value="'.$j->depo_id.'">'.$j->descripcion.'</option>';
+                                        }
+                                    ?>
+                                </select>
+                                <input type="text" id="SiRedirecciona" style="display:none">
                             </div>
                         </div>
                     </div>
@@ -224,7 +231,9 @@
                             <div class="form-group">
                                 <label for="residuo" class="form-label">Tipo de Residuo:</label>
                                 <input size="10" type="text" name="residuo" id="residuomov" min="0" class="form-control input-sm"
-                                    required value="<?php echo $infoOTransporteCont[0]->tipo_carga?>">
+                                 value="<?php echo $infoOTransporteCont[0]->tipo_carga?>">
+                                 <input type="text" id="batch_id" style="display:none" value="<?php echo $infoOTransporteCont[0]->batch_id?>">
+                                 <input type="text" id="reci_id_destino_mover" style="display:none">
                             </div>
                             <div class="form-group">
                                 <label for="nro" class="form-label">Vehiculo:</label>
@@ -248,7 +257,7 @@
                 <div class="modal-footer">
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-primary" id="btnsavemodalmov">Guardar</button>
-                        <button type="button" class="btn btn-default" id="btnclosemodalmov"
+                        <button type="button" class="btn btn-default" id="btncloseModalReciDest"
                             data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -290,6 +299,7 @@
                             <div class="form-group">
                                 <label for="dfinal" class="form-label">D. final:</label>
                                 <input type="text" name="dfinal" id="dfinal" class="form-control input-sm" required>
+                                <input type="text" id="tieneInci" style="display: none">
                             </div>
                         </div>
                     </div>
@@ -314,7 +324,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
+                        <button type="submit" class="btn btn-primary" id="btnsaveIncidencia">Guardar</button>
                         <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -471,9 +481,36 @@ function ReDirecciona()
 {
     $("#modalRedireccionar").modal('show');
 }
+TODO://complete descomentar el cerrarTarea para terminar
 function GuardaReDirecciona()
 {
     $("#modalRedireccionar").modal('hide');
+    var auxRed = 1;
+    $("#SiRedirecciona").val(auxRed);
+    var redirecc = new FormData();
+    redirecc = formToObject(redirecc);
+    redirecc.depo_id =  $("#deposito_id").val();
+    redirecc.observaciones_descarga = $("#infored").val(); 
+    redirecc.ortr_id =  $("#otred").val();
+    redirecc.cont_id =  $("#dato_cont_id").val();
+    $.ajax({
+				type: 'POST',
+				data:{ redirecc},
+				url: 'general/transporte-bpm/EntregaContDescarga/RedireccionarRecipiente',
+				success: function(result) {
+					
+								
+								},
+        error: function(error) {
+            
+        },
+        complete:function() {
+            // cerrarTarea();
+        }
+				
+		});
+
+
 }
 
 // $(".btnMover").click(function(){
@@ -680,12 +717,19 @@ function Certificado()
 
     console.table(contEntReci);
     console.table(contEntDesc);
+
     $.ajax({
         type: "POST",
         data: {contEntDesc, contEntReci },
         url: "general/transporte-bpm/EntregaContDescarga/certificadoVuelco",
         success: function (response) {
             alert("Operacion realizada con exito");
+        },
+        error: function(error) {
+            
+        },
+        complete:function() {
+            cerrarTarea();
         }
     });
 
@@ -699,10 +743,14 @@ function Certificado()
 <script>
 $("#btnrecidestino").click(function(e){
     $("#modalReciDestino").modal('show');
+    $("#areafinmover").val("");
 });
 
+//funcion que llama al seleccionar el reci destino
 function btnVolcarRecidest(comp)
 {
+    
+    //obtengo el id del recipiente que se selecciono como destino para poder acceder y cambiar luego sus atributos
     let id = comp.id;
     console.table("btnVolcar");
     var idfinale = "";
@@ -721,11 +769,14 @@ function btnVolcarRecidest(comp)
             i=id.length;
         }
     }
-    $("#idRecDestino").val(idfinale);
-    $("."+idfinale).attr("value","Mover");
-    var idreciinicio =  $("#id_reci_mov").val();
-    $("."+idreciinicio).attr("value","Volcar");
+    $("#idRecDestino").val(idfinale); // guardo el id del reci destino que selecciono para colocar lo movido
+    $("."+idfinale).attr("value","Mover"); // le cambio al reci destino su nombre a mover
+    $("."+idfinale).attr("onclick","btnMover(this)"); // cambio a la funcion que llama de volcar a mover 
+    var idreciinicio =  $("#id_reci_mov").val(); //obtengo el id del recipiente inicio (el que inicio el modal mover)
+    $("."+idreciinicio).attr("value","Volcar"); // al reci inicio le cambio de mover a volcar 
+    $("."+idreciinicio).attr("onclick","btnVolcar(this)"); // cambio la funcion a la que llama el reci inicio de btnmover a btnvolcar
 
+    //obtengo el nombre del box que se selecciono como destino para mover
     var aux=0;
     var idnomb = "";
     for(var j=0; j<id.length; j++)
@@ -740,10 +791,93 @@ function btnVolcarRecidest(comp)
         }
        
     }
-
-    $("#areainiciomover").val(idnomb);
+    datareci = JSON.parse($("."+idfinale).attr("data-json"));
+    $("#reci_id_destino_mover").val(datareci.reci_id);
+    $("#areafinmover").val(idnomb); // asigno el nombre al input de area fin que obtuve anteriormente
     $("#modalReciDestino").modal('hide');
 }
 
+$("#btncloseModalReciDest").click(function(e){
+    $("#areafinmover").val("");
+    var IDFinal = $("#idRecDestino").val();
+    var IDOrigen =  $("#id_reci_mov").val();
+    $("."+IDOrigen).attr("value","Mover");  
+    $("."+IDOrigen).attr("onclick","btnMover(this)");
+    $("."+IDFinal).attr("value","Volcar");  
+    $("."+IDFinal).attr("onclick","btnVolcar(this)");
+     $("#modalMover").modal('hide');
+});
+function cerrarTarea()
+{
+    if($("#tieneInci").val()==1)
+    {   var opcion = "true";
+        var ResPeligrosos = {opcion: opcion};	
+    }else{
+        var opcion = "false";
+        var ResPeligrosos = {opcion: opcion};	
+    }
 
+    if($("#SiRedirecciona").val()==1)
+    {
+        var op = "true";
+        var redirecciona = {opcion: op};
+    }else{
+        var op ="false";
+        var redirecciona = {opcion: op};
+    }
+    var taskId = $('#taskId').val();
+
+    $.ajax({
+				type: 'POST',
+				data:{ ResPeligrosos, redirecciona},
+				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
+				success: function(result) {
+					
+									alert(result);
+
+									wc();
+									if( result.status ){										
+										alertify.success("Tarea completada exitosamente...");	
+									}else{
+										alertify.error('Error en completar la Tarea...');
+									}
+								},
+				error: function(result){
+									wc();
+							 },
+				complete: function(){
+									wc();
+										if(existFunction('cerrarTarea')){
+											cerrarTarea();
+										}	
+									}
+		});
+}
+
+$("#btnsaveIncidencia").click(function(e){
+    var aux = 1;
+    $("tieneInci").val(aux);
+});
+TODO:
+$("#btnsavemodalmov").click(function(){
+    alert("dentro del guardar el mover");
+    var recipmov = new FormData();
+    recipmov = formToObject(recipmov);
+    // recipmov.batch_id = $("#batch_id").val();
+    recipmov.batch_id = 200;
+    recipmov.reci_id_destino = $("#reci_id_destino_mover").val();
+    recipmov.usuario_app = "hugoDs";
+    $.ajax({
+				type: 'POST',
+				data:{ recipmov},
+				url: 'general/transporte-bpm/EntregaContDescarga/MoverRecipiente',
+				success: function(result) {
+					
+								
+								}
+				
+		});
+
+
+});
 </script>
