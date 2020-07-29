@@ -538,7 +538,7 @@
       <param name="sore_id" sqlType="STRING"/>
    </query>
    <query id="contenedoresRetiradosUpdate" useConfig="semaresiduosDS">
-      <sql>update log.contenedores_entregados set &#xd;ortr_id = CAST(:ortr_id AS INTEGER)&#xd;where cont_id = CAST(:cont_id AS INTEGER)</sql>
+      <sql>update log.contenedores_entregados set &#xd;ortr_id = CAST(:ortr_id AS INTEGER)&#xd;where cont_id = CAST(:cont_id AS INTEGER)&#xd;and ortr_id is null</sql>
       <param name="ortr_id" sqlType="STRING"/>
       <param name="cont_id" sqlType="STRING"/>
    </query>
@@ -814,7 +814,7 @@
       <param name="case_id" sqlType="STRING"/>
    </query>
    <query id="contenedoresEntregadosRegistraIngreso" useConfig="semaresiduosDS">
-      <sql>update &#xd;  log.contenedores_entregados &#xd;set &#xd;  peso_neto = CAST(:peso_neto AS FLOAT4), difi_id = :difi_id, depo_id = :depo_id &#xd;where &#xd;  coen_id = CAST(:coen_id as INTEGER)</sql>
+      <sql>update &#xd;  log.contenedores_entregados &#xd;set &#xd;  peso_neto = CAST(:peso_neto AS FLOAT4), difi_id = :difi_id, depo_id = CAST(:depo_id as INTEGER) &#xd;where &#xd;  coen_id = CAST(:coen_id as INTEGER)</sql>
       <param name="peso_neto" sqlType="STRING"/>
       <param name="difi_id" sqlType="STRING"/>
       <param name="coen_id" sqlType="STRING"/>
@@ -854,6 +854,13 @@
       <sql>select &#xd;      CE.coen_id, CE.porc_llenado, CE.depo_id, CE.mts_cubicos,C.cont_id, C.codigo, T.valor as tipo_carga&#xd;  from &#xd;      log.contenedores C, log.contenedores_entregados CE, core.tablas T&#xd;  where &#xd;      C.cont_id = CE.cont_id &#xd;  and &#xd;      CE.ortr_id = (select OT.ortr_id from log.ordenes_transporte OT&#xd;                    where OT.case_id = :case_id )&#xd;  and &#xd;      CE.tica_id = T.tabl_id             &#xd;  and &#xd;      CE.peso_neto is null&#xd;  and &#xd;      CE.difi_id is null&#xd;  and &#xd;      CE.tiva_id is null</sql>
       <result outputType="json"> {&#xd;    "contenedores":{&#xd;        "contenedor":[&#xd;          {&#xd;            "coen_id": "$coen_id",&#xd;            "porc_llenado": "$porc_llenado",&#xd;            "depo_id": "$depo_id",&#xd;            "mts_cubicos": "$mts_cubicos",&#xd;            "cont_id": "$cont_id",&#xd;            "codigo": "$codigo",&#xd;            "tipo_carga": "$tipo_carga"            &#xd;          }&#xd;        ] &#xd;    }&#xd;  }</result>
       <param name="case_id" sqlType="STRING"/>
+   </query>
+   <query id="contenedoresEntregadosRedireccionar" useConfig="semaresiduosDS">
+      <sql>UPDATE log.contenedores_entregados&#xd;set depo_id = :depo_id,&#xd;observaciones_descarga = observaciones_descarga ||'\r '||:observaciones_descarga&#xd;where ortr_id=:ortr_id&#xd;and cont_id = :cont_id</sql>
+      <param name="depo_id" sqlType="STRING"/>
+      <param name="observaciones_descarga" sqlType="STRING"/>
+      <param name="ortr_id" sqlType="STRING"/>
+      <param name="cont_id" sqlType="STRING"/>
    </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
@@ -1748,6 +1755,14 @@
    <resource method="GET" path="/contenedoresEntregados/info/vuelco/case/{case_id}">
       <call-query href="contenedoresEntregadosInfoVuelcoCase">
          <with-param name="case_id" query-param="case_id"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="/contenedoresEntregados/redireccionar">
+      <call-query href="contenedoresEntregadosRedireccionar">
+         <with-param name="depo_id" query-param="depo_id"/>
+         <with-param name="observaciones_descarga" query-param="observaciones_descarga"/>
+         <with-param name="ortr_id" query-param="ortr_id"/>
+         <with-param name="cont_id" query-param="cont_id"/>
       </call-query>
    </resource>
 </data>
