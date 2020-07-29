@@ -1235,7 +1235,21 @@ and cont_id =cast(:cont_id as integer)
     }
   }
 
+-- contenedoresEntregadosRedireccionar
+  recurso: /contenedoresEntregados/redireccionar
+  metodo POST
+  UPDATE log.contenedores_entregados&#xd;set depo_id = :depo_id,&#xd;observaciones_descarga = observaciones_descarga ||'\r '||:observaciones_descarga&#xd;where ortr_id=:ortr_id&#xd;and cont_id = :cont_id
 
+{
+   "_post_contenedoresEntregados_redireccionar":{
+      "depo_id":"$depo_id",
+      "observaciones_descarga":"$observaciones_descarga",
+      "ortr_id":"$ortr_id",
+      "cont_id":"$cont_id"
+   }
+}
+
+  retorna 202 si ok
 
 
 
