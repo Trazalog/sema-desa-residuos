@@ -856,7 +856,7 @@
       <param name="case_id" sqlType="STRING"/>
    </query>
    <query id="contenedoresEntregadosRedireccionar" useConfig="semaresiduosDS">
-      <sql>UPDATE log.contenedores_entregados&#xd;set depo_id = :depo_id,&#xd;observaciones_descarga = observaciones_descarga ||'\r '||:observaciones_descarga&#xd;where ortr_id=:ortr_id&#xd;and cont_id = :cont_id</sql>
+      <sql>UPDATE log.contenedores_entregados&#xd;set depo_id = cast(:depo_id as integer),&#xd;observaciones_descarga = observaciones_descarga ||'\r '||:observaciones_descarga&#xd;where ortr_id=cast(:ortr_id as integer)&#xd;and cont_id = cast(:cont_id as integer)</sql>
       <param name="depo_id" sqlType="STRING"/>
       <param name="observaciones_descarga" sqlType="STRING"/>
       <param name="ortr_id" sqlType="STRING"/>
