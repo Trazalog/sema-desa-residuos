@@ -127,6 +127,9 @@ class EntregaOrdenTransportes extends CI_Model {
 
         log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|desplegarVista($tarea)|Certifica Vuelco: $tarea >> '.json_encode($tarea));
         $tarea->infoOTransporteCont = $this->obtenerInFoOTransporteCont($tarea->caseId);
+        $tarea->infoOT = $this->obtenerInfoOTIncidencia($tarea->caseId);
+        $tarea->tipoCarga = $this->obtenerTipoCarga();
+        $tarea->tipoIncidencia = $this->obtenerTipoIncidencia();
         $tarea->infoOTransporte = $this->obtenerInFoOTransporte($tarea->caseId);
         $tarea->TamDeposito = $this->obtenerTamañoDeposito($tarea->infoOTransporteCont[0]->depo_id);
         $tarea->Recipientes = $this->obtenerRecipientes($tarea->infoOTransporteCont[0]->depo_id);
@@ -300,12 +303,12 @@ class EntregaOrdenTransportes extends CI_Model {
   // obtenerTransportista($tarea)
   // $aux_tran = $this->rest->callAPI("GET",REST."/transportistas/proceso/ingreso/case/".$ent_case_id);
   // $aux_tran =json_decode($aux_tran["data"]); 
- 
+ //TODO: 
   function obtenerTamañoDeposito($depo_id)
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerTamañoDeposito($depo_id) >> ');
     log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerTamañoDeposito($depo_id): $depo_id  >> '.json_encode($depo_id));
-    $aux = $this->rest->callAPI("GET",REST_PRD."/depositos/19");
+    $aux = $this->rest->callAPI("GET",REST_PRD."/depositos/$depo_id");
     $aux =json_decode($aux["data"]);
     return $aux->deposito;
   }
@@ -314,11 +317,11 @@ class EntregaOrdenTransportes extends CI_Model {
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerRecipientes($depo_id) >> ');
     log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerRecipientes($depo_id): $depo_id  >> '.json_encode($depo_id));
-    $aux = $this->rest->callAPI("GET",REST_PRD."/recipientes/establecimiento/1/deposito/19/estado/TODOS/tipo/TODOS/categoria/cate_recipienteBOX");
+    $aux = $this->rest->callAPI("GET",REST_PRD."/recipientes/establecimiento/1/deposito/$depo_id/estado/TODOS/tipo/TODOS/categoria/cate_recipienteBOX");
     $aux =json_decode($aux["data"]);
     return $aux->recipientes->recipiente;
   }
-  //TODO:
+  //TODO: para el que vea este codigo hay que arreglar el servicio 
   function obtenerInFoOTransporteCont($caseId)
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInFoOTransporte($caseId) >> ');
@@ -336,7 +339,7 @@ class EntregaOrdenTransportes extends CI_Model {
     $dato[]['_post_contenedoresEntregados_descargar_recipiente'] = $data['_post_contenedoresEntregados_descargar_recipiente'];
    
     // $date['request_box'] = $dato;
-    $rsp = requestBox(REST_PRD.'/', $dato);
+    $rsp = requestBox(REST.'/', $dato);
     $aux = $rsp;
     // $aux2 = $this->rest->callAPI("POST",REST_PRD."/request_box", $date);
     // $aux1 = $this->rest->callAPI("PUT",REST_PRD."/contenedoresEntregados/descargar", $dato1);
