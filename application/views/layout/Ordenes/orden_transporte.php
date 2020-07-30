@@ -598,15 +598,15 @@ function Agregar_Residuo() {
     // $('#formPuntos')[0].reset();
     $('select').select2().trigger('change');
 }
-
+TODO: //fec_retiro, teot_id, cont_id
 function Guardar_Orden_transporte(){
     var datos = new FormData();
     datos = formToObject(datos);
 	debugger; 
-            
+    // datos.fec_retiro = '02-07-2020';         
     datos.fec_retiro = $("#Fecha").val();
-    // var auxfecha = datos.fec_retiro[8]+datos.fec_retiro[9]+"-"+datos.fec_retiro[5]+datos.fec_retiro[6]+"-"+datos.fec_retiro[0]+datos.fec_retiro[1]+datos.fec_retiro[2]+datos.fec_retiro[3]; 
-    // datos.fec_retiro = auxfecha;
+    var auxfecha = datos.fec_retiro[8]+datos.fec_retiro[9]+"-"+datos.fec_retiro[5]+datos.fec_retiro[6]+"-"+datos.fec_retiro[0]+datos.fec_retiro[1]+datos.fec_retiro[2]+datos.fec_retiro[3]; 
+    datos.fec_retiro = auxfecha;
     datos.difi_id = $("#dispfinal").val();
     datos.sotr_id = $("#sotr_id").val();
     datos.tran_id = $("#tran_id").val();
@@ -628,6 +628,10 @@ function Guardar_Orden_transporte(){
     console.table(rows.length);
     var cont = new FormData();
     cont = formToObject(cont);
+    TODO:
+    // cont.cont_id =  111;
+    //    datos_contenedor.push(cont);
+     
     for(var c=0; c<rows.length; c++){
        auxx = JSON.parse(rows[c].dataset.json);
        cont.cont_id =  auxx.cont_id;

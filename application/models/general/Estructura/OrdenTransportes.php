@@ -27,18 +27,18 @@ class OrdenTransportes extends CI_Model
         log_message('DEBUG','#SolicitudPedidos/RegistrarContenedor: '.json_encode($post));
         // $aux = $this->rest->callAPI("POST",REST."/solicitudContenedores", $post); //servicio que llamaba antes de que caiga el server
         $aux = $this->rest->callAPI("POST",API_URL."/ordenTransporte",$post);
-        $aux =json_decode($aux);
+        $aux =json_decode($aux["status"]);
         return $aux;
     }
 
-    function ObtenerOTpordominio($data)
+    function ObtenerOTpordominio($dominio)
     {
         // $sotr_id = $this->rest->callAPI("GET",REST."/solicitantesTransporte/hugoDS");
         $usuario_app = userNick();
-        $sotr = $this->rest->callAPI("GET",REST."/solicitantesTransporte/$usuario_app");
+        $sotr = $this->rest->callAPI("GET",REST."/solicitantesTransporte/hugoDS");
         $sotraux =json_decode($sotr["data"]);
         $id_sotr = $sotraux->solicitantes_transporte->sotr_id;
-        $aux = $this->rest->callAPI("GET",REST."/vehiculo/asignadoARetiro/$data/solicitanteTransporte/$id_sotr");
+        $aux = $this->rest->callAPI("GET",REST."/vehiculo/asignadoARetiro/$dominio/solicitanteTransporte/$id_sotr");
         $aux =json_decode($aux["data"]);
         return $aux;
     }
