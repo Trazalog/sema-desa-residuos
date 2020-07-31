@@ -191,7 +191,9 @@
                                                 <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
                                                 <input type="text" id="input_aux_img64" style="display:none" >
                                                 <input type="text" id="input_aux_zonaID" style="display:none" >      
-                                                <br>                             
+                                                <br>                      
+                                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>  
+                                                <br>        
                                                 <img src="" alt="no hay imagen! cargue una" id="img_base" width="" height="">
                                                 
                                    
@@ -240,23 +242,24 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel"> Eliminar Contenedor</h5>
-            </div>
-            <div class="modal-body">
-
-           <input type="text" id="id_contenedor" style="display:none">
-
-            <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
-            </div>
+            <h5 class="modal-title"><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>Eliminar</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<input id="id_contenedor" style="display: none;">
+			<div class="modal-body">
+				<center>
+					<h4>
+						<p>¿Desea eliminar el contenedor?</p>
+					</h4>
+				</center>
+			</div>
             <div class="modal-footer">
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btndelete">Aceptar</button>
-                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">Cancelar</button>
-                </div>
+               <center>
+                    <button type="submit" class="btn btn-primary" id="btndelete">SI</button>
+                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">NO</button>
+                </center>
             </div>
         </div>
     </div>
@@ -265,6 +268,12 @@
 
 <!---//////////////////////////////////////--- FIN MODAL BORRAR ---///////////////////////////////////////////////////////----->
 <script>
+$(document).ready(function(){		
+                var aux= "";	
+				$("#img_base").val(aux);
+				$(".fa-spinner").hide();
+               
+		});
 //Convertir a base64 el archivo Imagen
 function getFile(file){
 		var reader = new FileReader();
@@ -375,14 +384,15 @@ function jpg($img_b64){
 </script>
 <script>
 function ExtraerImagen($data)
-{
+{   $(".fa-spinner").show();
+    $("#img_base").hide();
     $.ajax({
                 type: "POST",
                 data: {cont_id: $data.cont_id},
                 url: "general/Estructura/Contenedor/GetImagen",
                 success: function ($dato) {
                     
-                    
+                    $(".fa-spinner").hide();
                     var res = JSON.parse($dato);
                     console.table(res);
                     console.table(res.respuesta.imagen);
@@ -395,7 +405,7 @@ function ExtraerImagen($data)
                    }else{
                        if(img_b64[4]=='i'){jpg(img_b64);}
                    }
-                    
+                   $("#img_base").show();
                     console.table("Como queda src final: "+img_b64);
                 }
             });

@@ -39,6 +39,12 @@
 </table>
 
 <script>
+$(document).ready(function(){		
+                var aux= "";	
+				$("#img_base").val(aux);
+				$(".fa-spinner").hide();
+               
+		});
 //Convertir a base64 el archivo Imagen
 function getFile(file){
 		var reader = new FileReader();
@@ -149,14 +155,15 @@ function jpg($img_b64){
 </script>
 <script>
 function ExtraerImagen($data)
-{
+{  $(".fa-spinner").show();
+   $("#img_base").hide();
     $.ajax({
                 type: "POST",
                 data: {cont_id: $data.cont_id},
                 url: "general/Estructura/Contenedor/GetImagen",
                 success: function ($dato) {
                     
-                   
+                  $(".fa-spinner").hide();
                     var res = JSON.parse($dato);
                     console.table(res);
                     console.table(res.respuesta.imagen);
@@ -169,7 +176,7 @@ function ExtraerImagen($data)
                    }else{
                        if(img_b64[4]=='i'){jpg(img_b64);}
                    }
-                    
+                   $("#img_base").show();
                     console.table("Como queda src final: "+img_b64);
                 }
             });

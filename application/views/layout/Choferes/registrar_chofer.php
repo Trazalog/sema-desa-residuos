@@ -362,7 +362,9 @@
 						<div class="col-sm-8">
 							<input type="file" class="ocultar habilitar" name="img" id="img_file" onchange=convert_Edit()>
 							<input type="text" id="input_aux_img64" style="display:none">
-							<input type="text" id="input_aux_zonaID" style="display:none">                                   
+							<input type="text" id="input_aux_zonaID" style="display:none">                 
+							<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>  
+                            <br>                       
 							<img src="" alt="imagen" id="img_base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
 						</div>
 					</form>	
@@ -410,7 +412,12 @@
 <!---///////--- FIN MODAL AVISO ---///////--->
 
 <script>
-
+$(document).ready(function(){		
+                var aux= "";	
+				$("#img_base").val(aux);
+				$(".fa-spinner").hide();
+               
+		});
 	//////// Tratamiento de Imagen en Registrar nuevo circuito
 		async function convertA(){      
 					
@@ -488,36 +495,83 @@
 
 	//guardar chofer	
 		function Guardar_Chofer() {
-
-			var datos = new FormData($('#formChofer')[0]);
-			datos = formToObject(datos);		
 			
-			///if ($("#formChofer").data('bootstrapValidator').isValid()) {
-				$.ajax({
-					type: "POST",
-					data: { datos },
-					url: "general/Estructura/Chofer/Guardar_Chofer",
-					success: function(r) {
-						console.table(r);
-						if (r == "ok") {
-
-							$("#cargar_tabla").load(
-								"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
-							alertify.success("Agregado con exito");
-
-							$('#formChofer').data('bootstrapValidator').resetForm();
-							$("#formChofer")[0].reset();
-
-							$("#boxDatos").hide(500);
-							$("#botonAgregar").removeAttr("disabled");
-
-						} else {
-							//console.log(r);
-							alertify.error("error al agregar");
+			var aux2 = 0;
+			if($("#nombre").val() != "")
+			{
+				if($("#apellido").val() != "")
+				{
+					if($("#documento").val() != "")
+					{
+						if($("#fec_nacimiento").val() != "")
+						{
+							if($("#direccion").val() != "")
+							{
+								if($("#celular").val() != "")
+								{
+									if($("#codigo").val() != "")
+									{
+										if($("#tran_id").val() != "")
+										{
+											if($("#carnet").val() != "")
+												{
+													if($("#cach_id").val() != "")
+													{
+														if($("#vencimiento").val() != "")
+														{
+															if($("#habilitacion").val() != "")
+															{
+																aux2 = 1;
+															}
+														}
+													}
+												}
+										}
+									}
+								}
+							}
 						}
 					}
-				});
-			//}
+
+				}
+			}
+			var datos = new FormData($('#formChofer')[0]);
+			datos = formToObject(datos);		
+			var aux = "";
+			aux = $("#input_aux_img").val();
+			if(aux != "")
+			{
+				if (aux2!=0) {
+					$.ajax({
+						type: "POST",
+						data: { datos },
+						url: "general/Estructura/Chofer/Guardar_Chofer",
+						success: function(r) {
+							console.table(r);
+							if (r == "ok") {
+
+								$("#cargar_tabla").load(
+									"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
+								alertify.success("Agregado con exito");
+
+								$('#formChofer').data('bootstrapValidator').resetForm();
+								$("#formChofer")[0].reset();
+
+								$("#boxDatos").hide(500);
+								$("#botonAgregar").removeAttr("disabled");
+
+							} else {
+								//console.log(r);
+								alertify.error("error al agregar");
+							}
+						}
+					});
+				}else{
+					alert("ATENCION!!! hay campos vacios");
+				}
+		    }else{
+				alert("ATENCION!!! no cargo imagen");
+			}
 		}
 
 	// Script validacion

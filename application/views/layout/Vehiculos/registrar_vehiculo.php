@@ -336,24 +336,25 @@
 <div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-blue">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel"> Eliminar Vehiculo</h5>
-            </div>
-            <div class="modal-body">
-
-                <input type="text" id="id_vehiculo" style="display:none">
-
-                    <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
-            </div>
+        <div class="modal-header bg-blue">
+				<h5 class="modal-title"><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>Eliminar</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<input id="id_vehiculo" style="display: none;">
+			<div class="modal-body">
+				<center>
+					<h4>
+						<p>¿Desea eliminar el vehiculo?</p>
+					</h4>
+				</center>
+			</div>
             <div class="modal-footer">
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletevehiculo()">Aceptar</button>
-                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">Cancelar</button>
-                </div>
+                <center>
+                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletevehiculo()">SI</button>
+                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">NO</button>
+                </center>
             </div>
         </div>
     </div>

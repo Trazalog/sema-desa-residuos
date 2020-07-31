@@ -79,12 +79,14 @@
 			
 			$('#input_aux_img64').attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
 			$('#img_base').attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');  // This will change the src to a 1x1 pixel
-
+			$(".fa-spinner").show();
+    		$("#img_base").hide();
 			$.ajax({
 						type: "POST",
 						data: {chof_id: chof_id},
 						url: "general/Estructura/Chofer/obtener_Imagen",
 						success: function ($dato) {		
+							$(".fa-spinner").hide();
 										var imagen = JSON.parse($dato);	
 										//console.info('imagen en llenar imagen: ' + imagen);						
 										var img_b64 = imagen;									
@@ -92,7 +94,8 @@
 										pdf(img_b64);
 										}else{
 												if(img_b64[4]=='i'){jpg(img_b64);}
-										}								
+										}		
+										$("#img_base").show();									
 										//console.table("Como queda src final en llenar imagen: "+img_b64);
 						}
 				});
