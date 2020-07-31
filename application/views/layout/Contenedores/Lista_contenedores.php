@@ -53,7 +53,7 @@
 
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -63,27 +63,29 @@
             </div>
 
 
-            <div class="modal-body">
+            <div class="modal-body col-md-12 col-sm-12 col-xs-12">
 
                 <!--__________________ FORMULARIO MODAL ___________________________-->
 
-                <form method="POST" autocomplete="off" id="frmentrega" class="registerForm">
-                    <div class="modal-body">
+                <!-- <form method="POST" autocomplete="off" id="frmentrega" class="registerForm"> -->
+                    <!-- <div class="modal-body"> -->
                         <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">
+                            <!-- <div class="col-md-12"> -->
+                                <!-- <div class="row"> -->
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
                                         <!--Codigo / Registro-->
                                         <div class="form-group">
                                             <label for="Codigo/Registro">Codigo / Registro:</label>
-                                            <input type="text" class="form-control habilitar" name="" id="Codigo">
+                                            <br>
+                                            <input type="text" class="form-control habilitar" name="" id="Codigo" style="width: 35rem;">
                                         </div>
                                         <!--_____________________________________________-->
-
+                                        <br>
                                         <!--Descripcion-->
                                         <div class="form-group">
                                             <label for="Descripcion">Descripcion:</label>
-                                            <input type="text" class="form-control habilitar" name="" id="Descripcion">
+                                            <br>
+                                            <input type="text" class="form-control habilitar" name="" id="Descripcion" style="width: 35rem;">
                                         </div>
                                         <!--_____________________________________________-->
                                           <!--Cont_id solo para salvaguardar el id del contenedor-->
@@ -92,36 +94,38 @@
                                         
                                         <!--_____________________________________________-->
                                         <!--Capacidad-->
+                                        <br>
                                         <div class="form-group">
                                             <label for="Capacidad">Capacidad:</label>
-                                            <input type="text" class="form-control habilitar" name="" id="Capacidad">
+                                            <br>
+                                            <input type="text" class="form-control habilitar" name="" id="Capacidad" style="width: 35rem;">
                                         </div>
                                         <!--_____________________________________________-->
-
+                                        <br>
                                         <!--Año de elaboracion-->
                                         <div class="form-group">
                                             <label for="Añoelab">Año de elaboracion:</label>
-                                            <input type="text" class="form-control habilitar" name="" id="Añoelab">
+                                            <br>
+                                            <input type="text" class="form-control habilitar" name="" id="Añoelab" style="width: 35rem;">
                                         </div>
                                         <!--_____________________________________________-->
 
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
 
                                         <!--Tara-->
                                         <div class="form-group">
                                             <label for="Tara">Tara:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" name="" id="Tara">
+                                            <input type="text" class="form-control habilitar" name="" id="Tara" style="width: 35rem;">
                                         </div>
                                         <!--_____________________________________________-->
-                                        
+                                        <br>
                                         <!--Estado-->
                                         <div class="form-group">
                                             <label for="Estados">Estado:</label>
                                             <br>
-                                            <select class="form-control select2 select2-hidden-accesible selectores" name=""
-                                                id="Estados">
+                                            <select class="form-control select2 select2-hidden-accesible selectores" name="" id="Estados" style="width: 35rem;">
                                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                                 <?php
                                                         foreach ($estados as $i) {
@@ -132,13 +136,14 @@
                                             </select>
                                             <input type="text" class="form-control ocultarInfo" name="" id="estadoInfo" style="display:none">
                                         </div>
+                                        <br>
                                          <!--Habilitacion-->
                                             <div class="form-group">
                                               
                                                  <label for="Habilitacion" >Habilitacion:</label>
                                                   <br>   
                                                      
-                                                <select class="form-control select2 select2-hidden-accesible selectores" name="" id="Habilitacion">
+                                                <select class="form-control select2 select2-hidden-accesible selectores" name="" id="Habilitacion" style="width: 35rem;">
                                                     <option value="" disabled selected>-seleccione opcion-</option>
                                                         <?php
                                                             foreach ($habilitacion as $i) {
@@ -150,9 +155,10 @@
                                             </div>    
                                     
                                     
-                                        
+                                        <br>
                                         <div class="form-group ocultar ">
                                             <label for="tipoResiduos">Tipo de residuo:</label>
+                                            <br>
                                             <div class="input-group date">
                                                 <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                                                     <select class="form-control select3 habilitar  " multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tic_id">
@@ -164,20 +170,10 @@
                                             </div>  
                                             
                                         </div> 
-                                        <div class="form-group">
-                                                <label for="CircR" name="img">Imagen:</label>
-                                                <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
-                                                <input type="text" id="input_aux_img64" style="display:none" >
-                                                <input type="text" id="input_aux_zonaID" style="display:none" >                                   
-                                                <img src="" alt="no hay imagen! cargue una" id="img_base" width="" height="">
-                                   
-                                 
-                                   
-                                   
-                                        </div>
-                                        
+                                        <br>
                                         <div class="form-group ocultar_Info " style="display:none">
                                             <label for="tipoResiduos">Tipo de residuo:</label>
+                                            <br>
                                             <div class="input-group date">
                                                 <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                                                     <select class="form-control select3 habilitar  " multiple="multiple" disabled  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tic_id_info">
@@ -189,6 +185,22 @@
                                             </div>  
                                             
                                         </div>  
+                                        <br>
+                                        <div class="form-group">
+                                                <label for="CircR" name="img">Imagen:</label>
+                                                <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
+                                                <input type="text" id="input_aux_img64" style="display:none" >
+                                                <input type="text" id="input_aux_zonaID" style="display:none" >      
+                                                <br>                             
+                                                <img src="" alt="no hay imagen! cargue una" id="img_base" width="" height="">
+                                                
+                                   
+                                 
+                                   
+                                   
+                                        </div>
+                                        
+                                  
                                                                                
                                         <!--_____________________________________________-->
                                        
@@ -196,14 +208,14 @@
                                     </div>
 
                                   
-                                </div>
-                            </div>
+                                <!-- </div>
+                            </div> -->
                             
 
 
                         </form>
-                    </div>
-                </form>
+                    <!-- </div> -->
+                <!-- </form> -->
 
                 <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
