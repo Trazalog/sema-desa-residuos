@@ -5,13 +5,12 @@ class Test extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-  
+        
     }
 
     public function index()
     {
-     
-         $this->load->view('test1');
+        $this->load->view('test1');
     }
     public function pp()
     {
@@ -22,5 +21,11 @@ class Test extends CI_Controller
     {
         $data['nombre'] = "Fernando";
         echo json_encode($data);
+    }
+
+    public function altaDeposito()
+    {
+        
+        $this->load->view('test2');
     }
 }
