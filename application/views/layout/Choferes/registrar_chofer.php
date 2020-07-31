@@ -699,3 +699,31 @@
 	// Datatable tabla_choferes
 		DataTable($('#tabla_choferes'))
 </script>
+
+<script>
+//boton guardar edicion
+$("#btnsave").on("click", function() {
+			//tomo datos del form y hago objeto
+			var chofer = new FormData($('#frm_chofer_edit')[0]);
+			chofer = formToObject(chofer);
+			chofer.imagen = $("#input_aux_img64").val(); 
+	
+			// if ($("#frm_chofer_edit").data('bootstrapValidator').isValid()) {
+				$.ajax({
+					type: "POST",
+					data: {	chofer },
+					url: "general/Estructura/Chofer/Modificar_Chofer",
+					success: function(result) {
+						if (result == "error") {
+							alertify.error("Hubo un error a modificar Chofer");
+						} else {
+							$("#cargar_tabla").load(
+								"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
+							alertify.success("Datos de Chofer modificados con exito...");
+						}
+					}
+				});
+		//	}
+		});
+
+</script>
