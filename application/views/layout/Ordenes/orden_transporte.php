@@ -85,6 +85,7 @@
                                     <div class="form-group">
                                      <label for="transp" class="form-label">Transportista:</label>
                                      <input type="text" class="form-control"   name="nro" id="transp" readonly>
+                                     <input type="text" id="tran_id" style="display:none">
                                      </div>
                                     
                                    
@@ -99,6 +100,7 @@
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
                                                         <input type="date" class="form-control"   name="fecha" id="Fecha">
+                                                        <input type="text" style="display:none" value="<?php echo $sotrid?>" id="sotr_id" >
                                                     </div>
                                     </div>
                                     <div class="form-group">
@@ -410,6 +412,26 @@
 <!--_____________________________________________________________-->
 <!-- REGISTRAR Orden Transporte-->
 <script>
+function  obtenerTemplateOT()
+{ debugger;
+    var sotrid = $("#sotr_id").val();
+    $.ajax({
+      type: "POST",
+      data: {sotr_id: sotrid},
+      dataType: 'json',
+      url: "general/Estructura/OrdenTransporte/Obtenerteot",
+      success: function($respuesta) {
+        debugger;
+        var resp = $respuesta;
+      
+      }
+     
+    });
+}
+
+
+</script>
+<script>
 function obtenerchoftran($aux)
 {
     
@@ -422,7 +444,7 @@ $.ajax({
          debugger;
           var res = $datos;
           console.table(res.chofer);
-          console.table(res.chofer[1].nom_chofer);
+        //   console.table(res.chofer[1].nom_chofer);
           console.table(res.chofer.length);
           console.table(res.transp.razon_social);
           $("#transp").val(res.transp.razon_social);
@@ -431,6 +453,7 @@ $.ajax({
             $('#chofer').append("<option value='" + res.chofer[c].documento + "'>" +res.chofer[c].nom_chofer+"</option");
 
           }
+          obtenerTemplateOT();
         //   console.table(resp.vehiculoAsignadoARetiro.descripcion);
         //   console.table(resp.vehiculoAsignadoARetiro.codigo);
         //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor[0].mts_cubicos);
@@ -442,7 +465,7 @@ $.ajax({
 							
       },
       complete: function() {
-
+        
       }
 })
 }
@@ -452,6 +475,7 @@ $("#equipo").change(function(){
 // var dominio_equipo = this.value;
  var dominio_equipo = this.selectedOptions[0].textContent;
  var dom_equipo = $("#equipo").val();
+ console.table(dom_equipo);
 var aux;
 $.ajax({
       type: "POST",
@@ -459,13 +483,14 @@ $.ajax({
       dataType: 'json',
       url: "general/Estructura/OrdenTransporte/ObtenerinfoOt",
       success: function($respuesta) {
-        //   debugger;
+           debugger;
         // var respuesta = JSON.parse($respuesta);
           var resp = $respuesta;
           aux = resp.vehiculoAsignadoARetiro.tran_id; // esto guardarlo en algun input oculto
           console.table(resp);
           console.table(resp.vehiculoAsignadoARetiro.descripcion);
           console.table(resp.vehiculoAsignadoARetiro.codigo);
+          $("#tran_id").val(aux);
         //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor[0].mts_cubicos);
         //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor);
           Agregar_contenedor(resp);
@@ -498,6 +523,7 @@ function Agregar_contenedor($datos) {
 console.table($datos);
 // }
 $('#contenedores').show();
+debugger;
 //var data = new FormData($('#formPedidos')[0]);
 var data = new FormData();
 data = formToObject(data);
@@ -572,21 +598,24 @@ function Agregar_Residuo() {
     // $('#formPuntos')[0].reset();
     $('select').select2().trigger('change');
 }
-
+TODO: //fec_retiro, teot_id, cont_id
 function Guardar_Orden_transporte(){
     var datos = new FormData();
     datos = formToObject(datos);
 	debugger; 
-            
+    // datos.fec_retiro = '02-07-2020';         
     datos.fec_retiro = $("#Fecha").val();
     var auxfecha = datos.fec_retiro[8]+datos.fec_retiro[9]+"-"+datos.fec_retiro[5]+datos.fec_retiro[6]+"-"+datos.fec_retiro[0]+datos.fec_retiro[1]+datos.fec_retiro[2]+datos.fec_retiro[3]; 
     datos.fec_retiro = auxfecha;
     datos.difi_id = $("#dispfinal").val();
-    datos.sotr_id = 38;
-    var dominio_equipo = $("#equipo").selectedOptions[0].textContent;
+    datos.sotr_id = $("#sotr_id").val();
+    datos.tran_id = $("#tran_id").val();
+    // var dominio_equipo = $("#equipo" ).selectedOptions[0].textContent;
+    var dominio_equipo = $("#equipo option:selected" ).text();
     datos.equi_id = dominio_equipo;
     datos.chof_id = $("#chofer").val();
     datos.usuario_app = "HugoDS";
+    datos.teot_id = 7;
     //aca agregarle el cont_id
 
     var datos_contenedor = [];
@@ -599,6 +628,10 @@ function Guardar_Orden_transporte(){
     console.table(rows.length);
     var cont = new FormData();
     cont = formToObject(cont);
+    TODO:
+    // cont.cont_id =  111;
+    //    datos_contenedor.push(cont);
+     
     for(var c=0; c<rows.length; c++){
        auxx = JSON.parse(rows[c].dataset.json);
        cont.cont_id =  auxx.cont_id;
@@ -988,3 +1021,4 @@ $('#fecha').daterangepicker({
 });
 
 </script>
+
