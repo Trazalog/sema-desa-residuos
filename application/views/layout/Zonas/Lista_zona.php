@@ -65,14 +65,14 @@
                 <div class="modal-body">
                     <div class="row">
                         
-                        <div class="col-md-12 ">
+                        <div class="col-md-12 " style="margin-left: 6rem;">
                             <div class="col-md-6 col-sm-6">
 
                                 <!--Nombre-->
                                 <div class="form-group">
                                     <label for="Nombre" name="nombre">Nombre:</label>
                                     <br>
-                                    <input type="text" class="form-control habilitar" id="nom_id" name="nom_id">
+                                    <input type="text" class="form-control habilitar estilo" id="nom_id" name="nom_id" style="width: 40rem;">
                                     
                                     
                                 </div>
@@ -81,24 +81,28 @@
                                 <!--Descripcion-->
                                 <div class="form-group">
                                     <label for="Descripcion" name="">Descripcion:</label>
-                                    <input type="text" class="form-control habilitar" id="desc_id" name="desc_id">
+                                    <input type="text" class="form-control habilitar estilo custom" id="desc_id" name="desc_id" style="width: 40rem;">
                                 </div>
                                 <!--_____________________________________________-->
 
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 " style="margin-left: 6rem;">
                             <div class="col-md-6 col-sm-6">
                             
                                     <div class="form-group" id="div_ver" style="display:none">
                                             
                                             <label for="Dptoo" name="">Departamento:</label> 
-                                            <input   type="text" class="form-control" id="dep_ver" name="dep_ver">
+                                            <input   type="text" class="form-control estilo" id="dep_ver" name="dep_ver" style="width: 40rem;">
                                         
                                     </div>
                                     <!--Departamento-->
                                     <div class="form-group">
                                         <label for="Dpto" name="" id="texto_dep">Departamento:</label> 
                                         <br>
-                                        <select class="form-control select2 select2-hidden-accesible habilitar" id="dep_id" name="dep_id">
+                                        <select class="form-control select2 select2-hidden-accesible habilitar estilo" id="dep_id" name="dep_id" style="width: 40rem;">
                                             <option value="" selected  id="opt_sel" class="habilitar ocultar " ></option>
 
                                         </select>
@@ -107,8 +111,8 @@
                                     <div class="col-md-12"><br></div>
                                     <!--Imagen-->
                                     <div class="form-group">
-                                        <label for="CircR" name="img">Imagen:</label>
-                                        <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
+                                        <label for="CircR" name="img">Adjuntar Imagen:</label>
+                                        <input type="file" class="ocultar"  name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
                                         <div class="col-md-12"><br></div>
                                         <input type="text" id="input_aux_img64" style="display:none" >
                                         <input type="text" id="input_aux_zonaID" style="display:none" >  
