@@ -83,7 +83,12 @@ class EntregaOrdenTransportes extends CI_Model {
             $contrato = $this->ContratoCertificadoVuelco($form);
             return $contrato;
             break;
-          
+
+          case 'Registro Salida':
+            $contrato = $this->ContratoRegSalida($form);
+            return $contrato;
+            break;
+
           default:
                 # code...
                 break;
@@ -138,7 +143,25 @@ class EntregaOrdenTransportes extends CI_Model {
         $resp = $this->load->view('transporte-bpm/proceso/certificadoVuelco', $tarea, true);
         return $resp;
         break; 
+      
+      case 'Registro Salida':
+        log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|desplegarVista($tarea)|Registro Salida: $tarea >> '.json_encode($tarea));
+        $tarea->infoOTransporte = $this->obtenerInFoOTransporte($tarea->caseId);
+        // IMAGEN
+        $imagen = $tarea->infoOTransporte->img_chofer;        
+        $newImgChof = substr_replace($imagen, 'data:image/jpeg;base64,', 0, 20);        
+        $tarea->infoOTransporte->img_chofer = $newImgChof;
 
+        $imagen_vehi = $tarea->infoOTransporte->img_vehiculo;
+        $newImgVehi = substr_replace($imagen_vehi, 'data:image/jpeg;base64,', 0, 20);
+        $tarea->infoOTransporte->img_vehiculo = $newImgVehi;
+        $tarea->tipoCarga = $this->obtenerTipoCarga();
+        $tarea->infoContenedores = $this->obtenerContEntregados($tarea->caseId);
+        $tarea->infoOT = $this->obtenerInfoOTIncidencia($tarea->caseId);
+        $tarea->tipoIncidencia = $this->obtenerTipoIncidencia();
+        $resp = $this->load->view('transporte-bpm/proceso/registraSalida', $tarea, true);
+        return $resp;
+        break;
       default:
         # code...
         break;
@@ -173,6 +196,13 @@ class EntregaOrdenTransportes extends CI_Model {
     return $contrato;
   }
 
+  function ContratoRegSalida()
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|ContratoRegSalida($form) >> '); 
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|ContratoRegSalida($form): $form >> '.json_encode($form));   
+    $contrato[""] = $form['data']["Incidencia"];
+    return $contrato;
+  }
   // ---------------------- FUNCIONES OBTENER ----------------------
 
   /**
