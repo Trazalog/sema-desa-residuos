@@ -30,7 +30,9 @@
 
           <div class="col-md-4 col-md-6 mb-4 mb-lg-0">
               <label for="coen_id" class="form-label">Contenedor:</label>
-              <input type="text" id="contenedor_box" class="form-control" readonly>
+              <input type="text" id="contenedor_box" class="form-control" readonly value="<?php echo $infoContenedores->codigo_contenedor; ?>">
+              <input type="text" id="cont_id" class="form-control" style="display:none" value="<?php echo $infoContenedores->cont_id; ?>">
+
               <select class="form-control select2 select2-hidden-accesible" id="coen_id" name="coen_id" style="display:none">
                   <option value="" disabled selected>-Seleccione opcion-</option>
                   <?php
@@ -73,8 +75,9 @@
           <div class="col-md-4">
               <div class="form-group">
                   <label for="img_contenedor" id="cont" class="form-label">Contenedor:</label>
-									<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                  <img src="" id="img_contenedor" height="60" width="60">
+				  <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                  <input type="text" id="input_aux_img64" style="display:none" >
+                  <img src="" id="img_base" height="" width="">
               </div>
           </div>
       </div>
@@ -94,6 +97,7 @@
               <div class="form-group">
                   <label for="bruto" class="form-label">Bruto:</label>
                   <input type="text" name="" id="bruto" min="0" class="form-control" readonly>
+                
               </div>
               
           </div>
@@ -101,14 +105,14 @@
           <div class="col-md-4 col-md-6 mb-4 mb-lg-0">
               <div class="form-group">
                   <label for="tara" class="form-label">Tara:</label>
-                  <input type="text" name="" id="tara" min="0" class="form-control" value="<?php echo  $infoOTransporte->tara; ?>" required readonly>
+                  <input type="number" name="" id="tara" min="0" class="form-control" value="<?php echo  $infoContenedores->tara; ?>" required readonly>
               </div>
           </div>
 
           <div class="col-md-4 col-md-6 mb-4 mb-lg-0">
               <div class="form-group">
                   <label for="peso_neto" class="form-label">Neto:</label>
-                  <input type="text" name="peso_neto" id="peso_neto" min="0" class="form-control" readonly>
+                  <input type="number" name="peso_neto" id="peso_neto" min="0" class="form-control" value="<?php echo  $infoContenedores->peso_neto; ?>" readonly required>
               </div>
           </div>
           
@@ -145,7 +149,7 @@
 															<div class="form-group">
 																	<label for="ortr_id" class="form-label">Numero de orden:</label>
 																	<input type="number" size="10" type="text" name="ortr_id" id="ortr_id" min="0"
-																			class="form-control" value="<?php echo $infoOTransporte->ortr_id ; ?>" readonly>
+																			class="form-control" value="<?php echo $infoContenedores->ortr_id ; ?>" readonly>
                                                                     <input type="text" id="tieneInci" style="display:none">   
                                                             </div>
 															<div class="form-group">																
@@ -244,10 +248,60 @@
 
 // llena cantidad de contenedores que faltan 
 $( document ).ready(function() {
+    
 				var cant = <?php echo $contRest; ?>;
+                var tara = parseInt($("#tara").val());
+                var neto =parseInt($("#peso_neto").val());
+                var bruto = neto + tara;
+                $("#bruto").val(bruto);
 				$("#cont_restantes").val(cant);
+                var cont = $("#cont_id").val();
+                GetImagen(cont);
+                
 		});
 
+function jpg($img_b64)
+{
+    var aux_link = "/";
+    for(var i=21; i <= $img_b64.length-1; i++){
+                        aux_link = aux_link + $img_b64[i];
+                         }
+                         img = "data:image/jpeg;base64,"+aux_link;
+                         $("#input_aux_img64").val(img);
+                         $("#img_base").attr("src",$("#input_aux_img64").val());
+                         $("#img_base").attr("width",60);
+                         $("#img_base").attr("height",60);
+                         var ref = $("#input_aux_img64").val();
+                         $("#pdf").attr("href",ref);
+
+}
+function GetImagen($cont_id)
+{   $(".fa-spinner").show();
+    $("#img_base").hide();
+    $.ajax({
+                type: "POST",
+                data: {cont_id: $cont_id},
+                url: 'general/transporte-bpm/RegistraSalida/GetImagen',
+                success: function ($dato) {
+                    
+                    $(".fa-spinner").hide();
+                    var res = JSON.parse($dato);
+                    console.table(res);
+                    console.table(res.respuesta.imagen);
+                   
+                     var img_b64 = res.respuesta.imagen;
+            
+                   
+                   if(img_b64[4]=='a'){
+                    pdf(img_b64);
+                   }else{
+                       if(img_b64[4]=='i'){jpg(img_b64);}
+                   }
+                   $("#img_base").show();
+                    console.table("Como queda src final: "+img_b64);
+                }
+            });
+}
 	//////// Tratamiento de Imagen en Registrar nuevo circuito
     async function convertA(){      
 						
@@ -353,11 +407,19 @@ $( document ).ready(function() {
                 var Incidencia = {opcion: opcion};	
                  }
                  var taskId = $('#taskId').val();
-
+                 
+                 var salida = new FormData();
+                 salida = formToObject(salida);
+                 salida.cont_id = $("#cont_id").val();
+                 salida.ortr_id = $("#ortr_id").val();
+                 var op = "false";
+                 var quedanCont = {quedanContenedores : op};
+                 salida.contrato = quedanCont;
+               
                 $.ajax({
                         type: 'POST',
-                        data:{Incidencia},
-                        // url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
+                        data:{salida},
+                        url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
                         success: function(result) {
                             
                                             alert(result);
@@ -375,7 +437,7 @@ $( document ).ready(function() {
                         complete: function(){
                                             wc();
                                                 if(existFunction('cerrarTarea')){
-                                                    cerrarTarea();
+                                                     cerrarTarea();
                                                 }	
                                             }
                     });

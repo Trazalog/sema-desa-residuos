@@ -4,8 +4,8 @@ if(!function_exists('userId')){
 
     function userId()
     {
-            //   return 502; //descarga
-                       return 501; // bascula
+                // return 502; //descarga
+                        return 501; // bascula
         //  return 401;// generador
                 //   return 402;// transportista           !HARDCODE
 
