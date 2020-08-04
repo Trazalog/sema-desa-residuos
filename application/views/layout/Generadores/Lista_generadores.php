@@ -59,7 +59,7 @@ $(".btnEditar").click( function(e){
     $('#btnsave_e').show(); 
     var tipozona = data.zona_id;
     $("#E_Zonag").val(tipozona);   
-
+    
 		// lena input tipo RSU 
 		llenarSelectRsu(data.tiposCarga.carga);	
     // habilita el input
@@ -97,7 +97,7 @@ $(".btnInfo").click(function(e){
     // deshabilita el input
 		$("#tica_edit").prop("disabled", true); 
 	 
-	  $("#text_residuos").val(tipores.substr(10,50));
+	  // $("#text_residuos").val(tipores.substr(10,50));
     var tipogen = data.tist_id;
     $("#E_TipoG").val(tipogen);
     $("#text_generador").val(tipogen.substr(14,50));
@@ -117,11 +117,11 @@ $(".btnEliminar").click(function(e){
 });
 
 // llena select multiple con RSU y selcciona los guardados
-function llenarSelectRsu(tipos){	
+function llenarSelectRsu($tipos){	
 		
 	var opcGuardadas = [];		
 	// recorro los tipos de carga asociados		
-	$.each(tipos, function(key,rsu_asociado){				
+	$.each($tipos, function(key,rsu_asociado){				
 		opcGuardadas.push(rsu_asociado.tabl_id);		
 	});	
 		

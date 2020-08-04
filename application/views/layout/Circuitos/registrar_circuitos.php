@@ -171,7 +171,7 @@
 													<label for="Codigo">Descripcion:</label>
 													<div class="input-group date">
 															<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-															<input type="text" class="form-control" name="descripcion" id="">
+															<input type="text" class="form-control" name="descripcion" id="descrip">
 													</div>
 											</div>
 									</div>
@@ -747,10 +747,30 @@ $(".close_modal_edit").click(function(e){
 
   //agrega punto critico a la tabla para guardar  
 		function Agregar_punto() {
+			var aux = 0;
+			var aux2 = 0;
+			if($("#descrip").val() != "")
+			{
+				if($("#nombre").val() != "")
+				{
+					if($("#lat").val() != "")
+					{
+						if($("#lng").val() != "")
+						{
+							aux = 1;
+						}
+					}
 
-			$('#puntos_criticos').show();
+				}
+			}
+			if ($("#formPuntos").data('bootstrapValidator').isValid())
+			{aux2=1;}
+			if(aux!=0 && aux2!=0 ){
+				$('#puntos_criticos').show();
 			var data = new FormData($('#formPuntos')[0]);
 			data = formToObject(data);
+			data.nombre = $("#nombre").val().toLowerCase();
+			data.descripcion = $("#descrip").val().toLowerCase();
 			var table = $('#datos').DataTable();
 			var row =  `<tr data-json='${JSON.stringify(data)}'> 
 						<td>${data.nombre}</td>
@@ -760,6 +780,10 @@ $(".close_modal_edit").click(function(e){
 				</tr>`;
 			table.row.add($(row)).draw();  
 			$('#formPuntos')[0].reset();          
+			}else{
+				alert("Atencion!!! hay un campo de puntos criticos vacio o mal ingresados");
+			}
+			
 		}
 		
   // guarda circuito y puntos criticios nuevos 
@@ -804,7 +828,7 @@ $(".close_modal_edit").click(function(e){
 										$("#botonAgregar").removeAttr("disabled");	
 									} else {
 
-										alertify.error(respuesta);	
+										alertify.error("Error El nombre del circuito ingresado ya existe pruebe con otro...");
 									}
 							}							
 					});
@@ -917,7 +941,11 @@ $(".close_modal_edit").click(function(e){
 								validators: {
 										notEmpty: {
 												message: 'la entrada no puede ser vacia'
-										}
+										},
+										regexp: {
+                        					regexp: /[a-z]/,
+                        					message: 'el nombre no debe contener numeros y mayusculas'
+                    					}
 								}
 						},
 						descripcion: {
@@ -925,7 +953,11 @@ $(".close_modal_edit").click(function(e){
 								validators: {
 										notEmpty: {
 												message: 'la entrada no puede ser vacia'
-										}
+										},
+										regexp: {
+                        					regexp: /[A-Za-z]/,
+                        					message: 'la descripcion no debe contener numeros'
+                    					}
 
 								}
 						},
@@ -934,7 +966,10 @@ $(".close_modal_edit").click(function(e){
 								validators: {
 										notEmpty: {
 												message: 'la entrada no puede ser vacia'
-										}
+										}, regexp: {
+                       						 regexp: /^(0|[1-9][0-9]*)$/,
+                       						 message: 'la entrada no debe ser un numero entero'
+                    					}
 								}
 						},
 						lng: {
@@ -942,7 +977,10 @@ $(".close_modal_edit").click(function(e){
 								validators: {
 										notEmpty: {
 												message: 'la entrada no puede ser vacia'
-										}
+										}, regexp: {
+                       						 regexp: /^(0|[1-9][0-9]*)$/,
+                       						 message: 'la entrada no debe ser un numero entero'
+                    					}
 								}
 						}
 				}
@@ -1148,7 +1186,192 @@ $(".close_modal_edit").click(function(e){
     });
 </script>
 <script>
+$('#formPuntos_edit').bootstrapValidator({
+				message: 'This value is not valid',
+				/*feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+						invalid: 'glyphicon glyphicon-remove',
+						validating: 'glyphicon glyphicon-refresh'
+				},*/
+				//excluded: ':disabled',
+				fields: {
+						nombre: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										},
+										regexp: {
+                        					regexp: /[a-z]/,
+                        					message: 'el nombre no debe contener numeros y mayusculas'
+                    					}
+								}
+						},
+						descripcion: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										},
+										regexp: {
+                        					regexp: /[A-Za-z]/,
+                        					message: 'la descripcion no debe contener numeros'
+                    					}
+
+								}
+						},
+						lat: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}, regexp: {
+                       						 regexp: /^(0|[1-9][0-9]*)$/,
+                       						 message: 'la entrada no debe ser un numero entero'
+                    					}
+								}
+						},
+						lng: {
+								message: 'la entrada no es valida',
+								validators: {
+										notEmpty: {
+												message: 'la entrada no puede ser vacia'
+										}, regexp: {
+                       						 regexp: /^(0|[1-9][0-9]*)$/,
+                       						 message: 'la entrada no debe ser un numero entero'
+                    					}
+								}
+						}
+				}
+		}).on('success.form.bv', function(e) {
+				e.preventDefault();
+				//guardar();
+		})
+
+
+
+</script>
+
+<script>
 DataTable($('#tabla_puntos_criticos_edit'));	
   // Initialize Select2 Elements
   	$('.select3').select2();
+</script>
+<script>
+// Elimina circuito 
+function eliminar(){
+
+var circ_id = $("#circuito_delete").val();
+$.ajax({
+		type: 'POST',
+		data:{circ_id: circ_id},
+		url: "general/Estructura/Circuito/borrar_Circuito",
+		success: function(result) {
+					if(result == "ok"){
+						$("#modalaviso").modal('hide');
+						alertify.success("circuito eliminado con exito...");
+						$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");	
+						
+					}else{
+						$("#modalaviso").modal('hide');	
+						alertify.success("error al eliminar...");
+					}
+		},
+		error: function(result){
+			$("#modalaviso").modal('hide');			
+		}
+});
+
+}	
+
+
+// guarda Edicion completa		
+$("#btnsave_edit").on("click", function() {
+			
+			// tomo los datos de circuito editados
+			var circuito_edit = new FormData($('#frm_circuito_edit')[0]);
+			circuito_edit = formToObject(circuito_edit);		
+			circuito_edit.imagen = $("#input_aux_img64").val(); 
+			// tipos de carga asociados
+			var tipoCarga = $("#tica_edit").val();
+			var tica_edit = JSON.stringify(tipoCarga);
+			// tomo la tabla de puntos criticos editados
+			var ptos_criticos_edit = [];		
+			var rows = $('#tabla_puntos_criticos_edit tbody tr');				
+			rows.each(function(i,e) {  
+				console.table('ptos criticos' + ptos_criticos_edit);
+				// setTimeout(doSomething, 9000);
+				// setTimeout(doSomething, 9000);
+				setTimeout(doSomething, 9000);
+				var a = getJson(e);
+				// setTimeout(doSomething, 9000);
+				// setTimeout(doSomething, 9000);
+				setTimeout(doSomething, 9000);
+				ptos_criticos_edit.push(a);
+				setTimeout(doSomething, 9000);
+			});	
+
+			// var algo = ptos_criticos_edit;
+			var aux =0; 
+			if($("#codigo_edit").val() != "")
+			{
+				
+					if($("#descripcion_edit").val()!= "")
+					{
+						aux = 1;
+						
+					}
+				
+			
+			}
+			
+			
+			console.table('ptos criticos' + ptos_criticos_edit);
+		
+			if(aux == 1){
+				
+				if( circuito_edit.imagen != "")
+				{   
+					if($("#tica_edit").val() != "")
+					{
+						$.ajax({
+								type: 'POST',
+								data:{ circuito_edit, tica_edit, ptos_criticos_edit},
+								url: "general/Estructura/Circuito/actulizaCircuitos",
+								success: function(result) {
+											if(result == "ok"){
+												
+													alertify.success("Circuito editado con exito...");
+												$("#cargar_tabla").load(
+																"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
+														);
+											
+												$("#modalEdit").data('bootstrapValidator').resetForm();
+												$("#formPuntos_edit").data('bootstrapValidator').resetForm();
+											}else{
+												
+												alertify.error("Error El nombre del circuito editado o ingresado ya existe pruebe con otro...");
+												$("#modalEdit").data('bootstrapValidator').resetForm();
+												$("#formPuntos_edit").data('bootstrapValidator').resetForm();
+											}
+								},
+								error: function(result){
+													
+								}
+						});
+					}else{
+						alert("Atencion!!! tipo de residuos esta vacio ");
+					}
+				}else{
+            	alert("Atencion!!! No ha cargado una imagen");
+        		}
+
+			}else{
+				$("#modalEdit").data('bootstrapValidator').resetForm();
+        	alert("Atencion!!! hay un campo que esta vacio");
+			
+    		}
+
+		});
+
 </script>
