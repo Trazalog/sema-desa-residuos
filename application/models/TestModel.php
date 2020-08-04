@@ -18,7 +18,13 @@ class testModel extends CI_Model
     public function getRecipientes($depo_id)
     {
         $url = REST_PRD."/recipientes/establecimiento/1/deposito/$depo_id/estado/TODOS/tipo/TODOS/categoria/cate_recipienteBOX";
-        return wso2($url);
+        $aux['data'] = wso2($url)['data'];
+        $url = REST_PRD."/depositos/$depo_id";
+        $a = $this->rest->callApi('GET',$url);
+        $b = json_decode($a['data']);
+        $aux['col'] = $b->deposito->col;
+        $aux['row'] = $b->deposito->row;
+        return $aux;
     }
 
 }

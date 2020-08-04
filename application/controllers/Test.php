@@ -34,7 +34,7 @@ class Test extends CI_Controller
     public function obtenerRecipientes($depo_id)
     {
         $rsp = $this->TestModel->getRecipientes($depo_id);
-        $a = $rsp['data'];
-        echo json_encode($rsp->data);
+        $rsp = $this->load->view('gridRecipientes',$rsp);
+        return($rsp);
     }
 }
