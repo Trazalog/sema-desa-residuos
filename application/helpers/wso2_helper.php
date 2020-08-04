@@ -15,10 +15,18 @@ if (!function_exists('wso2')) {
             $rsp = $ci->rest->callApi($metodo, $url, $data);
 
         }
-
+        
         if ($rsp['status']) {
             $aux = json_decode($rsp['data']);
-            $rsp['data'] = reset(reset($aux));
+            if($aux)
+            {
+                $aux = reset($aux);
+                if($aux)
+                {
+                    $aux = reset($aux);
+                }
+            }
+            $rsp['data'] = $aux;
         }
 
         return $rsp;

@@ -5,7 +5,7 @@ class Test extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        
+        $this->load->model('TestModel');
     }
 
     public function index()
@@ -25,7 +25,16 @@ class Test extends CI_Controller
 
     public function altaDeposito()
     {
-        
-        $this->load->view('test2');
+        log_message('INFO','#TRAZA|Deposito|altaDeposito() >>');
+        $data = $this->TestModel->getDepositos();
+        $data['depositos'] = json_decode($data['data'])->depositos->deposito;
+        $this->load->view('test2',$data);
+    }
+
+    public function obtenerRecipientes($depo_id)
+    {
+        $rsp = $this->TestModel->getRecipientes($depo_id);
+        $a = $rsp['data'];
+        echo json_encode($rsp->data);
     }
 }

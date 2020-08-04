@@ -52,6 +52,13 @@
         <!-- Datatables 1  -->
 
         <script src="<?php base_url() ?>lib\props\tabla.js"></script>
+
+        <!-- agrega archivo navegacion.js -->
+        <script src="<?php base_url() ?>lib\props\navegacion.js"></script>
+
+
+        <script src="<?php base_url() ?>lib\gridstack\gridstack.all.js"></script>
+        
    
        
        <!-- alertifyjs  -->

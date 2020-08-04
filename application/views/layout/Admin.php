@@ -66,6 +66,9 @@
     <!-- animate.css -->
 
     <link rel="stylesheet" href="<?php base_url();?>lib/animate/animate.css">
+    
+    
+    <link rel="stylesheet" href="<?php base_url();?>lib/gridstack/gridstack.css">
 
     <!-- Google Font -->
     <link rel="stylesheet"
