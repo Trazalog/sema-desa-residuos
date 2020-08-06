@@ -1579,6 +1579,24 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }
   }
 
+-- establecimientosGetTodos
+  recurso: /establecimientos
+  metodo: get
+
+  select esta_id, nombre from prd.establecimientos
+  where estado = "1" 
+
+  {
+    "establecimientos":{     
+      "establecimiento":  [
+        {
+          "esta_id": "$esta_id",
+          "nombre": "$nombre"
+        }
+      ]
+    }
+  }
+
 
 -- (generadores)solicitanteTransporteGet
   recurso: /solicitantesTransporte
@@ -1616,7 +1634,8 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
 -- (generadores)solicitanteTransporteGet(por soco_id)
 
-  recurso: /solicitantesTransporte/{soco_id}
+  recurso: /solicitantesTransporte/solicitante/contenedor/{soco_id}
+
   metodo: get
 
   select 
@@ -3471,7 +3490,7 @@ retorna 200 si ok
    }]},
    "dominio": "wqe324",
    "tran_id": "47"
-}}
+  }}
 
 
 

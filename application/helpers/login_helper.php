@@ -24,3 +24,12 @@ if(!function_exists('editar')){
     }
     
 }  
+
+if(!function_exists('list_usuarios')){
+
+    function list_usuarios()
+    {
+        redirect(DNATO.'main/users');
+    }
+    
+} 

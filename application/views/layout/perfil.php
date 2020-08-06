@@ -8,15 +8,23 @@
 					<span class="hidden-xs"><?php echo $this->session->userdata['first_name'].' '.$this->session->userdata['last_name']?></span>
 			</a>
 			<ul class="dropdown-menu">
+					
 					<li class="user-body">
 							<a href="<?php echo base_url('Login/edit');?>"><i class="fa fa-pencil"></i> Editar Perfil</a>
 					</li>
+
+
 					<li class="user-body">						
 					</li>					
 					<!-- Menu Footer-->
-					<li class="user-footer">
+					<li class="user-footer">						
+							<?php if($this->session->userdata['role'] == 1){  // si es usr admin 	?>
+								<div class="pull-left">
+										<a href=<?php echo base_url('Login/list_usuarios')?> class="btn-sm btn-primary pull-right">Usuarios <i class="fa fa-user-circle-o"></i></a>                   
+								</div>
+							<?php } ?>	
 							<div class="pull-right">
-									<a href=<?php echo base_url('Login/log_out')?> class="btn btn-default btn-flat">Salir <i class="fa fa-fw fa-sign-out"></i></a>                        
+									<a href=<?php echo base_url('Login/log_out')?> class="btn-sm btn-primary pull-left">Salir <i class="fa fa-fw fa-sign-out"></i></a>                       
 							</div>
 					</li>
 			</ul>

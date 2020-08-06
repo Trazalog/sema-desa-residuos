@@ -97,7 +97,7 @@ define('BPM_PROCESS_ID_PEDIDO_CONTENEDORES', '5268088305538274604');
 
 define('BPM_PROCESS_ID_RETIRO_CONTENEDORES', '4817856371144276175');
 
-define('BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE', '5525269319148713590');
+define('BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE', '7241733770067282313');
 
 #COMPONENTE ALMACENES
 define('ALM', 'traz-comp-almacen/');
@@ -109,7 +109,7 @@ define('BPM_PROCESS', json_encode(array(
     '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
     '5268088305538274604' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'PedidoContenedores'],
     '4817856371144276175' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#ABC51A', 'proyecto'=>'general/transporte-bpm/', 'model'=>'RetiroContenedores'],
-    '5525269319148713590' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#1A56C5', 'proyecto'=>'general/transporte-bpm/', 'model'=>'EntregaOrdenTransportes']    
+    '7241733770067282313' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#1A56C5', 'proyecto'=>'general/transporte-bpm/', 'model'=>'EntregaOrdenTransportes']    
 )));
 
 
@@ -174,7 +174,7 @@ define('FILES', 'files/');
 
 # DNATO
 define('LOGIN', true);
-define('DNATO', 'http://localhost/dnato/');
+define('DNATO', 'http://localhost/login/');
 
 
 define('PORT', ':3000/');

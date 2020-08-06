@@ -26,4 +26,8 @@ class Login extends CI_Controller
     {
         editar();
     }
+
+    public function list_usuarios(){
+        list_usuarios();
+    }
 }
