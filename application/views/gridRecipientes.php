@@ -10,7 +10,7 @@
         $aux2=0;
         $aux=0;
         $idcol =0;
-        foreach($Recipientes as $fila)
+        foreach($data as $fila)
         {   
             if($fila->row == $j+1 && $fila->row != null){
                 $aux = 1;
@@ -22,10 +22,10 @@
         {   
             $idcol = $i+1;
             $idcol = "BOX" . $array[$j] . $idcol  ;  
-            echo '<div class="col-xs-2" style="margin-right: -5rem; width: 23.666667%;">';
+            echo '<div class="col-md-12" style="margin-right: -5rem; width: 23.666667%;">';
                     echo'<div class="thumbnail" style="margin-right: 3rem;">';
-                        echo'<div class="caption">';
-                                echo '<h5 style="font-size: 12px;">'.$idcol.'</h5>';
+                        echo'<div class="caption" style="text-align:center">';
+                                echo '<h5 style="font-size: 12px">'.$idcol.'</h5>';
                                 if($aux == 1){
                                     for($t=0;$t<count($deposito);$t++)
                                     {
@@ -35,10 +35,12 @@
                                             $ij = $sumaj.$sumai;
                                             $suma = $sumaj."/".$sumai."@".$idcol;
                                             if($deposito[$t]->estado == "VACIO"){
-                                                $aux2 = 1;                                                  
-                                                echo "<input class='btnvolcar btnMatrizSelreci $ij' type='button' name='Volcar' id='$suma'  data-json=".json_encode($deposito[$t])."  value='Volcar' onclick='btnVolcarRecidest(this)' style='border-radius: 15px; color: #040cff; '/>";
+                                                $aux2 = 1;
+                                                echo "<p style='color:green'>Recipiente Vacio</p>";
+                                                echo "<input class='btnvolcar btnMatrizSelreci $ij' type='button' name='seleccionar' id='$suma'  data-json=".json_encode($deposito[$t])."  value='seleccionar' onclick='btnVolcarRecidest(this)' style='border-radius: 15px; color: #040cff; '/>";
                                             }else{
                                                 $aux2= 1;
+                                                echo '<p style ="color:red" >Recipiente lleno</p>';
                                             }
                                         }
                                     }

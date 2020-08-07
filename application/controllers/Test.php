@@ -23,18 +23,46 @@ class Test extends CI_Controller
         echo json_encode($data);
     }
 
-    public function altaDeposito()
+    public function obtenerEstablecimientos()
     {
-        log_message('INFO','#TRAZA|Deposito|altaDeposito() >>');
-        $data = $this->TestModel->getDepositos();
-        $data['depositos'] = json_decode($data['data'])->depositos->deposito;
-        $this->load->view('test2',$data);
+      $esta_id = $this->input->get("esta_id");
+      $rsp = $this->TestModel->obtenerEstablecimientos($esta_id)->establecimientos->establecimiento;
+      if (isset($rsp)) {
+        $this->load->view('test2',$rsp);
+        // echo json_encode($rsp);
+      } else {
+        echo "No existen depositos";
+      }
     }
 
-    public function obtenerRecipientes($depo_id)
+    public function obtenerRecipientesDeposito()
     {
-        $rsp = $this->TestModel->getRecipientes($depo_id);
-        $rsp = $this->load->view('gridRecipientes',$rsp);
-        return($rsp);
+      $data = $this->input->get();
+      $rsp = $this->TestModel->obtenerRecipientesDeposito($data)->tipos->tipo;
+      if ($rsp) {
+        echo json_encode($rsp);
+      } else {
+        echo "No existen recipientes";
+      }
+    }
+
+    // public function altaDeposito()
+    // {
+    //     log_message('INFO','#TRAZA|Deposito|altaDeposito() >>');
+    //     $data = $this->TestModel->getDepositos();
+    //     $data['depositos'] = json_decode($data['data'])->depositos->deposito;
+    //     $this->load->view('test2',$data);
+    // }
+
+    // public function obtenerRecipientes($depo_id)
+    // {
+    //     $rsp = $this->TestModel->getRecipientes($depo_id);
+    //     $rsp = $this->load->view('gridRecipientes',$rsp);
+    //     return($rsp);
+    // }
+    public function llenarDeposito()
+    {
+        $data = $this->input->post();
+        $data = $this->TestModel->setRecipiente($data);
     }
 }
