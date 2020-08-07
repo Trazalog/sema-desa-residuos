@@ -52,7 +52,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close btn-cerrar-modal" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h5 class="modal-title titulo" id="exampleModalLabel">Editar  Zona</h5>
@@ -64,14 +64,15 @@
             <form method="POST" id="formModalEdit" autocomplete="off" id="" class="registerForm">
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12 ">
+                        
+                        <div class="col-md-12 " style="margin-left: 6rem;">
                             <div class="col-md-6 col-sm-6">
 
                                 <!--Nombre-->
                                 <div class="form-group">
                                     <label for="Nombre" name="nombre">Nombre:</label>
                                     <br>
-                                    <input type="text" class="form-control habilitar" id="nom_id" name="nombre">
+                                    <input type="text" class="form-control habilitar estilo" id="nom_id" name="nom_id" style="width: 40rem;">
                                     
                                     
                                 </div>
@@ -80,42 +81,48 @@
                                 <!--Descripcion-->
                                 <div class="form-group">
                                     <label for="Descripcion" name="">Descripcion:</label>
-                                    <input type="text" class="form-control habilitar" id="desc_id">
+                                    <input type="text" class="form-control habilitar estilo custom" id="desc_id" name="desc_id" style="width: 40rem;">
                                 </div>
                                 <!--_____________________________________________-->
 
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 " style="margin-left: 6rem;">
                             <div class="col-md-6 col-sm-6">
+                            
+                                    <div class="form-group" id="div_ver" style="display:none">
+                                            
+                                            <label for="Dptoo" name="">Departamento:</label> 
+                                            <input   type="text" class="form-control estilo" id="dep_ver" name="dep_ver" style="width: 40rem;">
+                                        
+                                    </div>
+                                    <!--Departamento-->
+                                    <div class="form-group">
+                                        <label for="Dpto" name="" id="texto_dep">Departamento:</label> 
+                                        <br>
+                                        <select class="form-control select2 select2-hidden-accesible habilitar estilo" id="dep_id" name="dep_id" style="width: 40rem;">
+                                            <option value="" selected  id="opt_sel" class="habilitar ocultar " ></option>
 
-                                <!--Circuito-->
-                                <div class="form-group">
-                                    <label for="CircR" name="img">Imagen:</label>
-                                   <input type="file" class="ocultar" name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
-                                   <input type="text" id="input_aux_img64" style="display:none" >
-                                   <input type="text" id="input_aux_zonaID" style="display:none" >                                   
-                                   <img src="" alt="no hay imagen! cargue una" id="img_base" width="" height="">
-                                   
-                                 
-                                   
-                                   
-                                </div>
-                               
-                                <!--_____________________________________________-->
-
-                                <!--Departamento-->
-                                <div class="form-group">
-                                    <label for="Dpto" name="" id="texto_dep">Departamento:</label> 
-                                    <br>
-                                    <select class="form-control select2 select2-hidden-accesible habilitar" id="dep_id">
-                                        <option value="" selected  id="opt_sel" class="habilitar ocultar " ></option>
-
-                                    </select>
-                                </div>
-                                <div  id="div_ver" style="display:none">
-                                <label for="Dptoo" name="">Departamento:</label> 
-                                <input   type="text" class="form-control" id="dep_ver">
-                                </div>
-                                <!--_____________________________________________-->
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-12"><br></div>
+                                    <!--Imagen-->
+                                    <div class="form-group">
+                                        <label for="CircR" name="img">Adjuntar Imagen:</label>
+                                        <input type="file" class="ocultar"  name=img id="img_file" onchange="convert()" style="font-size: smaller" id="files">
+                                        <div class="col-md-12"><br></div>
+                                        <input type="text" id="input_aux_img64" style="display:none" >
+                                        <input type="text" id="input_aux_zonaID" style="display:none" >  
+                                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>          
+                                        <br>   
+                                        <a  id="etiqueta"><p><img src="" alt="no hay imagen! cargue una" id="img_base" width="" height=""> </p></a>                       
+                                        <!-- <img src="" alt="no hay imagen! cargue una" id="img_base" width="" height=""> -->
+                                    
+                                    </div>
+                                
                             </div>
                         </div>      
                     </div>
@@ -128,7 +135,7 @@
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
-                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal" id="cerrar">Cerrar</button>
+                    <button type="submit" class="btn btn-default cerrarModalEdit" id="btnsave" data-dismiss="modal" id="cerrar">Cerrar</button>
                    
                 </div>
             </div>
@@ -172,6 +179,21 @@
 
 <!-- --------------------------------script para modal editar----------------------------------------- -->
 <script>
+$(document).ready(function(){		
+                var aux= "";	
+				$("#img_base").val(aux);
+				$(".fa-spinner").hide();
+               
+		});
+$(".cerrarModalEdit").click(function(e){
+    $("#formModalEdit").data('bootstrapValidator').resetForm();
+   
+});
+$(".btn-cerrar-modal").click(function(e){
+    $("#formModalEdit").data('bootstrapValidator').resetForm();
+   
+});
+
 
 //Convertir a base64 el archivo Imagen
 function getFile(file){
@@ -240,6 +262,7 @@ async function convert(){
               $("#img_base").attr("src",$("#input_aux_img64").val());
               $("#img_base").attr("width",100);
               $("#img_base").attr("height",100);
+              
              
          }
         
@@ -283,13 +306,14 @@ function jpg($img_b64){
 
 
 function ExtraerImg($zona){
+    $(".fa-spinner").show();
+    $("#img_base").hide();
     $.ajax({
                 type: "POST",
                 data: {zona_id: $zona.zona_id},
                 url: "general/Estructura/Zona/GetImagen",
                 success: function ($dato) {
-                    
-                    debugger;
+                    $(".fa-spinner").hide();
                     var res = JSON.parse($dato);
                     console.table(res);
                     console.table(res.respuesta.imagen);
@@ -302,8 +326,12 @@ function ExtraerImg($zona){
                    }else{
                        if(img_b64[4]=='i'){jpg(img_b64);}
                    }
-                    
+                    $("#img_base").show();
                     console.table("Como queda src final: "+img_b64);
+                    var auxx = $("#input_aux_img64").val();
+                    $("#etiqueta").attr("href",auxx);
+                    // var auxxx = "_blank";
+                    // $("#etiqueta").attr("target",auxxx);
                 }
             });
 
@@ -377,6 +405,7 @@ function Editar($zona) {
 
 </script>
 <script>
+
 //------------------------------------------------BOTON GUARDAR-------------------------------------
 $("#btnsave").click(function(e){
     //---------------------todos los datos sin la imagen-------------------------
@@ -398,37 +427,59 @@ $("#btnsave").click(function(e){
     console.table("datos de input_aux_img64: "+ $("#input_aux_img64").val());
     console.table(" datosImg.imagen: "+ datosImg.imagen);
     console.table(datosImg);
-    
+    var aux =0; 
+    if(datos.nombre != "")
+    {
+        if(datos.descripcion != "")
+        {
+            if(datos.depa_id != "")
+            {
+                aux = 1;
+                
+            }
+        }
+     
+    }
+    if(aux == 1)
+    {
+        if( datosImg.imagen != "")
+        {
+            $.ajax({
+                        type: "POST",
+                        data: {datos, datosImg},
+                        url: "general/Estructura/Zona/Actualizar_Zona",
+                        success: function (r) {
+                            console.table(r);
+                            if (r == "ok") {
+                                
+                            // llama a listar_zona_Tabla el cual es  para recargar la tabla que muestra las zonas se le agrega el script para que tome los eventos
+                            $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona_tabla");
+                                var URLactual = window.location;
+                            
+                                alertify.success("Modificado con exito");
 
-    $.ajax({
-                type: "POST",
-                data: {datos, datosImg},
-                url: "general/Estructura/Zona/Actualizar_Zona",
-                success: function (r) {
-                    console.table(r);
-                    if (r == "ok") {
-                        
-                     // llama a listar_zona_Tabla el cual es  para recargar la tabla que muestra las zonas se le agrega el script para que tome los eventos
-                     $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona_tabla");
-                        var URLactual = window.location;
-                    
-                         alertify.success("Modificado con exito");
-
-                        $("#formZonas").data('bootstrapValidator').resetForm();
-                        $("#formZonas")[0].reset();
-                       
-                        $("#boxDatos").hide(500);
-                        $("#botonAgregar").removeAttr("disabled");
-                       
-                       
-                    } else {
-                        //console.log(r);
-                        alertify.error("error al Modificar");
-                    }
-                }
-            });
+                                $("#formModalEdit").data('bootstrapValidator').resetForm();
+                                // $("#formModalEdit")[0].reset();
+                            
+                                $("#boxDatos").hide(500);
+                                $("#botonAgregar").removeAttr("disabled");
+                            
+                            
+                            } else {
+                                //console.log(r);
+                                alertify.error("error al Modificar");
+                                $("#formModalEdit").data('bootstrapValidator').resetForm();
+                            }
+                        }
+                    });
+        }else{
+            alert("Atencion!!! No ha cargado una imagen");
+        }
+    }else{
+        alert("Atencion!!! hay un campo que esta vacio");
+    }
     
- 
+    
     
 
     
@@ -531,7 +582,49 @@ $("#btndelete").click(function(e){
 
 
 <!-- --------------------------------fin script modal editar----------------------------------------------- -->    
-
+<!--Script Bootstrap Validacion.-->
+<script>
+    $('#formModalEdit').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            nom_id: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            desc_id: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                    
+                }
+            },
+            dep_id: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            }
+        
+    }
+    }).on('success.form.bv', function (e) {
+        e.preventDefault();
+        //guardar();
+    });
+</script>
 <script>
     //DataTable($('#tabla_zonas'));
     $('#tabla_zonas').DataTable({

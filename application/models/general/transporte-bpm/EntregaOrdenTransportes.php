@@ -16,6 +16,17 @@ class EntregaOrdenTransportes extends CI_Model {
   
   }
 
+    /**
+  * Despliega cabeceras usando helpers
+  * @param array $tarea con info de tarea desde BPM   
+  * @return view cabeceras con info
+  */
+  function desplegarCabecera($tarea)
+  {
+    $resp = infoproceso($tarea).infoentidadesproceso($tarea);
+    return $resp;
+  } 
+
   /**
   * Despliega cabeceras usando helpers
   * @param array $tarea con info de tarea desde BPM   
@@ -77,8 +88,12 @@ class EntregaOrdenTransportes extends CI_Model {
             }
             $contrato = $this->contratoIngreso($form);
             return $contrato;
-            break;    
-            
+            break;  
+
+          case 'Certifica Vuelco':
+            $contrato = $this->ContratoCertificadoVuelco($form);
+            return $contrato;
+            break;
           
           default:
                 # code...
@@ -118,7 +133,23 @@ class EntregaOrdenTransportes extends CI_Model {
         $resp = $this->load->view('transporte-bpm/proceso/registraIngreso', $tarea, true);
         return $resp;
         break;
-      
+
+      case 'Certifica Vuelco':
+
+        log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|desplegarVista($tarea)|Certifica Vuelco: $tarea >> '.json_encode($tarea));
+        $tarea->infoOTransporteCont = $this->obtenerInFoOTransporteCont($tarea->caseId);
+        $tarea->infoOT = $this->obtenerInfoOTIncidencia($tarea->caseId);
+        $tarea->tipoCarga = $this->obtenerTipoCarga();
+        $tarea->tipoIncidencia = $this->obtenerTipoIncidencia();
+        $tarea->infoOTransporte = $this->obtenerInFoOTransporte($tarea->caseId);
+        $tarea->TamDeposito = $this->obtenerTamañoDeposito($tarea->infoOTransporteCont[0]->depo_id);
+        $tarea->Recipientes = $this->obtenerRecipientes($tarea->infoOTransporteCont[0]->depo_id);
+        $tarea->tipoValorizado = $this->obtenerValorizado();
+        $tarea->depositos = $this->obtenerDepositos();
+        $resp = $this->load->view('transporte-bpm/proceso/certificadoVuelco', $tarea, true);
+        return $resp;
+        break; 
+
       default:
         # code...
         break;
@@ -255,8 +286,7 @@ class EntregaOrdenTransportes extends CI_Model {
     return $aux->imag_contenedor->imagen;
   }
 
-
-  // ---------------------- FUNCIONES BANDEJA DE ENTRADA ----------------------
+   // ---------------------- FUNCIONES BANDEJA DE ENTRADA ----------------------
 
   /**
   * Devuelve info de Orden de Transporte para configuracion Bandeja Entrada 
@@ -271,8 +301,6 @@ class EntregaOrdenTransportes extends CI_Model {
     $aux_OT = $data->ordenTransporte;
     return $aux_OT;
   }
-            
-            
 
   // obtenerContEntregados($tarea)
   // $aux_cont = $this->rest->callAPI("GET",REST."/contenedoresEntregados/info/entrega/case/".$case_id);
@@ -286,7 +314,85 @@ class EntregaOrdenTransportes extends CI_Model {
   // obtenerTransportista($tarea)
   // $aux_tran = $this->rest->callAPI("GET",REST."/transportistas/proceso/ingreso/case/".$ent_case_id);
   // $aux_tran =json_decode($aux_tran["data"]); 
+ //TODO: 
+  function obtenerTamañoDeposito($depo_id)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerTamañoDeposito($depo_id) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerTamañoDeposito($depo_id): $depo_id  >> '.json_encode($depo_id));
+    $aux = $this->rest->callAPI("GET",REST_PRD."/depositos/$depo_id");
+    $aux =json_decode($aux["data"]);
+    return $aux->deposito;
+  }
+ //TODO:
+  function obtenerRecipientes($depo_id)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerRecipientes($depo_id) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerRecipientes($depo_id): $depo_id  >> '.json_encode($depo_id));
+    $aux = $this->rest->callAPI("GET",REST_PRD."/recipientes/establecimiento/1/deposito/$depo_id/estado/TODOS/tipo/TODOS/categoria/cate_recipienteBOX");
+    $aux =json_decode($aux["data"]);
+    return $aux->recipientes->recipiente;
+  }
+  //TODO: para el que vea este codigo hay que arreglar el servicio 
+  function obtenerInFoOTransporteCont($caseId)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInFoOTransporte($caseId) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInFoOTransporte($caseId): $caseId  >> '.json_encode($caseId));
+    $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/info/vuelco/case/".$caseId);
+    $aux =json_decode($aux["data"]);
+    return $aux->contenedores->contenedor;   
+  }
 
-            
-            
+  function CertificadoVuelco($data)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|CertificadoVuelco($caseId) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|CertificadoVuelco($caseId): $caseId  >> '.json_encode($caseId));
+    $dato[]['_put_contenedoresEntregados_descargar'] = $data['_put_contenedoresEntregados_descargar'];
+    $dato[]['_post_contenedoresEntregados_descargar_recipiente'] = $data['_post_contenedoresEntregados_descargar_recipiente'];
+   
+    // $date['request_box'] = $dato;
+    $rsp = requestBox(REST.'/', $dato);
+    $aux = $rsp;
+    // $aux2 = $this->rest->callAPI("POST",REST_PRD."/request_box", $date);
+    // $aux1 = $this->rest->callAPI("PUT",REST_PRD."/contenedoresEntregados/descargar", $dato1);
+    
+    // $aux3 =json_decode($aux1["status"]);
+    // $aux4 =json_decode($aux1["status"]);
+       
+  }
+
+  function obtenerValorizado()
+  {
+        log_message('INFO','#TRAZA|EntregaOrdenTransportes|obtenerValorizado() >> '); 
+        $aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga_valorizado");
+        $aux =json_decode($aux["data"]);
+        return $aux->valores->valor;
+  }
+
+  function ContratoCertificadoVuelco($form)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|ContratoCertificadoVuelco($form) >> '); 
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|ContratoCertificadoVuelco($form): $form >> '.json_encode($form));   
+    $contrato["tieneResiduosPeligrosos"] = $form['ResPeligrosos']["opcion"];
+    $contrato["redirecciona"] = $form['redirecciona']["opcion"];
+    return $contrato;
+  }
+
+  function MoverRecipiente($data)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|MoverRecipiente($data) >> '); 
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|MoverRecipiente($data): $data >> '.json_encode($data));   
+    $aux = $this->rest->callAPI("PUT",REST_PRD."/lote/recipiente/mover",$data);
+    $aux =json_decode($aux["status"]);
+    return $aux;
+  }
+  function RedireccionarReci($data)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|RedireccionarReci($data) >> '); 
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|RedireccionarReci($data): $data >> '.json_encode($data));   
+    $aux = $this->rest->callAPI("POST",REST."/contenedoresEntregados/redireccionar",$data);
+    $aux =json_decode($aux["status"]);
+    return $aux;
+  }
+
 }
+

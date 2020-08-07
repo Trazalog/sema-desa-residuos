@@ -4,9 +4,10 @@ if(!function_exists('userId')){
 
     function userId()
     {
-        //return 501; // bascula
-        //return 401;// generador
-        return 402;// transportista           !HARDCODE
+              return 502; //descarga
+                    //   return 501; // bascula
+        //  return 401;// generador
+                //   return 402;// transportista           !HARDCODE
 
         $ci =& get_instance();			
         $userdata  = $ci->session->userdata('user_data');
@@ -18,9 +19,10 @@ if(!function_exists('userNick')){
     
     function userNick()
     {
-        //return 'bascula';
-        //return 'generador1';
-        return 'transportista1';
+        //    return'descarga';
+                //  return 'bascula';
+            // return 'generador1';
+                     return 'transportista1';
         $ci =& get_instance();			
         $userdata  = $ci->session->userdata('user_data');
 		return  $userdata[0]['usrNick'];

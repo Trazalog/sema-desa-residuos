@@ -17,11 +17,34 @@ if (!function_exists('wso2')) {
         }
 
         if ($rsp['status']) {
-            $aux = json_decode($rsp['data'], true);
+            $aux = json_decode($rsp['data']);
             $rsp['data'] = reset(reset($aux));
         }
 
         return $rsp;
     }
 
+}
+
+if (!function_exists('requestBox')) {
+    function requestBox($rest, $data)
+    {
+        $json = '';
+
+        foreach ($data as $key => $o) {
+            if ($key) {
+                $json .= ',';
+            }
+            $aux = json_encode($o);
+            $json .= substr($aux, 1, strlen($aux) - 2);
+        }
+
+        $json = '{"request_box":{' . $json . '}}';
+
+        $ci = &get_instance();
+
+        $rsp = $ci->rest->callApi('POST', $rest . 'request_box', $json);
+
+        return $rsp;
+    }
 }
