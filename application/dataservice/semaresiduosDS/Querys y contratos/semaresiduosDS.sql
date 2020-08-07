@@ -1238,7 +1238,11 @@ and cont_id =cast(:cont_id as integer)
 -- contenedoresEntregadosRedireccionar
   recurso: /contenedoresEntregados/redireccionar
   metodo POST
-  UPDATE log.contenedores_entregados&#xd;set depo_id = :depo_id,&#xd;observaciones_descarga = observaciones_descarga ||'\r '||:observaciones_descarga&#xd;where ortr_id=:ortr_id&#xd;and cont_id = :cont_id
+  UPDATE log.contenedores_entregados
+set depo_id = :depo_id,
+observaciones_descarga = observaciones_descarga ||'\r '||:observaciones_descarga
+where ortr_id=:ortr_id
+and cont_id = :cont_id
 
 {
    "_post_contenedoresEntregados_redireccionar":{
@@ -1560,6 +1564,74 @@ returning coen_id;
     }
   }
 
+
+-- contenedoresEntregadosInfoSalidaGet
+   recurso /contenedoresEntregados/info/salida/case/{case_id}
+   metodo: GET
+
+      SELECT
+	OT.ortr_id
+	, OT.fec_alta
+	, OT.estado
+	, E.dominio
+	, E.descripcion
+	, E.imagen AS img_vehiculo
+	, E.tara
+	, CH.imagen AS img_chofer
+	, concat(CH.nombre, ' ', CH.apellido) AS nom_chofer
+	, CH.documento
+	, ce.cont_id 
+	, con.codigo codigo_contenedor
+	, ce.peso_neto 
+	, ce.observaciones_descarga 
+	, t.descripcion contenido_descarga
+FROM
+	log.ordenes_transporte OT
+	, core.equipos E
+	, log.choferes CH
+	, log.contenedores_entregados ce 
+	, core.tablas t
+	, log.contenedores con
+WHERE
+	OT.case_id = :case_id
+	AND OT.equi_id = E.equi_id
+	AND OT.chof_id = CH.documento
+	AND OT.eliminado = 0
+	AND CE.fec_salida IS NULL 
+	AND ce.fec_descarga IS NOT NULL
+	AND ce.ortr_id = ot.ortr_id 
+	AND t.tabl_id = ce.tiva_id 
+	AND con.cont_id = ce.cont_id
+
+   "contenedor":{
+      "ortr_id":"$ortr_id",
+      "fec_alta":"$fec_alta",
+      "estado":"$estado",
+      "dominio":"$dominio",
+      "descripcion":"$descripcion",
+      "img_vehiculo":"$img_vehiculo",
+      "tara":"$tara",
+      "img_chofer":"$img_chofer",
+      "nom_chofer":"$nom_chofer",
+      "documento":"$documento",
+      "cont_id":"$cont_id",
+      "codigo_contenedor":"$codigo_contenedor",
+      "peso_neto":"$peso_neto",
+      "observaciones_descarga":"$observaciones_descarga",
+      "contenido_descarga":"$contenido_descarga"
+   }
+
+
+-- contenedoresEntregadosSalidaUpdate
+   recurso: /contenedoresEntregados/salida
+   metodo: PUT
+
+update log.contenedores_entregados
+set fec_salida= now()
+where ortr_id = cast(:ortr_id as integer)
+and cont_id =cast(:cont_id as integer)
+
+retorna 202
 
 -- (generadores)solicitanteTransporteGet
   recurso: /solicitantesTransporte
