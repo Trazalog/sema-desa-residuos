@@ -4,10 +4,6 @@ http://10.142.0.7:8280/services/semaresiduosDS
 endpoint de Test
 http://10.142.0.3:8280/services/semaresiduosDS
 
-//TODO: TERMINAR ACTA INFRACCION(revisar todo, no esta en WSO2), EVACUAR DUDAS CON ELI
-  - falta saber de donde sale el destino acta para elegir
-  - inspectores seran usrs?
-
 -- actaInfraccion(Tipo)
   recurso:/tablas/tipo_infraccion
   metodo: get
@@ -2732,274 +2728,274 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
 
 --templatesOrdenTransporteListGet
-GET /templatesOrdenTransporte/list/solicitanteTransporte/{sotr_id}
-SELECT
-	tot.teot_id
-	, zo.descripcion zona
-	, zo.zona_id zona_id
-	, ci.codigo || ' ' || ci.descripcion circuito
-	, ci.zona_id
-        , ci.circ_id circ_id
-	, t.valor tipo_carga
-	, t.tabl_id tica_id
-	, t2.valor disposicion_final
-	, t2.tabl_id difi_id
-	, tr.descripcion || ' cuit:' || tr.cuit transportista
-	, tr.tran_id tran_id
-	, ch.documento chof_id
-	, ch.apellido || ', ' || ch.nombre nombre_chofer
-	, eq.dominio || ' ' || eq.codigo || ' ' || eq.marca || ' ' || eq.descripcion equipo
-	, eq.equi_id equi_id
-	, eq.cont_id cont_id
-	, ot.ortr_id 
-FROM
-	log.circuitos ci
-LEFT JOIN core.zonas zo ON
-	zo.zona_id = ci.zona_id
-	, log.templates_orden_transporte tot
-LEFT JOIN log.ordenes_transporte ot ON tot.teot_id = ot.teot_id 
-AND date_trunc('day',ot.fec_alta) = date_trunc('day',now()) 
-	, log.choferes ch
-	, core.tablas t
-	, core.tablas t2
-	, log.transportistas tr
-	, core.equipos eq
-WHERE
-	tot.chof_id = ch.documento
-	AND tot.circ_id = ci.circ_id
-	AND tot.tica_id = t.tabl_id
-	AND tot.difi_id = t2.tabl_id
-	AND tot.equi_id = eq.equi_id
-	AND eq.tran_id = tr.tran_id
-         AND tot.eliminado = 0
-	AND tot.sotr_id = CAST(:sotr_id AS integer)
+  GET /templatesOrdenTransporte/list/solicitanteTransporte/{sotr_id}
+  SELECT
+    tot.teot_id
+    , zo.descripcion zona
+    , zo.zona_id zona_id
+    , ci.codigo || ' ' || ci.descripcion circuito
+    , ci.zona_id
+          , ci.circ_id circ_id
+    , t.valor tipo_carga
+    , t.tabl_id tica_id
+    , t2.valor disposicion_final
+    , t2.tabl_id difi_id
+    , tr.descripcion || ' cuit:' || tr.cuit transportista
+    , tr.tran_id tran_id
+    , ch.documento chof_id
+    , ch.apellido || ', ' || ch.nombre nombre_chofer
+    , eq.dominio || ' ' || eq.codigo || ' ' || eq.marca || ' ' || eq.descripcion equipo
+    , eq.equi_id equi_id
+    , eq.cont_id cont_id
+    , ot.ortr_id 
+  FROM
+    log.circuitos ci
+  LEFT JOIN core.zonas zo ON
+    zo.zona_id = ci.zona_id
+    , log.templates_orden_transporte tot
+  LEFT JOIN log.ordenes_transporte ot ON tot.teot_id = ot.teot_id 
+  AND date_trunc('day',ot.fec_alta) = date_trunc('day',now()) 
+    , log.choferes ch
+    , core.tablas t
+    , core.tablas t2
+    , log.transportistas tr
+    , core.equipos eq
+  WHERE
+    tot.chof_id = ch.documento
+    AND tot.circ_id = ci.circ_id
+    AND tot.tica_id = t.tabl_id
+    AND tot.difi_id = t2.tabl_id
+    AND tot.equi_id = eq.equi_id
+    AND eq.tran_id = tr.tran_id
+          AND tot.eliminado = 0
+    AND tot.sotr_id = CAST(:sotr_id AS integer)
 
-Respuesta:
-{"templatesOrdenTransporte": {"templateOrdenTransporte": [
-      {
-      "transportista": "transportista 2 cuit:123456",
-      "tica_id": "tipo_cargaResiduos Quimicos",
-      "circ_id": "148",
-      "tran_id": "47",
-      "ortr_id": null,
-      "tipo_carga": "Residuos Quimicos",
-      "zona_id": "109",
-      "equi_id": "39",
-      "zona": "desc",
-      "nombre_chofer": "led, pepe",
-      "circuito": "1IIMZ desc",
-      "chof_id": "2134545",
-      "equipo": "wqe324 wqwer peugeot automovil",
-      "difi_id": "disposicion_finalPTA",
-      "teot_id": "17",
-      "disposicion_final": "PTA",
-      "cont_id": null
-   },
-      {
-      "transportista": "transportista 2 cuit:123456",
-      "tica_id": "tipo_cargaResiduos Quimicos",
-      "circ_id": "168",
-      "tran_id": "47",
-      "ortr_id": null,
-      "tipo_carga": "Residuos Quimicos",
-      "zona_id": "109",
-      "equi_id": "39",
-      "zona": "desc",
-      "nombre_chofer": "Fierro Delgado, Rosamel",
-      "circuito": "BtaW444 desc123",
-      "chof_id": "21206850",
-      "equipo": "wqe324 wqwer peugeot automovil",
-      "difi_id": "disposicion_finalPTA",
-      "teot_id": "13",
-      "disposicion_final": "PTA",
-      "cont_id": null
-   },
-      {
-      "transportista": "transportista 2 cuit:123456",
-      "tica_id": "tipo_cargaResiduos Quimicos",
-      "circ_id": "176",
-      "tran_id": "47",
-      "ortr_id": null,
-      "tipo_carga": "Residuos Quimicos",
-      "zona_id": "117",
-      "equi_id": "39",
-      "zona": "desc",
-      "nombre_chofer": "Fierro Delgado, Rosamel",
-      "circuito": "45545 circuito 5151",
-      "chof_id": "21206850",
-      "equipo": "wqe324 wqwer peugeot automovil",
-      "difi_id": "disposicion_finalPTA",
-      "teot_id": "8",
-      "disposicion_final": "PTA",
-      "cont_id": null
-   },
-      {
-      "transportista": "una empresa soida como el agua cuit:2022020202",
-      "tica_id": "tipo_cargaEscombros",
-      "circ_id": "186",
-      "tran_id": "51",
-      "ortr_id": null,
-      "tipo_carga": "Escombros",
-      "zona_id": null,
-      "equi_id": "43",
-      "zona": null,
-      "nombre_chofer": "led, pepe",
-      "circuito": "BtaW445thk dfssg",
-      "chof_id": "2134545",
-      "equipo": "APT345 23456 Iveco Camion Rojo",
-      "difi_id": "disposicion_finalPTA",
-      "teot_id": "18",
-      "disposicion_final": "PTA",
-      "cont_id": null
-   },
-      {
-      "transportista": "una empresa soida como el agua cuit:2022020202",
-      "tica_id": "tipo_cargaOrganico",
-      "circ_id": "149",
-      "tran_id": "51",
-      "ortr_id": null,
-      "tipo_carga": "Organico",
-      "zona_id": "110",
-      "equi_id": "42",
-      "zona": "we",
-      "nombre_chofer": "led, pepe",
-      "circuito": "123abcd6 descripcion",
-      "chof_id": "2134545",
-      "equipo": "TKG123 234457676786 Chevrolet Camion Verde",
-      "difi_id": "disposicion_finalPTA",
-      "teot_id": "7",
-      "disposicion_final": "PTA",
-      "cont_id": null
-   }
-]}}
+  Respuesta:
+  {"templatesOrdenTransporte": {"templateOrdenTransporte": [
+        {
+        "transportista": "transportista 2 cuit:123456",
+        "tica_id": "tipo_cargaResiduos Quimicos",
+        "circ_id": "148",
+        "tran_id": "47",
+        "ortr_id": null,
+        "tipo_carga": "Residuos Quimicos",
+        "zona_id": "109",
+        "equi_id": "39",
+        "zona": "desc",
+        "nombre_chofer": "led, pepe",
+        "circuito": "1IIMZ desc",
+        "chof_id": "2134545",
+        "equipo": "wqe324 wqwer peugeot automovil",
+        "difi_id": "disposicion_finalPTA",
+        "teot_id": "17",
+        "disposicion_final": "PTA",
+        "cont_id": null
+    },
+        {
+        "transportista": "transportista 2 cuit:123456",
+        "tica_id": "tipo_cargaResiduos Quimicos",
+        "circ_id": "168",
+        "tran_id": "47",
+        "ortr_id": null,
+        "tipo_carga": "Residuos Quimicos",
+        "zona_id": "109",
+        "equi_id": "39",
+        "zona": "desc",
+        "nombre_chofer": "Fierro Delgado, Rosamel",
+        "circuito": "BtaW444 desc123",
+        "chof_id": "21206850",
+        "equipo": "wqe324 wqwer peugeot automovil",
+        "difi_id": "disposicion_finalPTA",
+        "teot_id": "13",
+        "disposicion_final": "PTA",
+        "cont_id": null
+    },
+        {
+        "transportista": "transportista 2 cuit:123456",
+        "tica_id": "tipo_cargaResiduos Quimicos",
+        "circ_id": "176",
+        "tran_id": "47",
+        "ortr_id": null,
+        "tipo_carga": "Residuos Quimicos",
+        "zona_id": "117",
+        "equi_id": "39",
+        "zona": "desc",
+        "nombre_chofer": "Fierro Delgado, Rosamel",
+        "circuito": "45545 circuito 5151",
+        "chof_id": "21206850",
+        "equipo": "wqe324 wqwer peugeot automovil",
+        "difi_id": "disposicion_finalPTA",
+        "teot_id": "8",
+        "disposicion_final": "PTA",
+        "cont_id": null
+    },
+        {
+        "transportista": "una empresa soida como el agua cuit:2022020202",
+        "tica_id": "tipo_cargaEscombros",
+        "circ_id": "186",
+        "tran_id": "51",
+        "ortr_id": null,
+        "tipo_carga": "Escombros",
+        "zona_id": null,
+        "equi_id": "43",
+        "zona": null,
+        "nombre_chofer": "led, pepe",
+        "circuito": "BtaW445thk dfssg",
+        "chof_id": "2134545",
+        "equipo": "APT345 23456 Iveco Camion Rojo",
+        "difi_id": "disposicion_finalPTA",
+        "teot_id": "18",
+        "disposicion_final": "PTA",
+        "cont_id": null
+    },
+        {
+        "transportista": "una empresa soida como el agua cuit:2022020202",
+        "tica_id": "tipo_cargaOrganico",
+        "circ_id": "149",
+        "tran_id": "51",
+        "ortr_id": null,
+        "tipo_carga": "Organico",
+        "zona_id": "110",
+        "equi_id": "42",
+        "zona": "we",
+        "nombre_chofer": "led, pepe",
+        "circuito": "123abcd6 descripcion",
+        "chof_id": "2134545",
+        "equipo": "TKG123 234457676786 Chevrolet Camion Verde",
+        "difi_id": "disposicion_finalPTA",
+        "teot_id": "7",
+        "disposicion_final": "PTA",
+        "cont_id": null
+    }
+  ]}}
 
 --templateOrdenTransporteGet
-recurso /templatesOrdenTransporte/{teot_id}
-SELECT
-	tot.teot_id
-	, zo.descripcion zona
-	, zo.zona_id zona_id
-	, ci.codigo || ' ' || ci.descripcion circuito
-	, ci.zona_id
-        , ci.circ_id circ_id
-	, t.valor tipo_carga
-	, t.tabl_id tica_id
-	, t2.valor disposicion_final
-	, t2.tabl_id difi_id
-	, tr.descripcion || ' cuit:' || tr.cuit transportista
-	, tr.tran_id tran_id
-	, ch.documento chof_id
-	, ch.apellido || ', ' || ch.nombre nombre_chofer
-	, eq.dominio || ' ' || eq.codigo || ' ' || eq.marca || ' ' || eq.descripcion equipo
-	, eq.equi_id equi_id
-	, eq.cont_id cont_id
-	, ot.ortr_id 
-FROM
-	log.circuitos ci
-LEFT JOIN core.zonas zo ON
-	zo.zona_id = ci.zona_id
-	, log.templates_orden_transporte tot
-LEFT JOIN log.ordenes_transporte ot ON tot.teot_id = ot.teot_id 
-AND date_trunc('day',ot.fec_alta) = date_trunc('day',now()) 
-	, log.choferes ch
-	, core.tablas t
-	, core.tablas t2
-	, log.transportistas tr
-	, core.equipos eq
-WHERE
-	tot.chof_id = ch.documento
-	AND tot.circ_id = ci.circ_id
-	AND tot.tica_id = t.tabl_id
-	AND tot.difi_id = t2.tabl_id
-	AND tot.equi_id = eq.equi_id
-	AND eq.tran_id = tr.tran_id
-AND tot.eliminado = 0
-and tot.teot_id = cast(:teot_id as integer)
+  recurso /templatesOrdenTransporte/{teot_id}
+  SELECT
+    tot.teot_id
+    , zo.descripcion zona
+    , zo.zona_id zona_id
+    , ci.codigo || ' ' || ci.descripcion circuito
+    , ci.zona_id
+          , ci.circ_id circ_id
+    , t.valor tipo_carga
+    , t.tabl_id tica_id
+    , t2.valor disposicion_final
+    , t2.tabl_id difi_id
+    , tr.descripcion || ' cuit:' || tr.cuit transportista
+    , tr.tran_id tran_id
+    , ch.documento chof_id
+    , ch.apellido || ', ' || ch.nombre nombre_chofer
+    , eq.dominio || ' ' || eq.codigo || ' ' || eq.marca || ' ' || eq.descripcion equipo
+    , eq.equi_id equi_id
+    , eq.cont_id cont_id
+    , ot.ortr_id 
+  FROM
+    log.circuitos ci
+  LEFT JOIN core.zonas zo ON
+    zo.zona_id = ci.zona_id
+    , log.templates_orden_transporte tot
+  LEFT JOIN log.ordenes_transporte ot ON tot.teot_id = ot.teot_id 
+  AND date_trunc('day',ot.fec_alta) = date_trunc('day',now()) 
+    , log.choferes ch
+    , core.tablas t
+    , core.tablas t2
+    , log.transportistas tr
+    , core.equipos eq
+  WHERE
+    tot.chof_id = ch.documento
+    AND tot.circ_id = ci.circ_id
+    AND tot.tica_id = t.tabl_id
+    AND tot.difi_id = t2.tabl_id
+    AND tot.equi_id = eq.equi_id
+    AND eq.tran_id = tr.tran_id
+  AND tot.eliminado = 0
+  and tot.teot_id = cast(:teot_id as integer)
 
-Respuesta:
-{"templateOrdenTransporte": {
-   "transportista": "transportista 2 cuit:123456",
-   "tica_id": "tipos_cargaResiduos Urbanos",
-   "circ_id": "182",
-   "tran_id": "47",
-   "ortr_id": "74",
-   "tipo_carga": "Residuos Urbanos",
-   "zona_id": null,
-   "equi_id": "40",
-   "zona": null,
-   "nombre_chofer": ", sergio",
-   "circuito": "2345qwer qwrqr",
-   "chof_id": "23565",
-   "equipo": "asf 34 asf asd",
-   "difi_id": "disposicion_finalPTA",
-   "teot_id": "1",
-   "disposicion_final": "PTA",
-   "cont_id": null
-}}
+  Respuesta:
+  {"templateOrdenTransporte": {
+    "transportista": "transportista 2 cuit:123456",
+    "tica_id": "tipos_cargaResiduos Urbanos",
+    "circ_id": "182",
+    "tran_id": "47",
+    "ortr_id": "74",
+    "tipo_carga": "Residuos Urbanos",
+    "zona_id": null,
+    "equi_id": "40",
+    "zona": null,
+    "nombre_chofer": ", sergio",
+    "circuito": "2345qwer qwrqr",
+    "chof_id": "23565",
+    "equipo": "asf 34 asf asd",
+    "difi_id": "disposicion_finalPTA",
+    "teot_id": "1",
+    "disposicion_final": "PTA",
+    "cont_id": null
+  }}
 
 --templateOrdenTransporteSet
-recurso /semaresiduosDS/templatesOrdenTransporte 
-INSERT
-	INTO
-	log.templates_orden_transporte ( observaciones, usuario_app, circ_id, equi_id, chof_id, tica_id, difi_id, sotr_id )
-VALUES( :observaciones, :usuario_app, CAST(:circ_id AS integer), CAST( :equi_id AS integer), :chof_id, :tica_id, :difi_id, CAST( :sotr_id AS integer) ) returning teot_id
+  recurso /semaresiduosDS/templatesOrdenTransporte 
+  INSERT
+    INTO
+    log.templates_orden_transporte ( observaciones, usuario_app, circ_id, equi_id, chof_id, tica_id, difi_id, sotr_id )
+  VALUES( :observaciones, :usuario_app, CAST(:circ_id AS integer), CAST( :equi_id AS integer), :chof_id, :tica_id, :difi_id, CAST( :sotr_id AS integer) ) returning teot_id
 
-{
-"_post_templatesOrdenTransporte":{
- "observaciones":"sarcangue",
- "usuario_app":"usuario_app",
- "circ_id":"182",
- "chof_id":"23565",
- "equi_id":"40",
- "tica_id":"tipos_cargaResiduos Urbanos",
- "difi_id":"disposicion_finalPTA",
- "sotr_id":"39"}
-}
+  {
+  "_post_templatesOrdenTransporte":{
+  "observaciones":"sarcangue",
+  "usuario_app":"usuario_app",
+  "circ_id":"182",
+  "chof_id":"23565",
+  "equi_id":"40",
+  "tica_id":"tipos_cargaResiduos Urbanos",
+  "difi_id":"disposicion_finalPTA",
+  "sotr_id":"39"}
+  }
 
-Respuesta:
-{"respuesta": {"teot_id": "3"}}
+  Respuesta:
+  {"respuesta": {"teot_id": "3"}}
 
 --templatesOrdenTransporteUpdate
-recurso PUT /templatesOrdenTransporte
-UPDATE log.templates_orden_transporte
-SET observaciones=:observaciones
-, usuario_app=:usuario_app
-, circ_id=cast(:circ_id AS integer)
-, equi_id=cast(:equi_id AS integer)
-, chof_id=:chof_id 
-, tica_id=:tica_id 
-, difi_id=:difi_id 
-WHERE teot_id = CAST(:teot_id AS integer);
+  recurso PUT /templatesOrdenTransporte
+  UPDATE log.templates_orden_transporte
+  SET observaciones=:observaciones
+  , usuario_app=:usuario_app
+  , circ_id=cast(:circ_id AS integer)
+  , equi_id=cast(:equi_id AS integer)
+  , chof_id=:chof_id 
+  , tica_id=:tica_id 
+  , difi_id=:difi_id 
+  WHERE teot_id = CAST(:teot_id AS integer);
 
-{
-"_put_templatesOrdenTransporte":{
- "observaciones":"sarcangue",
- "usuario_app":"usuario_app",
- "circ_id":"182",
- "chof_id":"23565",
- "equi_id":"40",
- "tica_id":"tipos_cargaResiduos Urbanos",
- "difi_id":"disposicion_finalPTA",
- "teot_id":"1"}
-}
+  {
+  "_put_templatesOrdenTransporte":{
+  "observaciones":"sarcangue",
+  "usuario_app":"usuario_app",
+  "circ_id":"182",
+  "chof_id":"23565",
+  "equi_id":"40",
+  "tica_id":"tipos_cargaResiduos Urbanos",
+  "difi_id":"disposicion_finalPTA",
+  "teot_id":"1"}
+  }
 
-Respuesta
-HTTP/1.1 202 Accepted
+  Respuesta
+  HTTP/1.1 202 Accepted
 
 --templateOrdenTransporteDelete
-recurso DELETE /templatesOrdenTransporte 
+  recurso DELETE /templatesOrdenTransporte 
 
-UPDATE log.templates_orden_transporte
-SET eliminado = 1
-WHERE teot_id = CAST(:teot_id AS integer);
+  UPDATE log.templates_orden_transporte
+  SET eliminado = 1
+  WHERE teot_id = CAST(:teot_id AS integer);
 
-{"_delete_templateOrdenTransporte":{
-	"teot_id":"1"
-}
-}
+  {"_delete_templateOrdenTransporte":{
+    "teot_id":"1"
+  }
+  }
 
-Respuesta
-HTTP/1.1 202 Accepted
+  Respuesta
+  HTTP/1.1 202 Accepted
 
 
 -- transportistasSet
@@ -3432,13 +3428,13 @@ HTTP/1.1 202 Accepted
 --solicitudRetiroEstadoUpdate
       update log.solicitudes_retiro&#xd;set estado = :estado&#xd;where sore_id = cast(:sore_id as integer)
 
-{"_put_solicitudesretiro_estado":{
-	"sore_id":"24",
-	"estado":"SOLICITADA"
-}
-}
+  {"_put_solicitudesretiro_estado":{
+    "sore_id":"24",
+    "estado":"SOLICITADA"
+  }
+  }
 
-retorna 200 si ok
+  retorna 200 si ok
 
 -- updateSolicitudRetiroContenedores
   recurso:
@@ -3815,6 +3811,314 @@ retorna 200 si ok
     }  
   }
 
+
+
+-- ************************ APPI Y BONITA ***************************
+  ************ ROLESSS
+  GET http://10.142.0.7:8280/tools/bpm/roles/{session}
+
+  {
+    "session": "X-Bonita-API-Token=658fcd51-ef8b-48c3-9606-1d89a88cf3e5;JSESSIONID=BCDEA4A05749709F4DFBDCBB58A527E8;bonita.tenant=1;",
+    "payload":    [
+              {
+          "displayName": "Administrativo depósito",
+          "name": "Administrativo depósito",
+          "icon": "",
+          "description": "",
+          "id": "233",
+          "creation_date": "2020-02-12 16:45:09.755",
+          "created_by_user_id": "7",
+          "last_update_date": "2020-02-12 16:45:09.755"
+        },
+              {
+          "displayName": "Almacen",
+          "name": "Almacen",
+          "icon": "",
+          "description": "",
+          "id": "5",
+          "creation_date": "2019-09-09 20:22:33.960",
+          "created_by_user_id": "-1",
+          "last_update_date": "2019-09-09 20:22:33.960"
+        } // mas datooooooooooosssssssssss
+      ]
+  }
+
+-- ************ GRUPOS
+  GET http://10.142.0.7:8280/tools/bpm/groups/{session}
+  {
+    "session": "X-Bonita-API-Token=1c403034-f28d-43f5-92f6-24b2bd3b586c;JSESSIONID=A27D589BB33BB5C6A8AB283FA33DF618;bonita.tenant=1;",
+    "payload":    [
+              {
+          "path": "/Dirección/Gerencia General/Abastecimiento",
+          "displayName": "Abastecimiento",
+          "parent_group_id": "202",
+          "icon": "",
+          "name": "Abastecimiento",
+          "description": "",
+          "parent_path": "/Dirección/Gerencia General",
+          "creation_date": "2020-02-12 16:45:09.919",
+          "id": "207",
+          "created_by_user_id": "7",
+          "last_update_date": "2020-02-12 16:45:09.919"
+        },
+              {
+          "path": "/Dirección/Gerencia General/Administración y Finanzas",
+          "displayName": "Administración y Finanzas",
+          "parent_group_id": "202",
+          "icon": "",
+          "name": "Administración y Finanzas",
+          "description": "",
+          "parent_path": "/Dirección/Gerencia General",
+          "creation_date": "2020-02-12 16:45:09.891",
+          "id": "205",
+          "created_by_user_id": "7",
+          "last_update_date": "2020-02-12 16:45:09.891"
+        },
+              {
+          "path": "/Dirección/Gerencia General/Producción/Jefatura Técnica/Arnado",
+          "displayName": "Arnado",
+          "parent_group_id": "213",
+          "icon": "",
+          "name": "Arnado",
+          "description": "",
+          "parent_path": "/Dirección/Gerencia General/Producción/Jefatura Técnica",
+          "creation_date": "2020-02-12 16:45:09.955",
+          "id": "214",
+          "created_by_user_id": "7",
+          "last_update_date": "2020-02-12 16:45:09.955"
+        }
+  ]
+  }
+
+
+-- ************ CREAR USUARIOS
+
+  POST http://10.142.0.7:8280/tools/bpm/users 
+  {
+    "session":"asfjas",
+    "payload":{
+                "userName":"Rodo",
+                "password":"bpm",
+                "password_confirm":"bpm",
+                "icon":"",
+                "firstname":"Rodito",
+                "lastname":"Selattraga",
+                "title":"Sr",
+                "job_title":"Human resources benefits",
+                "manager_id":""
+              }
+  }
+
+  respuesta
+  {
+    "session": "X-Bonita-API-Token=300c6472-73df-4b59-badb-786791d2e3a9;JSESSIONID=AB1D6B4DDBEC4A457B1E43E2A6708D8B;bonita.tenant=1;",
+    "payload":{
+                "firstname": "Rodito",
+                "icon": "icons/default/icon_user.png",
+                "creation_date": "2020-07-31 15:39:33.340",
+                "userName": "Rodo",
+                "title": "Sr",
+                "created_by_user_id": "7",
+                "enabled": "false",
+                "lastname": "Selattraga",
+                "last_connection": "",
+                "password": "",
+                "manager_id": "0",
+                "id": "503",
+                "job_title": "Human resources benefits",
+                "last_update_date": "2020-07-31 15:39:33.340"
+              }
+  }
+
+
+-- ************ CREAR MEMBERSHIPS
+
+  POST http://10.142.0.7:8280/tools/bpm/memberships 
+  {
+    "session":"asfjas",
+    "payload":{
+                "user_id":"503",
+                "group_id":"5",
+                "role_id":"1"
+              }
+  }
+
+  respuesta
+  {
+    "session": "X-Bonita-API-Token=4e634a72-f990-46fe-bf7e-3b2dcf931b88;JSESSIONID=8F914E1EF70E23B71F5A96F9F8B168EB;bonita.tenant=1;",
+    "payload":    {
+        "assigned_date": "2020-07-31 15:42:59.428",
+        "user_id": "503",
+        "role_id": "1",
+        "group_id": "5",
+        "assigned_by_user_id": "7"
+    }
+  }
+
+
+
+-- ************ ID DE USUARIO POR NOMBRE
+  cuando consultes el api de ID de usuario por nombre te voy a devolver esssssssta
+
+  {
+    "last_connection":"",
+    "created_by_user_id":"-1",
+    "creation_date":"2014-12-01 10:39:55.177",
+    "id":"21",
+    "icon":"/default/icon_user.png",
+    "enabled":"true",
+    "title":"Mrs",
+    "professional_data":{
+      "fax_number":"484-302-0430",
+      "building":"70",
+      "phone_number":"484-302-5430",
+      "website":"",
+      "zipcode":"19108",
+      "state":"PA",
+      "city":"Philadelphia",
+      "country":"United States",
+      "id":"21",
+      "mobile_number":"",
+      "address":"Renwick Drive",
+      "email":"giovanna.almeida@acme.com",
+      "room":""
+    },
+    "manager_id":{
+      "last_connection":"",
+      "created_by_user_id":"-1",
+      "creation_date":"2014-12-01 10:39:55.136",
+      "id":"17",
+      "icon":"/default/icon_user.png",
+      "enabled":"true",
+      "title":"Mrs",
+      "manager_id":"1",
+      "job_title":"Vice President of Sales",
+      "userName":"daniela.angelo",
+      "lastname":"Angelo",
+      "firstname":"Daniela",
+      "password":"",
+      "last_update_date":"2014-12-01 10:39:55.136"
+    },
+    "job_title":"Account manager",
+    "userName":"giovanna.almeida",
+    "lastname":"Almeida",
+    "firstname":"Giovanna",
+    "password":"",
+    "last_update_date":"2014-12-01 10:39:55.177"
+  } 
+
+
+
+-- ************ MENU 
+
+  GET http://10.142.0.7:8280/services/sema/COREDataService/menuitems/byUserId/202 
+
+  {"menu_items": {"menu_item": [
+        {
+            "texto": "Producción",
+            "camino": "1.PRD.produccion",
+            "opcion": "produccion",
+            "url_icono": "/img/icono.gif",
+            "habilitado": "false",
+            "opcion_padre": null,
+            "modulo": "PRD",
+            "nivel": "1",
+            "url": "",
+            "javascript": null,
+            "texto_onmouseover": "Módulo de Producción"
+        },
+        {
+            "texto": "Planificar Etapas",
+            "camino": "1.PRD.produccion>10.PRD.etapas",
+            "opcion": "etapas",
+            "url_icono": "/img/icono.gif",
+            "habilitado": "false",
+            "opcion_padre": "produccion",
+            "modulo": "PRD",
+            "nivel": "2",
+            "url": "/traz-prod-trazasoft/dash",
+            "javascript": null,
+            "texto_onmouseover": "Planificación de etapas"
+        },
+        {
+            "texto": "Pantalla Operario",
+            "camino": "1.PRD.produccion>20.PRD.aminowana",
+            "opcion": "aminowana",
+            "url_icono": "/img/icono.gif",
+            "habilitado": "false",
+            "opcion_padre": "produccion",
+            "modulo": "PRD",
+            "nivel": "2",
+            "url": "/traz-prod-trazasoft/amino",
+            "javascript": null,
+            "texto_onmouseover": "Etapas operario"
+        },
+        {
+            "texto": "Mantenimiento",
+            "camino": "2.MAN.mantenimiento",
+            "opcion": "mantenimiento",
+            "url_icono": "/img/asset.gif",
+            "habilitado": "true",
+            "opcion_padre": null,
+            "modulo": "MAN",
+            "nivel": "1",
+            "url": "",
+            "javascript": null,
+            "texto_onmouseover": "Asset loco"
+        },
+        {
+            "texto": "Crear Orde de Trabajo",
+            "camino": "2.MAN.mantenimiento>100.MAN.ot",
+            "opcion": "ot",
+            "url_icono": "/img/asset.gif",
+            "habilitado": "false",
+            "opcion_padre": "mantenimiento",
+            "modulo": "MAN",
+            "nivel": "2",
+            "url": "/traz-prod-assetplanner/asset",
+            "javascript": null,
+            "texto_onmouseover": "Crear ot"
+        },
+        {
+            "texto": "Reporte ot",
+            "camino": "2.MAN.mantenimiento>100.MAN.ot>1000.MAN.reporte",
+            "opcion": "reporte",
+            "url_icono": "/img/repo.gif",
+            "habilitado": "false",
+            "opcion_padre": "ot",
+            "modulo": "MAN",
+            "nivel": "3",
+            "url": "/traz-prod_assetplanner/reportes",
+            "javascript": null,
+            "texto_onmouseover": "Sheportes"
+        },
+        {
+            "texto": "Almacenes",
+            "camino": "4.ALM.almacenes",
+            "opcion": "almacenes",
+            "url_icono": "/img/icono.gif",
+            "habilitado": "true",
+            "opcion_padre": null,
+            "modulo": "ALM",
+            "nivel": "1",
+            "url": "",
+            "javascript": null,
+            "texto_onmouseover": "Almacenes"
+        },
+        {
+            "texto": "Stock Articulos",
+            "camino": "4.ALM.almacenes>50.ALM.stock",
+            "opcion": "stock",
+            "url_icono": "/img/alm.gif",
+            "habilitado": "false",
+            "opcion_padre": "almacenes",
+            "modulo": "ALM",
+            "nivel": "2",
+            "url": "/traz-prod-trazasoft/stock",
+            "javascript": null,
+            "texto_onmouseover": null
+        }
+  ]}}
 
 
 
