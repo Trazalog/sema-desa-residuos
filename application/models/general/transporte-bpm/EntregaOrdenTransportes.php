@@ -28,32 +28,43 @@ class EntregaOrdenTransportes extends CI_Model {
   } 
 
   /**
+  * Despliega cabeceras usando helpers
+  * @param array $tarea con info de tarea desde BPM   
+  * @return view cabeceras con info
+  */
+  function desplegarCabecera($tarea)
+  {
+    $resp = infoproceso($tarea).infoentidadesproceso($tarea);
+    return $resp;
+  } 
+
+  /**
   * configuracion de la info que muestra la bandeja de entradas por PROCESO
   * @param array $tarea info de tarea en BPM  
   * @return array con info de configuracion de datos para la bandeja de entrada
   */
   public function map($tarea)
-  {
-      $data['descripcion'] = 'Ingreso de contenedores a PTA';
+  {   
+    $data['descripcion'] = 'Ingreso de contenedores a PTA';
 
-      $aux_OT = $this->obtenerInfoEntrega($tarea);
+    $aux_OT = $this->obtenerInfoEntrega($tarea);
 
-      $aux = new StdClass();
-      $aux->color = 'warning';
-      $aux->texto = 'TERSU-BPM03 - Generación Orden de Transporte';
-      $data['info'][] = $aux;
+    $aux = new StdClass();
+    $aux->color = 'warning';
+    $aux->texto = 'Estado: '.$aux_OT->estado;
+    $data['info'][] = $aux;
 
-      $aux = new StdClass();
-      $aux->color = 'success';
-      $aux->texto = 'Ord. Transporte: '.$aux_OT->ortr_id;
-      $data['info'][] = $aux;
+    $aux = new StdClass();
+    $aux->color = 'success';
+    $aux->texto = 'Ord. Transporte: '.$aux_OT->ortr_id;
+    $data['info'][] = $aux;
 
-      $aux = new StdClass();
-      $aux->color = 'primary';
-      $aux->texto = 'Dominio: '.$aux_OT->dominio;
-      $data['info'][] = $aux;
+    $aux = new StdClass();
+    $aux->color = 'primary';
+    $aux->texto = 'Dominio: '.$aux_OT->dominio;
+    $data['info'][] = $aux;
 
-      return $data;
+    return $data;
   }
   
   /**
@@ -193,7 +204,7 @@ class EntregaOrdenTransportes extends CI_Model {
   {     
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|contratoIngreso($form) >> '); 
     log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|contratoIngreso($form): $form >> '.json_encode($form));   
-    $contrato["sectorDescarga"] = $form['data']["depo_id"];
+    $contrato["depo_id"] = $form['data']["depo_id"];
     return $contrato;
   }
 
@@ -248,7 +259,7 @@ class EntregaOrdenTransportes extends CI_Model {
   * @return array con sectores de descarga
   */
   function obtenerDepositos()
-  {     
+  { 
     //FIXME: DESHARDCODEAR ESTABLECIMEINTO 1
     $esta_id = 1;
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerSectoresDescarga() >> ');

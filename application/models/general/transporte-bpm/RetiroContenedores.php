@@ -14,6 +14,16 @@ class RetiroContenedores extends CI_Model {
     parent::__construct();
   }
 
+  /**
+  * Despliega cabeceras usando helpers
+  * @param array $tarea con info de tarea desde BPM   
+  * @return view cabeceras con info
+  */
+  function desplegarCabecera($tarea)
+  {
+    $resp = infoproceso($tarea).infoentidadesproceso($tarea);
+    return $resp;
+  } 
  
   /**
   * configuracion de la info que muestra la bandeja de entradas por PROCESO
@@ -22,12 +32,25 @@ class RetiroContenedores extends CI_Model {
   */
   public function map($tarea)
   {
-      $data['descripcion'] = 'soy una descripcion';
+      $data['descripcion'] = 'soy una descripcion'; 
 
+      $aux_Sol = $this->obtenerInfoSolRetiro($tarea);    
       $aux = new StdClass();
       $aux->color = 'warning';
-      $aux->texto = 'yayayayaya';
+      $aux->texto = 'Fecha: '.$aux_Sol->fec_alta;
       $data['info'][] = $aux;
+
+      $aux = new StdClass();
+      $aux->color = 'success';
+      $aux->texto = 'Ord. pedido: '.$aux_Sol->sore_id;
+      $data['info'][] = $aux;
+
+      $aux_gen = $this->obtenerGenerador($tarea);
+      $aux = new StdClass();
+      $aux->color = 'primary';
+      $aux->texto = 'Solicitante: '.$aux_gen->generador->razon_social;
+      $data['info'][] = $aux;
+
       return $data;
   }
 
@@ -55,7 +78,7 @@ class RetiroContenedores extends CI_Model {
     }
   }
 
-   /**
+  /**
   * Despliega datos de tareas en maquetacion segun tarea especifica, para completar en notificacion estandar
   * @param array con info de tarea  
   * @return view vista (maquetacion y datos) de la tarea especifica
@@ -145,5 +168,43 @@ class RetiroContenedores extends CI_Model {
     return $aux->vehiculos->vehiculo;
     
   }
+  
+  
+  // ---------------------- FUNCIONES BANDEJA DE ENTRADA ----------------------
+  
+  /**
+  * Devuelve info de Solicitud Retiro para configuracion Bandeja Entrada 
+  * @param array $tarea con info de tarea BPM 
+  * @return array con info de solicitud de retiro contenedores
+  */
+  function obtenerInfoSolRetiro($tarea)
+  {
+    $case_id = $tarea->caseId;  
+    $aux = $this->rest->callAPI("GET",REST."/solicitudRetiro/proceso/retiro/case/".$case_id);
+    $data =json_decode($aux["data"]);
+    $aux_Sol = $data->solicitud_retiro;	
+    return $aux_Sol;
+  }           
 
+  /**
+  * Devuelve info de Generador para configuracion Bandeja Entrada 
+  * @param $tarea con info de tarea BPM
+  * @return array con info de generador
+  */
+  function obtenerGenerador($tarea){
+    
+    $ent_case_id = $tarea->caseId;
+    $aux_gen = $this->rest->callAPI("GET",REST."/solicitantesTransporte/proceso/retiro/case/".$ent_case_id);
+    $aux_gen =json_decode($aux_gen["data"]);
+    return $aux_gen;
+  }
+  
+   // para obtener transportista en este proceso(funcion para la config de la band de entrada) 
+  // $aux_tran = $ci2->rest->callAPI("GET",REST."/transportistas/proceso/retiro/case/".$ent_case_id);
+  //             $aux_tran =json_decode($aux_tran["data"]);
+
+
+  
+              
+              
 }

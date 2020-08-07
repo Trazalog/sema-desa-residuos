@@ -11,7 +11,7 @@ if(!function_exists('userId')){
 
         $ci =& get_instance();			
         $userdata  = $ci->session->userdata('user_data');
-		return  $userdata[0]['userBpm'];
+		return  $userdata[0]['userIdBpm'];
     }
 }
 
@@ -52,7 +52,7 @@ if(!function_exists('validarSesion')){
     function validarSesion(){
         $ci = &get_instance();
         $userdata = $ci->session->userdata('user_data');
-        if(empty($userdata)) redirect(base_url().'Login');
+        if(empty($userdata['email'])) redirect(base_url().'login/main/logout/'); 
     }
 
 }

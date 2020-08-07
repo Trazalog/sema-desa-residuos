@@ -321,9 +321,7 @@
 			data.peso_neto = $("#peso_neto").val();
 			data.difi_id = $("#difi_id").val();
 			data.depo_id = $("#deposito").val();
-			TODO:
-			// data.coen_id = $("#coen_id").val();
-			data.coen_id = 9;
+			data.coen_id = $("#coen_id").val();
 
 			$.ajax({
 					type: 'POST',
