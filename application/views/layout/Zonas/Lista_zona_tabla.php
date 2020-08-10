@@ -26,8 +26,8 @@
         echo "<tr data-json='".json_encode($fila)."'>";
       
         echo    '<td>';
-        echo    '<button  type="button" title="Editar"  class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit" id="btnEditar"  ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-            <button type="button" title="Info" class="btn btn-primary btn-circle btnVer" data-toggle="modal" data-target="#modalEdit" ><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
+        echo    '<button  type="button" title="Editar"  class="btn btn-primary btn-circle btnEditar" data-toggle="modal"  id="btnEditar"  ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+            <button type="button" title="Info" class="btn btn-primary btn-circle btnVer" data-toggle="modal"  ><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
             <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar" id="btnBorrar"  ><span class="glyphicon glyphicon-trash" aria-hidden="true" ></span></button>&nbsp';
         echo '</td>';    
             
@@ -61,6 +61,7 @@ $(".btnEliminar").click(function(e){
 
 //desactivacion de campos y acondicionamiento de modal editar
 $(".btnVer").click(function(e){
+    $("#modalEdit").modal("show");
     var data = JSON.parse($(this).parents("tr").attr("data-json"));
     $(".habilitar").attr("readonly","readonly");  
     $(".ocultar").attr("style","display:none");
@@ -69,6 +70,7 @@ $(".btnVer").click(function(e){
     $("#dep_ver").removeAttr("style");
     $("#div_ver").removeAttr("style");
     $('#btnsave').hide();
+    $(".esconder").attr("style","left: 41rem; top: -2rem; ");
     $(".titulo").text('Ver Informacion');
     $("#texto_dep").text('');
     Editar(data);
@@ -77,6 +79,7 @@ $(".btnVer").click(function(e){
 
 //activavion de campos y acondicionamiento de modal editar 
 $(".btnEditar").click(function(e){
+    $("#modalEdit").modal("show");
     var data = JSON.parse($(this).parents("tr").attr("data-json"));   
     $('.habilitar').removeAttr("readonly");
     $(".ocultar").removeAttr("style");
@@ -87,6 +90,7 @@ $(".btnEditar").click(function(e){
     $('#btnsave').show(); 
     $(".titulo").text('Editar Zona');
     $("#texto_dep").text('Departamento:');    
+    $(".esconder").attr("style","display:none");
     Editar(data);
 
     
