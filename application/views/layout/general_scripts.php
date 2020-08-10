@@ -56,10 +56,11 @@
         <!-- agrega archivo navegacion.js -->
         <script src="<?php base_url() ?>lib\props\navegacion.js"></script>
 
-
+        <!-- grilla para boxes de depositos-->
         <script src="<?php base_url() ?>lib\gridstack\gridstack.all.js"></script>
-        
-   
+
+        <!-- mapa de leaflet-->
+        <script src="<?php base_url();?>lib/leaflet/leaflet.js"></script>   
        
        <!-- alertifyjs  -->
        <script src="<?php base_url() ?>lib/alertify/alertify.js"></script>

@@ -70,6 +70,8 @@
     
     <link rel="stylesheet" href="<?php base_url();?>lib/gridstack/gridstack.css">
 
+    <link rel="stylesheet" href="<?php base_url();?>lib/leaflet/leaflet.css">
+
     <!-- Google Font -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
