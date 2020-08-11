@@ -605,8 +605,8 @@ function Guardar_Orden_transporte(){
 	debugger; 
     // datos.fec_retiro = '02-07-2020';         
     datos.fec_retiro = $("#Fecha").val();
-    var auxfecha = datos.fec_retiro[8]+datos.fec_retiro[9]+"-"+datos.fec_retiro[5]+datos.fec_retiro[6]+"-"+datos.fec_retiro[0]+datos.fec_retiro[1]+datos.fec_retiro[2]+datos.fec_retiro[3]; 
-    datos.fec_retiro = auxfecha;
+    //var auxfecha = datos.fec_retiro[8]+datos.fec_retiro[9]+"-"+datos.fec_retiro[5]+datos.fec_retiro[6]+"-"+datos.fec_retiro[0]+datos.fec_retiro[1]+datos.fec_retiro[2]+datos.fec_retiro[3];
+    //datos.fec_retiro = auxfecha;
     datos.difi_id = $("#dispfinal").val();
     datos.sotr_id = $("#sotr_id").val();
     datos.tran_id = $("#tran_id").val();
@@ -615,7 +615,8 @@ function Guardar_Orden_transporte(){
     datos.equi_id = dominio_equipo;
     datos.chof_id = $("#chofer").val();
     datos.usuario_app = "HugoDS";
-    datos.teot_id = 7;
+//TODO: SACAR CONFIGURACION EN EL CODIGO FOOOOOOO!!! JAJAJJAJAJA
+		datos.teot_id = 26;
     //aca agregarle el cont_id
 
     var datos_contenedor = [];

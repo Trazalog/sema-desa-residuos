@@ -1200,18 +1200,18 @@ and cont_id =cast(:cont_id as integer)
 
 
 -- contenedoresEntregadosRegistraIngreso (registra ingreso de contenedores en bascula PTA)
-  recurso: /contenedoresEntregados/registra/ingreso 
+  recurso: /contenedoresEntregados/registra/ingreso
   metodo: put
 
-  update log.contenedores_entregados 
-  set peso_neto = CAST(:peso_neto AS FLOAT4), difi_id = :difi_id, depo_id = :depo_id 
+  update log.contenedores_entregados
+  set peso_neto = CAST(:peso_neto AS FLOAT4), difi_id = :difi_id, depo_id = :depo_id
   where coen_id = CAST(:coen_id as INTEGER)
 
   {
     "_put_contenedoresentregados_registra_ingreso":{
       "peso_neto": "$peso_neto",
       "depo_id": "$depo_id",
-      "sector_descarga": "$sector_descarga"
+      "difi_id": "$difi_id"
       "coen_id": "$coen_id"
     }
   }
@@ -1368,6 +1368,24 @@ and cont_id = :cont_id
               "esta_nombre":"$nombre"
           }
         ]
+    }
+  }
+
+-- depositosDescargaGet
+  recurso: /deposito/descarga/{ortr_id}
+  metodo: get
+
+  select CE.depo_id, DE.descripcion
+  from log.contenedores_entregados CE, alm.alm_depositos DE
+  where Ce.ortr_id = CAST(:ortr_id as INTEGER)
+  and DE.depo_id = CE.depo_id
+  and CE.tiva_id is null
+  and CE.fec_descarga is null
+
+  {
+    "deposito":{
+      "depo_id": "$depo_id",
+      "descripcion": "$descripcion"
     }
   }
 
@@ -2340,9 +2358,9 @@ retorna 202
   recurso: /ordenTransporte/info/entrega/case/{case_id}
   metodo: get
 
-  select OT.ortr_id, OT.fec_alta,  
+  select OT.ortr_id, OT.fec_alta,
         E.dominio, E.descripcion, E.imagen as img_vehiculo, E.tara , 
-        CH.imagen as img_chofer, concat(CH.nombre, ' ', CH.apellido) as nom_chofer, CH.documento 
+        CH.imagen as img_chofer, concat(CH.nombre, ' ', CH.apellido) as nom_chofer, CH.documento
   from log.ordenes_transporte OT, core.equipos E, log.choferes CH
   where OT.case_id = :case_id 
   and OT.equi_id = E.equi_id 
