@@ -52,7 +52,7 @@
 											<label for="tipoResiduos">Tipo de residuo:</label>
 											<div class="input-group date">
 													<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-													<select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_id">															
+													<select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_id" name="tica_id">															
 															<?php
 																	foreach ($tipoResiduos as $i) {		
 																			echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
@@ -669,6 +669,47 @@
 </div>
 <!---///////--- FIN MODAL AVISO ---///////--->
 
+<!---///////--- MODAL AVISO de ptos criticos no registrados ---///////--->
+<div class="modal fade" id="modalavisoPtoCriticosFallido">		
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-blue">
+				<h5 class="modal-title" ><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>ATENCION</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="CerrarModalAviso()">
+					<span aria-hidden="true" >&times;</span>
+				</button>
+			</div>
+			<input id="circuito_delete" style="display: none;">
+			<div class="modal-body">
+				<center>
+				<h4><p>LOS SIGUIENTES PUNTOS CRITICOS NO SE ASOCIARON AL CIRCUITO POR QUE YA EXISTEN</p></h4>
+				</center>
+				<!--_____________ Tabla Punto Critico _____________-->
+				
+							<div class="box " id="puntos_criticos_no_asociados">
+									<div class="box-body table-responsive">											
+											<table class="table table-striped" id="datos_ptos_noasociados">
+													<thead class="thead-dark" bgcolor="#eeeeee">
+															<th>Nombre Pto</th>
+													</thead>	
+													<tbody>	</tbody>
+											</table>										
+									</div>
+							</div>
+					
+					<!--_____________________________________________-->
+			</div>
+			<div class="modal-footer">
+				<center>
+				<button type="button" class="btn btn-primary" onclick="CerrarModalAviso()">OK</button>
+				
+				</center>
+			</div>
+		</div>
+	</div>
+</div>
+<!---///////--- FIN MODAL AVISO ---///////--->
+
 
 
 <script>
@@ -788,11 +829,12 @@ $(".close_modal_edit").click(function(e){
 		
   // guarda circuito y puntos criticios nuevos 
 		function Guardar_Circuito() { 
-			
+			debugger;
 			// toma tabla tipos de carga
 			var datos_tipo_carga= $('#tica_id').val();  
 			// toma datos form circuitos
 			var datos_circuito = new FormData($('#formCircuitos')[0]);
+			console.table(datos_circuito);
 			var inpImagen = $('input#imagen');	
 			datos_circuito = formToObject(datos_circuito);
 			datos_circuito.imagen = $("#input_aux_img").val();
@@ -804,7 +846,15 @@ $(".close_modal_edit").click(function(e){
 					datos_puntos_criticos.push(getJson(e));
 			});		
 			console.table(datos_circuito.imagen);
-			
+
+			//asigno los datos del objeto datos_circuito a datos_circuito_enviar el cual va sin tica_id
+			var datos_circuito_enviar = new FormData();
+        	datos_circuito_enviar = formToObject(datos_circuito_enviar);
+			datos_circuito_enviar.chof_id = datos_circuito.chof_id;
+			datos_circuito_enviar.codigo = datos_circuito.codigo;
+			datos_circuito_enviar.descripcion = datos_circuito.descripcion;
+			datos_circuito_enviar.imagen = datos_circuito.imagen;
+			datos_circuito_enviar.vehi_id = datos_circuito.vehi_id;
 			// valida campos cargados y envia datos
 			if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
 				
@@ -814,23 +864,90 @@ $(".close_modal_edit").click(function(e){
 				}else{
 					$.ajax({
 							type: "POST",
-							data: {datos_circuito, datos_puntos_criticos,datos_tipo_carga},							
+							data: {datos_circuito_enviar, datos_puntos_criticos,datos_tipo_carga},							
 							url: "general/Estructura/Circuito/Guardar_Circuito",
-							success: function(respuesta) {
-
+							success: function($respuesta) {
+									 debugger;
 									
-									if (respuesta == "ok") {
-										$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
-										alertify.success("Agregado con exito");
-										$('#formCircuitos').data('bootstrapValidator').resetForm();
-										$("#formCircuitos")[0].reset();
-										$("#boxDatos").hide(500);
-										$("#botonAgregar").removeAttr("disabled");	
-									} else {
-
-										alertify.error("Error El nombre del circuito ingresado ya existe pruebe con otro...");
+										if ($respuesta == "Error codigo existente")
+										{
+											alertify.error("Error...El codigo"+ datos_circuito_enviar.codigo+ "de circuito que ingreso ya existe, Pruebe con otro");
+										}else{
+											if($respuesta == "Error... Punto Crítico no asociado")
+											{
+												alertify.error("Error...El circuito se registro pero no se pudo asociar los ptos criticos ");
+												$('#formCircuitos').data('bootstrapValidator').resetForm();
+														$("#formCircuitos")[0].reset();
+														$('#formPuntos').data('bootstrapValidator').resetForm();
+														$("#formPuntos")[0].reset();
+														$("#boxDatos").hide(500);
+														$("#botonAgregar").removeAttr("disabled");	
+														$('#datos tbody tr').remove();
+											}
+											else{
+												if($respuesta == "Error... Tipo de RSU no asociado")
+												{
+													alertify.error("Error al vincular los tipos de residuos al circuito...");
+													$('#formCircuitos').data('bootstrapValidator').resetForm();
+														$("#formCircuitos")[0].reset();
+														$('#formPuntos').data('bootstrapValidator').resetForm();
+														$("#formPuntos")[0].reset();
+														$("#boxDatos").hide(500);
+														$("#botonAgregar").removeAttr("disabled");	
+														$('#datos tbody tr').remove();
+												}else{
+													if ($respuesta != "") {
+														$res = JSON.parse($respuesta);
+														$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
+														alertify.success("Se Agregado con exito el circuito");
+														$('#formCircuitos').data('bootstrapValidator').resetForm();
+														$("#formCircuitos")[0].reset();
+														$('#formPuntos').data('bootstrapValidator').resetForm();
+														$("#formPuntos")[0].reset();
+														
+														$("#boxDatos").hide(500);
+														$("#botonAgregar").removeAttr("disabled");
+														console.table($res.length);
+														console.table($res[0]);	
+														// var data = new FormData($('#formPuntos')[0]);
+														// data = formToObject(data);
+														// data.nombre = $("#nombre").val().toLowerCase();
+														// data.descripcion = $("#descrip").val().toLowerCase();
+														var table = $('#datos_ptos_noasociados').DataTable();
+														for(var i=0; i<$res.length; i++){
+															
+															var row =  `<tr data-json=''> 
+																			<td>${$res[i]}</td>
+																		</tr>`;
+															table.row.add($(row)).draw(); 
+														}
+														$('#datos tbody tr').remove();
+														$("#modalavisoPtoCriticosFallido").modal('show');
+													
+														// alert("Atencion hay algunos puntos criticos que no se asociaron al circuito");
+													}else{
+														$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
+														alertify.success("Se Agregado con exito el circuito");
+														$('#formCircuitos').data('bootstrapValidator').resetForm();
+														$("#formCircuitos")[0].reset();
+														$('#formPuntos').data('bootstrapValidator').resetForm();
+														$("#formPuntos")[0].reset();
+														$("#boxDatos").hide(500);
+														$("#botonAgregar").removeAttr("disabled");	
+														$('#datos tbody tr').remove();
+													}	
+												}
+												
+											}
+										}
+										
 									}
-							}							
+									
+										
+
+										
+									
+														
 					});
 				}
 				
@@ -848,11 +965,20 @@ $(".close_modal_edit").click(function(e){
 	
 	// muestra box de datos al dar click en X
 		$("#btnclose").on("click", function() {
+				$('#tica_id').select2('val', 'All');
+				//para borrar tabla;
+				var table = $('#datos').DataTable();
+ 				table.clear().draw();
+				$('#formCircuitos').data('bootstrapValidator').resetForm();
+				$("#formCircuitos")[0].reset();
+				$('#formPuntos').data('bootstrapValidator').resetForm();
+				$("#formPuntos")[0].reset();
 				$("#boxDatos").hide(500);
 				$("#botonAgregar").removeAttr("disabled");
 				$('#formDatos').data('bootstrapValidator').resetForm();
 				$("#formDatos")[0].reset();
 				$('#selecmov').find('option').remove();
+				
 
 		});
 
@@ -1283,7 +1409,12 @@ $.ajax({
 });
 
 }	
-
+//function para modal aviso de ptos criticos no asociados
+function CerrarModalAviso()
+{
+	$("#modalavisoPtoCriticosFallido").modal('hide');
+	$('#datos_ptos_noasociados tbody tr').remove();
+}
 
 // guarda Edicion completa		
 $("#btnsave_edit").on("click", function() {
