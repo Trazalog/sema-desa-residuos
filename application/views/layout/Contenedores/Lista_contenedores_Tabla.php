@@ -202,12 +202,15 @@ $(".btnInfo").click(function(e){
     $(".selectores").attr("style","display:none");
     $(".ocultar").attr("style","display:none"); 
     $(".ocultarInfo").removeAttr("style");
+    $(".ocultarInfo").attr("style","width: 39rem;");
+    $(".ocultarInfofecha").removeAttr("style");
+    $(".ocultarInfofecha").attr("style","width: 35rem;");
     $(".ocultar_Info").removeAttr("style");
     $('#btnsave').hide();
     $("#Codigo").val(data.codigo);
     $("#Descripcion").val(data.descripcion);
     $("#Capacidad").val(data.capacidad);
-    $("#Añoelab").val(data.anio_elaboracion);
+    $("#Añoelab").val(data.anio_elaboracion.slice(0, 10));// saco hs y minutos
     $("#Tara").val(data.tara);
     $("#estadoInfo").val(data.esco_id.substr(17,30));
     $("#cargaInfo").val();
@@ -254,8 +257,10 @@ console.table(data.tipos_carga.tipoCarga);
 console.table(datacarga[0].valor);
 $(".habilitar").removeAttr("readonly");
 $(".selectores").removeAttr("style");
+$(".selectores").attr("style","width: 39rem;");
 $(".ocultar").removeAttr("style");
 $(".ocultarInfo").attr("style","display:none");
+$(".ocultarInfofecha").attr("style","display:none");
 $(".titulo").text('Editar Contenedor'); 
 $('#btnsave').show(); 
 $(".ocultar_Info").attr("style","display:none");
@@ -265,6 +270,18 @@ $("#Codigo").val(data.codigo);
 $("#Descripcion").val(data.descripcion);
 $("#Capacidad").val(data.capacidad);
 $("#Añoelab").val(data.anio_elaboracion);
+
+//para pintar la fecha en el input fecha de elaboracion
+var fec_nacimiento = data.anio_elaboracion.slice(0, 10) // saco hs y minutos		
+			Date.prototype.toDateInputValue = (function() {
+				var local = new Date(fec_nacimiento);
+				// local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+				return local.toJSON().slice(0, 10);
+			});
+$('input#fec_elab_edit').val(new Date().toDateInputValue());
+console.table($('input#fec_elab_edit').val());
+//fin
+$("#fec_elab_edit").attr("style","width: 31rem;");
 $("#Tara").val(data.tara);
 $("#cont_id").val(data.cont_id);
 $("#Estados")[0][0].selected = "false";

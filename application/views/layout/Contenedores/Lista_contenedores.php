@@ -56,7 +56,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn_cerrar_arriba">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h5 class="modal-title titulo" id="exampleModalLabel">Editar Contenedor</h5>
@@ -69,23 +69,23 @@
 
                 <!-- <form method="POST" autocomplete="off" id="frmentrega" class="registerForm"> -->
                     <!-- <div class="modal-body"> -->
-                        <form class="formContenedores" id="formContenedores" method="POST" autocomplete="off" class="registerForm">
+                        <form class="formContenedoresedit" id="formContenedoresedit" method="POST" autocomplete="off" class="registerForm">
                             <!-- <div class="col-md-12"> -->
                                 <!-- <div class="row"> -->
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <!--Codigo / Registro-->
                                         <div class="form-group">
-                                            <label for="Codigo/Registro">Codigo / Registro:</label>
+                                            <label for="codigo">Codigo / Registro:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" name="" id="Codigo" style="width: 35rem;">
+                                            <input type="number" class="form-control habilitar" name="codigo" id="Codigo" style="width: 35rem;">
                                         </div>
                                         <!--_____________________________________________-->
                                         <br>
                                         <!--Descripcion-->
                                         <div class="form-group">
-                                            <label for="Descripcion">Descripcion:</label>
+                                            <label for="descripcion">Descripcion:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" name="" id="Descripcion" style="width: 35rem;">
+                                            <input type="text" class="form-control habilitar" name="descripcion" id="Descripcion" style="width: 35rem;">
                                         </div>
                                         <!--_____________________________________________-->
                                           <!--Cont_id solo para salvaguardar el id del contenedor-->
@@ -96,36 +96,48 @@
                                         <!--Capacidad-->
                                         <br>
                                         <div class="form-group">
-                                            <label for="Capacidad">Capacidad:</label>
+                                            <label for="capacidad">Capacidad:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" name="" id="Capacidad" style="width: 35rem;">
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                                                    <input type="number" class="form-control habilitar" name="capacidad" id="Capacidad" style="width: 31rem;">
+                                                </div>
                                         </div>
                                         <!--_____________________________________________-->
                                         <br>
                                         <!--Año de elaboracion-->
                                         <div class="form-group">
-                                            <label for="Añoelab">Año de elaboracion:</label>
+                                            <label for="anio_elaboracion">Año de elaboracion:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" name="" id="Añoelab" style="width: 35rem;">
+                                                <div class="input-group date selectores">
+                                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                                        <!-- <input type="date" class="form-control"  name="fec_alta" id="fechaElab"> -->
+                                                        <input type="date" class="form-control habilitar" id="fec_elab_edit" name="fechaElab">
+                                                </div>
+                                            
+                                                <input type="text" class="form-control  ocultarInfofecha" name="anio_elaboracion" id="Añoelab" style="width: 35rem;" readonly>
                                         </div>
                                         <!--_____________________________________________-->
-
+   
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-
+                                
                                         <!--Tara-->
                                         <div class="form-group">
-                                            <label for="Tara">Tara:</label>
+                                            <label for="tara">Tara:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" name="" id="Tara" style="width: 35rem;">
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                                                    <input type="number" class="form-control habilitar" name="tara" id="Tara" style="width: 35rem;">
+                                                </div>
                                         </div>
                                         <!--_____________________________________________-->
                                         <br>
                                         <!--Estado-->
                                         <div class="form-group">
-                                            <label for="Estados">Estado:</label>
+                                            <label for="esco_id">Estado:</label>
                                             <br>
-                                            <select class="form-control select2 select2-hidden-accesible selectores" name="" id="Estados" style="width: 35rem;">
+                                            <select class="form-control select2 select2-hidden-accesible selectores" name="esco_id" id="Estados" style="width: 35rem;">
                                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                                 <?php
                                                         foreach ($estados as $i) {
@@ -134,16 +146,16 @@
                                                                                 
                                                 ?>
                                             </select>
-                                            <input type="text" class="form-control ocultarInfo" name="" id="estadoInfo" style="display:none">
+                                            <input type="text" class="form-control ocultarInfo" name="" id="estadoInfo" style="display:none" style="width: 35rem;">
                                         </div>
                                         <br>
                                          <!--Habilitacion-->
                                             <div class="form-group">
                                               
-                                                 <label for="Habilitacion" >Habilitacion:</label>
+                                                 <label for="habilitacion" >Habilitacion:</label>
                                                   <br>   
                                                      
-                                                <select class="form-control select2 select2-hidden-accesible selectores" name="" id="Habilitacion" style="width: 35rem;">
+                                                <select class="form-control select2 select2-hidden-accesible selectores" name="habilitacion" id="Habilitacion" style="39rem !important;">
                                                     <option value="" disabled selected>-seleccione opcion-</option>
                                                         <?php
                                                             foreach ($habilitacion as $i) {
@@ -151,17 +163,17 @@
                                                             }
                                                         ?>
                                                 </select>
-                                                <input type="text" class="form-control ocultarInfo" name="" id="habilitacionInfo" style="display:none">
+                                                <input type="text" class="form-control ocultarInfo" name="" id="habilitacionInfo" style="display:none" style="width: 35rem;">
                                             </div>    
                                     
                                     
                                         <br>
                                         <div class="form-group ocultar ">
-                                            <label for="tipoResiduos">Tipo de residuo:</label>
+                                            <label for="ticaid">Tipo de residuo:</label>
                                             <br>
                                             <div class="input-group date">
                                                 <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                                                    <select class="form-control select3 habilitar  " multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tic_id">
+                                                    <select class="form-control select3 habilitar  " multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tic_id" name="ticaid">
                                                    
                   
                                                     </select>
@@ -440,11 +452,14 @@ $(".btnInfo").click(function(e){
     $(".ocultar").attr("style","display:none"); 
     $(".ocultar_Info").removeAttr("style");
     $(".ocultarInfo").removeAttr("style");
+    $(".ocultarInfo").attr("style","width: 39rem;");
+    $(".ocultarInfofecha").removeAttr("style");
+    $(".ocultarInfofecha").attr("style","width: 35rem;");
     $('#btnsave').hide();
     $("#Codigo").val(data.codigo);
     $("#Descripcion").val(data.descripcion);
     $("#Capacidad").val(data.capacidad);
-    $("#Añoelab").val(data.anio_elaboracion);
+    $("#Añoelab").val(data.anio_elaboracion.slice(0, 10)); // saco hs y minutos
     $("#Tara").val(data.tara);
     $("#estadoInfo").val(data.esco_id.substr(17,30));
     $("#cargaInfo").val();
@@ -491,17 +506,30 @@ console.table(data.tipos_carga.tipoCarga);
 console.table(datacarga[0].valor);
 $(".habilitar").removeAttr("readonly");
 $(".selectores").removeAttr("style");
+$(".selectores").attr("style","width: 39rem;");
 $("#tic_id").removeAttr("disabled"); 
 $(".ocultar").removeAttr("style");
 $(".ocultar_Info").attr("style","display:none");
 $(".ocultarInfo").attr("style","display:none");
+$(".ocultarInfofecha").attr("style","display:none");
 $(".titulo").text('Editar Contenedor'); 
 $('#btnsave').show(); 
 //--------------------------------------
 $("#Codigo").val(data.codigo);
 $("#Descripcion").val(data.descripcion);
 $("#Capacidad").val(data.capacidad);
-$("#Añoelab").val(data.anio_elaboracion);
+
+//para pintar la fecha en el input fecha de elaboracion
+var fec_nacimiento = data.anio_elaboracion.slice(0, 10) // saco hs y minutos		
+			Date.prototype.toDateInputValue = (function() {
+				var local = new Date(fec_nacimiento);
+				// local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+				return local.toJSON().slice(0, 10);
+			});
+$('input#fec_elab_edit').val(new Date().toDateInputValue());
+console.table($('input#fec_elab_edit').val());
+//fin
+$("#fec_elab_edit").attr("style","width: 31rem;");
 $("#Tara").val(data.tara);
 $("#cont_id").val(data.cont_id);
 $("#Estados")[0][0].selected = "false";
@@ -550,7 +578,8 @@ $("#btnsave").click(function(e){
     datos.codigo = $("#Codigo").val();
     datos.descripcion = $("#Descripcion").val();
     datos.capacidad = $("#Capacidad").val();
-    datos.anio_elaboracion =  $("#Añoelab").val().substr(0,10);
+    // datos.anio_elaboracion =  $("#fechaElab").val().substr(0,10);
+    datos.anio_elaboracion =  $("#fec_elab_edit").val();
     datos.tara = $("#Tara").val();
     datos.cont_id = $("#cont_id").val();
     datos.usuario_app = "hugoDS"; 
@@ -575,40 +604,68 @@ $("#btnsave").click(function(e){
         console.table($("#Habilitacion")[0][0].value);
         datos.habilitacion = $("#Habilitacion")[0][0].value;
     }
- 
-   
-    // console.table($("#Estados").val());
-    // console.table("datos antes de entrar: ");
-    // console.table(datos);
-    // console.table("deltetipo antes de entrar: ");
-    // console.table(deletetipo);
-    // console.table("datos tipo carga antes de entrar: ");
-    // console.table(datos_tipo_carga);
-    // console.table("contid antes de entrar: ");
-    // console.table(cont_id);
     
-    
-    $.ajax({
-                type: "POST",
-                data: {datos, deletetipo, datos_tipo_carga, cont_id },
-                url: "general/Estructura/Contenedor/Actualizar_Contenedor",
-                success: function (r) {
-                    
-                    console.table(r);
-                    if (r == "ok") {
-                        $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor_Tabla");
-                        alertify.success("Actualizado con exito");
-                        $("#modalEdit").modal('hide');
-                       
-
-                      
-
-                    } else {
-                        
-                        alertify.error("error al actualizar");
+    var aux=0;
+    if($("#Codigo").val()!="")
+    {
+        if($("#Descripcion").val()!="")
+        {
+            if($("#Capacidad").val()!="")
+            {
+                if($("#fec_elab_edit").val()!="")
+                {
+                    if($("#Tara").val()!="")
+                    {
+                        if($("#tic_id").val()!="")
+                        {
+                            if($("#Habilitacion").val()!="")
+                            {
+                                if($("#Estados").val()!="")
+                                    {
+                                        aux = 1;
+                                    }
+                            }
+                        }
                     }
                 }
-            });
+            }   
+        }
+    }
+   
+    if (aux==1) 
+    {
+
+        if($("#input_aux_img64").val()!="") 
+        {
+    
+            $.ajax({
+                        type: "POST",
+                        data: {datos, deletetipo, datos_tipo_carga, cont_id },
+                        url: "general/Estructura/Contenedor/Actualizar_Contenedor",
+                        success: function (r) {
+                            
+                            console.table(r);
+                            if (r == "ok") {
+                                $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor_Tabla");
+                                alertify.success("Actualizado con exito");
+                                $("#modalEdit").modal('hide');
+                                $('#formContenedoresedit').data('bootstrapValidator').resetForm();
+
+                            
+
+                            } else {
+                                
+                                alertify.error("error al actualizar");
+                                $('#formContenedoresedit').data('bootstrapValidator').resetForm();
+                            }
+                        }
+                    });
+        }else{
+            alert("ATENCION!!! No cargo imagen ");
+        }
+    }else{
+        alert("ATENCION!!! Hay Campos Vacios o ingresados incorrectamente");
+    }
 
 });
 
@@ -638,6 +695,128 @@ $("#btndelete").click(function(e){
                 }
             });
 
+});
+</script>
+<!--Script Bootstrap Validacion.-->
+
+<script>
+$(document).ready(function() {
+$('#formContenedoresedit').bootstrapValidator({
+				message: 'This value is not valid',
+				// feedbackIcons: {
+				// 		valid: 'glyphicon glyphicon-ok',
+				// 		invalid: 'glyphicon glyphicon-remove',
+				// 		validating: 'glyphicon glyphicon-refresh'
+				// },
+				//excluded: ':disabled',
+				fields: {
+                            codigo: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /^(0|[1-9][0-9]*)$/ ,
+                                message: 'la entrada debe ser un numero entero'
+                            }
+                        }
+                    },
+                    descripcion: {
+                        message: 'la entrada no es valida',
+                            validators: {
+                            notEmpty: {
+                                 message: 'la entrada no puede ser vacia'
+                                 }
+                                }          
+                    },
+                    fec_alta: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }        
+                        }
+                    },
+                    fechaElab: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+                    tara: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /^[+-]?((\d+(\.\d+)?)|(\.\d+))$/,
+                                message: 'la entrada debe ser un numero entero'
+                            }
+                        }
+                    },
+                    esco_id: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+                    
+                    capacidad: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /^[+-]?((\d+(\.\d+)?)|(\.\d+))$/,
+                                message: 'la entrada debe ser un numero entero'
+                            }
+                        }
+                    },
+                    habilitacion: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+                    ticaid: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+                    tran_id: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    }
+				}
+		// }).on('success.form.bv', function(e) {
+		// 		e.preventDefault();
+				//guardar();
+		});
+});
+
+$("#btncerrar").click(function(e){
+    
+    $('#formContenedoresedit').data('bootstrapValidator').resetForm();
+});
+$("#btn_cerrar_arriba").click(function(e){
+   
+    $('#formContenedoresedit').data('bootstrapValidator').resetForm();
 });
 </script>
 
