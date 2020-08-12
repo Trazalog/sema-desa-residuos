@@ -808,7 +808,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }
   }
 
--- contenedoresSet (alta contenedores) 
+-- contenedoresSet (alta contenedores)
   
   
   recurso: /contenedores
@@ -836,7 +836,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
   {"respuesta": {"cont_id": "8"}}
 
--- contenedoresTipoCarga (SET asociar tipo carga a contenedores son varios por contenedor)  
+-- contenedoresTipoCarga (SET asociar tipo carga a contenedores son varios por contenedor)
   -- usar este formato xq puede ser varios tipos de carga por contenedor
   recurso: /_post_contenedores_tipocarga_batch_req
   metodo: post 
@@ -1400,8 +1400,8 @@ and cont_id = :cont_id
       TCAR.valor as carnet, 
       TCAT.valor as categoria
     from log.choferes CH, log.transportistas T, core.tablas as TCAR, core.tablas as TCAT
-    where CH.tran_id = T.tran_id 
-    and CH.carnet = TCAR.tabl_id 
+    where CH.tran_id = T.tran_id
+    and CH.carnet = TCAR.tabl_id
     and CH.cach_id = TCAT.tabl_id 
     and CH.eliminado = 0 
 
@@ -1549,7 +1549,7 @@ and cont_id = :cont_id
     }
 
 
--- contenedoresEntregadosSet" 
+-- contenedoresEntregadosSet"
   recurso: /contenedores/entregados/entregar
   _post_contenedores_entrega_batch_req
   metodo: post
@@ -3688,10 +3688,18 @@ where sore_id = cast(:sore_id as integer)
   recurso: /vehiculos
   metodo: post
  
-  insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio, fecha_ingreso, tara, imagen)
-  values(:descripcion, :marca, :codigo, :ubicacion, CAST(:tran_id AS INTEGER), :dominio, TO_DATE(:fecha_ingreso,'YYYY-MM-DD'), CAST(:tara as float8), :imagen)
+  insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio, fecha_ingreso, tara, imagen, cont_id)
+        SELECT :descripcion, :marca, :codigo, :ubicacion, CAST(:tran_id AS INTEGER), :dominio, TO_DATE(:fecha_ingreso,'YYYY-MM-DD'), CAST(:tara as float8), :imagen,
+        CASE
+          WHEN cont.ID = 'X'
+            THEN NULL
+          ELSE CAST (cont.id AS integer)
+        END
+        FROM  (SELECT :cont_id ID) cont
   returning equi_id
-  
+
+
+
   {
     "_post_vehiculos":{
       "descripcion": "Carreton grande",
@@ -3702,7 +3710,8 @@ where sore_id = cast(:sore_id as integer)
       "dominio": "AMD 456",
       "fecha_ingreso": "2020-05-21",
       "tara": "200.50",
-      "imagen": ""
+      "imagen": "",
+      "cont_id": "127"
     }
   }
   

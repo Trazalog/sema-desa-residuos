@@ -8,7 +8,7 @@ class Transportista extends CI_Controller
 {   
     /**
     * Constructor de Clase
-    * @param 
+    * @param
     * @return 
     */
     function __construct(){
@@ -24,7 +24,7 @@ class Transportista extends CI_Controller
     function templateTransportistas()
     {
         log_message('INFO','#TRAZA|TRANSPORTISTA|templateTransportistas() >>');
-        $data['Rsu'] = $this->Transportistas->obtener_RSU();    
+        $data['Rsu'] = $this->Transportistas->obtener_RSU();
         $this->load->view('layout/Transportistas/registrar_transportista',$data);        
     }
    
@@ -37,7 +37,7 @@ class Transportista extends CI_Controller
     {   
         log_message('INFO','#TRAZA|TRANSPORTISTA|Guardar_Transportista() >>');
         $datos =  $this->input->post('datos');
-        $tiposcarga = $this->input->post('tipocarga');        
+        $tiposcarga = $this->input->post('tipocarga');
         $tran_id = $this->Transportistas->Guardar_Transportista($datos);
         // agregar el id de transportista para asociar a tipo carga
         if($tran_id){
