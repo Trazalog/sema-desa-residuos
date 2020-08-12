@@ -148,7 +148,7 @@ define('NOM', 'Residuos');
 
 //Vista por Defecto
 // define('DEF_VIEW',BPM.'Proceso');
-define('DEF_VIEW','TestControllerMapa/obtenerMapa');
+define('DEF_VIEW','TestControllerMapa/obtener');
 
 /*
 |--------------------------------------------------------------------------

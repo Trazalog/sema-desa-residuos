@@ -8,16 +8,23 @@ class TestControllerMapa extends CI_Controller
         $this->load->model('TestModelMapa');
     }
 
-    public function obtenerMapa()
+    public function obtener()
     {
         $data['camiones'] = $this->TestModelMapa->obtener()['data'];
         $this->load->view('TestViewMapa',$data);
     }
 
-    public function obtenerCamion()
+    public function obtenerUbicaciones()
     {
         $data = $this->input->get();
-        $rsp = $this->TestModelMapa->obtenerUbicacionCamion($data['dominio']);
+        $rsp = $this->TestModelMapa->obtenerUbicaciones();
+        echo json_encode($rsp);
+    }
+
+    public function obtenerUbicacion()
+    {
+        $data = $this->input->get();
+        $rsp = $this->TestModelMapa->obtenerUbicacion($data['dominio']);
         echo json_encode($rsp);
     }
 }
