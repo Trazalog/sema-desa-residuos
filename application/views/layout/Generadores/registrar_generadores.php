@@ -352,18 +352,23 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel"> Eliminar Generador</h5>
             </div>
+            <input type="text" id="id_generador" style="display:none">
             <div class="modal-body">
-
-           <input type="text" id="id_generador" style="display:none">
+            <center>
+					<h4>
+						<p>¿Desea eliminar el contenedor?</p>
+					</h4>
+			</center>
+           
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
             </div>
             <div class="modal-footer">
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletegenerador()">Aceptar</button>
-                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">Cancelar</button>
-                </div>
+                <center>
+                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletegenerador()">SI</button>
+                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">NO</button>
+                </center>
             </div>
         </div>
     </div>

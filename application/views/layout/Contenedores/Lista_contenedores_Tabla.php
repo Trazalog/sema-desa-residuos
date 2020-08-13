@@ -20,8 +20,8 @@
                         {
                             echo "<tr data-json='".json_encode($fila)."' data-carga='".json_encode($carga)."'>";
                             echo    '<td>';
-                            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                                    <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
                                     <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
                                 
                             echo   '</td>';
@@ -194,6 +194,7 @@ $(".btnEliminar").click(function(e) {
 });
 //--------------------------------------------------------------------
 $(".btnInfo").click(function(e){
+   $("#modalEdit").modal("show");
     var aux2 = null;
     $("#input_aux_img64").val(aux2);
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
@@ -219,6 +220,7 @@ $(".btnInfo").click(function(e){
     $("#estadoInfo").attr("readonly","readonly"); 
     $("#habilitacionInfo").attr("readonly","readonly"); 
     $("#tic_id_info").find('option').remove();
+    $(".esconder").attr("style","left: 0rem; top: 1rem; ");
 
 
   var tipo = data.tipos_carga.tipoCarga;
@@ -247,6 +249,7 @@ $(".btnInfo").click(function(e){
 
 //-------------------------------------------------------------------------
 $(".btnEditar").click(function(e){
+$("#modalEdit").modal("show"); 
 var aux2 = null;
 $("#input_aux_img64").val(aux2);
 var data = JSON.parse($(this).parents("tr").attr("data-json"));  
@@ -270,7 +273,7 @@ $("#Codigo").val(data.codigo);
 $("#Descripcion").val(data.descripcion);
 $("#Capacidad").val(data.capacidad);
 $("#Añoelab").val(data.anio_elaboracion);
-
+$(".esconder").attr("style","display:none");
 //para pintar la fecha en el input fecha de elaboracion
 var fec_nacimiento = data.anio_elaboracion.slice(0, 10) // saco hs y minutos		
 			Date.prototype.toDateInputValue = (function() {

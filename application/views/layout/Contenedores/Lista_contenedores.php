@@ -23,8 +23,8 @@
                         {
                             echo "<tr data-json='".json_encode($fila)."' data-carga='".json_encode($carga)."'>";
                             echo    '<td>';
-                            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                                    <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
                                     <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
                                 
                             echo   '</td>';
@@ -86,6 +86,7 @@
                                             <label for="descripcion">Descripcion:</label>
                                             <br>
                                             <input type="text" class="form-control habilitar" name="descripcion" id="Descripcion" style="width: 35rem;">
+                                            <span class="glyphicon glyphicon-eye-open esconder" aria-hidden="true" style="left: 0rem; top: 1rem; " title="Ampliar Descripcion" onclick="ampliarDesc()"></span>                                        
                                         </div>
                                         <!--_____________________________________________-->
                                           <!--Cont_id solo para salvaguardar el id del contenedor-->
@@ -279,6 +280,27 @@
 
 
 <!---//////////////////////////////////////--- FIN MODAL BORRAR ---///////////////////////////////////////////////////////----->
+<!---//////////////////////////////////////--- MODAL AMPLIAR DESCRIPCION ---///////////////////////////////////////////////////////-----> 
+<div class="modal fade" id="modalVerDescAmpliada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+    <div class="modal-dialog" role="document"> 
+        <div class="modal-content"> 
+            <div class="modal-header bg-blue"> 
+                <button type="button" class=" close btn-cerrar-modal" data-dismiss="modal" aria-label="Close" onclick="cerrar_Ampliar()"> 
+                    <span aria-hidden="true">&times;</span> 
+                </button> 
+                <h5 class="modal-title" id="exampleModalLabel">Descripcion de Contenedores</h5> 
+            </div> 
+            <div class="modal-body"> 
+ 
+               <textarea name="" id="descrip" cols="30" rows="10" readonly></textarea>  
+ 
+            </div> 
+        </div> 
+    </div> 
+</div> 
+ 
+<!---//////////////////////////////////////--- FIN MODAL DESCRIPCION ---///////////////////////////////////////////////////////-----> 
+
 <script>
 $(document).ready(function(){		
                 var aux= "";	
@@ -442,6 +464,7 @@ $(".btnEliminar").click(function(e){
 //BOTON VER INFO
 
 $(".btnInfo").click(function(e){
+    $("#modalEdit").modal("show"); 
     var aux2 = null;
     $("#input_aux_img64").val(aux2);
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
@@ -467,7 +490,7 @@ $(".btnInfo").click(function(e){
     $(".titulo").text('Informacion Contenedor');
     $("#estadoInfo").attr("readonly","readonly"); 
     $("#habilitacionInfo").attr("readonly","readonly"); 
-
+    $(".esconder").attr("style","left: 0rem; top: 1rem; ");
     $("#tic_id_info").find('option').remove();
 
 
@@ -496,6 +519,7 @@ ExtraerImagen(data);
 
 //BOTON EDITAR
 $(".btnEditar").click(function(e){
+$("#modalEdit").modal("show"); 
 var aux2 = null;
 $("#input_aux_img64").val(aux2);
 var data = JSON.parse($(this).parents("tr").attr("data-json"));  
@@ -538,7 +562,7 @@ $("#Estados")[0][0].value = data.esco_id;
 $("#Habilitacion")[0][0].selected = "false"; 
 $("#Habilitacion")[0][0].text = data.habilitacion;
 $("#Habilitacion")[0][0].value = data.habil_id;
-
+$(".esconder").attr("style","display:none");
 
 $("#tic_id").find('option').remove();
 var tipo = data.tipos_carga.tipoCarga;
@@ -650,6 +674,7 @@ $("#btnsave").click(function(e){
                                 alertify.success("Actualizado con exito");
                                 $("#modalEdit").modal('hide');
                                 $('#formContenedoresedit').data('bootstrapValidator').resetForm();
+                                $(".esconder").attr("style","left: 0rem; top: 1rem; ");
 
                             
 
@@ -657,6 +682,8 @@ $("#btnsave").click(function(e){
                                 
                                 alertify.error("error al actualizar");
                                 $('#formContenedoresedit').data('bootstrapValidator').resetForm();
+                                $("#modalEdit").modal('hide');
+                                $(".esconder").attr("style","left: 0rem; top: 1rem; ");
                             }
                         }
                     });
@@ -696,6 +723,20 @@ $("#btndelete").click(function(e){
             });
 
 });
+
+function ampliarDesc () 
+{ 
+    $("#modalEdit").modal("hide"); 
+    $("#modalVerDescAmpliada").modal("show"); 
+    var valor = $("#Descripcion").val(); 
+    $("#descrip").val(valor); 
+     
+} 
+function cerrar_Ampliar(){ 
+    $("#modalVerDescAmpliada").modal("hide"); 
+    $("#modalEdit").modal("show"); 
+} 
+
 </script>
 <!--Script Bootstrap Validacion.-->
 

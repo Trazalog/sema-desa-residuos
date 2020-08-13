@@ -314,6 +314,9 @@ async function convertA(){
     //Script Boton Agregar
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aux = "";
+				$("#imagen").attr("src",aux);
+				$("#input_aux_img").val(aux);
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
         $("#botonAgregar").attr("disabled", "");
