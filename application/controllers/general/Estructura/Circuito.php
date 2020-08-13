@@ -122,7 +122,7 @@ class Circuito extends CI_Controller {
   {
 			log_message('INFO','#TRAZA|CIRCUITO|actulizaCircuitos() >> ');
 			// actualiza dats de circuito
-				$circuitos = $this->input->post('circuito_edit');
+				$circuitos = $this->input->post('datos_circuito_enviar_edit');
 				$circuitos['usuario_app'] = userNick();
 				$resp = $this->Circuitos->actulizaInfoCircuitos($circuitos);	
 			// borra tipos de carga
