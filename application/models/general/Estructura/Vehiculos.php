@@ -85,5 +85,30 @@ class Vehiculos extends CI_Model
                 $aux =json_decode($auxx["data"]);
                 return $aux;
             }
+
+            /************funciones de mapa de ultimo registro *****************/
+            public function obtener()
+            {
+                $url = REST.'/vehiculos';
+                $rsp = wso2($url);
+                return $rsp;
+            }
+
+            public function obtenerUbicaciones()
+            {
+                $url = 'http://127.0.0.1:8080/camiones/ubicaciones/ultima/TODOS';
+                $rsp = wso2($url);
+                $rsp = $rsp['data'];
+                return $rsp;
+            }
+
+            public function obtenerUbicacion($dominio)
+            {
+                $url = 'http://127.0.0.1:8080/camiones/ubicaciones/ultima/{dominio}';
+                $rsp = wso2($url);
+                $rsp = $rsp['data'][0];
+                return $rsp;
+            }
+            /****************************************************************/
     }
 ?>

@@ -218,7 +218,21 @@ class Dash extends CI_Controller {
 																	"link": "Test/index"
 															}                            
 													]
+											},
+											{
+												"titulo": "Mapas",
+												"icono": "fa fa-map",
+												"link": "general/",
+												"nivel": 2,
+												"submenu":[
+													{
+														"titulo": "Ultimo Registro de Camion",
+														"icono": "fa fa-genderless",
+														"link": "general/Estructura/Vehiculo/obtener"
+													}
+												]
 											}
+											
 									]
 								}
 						}';

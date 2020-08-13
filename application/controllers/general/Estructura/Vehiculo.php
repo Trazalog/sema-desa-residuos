@@ -114,6 +114,26 @@
             $dato= $this->Vehiculos->obtenerImagen_Vehi_Id($id);  
             echo json_encode($dato);
         }
+        /************funciones de mapa de ultimo registro *****************/
+        public function obtener()
+        {
+            $data['vehiculos'] = $this->Vehiculos->obtener()['data'];
+            $this->load->view('/layout/Vehiculos/ultimoRegistroCamion',$data);
+        }
 
+        public function obtenerUbicaciones()
+        {
+            $data = $this->input->get();
+            $rsp = $this->Vehiculos->obtenerUbicaciones();
+            echo json_encode($rsp);
+        }
+
+        public function obtenerUbicacion()
+        {
+            $data = $this->input->get();
+            $rsp = $this->Vehiculos->obtenerUbicacion($data['dominio']);
+            echo json_encode($rsp);
+        }
+        /****************************************************************/
     }
 ?>

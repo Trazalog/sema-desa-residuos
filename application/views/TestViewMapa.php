@@ -48,7 +48,7 @@ wo();
 $.ajax({
     type: 'GET',
     dataType:'JSON',
-    url:'TestControllerMapa/obtenerUbicaciones',
+    url:'Camion/obtenerUbicaciones',
     success: function(rsp) {
         for(var i=0;i<rsp.length;i++)
         {
@@ -80,7 +80,7 @@ $('#cami_id').on('change',function(){
         type: 'GET',
         dataType:'JSON',
         data:{dominio},
-        url:'TestControllerMapa/obtenerUbicacion',
+        url:'Camion/obtenerUbicacion',
         success: function(rsp) {
             console.log(rsp);
             L.marker([rsp.lat,rsp.lng]).addTo(map)
