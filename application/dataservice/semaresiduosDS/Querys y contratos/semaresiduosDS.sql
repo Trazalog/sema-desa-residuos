@@ -1064,17 +1064,17 @@ http://10.142.0.3:8280/services/semaresiduosDS
  recurso /contenedoresEntregados/descargar
  metodo: PUT
 
-SELECT prd.cambiar_recipiente(ce.batch_id,:p_reci_id_destino,2000,1,:p_usuario_app,'false',ce.mts_cubicos)
-FROM log.contenedores_entregados ce 
-WHERE ce.ortr_id = :ortr_id 
-AND ce.cont_id = :cont_id;
+  SELECT prd.cambiar_recipiente(ce.batch_id,:p_reci_id_destino,2000,1,:p_usuario_app,'false',ce.mts_cubicos)
+  FROM log.contenedores_entregados ce
+  WHERE ce.ortr_id = :ortr_id
+  AND ce.cont_id = :cont_id;
 
-  { "_put_contenedoresEntregados_descargar":{
-      "p_reci_id_destino" :""
-      "p_usuario_app" :""
-      "ortr_id" :""
-      "cont_id" :""
-}}
+    { "_put_contenedoresEntregados_descargar":{
+        "p_reci_id_destino" :""
+        "p_usuario_app" :""
+        "ortr_id" :""
+        "cont_id" :""
+  }}
 
 -- contenedoresEntregadosPorTicaId (contenedores entregados por tipo de carga y usuario_app)
   recurso: /contenedoresEntregados/tipocarga/tipo_cargaOrganico/usr/hugoDS
@@ -1142,22 +1142,22 @@ AND ce.cont_id = :cont_id;
 --contenedoresEntregadosDescargarEnRecipiente
    recurso /contenedoresEntregados/descargar/recipiente
    metodo PUT
-SELECT prd.cambiar_recipiente(ce.batch_id,cast(:reci_id_destino as integer),2000,1,:usuario_app,'false'::varchar)
-FROM log.contenedores_entregados ce 
-WHERE ce.ortr_id = cast(:ortr_id as integer) 
-AND ce.cont_id = cast(:cont_id as integer);
+  SELECT prd.cambiar_recipiente(ce.batch_id,cast(:reci_id_destino as integer),2000,1,:usuario_app,'false'::varchar)
+  FROM log.contenedores_entregados ce
+  WHERE ce.ortr_id = cast(:ortr_id as integer)
+  AND ce.cont_id = cast(:cont_id as integer);
 
-   retorna 202 si ok
---contenedoresEntregadosDescagarUpdate
-   recurso /contenedoresEntregados/descargar
-   metodo POST
+    retorna 202 si ok
+  --contenedoresEntregadosDescagarUpdate
+    recurso /contenedoresEntregados/descargar
+    metodo POST
 
-update log.contenedores_entregados
-set foto=:foto
-,tiva_id=:tiva_id
-,observaciones_descarga=:observaciones_descarga
-where ortr_id = cast(:ortr_id as integer)
-and cont_id =cast(:cont_id as integer)
+  update log.contenedores_entregados
+  set foto=:foto
+  ,tiva_id=:tiva_id
+  ,observaciones_descarga=:observaciones_descarga
+  where ortr_id = cast(:ortr_id as integer)
+  and cont_id =cast(:cont_id as integer)
    retorna 202 si ok
 
 -- contenedoresEntregadosInfoEntregaCase
@@ -1277,19 +1277,19 @@ and cont_id =cast(:cont_id as integer)
   recurso: /contenedoresEntregados/redireccionar
   metodo POST
   UPDATE log.contenedores_entregados
-set depo_id = :depo_id,
-observaciones_descarga = observaciones_descarga ||'\r '||:observaciones_descarga
-where ortr_id=:ortr_id
-and cont_id = :cont_id
+  set depo_id = :depo_id,
+  observaciones_descarga = observaciones_descarga ||'\r '||:observaciones_descarga
+  where ortr_id=:ortr_id
+  and cont_id = :cont_id
 
-{
-   "_post_contenedoresEntregados_redireccionar":{
-      "depo_id":"$depo_id",
-      "observaciones_descarga":"$observaciones_descarga",
-      "ortr_id":"$ortr_id",
-      "cont_id":"$cont_id"
-   }
-}
+  {
+    "_post_contenedoresEntregados_redireccionar":{
+        "depo_id":"$depo_id",
+        "observaciones_descarga":"$observaciones_descarga",
+        "ortr_id":"$ortr_id",
+        "cont_id":"$cont_id"
+    }
+  }
 
   retorna 202 si ok
 
@@ -1555,7 +1555,7 @@ and cont_id = :cont_id
   metodo: post
       insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id ,equi_id_entrega)
   values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))
-returning coen_id;
+  returning coen_id;
 
 -- contenedoresEntregaSet 
   recurso: /contenedores/entregados/entregar
@@ -1649,6 +1649,26 @@ returning coen_id;
     }
   }
 
+-- depositosGetPorEstablecimiento (depositos de descarga)
+  recurso: /depositos/establecimiento/{esta_id}  (1 para PTA)
+  metodo: get
+
+  select D.depo_id, D.descripcion
+  from alm.alm_depositos D
+  where esta_id = cast(:esta_id as INTEGER)
+
+  {
+    "depositos":{
+        "deposito":[
+          {
+            "depo_id": "$depo_id",
+            "descripcion": "$descripcion"
+          }
+        ]
+    }
+  }
+
+
 -- establecimientosGetTodos
   recurso: /establecimientos
   metodo: get
@@ -1688,53 +1708,53 @@ returning coen_id;
 	, ce.peso_neto 
 	, ce.observaciones_descarga 
 	, t.descripcion contenido_descarga
-FROM
-	log.ordenes_transporte OT
-	, core.equipos E
-	, log.choferes CH
-	, log.contenedores_entregados ce 
-	, core.tablas t
-	, log.contenedores con
-WHERE
-	OT.case_id = :case_id
-	AND OT.equi_id = E.equi_id
-	AND OT.chof_id = CH.documento
-	AND OT.eliminado = 0
-	AND CE.fec_salida IS NULL 
-	AND ce.fec_descarga IS NOT NULL
-	AND ce.ortr_id = ot.ortr_id 
-	AND t.tabl_id = ce.tiva_id 
-	AND con.cont_id = ce.cont_id
+  FROM
+    log.ordenes_transporte OT
+    , core.equipos E
+    , log.choferes CH
+    , log.contenedores_entregados ce 
+    , core.tablas t
+    , log.contenedores con
+  WHERE
+    OT.case_id = :case_id
+    AND OT.equi_id = E.equi_id
+    AND OT.chof_id = CH.documento
+    AND OT.eliminado = 0
+    AND CE.fec_salida IS NULL 
+    AND ce.fec_descarga IS NOT NULL
+    AND ce.ortr_id = ot.ortr_id 
+    AND t.tabl_id = ce.tiva_id 
+    AND con.cont_id = ce.cont_id
 
-   "contenedor":{
-      "ortr_id":"$ortr_id",
-      "fec_alta":"$fec_alta",
-      "estado":"$estado",
-      "dominio":"$dominio",
-      "descripcion":"$descripcion",
-      "img_vehiculo":"$img_vehiculo",
-      "tara":"$tara",
-      "img_chofer":"$img_chofer",
-      "nom_chofer":"$nom_chofer",
-      "documento":"$documento",
-      "cont_id":"$cont_id",
-      "codigo_contenedor":"$codigo_contenedor",
-      "peso_neto":"$peso_neto",
-      "observaciones_descarga":"$observaciones_descarga",
-      "contenido_descarga":"$contenido_descarga"
-   }
+    "contenedor":{
+        "ortr_id":"$ortr_id",
+        "fec_alta":"$fec_alta",
+        "estado":"$estado",
+        "dominio":"$dominio",
+        "descripcion":"$descripcion",
+        "img_vehiculo":"$img_vehiculo",
+        "tara":"$tara",
+        "img_chofer":"$img_chofer",
+        "nom_chofer":"$nom_chofer",
+        "documento":"$documento",
+        "cont_id":"$cont_id",
+        "codigo_contenedor":"$codigo_contenedor",
+        "peso_neto":"$peso_neto",
+        "observaciones_descarga":"$observaciones_descarga",
+        "contenido_descarga":"$contenido_descarga"
+    }
 
 
--- contenedoresEntregadosSalidaUpdate
-   recurso: /contenedoresEntregados/salida
-   metodo: PUT
+  -- contenedoresEntregadosSalidaUpdate
+    recurso: /contenedoresEntregados/salida
+    metodo: PUT
 
-update log.contenedores_entregados
-set fec_salida= now()
-where ortr_id = cast(:ortr_id as integer)
-and cont_id =cast(:cont_id as integer)
+  update log.contenedores_entregados
+  set fec_salida= now()
+  where ortr_id = cast(:ortr_id as integer)
+  and cont_id =cast(:cont_id as integer)
 
-retorna 202
+  retorna 202
 
 -- (generadores)solicitanteTransporteGet
   recurso: /solicitantesTransporte
@@ -3568,9 +3588,9 @@ retorna 202
     }
 
 --solicitudRetiroEstadoUpdate
-      update log.solicitudes_retiro
-set estado = :estado
-where sore_id = cast(:sore_id as integer)
+  update log.solicitudes_retiro
+  set estado = :estado
+  where sore_id = cast(:sore_id as integer)
 
   {"_put_solicitudesretiro_estado":{
     "sore_id":"24",
@@ -4272,6 +4292,38 @@ where sore_id = cast(:sore_id as integer)
             "texto_onmouseover": null
         }
   ]}}
+
+-- ************ CONSULTAR USUARIO POR USRNICK
+
+  GET http://10.142.0.7:8280/tools/bpm/users/{usuario}/session/{session}
+
+  te retorna
+
+  {
+    "session":"X-Bonita-API-Token=7e2dbb6d-2261-4571-809e-d2b55144a75d;JSESSIONID=D82EE7AD27E388E1624433D7BE30BA07;bonita.tenant=1;",
+    "payload":[
+        {
+          "firstname":"usrtest depo",
+          "icon":"icons/default/icon_user.png",
+          "creation_date":"2020-08-13 17:21:35.777",
+          "userName":"userTestDepoChat",
+          "title":"Sr",
+          "created_by_user_id":"7",
+          "enabled":"true",
+          "lastname":"user test depo apell",
+          "last_connection":"",
+          "password":"",
+          "manager_id":"0",
+          "id":"607",
+          "job_title":"Human resources benefits",
+          "last_update_date":"2020-08-13 17:21:35.849"
+        }
+    ]
+  }
+
+  ejemplo de llamada
+
+  http://10.142.0.7:8280/tools/bpm/users/userTestDepoChat/session/X-Bonita-API-Token%3D7e2dbb6d-2261-4571-809e-d2b55144a75d%3BJSESSIONID%3DD82EE7AD27E388E1624433D7BE30BA07%3Bbonita.tenant%3D1%3B
 
 
 

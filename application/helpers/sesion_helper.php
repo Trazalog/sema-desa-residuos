@@ -4,13 +4,14 @@ if(!function_exists('userId')){
 
     function userId()
 		{
-				return 502; //descarga
+				//return 502; //descarga
 				//return 501; // bascula
 				//return 401;// generador
 				//return 402;// transportista           !HARDCODE
 				$ci =& get_instance();
 				//TODO: REVISAR LO QUE DEVUELVE LA VARIABLE DE SESION ES LA DE LOGIN AHORA
-        $userdata  = $ci->session->userdata('user_data');
+				$userdata  = $ci->session->userdata('user_data');
+
 				return  $userdata[0]['userIdBpm'];
     }
 }
@@ -22,7 +23,7 @@ if(!function_exists('userNick')){
 				//return 'descarga';
 				//return 'bascula';
 				//return 'generador1';
-				return 'transportista1';
+				//return 'transportista1';
 				$ci =& get_instance();
 				//TODO: REVISAR LO QUE DEVUELVE LA VARIABLE DE SESION ES LA DE LOGIN AHORA
         $userdata  = $ci->session->userdata('user_data');
@@ -30,6 +31,11 @@ if(!function_exists('userNick')){
     }
 }
 
+/**
+* Devuelve coincidencia de deposito con usuario de deposito
+* @param
+* @return bool true o false
+*/
 if(!function_exists('filtrarbyDepo')){
 
 	function filtrarbyDepo($nombreTarea, $depo_id = null)
@@ -41,11 +47,8 @@ if(!function_exists('filtrarbyDepo')){
 
 		// si usuario es usuario de deposito
 		if (($nombreTarea == "Certifica Vuelco")) {
-				//$userId = userId();
+
 				$user_depo_id = $userdata['depo_id'];
-
-				//$depo_id = 19; //FIXME: DESHARDCODEAR
-
 				//no coincide usuario deposito con deposito asignado
 				if (!($user_depo_id == $depo_id)) {
 					$mostrar = false;

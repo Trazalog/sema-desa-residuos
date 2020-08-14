@@ -237,7 +237,7 @@
       <param name="tran_id" sqlType="STRING"/>
    </query>
    <query id="vehiculosSet" useConfig="semaresiduosDS">
-      <sql>insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio, fecha_ingreso, tara, imagen, cont_id) &#xd;values(:descripcion, :marca, :codigo, :ubicacion, CAST(:tran_id AS INTEGER), :dominio, TO_DATE(:fecha_ingreso,'YYYY-MM-DD'), CAST(:tara as float8), :imagen, CAST(:cont_id AS INTEGER))&#xd;  returning equi_id</sql>
+      <sql>insert into core.equipos (descripcion, marca, codigo, ubicacion, tran_id, dominio, fecha_ingreso, tara, imagen, cont_id)&#xd;        SELECT :descripcion, :marca, :codigo, :ubicacion, CAST(:tran_id AS INTEGER), :dominio, TO_DATE(:fecha_ingreso,'YYYY-MM-DD'), CAST(:tara as float8), :imagen,&#xd;        CASE&#xd;          WHEN cont.ID = 'X'&#xd;        THEN NULL&#xd;        ELSE CAST (cont.id AS integer) END&#xd;        FROM  (SELECT :cont_id ID) cont&#xd;  returning equi_id</sql>
       <result outputType="json">{&#xd;  "respuesta":{&#xd;     "equi_id": "$equi_id"&#xd;  }&#xd;}</result>
       <param name="descripcion" sqlType="STRING"/>
       <param name="marca" sqlType="STRING"/>
@@ -248,7 +248,7 @@
       <param name="fecha_ingreso" sqlType="STRING"/>
       <param name="tara" sqlType="STRING"/>
       <param name="imagen" optional="false" sqlType="BINARY"/>
-      <param name="cont_id" sqlType="STRING"/>
+      <param defaultValue="X" name="cont_id" optional="true" sqlType="STRING"/>
    </query>
    <query id="transportistasSetTipoCarga" useConfig="semaresiduosDS">
       <sql>insert into log.tipos_carga_transportistas(tran_id, tica_id) values(CAST(:tran_id AS INTEGER), :tica_id)</sql>
@@ -874,6 +874,11 @@
       <sql>select CE.depo_id, DE.descripcion&#xd;  from log.contenedores_entregados CE, alm.alm_depositos DE&#xd;  where Ce.ortr_id = CAST(:ortr_id as INTEGER)&#xd;  and DE.depo_id = CE.depo_id&#xd;  and CE.tiva_id is null&#xd;  and CE.fec_descarga is null</sql>
       <result outputType="json">{&#xd;    "deposito":{&#xd;      "depo_id": "$depo_id",&#xd;      "descripcion": "$descripcion"&#xd;    }&#xd;  }</result>
       <param name="ortr_id" sqlType="STRING"/>
+   </query>
+   <query id="depositosGetPorEstablecimiento" useConfig="semaresiduosDS">
+      <sql>select D.depo_id, D.descripcion&#xd;  from alm.alm_depositos D&#xd;  where esta_id = cast(:esta_id as INTEGER)</sql>
+      <result outputType="json">{&#xd;    "depositos":{&#xd;        "deposito":[&#xd;          {&#xd;            "depo_id": "$depo_id",&#xd;            "descripcion": "$descripcion"&#xd;          }&#xd;        ]&#xd;    }&#xd;  }</result>
+      <param name="esta_id" sqlType="STRING"/>
    </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
@@ -1788,6 +1793,11 @@
    <resource method="GET" path="/deposito/descarga/{ortr_id}">
       <call-query href="depositosDescargaGet">
          <with-param name="ortr_id" query-param="ortr_id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/depositos/establecimiento/{esta_id}">
+      <call-query href="depositosGetPorEstablecimiento">
+         <with-param name="esta_id" query-param="esta_id"/>
       </call-query>
    </resource>
 </data>
