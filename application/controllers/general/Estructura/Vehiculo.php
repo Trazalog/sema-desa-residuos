@@ -115,7 +115,7 @@
             echo json_encode($dato);
         }
         /************funciones de mapa de ultimo registro *****************/
-        public function obtener()
+        public function templateUltimoRegistro()
         {
             $data['vehiculos'] = $this->Vehiculos->obtener()['data'];
             $this->load->view('/layout/Vehiculos/ultimoRegistroCamion',$data);
@@ -133,6 +133,29 @@
             $data = $this->input->get();
             $rsp = $this->Vehiculos->obtenerUbicacion($data['dominio']);
             echo json_encode($rsp);
+        }
+        /****************************************************************/
+        /**************funciones de mapa de recorridos*****************/
+        public function templateRecorridos()
+        {
+            $data['vehiculos'] = $this->Vehiculos->obtener()['data'];
+            $this->load->view('/layout/Vehiculos/recorridoDelCamion',$data);
+        }
+
+        public function obtenerRecorrido()
+        {
+            $data = $this->input->get();
+            $rsp = $this->Vehiculos->obtenerRecorrido($data['dominio']);
+
+            foreach($rsp as $r)
+            {
+                unset($r->fecha);
+                unset($r->dominio);
+                $b = $rsp;
+            }
+
+            echo json_encode($rsp);
+            // var latlngs = [[45.51, -122.68],[37.77, -122.43],[34.04, -118.2]];
         }
         /****************************************************************/
     }

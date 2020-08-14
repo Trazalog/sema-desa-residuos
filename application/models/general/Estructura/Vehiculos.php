@@ -86,7 +86,7 @@ class Vehiculos extends CI_Model
                 return $aux;
             }
 
-            /************funciones de mapa de ultimo registro *****************/
+            /************funciones de mapas*****************/
             public function obtener()
             {
                 $url = REST.'/vehiculos';
@@ -109,6 +109,15 @@ class Vehiculos extends CI_Model
                 $rsp = $rsp['data'][0];
                 return $rsp;
             }
+
+            public function obtenerRecorrido($dominio)
+            {
+                $url = 'http://127.0.0.1:8080/camiones/recorridos';
+                $rsp = wso2($url);
+                $rsp = $rsp['data'];
+                return $rsp;
+            }
+            
             /****************************************************************/
     }
 ?>

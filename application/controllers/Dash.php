@@ -226,9 +226,19 @@ class Dash extends CI_Controller {
 												"nivel": 2,
 												"submenu":[
 													{
-														"titulo": "Ultimo Registro de Camion",
+														"titulo": "Ultimo registro del camion",
 														"icono": "fa fa-genderless",
-														"link": "general/Estructura/Vehiculo/obtener"
+														"link": "general/Estructura/Vehiculo/templateUltimoRegistro"
+													},
+													{
+														"titulo": "Recorrido del camion",
+														"icono": "fa fa-genderless",
+														"link": "general/Estructura/Vehiculo/templateRecorridos"
+													},
+													{
+														"titulo": "Incidencias por camion",
+														"icono": "fa fa-genderless",
+														"link": "general/Estructura/Vehiculo/"
 													}
 												]
 											}

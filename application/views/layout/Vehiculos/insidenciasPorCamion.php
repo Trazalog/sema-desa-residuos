@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h4>Ultimo registro del camión</h4>
+            <h4>Registro de incidencias</h4>
         </div>
         <div class="box-body">
             <div class="row">
