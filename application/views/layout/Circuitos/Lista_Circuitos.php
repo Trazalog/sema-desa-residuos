@@ -38,6 +38,7 @@
 	
 	// llena modal solo lectura
 		$(".btnInfo").on("click", function(e){
+			$("#modalEdit").data('bootstrapValidator').resetForm();
 			datajson = $(this).parents("tr").attr("data-json");
 			console.table(datajson);
 			llenarModal(datajson);	
@@ -45,6 +46,10 @@
 		});
 	// llena modal para edicion
 		$(".btnEditar").on("click", function(e) {
+			// $("#formPuntos_edit")[0].reset();
+			// $("#modalEdit")[0].reset();
+			$("#formPuntos_edit").data('bootstrapValidator').resetForm();
+			$("#modalEdit").data('bootstrapValidator').resetForm();
 			datajson = $(this).parents("tr").attr("data-json");
 			$('#form_editar_pto_critico').show();	
 			$("#btnsave_edit").show();
@@ -144,7 +149,7 @@
 
 			$.each(data,function(index,element){	
 
-				console.info('nombre-> ' + element.nombre);
+				// console.info('nombre-> ' + element.nombre);
 				if(element.nombre){
 					var row =  "<tr class='row_edit row_borrar' data-json='" +JSON.stringify(element)+ "'>" +
 						"<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
@@ -180,18 +185,24 @@
 			if ($("#formPuntos_edit").data('bootstrapValidator').isValid())
 			{aux2=1;}
 			if(aux!=0 && aux2!=0 ){
-			var table_edit = $('#tabla_puntos_criticos_edit').DataTable();	
+
+				
+
 			var data_edit = new FormData($('#formPuntos_edit')[0]);
 			data_edit = formToObject(data_edit);
+
 			data_edit.nombre = $("#nombre_edit_pto").val().toLowerCase();
 			data_edit.descripcion = $("#descripcion_edit_punto").val().toLowerCase();
-			var row =  "<tr class='row_edit row_borrar' data-json=" +JSON.stringify(data_edit)+ ">" +
-						"<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
-						"<td>"+ data_edit.nombre +"</td>" +
-						"<td>"+ data_edit.descripcion +"</td>" +
-						"<td>"+ data_edit.lat +"</td>" +
-						"<td>"+ data_edit.lng +"</td>" +            
-						"</tr>";
+			
+			var table_edit = $('#tabla_puntos_criticos_edit').DataTable();
+			
+			var row = `<tr class='row_edit row_borrar' data-json='${JSON.stringify(data_edit)}'>
+						<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td> 
+						<td>${data_edit.nombre}</td>
+						<td>${data_edit.descripcion}</td>
+						<td>${data_edit.lat}</td>
+						<td>${data_edit.lng}</td>            
+				</tr>`;
 			table_edit.row.add($(row)).draw(); 
 			$('#formPuntos_edit')[0].reset();  
 			}else{
@@ -199,7 +210,13 @@
 			}
 		}	
 
-	
+		// "<tr class='row_edit row_borrar' data-json=" +JSON.stringify(data_edit)+ ">" +
+		// 				"<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
+		// 				"<td>"+ data_edit.nombre +"</td>" +
+		// 				"<td>"+ data_edit.descripcion +"</td>" +
+		// 				"<td>"+ data_edit.lat +"</td>" +
+		// 				"<td>"+ data_edit.lng +"</td>" +            
+		// 				"</tr>";
 	
 		 $(".btnAsociar").on("click", function() {
 			
@@ -215,6 +232,7 @@
 			e.preventDefault();
 			var depa_id = $('#depAsociar option:selected').val();
 			console.info('depa_id : ' + depa_id);
+			$('#zonaAsociar').empty();
 			$.ajax({
 					type: 'POST',
 					data:{depa_id: depa_id},

@@ -38,6 +38,8 @@ class Generadores extends CI_Model
     function Guardar_Generadores($data)
     {
         log_message('INFO','#TRAZA|Generadores|Guardar_Generadores() >> '); 
+        $usuario = userNick();
+        $data['usuario_app'] = $usuario;
         $post["post_generador"] = $data;           
         log_message('DEBUG','#Generadores/Guardar_Generadores: '.json_encode($post));
         $aux = $this->rest->callAPI("POST",REST."/solicitantesTransporte", $post);
@@ -178,7 +180,17 @@ class Generadores extends CI_Model
         return $aux;
     }
 
-
+        /**
+     * Devuelve zonas por un determinado departamnto
+    * @param int depa_id
+    * @return array con info basica de zonas
+    */
+    function obtener_Zona_departamento($depa_id){
+        log_message('INFO','#TRAZA|Generadores| >> ');
+        $aux = $this->rest->callAPI("GET",REST."/zonas/departamento/".$depa_id);
+        $aux =json_decode($aux["data"]);
+        return $aux->zonas->zona;
+    }
 
 
 }

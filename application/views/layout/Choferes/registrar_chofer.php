@@ -31,140 +31,16 @@
 			</div>
 ​
 		<div class="box-body">
-			<form class="formChofer" id="formChofer" method="POST" autocomplete="off" class="registerForm">
-				<div class="col-md-6">
-
-					<!--Nombre-->
-					<div class="form-group">
-						<label for="Nombre">Nombre:</label>
-						<input type="text" class="form-control" id="nombre" name="nombre">
-					</div>					​
-					<!--_____________________________________________________________-->
-
-					<!--Apellido-->
-					<div class="form-group">
-						<label for="Apellido">Apellido:</label>
-						<input type="text" class="form-control" id="apellido" name="apellido">
-					</div>					​
-					<!--_____________________________________________________________-->
-
-					<!--DNI-->
-					<div class="form-group">
-						<label for="DNI">DNI:</label>
-						<input type="text" class="form-control" id="documento" name="documento">
-					</div>					​
-					<!--_____________________________________________________________-->
-
-					<!--Fecha de nacimiento-->
-					<div class="form-group">
-						<label for="FechaNacimiento">Fecha de nacimiento:</label>
-						<div class="input-group date">
-							<div class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</div>
-							<input type="date" class="form-control" id="fec_nacimiento" name="fec_nacimiento">
-						</div>
-					</div>					​
-					<!--_____________________________________________________________-->
-
-					<!--Direccion-->
-					<div class="form-group">
-						<label for="Direccion">Direccion:</label>
-						<input type="text" class="form-control" id="direccion" name="direccion">
-					</div>					​
-					<!--_____________________________________________________________-->
-
-					<!--Celular-->
-					<div class="form-group">
-						<label for="Celular">Celular:</label>
-						<input type="text" class="form-control" id="celular" name="celular">
-					</div>
-					<!--_____________________________________________________________-->						
-				</div>
-
-				<div class="col-md-6 col-sm-6 col-xs-12">
-					<!--Codigo-->
-						<div class="form-group">
-							<label for="Codigo">Codigo:</label>
-							<input type="text" class="form-control" id="codigo" name="codigo">
-						</div>					​
-					<!--_____________________________________________________________-->
-
-					<!--Empresa-->
-						<div class="form-group">
-							<label for="Empresa">Empresa:</label>
-							<select class="form-control select2 select2-hidden-accesible" id="tran_id" name="tran_id">
-								<option value="" disabled selected>-Seleccione opcion-</option>
-								<?php
-										foreach ($empresa as $empre) {
-												echo '<option value="'.$empre->tran_id.'">'.$empre->razon_social.'</option>';
-										}
-								?>
-							</select>
-						</div>					​
-					<!--_____________________________________________________________-->
-
-					<!--Carnet-->
-						<div class="form-group">
-							<label for="Carnet">Carnet:</label>
-							<select class="form-control select2 select2-hidden-accesible" id="carnet" name="carnet">
-								<option value="" disabled selected>-Seleccione opcion-</option>
-								<?php
-										foreach ($carnet as $car) {
-												echo '<option value="'.$car->tabl_id.'">'.$car->valor.'</option>';
-										}
-								?>
-							</select>
-						</div>					​
-					<!--_____________________________________________________________-->
-
-					<!--Categoria-->
-						<div class="form-group">
-							<label for="Categoria">Categoria:</label>
-							<select class="form-control select2 select2-hidden-accesible" id="cach_id" name="cach_id">
-								<option value="" disabled selected>-Seleccione opcion-</option>
-								<?php
-										foreach ($categoria as $categ) {
-												echo '<option value="'.$categ->tabl_id.'">'.$categ->valor.'</option>';
-										}
-								?>
-							</select>
-						</div>					​
-					<!--_____________________________________________________________-->
-
-					<!--Vencimiento-->
-						<div class="form-group">
-							<label for="Vencimiento">Vencimiento:</label>
-							<div class="input-group date">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<input type="date" class="form-control pull-right" id="vencimiento" name="vencimiento">
-							</div>
-							<!-- /.input group -->
-						</div>					​
-					<!--_____________________________________________________________-->
-
-					<!--Habilitacion-->
-						<div class="form-group">
-							<label for="Habilitacion">Habilitacion:</label>
-							<input type="text" class="form-control" id="habilitacion" name="habilitacion">
-						</div>					​
-					<!--_____________________________________________________________-->				
-
-				</div>				
-
-				<!--Adjuntar imagen--> 
-					<div class="col-md-12 pull-left">
+			<?php $this->load->view('layout/Choferes/form') ?>
+			<!--Adjuntar imagen--> 
+			<div class="col-md-12 pull-left">
 						<form action="cargar_archivo" method="post" enctype="multipart/form-data">
 								<input type="file" id="img_File" onchange=convertA() style="font-size: smaller">
 								<input type="text" name="imagen" id="input_aux_img" style="display:none" >
 						</form>
 						<img src="" alt="" id="img_Base" width="" height="" style="margin-top: 20px;border-radius: 8px;">
 					</div>
-				<!--_____________________________________________-->		
-			</form> 
-
+				<!--_____________________________________________-->								
 			<!--Boton de guardado-->
 			<div class="col-md-12">
 				<hr>
@@ -496,79 +372,48 @@ $(document).ready(function(){
 	//guardar chofer	
 		function Guardar_Chofer() {
 			
-			var aux2 = 0;
-			if($("#nombre").val() != "")
-			{
-				if($("#apellido").val() != "")
-				{
-					if($("#documento").val() != "")
-					{
-						if($("#fec_nacimiento").val() != "")
-						{
-							if($("#direccion").val() != "")
-							{
-								if($("#celular").val() != "")
-								{
-									if($("#codigo").val() != "")
-									{
-										if($("#tran_id").val() != "")
-										{
-											if($("#carnet").val() != "")
-												{
-													if($("#cach_id").val() != "")
-													{
-														if($("#vencimiento").val() != "")
-														{
-															if($("#habilitacion").val() != "")
-															{
-																aux2 = 1;
-															}
-														}
-													}
-												}
-										}
-									}
-								}
-							}
-						}
-					}
-
-				}
-			}
+			// var aux2 = 0;
+			
 			var datos = new FormData($('#formChofer')[0]);
 			datos = formToObject(datos);		
 			var aux = "";
 			aux = $("#input_aux_img").val();
 			if(aux != "")
 			{
-				if (aux2!=0) {
-					$.ajax({
-						type: "POST",
-						data: { datos },
-						url: "general/Estructura/Chofer/Guardar_Chofer",
-						success: function(r) {
-							console.table(r);
-							if (r == "ok") {
+				// if (aux2!=0) {
+					console.log('Validacion FRM Chores');
+					console.log($("#formChofer").data('bootstrapValidator').isValid());
+					if ($("#formChofer").data('bootstrapValidator').isValid()){
+						$.ajax({
+							type: "POST",
+							data: { datos },
+							url: "general/Estructura/Chofer/Guardar_Chofer",
+							success: function(r) {
+								console.table(r);
+								if (r == "ok") {
 
-								$("#cargar_tabla").load(
-									"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
-								alertify.success("Agregado con exito");
+									$("#cargar_tabla").load(
+										"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
+									alertify.success("Agregado con exito");
 
-								$('#formChofer').data('bootstrapValidator').resetForm();
-								$("#formChofer")[0].reset();
+									$('#formChofer').data('bootstrapValidator').resetForm();
+									$("#formChofer")[0].reset();
 
-								$("#boxDatos").hide(500);
-								$("#botonAgregar").removeAttr("disabled");
+									$("#boxDatos").hide(500);
+									$("#botonAgregar").removeAttr("disabled");
 
-							} else {
-								//console.log(r);
-								alertify.error("error al agregar");
+								} else {
+									//console.log(r);
+									alertify.error("error al agregar");
+								}
 							}
-						}
-					});
-				}else{
-					alert("ATENCION!!! hay campos vacios");
-				}
+						});
+					}else{
+						alert("ATENCION!!! hay campos vacios o mal Ingresados");
+					}
+				// }else{
+				// 	alert("ATENCION!!! hay campos vacios o mal Ingresados");
+				// }
 		    }else{
 				alert("ATENCION!!! no cargo imagen");
 			}
@@ -583,168 +428,168 @@ $(document).ready(function(){
 					validating: 'glyphicon glyphicon-refresh'
 			},*/
 			//excluded: ':disabled',
-			fields: {
-				nombre: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						},
-						/*stringLength: {
-								min: 6,
-								max: 30,
-								message: 'The username must be more than 6 and less than 30 characters long'
-						},*/
-						regexp: {
-							regexp: /[A-Za-z]/,
-							message: 'la entrada no debe ser un numero entero'
-						}
-					}
-				},
-				apellido: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						},
-						/*stringLength: {
-								min: 6,
-								max: 30,
-								message: 'The username must be more than 6 and less than 30 characters long'
-						},*/
-						regexp: {
-							regexp: /[A-Za-z]/,
-							message: 'la entrada no debe ser un numero entero'
-						}
-					}
-				},
-				documento: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						},
-						/*stringLength: {
-								min: 6,
-								max: 30,
-								message: 'The username must be more than 6 and less than 30 characters long'
-						},*/
-						regexp: {
-							regexp: /^(0|[1-9][0-9]*)$/,
-							message: 'la entrada debe ser un numero entero'
-						}
-					}
-				},
-				fec_nacimiento: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						},
-					}
-				},
-				direccion: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						},
-						/*stringLength: {
-								min: 6,
-								max: 30,
-								message: 'The username must be more than 6 and less than 30 characters long'
-						},*/
-						regexp: {
-							regexp: /[A-Za-z]/,
-							message: 'la entrada no debe ser un numero entero'
-						}
-					}
-				},
-				celular: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						},
-						/*stringLength: {
-								min: 6,
-								max: 30,
-								message: 'The username must be more than 6 and less than 30 characters long'
-						},*/
-						regexp: {
-							regexp: /^(0|[1-9][0-9]*)$/,
-							message: 'la entrada no debe ser un numero entero'
-						}
-					}
-				},
-				codigo: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						},
-						regexp:/[0-9]/,  
-					}
-				},
-				tran_id: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						}
-					}
-				},
-				carnet: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						}
-					}
-				},
-				cach_id: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						},
-						/*stringLength: {
-								min: 6,
-								max: 30,
-								message: 'The username must be more than 6 and less than 30 characters long'
-						},*/
-						regexp: {
-							regexp: /[A-Za-z]/,
-							message: 'la entrada no debe ser un numero entero'
-						}
-					}
-				},
-				vencimiento: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						},
-					}
-				},
-				habilitacion: {
-					message: 'la entrada no es valida',
-					validators: {
-						notEmpty: {
-							message: 'la entrada no puede ser vacia'
-						},
-						/*stringLength: {
-								min: 6,
-								max: 30,
-								message: 'The username must be more than 6 and less than 30 characters long'
-						},*/
-						regexp: {
-							regexp: /[A-Za-z]/,
-							message: 'la entrada no debe ser un numero entero'
-						}
-					}
-				}
-			}
+			// fields: {
+			// 	nombre: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			},
+			// 			/*stringLength: {
+			// 					min: 6,
+			// 					max: 30,
+			// 					message: 'The username must be more than 6 and less than 30 characters long'
+			// 			},*/
+			// 			regexp: {
+			// 				regexp: /[A-Za-z]/,
+			// 				message: 'la entrada no debe ser un numero entero'
+			// 			}
+			// 		}
+			// 	},
+			// 	apellido: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			},
+			// 			/*stringLength: {
+			// 					min: 6,
+			// 					max: 30,
+			// 					message: 'The username must be more than 6 and less than 30 characters long'
+			// 			},*/
+			// 			regexp: {
+			// 				regexp: /[A-Za-z]/,
+			// 				message: 'la entrada no debe ser un numero entero'
+			// 			}
+			// 		}
+			// 	},
+			// 	documento: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			},
+			// 			/*stringLength: {
+			// 					min: 6,
+			// 					max: 30,
+			// 					message: 'The username must be more than 6 and less than 30 characters long'
+			// 			},*/
+			// 			regexp: {
+			// 				regexp: /^(0|[1-9][0-9]*)$/,
+			// 				message: 'la entrada debe ser un numero entero'
+			// 			}
+			// 		}
+			// 	},
+			// 	fec_nacimiento: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			},
+			// 		}
+			// 	},
+			// 	direccion: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			},
+			// 			/*stringLength: {
+			// 					min: 6,
+			// 					max: 30,
+			// 					message: 'The username must be more than 6 and less than 30 characters long'
+			// 			},*/
+			// 			regexp: {
+			// 				regexp: /[A-Za-z]/,
+			// 				message: 'la entrada no debe ser un numero entero'
+			// 			}
+			// 		}
+			// 	},
+			// 	celular: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			},
+			// 			/*stringLength: {
+			// 					min: 6,
+			// 					max: 30,
+			// 					message: 'The username must be more than 6 and less than 30 characters long'
+			// 			},*/
+			// 			regexp: {
+			// 				regexp: /^(0|[1-9][0-9]*)$/,
+			// 				message: 'la entrada no debe ser un numero entero'
+			// 			}
+			// 		}
+			// 	},
+			// 	codigo: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			},
+			// 			regexp:/[0-9]/,  
+			// 		}
+			// 	},
+			// 	tran_id: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			}
+			// 		}
+			// 	},
+			// 	carnet: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			}
+			// 		}
+			// 	},
+			// 	cach_id: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			},
+			// 			/*stringLength: {
+			// 					min: 6,
+			// 					max: 30,
+			// 					message: 'The username must be more than 6 and less than 30 characters long'
+			// 			},*/
+			// 			regexp: {
+			// 				regexp: /[A-Za-z]/,
+			// 				message: 'la entrada no debe ser un numero entero'
+			// 			}
+			// 		}
+			// 	},
+			// 	vencimiento: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			},
+			// 		}
+			// 	},
+			// 	habilitacion: {
+			// 		message: 'la entrada no es valida',
+			// 		validators: {
+			// 			notEmpty: {
+			// 				message: 'la entrada no puede ser vacia'
+			// 			},
+			// 			/*stringLength: {
+			// 					min: 6,
+			// 					max: 30,
+			// 					message: 'The username must be more than 6 and less than 30 characters long'
+			// 			},*/
+			// 			regexp: {
+			// 				regexp: /[A-Za-z]/,
+			// 				message: 'la entrada no debe ser un numero entero'
+			// 			}
+			// 		}
+			// 	}
+			// }
 		}).on('success.form.bv', function(e) {
 			e.preventDefault();
 			//guardar();
