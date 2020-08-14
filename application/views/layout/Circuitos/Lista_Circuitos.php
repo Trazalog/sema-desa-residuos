@@ -232,6 +232,7 @@
 			e.preventDefault();
 			var depa_id = $('#depAsociar option:selected').val();
 			console.info('depa_id : ' + depa_id);
+			$('#zonaAsociar').empty();
 			$.ajax({
 					type: 'POST',
 					data:{depa_id: depa_id},

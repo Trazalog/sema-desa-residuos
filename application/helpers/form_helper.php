@@ -123,4 +123,14 @@ if (!function_exists('form')) {
             .">".(isset($e->valor)?$e->valor:null)."</textarea>
         </div>";
     }
+
+    
+if (!function_exists('req')) {
+    function req(){
+        return  
+        ' data-bv-notempty
+          data-bv-notempty-message="Campo Obligatorio *" ';
+    }
+}
+
 }
