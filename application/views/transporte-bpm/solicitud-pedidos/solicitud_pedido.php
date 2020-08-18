@@ -34,7 +34,7 @@
 
 			<div class="box-body">
 
-					<form class="formCircuitos" id="formCircuitos">
+					<form class="formCircuitos" id="formPedidos">
 							<!--_____________________________________________-->
 							<!--NRO-->
 							<div class="col-md-6 col-sm-6 col-xs-12">
@@ -50,12 +50,12 @@
 							<!--FECHA RETIRO-->
 							<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class="form-group">
-                                        <label for="fecha" class="form-label">Fecha de Retiro:</label>
+                                        <label for="fecha" class="form-label">Fecha:</label>
                                             <div class="input-group date">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="date" class="form-control"   name="fecha" id="Fecha">
+                                                <input type="date" class="form-control"   name="fecha" id="Fecha" value="<?php echo date("Y-m-d");?>">
                                             </div>
 									</div>
 							</div>
@@ -205,10 +205,11 @@
 									<div class="box-body table-responsive">											
 											<table class="table table-striped" id="tabla_contenedores">
 													<thead class="thead-dark" bgcolor="#eeeeee">
+															<th>Acciones</th>
 															<th>Cantidad Solicitada</th>
-															<th>otro</th>
-															<th>usuario_app</th>
-															<th>tica_id</th>
+															<th style="display:none;">tica_id</th>
+															<th>tipo de carga</th>
+										
 															
 															
 															
@@ -227,7 +228,7 @@
 							<div class="form-group">
                                     <label for="observaciones" >Observaciones:</label>
                                         <div class="input-group date">
-                                            <textarea name="observaciones" id="observaciones" cols="30" rows="2"></textarea>
+                                            <textarea name="observaciones" id="observaciones" cols="50" rows="8"></textarea>
                                          </div>   
 							</div>
 					</div>                                                  
@@ -272,8 +273,12 @@
 <!-- script modal -->
 
 <script>
+// remueve registro de tabla temporal 
+$(document).on("click",".fa-minus",function() {
+			$('#tabla_contenedores').DataTable().row( $(this).closest('tr') ).remove().draw();
+		});
 
-$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/transporte-bpm/Solicitud_Pedido/Listar_SolicitudesPedido");
+// $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/transporte-bpm/Solicitud_Pedido/Listar_SolicitudesPedido");
 
 // FUNCION PARA OBTENER TIPOS DE CARGA DEPENDIENDO DEL TRANSPORTISARA QUE SE SELECCIONO
 // function obtenertipocarga(){
@@ -339,26 +344,33 @@ $("#botonAgregar").click(function(e){
 
 //agrega pedido de contedor a la tabla para guardar  
 function Agregar_pedido() {
-console.table($("#tipores").val());
-$('#pedidos').show();
-var data = new FormData();
-data = formToObject(data);
-data.usuario_app = "hugoDS";
-data.otro ="";
-data.tica_id = $("#tipores").val();
-data.cantidad = $(".cant").val();
-var table = $('#tabla_contenedores').DataTable();
-var row =  `<tr data-json='${JSON.stringify(data)}'> 
-				<td>${data.cantidad}</td>
-				<td>${data.otro}</td>  
-				<td>${data.usuario_app}</td>
-				<td>${data.tica_id}</td>
-            
-			
-			         
-    </tr>`;
-table.row.add($(row)).draw();  
-$('#formPedidos')[0].reset();          
+
+	if($(".cant").val() != "")
+	{
+		console.table($("#tipores").val());
+		$('#pedidos').show();
+		var data = new FormData();
+		data = formToObject(data);
+		data.usuario_app = "hugoDS";
+		data.otro ="";
+		data.tica_id = $("#tipores").val();
+		var tipocarga = data.tica_id.substring(10);
+		data.cantidad = $(".cant").val();
+		var table = $('#tabla_contenedores').DataTable();
+		var row =  `<tr data-json='${JSON.stringify(data)}'> 
+						<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td> 
+						<td>${data.cantidad}</td>
+						<td style="display:none;">${data.tica_id}</td>
+						<td>${tipocarga}</td>
+					
+					
+							
+			</tr>`;
+		table.row.add($(row)).draw();  
+		$('#formPedidos')[0].reset();  
+	}else{
+		alert("ATENCION!!! No ingreso Cantidad");
+	}        
 }
 
 
@@ -367,79 +379,68 @@ $('#formPedidos')[0].reset();
 
 
 <script>
-// funcion para obtener sotrid, no funciona por que hay dos servicios con el mismo nombre ej: /solicitantesTransporte/hugoDS y  /solicitantesTransporte/{soco_id}
-function obtenersotrid(){
-	var user = "hugoDS"; // harkodeado cuando userNick este funcionando bien comentar en el controller la funcion que llama 
-	var res;
-	$.ajax({
-		type: "POST",
-		data: {user},
-		url: "general/transporte-bpm/Solicitud_Pedido/obtenersolitransp",
-		success: function(r) {
-								debugger;
-								console.log(r);
-								if (r != "error") {
-									var data = JSON.parse(r);
-									console.table(data);
-									res = data; 
-										
-										
 
-
-								} else {
-										console.log(r);
-										alertify.error("error");
-								}
-						}
-	});
-	return res; 
-}
 function Guardar_pedidoContenedor(){
-	debugger;
-	var sotrid = obtenersotrid();
-	var datos = new FormData();
-    datos = formToObject(datos);
-	datos.observaciones = $("#observaciones").val();
-	datos.usuario_app = "HugoDS";
-    datos.sotr_id = 38;
-  	datos.tran_id = $("#transportista_id").val();
-    // recorre tabla guardando los contenedores pedidos en array
-		var datos_contenedores = [];		
-		var rows = $('#tabla_contenedores tbody tr');				
-		rows.each(function(i,e) {  
-				datos_contenedores.push(getJson(e));
-				// datos_contenedores.push("usuarioAp:");
-				// datos_contenedores.push("otro:");
-		});	
-	datos.contenedores = datos_contenedores;
-		
-	$.ajax({
-						type: "POST",
-						data: {datos},							
-						url: "general/transporte-bpm/Solicitud_Pedido/registrarSolicitud",
-						success: function(r) {
-								console.log(r);
-								if (r != "error") {
-									var data = JSON.parse(r);
-									console.table(data);
-
-										
-										alertify.success("Agregado con exito");
-
-										
-										$("#formPedidos")[0].reset();
-
-										$("#boxDatos").hide(500);
-										$("#botonAgregar").removeAttr("disabled");
-
-								} else {
-										console.log(r);
-										alertify.error("error al agregar");
-								}
-						}
+	
+	if(  $('#tabla_contenedores').DataTable().data().any() ) 
+	{
+      console.info("tabla insumos (artículos) vacía");
+      if($("#Fecha").val() != "")
+		{
+			var datos = new FormData();
+			datos = formToObject(datos);
+			datos.observaciones = $("#observaciones").val();
+			datos.usuario_app = "HugoDS";
+			datos.sotr_id = 38;
+			datos.tran_id = $("#transportista_id").val();
+			// recorre tabla guardando los contenedores pedidos en array
+				var datos_contenedores = [];		
+				var rows = $('#tabla_contenedores tbody tr');				
+				rows.each(function(i,e) {  
+						datos_contenedores.push(getJson(e));
+						// datos_contenedores.push("usuarioAp:");
+						// datos_contenedores.push("otro:");
 				});	
+			datos.contenedores = datos_contenedores;
+				
+			$.ajax({
+								type: "POST",
+								data: {datos},							
+								url: "general/transporte-bpm/Solicitud_Pedido/registrarSolicitud",
+								success: function(r) {
+										console.log(r);
+										if (r == 'ok') {
+											
+											
+
+												
+												alertify.success("Agregado con exito");
+
+												
+												$("#formPedidos")[0].reset();
+
+												$("#boxDatos").hide(500);
+												$("#botonAgregar").removeAttr("disabled");
+												$(".cant").val("");
+												$("#observaciones").val("");
+												var table = $('#tabla_contenedores').DataTable();
+												table.clear().draw();
 
 
+										} else {
+												console.log(r);
+												alertify.error("error al agregar");
+										}
+								}
+						});	
+
+		}else{
+			alert("ATENCION!!! No selecciono Fecha");
+		}
+    }else{
+		alert("ATENCION!!! No agrego contenedores al Pedido");
+	}
+	
 }
 
 
