@@ -49,8 +49,8 @@ $(".btnEditar").click( function(e){
     $("#E_CUIT").val(data.cuit);
     $("#E_Numero_registro").val(data.num_registro);
     $("#E_Domicilio").val(data.domicilio);
-    $("#E_lat").val(data.lat);
-    $("#E_long").val(data.lng);
+    // $("#E_lat").val(data.lat);
+    // $("#E_long").val(data.lng);
     $("#id_gen").val(data.sotr_id);
     $(".titulo").text('Editar Generador');
     $(".habilitar").removeAttr("readonly");
@@ -78,8 +78,8 @@ $(".btnInfo").click(function(e){
     $("#E_CUIT").val(data.cuit);
     $("#E_Numero_registro").val(data.num_registro);
     $("#E_Domicilio").val(data.domicilio);
-    $("#E_lat").val(data.lat);
-    $("#E_long").val(data.lng);
+    // $("#E_lat").val(data.lat);
+    // $("#E_long").val(data.lng);
     $("#id_gen").val(data.sotr_id);
     $(".titulo").text('Informacion Generador');
     $(".habilitar").attr("readonly","readonly"); 

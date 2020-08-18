@@ -48,6 +48,8 @@ class Zona extends CI_Controller {
          {
             log_message('INFO','#TRAZA|Zona|Guardar_Zona() >>');
             $datos =  $this->input->post('datos');
+            $usr =userNick();
+            $datos['usuario_app'] = $usr;
             $resp = $this->Zonas->Guardar_Zona($datos);
             if($resp){
             echo "ok";
