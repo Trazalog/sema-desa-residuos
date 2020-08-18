@@ -37,6 +37,8 @@ class Transportista extends CI_Controller
     {   
         log_message('INFO','#TRAZA|TRANSPORTISTA|Guardar_Transportista() >>');
         $datos =  $this->input->post('datos');
+        $usr = userNick();
+        $datos['usuario_app'] = $usr;
         unset($datos['tica_edit']);
         $tiposcarga = $this->input->post('tipocarga');        
         $tran_id = $this->Transportistas->Guardar_Transportista($datos);
