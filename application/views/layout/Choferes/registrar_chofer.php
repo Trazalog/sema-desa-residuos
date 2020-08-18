@@ -381,6 +381,7 @@ $(document).ready(function(){
 			if(aux != "")
 			{
 				// if (aux2!=0) {
+					datos.imagen = aux;
 					console.log('Validacion FRM Chores');
 					console.log($("#formChofer").data('bootstrapValidator').isValid());
 					if ($("#formChofer").data('bootstrapValidator').isValid()){
