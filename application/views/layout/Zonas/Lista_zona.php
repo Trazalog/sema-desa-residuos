@@ -1,5 +1,5 @@
     <!--__________________HEADER TABLA___________________________-->
-  <div id="lista_zona">  
+    <div id="lista_zona">  
     <div id="tabla">
     <table id="tabla_zonas" class="table table-bordered table-striped">
         <thead class="thead-dark" bgcolor="#eeeeee">
@@ -26,8 +26,8 @@
         echo "<tr data-json='".json_encode($fila)."'>";
       
         echo    '<td>';
-        echo    '<button  type="button" title="Editar"  class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit" id="btnEditar"  ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-            <button type="button" title="Info" class="btn btn-primary btn-circle btnVer" data-toggle="modal" data-target="#modalEdit" ><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
+        echo    '<button  type="button" title="Editar"  class="btn btn-primary btn-circle btnEditar" data-toggle="modal"  id="btnEditar"  ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+            <button type="button" title="Info" class="btn btn-primary btn-circle btnVer" data-toggle="modal"  ><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
             <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar" id="btnBorrar"  ><span class="glyphicon glyphicon-trash" aria-hidden="true" ></span></button>&nbsp';
         echo '</td>';         
             
@@ -82,6 +82,7 @@
                                 <div class="form-group">
                                     <label for="Descripcion" name="">Descripcion:</label>
                                     <input type="text" class="form-control habilitar estilo custom" id="desc_id" name="desc_id" style="width: 40rem;">
+                                    <span class="glyphicon glyphicon-eye-open esconder" aria-hidden="true" style="left: 41rem; top: -2rem; " title="Ampliar Descripcion" onclick="ampliarDesc()"></span>
                                 </div>
                                 <!--_____________________________________________-->
 
@@ -174,8 +175,26 @@
 
 
 <!---//////////////////////////////////////--- FIN MODAL BORRAR ---///////////////////////////////////////////////////////----->
+ <!---//////////////////////////////////////--- MODAL AMPLIAR DESCRIPCION ---///////////////////////////////////////////////////////----->
+ <div class="modal fade" id="modalVerDescAmpliada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class=" close btn-cerrar-modal" data-dismiss="modal" aria-label="Close" onclick="cerrar_Ampliar()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Descripcion de Zona</h5>
+            </div>
+            <div class="modal-body">
 
+               <textarea name="" id="descrip" cols="30" rows="10" readonly></textarea> 
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---//////////////////////////////////////--- FIN MODAL DESCRIPCION ---///////////////////////////////////////////////////////----->
 
 <!-- --------------------------------script para modal editar----------------------------------------- -->
 <script>
@@ -409,6 +428,7 @@ function Editar($zona) {
 //------------------------------------------------BOTON GUARDAR-------------------------------------
 $("#btnsave").click(function(e){
     //---------------------todos los datos sin la imagen-------------------------
+    
     var datos = new FormData();
     datos = formToObject(datos);
 
@@ -463,12 +483,16 @@ $("#btnsave").click(function(e){
                             
                                 $("#boxDatos").hide(500);
                                 $("#botonAgregar").removeAttr("disabled");
+                                $("#modalEdit").modal("hide");
+                                $(".esconder").attr("style","left: 38rem; top: -2rem; ");
                             
                             
                             } else {
                                 //console.log(r);
                                 alertify.error("error al Modificar");
                                 $("#formModalEdit").data('bootstrapValidator').resetForm();
+                                $("#modalEdit").modal("hide");    
+                                $(".esconder").attr("style","left: 38rem; top: -2rem; ");
                             }
                         }
                     });
@@ -499,7 +523,7 @@ $(".btnEliminar").click(function(e){
 
 //desactivacion de campos y acondicionamiento de modal editar
 $(".btnVer").click(function(e){
-    
+    $("#modalEdit").modal("show");
     var data = JSON.parse($(this).parents("tr").attr("data-json"));
     $(".habilitar").attr("readonly","readonly");  
     $(".ocultar").attr("style","display:none");
@@ -507,6 +531,7 @@ $(".btnVer").click(function(e){
     $("#dep_ver").attr("readonly","readonly");
     $("#dep_ver").removeAttr("style");
     $("#div_ver").removeAttr("style");
+    $(".esconder").attr("style","left: 41rem; top: -2rem; ");
     $('#btnsave').hide();
     $(".titulo").text('Ver Informacion');
     $("#texto_dep").text('');
@@ -516,13 +541,14 @@ $(".btnVer").click(function(e){
 
 //activavion de campos y acondicionamiento de modal editar 
 $(".btnEditar").click(function(e){
-    
+    $("#modalEdit").modal("show");
     var data = JSON.parse($(this).parents("tr").attr("data-json"));   
    
     $('.habilitar').removeAttr("readonly");
     $(".ocultar").removeAttr("style");
     $("#dep_id").removeAttr("style");
     $(".ocultar").attr("style","font-size: smaller");
+    $(".esconder").attr("style","display:none");
     $("#dep_ver").attr("style","display:none");
     $("#div_ver").attr("style","display:none");
     $('#btnsave').show(); 
@@ -578,6 +604,18 @@ $("#btndelete").click(function(e){
 
 });
 
+function ampliarDesc ()
+{
+    $("#modalEdit").modal("hide");
+    $("#modalVerDescAmpliada").modal("show");
+    var valor = $("#desc_id").val();
+    $("#descrip").val(valor);
+    
+}
+function cerrar_Ampliar(){
+    $("#modalVerDescAmpliada").modal("hide");
+    $("#modalEdit").modal("show");
+}
 </script>
 
 
