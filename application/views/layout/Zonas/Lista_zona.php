@@ -1,5 +1,5 @@
     <!--__________________HEADER TABLA___________________________-->
-  <div id="lista_zona">  
+    <div id="lista_zona">  
     <div id="tabla">
     <table id="tabla_zonas" class="table table-bordered table-striped">
         <thead class="thead-dark" bgcolor="#eeeeee">

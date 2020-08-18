@@ -100,11 +100,11 @@
                 <span class="icon-bar"></span>
             </a>
 
-                            <?php
+            <?php
 
-                #$this->load->view('layout/perfil');
+            	$this->load->view('layout/perfil');
 
-                ?>
+            ?>
 
 
         </nav>

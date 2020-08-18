@@ -1,6 +1,6 @@
 <!-- <div id="tabla"> -->
 
-    <table id="tabla_zonas" class="table table-bordered table-striped">
+<table id="tabla_zonas" class="table table-bordered table-striped">
         <thead class="thead-dark" bgcolor="#eeeeee">
 
             <th>Acciones</th>

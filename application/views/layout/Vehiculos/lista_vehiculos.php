@@ -18,8 +18,8 @@
             {
             echo "<tr data-json='".json_encode($fila)."'>";
             echo    '<td>';
-            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                    <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
+            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                    <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" ><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp 
                     <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
                 
             echo   '</td>';
@@ -181,6 +181,7 @@ function ExtraerImagen($data)
 
 //Modal Editar
 $(".btnEditar").click(function(e){
+    $("#modalEdit").modal("show");
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
     var fecha = data.fecha_ingreso;
@@ -189,6 +190,8 @@ $(".btnEditar").click(function(e){
     {
         fechaaux= fechaaux + fecha[i];
     }
+    $(".redimensionarDominio").removeAttr("style");
+    $(".redimensionarCodigo").removeAttr("style");
     $(".titulo").text('Editar Vehiculo');
     $(".textTransinfo").attr("style","display:none"); 
     $(".ocultaTransedit").removeAttr("style"); 
@@ -201,6 +204,7 @@ $(".btnEditar").click(function(e){
     $("#e_marca").val(data.marca); 
     $("#e_dominio").val(data.dominio);
     $("#e_codigo").val(data.codigo);
+    $(".esconder").attr("style","display:none"); 
     $("#e_ubicacion").val(data.ubicacion);
     $("#e_fechaingreso").val(fechaaux);
     $("#e_equi_id").val(data.equi_id);
@@ -214,6 +218,7 @@ $(".btnEditar").click(function(e){
 
 //Modal Info
 $(".btnInfo").click(function(e){
+    $("#modalEdit").modal("show"); 
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
     var fecha = data.fecha_ingreso;
@@ -224,6 +229,8 @@ $(".btnInfo").click(function(e){
     }
     $(".titulo").text('Informacion Vehiculo');
     $('#btnsave_e').hide();
+    $(".redimensionarDominio").attr("style","margin-top: -1rem;");
+    $(".redimensionarCodigo").attr("style","margin-top: 1rem;");
     $(".habilitar").attr("readonly","readonly"); 
     $("#div_ver").removeAttr("style");
     $("#tran_ver").removeAttr("style");
@@ -236,6 +243,7 @@ $(".btnInfo").click(function(e){
     $("#e_ubicacion").val(data.ubicacion);
     $("#e_fechaingreso").val(fechaaux);
     $("#id_fecha_ingreso").val(fechaaux);
+    $(".esconder").attr("style","left: -2rem; top: -2rem; "); 
     $("#tran_id_info").attr("readonly","readonly"); 
     console.table($("#id_fecha_ingreso").val());
     var tranid = data.tran_id; 
