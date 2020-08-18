@@ -238,7 +238,7 @@ class Dash extends CI_Controller {
 													{
 														"titulo": "Incidencias por camion",
 														"icono": "fa fa-genderless",
-														"link": "general/Estructura/Vehiculo/"
+														"link": "general/Estructura/Vehiculo/templateIncidencias"
 													}
 												]
 											}

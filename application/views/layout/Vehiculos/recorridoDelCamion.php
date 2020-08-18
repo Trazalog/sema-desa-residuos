@@ -50,7 +50,6 @@ $.ajax({
     url:'general/Estructura/Vehiculo/obtenerRecorrido',
     success: function(rsp) {
         trazarCamino(rsp);
-        // zoom(rsp.lat,rsp.lng);
     },
     error: function() {
     },

@@ -147,7 +147,7 @@ define('NOM', 'Residuos');
 
 //Vista por Defecto
 // define('DEF_VIEW',BPM.'Proceso');
-define('DEF_VIEW','general/Estructura/Vehiculo/templateRecorridos');
+define('DEF_VIEW','general/Estructura/Vehiculo/templateIncidencias');
 
 /*
 |--------------------------------------------------------------------------

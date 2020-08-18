@@ -117,6 +117,22 @@ class Vehiculos extends CI_Model
                 $rsp = $rsp['data'];
                 return $rsp;
             }
+
+            public function obtenerIncidencias()
+            {
+                $url = 'http://127.0.0.1:8080/incidencias/TODOS';
+                $rsp = wso2($url);
+                $rsp = $rsp['data'];
+                return $rsp;
+            }
+
+            public function obtenerIncideciasPorVehiculo($dominio)
+            {
+                $url = 'http://127.0.0.1:8080/'.$dominio;
+                $rsp = wso2($rsp);
+                $rsp = $rsp['data'];
+                return $rsp;
+            }
             
             /****************************************************************/
     }

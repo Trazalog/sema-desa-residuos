@@ -153,10 +153,28 @@
                 unset($r->dominio);
                 $b = $rsp;
             }
-
             echo json_encode($rsp);
-            // var latlngs = [[45.51, -122.68],[37.77, -122.43],[34.04, -118.2]];
         }
+        /****************************************************************/
+        /**************funciones de mapa de incidencias******************/
+
+        public function templateIncidencias()
+        {
+            $rsp['vehiculos'] = $this->Vehiculos->obtener()['data'];
+            $this->load->view('/layout/Vehiculos/incidenciasPorCamion',$rsp);
+        }
+
+        public function obtenerIncidencias()
+        {
+            $rsp = $this->Vehiculos->obtenerIncidencias();
+            echo json_encode($rsp);
+        }
+
+        public function obtenerIncidenciasPorVehiculo($dominio)
+        {
+            $rsp = $this->Vehiculos->obtenerIncideciasPorVehiculo($dominio);
+        }
+
         /****************************************************************/
     }
 ?>
