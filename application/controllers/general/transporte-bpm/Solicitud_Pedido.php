@@ -65,10 +65,20 @@ class Solicitud_Pedido extends CI_Controller {
 	function registrarSolicitud()
 	{
 		log_message('INFO','#TRAZA|Solicitud_Pedido|registrarSolicitud() >> '); 
-		$circuitos = userNick();
-		$resp = $this->SolicitudPedidos->RegistrarContenedor($this->input->post('datos'));
-		if(!$resp){
-				echo json_encode($resp);
+		$usr = userNick();
+		$datos = $this->input->post('datos');
+		$datos['usuario_app'] = $usr;
+		$sotr_id = $this->SolicitudPedidos->Obtenersoltransp($usr);
+		$sotr = $sotr_id->solicitantes_transporte->sotr_id;
+		$datos['sotr_id']=$sotr;
+		for ($i=0; $i < count($datos['contenedores']); $i++)
+		{
+			$datos['contenedores'][$i]['usuario_app'] = $usr; 
+		}
+		
+		$resp = $this->SolicitudPedidos->RegistrarPedidoContenedor($datos);
+		if($resp == 1){
+				echo 'ok';
 		}
 		else{
 				log_message('ERROR','#TRAZA|Solicitud|Eliminar_Zona() >> $resp: '.$resp);

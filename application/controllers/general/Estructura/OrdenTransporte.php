@@ -79,7 +79,7 @@ class OrdenTransporte extends CI_Controller {
        {
 
         $resp = $this->OrdenTransportes->Guardar_ordenTransportes($this->input->post('datos'));
-        if(!$resp){
+        if($resp){
           echo "ok";
        }
        else{

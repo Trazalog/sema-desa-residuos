@@ -92,10 +92,11 @@ class SolicitudPedidos extends CI_Model
 		* @param  array datos del contenedor
 		* @return array data
 		*/
-    function RegistrarContenedor($data){
+    function RegistrarPedidoContenedor($data){
+
         $post["solicitudContenedores"] = $data;      
-        log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> '); 
-        log_message('DEBUG','#SolicitudPedidos/RegistrarContenedor: '.json_encode($post));
+        log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarPedidoContenedor() >> '); 
+        log_message('DEBUG','#SolicitudPedidos/RegistrarPedidoContenedor: '.json_encode($post));
         // $aux = $this->rest->callAPI("POST",REST."/solicitudContenedores", $post); //servicio que llamaba antes de que caiga el server
         $aux = $this->rest->callAPI("POST",API_URL."/solicitudContenedores",$post);
         $aux =json_decode($aux["status"]);
@@ -104,9 +105,9 @@ class SolicitudPedidos extends CI_Model
 
   function Obtenersoltransp($user)
   {
-    $aux = $this->rest->callAPI("GET",REST."/solicitantesTransporte/hugoDS");
+    $aux = $this->rest->callAPI("GET",REST."/solicitantesTransporte/$user");
     $aux =json_decode($aux["data"]);
-    return $aux->solicitantes_transporte->solicitante;
+    return $aux;
   }   
 
     
