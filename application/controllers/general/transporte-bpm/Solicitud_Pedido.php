@@ -61,7 +61,7 @@ class Solicitud_Pedido extends CI_Controller {
 	* Resgistra la solicitud de pedidos
 	* @param 
 	* @return json resp
-	*/  
+	*/
 	function registrarSolicitud()
 	{
 		log_message('INFO','#TRAZA|Solicitud_Pedido|registrarSolicitud() >> '); 

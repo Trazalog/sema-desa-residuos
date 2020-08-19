@@ -4,14 +4,14 @@ if(!function_exists('userId')){
 
     function userId()
     {
-                // return 502; //descarga
-                        //return 501; // bascula
-        //  return 401;// generador
-                //   return 402;// transportista           !HARDCODE
+				// return 502; //descarga
+				// return 501; // bascula
+				// return 401;// generador
+				// return 402;// transportista           !HARDCODE
 
-        $ci =& get_instance();			
-        $userid  = $ci->session->userdata('id');
-		return  $userid;
+        $ci =& get_instance();
+        $userid  = $ci->session->userdata('id');	// id de user en Dnato
+				return  $userid;
     }
 }
 
@@ -19,16 +19,27 @@ if(!function_exists('userNick')){
 
     function userNick()
     {
-        //    return'descarga';
-                //   return 'bascula';
-            // return 'generador1';
-                      //return 'transportista1';
+				// return'descarga';
+				//   return 'bascula';
+				// return 'generador1';
+				//return 'transportista1';
         $ci =& get_instance();
-        $usernick  = $ci->session->userdata('usernick');
-		return  $usernick;
+        $usernick  = $ci->session->userdata('usernick'); //usr coincidente Dnato con BPM
+				return  $usernick;
     }
 }
 
+if(!function_exists('usrBPMbyNick')){
+
+	function usrBPMbyNick(){
+
+		$ci =& get_instance();
+		$user = userNick();
+		$aux = $ci->rest->callAPI("GET",REST."/solicitantesTransporte/".$user);
+    $aux =json_decode($aux["data"]);
+		return $aux->sotr_id;
+	}
+}
 /**
 * Devuelve coincidencia de deposito con usuario de deposito
 * @param

@@ -25,7 +25,7 @@ class SolicitudPedidos extends CI_Model
   {   
       $data = userNick();
       // $aux = $this->rest->callAPI("GET",REST."/solicitudContenedores/$data"); // servicio que usaria 
-      log_message('INFO','#TRAZA|SolicitudPedidos|Listar_Solicitudes_pedido() >> '); 
+      log_message('INFO','#TRAZA|SolicitudPedidos|Listar_Solicitudes_pedido() >> ');
       log_message('DEBUG','#SolicitudPedidos/Listar_Solicitudes_pedido: '.json_encode($data));
       $aux = $this->rest->callAPI("GET",REST."/solicitudContenedor/$data");
       $aux =json_decode($aux["data"]);       
@@ -103,11 +103,20 @@ class SolicitudPedidos extends CI_Model
         return $aux;
     }
 
+      $post["solicitudContenedores"] = $data;
+      log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarPedidoContenedor() >> ');
+      log_message('DEBUG','#SolicitudPedidos/RegistrarPedidoContenedor: '.json_encode($post));
+      // $aux = $this->rest->callAPI("POST",REST."/solicitudContenedores", $post); //servicio que llamaba antes de que caiga el server
+      $aux = $this->rest->callAPI("POST",API_URL."/solicitudContenedores",$post);
+      $aux =json_decode($aux["status"]);
+      return $aux;
+  }
+
   function Obtenersoltransp($user)
   {
-    $aux = $this->rest->callAPI("GET",REST."/solicitantesTransporte/$user");
+    $aux = $this->rest->callAPI("GET",REST."/solicitantesTransporte/".$user);
     $aux =json_decode($aux["data"]);
-    return $aux;
+    return $aux->solicitantes_transporte->sotr_id;
   }   
 
     
