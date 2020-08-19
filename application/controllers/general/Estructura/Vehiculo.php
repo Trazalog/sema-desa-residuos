@@ -176,5 +176,11 @@
         }
 
         /****************************************************************/
+
+
+        public function testFiltroFecha()
+        {
+            $this->load->view('testFiltroFecha');
+        }
     }
 ?>

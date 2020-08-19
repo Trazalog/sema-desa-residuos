@@ -19,6 +19,20 @@
                         </select>
                     </div>
                 </div>
+                <!--filtro desde hasta, con fecha y hora-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Filtrar por fecha desde, hasta</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right" id="filtroFecha">
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                </div>
+                <!---------------------------------------->
             </div>
         </div>
     </div>
@@ -37,26 +51,79 @@
         </div>
     </div>
 </div>
+
+
+
 <script>
 
 $('#vehi_id').on('change',function(){
+    var dominio = this.value;
+    wo();
+    $.ajax({
+        type: 'GET',
+        dataType:'JSON',
+        data:{dominio},
+        url:'general/Estructura/Vehiculo/obtenerRecorrido',
+        success: function(rsp) {
+            trazarCamino(rsp);
+        },
+        error: function() {
+        },
+        complete: function() {
+            wc();
+        }
+    });
+});
 
-var dominio = this.value;
-wo();
-$.ajax({
-    type: 'GET',
-    dataType:'JSON',
-    data:{dominio},
-    url:'general/Estructura/Vehiculo/obtenerRecorrido',
-    success: function(rsp) {
-        trazarCamino(rsp);
+//Date range picker
+moment.locale('es');
+$('#filtroFecha').daterangepicker({
+        ranges: {
+        'Hoy': [moment(), moment()],
+        'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Últimos 7 días': [moment().subtract(6, 'days'), moment()],
+        'Últimos 30 días': [moment().subtract(29, 'days'), moment()],
+        'Este mes': [moment().startOf('month'), moment().endOf('month')],
+        'Último mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate: moment(),
+        locale:{
+            "format":"DD-MM-YYYY",
+            "applyLabel": "Aplicar",
+            "cancelLabel": "Cancelar",
+            "customRangeLabel": "Rango personalizado",
+            "daysOfWeek": [
+                "Do",
+                "Lu",
+                "Ma",
+                "Mi",
+                "Ju",
+                "Vi",
+                "Sa"
+            ],
+            "monthNames": [
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Semptiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
+            ]
+        }
     },
-    error: function() {
-    },
-    complete: function() {
-        wc();
+    function(start, end) {
+        $('#datepickerDesde').val(start.format('DD-MM-YYYY'));
+        $('#datepickerHasta').val(end.format('DD-MM-YYYY'));
     }
-});
+);
 
-});
+
+
 </script>

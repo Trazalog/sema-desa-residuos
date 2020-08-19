@@ -13,11 +13,11 @@
         $.widget.bridge('uibutton', $.ui.button);
 
        
-     
 
         
 
        </script>
+
        <!-- Bootstrap 3.3.7 -->
        <script src="<?php base_url() ?>lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -25,6 +25,9 @@
        <script src="<?php base_url() ?>lib/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
        <!-- daterangepicker -->
        <script src="<?php base_url() ?>lib/bower_components/moment/min/moment.min.js"></script>
+
+        <!--leaflet-->
+        <script src="<?php base_url() ?>lib/leaflet/leaflet.js"></script>
 
        <script src="<?php base_url() ?>lib/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
        <!-- datepicker -->
@@ -52,15 +55,7 @@
         <!-- Datatables 1  -->
 
         <script src="<?php base_url() ?>lib\props\tabla.js"></script>
-
-        <!-- agrega archivo navegacion.js -->
-        <script src="<?php base_url() ?>lib\props\navegacion.js"></script>
-
-        <!-- grilla para boxes de depositos-->
-        <script src="<?php base_url() ?>lib\gridstack\gridstack.all.js"></script>
-
-        <!-- mapa de leaflet-->
-        <script src="<?php base_url();?>lib/leaflet/leaflet.js"></script>   
+   
        
        <!-- alertifyjs  -->
        <script src="<?php base_url() ?>lib/alertify/alertify.js"></script>
