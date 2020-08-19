@@ -110,9 +110,12 @@ class Vehiculos extends CI_Model
                 return $rsp;
             }
 
-            public function obtenerRecorrido($dominio)
+            public function obtenerRecorrido($dominio,$desde,$hasta)
             {
-                $url = 'http://127.0.0.1:8080/camiones/recorridos';
+                // if($desde) $url = "http://127.0.0.1:8080//camiones/recorridos/fechaDesde/$desde/fechaHasta/$hasta";
+                // else $url = 'http://127.0.0.1:8080/camiones/recorridos/';
+                //hay q utilizar el if de arriba para filtrar el recorrido por fecha
+                $url = 'http://127.0.0.1:8080/camiones/recorridos/';
                 $rsp = wso2($url);
                 $rsp = $rsp['data'];
                 return $rsp;

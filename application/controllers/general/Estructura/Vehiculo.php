@@ -142,11 +142,10 @@
             $this->load->view('/layout/Vehiculos/recorridoDelCamion',$data);
         }
 
-        public function obtenerRecorrido()
+        public function obtenerRecorrido($desde = false,$hasta = false)
         {
             $data = $this->input->get();
-            $rsp = $this->Vehiculos->obtenerRecorrido($data['dominio']);
-
+            $rsp = $this->Vehiculos->obtenerRecorrido($data['dominio'],$desde,$hasta);
             foreach($rsp as $r)
             {
                 unset($r->fecha);

@@ -22,12 +22,12 @@
                 <!--filtro desde hasta, con fecha y hora-->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Filtrar por fecha desde, hasta</label>
+                        <label>Filtrar por fecha:</label>
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-clock-o"></i>
                             </div>
-                            <input type="text" class="form-control pull-right" id="filtroFecha">
+                            <input type="text" disabled class="form-control pull-right" id="filtroFecha">
                         </div>
                         <!-- /.input group -->
                     </div>
@@ -57,6 +57,7 @@
 <script>
 
 $('#vehi_id').on('change',function(){
+    $('#filtroFecha').removeAttr('disabled');
     var dominio = this.value;
     wo();
     $.ajax({
@@ -86,10 +87,11 @@ $('#filtroFecha').daterangepicker({
         'Este mes': [moment().startOf('month'), moment().endOf('month')],
         'Último mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         },
-        startDate: moment().subtract(29, 'days'),
+        startDate: moment(),
         endDate: moment(),
         locale:{
             "format":"DD-MM-YYYY",
+            "separator": " - ",
             "applyLabel": "Aplicar",
             "cancelLabel": "Cancelar",
             "customRangeLabel": "Rango personalizado",
@@ -117,13 +119,23 @@ $('#filtroFecha').daterangepicker({
                 "Diciembre"
             ]
         }
-    },
-    function(start, end) {
-        $('#datepickerDesde').val(start.format('DD-MM-YYYY'));
-        $('#datepickerHasta').val(end.format('DD-MM-YYYY'));
     }
-);
-
-
-
+).on('change',function(){
+    var rango = this.value;
+    var dominio = $('#vehi_id').val();
+    var array = rango.split(' - ',2);
+    wo();
+    $.ajax({
+        type:'GET',
+        data:{dominio},
+        url:'general/Estructura/Vehiculo/obtenerRecorrido/'+array[0]+'/'+array[1],
+        success: function() {
+        },
+        error: function() {
+        },
+        complete: function() {
+            wc();
+        }
+    });
+});
 </script>
