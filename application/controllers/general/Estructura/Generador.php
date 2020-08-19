@@ -12,7 +12,7 @@ class Generador extends CI_Controller {
 	 * Constructor de Clase
 	* @param 
 	* @return 
-	*/  
+	*/
 	function __construct(){
 
 		parent::__construct();
