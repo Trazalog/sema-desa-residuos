@@ -22,7 +22,7 @@ if(!function_exists('userNick')){
         //    return'descarga';
                 //   return 'bascula';
             // return 'generador1';
-                      return 'transportista1';
+                       return 'transportista1';
         $ci =& get_instance();			
         $userdata  = $ci->session->userdata('user_data');
 		return  $userdata[0]['usrNick'];

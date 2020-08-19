@@ -70,18 +70,25 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">   
                                 <div class="col-md-6 ">
                                     <!--_______________________-->
-                                    <!--Dominio-->
+                                    <!--camion-->
                                     <div class="form-group">
-                                        <label for="chofer" class="form-label">Chofer:</label>
-                                        <select class="form-control select2 select2-hidden-accesible" id="chofer">
-                                            <option value="" disabled selected>-Seleccione opcion-</option>
-                                            <?php
-                                            // foreach ($chofer as $i) {
-                                            //     echo '<option  value="'.$i->documento.'">'.$i->nombre.'</option>';
-                                            // }
-                                            ?>
-                                        </select>
-                                    </div>
+                                        <label for="equipo" class="form-label">Camion:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="glyphicon glyphicon-check"></i>
+                                            </div>
+                                                <select class="form-control select2 select2-hidden-accesible" id="equipo"
+                                                    name="tipo_residuo" required>
+                                                    <option value="" disabled selected>-Seleccione opcion-</option>
+                                                    <?php
+                                                    foreach ($equipo as $d) {
+                                                        echo '<option  value="'.$d->equi_id.'">'.$d->dominio.'</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                     </div>
+                                   
                                     <div class="form-group">
                                      <label for="transp" class="form-label">Transportista:</label>
                                      <input type="text" class="form-control"   name="nro" id="transp" readonly>
@@ -99,27 +106,22 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <input type="date" class="form-control"   name="fecha" id="Fecha">
+                                                        <input type="date" class="form-control"   name="fecha" id="Fecha" value="<?php echo date("Y-m-d");?>" >
                                                         <input type="text" style="display:none" value="<?php echo $sotrid?>" id="sotr_id" >
                                                     </div>
                                     </div>
+                                    <!-- chofer -->
                                     <div class="form-group">
-                                        <label for="equipo" class="form-label">Camion:</label>
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="glyphicon glyphicon-check"></i>
-                                            </div>
-                                                <select class="form-control select2 select2-hidden-accesible" id="equipo"
-                                                    name="tipo_residuo" required>
-                                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                                    <?php
-                                                    foreach ($equipo as $d) {
-                                                        echo '<option  value="'.$d->dominio.'">'.$d->equi_id.'</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                     </div>
+                                        <label for="chofer" class="form-label">Chofer:</label>
+                                        <select class="form-control select2 select2-hidden-accesible" id="chofer" readonly>
+                                            <option value="" disabled selected>-Seleccione opcion-</option>
+                                            <?php
+                                            // foreach ($chofer as $i) {
+                                            //     echo '<option  value="'.$i->documento.'">'.$i->nombre.'</option>';
+                                            // }
+                                            ?>
+                                        </select>
+                                    </div>
                                      
                                   
                                 
@@ -413,7 +415,7 @@
 <!-- REGISTRAR Orden Transporte-->
 <script>
 function  obtenerTemplateOT()
-{ debugger;
+{ 
     var sotrid = $("#sotr_id").val();
     $.ajax({
       type: "POST",
@@ -421,7 +423,7 @@ function  obtenerTemplateOT()
       dataType: 'json',
       url: "general/Estructura/OrdenTransporte/Obtenerteot",
       success: function($respuesta) {
-        debugger;
+        
         var resp = $respuesta;
       
       }
@@ -429,25 +431,80 @@ function  obtenerTemplateOT()
     });
 }
 
+// funcion agregar contenedores a tabla 
+function AgregarCont($datos) {
+   
+    // var contenedores = $datos.vehiculoAsignadoARetiro.contenedores;
+    // console.table(contenedores);
+    var cont = $datos.vehiculoAsignadoARetiro.contenedores.contenedor;
+    console.table(cont);
+    
+    if(!cont)
+    {
+        alert("ATENCION!!! EL Camion que selecciono no posee Contenedores asociados");
+        $('#contenedores').show();
+        var table = $('#tbl_cont').DataTable();
+                        table.clear().draw();
+        
+    }else{
+        console.table($datos.vehiculoAsignadoARetiro.contenedores);
+        // }
+        $('#contenedores').show();
+        var table = $('#tbl_cont').DataTable();
+                        table.clear().draw();
 
+        //var data = new FormData($('#formPedidos')[0]);
+        var data = new FormData();
+        data = formToObject(data);
+        for(var i=0; i<$datos.vehiculoAsignadoARetiro.contenedores.contenedor.length; i++){
+            var data = new FormData();
+            data = formToObject(data);
+            data.cont_id = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].cont_id;
+            data.tipo_carga = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].tipo_carga;
+            data.porc_llenado = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].porc_llenado;
+            data.mts_cubicos = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].mts_cubicos;
+            var table = $('#tbl_cont').DataTable();
+            var row = `<tr data-json='${JSON.stringify(data)}'>  
+                                <td><i class="fa fa-wa fa-minus text-light-blue" style="cursor: pointer; margin-left: 15px;" title="Quitar"></i></td>        
+                                <td>${data.cont_id}</td>
+                                <td>${data.tipo_carga}</td>
+                                <td>${data.porc_llenado}</td>
+                                <td>${data.mts_cubicos}</td>		
+                        </tr>`;
+                        
+            table.row.add($(row)).draw();
+        }
+    }
+                // data.cont_id = $datos.vehiculoAsignadoARetiro.
+                // // data.cont_id = $("#cont_ent").val();
+                // var table = $('#tbl_cont').DataTable();
+                // var row = `<tr data-json='${JSON.stringify(data)}'>  
+                //                     <td><i class="fa fa-wa fa-minus text-light-blue" style="cursor: pointer; margin-left: 15px;" title="Quitar"></i></td>        
+                //                     <td>${data.cont_id}</td>		
+                //             </tr>`;
+                            
+                // table.row.add($(row)).draw();
+                // $('#formTransportista')[0].reset();
+}
 </script>
 <script>
 function obtenerchoftran($aux)
 {
-    
+   
 $.ajax({
       type: "POST",
       data: {tran_id: $aux},
       dataType: 'json',
       url: "general/Estructura/OrdenTransporte/GetChoferyTransportista",
       success: function($datos) {
-         debugger;
+          $("#chofer").removeAttr('readonly');
           var res = $datos;
           console.table(res.chofer);
         //   console.table(res.chofer[1].nom_chofer);
           console.table(res.chofer.length);
           console.table(res.transp.razon_social);
           $("#transp").val(res.transp.razon_social);
+          $("#chofer").empty();
           for(var c =0; c<res.chofer.length; c++){
             console.table(res.chofer[c].nom_chofer);
             $('#chofer').append("<option value='" + res.chofer[c].documento + "'>" +res.chofer[c].nom_chofer+"</option");
@@ -471,19 +528,21 @@ $.ajax({
 }
 
 $("#equipo").change(function(){
- debugger;  
+ 
 // var dominio_equipo = this.value;
- var dominio_equipo = this.selectedOptions[0].textContent;
- var dom_equipo = $("#equipo").val();
- console.table(dom_equipo);
+//  var dominio_equipo = this.selectedOptions[0].textContent;
+//  var dom_equipo = $("#equipo").val();
+var dominio_equipo = $("#equipo option:selected" ).text();
+    // datos.equi_id = dominio_equipo;
+ console.table(dominio_equipo);
 var aux;
 $.ajax({
       type: "POST",
-      data: {dom_id: dom_equipo},
+      data: {dom_id: dominio_equipo},
       dataType: 'json',
       url: "general/Estructura/OrdenTransporte/ObtenerinfoOt",
       success: function($respuesta) {
-           debugger;
+          
         // var respuesta = JSON.parse($respuesta);
           var resp = $respuesta;
           aux = resp.vehiculoAsignadoARetiro.tran_id; // esto guardarlo en algun input oculto
@@ -493,13 +552,14 @@ $.ajax({
           $("#tran_id").val(aux);
         //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor[0].mts_cubicos);
         //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor);
-          Agregar_contenedor(resp);
+           AgregarCont(resp);
       
       },
       error: function() {
-							
+        alert("ATENCION!!! no hay contenedores asignados para el Vehiculo que selecciono");
       },
       complete: function() {
+        
         obtenerchoftran(aux);
       }
     });
@@ -516,46 +576,7 @@ $(document).on("click",".fa-minus",function() {
 			$('#tbl_cont').DataTable().row( $(this).closest('tr') ).remove().draw();
 		});
 
-// funcion agregar contenedores a tabla 
-function Agregar_contenedor($datos) {
 
-// if(){ validar que los campos no esten vaciosal momento de agregar
-console.table($datos);
-// }
-$('#contenedores').show();
-debugger;
-//var data = new FormData($('#formPedidos')[0]);
-var data = new FormData();
-data = formToObject(data);
-for(var i=0; i<$datos.vehiculoAsignadoARetiro.contenedores.contenedor.length; i++){
-    var data = new FormData();
-    data = formToObject(data);
-    data.cont_id = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].cont_id;
-    data.tipo_carga = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].tipo_carga;
-    data.porc_llenado = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].porc_llenado;
-    data.mts_cubicos = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].mts_cubicos;
-    var table = $('#tbl_cont').DataTable();
-    var row = `<tr data-json='${JSON.stringify(data)}'>  
-                        <td><i class="fa fa-wa fa-minus text-light-blue" style="cursor: pointer; margin-left: 15px;" title="Quitar"></i></td>        
-                        <td>${data.cont_id}</td>
-                        <td>${data.tipo_carga}</td>
-                        <td>${data.porc_llenado}</td>
-                        <td>${data.mts_cubicos}</td>		
-                </tr>`;
-                
-    table.row.add($(row)).draw();
-}
-// data.cont_id = $datos.vehiculoAsignadoARetiro.
-// // data.cont_id = $("#cont_ent").val();
-// var table = $('#tbl_cont').DataTable();
-// var row = `<tr data-json='${JSON.stringify(data)}'>  
-//                     <td><i class="fa fa-wa fa-minus text-light-blue" style="cursor: pointer; margin-left: 15px;" title="Quitar"></i></td>        
-//                     <td>${data.cont_id}</td>		
-//             </tr>`;
-            
-// table.row.add($(row)).draw();
-// $('#formTransportista')[0].reset();
-}
 
 //CODIGO PARA PROBAR CUANDO ESTE EL SERVICIO...AGREGA A LA TABLA LOS CONT QUE VIENEN EN EL JSON
 //EL SERV DE BONITA DEBERIA AGREGARSE tipo_carga, porc_llenado, mts_cubico para que funcione bien 
@@ -600,85 +621,111 @@ function Agregar_Residuo() {
 }
 TODO: //fec_retiro, teot_id, cont_id
 function Guardar_Orden_transporte(){
-    var datos = new FormData();
-    datos = formToObject(datos);
-	debugger; 
-    // datos.fec_retiro = '02-07-2020';         
-    datos.fec_retiro = $("#Fecha").val();
-    var auxfecha = datos.fec_retiro[8]+datos.fec_retiro[9]+"-"+datos.fec_retiro[5]+datos.fec_retiro[6]+"-"+datos.fec_retiro[0]+datos.fec_retiro[1]+datos.fec_retiro[2]+datos.fec_retiro[3]; 
-    datos.fec_retiro = auxfecha;
-    datos.difi_id = $("#dispfinal").val();
-    datos.sotr_id = $("#sotr_id").val();
-    datos.tran_id = $("#tran_id").val();
-    // var dominio_equipo = $("#equipo" ).selectedOptions[0].textContent;
-    var dominio_equipo = $("#equipo option:selected" ).text();
-    datos.equi_id = dominio_equipo;
-    datos.chof_id = $("#chofer").val();
-    datos.usuario_app = "HugoDS";
-    datos.teot_id = 7;
-    //aca agregarle el cont_id
+   debugger;
+    if(  $('#tbl_cont').DataTable().data().any() ) 
+    {console.table($("#dispfinal").val());
+        if($("#dispfinal").val() != null)
+        {
+                var datos = new FormData();
+            datos = formToObject(datos);
 
-    var datos_contenedor = [];
-    var rows = $('#tbl_cont tbody tr');
-    console.table(rows[0].dataset.json);
-    var auxx = JSON.parse(rows[0].dataset.json);
-    console.table(auxx);
-    console.table(auxx.cont_id);
-    // console.table(rows[0].dataset.json.cont_id);
-    console.table(rows.length);
-    var cont = new FormData();
-    cont = formToObject(cont);
-    TODO:
-    // cont.cont_id =  111;
-    //    datos_contenedor.push(cont);
-     
-    for(var c=0; c<rows.length; c++){
-       auxx = JSON.parse(rows[c].dataset.json);
-       cont.cont_id =  auxx.cont_id;
-       datos_contenedor.push(cont);
-    }
-    console.log(cont.cont_id);
-    // rows.each(function(i,e) {  
-	// 			datos_contenedor.push(getJson(e));
-	// 			// datos_contenedores.push("usuarioAp:");
-	// 			// datos_contenedores.push("otro:");
-	// 	});	
-	datos.contenedores = datos_contenedor;
+            // datos.fec_retiro = '02-07-2020';         
+            datos.fec_retiro = $("#Fecha").val();
+            // var auxfecha = datos.fec_retiro[8]+datos.fec_retiro[9]+"-"+datos.fec_retiro[5]+datos.fec_retiro[6]+"-"+datos.fec_retiro[0]+datos.fec_retiro[1]+datos.fec_retiro[2]+datos.fec_retiro[3]; 
+            // datos.fec_retiro = auxfecha;
+            datos.difi_id = $("#dispfinal").val();
+            datos.sotr_id = $("#sotr_id").val();
+            datos.tran_id = $("#tran_id").val();
+            // var dominio_equipo = $("#equipo" ).selectedOptions[0].textContent;
+            // var dominio_equipo = $("#equipo option:selected" ).text();
+            // datos.equi_id = dominio_equipo;
+            datos.equi_id = $("#equipo").val();
+            datos.chof_id = $("#chofer").val();
+            datos.usuario_app = "HugoDS";
+        // datos.teot_id = 7;
+            //aca agregarle el cont_id
 
-    console.table(datos_contenedor);
-
-    if (datos_contenedor.lenght == 0) {
-      alert('Sin Datos para Registrar.');
-      return;
-    }
-
-    $.ajax({
-      type: "POST",
-      data: {datos},
-      url: "general/Estructura/OrdenTransporte/Guardar_ordentransporte",
-      success: function(respuesta) {
-        console.log(respuesta);
-        if (respuesta == "ok") {
+            var datos_contenedor = [];
+            var rows = $('#tbl_cont tbody tr');
+            // console.table(rows[0].dataset.json);
+            // var auxx = JSON.parse(rows[0].dataset.json);
+            // console.table(auxx);
+            // console.table(auxx.cont_id);
+            // console.table(rows[0].dataset.json.cont_id);
+            console.table(rows.length);
+            // var cont = new FormData();
+            // cont = formToObject(cont);
+            TODO:
+            // cont.cont_id =  111;
+            //    datos_contenedor.push(cont);
             
-         
-          alertify.success("Agregado con exito");
-          $("#formPuntos")[0].reset();
-          $("#boxDatos").hide(500);
-          $("#botonAgregar").removeAttr("disabled");
+            for(var c=0; c<rows.length; c++){
+            auxx = JSON.parse(rows[c].dataset.json);
+            var cont = new FormData();
+            cont = formToObject(cont);
+            cont.cont_id =  auxx.cont_id;
+            datos_contenedor.push(cont);
+            }
+            console.log(cont.cont_id);
+            // rows.each(function(i,e) {  
+            // 			datos_contenedor.push(getJson(e));
+            // 			// datos_contenedores.push("usuarioAp:");
+            // 			// datos_contenedores.push("otro:");
+            // 	});	
+            datos.contenedores = datos_contenedor;
 
-          //  $('#formCircuitos').data('bootstrapValidator').resetForm();
-          //  $("#formCircuitos")[0].reset();
+            console.table(datos_contenedor);
+
+            if (datos_contenedor.lenght == 0) {
+            alert('Sin Datos para Registrar.');
+            return;
+            }
+
+            $.ajax({
+            type: "POST",
+            data: {datos},
+            url: "general/Estructura/OrdenTransporte/Guardar_ordentransporte",
+            success: function(respuesta) {
+                debugger;
+                console.log(respuesta);
+                if (respuesta == "ok") {
+                    
+                
+                alertify.success("Agregado con exito");
+                $("#formOrden")[0].reset();
+                $("#boxDatos").hide(500);
+                $("#botonAgregar").removeAttr("disabled");
+                $("#chofer").attr('readonly');
+                $('#contenedores').show();
+                var table = $('#tbl_cont').DataTable();
+                table.clear().draw();
+                //  $('#formCircuitos').data('bootstrapValidator').resetForm();
+                //  $("#formCircuitos")[0].reset();
 
 
-          //  $("#boxDatos").hide(500);
-          //  $("#botonAgregar").removeAttr("disabled");
+                //  $("#boxDatos").hide(500);
+                //  $("#botonAgregar").removeAttr("disabled");
 
-        } else {
-          console.log(respuesta);
-          alertify.error("error al agregar");
+                } else {
+                console.log(respuesta);
+                alertify.error("error al lanzar Orden de trabajo con el contenedor seleccionado");
+                $("#formOrden")[0].reset();
+                $("#boxDatos").hide(500);
+                $("#botonAgregar").removeAttr("disabled");
+                $("#chofer").attr('readonly');
+                $('#contenedores').show();
+                var table = $('#tbl_cont').DataTable();
+                table.clear().draw();
+                }
+            }
+            });
+        }else{
+            alert("ATENCION!!! No selecciono Disposicion Final");
         }
-      }
-    });
+    }else{
+        alert("ATENCION!!! no se puede generar la orden de trabajo sin contenedores asignados");
+    }
+    
 }
 
 
