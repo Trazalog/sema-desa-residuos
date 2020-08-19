@@ -1763,7 +1763,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
   ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, ST.depa_id,
   D.nombre as depa_nombre, Z.nombre as zona_nombre 
   from log.solicitantes_transporte ST, core.departamentos D, core.zonas Z
-  where ST.depa_id = D.depa_id 
+  where ST.depa_id = D.depa_id
   and ST.zona_id = Z.zona_id 
   and ST.eliminado = 0
 
@@ -1818,29 +1818,14 @@ http://10.142.0.3:8280/services/semaresiduosDS
 -- (generadores)solicitanteTransporteGetPorUsr(MODIFICADO HARDCODEADO SOLO A SOTR_ID)
   recurso: /solicitantesTransporte/{usuario_app}  (ej: /solicitantesTransporte/hugoDS)
   metodo: get
-  select 
-  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, ST.lat, ST.lng, ST.zona_id, ST.rubr_id, ST.tist_id, D.nombre as depa_nom
-  from log.solicitantes_transporte ST, core.departamentos D 
-  where usuario_app = :usuario_app 
-  and ST.depa_id = D.depa_id
+  select sotr_id 
+  from log.solicitantes_transporte ST
+  where ST.user_id = (select U.email from seg.users U
+                      where U.usernick = :usuario_app)
 
   {
-    "solicitantes_transporte": {
-        "solicitante": [
-          {
-            "sotr_id": "$sotr_id",
-            "razon_social": "$razon_social",
-            "cuit": "$cuit",
-            "domicilio": "$domicilio",
-            "num_registro": "$num_registro",
-            "lat": "$lat",
-            "lng": "$lng",
-            "zona_id": "$zona_id",
-            "rubr_id": "$rubr_id",
-            "tist_id": "$tist_id",
-            "depa_nom": "$depa_nom"	            
-          }
-        ]
+    "solicitantes_transporte": {     
+            "sotr_id": "$sotr_id"
     }
   }
 
@@ -3638,7 +3623,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
  subquery contenedoresARetirarPorEquipoGet
 
  select ce.cont_id        ,t.valor tipo_carga       ,ce.porc_llenado        ,ce.mts_cubicos from log.contenedores_entregados ce	,core.tablas t 	,core.equipos eq	,log.solicitudes_retiro sr where eq.equi_id = ce.equi_id and ce.equi_id = cast(:equi_id as integer) and ce.sore_id = sr.sore_id and sr.sotr_id = cast(:sotr_id as integer)and ce.tica_id =t.tabl_id and ce.ortr_id is null
-   
+
   {"vehiculoAsignadoARetiro": {
    "descripcion": "peugeot automovil",
    "codigo": "wqwer",

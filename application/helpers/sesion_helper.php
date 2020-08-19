@@ -3,16 +3,15 @@
 if(!function_exists('userId')){
 
     function userId()
-		{
-				//return 502; //descarga
-				//return 501; // bascula
-				//return 401;// generador
-				//return 402;// transportista           !HARDCODE
-				$ci =& get_instance();
-				//TODO: REVISAR LO QUE DEVUELVE LA VARIABLE DE SESION ES LA DE LOGIN AHORA
-				$userdata  = $ci->session->userdata('user_data');
+    {
+                // return 502; //descarga
+                        //return 501; // bascula
+        //  return 401;// generador
+                //   return 402;// transportista           !HARDCODE
 
-				return  $userdata[0]['userIdBpm'];
+        $ci =& get_instance();			
+        $userid  = $ci->session->userdata('id');
+		return  $userid;
     }
 }
 
@@ -20,14 +19,13 @@ if(!function_exists('userNick')){
 
     function userNick()
     {
-				//return 'descarga';
-				//return 'bascula';
-				//return 'generador1';
-				//return 'transportista1';
-				$ci =& get_instance();
-				//TODO: REVISAR LO QUE DEVUELVE LA VARIABLE DE SESION ES LA DE LOGIN AHORA
-        $userdata  = $ci->session->userdata('user_data');
-				return  $userdata[0]['usrNick'];
+        //    return'descarga';
+                //   return 'bascula';
+            // return 'generador1';
+                      //return 'transportista1';
+        $ci =& get_instance();
+        $usernick  = $ci->session->userdata('usernick');
+		return  $usernick;
     }
 }
 

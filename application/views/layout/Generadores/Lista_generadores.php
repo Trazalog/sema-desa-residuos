@@ -6,6 +6,7 @@
 
     <th>Acciones</th>
     <th>Nombre / Razon social</th>
+    <th>e-Mail</th>
     <th>Departamento</th>
     <th>Registro</th>
     <!-- <th>Tipo</th> -->
@@ -24,9 +25,10 @@
             echo    '<td>';
             echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                     <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo btnInfo" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
-                    <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
+                    <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
             echo   '</td>';
             echo    '<td>'.$fila->razon_social.'</td>';
+            echo    '<td>'.$fila->user_id.'</td>';
             echo    '<td>'.$fila->depa_nombre.'</td>';
             echo    '<td>'.$fila->num_registro.'</td>';                       
             echo '</tr>';

@@ -24,12 +24,7 @@ class Dash extends CI_Controller {
 													"icono": "fa fa-circle",
 													"link": "general/Componente",
 													"nivel": 2,
-													"submenu":[	
-															{
-																"titulo": "Usuarios",
-																"icono": "fa fa-genderless",
-																"link": "login/main/users"
-														 	},												
+													"submenu":[
 															{
 																	"titulo": "Chofer",
 																	"icono": "fa fa-genderless",

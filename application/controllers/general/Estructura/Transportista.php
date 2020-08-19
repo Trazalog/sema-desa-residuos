@@ -66,7 +66,7 @@ class Transportista extends CI_Controller
 
     /**
     * Tabla con listado de todos los Transportistas
-    * @param 
+    * @param
     * @return view Lista_transportista
     */
     function Listar_Transportista()
@@ -75,7 +75,7 @@ class Transportista extends CI_Controller
       $data["transportistas"] = $this->Transportistas->Listar_Transportistas(); 
       $this->load->view('layout/Transportistas/Lista_transportista',$data);
     }
-  
+
     /**
     * Actualiza datos transportistas
     * @param array datos transportistas y tipos de carga

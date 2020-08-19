@@ -3,6 +3,7 @@
 		<thead class="thead-dark" bgcolor="#eeeeee">
 				<th>Acciones</th>
 				<th>Nombre / Razon social</th>
+				<th>e-Mail</th>
 				<th>Descripcion</th>
 				<th>Registro</th>
 		</thead>
@@ -17,9 +18,10 @@
 						echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit" id="btnEditar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp					
 										<button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
 										
-										<button type="button" title="eliminar" class="btn btn-primary btn-circle btnDelete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
+										<button type="button" title="eliminar" class="btn btn-primary btn-circle btnDelete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
 						echo   '</td>';
 						echo    '<td>'.$fila->razon_social.'</td>';
+						echo    '<td>'.$fila->user_id.'</td>';
 						echo    '<td>'.$fila->descripcion.'</td>';
 						echo    '<td>'.$fila->registro.'</td>';                       
 						echo '</tr>';
