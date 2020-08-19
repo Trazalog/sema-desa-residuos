@@ -80,7 +80,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h5 class="modal-title" id="exampleModalLabel">Chofer</h5>
+				<h5 class="modal-title titulo" id="exampleModalLabel">Editar Chofer</h5>
 			</div>
 			<div class="modal-body col-md-12 col-sm-12 col-xs-12">
 
@@ -263,16 +263,20 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-blue">
-				<h5 class="modal-title"><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>Eliminar</h5>
+				
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
+				<h5 class="modal-title" id="exampleModalLabel"> Eliminar Chofer</h5>
+
+				
+               						
 			</div>
 			<input id="chof_delete" style="display: none;">
 			<div class="modal-body">
 				<center>
 					<h4>
-						<p>¿Desea eliminar el chofer?</p>
+						<p>¿DESEA ELIMINAR EL CHOFER?</p>
 					</h4>
 				</center>
 			</div>
@@ -395,17 +399,19 @@ $(document).ready(function(){
 
 									$("#cargar_tabla").load(
 										"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
-									alertify.success("Agregado con exito");
+									alertify.success("Chofer Agregado con exito");
 
 									$('#formChofer').data('bootstrapValidator').resetForm();
 									$("#formChofer")[0].reset();
 
 									$("#boxDatos").hide(500);
 									$("#botonAgregar").removeAttr("disabled");
+									
 
 								} else {
 									//console.log(r);
-									alertify.error("error al agregar");
+									alertify.error("Error al Agregar Chofer");
+									
 								}
 							}
 						});
@@ -615,11 +621,12 @@ $("#btnsave").on("click", function() {
 					url: "general/Estructura/Chofer/Modificar_Chofer",
 					success: function(result) {
 						if (result == "error") {
-							alertify.error("Hubo un error a modificar Chofer");
+							alertify.error("Error al Actualizar Chofer");
 						} else {
 							$("#cargar_tabla").load(
 								"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
-							alertify.success("Datos de Chofer modificados con exito...");
+							$("#modalEdit").modal('hide');
+							alertify.success("Chofer Actualizado con exito");
 						}
 					}
 				});

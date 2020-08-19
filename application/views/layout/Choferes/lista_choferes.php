@@ -171,11 +171,13 @@
 			datajson = $(this).parents("tr").attr("data-json");
 			llenarModal(datajson);
 			blockEdicion();
+			$(".titulo").text('Informacion Chofer');
 		});
 
 	// llena modal para edicion
 		$(".btnEditar").on("click", function() {
 			datajson = $(this).parents("tr").attr("data-json");
+			$(".titulo").text('Editar Chofer');
 			llenarModal(datajson);
 			habilitarEdicion();
 		});
@@ -263,11 +265,11 @@
 				success: function(result) {
 					$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
 					$("#modalaviso").modal('hide');
-					alertify.success("Eliminado con exito");
+					alertify.success("Chofer Eliminado con exito");
 				},
 				error: function(result) {
 					$("#modalaviso").modal('hide');
-					alertify.error("Hubo un error al eliminar Chofer");
+					alertify.error("Error al Eliminar Chofer");
 				}
 			});
 		}

@@ -186,7 +186,7 @@
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 								</button>
-								<h5 class="modal-title" id="exampleModalLabel">Editar Transportista</h5>
+								<h5 class="modal-title titulo" id="exampleModalLabel">Editar Transportista</h5>
 						</div>
 
 						<div class="modal-body col-md-12 col-sm-12 col-xs-12">
@@ -354,15 +354,16 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-blue">
-					<h5 class="modal-title" ><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>  Eliminar</h5>
+					
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true" >&times;</span>
 					</button>
+					<h5 class="modal-title" id="exampleModalLabel"> Eliminar Transportista</h5>
 				</div>
 				<input id="transp_delete" style="display: none;">
 				<div class="modal-body">
 					<center>
-					<h4><p>¿ DESEA ELIMINAR TRANSPORTISTA ?</p></h4>
+					<h4><p>¿ DESEA ELIMINAR EL TRANSPORTISTA ?</p></h4>
 					</center>
 				</div>
 				<div class="modal-footer">
@@ -423,7 +424,7 @@
                     if (r == "ok") {
 
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
-						alertify.success("Agregado con exito");
+						alertify.success("Transportista Agregado con exito");
 						$('#tica_id').select2('val', 'All');
                         $('#formTransportistas').data('bootstrapValidator').resetForm();
                         $("#formTransportistas")[0].reset();                       
@@ -431,7 +432,7 @@
                         $("#botonAgregar").removeAttr("disabled");
                     } else {
                         //console.log(r);
-                        alertify.error("error al agregar");
+                        alertify.error("Error al Agregar Transportista");
                     }
                 }
             });
@@ -494,7 +495,7 @@
 							url: "general/Estructura/Transportista/Modificar_Transportista",
 							success: function (result) {
 								if(result == "error_transportista"){
-									alertify.error("Hubo un error a modificar Transportista");
+									alertify.error("Error al Actualizar Transportista");
 								
 									
                         			       
@@ -504,7 +505,7 @@
 									
 									$('#frm_transportista').data('bootstrapValidator').resetForm();
 									$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
-									alertify.success("Transportista modificado con exito...");
+									alertify.success("Transportista Actualizado con exito");
 									
 								
 									                      
@@ -530,11 +531,11 @@
 						
 						$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");	
 						$("#modalaviso").modal('hide');
-						alertify.success("Transportista Eliminado con exito...");
+						alertify.success("Transportista Eliminado con exito");
 					},
 					error: function(result){
 						$("#modalaviso").modal('hide');
-						alertify.success("Error al eliminar Transportista...");
+						alertify.success("Error al Eliminar Transportista");
 					}
 			});
 		}

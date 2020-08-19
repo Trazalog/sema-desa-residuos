@@ -333,7 +333,7 @@
 						<button type="button" class="close close_modal_edit" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 						</button>
-						<h5 class="modal-title" id="exampleModalLabel">Circuitos</h5>
+						<h5 class="modal-title titulo" id="exampleModalLabel">Editar Circuitos</h5>
 				</div>
 
 				<div class="modal-body ">
@@ -648,15 +648,16 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-blue">
-				<h5 class="modal-title" ><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>  Eliminar</h5>
+				
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true" >&times;</span>
 				</button>
+				<h5 class="modal-title" id="exampleModalLabel"> Eliminar Circuito</h5>
 			</div>
 			<input id="circuito_delete" style="display: none;">
 			<div class="modal-body">
 				<center>
-				<h4><p>¿ DESEA ELIMINAR CIRCUITO ?</p></h4>
+				<h4><p>¿ DESEA ELIMINAR EL CIRCUITO ?</p></h4>
 				</center>
 			</div>
 			<div class="modal-footer">
@@ -917,7 +918,7 @@ $(".close_modal_edit").click(function(e){
 													if ($respuesta != "") {
 														$res = JSON.parse($respuesta);
 														$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
-														alertify.success("Circuito Agregado Con Exito");
+														alertify.success("Circuito Agregado con exito");
 														$('#formCircuitos').data('bootstrapValidator').resetForm();
 														$("#formCircuitos")[0].reset();
 														$('#formPuntos').data('bootstrapValidator').resetForm();
@@ -947,7 +948,7 @@ $(".close_modal_edit").click(function(e){
 														// alert("Atencion hay algunos puntos criticos que no se asociaron al circuito");
 													}else{
 														$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
-														alertify.success("Circuito Agregado Con Exito");
+														alertify.success("Circuito Agregado con exito");
 														$('#formCircuitos').data('bootstrapValidator').resetForm();
 														$("#formCircuitos")[0].reset();
 														$('#formPuntos').data('bootstrapValidator').resetForm();
@@ -1428,12 +1429,12 @@ $.ajax({
 		success: function(result) {
 					if(result == "ok"){
 						$("#modalaviso").modal('hide');
-						alertify.success("circuito eliminado con exito...");
+						alertify.success("Circuito Eliminado con exito");
 						$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");	
 						
 					}else{
 						$("#modalaviso").modal('hide');	
-						alertify.success("error al eliminar...");
+						alertify.success("Error al Eliminar Circuito");
 					}
 		},
 		error: function(result){
@@ -1508,7 +1509,7 @@ $("#btnsave_edit").on("click", function() {
 												$("#formPuntos_edit")[0].reset();
 												$("#formPuntos_edit").data('bootstrapValidator').resetForm();
 												
-													alertify.success("Circuito editado con exito...");
+													alertify.success("Circuito Actualizado con exito...");
 												$("#cargar_tabla").load(
 																"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
 														);
@@ -1516,7 +1517,7 @@ $("#btnsave_edit").on("click", function() {
 												
 											}else{
 												
-												alertify.error("Error Al Editar Circuito...");
+												alertify.error("Error al Actualizar Circuito...");
 												$("#modalEdit").data('bootstrapValidator').resetForm();
 												$("#formPuntos_edit")[0].reset();
 												$("#formPuntos_edit").data('bootstrapValidator').resetForm();

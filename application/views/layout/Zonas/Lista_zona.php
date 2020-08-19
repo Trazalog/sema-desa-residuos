@@ -136,7 +136,7 @@
             <div class="modal-footer">
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary" id="btnsave">Guardar</button>
-                    <button type="submit" class="btn btn-default cerrarModalEdit" id="btnsave" data-dismiss="modal" id="cerrar">Cerrar</button>
+                    <button type="submit" class="btn btn-default cerrarModalEdit" id="" data-dismiss="modal" id="cerrar">Cerrar</button>
                    
                 </div>
             </div>
@@ -156,18 +156,26 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel"> Eliminar Zona</h5>
             </div>
+            <input type="text" id="id_zona" style="display:none">
+           
             <div class="modal-body">
+				<center>
+					<h4>
+						<p>¿DESEA ELIMINAR LA ZONA?</p>
+					</h4>
+				</center>
+			</div>
 
-           <input type="text" id="id_zona" style="display:none">
+           
 
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
 
-            </div>
+            
             <div class="modal-footer">
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btndelete">Aceptar</button>
-                    <button type="submit" class="btn btn-default" id="btnsave" data-dismiss="modal" id="cerrar">Cerrar</button>
-                </div>
+                <center>
+                    <button type="submit" class="btn btn-primary" id="btndelete">SI</button>
+                    <button type="submit" class="btn btn-default" id="" data-dismiss="modal" id="cerrar">NO</button>
+                    </center>
             </div>
         </div>
     </div>
@@ -476,7 +484,7 @@ $("#btnsave").click(function(e){
                             $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona_tabla");
                                 var URLactual = window.location;
                             
-                                alertify.success("Modificado con exito");
+                                alertify.success("Zona Actualizada con exito");
 
                                 $("#formModalEdit").data('bootstrapValidator').resetForm();
                                 // $("#formModalEdit")[0].reset();
@@ -489,7 +497,7 @@ $("#btnsave").click(function(e){
                             
                             } else {
                                 //console.log(r);
-                                alertify.error("error al Modificar");
+                                alertify.error("Error al Actualizar Zona");
                                 $("#formModalEdit").data('bootstrapValidator').resetForm();
                                 $("#modalEdit").modal("hide");    
                                 $(".esconder").attr("style","left: 38rem; top: -2rem; ");
@@ -533,7 +541,7 @@ $(".btnVer").click(function(e){
     $("#div_ver").removeAttr("style");
     $(".esconder").attr("style","left: 41rem; top: -2rem; ");
     $('#btnsave').hide();
-    $(".titulo").text('Ver Informacion');
+    $(".titulo").text('Informacion Zona');
     $("#texto_dep").text('');
     Editar(data);
 
@@ -577,7 +585,7 @@ $("#btndelete").click(function(e){
                 success: function (r) {
                     console.table(r);
                     if(r == "ok") {
-                        $('#btndelete').hide();
+                        // $('#btndelete').hide();
                      
                        // llama a listar_zona_Tabla el cual es  para recargar la tabla que muestra las zonas se le agrega el script para que tome los eventos
                        $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona_tabla");
@@ -592,7 +600,7 @@ $("#btndelete").click(function(e){
 
                     } else {
                         //console.log(r);
-                        alertify.error("error al Eliminar");
+                        alertify.error("Error al Eliminar Zona");
                         
                     }
                 }

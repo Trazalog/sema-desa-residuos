@@ -345,7 +345,7 @@ async function convertA(){
                     if (r == "ok") {
 
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona");
-                        alertify.success("Agregado con exito");
+                        alertify.success("Zona Agregada con exito");
 
                         $('#formZonas').data('bootstrapValidator').resetForm();
                         $("#formZonas")[0].reset();
@@ -355,7 +355,7 @@ async function convertA(){
 
                     } else {
                         //console.log(r);
-                        alertify.error("error al agregar");
+                        alertify.error("Error al Agregar Zona");
                     }
                 }
             });

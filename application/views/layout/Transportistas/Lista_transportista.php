@@ -37,6 +37,7 @@
 	// llena modal solo lectura
 		$(".btnInfo").on("click", function() {
 			datajson = $(this).parents("tr").attr("data-json");
+			$(".titulo").text('Informacion Transportista');
 			$(".oculta_info").removeAttr("style");
 			$(".oculta_edit").attr("style","display:none");
 			llenarModal(datajson);	
@@ -48,6 +49,7 @@
 	// llena modal para edicion
 		$(".btnEditar").on("click", function() {
 			datajson = $(this).parents("tr").attr("data-json");
+			$(".titulo").text('Editar Transportista');
 			$(".oculta_info").attr("style","display:none");
 			$(".oculta_edit").removeAttr("style");
 			llenarModal(datajson);

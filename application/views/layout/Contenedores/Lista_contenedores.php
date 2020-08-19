@@ -255,16 +255,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
-            <h5 class="modal-title"><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>Eliminar</h5>
+           
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
+                <h5 class="modal-title" id="exampleModalLabel"> Eliminar Contenedor</h5>
 			</div>
 			<input id="id_contenedor" style="display: none;">
 			<div class="modal-body">
 				<center>
 					<h4>
-						<p>¿Desea eliminar el contenedor?</p>
+						<p>¿DESEA ELIMINAR EL CONTENEDOR?</p>
 					</h4>
 				</center>
 			</div>
@@ -671,7 +672,7 @@ $("#btnsave").click(function(e){
                             console.table(r);
                             if (r == "ok") {
                                 $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor_Tabla");
-                                alertify.success("Actualizado con exito");
+                                alertify.success("Contenedor Actualizado con exito");
                                 $("#modalEdit").modal('hide');
                                 $('#formContenedoresedit').data('bootstrapValidator').resetForm();
                                 $(".esconder").attr("style","left: 0rem; top: 1rem; ");
@@ -680,7 +681,7 @@ $("#btnsave").click(function(e){
 
                             } else {
                                 
-                                alertify.error("error al actualizar");
+                                alertify.error("Error al Actualizar Contenedor");
                                 $('#formContenedoresedit').data('bootstrapValidator').resetForm();
                                 $("#modalEdit").modal('hide');
                                 $(".esconder").attr("style","left: 0rem; top: 1rem; ");
@@ -716,7 +717,7 @@ $("#btndelete").click(function(e){
                          alertify.success("Contenedor Eliminado con exito");
                          $("#modalBorrar").modal('hide');
                     } else {                        
-                        alertify.error("error al Eliminar");
+                        alertify.error("Error al Eliminar Contenedor");
                         
                     }
                 }

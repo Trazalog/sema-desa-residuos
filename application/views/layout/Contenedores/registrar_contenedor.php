@@ -376,7 +376,7 @@ async function convertA(){
                         if (r == "ok") {
 
                             $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor");
-                            alertify.success("Agregado con exito");
+                            alertify.success("Contenedor Agregado con exito");
 
                             $('#formContenedores').data('bootstrapValidator').resetForm();
                             $("#formContenedores")[0].reset();
@@ -386,7 +386,7 @@ async function convertA(){
 
                         } else {
                             //console.table(r);
-                            alertify.error("error al agregar");
+                            alertify.error("Error al Agregar Contenedor");
                         }
                     }
                 });

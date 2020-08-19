@@ -339,16 +339,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header bg-blue">
-				<h5 class="modal-title"><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>Eliminar</h5>
+				
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
+                <h5 class="modal-title" id="exampleModalLabel"> Eliminar Vehiculo</h5>
 			</div>
 			<input id="id_vehiculo" style="display: none;">
 			<div class="modal-body">
 				<center>
 					<h4>
-						<p>¿Desea eliminar el vehiculo?</p>
+						<p>¿DESEA ELIMINAR EL VEHICULO?</p>
 					</h4>
 				</center>
 			</div>
@@ -482,6 +483,7 @@ async function convertA(){
     });
 
     $("#btnclose").on("click", function() {
+        $("#formVehiculo")[0].reset();
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
         $('#formDatos').data('bootstrapValidator').resetForm();
@@ -616,35 +618,40 @@ async function convertA(){
         console.table(datos);
   
         //--------------------------------------------------------------
+        if(datos.imagen != "")
+        {
+                if ($("#formVehiculo").data('bootstrapValidator').isValid()) {
+                $.ajax({
+                    type: "POST",
+                    data: {datos},
+                    url: "general/Estructura/Vehiculo/Guardar_Vehiculo",
+                    success: function (r) {
+                        console.log(r);
+                        if (r == "ok") {
 
-        if ($("#formVehiculo").data('bootstrapValidator').isValid()) {
-            $.ajax({
-                type: "POST",
-                data: {datos},
-                url: "general/Estructura/Vehiculo/Guardar_Vehiculo",
-                success: function (r) {
-                    console.log(r);
-                    if (r == "ok") {
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
+                            alertify.success("Vehiculo Agregado con exito");
+                            $("#formVehiculo")[0].reset();
+                            $('#formVehiculo').data('bootstrapValidator').resetForm();
+                            
 
-                       $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
-                        alertify.success("Agregado con exito");
+                            $("#boxDatos").hide(500);
+                            $("#botonAgregar").removeAttr("disabled");
 
-                        $('#formVehiculo').data('bootstrapValidator').resetForm();
-                        $("#formVehiculo")[0].reset();
-
-                        $("#boxDatos").hide(500);
-                        $("#botonAgregar").removeAttr("disabled");
-
-                    } else {
-                        //console.log(r);
-                        alertify.error("error al agregar");
+                        } else {
+                            //console.log(r);
+                            alertify.error("Error al Agregar Vehiculo");
+                        }
                     }
-                }
-            });
+                });
+            }else{
+                alert("ATENCION!!! Hay Campos Sin Completar o Mal Ingresados");
+                // swal("Atencion Hay campos sin completar o mal Ingresados");
+            }
         }else{
-             alert("ATENCION!!! Hay Campos Sin Completar o Mal Ingresados");
-            // swal("Atencion Hay campos sin completar o mal Ingresados");
+            alert("ATENCION!!! No cargo Imagen");
         }
+       
     }
 
     
@@ -713,7 +720,7 @@ async function convertA(){
                             console.table(r);
                             if (r == "ok") {
                                 $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
-                                alertify.success("Actualizado con exito");
+                                alertify.success("Vehiculo Actualizado con exito");
                                 $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
                                 $("#modalEdit").modal('hide');
                                 $("#modalEdit").modal("hide"); 
@@ -723,7 +730,7 @@ async function convertA(){
 
                             } else {
                                 
-                                alertify.error("error al actualizar");
+                                alertify.error("Error al actualizar Vehiculo");
                                 $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
                                 $("#modalEdit").modal("hide"); 
                                 $(".esconder").attr("style","left: 38rem; top: -2rem; "); 
@@ -755,10 +762,10 @@ async function convertA(){
                     if(r == "ok") {
                         $('#btndelete').hide();
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
-                         alertify.success("Contenedor Eliminado con exito");
+                         alertify.success("Vehiculo Eliminado con exito");
                          $("#modalBorrar").modal('hide');
                     } else {                        
-                        alertify.error("error al Eliminar");
+                        alertify.error("Error al Eliminar Vehiculo");
                         
                     }
                 }
