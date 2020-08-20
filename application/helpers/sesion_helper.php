@@ -7,7 +7,7 @@ if(!function_exists('userId')){
                 // return 502; //descarga
                         //return 501; // bascula
         //  return 401;// generador
-                //   return 402;// transportista           !HARDCODE
+                   return 402;// transportista           !HARDCODE
 
         $ci =& get_instance();			
         $userid  = $ci->session->userdata('id');
@@ -22,7 +22,7 @@ if(!function_exists('userNick')){
         //    return'descarga';
                 //   return 'bascula';
             // return 'generador1';
-                      //return 'transportista1';
+                      return 'transportista1';
         $ci =& get_instance();
         $usernick  = $ci->session->userdata('usernick');
 		return  $usernick;
