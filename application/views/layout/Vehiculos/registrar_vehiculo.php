@@ -621,6 +621,7 @@ async function convertA(){
         if(datos.imagen != "")
         {
                 if ($("#formVehiculo").data('bootstrapValidator').isValid()) {
+                wo();
                 $.ajax({
                     type: "POST",
                     data: {datos},
@@ -628,7 +629,7 @@ async function convertA(){
                     success: function (r) {
                         console.log(r);
                         if (r == "ok") {
-
+                        wc();
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
                             alertify.success("Vehiculo Agregado con exito");
                             $("#formVehiculo")[0].reset();
@@ -640,6 +641,7 @@ async function convertA(){
 
                         } else {
                             //console.log(r);
+                            wc();
                             alertify.error("Error al Agregar Vehiculo");
                         }
                     }
@@ -711,6 +713,7 @@ async function convertA(){
         {
             if( vehiculo.imagen != "")
             {
+                    wo();
                     $.ajax({
                         type: "POST",
                         data: {vehiculo},
@@ -719,6 +722,7 @@ async function convertA(){
                             
                             console.table(r);
                             if (r == "ok") {
+                                wc();
                                 $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
                                 alertify.success("Vehiculo Actualizado con exito");
                                 $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
@@ -729,7 +733,7 @@ async function convertA(){
                             
 
                             } else {
-                                
+                                wc();
                                 alertify.error("Error al actualizar Vehiculo");
                                 $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
                                 $("#modalEdit").modal("hide"); 
@@ -753,6 +757,7 @@ async function convertA(){
         eliminar.equi_id = $("#id_vehiculo").val();
        // datos.eliminado = 1;
         console.table(eliminar);
+        wo();
         $.ajax({
                 type: "POST",
                 data: {eliminar},
@@ -760,11 +765,13 @@ async function convertA(){
                 success: function (r) {
                     console.table(r);
                     if(r == "ok") {
+                        wc();
                         $('#btndelete').hide();
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
                          alertify.success("Vehiculo Eliminado con exito");
                          $("#modalBorrar").modal('hide');
-                    } else {                        
+                    } else {          
+                        wc();              
                         alertify.error("Error al Eliminar Vehiculo");
                         
                     }

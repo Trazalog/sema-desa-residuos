@@ -257,17 +257,19 @@
 		function eliminar() {
 
 			var chof_id = $("#chof_delete").val();		
-
+			wo();
 			$.ajax({
 				type: "POST",
 				data: {	chof_id: chof_id },
 				url: "general/Estructura/Chofer/Borrar_Chofer",
 				success: function(result) {
+					wc();
 					$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
 					$("#modalaviso").modal('hide');
 					alertify.success("Chofer Eliminado con exito");
 				},
 				error: function(result) {
+					wc();
 					$("#modalaviso").modal('hide');
 					alertify.error("Error al Eliminar Chofer");
 				}

@@ -336,6 +336,7 @@ async function convertA(){
         //--------------------------------------------------------------
 
         if ($("#formZonas").data('bootstrapValidator').isValid()) {
+            wo();
             $.ajax({
                 type: "POST",
                 data: {datos},
@@ -343,7 +344,7 @@ async function convertA(){
                 success: function (r) {
                     console.table(r);
                     if (r == "ok") {
-
+                        wc();
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona");
                         alertify.success("Zona Agregada con exito");
 
@@ -355,6 +356,7 @@ async function convertA(){
 
                     } else {
                         //console.log(r);
+                        wc();
                         alertify.error("Error al Agregar Zona");
                     }
                 }

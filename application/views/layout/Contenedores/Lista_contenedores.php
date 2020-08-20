@@ -662,13 +662,13 @@ $("#btnsave").click(function(e){
 
         if($("#input_aux_img64").val()!="") 
         {
-    
+            wo();
             $.ajax({
                         type: "POST",
                         data: {datos, deletetipo, datos_tipo_carga, cont_id },
                         url: "general/Estructura/Contenedor/Actualizar_Contenedor",
                         success: function (r) {
-                            
+                            wc();
                             console.table(r);
                             if (r == "ok") {
                                 $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor_Tabla");
@@ -680,7 +680,7 @@ $("#btnsave").click(function(e){
                             
 
                             } else {
-                                
+                                wc();
                                 alertify.error("Error al Actualizar Contenedor");
                                 $('#formContenedoresedit').data('bootstrapValidator').resetForm();
                                 $("#modalEdit").modal('hide');
@@ -704,7 +704,7 @@ $("#btndelete").click(function(e){
     datos.cont_id = $("#id_contenedor").val();
     datos.eliminado = 1;
     console.table(datos);
-
+    wo();
             $.ajax({
                 type: "POST",
                 data: {datos},
@@ -712,11 +712,13 @@ $("#btndelete").click(function(e){
                 success: function (r) {
                     console.table(r);
                     if(r == "ok") {
+                        wc();
                         $('#btndelete').hide();
                         $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor_Tabla");
                          alertify.success("Contenedor Eliminado con exito");
                          $("#modalBorrar").modal('hide');
-                    } else {                        
+                    } else {              
+                        wc();          
                         alertify.error("Error al Eliminar Contenedor");
                         
                     }

@@ -872,6 +872,7 @@ $(".close_modal_edit").click(function(e){
 				{
 					alert("ATENCION! no cargo ninguna Imagen, Por favor cargue una");
 				}else{
+					wo();
 					$.ajax({
 							type: "POST",
 							data: {datos_circuito_enviar, datos_puntos_criticos,datos_tipo_carga},							
@@ -880,12 +881,14 @@ $(".close_modal_edit").click(function(e){
 									 
 									
 										if ($respuesta == "Error codigo existente")
-										{
+										{	
+											wc();
 											// alertify.error("Error...El codigo"+ datos_circuito_enviar.codigo+ "de circuito que ingreso ya existe, Pruebe con otro");
 											alert("Error...El codigo"+ datos_circuito_enviar.codigo+ "de circuito que ingreso ya existe, Pruebe con otro");
 										}else{
 											if($respuesta == "Error... Punto Crítico no asociado")
-											{
+											{	
+												wc();
 												alertify.error("Error...El circuito se registro pero no se pudo asociar los ptos criticos ");
 												$('#formCircuitos').data('bootstrapValidator').resetForm();
 														$("#formCircuitos")[0].reset();
@@ -903,6 +906,7 @@ $(".close_modal_edit").click(function(e){
 											else{
 												if($respuesta == "Error... Tipo de RSU no asociado")
 												{
+													wc();
 													alertify.error("Error al vincular los tipos de residuos al circuito...");
 													$('#formCircuitos').data('bootstrapValidator').resetForm();
 														$("#formCircuitos")[0].reset();
@@ -916,6 +920,7 @@ $(".close_modal_edit").click(function(e){
 														
 												}else{
 													if ($respuesta != "") {
+														wc();
 														$res = JSON.parse($respuesta);
 														$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
 														alertify.success("Circuito Agregado con exito");
@@ -947,6 +952,7 @@ $(".close_modal_edit").click(function(e){
 													
 														// alert("Atencion hay algunos puntos criticos que no se asociaron al circuito");
 													}else{
+														wc();
 														$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
 														alertify.success("Circuito Agregado con exito");
 														$('#formCircuitos').data('bootstrapValidator').resetForm();
@@ -1288,19 +1294,21 @@ $(".close_modal_edit").click(function(e){
 		circ_zona.zona_id = idzona;	
 
 		console.table('array objeto no se: ' + circ_zona);
-
+		wo();
 		$.ajax({
 				type: 'POST',
 				data:{circ_zona},
 				url: "general/Estructura/Circuito/Asignar_Zona",
 				success: function(result) {					
 							if(result == 'ok'){
-								alertify.success("Zona asociada con exito...!!!!!");
+								wc();
+								alertify.success("Zona Asociada con exito");
 								$("#cargar_tabla").load(
 												"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
 										);
 							}else{
-								alertify.error("Hubo error en la Asociacion...");
+								wc();
+								alertify.error("Error al Asociar Zona");
 							}
 				},
 				error: function(result){
@@ -1422,17 +1430,20 @@ DataTable($('#tabla_puntos_criticos_edit'));
 function eliminar(){
 
 var circ_id = $("#circuito_delete").val();
+wo();
 $.ajax({
 		type: 'POST',
 		data:{circ_id: circ_id},
 		url: "general/Estructura/Circuito/borrar_Circuito",
 		success: function(result) {
 					if(result == "ok"){
+						wc();
 						$("#modalaviso").modal('hide');
 						alertify.success("Circuito Eliminado con exito");
 						$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");	
 						
 					}else{
+						wc();
 						$("#modalaviso").modal('hide');	
 						alertify.success("Error al Eliminar Circuito");
 					}
@@ -1498,26 +1509,27 @@ $("#btnsave_edit").on("click", function() {
 				if( circuito_edit.imagen != "")
 				{   
 					if($("#tica_edit").val() != "")
-					{    
+					{    wo();
 						$.ajax({
 								type: 'POST',
 								data:{ datos_circuito_enviar_edit, tica_edit, ptos_criticos_edit},
 								url: "general/Estructura/Circuito/actulizaCircuitos",
 								success: function(result) {
 											if(result == "ok"){
+												wc();
 												$("#modalEdit").data('bootstrapValidator').resetForm();
 												$("#formPuntos_edit")[0].reset();
 												$("#formPuntos_edit").data('bootstrapValidator').resetForm();
 												
-													alertify.success("Circuito Actualizado con exito...");
+													alertify.success("Circuito Actualizado con exito");
 												$("#cargar_tabla").load(
 																"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
 														);
 											
 												
 											}else{
-												
-												alertify.error("Error al Actualizar Circuito...");
+												wc();
+												alertify.error("Error al Actualizar Circuito");
 												$("#modalEdit").data('bootstrapValidator').resetForm();
 												$("#formPuntos_edit")[0].reset();
 												$("#formPuntos_edit").data('bootstrapValidator').resetForm();

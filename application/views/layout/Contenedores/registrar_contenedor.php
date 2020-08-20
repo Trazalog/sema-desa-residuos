@@ -365,7 +365,7 @@ async function convertA(){
         if ($("#formContenedores").data('bootstrapValidator').isValid()) {
 
             if($("#input_aux_img").val()!="")
-            {
+            {       wo();
                     $.ajax({
                     type: "POST",
                     data: {datos, datos_tipo_carga},
@@ -374,7 +374,7 @@ async function convertA(){
                         
                         console.table(r);
                         if (r == "ok") {
-
+                            wc();
                             $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor");
                             alertify.success("Contenedor Agregado con exito");
 
@@ -386,6 +386,7 @@ async function convertA(){
 
                         } else {
                             //console.table(r);
+                            wc();
                             alertify.error("Error al Agregar Contenedor");
                         }
                     }

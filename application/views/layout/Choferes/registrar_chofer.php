@@ -389,6 +389,7 @@ $(document).ready(function(){
 					console.log('Validacion FRM Chores');
 					console.log($("#formChofer").data('bootstrapValidator').isValid());
 					if ($("#formChofer").data('bootstrapValidator').isValid()){
+						wo();
 						$.ajax({
 							type: "POST",
 							data: { datos },
@@ -396,7 +397,7 @@ $(document).ready(function(){
 							success: function(r) {
 								console.table(r);
 								if (r == "ok") {
-
+									wc();
 									$("#cargar_tabla").load(
 										"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
 									alertify.success("Chofer Agregado con exito");
@@ -410,6 +411,7 @@ $(document).ready(function(){
 
 								} else {
 									//console.log(r);
+									wc();
 									alertify.error("Error al Agregar Chofer");
 									
 								}
@@ -613,23 +615,56 @@ $("#btnsave").on("click", function() {
 			var chofer = new FormData($('#frm_chofer_edit')[0]);
 			chofer = formToObject(chofer);
 			chofer.imagen = $("#input_aux_img64").val(); 
-	
-			// if ($("#frm_chofer_edit").data('bootstrapValidator').isValid()) {
-				$.ajax({
-					type: "POST",
-					data: {	chofer },
-					url: "general/Estructura/Chofer/Modificar_Chofer",
-					success: function(result) {
-						if (result == "error") {
-							alertify.error("Error al Actualizar Chofer");
-						} else {
-							$("#cargar_tabla").load(
-								"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
-							$("#modalEdit").modal('hide');
-							alertify.success("Chofer Actualizado con exito");
+			var aux = 0;
+			if($("#nombre_edit").val() != ""){
+				if($("#apellido_edit").val() != ""){
+					if($("#dni_edit").val() != ""){
+						if($("#fec_nacimiento_edit").val() != ""){
+							if($("#direccion_edit").val() != ""){
+								if($("#celular_edit").val() != ""){
+									if($("#codigo_edit").val() != ""){
+										if($("#tran_id_edit").val() != ""){
+											if($("#carnet_edit").val() != ""){
+												if($("#cach_id_edit").val() != ""){
+													if($("#vencimiento_edit").val() != ""){
+														if($("#habilitacion_edit").val() != ""){
+															aux = 1;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
 						}
 					}
-				});
+				}
+			}
+			if(aux != 0)
+			{
+				wo();
+				// if ($("#frm_chofer_edit").data('bootstrapValidator').isValid()) {
+					$.ajax({
+						type: "POST",
+						data: {	chofer },
+						url: "general/Estructura/Chofer/Modificar_Chofer",
+						success: function(result) {
+							if (result == "error") {
+								wc();
+								alertify.error("Error al Actualizar Chofer");
+							} else {
+								wc();
+								$("#cargar_tabla").load(
+									"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
+								$("#modalEdit").modal('hide');
+								alertify.success("Chofer Actualizado con exito");
+							}
+						}
+					});
+			}else{
+				alert("ATENCION!!! Hay campos vacios o mal ingresados");
+			}
 		//	}
 		});
 

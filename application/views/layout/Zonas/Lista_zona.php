@@ -472,6 +472,7 @@ $("#btnsave").click(function(e){
     {
         if( datosImg.imagen != "")
         {
+            wo();
             $.ajax({
                         type: "POST",
                         data: {datos, datosImg},
@@ -479,7 +480,7 @@ $("#btnsave").click(function(e){
                         success: function (r) {
                             console.table(r);
                             if (r == "ok") {
-                                
+                                wc();
                             // llama a listar_zona_Tabla el cual es  para recargar la tabla que muestra las zonas se le agrega el script para que tome los eventos
                             $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona_tabla");
                                 var URLactual = window.location;
@@ -497,6 +498,7 @@ $("#btnsave").click(function(e){
                             
                             } else {
                                 //console.log(r);
+                                wc();
                                 alertify.error("Error al Actualizar Zona");
                                 $("#formModalEdit").data('bootstrapValidator').resetForm();
                                 $("#modalEdit").modal("hide");    
@@ -577,7 +579,7 @@ $("#btndelete").click(function(e){
     datos.zona_id = $("#id_zona").val();
     datos.eliminado = 1;
     
-
+            wo();
             $.ajax({
                 type: "POST",
                 data: {datos},
@@ -586,7 +588,7 @@ $("#btndelete").click(function(e){
                     console.table(r);
                     if(r == "ok") {
                         // $('#btndelete').hide();
-                     
+                        wc();
                        // llama a listar_zona_Tabla el cual es  para recargar la tabla que muestra las zonas se le agrega el script para que tome los eventos
                        $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona_tabla");
                          alertify.success("Zona Eliminada con exito");
@@ -600,6 +602,7 @@ $("#btndelete").click(function(e){
 
                     } else {
                         //console.log(r);
+                        wc();
                         alertify.error("Error al Eliminar Zona");
                         
                     }
