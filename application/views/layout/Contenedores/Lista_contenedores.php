@@ -255,16 +255,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-blue">
-            <h5 class="modal-title"><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>Eliminar</h5>
+           
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
+                <h5 class="modal-title" id="exampleModalLabel"> Eliminar Contenedor</h5>
 			</div>
 			<input id="id_contenedor" style="display: none;">
 			<div class="modal-body">
 				<center>
 					<h4>
-						<p>¿Desea eliminar el contenedor?</p>
+						<p>¿DESEA ELIMINAR EL CONTENEDOR?</p>
 					</h4>
 				</center>
 			</div>
@@ -661,17 +662,17 @@ $("#btnsave").click(function(e){
 
         if($("#input_aux_img64").val()!="") 
         {
-    
+            wo();
             $.ajax({
                         type: "POST",
                         data: {datos, deletetipo, datos_tipo_carga, cont_id },
                         url: "general/Estructura/Contenedor/Actualizar_Contenedor",
                         success: function (r) {
-                            
+                            wc();
                             console.table(r);
                             if (r == "ok") {
                                 $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor_Tabla");
-                                alertify.success("Actualizado con exito");
+                                alertify.success("Contenedor Actualizado con exito");
                                 $("#modalEdit").modal('hide');
                                 $('#formContenedoresedit').data('bootstrapValidator').resetForm();
                                 $(".esconder").attr("style","left: 0rem; top: 1rem; ");
@@ -679,8 +680,8 @@ $("#btnsave").click(function(e){
                             
 
                             } else {
-                                
-                                alertify.error("error al actualizar");
+                                wc();
+                                alertify.error("Error al Actualizar Contenedor");
                                 $('#formContenedoresedit').data('bootstrapValidator').resetForm();
                                 $("#modalEdit").modal('hide');
                                 $(".esconder").attr("style","left: 0rem; top: 1rem; ");
@@ -703,7 +704,7 @@ $("#btndelete").click(function(e){
     datos.cont_id = $("#id_contenedor").val();
     datos.eliminado = 1;
     console.table(datos);
-
+    wo();
             $.ajax({
                 type: "POST",
                 data: {datos},
@@ -711,12 +712,14 @@ $("#btndelete").click(function(e){
                 success: function (r) {
                     console.table(r);
                     if(r == "ok") {
+                        wc();
                         $('#btndelete').hide();
                         $("#tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor_Tabla");
                          alertify.success("Contenedor Eliminado con exito");
                          $("#modalBorrar").modal('hide');
-                    } else {                        
-                        alertify.error("error al Eliminar");
+                    } else {              
+                        wc();          
+                        alertify.error("Error al Eliminar Contenedor");
                         
                     }
                 }
