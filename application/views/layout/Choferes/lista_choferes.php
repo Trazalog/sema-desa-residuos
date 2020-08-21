@@ -171,11 +171,13 @@
 			datajson = $(this).parents("tr").attr("data-json");
 			llenarModal(datajson);
 			blockEdicion();
+			$(".titulo").text('Informacion Chofer');
 		});
 
 	// llena modal para edicion
 		$(".btnEditar").on("click", function() {
 			datajson = $(this).parents("tr").attr("data-json");
+			$(".titulo").text('Editar Chofer');
 			llenarModal(datajson);
 			habilitarEdicion();
 		});
@@ -255,19 +257,21 @@
 		function eliminar() {
 
 			var chof_id = $("#chof_delete").val();		
-
+			wo();
 			$.ajax({
 				type: "POST",
 				data: {	chof_id: chof_id },
 				url: "general/Estructura/Chofer/Borrar_Chofer",
 				success: function(result) {
+					wc();
 					$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
 					$("#modalaviso").modal('hide');
-					alertify.success("Eliminado con exito");
+					alertify.success("Chofer Eliminado con exito");
 				},
 				error: function(result) {
+					wc();
 					$("#modalaviso").modal('hide');
-					alertify.error("Hubo un error al eliminar Chofer");
+					alertify.error("Error al Eliminar Chofer");
 				}
 			});
 		}

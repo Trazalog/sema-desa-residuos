@@ -3,6 +3,7 @@
 		<thead class="thead-dark" bgcolor="#eeeeee">
 				<th>Acciones</th>
 				<th>Nombre / Razon social</th>
+				<th>e-Mail</th>
 				<th>Descripcion</th>
 				<th>Registro</th>
 		</thead>
@@ -17,9 +18,10 @@
 						echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit" id="btnEditar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp					
 										<button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
 										
-										<button type="button" title="eliminar" class="btn btn-primary btn-circle btnDelete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
+										<button type="button" title="eliminar" class="btn btn-primary btn-circle btnDelete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
 						echo   '</td>';
 						echo    '<td>'.$fila->razon_social.'</td>';
+						echo    '<td>'.$fila->user_id.'</td>';
 						echo    '<td>'.$fila->descripcion.'</td>';
 						echo    '<td>'.$fila->registro.'</td>';                       
 						echo '</tr>';
@@ -37,6 +39,7 @@
 	// llena modal solo lectura
 		$(".btnInfo").on("click", function() {
 			datajson = $(this).parents("tr").attr("data-json");
+			$(".titulo").text('Informacion Transportista');
 			$(".oculta_info").removeAttr("style");
 			$(".oculta_edit").attr("style","display:none");
 			llenarModal(datajson);	
@@ -48,6 +51,7 @@
 	// llena modal para edicion
 		$(".btnEditar").on("click", function() {
 			datajson = $(this).parents("tr").attr("data-json");
+			$(".titulo").text('Editar Transportista');
 			$(".oculta_info").attr("style","display:none");
 			$(".oculta_edit").removeAttr("style");
 			llenarModal(datajson);
