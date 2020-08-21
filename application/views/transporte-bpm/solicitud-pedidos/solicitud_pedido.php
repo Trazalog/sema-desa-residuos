@@ -69,9 +69,8 @@
                                                                 <div class="input-group-addon">
                                                                     <i class="glyphicon glyphicon-check"></i>
                                                                 </div>
-                                                                <select class="form-control select2 select2-hidden-accesible" id="transportista_id" name="transportista"
-                                                                    required onchange="obtenertipocarga()">
-                               
+                                                                <select class="form-control select2 select2-hidden-accesible" id="transportista_id" name="transportista" >
+																	<option value="" disabled selected>-Seleccione opcion-</option>
                                                                     <?php
                                                                         foreach ($transportista as $i) {
                                                                         echo '<option value="'.$i->tran_id.'">'.$i->razon_social.'</option>';
@@ -115,27 +114,7 @@
 							<form class="formPedidos" id="formPedidos">
 					
 									<!--TRANSPORTISTA-->
-									<!-- <div class="col-md-5 col-sm-5 col-xs-12">
-											    <div class="form-group">
-
-													<label for="transportista" class="form-label">transportista:</label>
-                                                            <div class="input-group date">
-                                                                <div class="input-group-addon">
-                                                                    <i class="glyphicon glyphicon-check"></i>
-                                                                </div>
-                                                                <select class="form-control select2 select2-hidden-accesible" id="transportista" name="transportista"
-                                                                    required onchange="obtenertipocarga()">
-                               
-                                                                    <?php
-                                                                        foreach ($transportista as $i) {
-                                                                        echo '<option value="'.$i->tran_id.'">'.$i->razon_social.'</option>';
-                                                            
-                                                                        }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-											    </div>
-									</div> -->
+							
 									<!--_____________________________________________-->
 									
 									<!--TIPO RESIDUOS-->
@@ -148,9 +127,15 @@
                                                                 </div>
                                                                 <select class="form-control select2 select2-hidden-accesible" id="tipores" name="tipo_residuo" required>
                                                                     <option value="" disabled selected>-Seleccione opcion-</option>
-																	
+																	<?php
+                                                                        foreach ($tipocarga as $j) {
+                                                                        echo '<option value="'.$j->tabl_id.'">'.$j->valor.'</option>';
+                                                            
+                                                                        }
+                                                                    ?>
                                                 
                                                                 </select>
+																
                                                     </div>                    
 											</div>
 									</div>
@@ -311,35 +296,6 @@ $(document).on("click",".fa-minus",function() {
     
 // }
 
-$("#botonAgregar").click(function(e){
-    var id_transportista = $("#transportista").val();
-    console.table(id_transportista);
-    $.ajax({
-        type: "POST",
-        data: {},
-        url: "general/transporte-bpm/Solicitud_Pedido/obtenerTipoResTodos",
-        success: function($r){
-            var res = JSON.parse($r);
-            console.table(res);
-            if(res){
-
-                $("#tipores").find('option').remove();
-                for(var i=0; i <= res.length-1; i++){
-                $("#tipores").append("<option value= '"+res[i].tabl_id+"' >" + res[i].valor + "</option>");
-                }
-
-
-            }
-            else{
-                alertify.error("error al traer tipo de carga");
-            }
-
-        },
-
-    });
-
-    
-});
 
 
 //agrega pedido de contedor a la tabla para guardar  
@@ -354,7 +310,7 @@ function Agregar_pedido() {
 		data.usuario_app = "hugoDS";
 		data.otro ="";
 		data.tica_id = $("#tipores").val();
-		var tipocarga = data.tica_id.substring(10);
+		var tipocarga = $("#tipores option:selected").text();
 		data.cantidad = $(".cant").val();
 		var table = $('#tabla_contenedores').DataTable();
 		var row =  `<tr data-json='${JSON.stringify(data)}'> 
@@ -367,7 +323,7 @@ function Agregar_pedido() {
 							
 			</tr>`;
 		table.row.add($(row)).draw();  
-		$('#formPedidos')[0].reset();  
+		// $('#formPedidos')[0].reset();  
 	}else{
 		alert("ATENCION!!! No ingreso Cantidad");
 	}        
@@ -387,6 +343,7 @@ function Guardar_pedidoContenedor(){
       console.info("tabla insumos (artículos) vacía");
       if($("#Fecha").val() != "")
 		{
+			debugger;
 			var datos = new FormData();
 			datos = formToObject(datos);
 			datos.observaciones = $("#observaciones").val();
@@ -398,8 +355,7 @@ function Guardar_pedidoContenedor(){
 				var rows = $('#tabla_contenedores tbody tr');				
 				rows.each(function(i,e) {  
 						datos_contenedores.push(getJson(e));
-						// datos_contenedores.push("usuarioAp:");
-						// datos_contenedores.push("otro:");
+						
 				});	
 			datos.contenedores = datos_contenedores;
 				
