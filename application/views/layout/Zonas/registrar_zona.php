@@ -336,6 +336,7 @@ async function convertA(){
         //--------------------------------------------------------------
 
         if ($("#formZonas").data('bootstrapValidator').isValid()) {
+            wo();
             $.ajax({
                 type: "POST",
                 data: {datos},
@@ -343,9 +344,9 @@ async function convertA(){
                 success: function (r) {
                     console.table(r);
                     if (r == "ok") {
-
+                        wc();
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Zona/Listar_Zona");
-                        alertify.success("Agregado con exito");
+                        alertify.success("Zona Agregada con exito");
 
                         $('#formZonas').data('bootstrapValidator').resetForm();
                         $("#formZonas")[0].reset();
@@ -355,7 +356,8 @@ async function convertA(){
 
                     } else {
                         //console.log(r);
-                        alertify.error("error al agregar");
+                        wc();
+                        alertify.error("Error al Agregar Zona");
                     }
                 }
             });

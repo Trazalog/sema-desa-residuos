@@ -12,7 +12,7 @@ class Generador extends CI_Controller {
 	 * Constructor de Clase
 	* @param 
 	* @return 
-	*/  
+	*/
 	function __construct(){
 
 		parent::__construct();
@@ -47,6 +47,7 @@ class Generador extends CI_Controller {
 	{
 			log_message('INFO','#TRAZA|Generador|Guardar_Generador() >>'); 
 			$datos =  $this->input->post('datos');
+			unset($datos['tica_id']);
 			$datos_tipo_carga = $this->input->post('datos_tipo_carga');
 			// guarda nuevo generador
 			$sotr_id = $this->Generadores->Guardar_Generadores($datos); 			
@@ -156,6 +157,17 @@ class Generador extends CI_Controller {
         }
 
    }
+
+     /**
+   * otiene Zonas de un departamento determinado
+   * @param int depa_id
+   * @return json con zonas
+   */
+  public function obtener_Zona_departamento()
+  {
+	 $resp = $this->Generadores->obtener_Zona_departamento($this->input->post('depa_id'));
+	 echo json_encode($resp);
+	}
 
 }
 ?>

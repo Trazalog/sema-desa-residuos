@@ -6,6 +6,7 @@
 
     <th>Acciones</th>
     <th>Nombre / Razon social</th>
+    <th>e-Mail</th>
     <th>Departamento</th>
     <th>Registro</th>
     <!-- <th>Tipo</th> -->
@@ -24,9 +25,10 @@
             echo    '<td>';
             echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
                     <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo btnInfo" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
-                    <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';                            
+                    <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
             echo   '</td>';
             echo    '<td>'.$fila->razon_social.'</td>';
+            echo    '<td>'.$fila->user_id.'</td>';
             echo    '<td>'.$fila->depa_nombre.'</td>';
             echo    '<td>'.$fila->num_registro.'</td>';                       
             echo '</tr>';
@@ -49,8 +51,8 @@ $(".btnEditar").click( function(e){
     $("#E_CUIT").val(data.cuit);
     $("#E_Numero_registro").val(data.num_registro);
     $("#E_Domicilio").val(data.domicilio);
-    $("#E_lat").val(data.lat);
-    $("#E_long").val(data.lng);
+    // $("#E_lat").val(data.lat);
+    // $("#E_long").val(data.lng);
     $("#id_gen").val(data.sotr_id);
     $(".titulo").text('Editar Generador');
     $(".habilitar").removeAttr("readonly");
@@ -59,7 +61,7 @@ $(".btnEditar").click( function(e){
     $('#btnsave_e').show(); 
     var tipozona = data.zona_id;
     $("#E_Zonag").val(tipozona);   
-
+    
 		// lena input tipo RSU 
 		llenarSelectRsu(data.tiposCarga.carga);	
     // habilita el input
@@ -78,8 +80,8 @@ $(".btnInfo").click(function(e){
     $("#E_CUIT").val(data.cuit);
     $("#E_Numero_registro").val(data.num_registro);
     $("#E_Domicilio").val(data.domicilio);
-    $("#E_lat").val(data.lat);
-    $("#E_long").val(data.lng);
+    // $("#E_lat").val(data.lat);
+    // $("#E_long").val(data.lng);
     $("#id_gen").val(data.sotr_id);
     $(".titulo").text('Informacion Generador');
     $(".habilitar").attr("readonly","readonly"); 
@@ -97,7 +99,7 @@ $(".btnInfo").click(function(e){
     // deshabilita el input
 		$("#tica_edit").prop("disabled", true); 
 	 
-	  $("#text_residuos").val(tipores.substr(10,50));
+	  // $("#text_residuos").val(tipores.substr(10,50));
     var tipogen = data.tist_id;
     $("#E_TipoG").val(tipogen);
     $("#text_generador").val(tipogen.substr(14,50));
@@ -117,11 +119,11 @@ $(".btnEliminar").click(function(e){
 });
 
 // llena select multiple con RSU y selcciona los guardados
-function llenarSelectRsu(tipos){	
+function llenarSelectRsu($tipos){	
 		
 	var opcGuardadas = [];		
 	// recorro los tipos de carga asociados		
-	$.each(tipos, function(key,rsu_asociado){				
+	$.each($tipos, function(key,rsu_asociado){				
 		opcGuardadas.push(rsu_asociado.tabl_id);		
 	});	
 		

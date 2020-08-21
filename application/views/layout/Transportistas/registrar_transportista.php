@@ -114,7 +114,7 @@
 												<label for="tipoResiduos">Tipos de residuo:</label>
 												<div class="input-group date">
 														<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-														<select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_id">                            
+														<select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_id" name="tica_edit">                            
 																<?php
 																		foreach ($Rsu as $i) {     
 																				echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
@@ -186,7 +186,7 @@
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 								</button>
-								<h5 class="modal-title" id="exampleModalLabel">Editar Transportista</h5>
+								<h5 class="modal-title titulo" id="exampleModalLabel">Editar Transportista</h5>
 						</div>
 
 						<div class="modal-body col-md-12 col-sm-12 col-xs-12">
@@ -313,7 +313,7 @@
 											<!-- Tipo de Residuos -->
 												<div class="form-group oculta_edit">
 													<label for="tica_edit">Tipos de residuo:</label>		
-													<select class="form-control habilitar select4" multiple="multiple"  data-placeholder="Seleccione tipo residuo" id="tica_edit" style="width: 100%; !important">
+													<select class="form-control habilitar select4" multiple="multiple"  data-placeholder="Seleccione tipo residuo" id="tica_edit" style="width: 100%; !important" name="ticaedit">
 														<?php
 																		foreach ($Rsu as $i) {     
 																				echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
@@ -354,15 +354,16 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-blue">
-					<h5 class="modal-title" ><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>  Eliminar</h5>
+					
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true" >&times;</span>
 					</button>
+					<h5 class="modal-title" id="exampleModalLabel"> Eliminar Transportista</h5>
 				</div>
 				<input id="transp_delete" style="display: none;">
 				<div class="modal-body">
 					<center>
-					<h4><p>¿ DESEA ELIMINAR TRANSPORTISTA ?</p></h4>
+					<h4><p>¿ DESEA ELIMINAR EL TRANSPORTISTA ?</p></h4>
 					</center>
 				</div>
 				<div class="modal-footer">
@@ -379,6 +380,13 @@
 <!--- SCRIPTS --->
 <script>
 	// script habilitar panel de formulario agregar 
+	$(".close").on("click", function() {
+		$('#tica_edit').select2('val', 'All');
+                        			$('#frm_transportista').data('bootstrapValidator').resetForm();
+		});
+
+	
+																		
 		$("#btnview").on("click", function() {
 				$("#btnadd").removeClass("active");
 				$("#btnview").addClass("active");
@@ -407,6 +415,7 @@
 				var tipocarga = $("#tica_id").val();
       
         if ($("#formTransportistas").data('bootstrapValidator').isValid()) {
+			wo();
             $.ajax({
                 type: "POST",
                 data: {datos, tipocarga},
@@ -414,20 +423,24 @@
                 success: function (r) {
                     console.log(r);
                     if (r == "ok") {
-
+						wc();
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
-                        alertify.success("Agregado con exito");
+						alertify.success("Transportista Agregado con exito");
+						$('#tica_id').select2('val', 'All');
                         $('#formTransportistas').data('bootstrapValidator').resetForm();
                         $("#formTransportistas")[0].reset();                       
                         $("#boxDatos").hide(500);
                         $("#botonAgregar").removeAttr("disabled");
                     } else {
                         //console.log(r);
-                        alertify.error("error al agregar");
+						wc();
+                        alertify.error("Error al Agregar Transportista");
                     }
                 }
             });
-        }
+        }else{
+			alert("ATENCION!!! Hay campos Vacios o Mal Ingresados");
+		}
     }
 
 	//boton guardar
@@ -435,41 +448,104 @@
 			//tomo datos del form y hago objeto
 			
 			var transportista = new FormData($('#frm_transportista')[0]);
-			transportista = formToObject(transportista);    
+			console.table( transportista);
+			transportista = formToObject(transportista); 
+			   //codigo judas se hizo a las apuradas pero hay que optimizarlo XD
+			   var aux =0;
+				if(transportista.contacto != "")
+				{
+					if(transportista.cuit != "")
+					{
+						if(transportista.descripcion != "")
+						{
+							if(transportista.direccion != "")
+							{
+								if(transportista.fec_alta != "")
+								{
+									if( transportista.fec_baja_efectiva != "")
+									{
+										if(transportista.razon_social != "")
+										{
+											if(transportista.registro != "")
+											{
+												if( transportista.resolucion != "")
+												{
+													if(transportista.telefono != "")
+													{
+														if(transportista.tran_id != "")
+														{
+															if($("#tica_edit").val() != "")
+															{
+																aux = 1;
+															}
+															
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				//fin codigo judas
+
 			var tipo_carga = $("#tica_edit").val();		
-			// if ($("#frm_transportista").data('bootstrapValidator').isValid()) {
+			if (aux != 0) {
+				$("#frm_transportista")[0].reset();
+					wo();
 					$.ajax({
 							type: "POST",
 							data: {transportista, tipo_carga},
 							url: "general/Estructura/Transportista/Modificar_Transportista",
 							success: function (result) {
 								if(result == "error_transportista"){
-									alertify.error("Hubo un error a modificar Transportista");
+									wc();
+									alertify.error("Error al Actualizar Transportista");
+								
+									
+                        			       
 								}else{
+									wc();
+									$('#tica_edit').select2('val', 'All');
+									
+									$('#frm_transportista').data('bootstrapValidator').resetForm();
 									$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
-									alertify.success("Transportista modificado con exito...");
+									alertify.success("Transportista Actualizado con exito");
+									
+								
+									                      
+                        			$("#modalEdit").hide(500);
 								}	
 							}
 					});
-			// }		
+			}else{
+				alert("ATENCION!!! Hay campos vacios o Mal ingresados");
+				$('#tica_edit').select2('val', 'All');
+									$('#frm_transportista').data('bootstrapValidator').resetForm();
+			}		
 		});	
 
 		//elimina transp y recarga la tabla
 		function eliminar(){
 			var tran_id = $("#transp_delete").val();
+			wo();
 			$.ajax({
 					type: "POST",
 					data: {tran_id:tran_id},
 					url: "general/Estructura/Transportista/Borrar_Transportista",
 					success: function(result) {
-						
+						wc();
 						$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");	
 						$("#modalaviso").modal('hide');
-						alertify.success("Transportista Eliminado con exito...");
+						alertify.success("Transportista Eliminado con exito");
 					},
 					error: function(result){
+						wc();
 						$("#modalaviso").modal('hide');
-						alertify.success("Error al eliminar Transportista...");
+						alertify.success("Error al Eliminar Transportista");
 					}
 			});
 		}
@@ -486,6 +562,9 @@
 
 	//cierra box de datos
     $("#btnclose").on("click", function() {
+		$('#tica_id').select2('val', 'All');
+        $('#formTransportistas').data('bootstrapValidator').resetForm();
+        $("#formTransportistas")[0].reset();                       
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
         $('#formDatos').data('bootstrapValidator').resetForm();
@@ -636,6 +715,14 @@
                         message: 'la entrada no puede ser vacia'
                     },
                 }
+			},
+			tica_edit: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
             }
         }
     }).on('success.form.bv', function(e) {
@@ -643,6 +730,140 @@
         //guardar();
     });
 
+	$('#frm_transportista').bootstrapValidator({
+        message: 'This value is not valid',
+        /*feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },*/
+        //excluded: ':disabled',
+        fields: {
+            razon_social: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            descripcion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            direccion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /[A-Za-z]/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            telefono: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada debe ser un numero entero'
+                    }
+                }
+            },
+            contacto: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            cuit: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            resolucion: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    
+                }
+            },
+           
+            registro: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                    regexp: {
+                        regexp: /^(0|[1-9][0-9]*)$/,
+                        message: 'la entrada no debe ser un numero entero'
+                    }
+                }
+            },
+            fec_alta: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+            fec_baja_efectiva: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            },
+           
+			ticaedit: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    },
+                }
+            }
+        }
+    }).on('success.form.bv', function(e) {
+        e.preventDefault();
+        //guardar();
+    });
+	
 	// este script me permite limpiar la validacion una vez cerrado el modal
     $("#modalEdit").on("hidden.bs.modal", function (e) {
         $("#formEditDatos").data('bootstrapValidator').resetForm();

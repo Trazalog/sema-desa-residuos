@@ -47,7 +47,7 @@
             ​        <!--_____________________________________________________________-->
 
                     <!--Dominio-->
-                        <div class="form-group">
+                        <div class="form-group dominio">
                             <label for="Dominio">Dominio:</label>
                             <input type="text" class="form-control" id="dominio" name="dominio">
                         </div>
@@ -118,7 +118,7 @@
                         </div> -->
             ​        <!--_____________________________________________________________-->   
                     <!--Ubicacion-->
-                        <div class="form-group">
+                        <div class="form-group ubicacion">
                             <label for="ubicacion">Ubicacion:</label>
                             <input type="text" class="form-control" id="ubicacion" name="ubicacion" >
                         </div>
@@ -133,7 +133,7 @@
             ​        <!--_____________________________________________________________-->    
 
                     <!--Registro-->
-                        <div class="form-group">
+                        <div class="form-group codigo">
                             <label for="codigo" >Codigo:</label>
                             <input type="text" class="form-control" id="codigo" name="codigo" >
                         </div>
@@ -233,31 +233,32 @@
                                         <div class="form-group">
                                             <label for="descripcion" >Descripcion:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" id="e_descripcion" name="e_descripcion">
+                                            <input type="text" class="form-control habilitar redimensionar" id="e_descripcion" name="e_descripcion">
+                                            <span class="glyphicon glyphicon-eye-open esconder" aria-hidden="true"  style="left: -2rem; top: -2rem; " title="Ampliar Descripcion" onclick="ampliarDesc()"></span> 
                                         </div>
 
                                         <div class="form-group"  style="display:none">
-                                            <input type="text" class="form-control habilitar" id="e_equi_id" name="e_equi_id" >
+                                            <input type="text" class="form-control habilitar redimensionar" id="e_equi_id" name="e_equi_id" >
                                         </div>
                                     <!--Dominio-->
-                                        <div class="form-group">
+                                        <div class="form-group redimensionarDominio">
                                             <label for="dominio">Dominio:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" id="e_dominio" name="e_dominio">
+                                            <input type="text" class="form-control habilitar redimensionar"  id="e_dominio" name="e_dominio">
                                         </div>           ​            
                                     <!--Tara-->
                                     <div class="form-group">
                                         <label for="Tara" >Tara:</label>
                                         
                                         <br>
-                                                <input type="number" class="form-control habilitar" name="taraedit" id="taraedit">
+                                                <input type="number" class="form-control habilitar redimensionar" name="taraedit" id="taraedit">
                                         
                                     </div>
                                     <!--Marca-->
                                         <div class="form-group">
                                             <label for="marca" >Marca:</label>
                                             <br>
-                                            <input type="text" class="form-control habilitar" id="e_marca" name="e_marca">
+                                            <input type="text" class="form-control habilitar redimensionar" id="e_marca" name="e_marca">
                                         </div>       
                                                
 
@@ -266,18 +267,19 @@
                                     <!--Ubicacion-->
                                     <div class="form-group">
                                             <label for="ubicacion">Ubicacion:</label>
-                                            <input type="text" class="form-control habilitar" id="e_ubicacion" name="e_ubicacion" >
+                                            <br>
+                                            <input type="text" class="form-control habilitar redimensionar" id="e_ubicacion" name="e_ubicacion" >
                                         </div>
                                     <!--Registro-->
-                                    <div class="form-group">
+                                    <div class="form-group redimensionarCodigo">
                                         <label for="codigo" >Codigo:</label>
                                         <br>
-                                        <input type="text" class="form-control habilitar" id="e_codigo" name="e_codigo" >
+                                        <input type="text" class="form-control habilitar redimensionar" id="e_codigo" name="e_codigo" >
                                     </div>
                                     <!--TRansportista-->
                                     <div class="form-group ocultaTransedit">
                                         <label for="tran_id" >Transportista:</label>
-                                        <select class="form-control select2 select2-hidden-accesible" id="e_tran_id" name="e_tran_id" >
+                                        <select class="form-control select2 select2-hidden-accesible redimensionar" id="e_tran_id" name="e_tran_id" >
                                             <option value=""  disabled selected  >-seleccione opcion-</option>
                                             <?php 
                                                                         foreach ($transportista as $j) { 
@@ -289,14 +291,14 @@
                                     <div class="form-group textTransinfo" style="display:none"> 
                                         <label for="tran_id_info">Transportista:</label> 
                                         <br> 
-                                        <input type="text"  class="form-control" id="tran_id_info"> 
+                                        <input type="text"  class="form-control redimensionar" id="tran_id_info"> 
                                     </div>
                                     <!--Fecha de habilitacion-->
                                         <div class="form-group" >
                                             <label for="FechaIngreso" >Fecha de Ingreso:</label>
                                             <div class="input-group date">
                                             
-                                                <input type="date" class="form-control habilitar" name="id_fecha_ingreso" id="id_fecha_ingreso">
+                                                <input type="date" class="form-control habilitar redimensionar" name="id_fecha_ingreso" id="id_fecha_ingreso">
                                             
                                             </div>
                                         
@@ -336,24 +338,26 @@
 <div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-blue">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div class="modal-header bg-blue">
+				
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
                 <h5 class="modal-title" id="exampleModalLabel"> Eliminar Vehiculo</h5>
-            </div>
-            <div class="modal-body">
-
-                <input type="text" id="id_vehiculo" style="display:none">
-
-                    <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
-            </div>
+			</div>
+			<input id="id_vehiculo" style="display: none;">
+			<div class="modal-body">
+				<center>
+					<h4>
+						<p>¿DESEA ELIMINAR EL VEHICULO?</p>
+					</h4>
+				</center>
+			</div>
             <div class="modal-footer">
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletevehiculo()">Aceptar</button>
-                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">Cancelar</button>
-                </div>
+                <center>
+                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletevehiculo()">SI</button>
+                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">NO</button>
+                </center>
             </div>
         </div>
     </div>
@@ -362,7 +366,27 @@
 
 <!---//////////////////////////////////////--- FIN MODAL BORRAR ---///////////////////////////////////////////////////////----->
 
-
+<!---//////////////////////////////////////--- MODAL AMPLIAR DESCRIPCION ---///////////////////////////////////////////////////////-----> 
+<div class="modal fade" id="modalVerDescAmpliada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+    <div class="modal-dialog" role="document"> 
+        <div class="modal-content"> 
+            <div class="modal-header bg-blue"> 
+                <button type="button" class=" close btn-cerrar-modal" data-dismiss="modal" aria-label="Close" onclick="cerrar_Ampliar()"> 
+                    <span aria-hidden="true">&times;</span> 
+                </button> 
+                <h5 class="modal-title" id="exampleModalLabel">Descripcion de Vehiculo</h5> 
+            </div> 
+            <div class="modal-body"> 
+ 
+               <textarea name="" id="descrip" cols="30" rows="10" readonly></textarea>  
+ 
+            </div> 
+        </div> 
+    </div> 
+</div> 
+ 
+<!---//////////////////////////////////////--- FIN MODAL DESCRIPCION ---///////////////////////////////////////////////////////-----> 
+ 
 
 <!---//////////////////////////////////////--- SCRIPTS---//////////////////////////////////////----->
 
@@ -376,6 +400,7 @@ $(document).ready(function(){
                 var aux= "";	
 				$("#img_base").val(aux);
 				$(".fa-spinner").hide();
+                $(".redimensionar").attr("style","width: 24rem;");
                
 		});
 
@@ -442,6 +467,13 @@ async function convertA(){
 
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aux = "";
+        $("#img_File").val(aux);
+		$("#imagen").attr("src",aux);
+				
+        $(".dominio").attr("style","margin-top: -2rem;");
+        $(".ubicacion").attr("style","margin-top: -2rem;");
+        $(".codigo").attr("style","margin-top: -2rem;");
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
         $("#botonAgregar").attr("disabled", "");
@@ -451,6 +483,7 @@ async function convertA(){
     });
 
     $("#btnclose").on("click", function() {
+        $("#formVehiculo")[0].reset();
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
         $('#formDatos').data('bootstrapValidator').resetForm();
@@ -470,6 +503,7 @@ async function convertA(){
 });
 //Modal Editar
     $(".btnEditar").click(function(e){
+    $("#modalEdit").modal("show"); 
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
     var fecha = data.fecha_ingreso;
@@ -478,6 +512,8 @@ async function convertA(){
     {
         fechaaux= fechaaux + fecha[i];
     }
+    $(".redimensionarDominio").removeAttr("style");
+    $(".redimensionarCodigo").removeAttr("style");
     $(".titulo").text('Editar Vehiculo');
     $('#btnsave_e').show(); 
     $(".habilitar").removeAttr("readonly");
@@ -490,6 +526,7 @@ async function convertA(){
     $("#e_marca").val(data.marca); 
     $("#e_dominio").val(data.dominio);
     $("#e_codigo").val(data.codigo);
+    $(".esconder").attr("style","display:none"); 
     $("#e_ubicacion").val(data.ubicacion);
     $("#e_fechaingreso").val(fechaaux);
     $("#id_fecha_ingreso").val(fechaaux);
@@ -503,6 +540,7 @@ async function convertA(){
 
 //Modal Info
     $(".btnInfo").click(function(e){
+    $("#modalEdit").modal("show"); 
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
     console.table(data);
     var fecha = data.fecha_ingreso;
@@ -511,6 +549,8 @@ async function convertA(){
     {
         fechaaux= fechaaux + fecha[i];
     }
+    $(".redimensionarDominio").attr("style","margin-top: -1rem;");
+    $(".redimensionarCodigo").attr("style","margin-top: 1rem;");
     $(".titulo").text('Informacion Vehiculo');
     $('#btnsave_e').hide();
     $(".habilitar").attr("readonly","readonly"); 
@@ -525,6 +565,7 @@ async function convertA(){
     $("#e_ubicacion").val(data.ubicacion);
     $("#e_fechaingreso").val(fechaaux);
     $("#id_fecha_ingreso").val(fechaaux);
+    $(".esconder").attr("style","left: -2rem; top: -2rem; "); 
     $("#tran_id_info").attr("readonly","readonly");  
     console.table($("#id_fecha_ingreso").val());
     var tranid = data.tran_id; 
@@ -577,32 +618,42 @@ async function convertA(){
         console.table(datos);
   
         //--------------------------------------------------------------
+        if(datos.imagen != "")
+        {
+                if ($("#formVehiculo").data('bootstrapValidator').isValid()) {
+                wo();
+                $.ajax({
+                    type: "POST",
+                    data: {datos},
+                    url: "general/Estructura/Vehiculo/Guardar_Vehiculo",
+                    success: function (r) {
+                        console.log(r);
+                        if (r == "ok") {
+                        wc();
+                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
+                            alertify.success("Vehiculo Agregado con exito");
+                            $("#formVehiculo")[0].reset();
+                            $('#formVehiculo').data('bootstrapValidator').resetForm();
+                            
 
-        if ($("#formVehiculo").data('bootstrapValidator').isValid()) {
-            $.ajax({
-                type: "POST",
-                data: {datos},
-                url: "general/Estructura/Vehiculo/Guardar_Vehiculo",
-                success: function (r) {
-                    console.log(r);
-                    if (r == "ok") {
+                            $("#boxDatos").hide(500);
+                            $("#botonAgregar").removeAttr("disabled");
 
-                       $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
-                        alertify.success("Agregado con exito");
-
-                        $('#formVehiculo').data('bootstrapValidator').resetForm();
-                        $("#formVehiculo")[0].reset();
-
-                        $("#boxDatos").hide(500);
-                        $("#botonAgregar").removeAttr("disabled");
-
-                    } else {
-                        //console.log(r);
-                        alertify.error("error al agregar");
+                        } else {
+                            //console.log(r);
+                            wc();
+                            alertify.error("Error al Agregar Vehiculo");
+                        }
                     }
-                }
-            });
+                });
+            }else{
+                alert("ATENCION!!! Hay Campos Sin Completar o Mal Ingresados");
+                // swal("Atencion Hay campos sin completar o mal Ingresados");
+            }
+        }else{
+            alert("ATENCION!!! No cargo Imagen");
         }
+       
     }
 
     
@@ -662,6 +713,7 @@ async function convertA(){
         {
             if( vehiculo.imagen != "")
             {
+                    wo();
                     $.ajax({
                         type: "POST",
                         data: {vehiculo},
@@ -670,18 +722,22 @@ async function convertA(){
                             
                             console.table(r);
                             if (r == "ok") {
+                                wc();
                                 $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
-                                alertify.success("Actualizado con exito");
+                                alertify.success("Vehiculo Actualizado con exito");
                                 $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
                                 $("#modalEdit").modal('hide');
-                                
+                                $("#modalEdit").modal("hide"); 
+                                $(".esconder").attr("style","left: 38rem; top: -2rem; "); 
 
                             
 
                             } else {
-                                
-                                alertify.error("error al actualizar");
+                                wc();
+                                alertify.error("Error al actualizar Vehiculo");
                                 $("#formVehiculoEdit").data('bootstrapValidator').resetForm();
+                                $("#modalEdit").modal("hide"); 
+                                $(".esconder").attr("style","left: 38rem; top: -2rem; "); 
                             }
                         }
                     });
@@ -701,6 +757,7 @@ async function convertA(){
         eliminar.equi_id = $("#id_vehiculo").val();
        // datos.eliminado = 1;
         console.table(eliminar);
+        wo();
         $.ajax({
                 type: "POST",
                 data: {eliminar},
@@ -708,12 +765,14 @@ async function convertA(){
                 success: function (r) {
                     console.table(r);
                     if(r == "ok") {
+                        wc();
                         $('#btndelete').hide();
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
-                         alertify.success("Contenedor Eliminado con exito");
+                         alertify.success("Vehiculo Eliminado con exito");
                          $("#modalBorrar").modal('hide');
-                    } else {                        
-                        alertify.error("error al Eliminar");
+                    } else {          
+                        wc();              
+                        alertify.error("Error al Eliminar Vehiculo");
                         
                     }
                 }
@@ -900,7 +959,7 @@ async function convertA(){
                       },*/
                 }
             },
-            fechahabilitacion: {
+            fecha_ingreso: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -918,6 +977,20 @@ async function convertA(){
         e.preventDefault();
         //guardar();
     });
+
+function ampliarDesc () 
+{ 
+    $("#modalEdit").modal("hide"); 
+    $("#modalVerDescAmpliada").modal("show"); 
+    var valor = $("#e_descripcion").val(); 
+    $("#descrip").val(valor); 
+     
+} 
+function cerrar_Ampliar(){ 
+    $("#modalVerDescAmpliada").modal("hide"); 
+    $("#modalEdit").modal("show"); 
+} 
+
 </script>
 ​<!--_____________________________________________________________-->
 

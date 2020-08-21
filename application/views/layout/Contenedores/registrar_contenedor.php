@@ -1,6 +1,6 @@
 <!-- /// ----------------------------------- HEADER ----------------------------------- /// -->
 
-    <div class="box box-primary animated fadeInLeft">
+<div class="box box-primary animated fadeInLeft">
         <div class="box-header with-border">
             <h4>Registrar Contenedor</h4>
         </div>
@@ -41,7 +41,7 @@
 
                 <!--Codigo / Registro-->
                     <div class="form-group">
-                        <label for="Codigo/Registro" >Codigo / Registro:</label>
+                        <label for="codigo" >Codigo / Registro:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                                 <input type="text" class="form-control" name="codigo" id="codigo">
@@ -51,7 +51,7 @@
 
                 <!--Descripcion-->
                     <div class="form-group">
-                        <label for="Descripcion" >Descripcion:</label>
+                        <label for="descripcion" >Descripcion:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                                 <input type="text" class="form-control" name="descripcion" id="descripcion">
@@ -61,7 +61,7 @@
 
                 <!--Capacidad-->
                     <div class="form-group">
-                        <label for="Capacidad" >Capacidad:</label>
+                        <label for="capacidad" >Capacidad:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                                 <input type="number" class="form-control" name="capacidad" id="capacidad">
@@ -71,7 +71,7 @@
 
                 <!--Año de elaboracion-->
                     <div class="form-group">
-                        <label for="Añoelab">Año de elaboracion:</label>
+                        <label for="anio_elaboracion">Año de elaboracion:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                 <input type="date" class="form-control"  name="anio_elaboracion" id="anio_elaboracion">
@@ -80,12 +80,11 @@
                 <!--__________________________________________________________________________________________-->
                 <!--Adjuntar imagen--> 
                 <div class="form-group">
-                            <form action="cargar_archivo" method="post" enctype="multipart/form-data"  id="fileimage">
+                            
                                 <label for="img_File">Seleccione Imagen</label>
                                 <input type="file" name="imagen" id="img_File" onchange="convertA()" style="font-size: smaller">
                                 <input type="text" id="input_aux_img" style="display:none" >
-                            </form>
-                            <img src="" alt="" id="imagen" width="" height="">
+                                <img src="" alt="" id="imagen" width="" height="">
                 </div>
                 <!--Asociar Recipiente-->
                     <!--<div class="form-group">
@@ -109,7 +108,7 @@
 
                 <!--Tara-->
                     <div class="form-group">
-                        <label for="Tara" >Tara:</label>
+                        <label for="tara" >Tara:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                                 <input type="number" class="form-control" name="tara" id="tara">
@@ -119,10 +118,10 @@
 
                 <!--Estado-->
                     <div class="form-group">
-                        <label for="Estados">Estado:</label>
+                        <label for="esco_id">Estado:</label>
                         <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>                    
                             <select class="form-control select2 select2-hidden-accesible" name="esco_id" id="esco_id">
-                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <option value="" disabled  selected>-Seleccione opcion-</option>
                                     <?php
                                         foreach ($Estados as $i) {
                                             echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
@@ -135,7 +134,7 @@
 
                 <!--Habilitacion-->
                     <div class="form-group">
-                        <label for="Habilitacion" >Habilitacion:</label>
+                        <label for="habilitacion" >Habilitacion:</label>
                         <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                             <select class="form-control select2 select2-hidden-accesible" name="habilitacion" id="habilitacion">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
@@ -152,9 +151,9 @@
 
                 <!--Habilitacion-->
                 <div class="form-group">
-                        <label for="transportista" >Transportista:</label>
+                        <label for="tran_id" >Transportista:</label>
                         <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                            <select class="form-control select2 select2-hidden-accesible" name="transportista" id="tran_id">
+                            <select class="form-control select2 select2-hidden-accesible" name="tran_id" id="tran_id">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
                                         foreach ($transportista as $k) {
@@ -169,10 +168,10 @@
                 
                  <!--Tipo carga-->                
                     <div class="form-group">
-                        <label for="tipoResiduos">Tipo de residuo:</label>
+                        <label for="ticaid">Tipo de residuo:</label>
                         <div class="input-group date" id="carg">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-                                <select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="ticco_id" required>
+                                <select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="ticco_id" name="ticaid" required>
                             
                                     <?php
                                         foreach ($Carga as $i) {
@@ -187,7 +186,7 @@
                 <!-- ______________________________________________________________________________________________ -->
                 <!--Año de elaboracion-->
                     <div class="form-group">
-                        <label for="Añoelab">Fecha alta:</label>
+                        <label for="fec_alta">Fecha alta:</label>
                         <div class="input-group date">
                             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                 <input type="date" class="form-control"  name="fec_alta" id="fec_alta">
@@ -196,7 +195,7 @@
                 <!--__________________________________________________________________________________________-->
 
             </div>
-            <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
+            <!-- <div class="col-md-12 col-sm-12 col-xs-12"><hr></div> -->
            
                 <!--Adjuntar imagen-->
                     <!-- <div class="col-md-6">
@@ -206,16 +205,22 @@
                     </div>-->
                 <!--__________________________________________________________________________________________-->
 
-            <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
+            <!-- <div class="col-md-12 col-sm-12 col-xs-12"><hr></div> -->
 
                 <!--Boton de guardado-->
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                         <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Contenedor()">Guardar</button>
-                    </div>            
+                    </div>             -->
                 <!--__________________________________________________________________________________________-->
 
         </form>
     </div>
+    <div class="modal-footer">
+					<div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary pull-right" onclick="Guardar_Contenedor()">Guardar</button>
+					</div>
+	</div>
+
 </div>
 
 <!---//////////////////////////////////////---FIN BOX 1---///////////////////////////////////////////////////////----->
@@ -309,6 +314,9 @@ async function convertA(){
     //Script Boton Agregar
     $("#botonAgregar").on("click", function() {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
+        var aux = "";
+				$("#imagen").attr("src",aux);
+				$("#input_aux_img").val(aux);
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
         $("#nro").val(aleatorio);
         $("#botonAgregar").attr("disabled", "");
@@ -321,9 +329,10 @@ async function convertA(){
     $("#btnclose").on("click", function() {
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
-        $('#formDatos').data('bootstrapValidator').resetForm();
-        $("#formDatos")[0].reset();
+        $('#formContenedores').data('bootstrapValidator').resetForm();
+        $("#formContenedores")[0].reset();
         $('#selecmov').find('option').remove();
+
     });
 </script>
 <!--__________________________________________________________________________________________-->
@@ -335,7 +344,7 @@ async function convertA(){
         var datos_tipo_carga= $('#ticco_id').val();   
         // datos = $('#formContenedores').serialize();
 
-        var datos = new FormData($('#formContenedores')[0]);
+        var datos = new FormData();
         datos = formToObject(datos);
         datos.imagen =  $("#input_aux_img").val();
         datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario         
@@ -344,159 +353,168 @@ async function convertA(){
         datos.habilitacion = $("#habilitacion").val(); 
         datos.tara = $("#tara").val();
         datos.esco_id = $("#esco_id").val();
-
+        datos.codigo = $("#codigo").val();
+        datos.capacidad =  $("#capacidad").val();
+        datos.anio_elaboracion =  $("#anio_elaboracion").val();
+        datos.descripcion = $("#descripcion").val();
         console.table(datos);
         console.table(datos_tipo_carga);
 
         //--------------------------------------------------------------
 
         if ($("#formContenedores").data('bootstrapValidator').isValid()) {
-            $.ajax({
-                type: "POST",
-                data: {datos, datos_tipo_carga},
-                url: "general/Estructura/Contenedor/Guardar_Contenedor",
-                success: function (r) {
-                    
-                    console.table(r);
-                    if (r == "ok") {
 
-                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor");
-                        alertify.success("Agregado con exito");
+            if($("#input_aux_img").val()!="")
+            {       wo();
+                    $.ajax({
+                    type: "POST",
+                    data: {datos, datos_tipo_carga},
+                    url: "general/Estructura/Contenedor/Guardar_Contenedor",
+                    success: function (r) {
+                        
+                        console.table(r);
+                        if (r == "ok") {
+                            wc();
+                            $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor");
+                            alertify.success("Contenedor Agregado con exito");
 
-                        $('#formContenedores').data('bootstrapValidator').resetForm();
-                        $("#formContenedores")[0].reset();
+                            $('#formContenedores').data('bootstrapValidator').resetForm();
+                            $("#formContenedores")[0].reset();
 
-                        $("#boxDatos").hide(500);
-                        $("#botonAgregar").removeAttr("disabled");
+                            $("#boxDatos").hide(500);
+                            $("#botonAgregar").removeAttr("disabled");
 
-                    } else {
-                        //console.table(r);
-                        alertify.error("error al agregar");
+                        } else {
+                            //console.table(r);
+                            wc();
+                            alertify.error("Error al Agregar Contenedor");
+                        }
                     }
-                }
-            });
+                });
+            }else{
+                alert("ATENCION!!! No Cargo una Imagen ");
+            }
+           
+        }else{
+            alert("ATENCION!!! Hay campos sin completar");
         }
     }
 </script>
 <!--__________________________________________________________________________________________-->
 
 <!--Script Bootstrap Validacion.-->
+
 <script>
-    $('#formContenedores').bootstrapValidator({
-        message: 'This value is not valid',
-        /*feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },*/
-        excluded: ':disabled',
-        fields: {
-            codigo: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
+$(document).ready(function() {
+$('#formContenedores').bootstrapValidator({
+				message: 'This value is not valid',
+				// feedbackIcons: {
+				// 		valid: 'glyphicon glyphicon-ok',
+				// 		invalid: 'glyphicon glyphicon-remove',
+				// 		validating: 'glyphicon glyphicon-refresh'
+				// },
+				//excluded: ':disabled',
+				fields: {
+                            codigo: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /^(0|[1-9][0-9]*)$/ ,
+                                message: 'la entrada debe ser un numero entero'
+                            }
+                        }
                     },
-                    regexp: {
-                        regexp: /^(0|[1-9][0-9]*)$/ ,
-                        message: 'la entrada debe ser un numero entero'
-                    }
-                }
-            },
-            descripcion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                }
-            },
-            fec_alta: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }        
-                }
-            },
-            reci_id: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                }
-            },
-            anio_elaboracion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                }
-            },
-            tara: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
+                    descripcion: {
+                        message: 'la entrada no es valida',
+                            validators: {
+                            notEmpty: {
+                                 message: 'la entrada no puede ser vacia'
+                                 }
+                                }          
                     },
-                    regexp: {
-                        regexp: /^[+-]?((\d+(\.\d+)?)|(\.\d+))$/,
-                        message: 'la entrada debe ser un numero entero'
-                    }
-                }
-            },
-            esco_id: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                }
-            },
-            
-            capacidad: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
+                    fec_alta: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }        
+                        }
                     },
-                    regexp: {
-                        regexp: /^[+-]?((\d+(\.\d+)?)|(\.\d+))$/,
-                        message: 'la entrada debe ser un numero entero'
+                    anio_elaboracion: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+                    tara: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /^[+-]?((\d+(\.\d+)?)|(\.\d+))$/,
+                                message: 'la entrada debe ser un numero entero'
+                            }
+                        }
+                    },
+                    esco_id: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+                    
+                    capacidad: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            },
+                            regexp: {
+                                regexp: /^[+-]?((\d+(\.\d+)?)|(\.\d+))$/,
+                                message: 'la entrada debe ser un numero entero'
+                            }
+                        }
+                    },
+                    habilitacion: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+                    ticaid: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
+                    },
+                    tran_id: {
+                        message: 'la entrada no es valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'la entrada no puede ser vacia'
+                            }
+                        }
                     }
-                }
-            },
-            habilitacion: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                }
-            },
-            ticco_id: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                }
-            },
-            tran_id: {
-                message: 'la entrada no es valida',
-                validators: {
-                    notEmpty: {
-                        message: 'la entrada no puede ser vacia'
-                    }
-                }
-            },
-        }
-    }).on('success.form.bv', function(e){
-        e.preventDefault();
-        //guardar();
-    });
+				}
+		// }).on('success.form.bv', function(e) {
+		// 		e.preventDefault();
+				//guardar();
+		});
+});
+
 </script>
 <script>
   

@@ -79,12 +79,14 @@
 			
 			$('#input_aux_img64').attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
 			$('#img_base').attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');  // This will change the src to a 1x1 pixel
-
+			$(".fa-spinner").show();
+    		$("#img_base").hide();
 			$.ajax({
 						type: "POST",
 						data: {chof_id: chof_id},
 						url: "general/Estructura/Chofer/obtener_Imagen",
 						success: function ($dato) {		
+							$(".fa-spinner").hide();
 										var imagen = JSON.parse($dato);	
 										//console.info('imagen en llenar imagen: ' + imagen);						
 										var img_b64 = imagen;									
@@ -92,7 +94,8 @@
 										pdf(img_b64);
 										}else{
 												if(img_b64[4]=='i'){jpg(img_b64);}
-										}								
+										}		
+										$("#img_base").show();									
 										//console.table("Como queda src final en llenar imagen: "+img_b64);
 						}
 				});
@@ -168,11 +171,13 @@
 			datajson = $(this).parents("tr").attr("data-json");
 			llenarModal(datajson);
 			blockEdicion();
+			$(".titulo").text('Informacion Chofer');
 		});
 
 	// llena modal para edicion
 		$(".btnEditar").on("click", function() {
 			datajson = $(this).parents("tr").attr("data-json");
+			$(".titulo").text('Editar Chofer');
 			llenarModal(datajson);
 			habilitarEdicion();
 		});
@@ -234,30 +239,7 @@
 			llenarImagen(data.chof_id);			
 		}
 
-	//boton guardar edicion
-		$("#btnsave").on("click", function() {
-			//tomo datos del form y hago objeto
-			var chofer = new FormData($('#frm_chofer_edit')[0]);
-			chofer = formToObject(chofer);
-			chofer.imagen = $("#input_aux_img64").val(); 
 	
-			// if ($("#frm_chofer_edit").data('bootstrapValidator').isValid()) {
-				$.ajax({
-					type: "POST",
-					data: {	chofer },
-					url: "general/Estructura/Chofer/Modificar_Chofer",
-					success: function(result) {
-						if (result == "error") {
-							alertify.error("Hubo un error a modificar Chofer");
-						} else {
-							$("#cargar_tabla").load(
-								"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
-							alertify.success("Datos de Chofer modificados con exito...");
-						}
-					}
-				});
-		//	}
-		});
 
 	//levanta modal y guarda tran_id
 		$(".btnDelete").on("click", function() {
@@ -275,17 +257,21 @@
 		function eliminar() {
 
 			var chof_id = $("#chof_delete").val();		
-
+			wo();
 			$.ajax({
 				type: "POST",
 				data: {	chof_id: chof_id },
 				url: "general/Estructura/Chofer/Borrar_Chofer",
 				success: function(result) {
+					wc();
 					$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
 					$("#modalaviso").modal('hide');
+					alertify.success("Chofer Eliminado con exito");
 				},
 				error: function(result) {
+					wc();
 					$("#modalaviso").modal('hide');
+					alertify.error("Error al Eliminar Chofer");
 				}
 			});
 		}

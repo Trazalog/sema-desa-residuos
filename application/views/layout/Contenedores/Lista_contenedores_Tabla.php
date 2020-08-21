@@ -20,8 +20,8 @@
                         {
                             echo "<tr data-json='".json_encode($fila)."' data-carga='".json_encode($carga)."'>";
                             echo    '<td>';
-                            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
-                                    <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
+                            echo    '<button type="button" title="Editar" class="btn btn-primary btn-circle btnEditar" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp
+                                    <button type="button" title="Info" class="btn btn-primary btn-circle btnInfo" data-toggle="modal"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>&nbsp
                                     <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
                                 
                             echo   '</td>';
@@ -39,6 +39,12 @@
 </table>
 
 <script>
+$(document).ready(function(){		
+                var aux= "";	
+				$("#img_base").val(aux);
+				$(".fa-spinner").hide();
+               
+		});
 //Convertir a base64 el archivo Imagen
 function getFile(file){
 		var reader = new FileReader();
@@ -149,14 +155,15 @@ function jpg($img_b64){
 </script>
 <script>
 function ExtraerImagen($data)
-{
+{  $(".fa-spinner").show();
+   $("#img_base").hide();
     $.ajax({
                 type: "POST",
                 data: {cont_id: $data.cont_id},
                 url: "general/Estructura/Contenedor/GetImagen",
                 success: function ($dato) {
                     
-                   
+                  $(".fa-spinner").hide();
                     var res = JSON.parse($dato);
                     console.table(res);
                     console.table(res.respuesta.imagen);
@@ -169,7 +176,7 @@ function ExtraerImagen($data)
                    }else{
                        if(img_b64[4]=='i'){jpg(img_b64);}
                    }
-                    
+                   $("#img_base").show();
                     console.table("Como queda src final: "+img_b64);
                 }
             });
@@ -187,6 +194,7 @@ $(".btnEliminar").click(function(e) {
 });
 //--------------------------------------------------------------------
 $(".btnInfo").click(function(e){
+   $("#modalEdit").modal("show");
     var aux2 = null;
     $("#input_aux_img64").val(aux2);
     var data = JSON.parse($(this).parents("tr").attr("data-json")); 
@@ -195,12 +203,15 @@ $(".btnInfo").click(function(e){
     $(".selectores").attr("style","display:none");
     $(".ocultar").attr("style","display:none"); 
     $(".ocultarInfo").removeAttr("style");
+    $(".ocultarInfo").attr("style","width: 39rem;");
+    $(".ocultarInfofecha").removeAttr("style");
+    $(".ocultarInfofecha").attr("style","width: 35rem;");
     $(".ocultar_Info").removeAttr("style");
     $('#btnsave').hide();
     $("#Codigo").val(data.codigo);
     $("#Descripcion").val(data.descripcion);
     $("#Capacidad").val(data.capacidad);
-    $("#Añoelab").val(data.anio_elaboracion);
+    $("#Añoelab").val(data.anio_elaboracion.slice(0, 10));// saco hs y minutos
     $("#Tara").val(data.tara);
     $("#estadoInfo").val(data.esco_id.substr(17,30));
     $("#cargaInfo").val();
@@ -209,6 +220,7 @@ $(".btnInfo").click(function(e){
     $("#estadoInfo").attr("readonly","readonly"); 
     $("#habilitacionInfo").attr("readonly","readonly"); 
     $("#tic_id_info").find('option').remove();
+    $(".esconder").attr("style","left: 0rem; top: 1rem; ");
 
 
   var tipo = data.tipos_carga.tipoCarga;
@@ -237,6 +249,7 @@ $(".btnInfo").click(function(e){
 
 //-------------------------------------------------------------------------
 $(".btnEditar").click(function(e){
+$("#modalEdit").modal("show"); 
 var aux2 = null;
 $("#input_aux_img64").val(aux2);
 var data = JSON.parse($(this).parents("tr").attr("data-json"));  
@@ -247,8 +260,10 @@ console.table(data.tipos_carga.tipoCarga);
 console.table(datacarga[0].valor);
 $(".habilitar").removeAttr("readonly");
 $(".selectores").removeAttr("style");
+$(".selectores").attr("style","width: 39rem;");
 $(".ocultar").removeAttr("style");
 $(".ocultarInfo").attr("style","display:none");
+$(".ocultarInfofecha").attr("style","display:none");
 $(".titulo").text('Editar Contenedor'); 
 $('#btnsave').show(); 
 $(".ocultar_Info").attr("style","display:none");
@@ -258,6 +273,18 @@ $("#Codigo").val(data.codigo);
 $("#Descripcion").val(data.descripcion);
 $("#Capacidad").val(data.capacidad);
 $("#Añoelab").val(data.anio_elaboracion);
+$(".esconder").attr("style","display:none");
+//para pintar la fecha en el input fecha de elaboracion
+var fec_nacimiento = data.anio_elaboracion.slice(0, 10) // saco hs y minutos		
+			Date.prototype.toDateInputValue = (function() {
+				var local = new Date(fec_nacimiento);
+				// local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+				return local.toJSON().slice(0, 10);
+			});
+$('input#fec_elab_edit').val(new Date().toDateInputValue());
+console.table($('input#fec_elab_edit').val());
+//fin
+$("#fec_elab_edit").attr("style","width: 31rem;");
 $("#Tara").val(data.tara);
 $("#cont_id").val(data.cont_id);
 $("#Estados")[0][0].selected = "false";

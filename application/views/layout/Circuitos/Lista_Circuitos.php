@@ -38,6 +38,8 @@
 	
 	// llena modal solo lectura
 		$(".btnInfo").on("click", function(e){
+			$("#modalEdit").data('bootstrapValidator').resetForm();
+			$(".titulo").text('Informacion Circuito')
 			datajson = $(this).parents("tr").attr("data-json");
 			console.table(datajson);
 			llenarModal(datajson);	
@@ -45,9 +47,14 @@
 		});
 	// llena modal para edicion
 		$(".btnEditar").on("click", function(e) {
+			// $("#formPuntos_edit")[0].reset();
+			// $("#modalEdit")[0].reset();
+			$("#formPuntos_edit").data('bootstrapValidator').resetForm();
+			$("#modalEdit").data('bootstrapValidator').resetForm();
 			datajson = $(this).parents("tr").attr("data-json");
 			$('#form_editar_pto_critico').show();	
 			$("#btnsave_edit").show();
+			$(".titulo").text('Editar Circuito')
 			$("#img_file").removeAttr("readonly");
 			$("#img_file").removeAttr("disabled");
 			llenarModal(datajson);
@@ -144,7 +151,7 @@
 
 			$.each(data,function(index,element){	
 
-				console.info('nombre-> ' + element.nombre);
+				// console.info('nombre-> ' + element.nombre);
 				if(element.nombre){
 					var row =  "<tr class='row_edit row_borrar' data-json='" +JSON.stringify(element)+ "'>" +
 						"<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
@@ -162,6 +169,7 @@
 	// agrega datos de un punto critico a la tabla temporal para editar
 		function Agregar_punto_edit() {
 			var aux = 0;
+			var aux2 = 0;
 			if($("#descripcion_edit_punto").val() != "")
 			{
 				if($("#nombre_edit_pto").val() != "")
@@ -176,112 +184,41 @@
 
 				}
 			}
-			if(aux!=0){
-			var table_edit = $('#tabla_puntos_criticos_edit').DataTable();	
+			if ($("#formPuntos_edit").data('bootstrapValidator').isValid())
+			{aux2=1;}
+			if(aux!=0 && aux2!=0 ){
+
+				
+
 			var data_edit = new FormData($('#formPuntos_edit')[0]);
 			data_edit = formToObject(data_edit);
-			var row =  "<tr class='row_edit row_borrar' data-json=" +JSON.stringify(data_edit)+ ">" +
-						"<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
-						"<td>"+ data_edit.nombre +"</td>" +
-						"<td>"+ data_edit.descripcion +"</td>" +
-						"<td>"+ data_edit.lat +"</td>" +
-						"<td>"+ data_edit.lng +"</td>" +            
-						"</tr>";
+
+			data_edit.nombre = $("#nombre_edit_pto").val().toLowerCase();
+			data_edit.descripcion = $("#descripcion_edit_punto").val().toLowerCase();
+			
+			var table_edit = $('#tabla_puntos_criticos_edit').DataTable();
+			
+			var row = `<tr class='row_edit row_borrar' data-json='${JSON.stringify(data_edit)}'>
+						<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td> 
+						<td>${data_edit.nombre}</td>
+						<td>${data_edit.descripcion}</td>
+						<td>${data_edit.lat}</td>
+						<td>${data_edit.lng}</td>            
+				</tr>`;
 			table_edit.row.add($(row)).draw(); 
 			$('#formPuntos_edit')[0].reset();  
 			}else{
-				alert("Atencion!!! hay un campo de puntos criticos vacio");
+				alert("Atencion!!! hay un campo de puntos criticos vacio o mal ingresado");
 			}
 		}	
 
-	// guarda Edicion completa		
-		$("#btnsave_edit").on("click", function() {
-			
-			// tomo los datos de circuito editados
-			var circuito_edit = new FormData($('#frm_circuito_edit')[0]);
-			circuito_edit = formToObject(circuito_edit);		
-			circuito_edit.imagen = $("#input_aux_img64").val(); 
-			// tipos de carga asociados
-			var tipoCarga = $("#tica_edit").val();
-			var tica_edit = JSON.stringify(tipoCarga);
-			// tomo la tabla de puntos criticos editados
-			var ptos_criticos_edit = [];		
-			var rows = $('#tabla_puntos_criticos_edit tbody tr');				
-			rows.each(function(i,e) {  
-				console.table('ptos criticos' + ptos_criticos_edit);
-				// setTimeout(doSomething, 9000);
-				// setTimeout(doSomething, 9000);
-				setTimeout(doSomething, 9000);
-				var a = getJson(e);
-				// setTimeout(doSomething, 9000);
-				// setTimeout(doSomething, 9000);
-				setTimeout(doSomething, 9000);
-				ptos_criticos_edit.push(a);
-				setTimeout(doSomething, 9000);
-			});	
-
-			// var algo = ptos_criticos_edit;
-			var aux =0; 
-			if($("#codigo_edit").val() != "")
-			{
-				
-					if($("#descripcion_edit").val()!= "")
-					{
-						aux = 1;
-						
-					}
-				
-			
-			}
-			
-			
-			console.table('ptos criticos' + ptos_criticos_edit);
-		
-			if(aux == 1){
-				
-				if( circuito_edit.imagen != "")
-				{   
-					if($("#tica_edit").val() != "")
-					{
-						$.ajax({
-								type: 'POST',
-								data:{ circuito_edit, tica_edit, ptos_criticos_edit},
-								url: "general/Estructura/Circuito/actulizaCircuitos",
-								success: function(result) {
-											if(result == "ok"){
-												debugger;
-													alertify.success("Circuito editado con exito...");
-												$("#cargar_tabla").load(
-																"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
-														);
-											
-												$("#modalEdit").data('bootstrapValidator').resetForm();
-												$("#formPuntos_edit").data('bootstrapValidator').resetForm();
-											}else{
-												debugger;
-												alertify.error("Error al editar Circuito...");
-												$("#modalEdit").data('bootstrapValidator').resetForm();
-												$("#formPuntos_edit").data('bootstrapValidator').resetForm();
-											}
-								},
-								error: function(result){
-													
-								}
-						});
-					}else{
-						alert("Atencion!!! tipo de residuos esta vacio ");
-					}
-				}else{
-            	alert("Atencion!!! No ha cargado una imagen");
-        		}
-
-			}else{
-				$("#modalEdit").data('bootstrapValidator').resetForm();
-        	alert("Atencion!!! hay un campo que esta vacio");
-			
-    		}
-
-		});
+		// "<tr class='row_edit row_borrar' data-json=" +JSON.stringify(data_edit)+ ">" +
+		// 				"<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>" +
+		// 				"<td>"+ data_edit.nombre +"</td>" +
+		// 				"<td>"+ data_edit.descripcion +"</td>" +
+		// 				"<td>"+ data_edit.lat +"</td>" +
+		// 				"<td>"+ data_edit.lng +"</td>" +            
+		// 				"</tr>";
 	
 		 $(".btnAsociar").on("click", function() {
 			
@@ -297,6 +234,7 @@
 			e.preventDefault();
 			var depa_id = $('#depAsociar option:selected').val();
 			console.info('depa_id : ' + depa_id);
+			$('#zonaAsociar').empty();
 			$.ajax({
 					type: 'POST',
 					data:{depa_id: depa_id},
@@ -327,31 +265,7 @@
 			//levanto modal	
 			$("#modalaviso").modal('show');	
 		});
-	// Elimina circuito 
-		function eliminar(){
-
-			var circ_id = $("#circuito_delete").val();
-			$.ajax({
-					type: 'POST',
-					data:{circ_id: circ_id},
-					url: "general/Estructura/Circuito/borrar_Circuito",
-					success: function(result) {
-								if(result == "ok"){
-									$("#modalaviso").modal('hide');
-									alertify.success("circuito eliminado con exito...");
-									$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");	
-									
-								}else{
-									$("#modalaviso").modal('hide');	
-									alertify.success("error al eliminar...");
-								}
-					},
-					error: function(result){
-						$("#modalaviso").modal('hide');			
-					}
-			});
-
-		}	
+	
 
 
 	////// funciones imagen EDICION
