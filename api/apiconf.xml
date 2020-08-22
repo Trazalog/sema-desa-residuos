@@ -3,3 +3,4 @@
 	<api_url>http://10.142.0.7:8280/tools</api_url>
 	<dataservices_url>http://10.142.0.7:8280/services/semaresiduosDS</dataservices_url>
 </api>
+
