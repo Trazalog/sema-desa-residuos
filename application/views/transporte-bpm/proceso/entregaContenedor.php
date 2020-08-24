@@ -40,7 +40,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12"><hr></div>
 <!--_________________SEPARADOR_________________-->
 <!--Camiones aca en este select se sacara el equi_id que luego va en el json para el servicio /contenedores/entregados/entregar-->
-<div class="form-group">
+<div class="form-group camion">
                         <label for="camion">Camion:</label>
                         <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>                    
                             <select class="form-control select2 select2-hidden-accesible" name="camion" id="camion_id">
@@ -53,12 +53,13 @@
                             </select>
                         </div>
     </div>
-	 <div class="form-group">
+	 <div class="form-group fecEntrega">
 	 <label for="FechaEntrega">Fecha de Entrega:</label>
 	 	<div class="input-group date">
                             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                 <input type="date" class="form-control"  name="FechaEntrega" id="fec_entrega">
-     	</div>			
+     	</div>
+		 <input id="idSelCantPend" type="text" style="display:none;">			
 	</div>
 <!--_____________ Tabla info soliccitaodos _____________-->
 <div class="box-body table-scroll">		
@@ -77,10 +78,10 @@
 							echo "<div id='divdato' dato-infoContenedores='".json_encode($infoContenedores)."' dato-ContEntregados='".json_encode($infoContenedoresEntregados)."'>";
 							echo '</div>';
 							if($infoContenedores)
-							{
+							{	$id = 0;
 								foreach($infoContenedores as $fila)
-								{
-									echo "<tr data-json='".json_encode($fila)."'>";
+								{	
+									echo "<tr ide='$id' data-json='".json_encode($fila)."'>";
 									//echo "<tr data-json= >";
 									    
 										if($infoContenedoresEntregados)
@@ -115,30 +116,31 @@
 										}
 										
 										echo "<td>".$fila->valor."</td>";
-										echo "<td>".$fila->cantidad_acordada."</td>";	
+										echo "<td>".$fila->cantidad_acordada."</td>";
+											
 										if($infoContenedoresEntregados)
-										{   
+										{  
 											foreach($infoContenedoresEntregados as $a)
 											{
 												if($fila->valor == $a->valor )
 												{	
 													$aux = $fila->cantidad_acordada - $a->cant_entregados; 
 													if($aux == 0)
-													{echo "<td>0</td>";}
+													{echo "<td id='$id'>0</td>";}
 													else{
-													 echo "<td>".$aux."</td>";	
+													 echo "<td id='$id'>".$aux."</td>";	
 													}
 												}else{
 													
 													if(count($infoContenedores) != count($infoContenedoresEntregados))
 													{
-														echo "<td>".$fila->cantidad_acordada."</td>";
+														echo "<td id='$id'>".$fila->cantidad_acordada."</td>";
 													}	
 												}
 											}
 
 										}else{
-											echo "<td>".$fila->cantidad_acordada."</td>"; //cantidad pendiente la tendre que calcular con la tabla o los elementos que vienen en contenedoresEntregados Ademas deberia calcular que al tener todas las cantidades pendientes en cero no se deberia poder asiganr 
+											echo "<td id='$id'>".$fila->cantidad_acordada."</td>"; //cantidad pendiente la tendre que calcular con la tabla o los elementos que vienen en contenedoresEntregados Ademas deberia calcular que al tener todas las cantidades pendientes en cero no se deberia poder asiganr 
 										}
 																	
                                         // echo "<td id='contenedores'><select  id='cont_id'><option  value='' disabled selected >seleccione</option>";
@@ -146,6 +148,7 @@
 										// echo "</select></td>"; // aca van los contenedores en este caso es un selct el cual se selecciona el contenedor done ira a parar los residuos este no se setea se deja a disposicion para que el usuario seleccione 
                                         // // echo "<td> <input id='' style='border:none;' placeholder='Ingrese cantidad'> </td>";
 									echo '</tr>';
+									$id=$id+1;
 								}
 							}
 						?>
@@ -174,8 +177,10 @@
 						<tr>
                                
 							
-								<th>Tipo de Residuos</th>
-								<th>Camion</th>
+								<th style="display:none">Tipo de Residuos</th>
+								<th>Tipo de Carga</th>
+								<th style="display:none">Camion</th>
+								<th>Camion Dominio</th>
 								<th>Contenedor</th>
 								
                                                      
@@ -293,6 +298,9 @@ $(document).ready(function(){
 			if(aux == cantCont)
 			{
 				$("#botonCerrar").removeAttr("style");
+				$(".camion").attr("style","display:none;");
+				$(".fecEntrega").attr("style","display:none;");
+				// aca agregar desactivacion de botones 
 			}
 			
 	});	
@@ -300,15 +308,28 @@ $(document).ready(function(){
 $(".btnEntregar").on("click", function(e) {
 	// datajson = $(this).parents("tr").attr("data-json");
 	// console.table(datajson);
-	
+	debugger;
 	datajson = JSON.parse($(this).parents("tr").attr("data-json"));
-	console.table(datajson);
-	$("#tica_id").val(datajson.tica_id);
-	$("#tica_valor").val(datajson.valor);
-	$("#soco_id").val(datajson.soco_id);
-	$("#entrega").removeAttr("style");
-	$("#tbl_contenedoresagregados").removeAttr("style");
-	$("#modalEntregar").modal('show');
+	ided = $(this).parents("tr").attr("ide");
+	$("#idSelCantPend").val(ided); // aca voy a guardar el id 
+	var cantPend = document.getElementById(ided).innerHTML // aca accedo a la fila y columna cant_pendiente que hice clik la cual tiene un id igual al valor que tiene el atributo de la fila tr con esto voy a poder acceder a dicha columna y fila y poder cambiarle el valor 
+	// que es cuando entrego  un contenedor podre descontar de a uno y tener un if que controle que ese valor no sea cero, cosa que si llega a serlo no permitir seguir agregando cont a entregar, el resultado del decremetno lo podre ingresar en dicha fila y columna es decir actualizarle el valor con lo siguiente
+	//document.getElementById(ided).innerHTML = "200";
+	if (cantPend != 0)
+	{
+		console.table(cantPend);
+		console.table(datajson);
+		$("#tica_id").val(datajson.tica_id);
+		$("#tica_valor").val(datajson.valor);
+		$("#soco_id").val(datajson.soco_id);
+		$("#entrega").removeAttr("style");
+		$("#tbl_contenedoresagregados").removeAttr("style");
+		$("#modalEntregar").modal('show');
+		
+	}else{
+		alert("ATENCION!!! ya entrogo todos los contenedores");
+	}
+	
 	
 	
 });
@@ -324,21 +345,31 @@ function OK()
 		alert("ATENCION! debe seleccionar un Camion");
 
 	}else{
+		debugger;
 		var entregaCont = new FormData();
 		entregaCont = formToObject(entregaCont);
 		entregaCont.tica_id = $("#tica_id").val();
 		entregaCont.valor = $("#tica_valor").val();
 		entregaCont.camion = $("#camion_id").val();
 		entregaCont.cont = $("#cont_id").val();
+		var dominio = $("#camion_id option:selected" ).text();
 		var table = $('#tbl_contenedoresagregados').DataTable();
 				var row =  `<tr data-json='${JSON.stringify(entregaCont)}'> 
-							<td>${entregaCont.tica_id}</td>
-							<td>${entregaCont.camion}</td>
+							<td style='display:none;'>${entregaCont.tica_id}</td>
+							<td>${entregaCont.valor}</td>
+							<td style='display:none;'>${entregaCont.camion}</td>
+							<td>${dominio}</td> 
 							<td>${entregaCont.cont}</td>            
 					</tr>`;
 			table.row.add($(row)).draw();  
+			var sel = document.getElementById("cont_id");
+  			sel.remove(sel.selectedIndex);
+		var ide = $(idSelCantPend).val();
+		var cantPend = document.getElementById(ide).innerHTML
+		cantPend = cantPend - 1;
+		document.getElementById(ided).innerHTML = cantPend;
 	}
-
+	
 	
 	
 }
@@ -395,26 +426,26 @@ function RealizarEntrega()
 							alert("ATENCION! no selecciono fecha de entrega...");
 						}else{
 							
-							$.ajax({
-							type: "POST",
-							data: {cont_entregados_listo},							
-							url: "general/transporte-bpm/EntregaContenedor/GuardaContEntregado",
-							success: function(respuesta) {
-								if(respuesta == 1)
-								{
-									alertify.success("Contenedor Entregado exitosamente...");
+						// 	$.ajax({
+						// 	type: "POST",
+						// 	data: {cont_entregados_listo},							
+						// 	url: "general/transporte-bpm/EntregaContenedor/GuardaContEntregado",
+						// 	success: function(respuesta) {
+						// 		if(respuesta == 1)
+						// 		{
+						// 			alertify.success("Contenedor Entregado exitosamente...");
 									
 
-								}else{
-									alertify.error('Error al entregar Contenedor...');
-								}
+						// 		}else{
+						// 			alertify.error('Error al entregar Contenedor...');
+						// 		}
 					
 					
-							},
-							complete: function(){
-								RecargarVista();
-							}
-						});
+						// 	},
+						// 	complete: function(){
+						// 		RecargarVista();
+						// 	}
+						// });
 						}
 						
 					}

@@ -944,10 +944,10 @@ function cerrarTarea()
 									wc();
 							 },
 				complete: function(){
-									wc();
-										if(existFunction('cerrarTarea')){
-											cerrarTarea();
-										}	
+									// wc();
+									// 	if(existFunction('cerrarTarea')){
+									// 		cerrarTarea();
+									// 	}	
 									}
 		});
 }
