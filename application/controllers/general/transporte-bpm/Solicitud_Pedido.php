@@ -7,14 +7,14 @@
 class Solicitud_Pedido extends CI_Controller {
 	/**
 	* Constructor de Clase
-	* @param 
-	* @return 
+	* @param
+	* @return
 	*/
 	function __construct(){
 
 		parent::__construct();      
 		$this->load->model('general/transporte-bpm/SolicitudPedidos');
-	}  
+	}
    
 	/**
 	* carga pantalla solicitud_Pedido
@@ -24,11 +24,11 @@ class Solicitud_Pedido extends CI_Controller {
 	function templateSolicitudPedidos()
 	{
 			
-			log_message('INFO','#TRAZA|Solicitud_Pedido|templateSolicitudPedidos() >> ');                                                   
+			log_message('INFO','#TRAZA|Solicitud_Pedido|templateSolicitudPedidos() >> ');
 			$data['transportista'] = $this->SolicitudPedidos->obtenerTransportista();
 			$data['tipocarga'] = $this->SolicitudPedidos->obtener_Tipo_Carga();
 			$this->load->view('transporte-bpm/solicitud-pedidos/solicitud_pedido',$data);
-			
+
 	}
 
 	/**
@@ -68,14 +68,12 @@ class Solicitud_Pedido extends CI_Controller {
 		$usr = userNick();
 		$datos = $this->input->post('datos');
 		$datos['usuario_app'] = $usr;
-		$sotr_id = $this->SolicitudPedidos->Obtenersoltransp($usr);
-		$sotr = $sotr_id->solicitantes_transporte->sotr_id;
-		$datos['sotr_id']=$sotr;
+		$datos['sotr_id'] = $this->SolicitudPedidos->Obtenersoltransp($usr);
 		for ($i=0; $i < count($datos['contenedores']); $i++)
 		{
-			$datos['contenedores'][$i]['usuario_app'] = $usr; 
+			$datos['contenedores'][$i]['usuario_app'] = $usr;
 		}
-		
+
 		$resp = $this->SolicitudPedidos->RegistrarPedidoContenedor($datos);
 		if($resp == 1){
 				echo 'ok';

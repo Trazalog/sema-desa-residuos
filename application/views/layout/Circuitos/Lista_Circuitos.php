@@ -224,7 +224,7 @@
 			 datajson = $(this).parents("tr").attr("data-json");
 			 data = JSON.parse(datajson);
 			 $('#circ_id_asociar').val(data.circ_id);
-			
+
 		
 		 });
 	// llena select de zonas por id de depto

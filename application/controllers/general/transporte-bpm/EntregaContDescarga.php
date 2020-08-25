@@ -7,11 +7,11 @@
 class EntregaContDescarga extends CI_Controller {
   /**
   * Constructor de Clase
-  * @param 
-  * @return 
+  * @param
+  * @return
   */
   function __construct(){
-    parent::__construct();  
+    parent::__construct();
     $this->load->model('general/transporte-bpm/EntregaOrdenTransportes');  
   }
     

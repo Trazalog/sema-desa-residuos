@@ -868,7 +868,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
   }
 
 
--- contenedoresTipoCargaEstado (borrado logico asociar tipo carga a contenedores) 
+-- contenedoresTipoCargaEstado (borrado logico asociar tipo carga a contenedores)
   recurso: /contenedores/tipoCarga/estado
   metodo: put
 
@@ -951,25 +951,19 @@ http://10.142.0.3:8280/services/semaresiduosDS
 -- contenedoresGetPorTransp (contenedores por transporte y tipo de residuo agrupado por tipo de residuo)
 
   recurso: /contenedores/transportista/{tran_id}
-  metodo: get    
+  metodo: get
 
-  select 
-    C.cont_id, C.codigo, C.descripcion, C.capacidad, C.tara, C.reci_id, 
-    T.valor as estado, 
-    T2.valor as habilitacion, 
-    TCC.tica_id, 
-    T3.valor as rsu
-  from 
-    log.contenedores C, core.tablas T, core.tablas T2, core.tablas T3, log.tipos_carga_contenedores TCC
-  where 
-      C.esco_id = T.tabl_id 
-  and C.cont_id = TCC.cont_id 
-  and TCC.tica_id = T3.tabl_id 
-  and C.habilitacion = T2.tabl_id 
+   select
+    C.cont_id, C.codigo, C.descripcion, C.capacidad, C.tara,
+    T.valor as estado,
+    T2.valor as habilitacion
+  from
+    log.contenedores C, core.tablas T, core.tablas T2
+  where
+      C.esco_id = T.tabl_id
+  and C.habilitacion = T2.tabl_id
   -- por transportista
   and C.tran_id = CAST(:tran_id  as INTEGER)
-  -- agrupados por tipo de carga
-   group by TCC.tica_id, C.cont_id, T.valor, T2.valor, T3.valor
 
    {
     "contenedores": {
@@ -979,16 +973,15 @@ http://10.142.0.3:8280/services/semaresiduosDS
               "codigo": "$codigo",
               "descripcion": "$descripcion",
               "capacidad": "$capacidad",
-              "tara": "$tara"
-              "reci_id": "$reci_id",
+              "tara": "$tara",
               "estado": "$estado",
               "habilitacion": "$habilitacion"
-              "tica_id": "$tica_id",
-              "rsu": "$rsu"
             }
         ]
         }
-  }
+    }
+
+
 
 -- contEntregadosSet
   recurso: /contEntregados
@@ -2364,7 +2357,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
   metodo: get
 
   select OT.ortr_id, OT.fec_alta,
-        E.dominio, E.descripcion, E.imagen as img_vehiculo, E.tara , 
+        E.dominio, E.descripcion, E.imagen as img_vehiculo, E.tara ,
         CH.imagen as img_chofer, concat(CH.nombre, ' ', CH.apellido) as nom_chofer, CH.documento
   from log.ordenes_transporte OT, core.equipos E, log.choferes CH
   where OT.case_id = :case_id 
@@ -3202,6 +3195,25 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }
   }
 
+-- transportistaGetIdPorNick(devuelve id de transportista por nick para helper sesion)
+  recurso: /transportista/id/{usernick}
+  metodo: get
+  select T.tran_id
+  from log.transportistas T
+  where T.user_id = (select U.email
+            from seg.users U
+            where U.usernick = :usernick)
+
+  --respuesta
+  {
+    "transportista":{
+      "tran_id": "$tran_id"
+    }
+  }
+
+
+
+
 -- transportistaGetPorId
   recurso: /transportistas/{tran_id}
   metodo: get
@@ -3658,17 +3670,17 @@ http://10.142.0.3:8280/services/semaresiduosDS
       ]
     }
   }
-
+//TODO: BORRAR NO SE USA (REVISAR)bORRADO DE dev
 -- vehiculosGetPorTransportistaUsr
 
   recurso: /vehiculos/transp/usr/{usuario_app}
   metodo: get
 
-  select E.equi_id, E.descripcion, E.marca, E.dominio 
+  select E.equi_id, E.descripcion, E.marca, E.dominio
   from core.equipos E
-  where E.tran_id = (select TR.tran_id 
-            from log.transportistas TR
-            where TR.usuario_app = :usuario_app)	
+  where E.tran_id = (select TR.tran_id
+                      from log.transportistas TR
+                      where TR.usuario_app = :usuario_app)
   and estado = 'AC'
 
   {

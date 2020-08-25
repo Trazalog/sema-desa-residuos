@@ -92,10 +92,9 @@
 
 
 <div class="text-right">	
-	<button class="btn btn-primary estadoTarea" id="noAcepta" onclick="guardar()" style="margin-left:20px;">Entregar</button>
+	<button class="btn btn-primary estadoTarea" id="noAcepta" onclick="guardar()" style="margin-left:20px;">Confirmar Retiro</button>
 	<button class="btn btn-success estadoTarea" id="acepta" onclick="cerrar()">Cerrar</button>
 </div>
-
 
 </div>
 
@@ -151,7 +150,7 @@ function guardar(){
 		var retiro = {};
 		retiro.retiroCompleto = true;
 
-		rows.each( function() { 
+		rows.each( function() {
 
 			if (! $(this).hasClass("hidden")) {	
 				retiro.retiroCompleto = false;
@@ -179,11 +178,12 @@ function guardar(){
 			data:{ contAsign, retiro },
 			url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 			success: function(result) {
+
 						wc();
-					
 						resp = JSON.parse(result);
 						if(resp["msj"] == 'OK'){
-							alertify.success("Contenedoes entregados exitosamente...");	
+							alertify.success("Contenedoes retirados exitosamente...");
+							recargaBandejaEntrada();
 						}else{
 							alertify.error('Error en completar la Tarea...');
 						}						
@@ -196,6 +196,7 @@ function guardar(){
 			complete: function(){
 
 						wc();
+						recargaBandejaEntrada();
 						if(existFunction('cerrarTarea')){
 							cerrarTarea();
 						}		
@@ -206,120 +207,28 @@ function guardar(){
 
 // Datatable	
 	DataTable($('#tabla_contenedores'));
-	
+
 	
 //deshabilita los botones originales de la notificacion estandar						
 	$(document).ready(function(){
 			$('.btnNotifEstandar').hide();
-	});						
+	});
 
-	// // para guardar						
-	// function cerrarAnalisis(opcion){
-	
-	// 	wo();
-	// 	var taskId = $('#taskId').val();
-	// 	var elegido = {opcion: opcion};	
-	// 	var contAcordados = [];		
-	// 	var vacio = 0;
-	// 	var igualCant = 0;
-	// 	var motivo = {};
-	// 	var rows = $('#tbl_contenedores tbody tr');
-	// 	var coincideCant = {};
+// recarga la bandeja de entrada al cerrar la tarea
+	function recargaBandejaEntrada()
+	{
+		$.ajax({
+				url: 'traz-comp-bpm/Proceso/index',
+				success: function(result) {
 
-	// 	// recorre tabla guardando datos para enviar
-	// 	rows.each(function(i,e) {  
+				},
+				error: function (result) {
 
-	// 			datajson = $(this).attr("data-json");
-	// 			data = JSON.parse(datajson); 
-	// 			var solicit= $(this).find("td").eq(1).html();			
-	// 			var propuesta= $(this).find("td").eq(2).find("input").val();
-	// 			var tmp = {};
-	// 			tmp.soco_id = data.soco_id;
-	// 			tmp.tica_id = data.tica_id;
-	// 			tmp.cantidad_acordada = propuesta;
-	// 			contAcordados.push(tmp);
-			
-	// 			// si esta vacio el campo propuesta				
-	// 			if(propuesta === ""){	
-	// 				vacio = 1;
-	// 				return vacio; 					
-	// 			}	
-	// 			//si las cantidades no coinciden
-	// 			if (solicit != propuesta) {
-	// 				igualCant += 1;
-	// 			}			
-	// 	});
+				}
+		});
+	}
 
-	// 	// si los campos cantidad estan vacios
-	// 	if (vacio == 1) {
-	// 		alert("Por favor complete el/los campos Cantidad Propuesta");
-	// 		wc();
-	// 		return;
-	// 	}
-
-	// 	//  Si rechaza la solicitud
-	// 	if (opcion == "rechaza") {
-			
-	// 		// si el campo motivo esta vacio
-	// 		var motRech = $('#motivo').val();
-	// 		if(motRech === ""){
-	// 				wc();
-	// 				alert('Por favor ingrese el Motivo de Rechazo');
-	// 				return;
-	// 		}else{
-	// 				motivo.motivo = motRech;
-	// 		}	
-	// 	}else{
-
-	// 		$('#motivo').val("");  // si acepta se vacia el campo motivo
-	// 	}
-
-	// 	// si las cantidades no coinciden
-	// 	if (igualCant > 0) {						
-	// 		coincideCant.cantIguales = 0;					
-	// 	}else{					
-	// 		coincideCant.cantIguales = 1;			
-	// 	}
-
-	// 	$.ajax({
-	// 			type: 'POST',
-	// 			data:{ elegido, coincideCant, contAcordados, motivo },
-	// 			url: 'traz-comp-bpm/Tarea/cerrarTarea/' + taskId,
-	// 			success: function(result) {
-	// 				alert(result);
-	// 								wc();
-	// 								if(result == 'ok'){										
-	// 									alertify.success("Contenedoes actualizados exitosamente...");	
-	// 								}else{
-	// 									alertify.error('Error en completar la Tarea...');
-	// 								}
-	// 							},
-	// 			error: function(result){
-	// 								wc();
-	// 						 },
-	// 			complete: function(){
-	// 								wc();
-	// 									if(existFunction('cerrarTarea')){
-	// 										cerrarTarea();
-	// 									}	
-	// 								}
-	// 	});
-	// }
-
-
-	// Datatable	
-	//DataTable($('#tbl_contenedores'));	
 </script>
-
-
-
-
-<?php
-
-		//  var_dump($infoSolicitud);
-		//  var_dump($infoContenedores);
-
-?>
 
 
 

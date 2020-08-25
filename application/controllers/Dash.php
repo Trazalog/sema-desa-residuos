@@ -12,7 +12,7 @@ class Dash extends CI_Controller {
 		// if(!$data['email']){
 		// 	log_message('DEBUG','#TRAZA|DASH|CONSTRUCT|ERROR  >> Sesion Expirada!!!');
 		// 	redirect(DNATO.'main/login');
-		// }	
+		// }
 	}
 
 	function index(){
@@ -98,13 +98,13 @@ class Dash extends CI_Controller {
 															{
 																	"titulo": "ABM Incidencias ",
 																	"icono": "fa fa-genderless",
-																	"link": "general/Estructura/Incidencia/templateIncidencia"
+																	"link": "general/Estructura/Etapa/templateEtapas"
 															},										
 															{
 																	"titulo": "Plantilla",
 																	"icono": "fa fa-genderless",
 																	"link": "Test/index"
-															}                            
+															}
 													]
 											}
 									]

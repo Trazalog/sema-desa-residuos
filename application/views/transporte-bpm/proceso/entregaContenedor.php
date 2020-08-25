@@ -8,7 +8,7 @@
 			<label for="Generador" class="col-sm-4 control-label">Generador:</label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control habilitar" name="Generador" value="<?php echo $infoSolicitud->razon_social?>" id="generador" readonly> 
-			</div>	
+			</div>
 		</div>
 	<!--__________________________-->
     <!--_____________ Nro Pedido _____________-->
@@ -352,9 +352,9 @@ function RecargarVista()
 			url: 'traz-comp-bpm/Proceso/detalleTarea/' + taskId,
 			success: function(result) {
 					
-													
+
 			}
-			
+
 	});
 }
 
@@ -369,7 +369,7 @@ function RealizarEntrega()
 						
 					rows.each(function(i,e) { 
 						datos_contenedores_entregados.push(getJson(e));	
-					});	
+					});
 					console.table(datos_contenedores_entregados);
 					if(datos_contenedores_entregados == "")
 					{
@@ -394,7 +394,7 @@ function RealizarEntrega()
 						{
 							alert("ATENCION! no selecciono fecha de entrega...");
 						}else{
-							
+
 							$.ajax({
 							type: "POST",
 							data: {cont_entregados_listo},							

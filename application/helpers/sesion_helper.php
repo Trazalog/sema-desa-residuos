@@ -1,47 +1,69 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+* Devuelve el id de usuario en Dnato (sistema login)
+* @param
+* @return string $userid (id de usuario logueado en sistema)
+*/
 if(!function_exists('userId')){
 
     function userId()
     {
-				// return 502; //descarga
-				// return 501; // bascula
-				// return 401;// generador
-				// return 402;// transportista           !HARDCODE
-
-        $ci =& get_instance();
-        $userid  = $ci->session->userdata('id');	// id de user en Dnato
+				$ci =& get_instance();
+				$user = userNick();
+				$userBPM = $ci->bpm->getUser($user);
+				$userid = $userBPM['data']['id'];
 				return  $userid;
     }
 }
 
+/**
+* Devuelve nick coincidente en dnato y BPM
+* @param
+* @return string $usernick
+*/
 if(!function_exists('userNick')){
 
     function userNick()
     {
-				// return'descarga';
-				//   return 'bascula';
-				// return 'generador1';
-				//return 'transportista1';
         $ci =& get_instance();
-        $usernick  = $ci->session->userdata('usernick'); //usr coincidente Dnato con BPM
+        $usernick  = $ci->session->userdata('usernick');
 				return  $usernick;
     }
 }
 
-if(!function_exists('usrBPMbyNick')){
+/**
+* Devuelve id de transportista por nickName de usuario logueado
+* @param
+* @return string $tran_id (tran_id en log.transportistas)
+*/
+if(!function_exists('usrIdTransportistaByNick')){
 
-	function usrBPMbyNick(){
+	function usrIdTransportistaByNick(){
 
 		$ci =& get_instance();
-		$user = userNick();
-		$aux = $ci->rest->callAPI("GET",REST."/solicitantesTransporte/".$user);
-    $aux =json_decode($aux["data"]);
-		return $aux->sotr_id;
+		$usernick = userNick();
+
+		$aux = $ci->rest->callAPI("GET",REST."/transportista/id/".$usernick);
+		$aux =json_decode($aux["data"]);
+		return $aux->transportista->tran_id;
 	}
 }
+
+if(!function_exists('usrIdGeneradorByNick')){
+
+	function usrIdGeneradorByNick(){
+
+		$ci =& get_instance();
+		$usernick = userNick();
+		$aux = $ci->rest->callAPI("GET",REST."/solicitantesTransporte/".$usernick);
+		$aux =json_decode($aux["data"]);
+		return $aux->solicitantes_transporte->sotr_id;
+	}
+}
+
 /**
-* Devuelve coincidencia de deposito con usuario de deposito
+* Devuelve coincidencia de deposito con usuario asignado a deposito
 * @param
 * @return bool true o false
 */
@@ -68,6 +90,11 @@ if(!function_exists('filtrarbyDepo')){
 	}
 }
 
+/**
+* Devuelve pass de usuario en BPM
+* @param 
+* @return 
+*/
 if(!function_exists('userPass')){
 
     function userPass()
