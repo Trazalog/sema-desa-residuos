@@ -1696,16 +1696,16 @@ http://10.142.0.3:8280/services/semaresiduosDS
 	, CH.imagen AS img_chofer
 	, concat(CH.nombre, ' ', CH.apellido) AS nom_chofer
 	, CH.documento
-	, ce.cont_id 
+	, ce.cont_id
 	, con.codigo codigo_contenedor
-	, ce.peso_neto 
-	, ce.observaciones_descarga 
+	, ce.peso_neto
+	, ce.observaciones_descarga
 	, t.descripcion contenido_descarga
   FROM
     log.ordenes_transporte OT
     , core.equipos E
     , log.choferes CH
-    , log.contenedores_entregados ce 
+    , log.contenedores_entregados ce
     , core.tablas t
     , log.contenedores con
   WHERE
@@ -1713,10 +1713,10 @@ http://10.142.0.3:8280/services/semaresiduosDS
     AND OT.equi_id = E.equi_id
     AND OT.chof_id = CH.documento
     AND OT.eliminado = 0
-    AND CE.fec_salida IS NULL 
+    AND CE.fec_salida IS NULL
     AND ce.fec_descarga IS NOT NULL
-    AND ce.ortr_id = ot.ortr_id 
-    AND t.tabl_id = ce.tiva_id 
+    AND ce.ortr_id = ot.ortr_id
+    AND t.tabl_id = ce.tiva_id
     AND con.cont_id = ce.cont_id
 
     "contenedor":{
@@ -1748,6 +1748,33 @@ http://10.142.0.3:8280/services/semaresiduosDS
   and cont_id =cast(:cont_id as integer)
 
   retorna 202
+
+
+
+-- contenedoresEntregadosRestantesDescargar
+  recurso: /contenedoresEntregados/restantes/descarga/case/{case_id}
+  metodo: get
+  select count(ce.cont_id) as noEntregados from log.contenedores_entregados ce,  log.ordenes_transporte OT
+  where ce.fec_descarga IS null
+  AND ce.ortr_id = ot.ortr_id
+  and OT.case_id = :case_id
+
+  {
+    "contenedores":{
+      "noEntregados": "$noEntregados"
+    }
+  }
+
+  -- repsuesta
+  {
+    "contenedores":{
+      "noEntregados": "1"
+    }
+  }
+
+
+
+
 
 -- (generadores)solicitanteTransporteGet
   recurso: /solicitantesTransporte

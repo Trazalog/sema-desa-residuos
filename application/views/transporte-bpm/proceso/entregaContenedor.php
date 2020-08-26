@@ -400,24 +400,24 @@ function RealizarEntrega()
 						}else{
 
 							$.ajax({
-							type: "POST",
-							data: {cont_entregados_listo},							
-							url: "general/transporte-bpm/EntregaContenedor/GuardaContEntregado",
-							success: function(respuesta) {
-								wc();
-								if(respuesta == 1){
-									alertify.success("Contenedoes entregados exitosamente...");
-									recargaBandejaEntrada();
-								}else{
-									alertify.error('Error en completar la Tarea...');
-								}
-					
+								type: "POST",
+								data: {cont_entregados_listo},
+								url: "general/transporte-bpm/EntregaContenedor/GuardaContEntregado",
+								success: function(respuesta) {
+									wc();
+									if(respuesta == 1){
+										alertify.success("Contenedoes entregados exitosamente...");
+										recargaBandejaEntrada();
+									}else{
+										alertify.error('Error en completar la Tarea...');
+									}
+						
 
-							},
-							complete: function(){
-								wc();
-							}
-						});
+								},
+								complete: function(){
+									wc();
+								}
+							});
 						}
 						
 					}

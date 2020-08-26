@@ -342,7 +342,7 @@
 								wc();		
 					},
 					complete: function(){
-								wc();		
+								wc();
 					}
 			});
 		}	

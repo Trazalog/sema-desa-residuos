@@ -33,7 +33,7 @@ class EntregaContDescarga extends CI_Controller {
   public function MoverRecipiente()
   {
     $reciMov = $this->input->post('recipmov');
-    // $reciMov['usuario_app'] = userNick();
+    $reciMov['usuario_app'] = userNick();
     $post['_put_lote_recipiente_mover'] = $reciMov;
     $resp = $this->EntregaOrdenTransportes->MoverRecipiente($post);
     if($resp == 1)

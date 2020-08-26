@@ -77,7 +77,7 @@ class EntregaOrdenTransportes extends CI_Model {
   /**
   * Devuelve contrato de cierre tarea, ademas graba en BD lo necesario
   * @param array $tarea con info tarea BPM, $form info a guardar en BD
-  * @return 
+  * @return
   */
   public function getContrato($tarea, $form)
   {
@@ -167,8 +167,8 @@ class EntregaOrdenTransportes extends CI_Model {
         log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|desplegarVista($tarea)|Registro Salida: $tarea >> '.json_encode($tarea));
         $tarea->infoOTransporte = $this->obtenerInFoOTransporte($tarea->caseId);
         // IMAGEN
-        $imagen = $tarea->infoOTransporte->img_chofer;        
-        $newImgChof = substr_replace($imagen, 'data:image/jpeg;base64,', 0, 20);        
+        $imagen = $tarea->infoOTransporte->img_chofer;
+        $newImgChof = substr_replace($imagen, 'data:image/jpeg;base64,', 0, 20);
         $tarea->infoOTransporte->img_chofer = $newImgChof;
 
         $imagen_vehi = $tarea->infoOTransporte->img_vehiculo;
@@ -178,6 +178,7 @@ class EntregaOrdenTransportes extends CI_Model {
         $tarea->infoContenedores = $this->obtenerContEntregadosSalida($tarea->caseId);
         $tarea->infoOT = $this->obtenerInfoOTIncidencia($tarea->caseId);
         $tarea->tipoIncidencia = $this->obtenerTipoIncidencia();
+        $tarea->contRestanteDescarga = $this->obtenerContRestanteDesc($tarea->caseId);
         $resp = $this->load->view('transporte-bpm/proceso/registraSalida', $tarea, true);
         return $resp;
         break;
@@ -215,10 +216,15 @@ class EntregaOrdenTransportes extends CI_Model {
     return $contrato;
   }
 
+  /**
+  * Contrato de cierre taera Registrar Salida
+  * @param array info enviada de la vista
+  * @return array contrato cierre
+  */
   function ContratoRegSalida($form)
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|ContratoRegSalida($form) >> '); 
-    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|ContratoRegSalida($form): $form >> '.json_encode($form));   
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|ContratoRegSalida($form): $form >> '.json_encode($form));
     $contrato["quedanContenedores"] = $form['salida']['contrato']['quedanContenedores'];
     return $contrato;
   }
@@ -239,7 +245,7 @@ class EntregaOrdenTransportes extends CI_Model {
   }
   
   /**
-  * devuelve array con contenedores entregados 
+  * devuelve array con contenedores entregados
   * @param string case_id
   * @return array con contenedores entregados
   */
@@ -331,6 +337,21 @@ class EntregaOrdenTransportes extends CI_Model {
     $aux =json_decode($aux["data"]);
     return $aux->imag_contenedor->imagen;
   }
+
+  /**
+  * Obtiene cantidad de contenedores que aun no fueron descargados en depositos por OT
+  * @param string case_id
+  * @return string noEntregados
+  */
+  function obtenerContRestanteDesc($case_id)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerContRestanteDesc($case_id) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerContRestanteDesc($caseId): $caseId  >> '.json_encode($case_id));
+    $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/restantes/descarga/case/".$case_id);
+    $res =json_decode($aux["data"]);
+    return $res->contenedores;
+  }
+
 
    // ---------------------- FUNCIONES BANDEJA DE ENTRADA ----------------------
 
@@ -464,8 +485,8 @@ class EntregaOrdenTransportes extends CI_Model {
     $data['ortr_id']= $dato['ortr_id'];
     $post['_put_contenedoresEntregados_salida']= $data;
       log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|ContenedoresEntrSalida($data) >> '); 
-      log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|ContenedoresEntrSalida($post): $post >> '.json_encode($post));  
-      $auxx = $this->rest->callAPI("GET",REST."/contenedoresEntregados/salida",$post);
+      log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|ContenedoresEntrSalida($post): $post >> '.json_encode($post));
+      $auxx = $this->rest->callAPI("PUT",REST."/contenedoresEntregados/salida",$post);
       $aux =json_decode($auxx["status"]);
       return $aux;
   }

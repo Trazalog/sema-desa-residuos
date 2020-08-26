@@ -885,6 +885,11 @@
       <param name="ortr_id" sqlType="STRING"/>
       <param name="cont_id" sqlType="STRING"/>
    </query>
+   <query id="contenedoresEntregadosRestantesDescargar" useConfig="semaresiduosDS">
+      <sql>select count(ce.cont_id) as noEntregados from log.contenedores_entregados ce,  log.ordenes_transporte OT&#xd;  where ce.fec_descarga IS null&#xd;  AND ce.ortr_id = ot.ortr_id&#xd;  and OT.case_id = :case_id</sql>
+      <result outputType="json">{&#xd;  "contenedores":{&#xd;    "noEntregados": "$noEntregados"&#xd;   }&#xd;}</result>
+      <param name="case_id" sqlType="STRING"/>
+   </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
          <with-param name="nombre" query-param="nombre"/>
@@ -1821,10 +1826,15 @@
    </resource>
    <resource method="POST" path="/contenedoresEntregados/descargar/recipiente">
       <call-query href="contenedoresEntregadosDescargarEnRecipiente">
-         <with-param name="reci_id_destino" query-param="p_reci_id_destino"/>
-         <with-param name="usuario_app" query-param="p_usuario_app"/>
+         <with-param name="reci_id_destino" query-param="reci_id_destino"/>
+         <with-param name="usuario_app" query-param="usuario_app"/>
          <with-param name="ortr_id" query-param="ortr_id"/>
          <with-param name="cont_id" query-param="cont_id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/contenedoresEntregados/restantes/descarga/case/{case_id}">
+      <call-query href="contenedoresEntregadosRestantesDescargar">
+         <with-param name="case_id" query-param="case_id"/>
       </call-query>
    </resource>
 </data>

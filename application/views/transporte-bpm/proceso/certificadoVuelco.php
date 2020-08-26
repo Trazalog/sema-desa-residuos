@@ -812,6 +812,8 @@ function Certificado()
         data: {contEntDesc, contEntReci },
         url: "general/transporte-bpm/EntregaContDescarga/certificadoVuelco",
         success: function (response) {
+
+
             // TODO: REVISAR DE ACUERDO AL RESULTADO DEL SERVICIO
             alert("Operacion realizada con exito");
             cerrarTarea();// CIERRA TAREA EN BPM NO CONFNDIR CON LA DE VISTA BAND DE ENTRADA
@@ -974,11 +976,10 @@ $("#btnsaveIncidencia").click(function(e){
 
 TODO:
 $("#btnsavemodalmov").click(function(){
-    alert("dentro del guardar el mover");
+
     var recipmov = new FormData();
     recipmov = formToObject(recipmov);
     recipmov.batch_id = $("#batch_id").val();
-    // recipmov.batch_id = 200;
     recipmov.reci_id_destino = $("#reci_id_destino_mover").val();
     recipmov.usuario_app = "hugoDs";
     $.ajax({
