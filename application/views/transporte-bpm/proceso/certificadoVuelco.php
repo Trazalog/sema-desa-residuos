@@ -801,33 +801,26 @@ function Certificado()
     contEntDesc.observaciones_descarga = $("#obs").val();
     contEntDesc.ortr_id = $("#otred").val();
     contEntDesc.cont_id = $("#dato_cont_id").val();
-    // contEntDesc.cont_id = 106;
-    
-
     var contEntReci = new FormData();
     contEntReci = formToObject(contEntReci);
     contEntReci.reci_id_destino = $("#reci_id").val();
-    contEntReci.usuario_app = "hugoDS";
     contEntReci.ortr_id =$("#otred").val();
     contEntReci.cont_id =$("#dato_cont_id").val();
-    // contEntReci.cont_id = 106;
-    
-
-    console.table(contEntReci);
-    console.table(contEntDesc);
 
     $.ajax({
         type: "POST",
         data: {contEntDesc, contEntReci },
         url: "general/transporte-bpm/EntregaContDescarga/certificadoVuelco",
         success: function (response) {
+            // TODO: REVISAR DE ACUERDO AL RESULTADO DEL SERVICIO
             alert("Operacion realizada con exito");
+            cerrarTarea();// CIERRA TAREA EN BPM NO CONFNDIR CON LA DE VISTA BAND DE ENTRADA
         },
         error: function(error) {
-            
+
         },
         complete:function() {
-             cerrarTarea();
+
         }
     });
 
@@ -905,6 +898,7 @@ $("#btncloseModalReciDest").click(function(e){
     $("."+IDFinal).attr("onclick","btnVolcar(this)");
      $("#modalMover").modal('hide');
 });
+
 function cerrarTarea()
 {
     if($("#tieneInci").val()==1)
@@ -930,14 +924,12 @@ function cerrarTarea()
 				data:{ ResPeligrosos, redirecciona},
 				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 				success: function(result) {
-					
-									alert(result);
-
 									wc();
-									if( result.status ){										
-										alertify.success("Tarea completada exitosamente...");	
+									if(result.status){
+										alertify.success("Contenedor descargado...");
+										recargaBandejaEntrada();
 									}else{
-										alertify.error('Error en completar la Tarea...');
+										alertify.error('Error en descargar contenedor...');
 									}
 								},
 				error: function(result){
@@ -945,10 +937,8 @@ function cerrarTarea()
 							 },
 				complete: function(){
 									wc();
-										if(existFunction('cerrarTarea')){
-											cerrarTarea();
-										}	
-									}
+
+								}
 		});
 }
 
@@ -981,6 +971,7 @@ $("#btnsaveIncidencia").click(function(e){
 			});
 
 });
+
 TODO:
 $("#btnsavemodalmov").click(function(){
     alert("dentro del guardar el mover");
@@ -995,12 +986,14 @@ $("#btnsavemodalmov").click(function(){
 				data:{ recipmov},
 				url: 'general/transporte-bpm/EntregaContDescarga/MoverRecipiente',
 				success: function(result) {
-					
 								
 								}
-				
 		});
-
-
 });
+
+// recarga la bandeja de entrada
+function recargaBandejaEntrada()
+{
+  linkTo('<?php echo BPM ?>Proceso/index');
+}
 </script>

@@ -550,6 +550,7 @@
   // carga tipo de RSU dependiendo de Transportista
   $('#transportista').change(function() {   
     var tran_id = this.value;
+    wo();
     $.ajax({
       type: "POST",
       data: {
@@ -565,14 +566,16 @@
 							respuesta.forEach(function(e) {
 								selector.append("<option value='" + e.tica_id + "'>" + e.valor + "</option");
 							});
+              wc();
       },
       error: function() {
 							var selector = $("#tica_id");
 							selector.find('option').remove();
 							selector.append('<option value="" disabled selected>-Error-</option>');
+              wc();
       },
       complete: function() {
-
+              wc();
       }
     });
   });
@@ -641,7 +644,7 @@
 
   // crea una nueva solicitud de de retiro e inicia un nuevo proceso
   function guardar() {
-
+    wo();
     var datos = new FormData();
     datos = formToObject(datos);
 
@@ -662,21 +665,18 @@
         data: {datos},
         url: "general/transporte-bpm/SolicitudRetiro/Guardar_SolicitudRetiro",
         success: function(respuesta) {
+          wc();
           console.log(respuesta);
-          if (respuesta == "ok") {
+          if (respuesta) {
 
-            // $("#tbl_listado_contenedores").load(
-            //   "<?php //echo base_url(); ?>index.php/general"
-            // );
-            alertify.success("Agregado con exito");
+            alertify.success("Solicitud de Retiro creada con exito");
             $("#formPedidos")[0].reset();
             $("#boxDatos").hide(500);
             $("#botonAgregar").removeAttr("disabled");
 
-            //  $('#formCircuitos').data('bootstrapValidator').resetForm();
           } else {
             console.log(respuesta);
-            alertify.error("error al agregar");
+            alertify.error("Error al crear Solicitud de Retiro");
           }
         }
     });

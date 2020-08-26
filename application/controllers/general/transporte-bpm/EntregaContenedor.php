@@ -14,10 +14,11 @@ class EntregaContenedor extends CI_Controller {
     parent::__construct();  
     $this->load->model('general/transporte-bpm/PedidoContenedores'); 
   }
-    
+
   public function GuardaContEntregado(){
     log_message('INFO','#TRAZA|Tarea|GuardaContEntregados() >> ');
-    $datos_contenedores =  $this->input->post('cont_entregados_listo'); 
+    $datos_contenedores =  $this->input->post('cont_entregados_listo');
+    $datos_contenedores[0]['usuario_app'] = userNick();
     $resp = $this->PedidoContenedores->GuardarContEntregados($datos_contenedores);
     if($resp == 1){
      echo 1;

@@ -1073,7 +1073,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
   recurso: /contenedoresEntregados/tipocarga/tipo_cargaOrganico/usr/hugoDS
   metodo: post
   select C.cont_id, C.codigo, C.descripcion
-  from log.contenedores C, log.contenedores_entregados CE  
+  from log.contenedores C, log.contenedores_entregados CE
   where C.cont_id = CE.cont_id
   and CE.ortr_id is null 
   and CE.tica_id = :tica_id	
@@ -1550,7 +1550,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
   values(TO_DATE(:fec_entrega, 'YYYY-MM-DD'), CAST(:cont_id as INTEGER), :usuario_app, CAST(:soco_id AS INTEGER), :tica_id, cast(:equi_id_entrega as INTEGER))
   returning coen_id;
 
--- contenedoresEntregaSet 
+-- contenedoresEntregaSet
   recurso: /contenedores/entregados/entregar
 
   insert into log.contenedores_entregados(fec_entrega, cont_id, usuario_app, soco_id, tica_id )
@@ -3632,22 +3632,24 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
   select eq.dominio dominio       , eq.codigo codigo       , eq.marca ||' '||eq.descripcion descripcion;       , :sotr_id sotr_id ;       , eq.equi_id equi_id       , eq.tran_id tran_id from core.equipos eq where eq.dominio = :dominio
   
- subquery contenedoresARetirarPorEquipoGet
+  subquery contenedoresARetirarPorEquipoGet
 
- select ce.cont_id        ,t.valor tipo_carga       ,ce.porc_llenado        ,ce.mts_cubicos from log.contenedores_entregados ce	,core.tablas t 	,core.equipos eq	,log.solicitudes_retiro sr where eq.equi_id = ce.equi_id and ce.equi_id = cast(:equi_id as integer) and ce.sore_id = sr.sore_id and sr.sotr_id = cast(:sotr_id as integer)and ce.tica_id =t.tabl_id and ce.ortr_id is null
+  select ce.cont_id        ,t.valor tipo_carga       ,ce.porc_llenado        ,ce.mts_cubicos from log.contenedores_entregados ce	,core.tablas t 	,core.equipos eq	,log.solicitudes_retiro sr where eq.equi_id = ce.equi_id and ce.equi_id = cast(:equi_id as integer) and ce.sore_id = sr.sore_id and sr.sotr_id = cast(:sotr_id as integer)and ce.tica_id =t.tabl_id and ce.ortr_id is null
 
   {"vehiculoAsignadoARetiro": {
-   "descripcion": "peugeot automovil",
-   "codigo": "wqwer",
-   "contenedores": {"contenedor": [   {
-      "mts_cubicos": "300",
-      "tipo_carga": "Organico",
-      "cont_id": "104",
-      "porc_llenado": "40"
-   }]},
-   "dominio": "wqe324",
-   "tran_id": "47"
-  }}
+      "descripcion": "peugeot automovil",
+      "codigo": "wqwer",
+      "contenedores": {
+        "contenedor": [   {
+            "mts_cubicos": "300",
+            "tipo_carga": "Organico",
+            "cont_id": "104",
+            "porc_llenado": "40"
+        }]},
+      "dominio": "wqe324",
+      "tran_id": "47"
+      }
+  }
 
 
 

@@ -2,7 +2,7 @@
 /**
 * Representa la entidad Ingreso de contenedores
 *
-* @autor Hugo Gallardo
+* @autor
 */
 class EntregaContDescarga extends CI_Controller {
   /**
@@ -14,14 +14,20 @@ class EntregaContDescarga extends CI_Controller {
     parent::__construct();
     $this->load->model('general/transporte-bpm/EntregaOrdenTransportes');  
   }
-    
+
   public function certificadoVuelco()
   {
     $contEnt = $this->input->post('contEntDesc');
     $reciEnt = $this->input->post('contEntReci');
+    $reciEnt['usuario_app'] = userNick();
+    log_message('INFO','#TRAZA|ENTREGACONTDESCARGA| >> ');
+    log_message('DEBUG','#TRAZA|ENTREGACONTDESCARGA| $contEnt: >> '.json_encode($contEnt));
+    log_message('DEBUG','#TRAZA|ENTREGACONTDESCARGA| $reciEnt: >> '.json_encode($reciEnt));
     $request_box['_put_contenedoresEntregados_descargar'] = $contEnt;
     $request_box['_post_contenedoresEntregados_descargar_recipiente'] = $reciEnt;
+    log_message('DEBUG','#TRAZA|ENTREGACONTDESCARGA| $request_box: >> '.json_encode($request_box));
     $resp = $this->EntregaOrdenTransportes->CertificadoVuelco($request_box);
+
     echo 'ok';
   }
   public function MoverRecipiente()

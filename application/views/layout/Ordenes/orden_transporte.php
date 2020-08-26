@@ -382,9 +382,9 @@
 
 
 
-<div class="box box-primary">
+<!-- <div class="box box-primary">
 
-    
+
 
 
     <div class="box-body">
@@ -401,7 +401,7 @@
 
 
                 </div>
-            </div>
+            </div> -->
 
 <!---//////////////////////////////////////--- FIN BOX 2 DATATABLE---///////////////////////////////////////////////////////----->
 
@@ -486,95 +486,86 @@ function AgregarCont($datos) {
                 // table.row.add($(row)).draw();
                 // $('#formTransportista')[0].reset();
 }
-</script>
-<script>
+
 function obtenerchoftran($aux)
 {
    
-$.ajax({
-      type: "POST",
-      data: {tran_id: $aux},
-      dataType: 'json',
-      url: "general/Estructura/OrdenTransporte/GetChoferyTransportista",
-      success: function($datos) {
-          $("#chofer").removeAttr('readonly');
-          var res = $datos;
-          console.table(res.chofer);
-        //   console.table(res.chofer[1].nom_chofer);
-          console.table(res.chofer.length);
-          console.table(res.transp.razon_social);
-          $("#transp").val(res.transp.razon_social);
-          $("#chofer").empty();
-          for(var c =0; c<res.chofer.length; c++){
-            console.table(res.chofer[c].nom_chofer);
-            $('#chofer').append("<option value='" + res.chofer[c].documento + "'>" +res.chofer[c].nom_chofer+"</option");
+	$.ajax({
+				type: "POST",
+				data: {tran_id: $aux},
+				dataType: 'json',
+				url: "general/Estructura/OrdenTransporte/GetChoferyTransportista",
+				success: function($datos) {
+						$("#chofer").removeAttr('readonly');
+						var res = $datos;
+						console.table(res.chofer);
+					//   console.table(res.chofer[1].nom_chofer);
+						console.table(res.chofer.length);
+						console.table(res.transp.razon_social);
+						$("#transp").val(res.transp.razon_social);
+						$("#chofer").empty();
+						for(var c =0; c<res.chofer.length; c++){
+							console.table(res.chofer[c].nom_chofer);
+							$('#chofer').append("<option value='" + res.chofer[c].documento + "'>" +res.chofer[c].nom_chofer+"</option");
 
-          }
-          obtenerTemplateOT();
-        //   console.table(resp.vehiculoAsignadoARetiro.descripcion);
-        //   console.table(resp.vehiculoAsignadoARetiro.codigo);
-        //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor[0].mts_cubicos);
-        //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor);
-        //   Agregar_contenedor(resp);
-      
-      },
-      error: function() {
-							
-      },
-      complete: function() {
-        
-      }
-})
+						}
+						obtenerTemplateOT();
+					//   console.table(resp.vehiculoAsignadoARetiro.descripcion);
+					//   console.table(resp.vehiculoAsignadoARetiro.codigo);
+					//   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor[0].mts_cubicos);
+					//   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor);
+					//   Agregar_contenedor(resp);
+				
+				},
+				error: function() {
+								
+				},
+				complete: function() {
+					wc();
+				}
+	})
 }
 
 $("#equipo").change(function(){
- 
-// var dominio_equipo = this.value;
-//  var dominio_equipo = this.selectedOptions[0].textContent;
-//  var dom_equipo = $("#equipo").val();
-var dominio_equipo = $("#equipo option:selected" ).text();
-    // datos.equi_id = dominio_equipo;
- console.table(dominio_equipo);
-var aux;
-$.ajax({
-      type: "POST",
-      data: {dom_id: dominio_equipo},
-      dataType: 'json',
-      url: "general/Estructura/OrdenTransporte/ObtenerinfoOt",
-      success: function($respuesta) {
-          
-        // var respuesta = JSON.parse($respuesta);
-          var resp = $respuesta;
-          aux = resp.vehiculoAsignadoARetiro.tran_id; // esto guardarlo en algun input oculto
-          console.table(resp);
-          console.table(resp.vehiculoAsignadoARetiro.descripcion);
-          console.table(resp.vehiculoAsignadoARetiro.codigo);
-          $("#tran_id").val(aux);
-        //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor[0].mts_cubicos);
-        //   console.table(resp.vehiculoAsignadoARetiro.contenedores.contenedor);
-           AgregarCont(resp);
-      
-      },
-      error: function() {
-        alert("ATENCION!!! no hay contenedores asignados para el Vehiculo que selecciono");
-      },
-      complete: function() {
+
+    wo();
+    var dominio_equipo = $("#equipo option:selected" ).text();
+    var aux;
+    $.ajax({
+        type: "POST",
+        data: {dom_id: dominio_equipo},
+        dataType: 'json',
+        url: "general/Estructura/OrdenTransporte/ObtenerinfoOt",
+        success: function($respuesta) {
+
+            var resp = $respuesta;
+            aux = resp.vehiculoAsignadoARetiro.tran_id; // esto guardarlo en algun input oculto
+            console.table(resp);
+            console.table(resp.vehiculoAsignadoARetiro.descripcion);
+            console.table(resp.vehiculoAsignadoARetiro.codigo);
+            $("#tran_id").val(aux);
+            AgregarCont(resp);
         
-        obtenerchoftran(aux);
-      }
+        },
+        error: function() {
+            alert("ATENCION!!! no hay contenedores asignados para el Vehiculo que selecciono");
+						wc();
+        },
+        complete: function() {
+
+            obtenerchoftran(aux);
+        }
     });
 
    
 
+
 })
 
-</script>
-
-<script>
-// remueve registro de tabla temporal 
+// remueve registro de tabla temporal
 $(document).on("click",".fa-minus",function() {
 			$('#tbl_cont').DataTable().row( $(this).closest('tr') ).remove().draw();
-		});
+});
 
 
 
@@ -616,69 +607,39 @@ function Agregar_Residuo() {
         </tr>`
     );
 
-    // $('#formPuntos')[0].reset();
     $('select').select2().trigger('change');
 }
-TODO: //fec_retiro, teot_id, cont_id
+
 function Guardar_Orden_transporte(){
-   debugger;
+
     if(  $('#tbl_cont').DataTable().data().any() ) 
     {console.table($("#dispfinal").val());
         if($("#dispfinal").val() != null)
         {
-                var datos = new FormData();
+            var datos = new FormData();
             datos = formToObject(datos);
-
-            // datos.fec_retiro = '02-07-2020';         
             datos.fec_retiro = $("#Fecha").val();
-            // var auxfecha = datos.fec_retiro[8]+datos.fec_retiro[9]+"-"+datos.fec_retiro[5]+datos.fec_retiro[6]+"-"+datos.fec_retiro[0]+datos.fec_retiro[1]+datos.fec_retiro[2]+datos.fec_retiro[3]; 
-            // datos.fec_retiro = auxfecha;
             datos.difi_id = $("#dispfinal").val();
             datos.sotr_id = $("#sotr_id").val();
             datos.tran_id = $("#tran_id").val();
-            // var dominio_equipo = $("#equipo" ).selectedOptions[0].textContent;
-            // var dominio_equipo = $("#equipo option:selected" ).text();
-            // datos.equi_id = dominio_equipo;
             datos.equi_id = $("#equipo").val();
             datos.chof_id = $("#chofer").val();
-            datos.usuario_app = "HugoDS";
-        // datos.teot_id = 7;
-            //aca agregarle el cont_id
-
             var datos_contenedor = [];
             var rows = $('#tbl_cont tbody tr');
-            // console.table(rows[0].dataset.json);
-            // var auxx = JSON.parse(rows[0].dataset.json);
-            // console.table(auxx);
-            // console.table(auxx.cont_id);
-            // console.table(rows[0].dataset.json.cont_id);
             console.table(rows.length);
-            // var cont = new FormData();
-            // cont = formToObject(cont);
-            TODO:
-            // cont.cont_id =  111;
-            //    datos_contenedor.push(cont);
-            
+
             for(var c=0; c<rows.length; c++){
-            auxx = JSON.parse(rows[c].dataset.json);
-            var cont = new FormData();
-            cont = formToObject(cont);
-            cont.cont_id =  auxx.cont_id;
-            datos_contenedor.push(cont);
+							auxx = JSON.parse(rows[c].dataset.json);
+							var cont = new FormData();
+							cont = formToObject(cont);
+							cont.cont_id =  auxx.cont_id;
+							datos_contenedor.push(cont);
             }
-            console.log(cont.cont_id);
-            // rows.each(function(i,e) {  
-            // 			datos_contenedor.push(getJson(e));
-            // 			// datos_contenedores.push("usuarioAp:");
-            // 			// datos_contenedores.push("otro:");
-            // 	});	
             datos.contenedores = datos_contenedor;
 
-            console.table(datos_contenedor);
-
             if (datos_contenedor.lenght == 0) {
-            alert('Sin Datos para Registrar.');
-            return;
+							alert('Sin Datos para Registrar.');
+							return;
             }
 
             $.ajax({
@@ -689,33 +650,26 @@ function Guardar_Orden_transporte(){
                 debugger;
                 console.log(respuesta);
                 if (respuesta == "ok") {
-                    
                 
-                alertify.success("Agregado con exito");
-                $("#formOrden")[0].reset();
-                $("#boxDatos").hide(500);
-                $("#botonAgregar").removeAttr("disabled");
-                $("#chofer").attr('readonly');
-                $('#contenedores').show();
-                var table = $('#tbl_cont').DataTable();
-                table.clear().draw();
-                //  $('#formCircuitos').data('bootstrapValidator').resetForm();
-                //  $("#formCircuitos")[0].reset();
-
-
-                //  $("#boxDatos").hide(500);
-                //  $("#botonAgregar").removeAttr("disabled");
+									alertify.success("Agregado con exito");
+									$("#formOrden")[0].reset();
+									$("#boxDatos").hide(500);
+									$("#botonAgregar").removeAttr("disabled");
+									$("#chofer").attr('readonly');
+									$('#contenedores').show();
+									var table = $('#tbl_cont').DataTable();
+									table.clear().draw();
 
                 } else {
-                console.log(respuesta);
-                alertify.error("error al lanzar Orden de trabajo con el contenedor seleccionado");
-                $("#formOrden")[0].reset();
-                $("#boxDatos").hide(500);
-                $("#botonAgregar").removeAttr("disabled");
-                $("#chofer").attr('readonly');
-                $('#contenedores').show();
-                var table = $('#tbl_cont').DataTable();
-                table.clear().draw();
+
+									alertify.error("error al lanzar Orden de trabajo con el contenedor seleccionado");
+									$("#formOrden")[0].reset();
+									$("#boxDatos").hide(500);
+									$("#botonAgregar").removeAttr("disabled");
+									$("#chofer").attr('readonly');
+									$('#contenedores').show();
+									var table = $('#tbl_cont').DataTable();
+									table.clear().draw();
                 }
             }
             });
@@ -728,104 +682,48 @@ function Guardar_Orden_transporte(){
     
 }
 
-
-//<!--______________________________--> 
-//<!-- SCRIPT GUARDAR CIRCUITO -->
-
-
 $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/OrdenTransporte/lista_orden_transporte");
 
-function Guardar_Orden() {
-
-    // datos = $('#formCircuitos').serialize();
-
-    var datos = new FormData($('#formCircuitos')[0]);
-    datos = formToObject(datos);
-    // datos.imagen = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/qZtBbZ5Dgu9jNCsrsLjQMxGR2ki2sWDpsEFRQHXKDZkrGAjbKdG32rZcSt9J2KSoLHrYT8Ubr8VhhNDsudf6ABGYCd1jD83HjQWss27BTo1YU1s+iipSU7doMEYy71FIDsBuIr7I2UdbQAzh5hGAr2YNoqN2r1uaxis5AdGOFAx9sQ+IbO250AlxNZXkYW202fTO8OuqKBCjYRlUYYWX/8AH8dK3/IjwLsQrKxkAGlhb4zXoP8AHE1Yn8o4YRl6yjYQuuPr+pyLexkigpLDsc5Pt4m2kBhbeKPKqbK7h4VsCy4WQsYAAEG0wsLFSbGB7NqQPORjzFPhrP8AEluI7LNi6+dwVC+2Pa7PX+4hCSwho2M5iKXmjE1VdoCF4QBAo0VtCznU3Bgn4nG0ZDt/6LJ5DWAFrV1bQgBGVcEz9TBeaEQDaeEmuBplyuxmJj2ZQ68nimieQP2TAMzsYMDBdEtwwI1ZgoM/RAmniLuZkzwBsTA/4dZMrHnwpFwML/njrnU1zODOP+TPUN";
-    datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
-    console.log(datos);
-
-
-
-
-    //--------------------------------------------------------------
-
-    if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
-        $.ajax({
-            type: "POST",
-            data: {
-                datos
-            },
-            url: "general/Estructura/Zona/Guardar_Circuito",
-            success: function(r) {
-                console.log(r);
-                if (r == "ok") {
-
-                    $("#cargar_tabla").load(
-                        "<?php echo base_url(); ?>index.php/general/Estructura/OrdenTransporte/lista_orden_transporte"
-                    );
-                    alertify.success("Agregado con exito");
-
-                    $('#formCircuitos').data('bootstrapValidator').resetForm();
-                    $("#formCircuitos")[0].reset();
-
-
-                    $("#boxDatos").hide(500);
-                    $("#botonAgregar").removeAttr("disabled");
-
-                } else {
-                    //console.log(r);
-                    alertify.error("error al agregar");
-                }
-            }
-        });
-
-    }
-}
 </script>
 
 
 <!--_____________________________________________________________-->
 <!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
 <script>
-$(".emp").on('click', function() {
+	$(".emp").on('click', function() {
 
-    var json = this.dataset.json;
+			var json = this.dataset.json;
 
-    json = JSON.parse(json);
+			json = JSON.parse(json);
 
-    var html_mov = " ",
-        html_chof = "";
+			var html_mov = " ",
+					html_chof = "";
 
-    json.movilidades.movilidad.forEach(function(valor) {
-        html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
-            .dominio + "'>" + valor.nom_movil + "</option>"
-    });
+			json.movilidades.movilidad.forEach(function(valor) {
+					html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
+							.dominio + "'>" + valor.nom_movil + "</option>"
+			});
 
-    json.choferes.chofer.forEach(function(valor) {
-        html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
-    });
+			json.choferes.chofer.forEach(function(valor) {
+					html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
+			});
 
-    $('#selecmov').html(html_mov);
-    $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
+			$('#selecmov').html(html_mov);
+			$("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
 
-    $("#registron").val("");
-    $("#dominio").val("");
-});
+			$("#registron").val("");
+			$("#dominio").val("");
+	});
 
-$("#selecmov").on('change', function() {
+	$("#selecmov").on('change', function() {
 
-    var sel = $(this).find(":selected");
-    $("#registron").val(sel.data('reg'));
-    $("#dominio").val(sel.data('dom'));
+			var sel = $(this).find(":selected");
+			$("#registron").val(sel.data('reg'));
+			$("#dominio").val(sel.data('dom'));
 
-});
-</script>
+	});
 
-<!--_____________________________________________________________-->
-<!--Script Bootstrap Validacion.-->
-
-<script>
+//Script Bootstrap Validacion.
 $('#formContenedores').bootstrapValidator({
     message: 'This value is not valid',
     /*feedbackIcons: {
@@ -927,144 +825,39 @@ $('#formContenedores').bootstrapValidator({
     }
 }).on('success.form.bv', function(e) {
     e.preventDefault();
-    //guardar();
+
 });
-</script>
 
-<!-- Script Agregar datos -->
-
-<script>
-function guardar() {
-
-    datos = $('#formDatos').serialize();
-
-    //datos para mostrar a modo de ejemplo para DEMO---------------
-    //Serialize the Form
-    var values = {};
-    $.each($("#formDatos").serializeArray(), function(i, field) {
-        values[field.name] = field.value;
-    });
-    //Value Retrieval Function
-    var getValue = function(valueName) {
-        return values[valueName];
-    };
-    //Retrieve the Values
-    var tipo_residuo = getValue("tipo_residuo");
-    var contenedor = getValue("contenedor");
-    var porcent_llenado = getValue("porcent_llenado");
-    var metroscubicos = getValue("metroscubicos");
-    //--------------------------------------------------------------
-
-    if ($("#formDatos").data('bootstrapValidator').isValid()) {
-
-        $.ajax({
-            type: "POST",
-            data: datos,
-            url: "ajax/Ordentrabajo/guardarResiduo",
-            success: function(r) {
-                if (r == "ok") {
-                    //console.log(datos);
-                    html = '<tr role="row" class="even"><td>' + tipo_residuo + '</td><td>' + contenedor +
-                        '</td><td>' + porcent_llenado + '</td><td>' + metroscubicos + '</td></tr>';
-                    $('#primero').after(html);
-                    $('#formDatos').data('bootstrapValidator').resetForm(true);
-                    alertify.success("Agregado con exito");
-                } else {
-                    //console.log(r);
-                    alertify.error("error al agregar");
-                }
-            }
-        });
-    }
-}
-</script>
-
-
-<!-- Script Agregar Residuo -->
-
-<script>
-function agregarResiduo() {
-
-    $('#formResiduo').on('submit', function(e) {
-        //console.log("aloha madrefoca");
-        e.preventDefault();
-        var me = $(this);
-        if (me.data('requestRunning')) {
-            return;
-        }
-        me.data('requestRunning', true);
-
-        datos = $('#formResiduo').serialize();
-        $.ajax({
-            type: "POST",
-            data: datos,
-            url: "ajax/Ordentrabajo/guardarResiduo",
-            success: function(r) {
-                if (r == "ok") {
-                    console.log(r);
-                    $('#formResiduo')[0].reset();
-                    alertify.success("Agregado con exito");
-                }
-            },
-            complete: function() {
-                me.data('requestRunning', false);
-            }
-        });
-
-    });
-
-}
-</script>
-
-
-<!--_____________________________________________________________-->
-<!-- script que muestra box de datos al dar click en boton agregar -->
-
-
-<script>
+// script que muestra box de datos al dar click en boton agregar
 $("#botonAgregar").on("click", function() {
-    //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
-    var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
-    $("#nro").val(aleatorio);
-
-    $("#botonAgregar").attr("disabled", "");
-    //$("#boxDatos").removeAttr("hidden");
-    $("#boxDatos").focus();
-    $("#boxDatos").show();
-
+		$("#botonAgregar").attr("disabled", "");
+		$("#boxDatos").focus();
+		$("#boxDatos").show();
 });
-</script>
 
-<script>
 $("#btnclose").on("click", function() {
-    $("#boxDatos").hide(500);
-    $("#botonAgregar").removeAttr("disabled");
-    $('#formDatos').data('bootstrapValidator').resetForm();
-    $("#formDatos")[0].reset();
-    $('#selecmov').find('option').remove();
-    $('#chofer').find('option').remove();
+		$("#boxDatos").hide(500);
+		$("#botonAgregar").removeAttr("disabled");
+		$('#formDatos').data('bootstrapValidator').resetForm();
+		$("#formDatos")[0].reset();
+		$('#selecmov').find('option').remove();
+		$('#chofer').find('option').remove();
 });
-</script>
 
-
-<!--_____________________________________________________________-->
- <!-- script Fecha-->
-
- <script>
 $('#fecha').daterangepicker({
-    "autoApply": true,
-    "singleDatePicker": true,
-    "timePicker": true,
-    "toggleActive":false,
-    "todayHighlight":false,    
-    "locale": {
-              "format":'YYYY/MM/DD h:mm:ss',
-              "applyLabel": "Aplicar",
-              "cancelLabel": "Cancelar"
-              //format: 'MM/DD/YYYY h:mm:ss'
-            }
-    }, function(start, end, label) {
-      console.log('New date range selected: ' + start.format('YYYY-MM-DD hh:mm:ss') + ' to ' + end.format('YYYY-MM-DD hh:mm:ss') + ' (predefined range: ' + label + ')');
+		"autoApply": true,
+		"singleDatePicker": true,
+		"timePicker": true,
+		"toggleActive":false,
+		"todayHighlight":false,
+		"locale": {
+							"format":'YYYY/MM/DD h:mm:ss',
+							"applyLabel": "Aplicar",
+							"cancelLabel": "Cancelar"
+							//format: 'MM/DD/YYYY h:mm:ss'
+						}
+		}, function(start, end, label) {
+			console.log('New date range selected: ' + start.format('YYYY-MM-DD hh:mm:ss') + ' to ' + end.format('YYYY-MM-DD hh:mm:ss') + ' (predefined range: ' + label + ')');
 });
 
 </script>

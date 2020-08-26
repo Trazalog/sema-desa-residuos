@@ -59,7 +59,7 @@ class OrdenTransporte extends CI_Controller {
       // ---------------- Funcion Cargar vista Recepcion de orden
 
       function templateRecepcionOrden()
-      
+
       {          
        
 
@@ -73,7 +73,7 @@ class OrdenTransporte extends CI_Controller {
           
       }
    
-       
+
    
        function Guardar_ordentransporte()
        {

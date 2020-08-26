@@ -140,10 +140,10 @@
 									response =  JSON.parse(result);
 									wc();
 									if(response.status){
-										alertify.success("Contenedoes actualizados exitosamente...");
+										alertify.success("Respuesta enviada exitosamente...");
 										recargaBandejaEntrada();
 									}else{
-										alertify.error('Error en completar la Tarea...');
+										alertify.error('Error al enviar respuesta...');
 									}
 								},
 				error: function(result){

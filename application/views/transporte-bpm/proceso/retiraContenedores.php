@@ -182,16 +182,16 @@ function guardar(){
 						wc();
 						resp = JSON.parse(result);
 						if(resp["msj"] == 'OK'){
-							alertify.success("Contenedoes retirados exitosamente...");
+							alertify.success("Retiro de contenedores confirmado...");
 							recargaBandejaEntrada();
 						}else{
-							alertify.error('Error en completar la Tarea...');
+							alertify.error('Error en confirmación Retiro de contenedores....');
 						}						
 			},
 			error: function(result){
 
 						wc();
-						alertify.error('Error en completar la Tarea...');
+						alertify.error('Error en confirmación Retiro de contenedores....');
 			},
 			complete: function(){
 
@@ -215,18 +215,10 @@ function guardar(){
 	});
 
 // recarga la bandeja de entrada al cerrar la tarea
-	function recargaBandejaEntrada()
-	{
-		$.ajax({
-				url: 'traz-comp-bpm/Proceso/index',
-				success: function(result) {
-
-				},
-				error: function (result) {
-
-				}
-		});
-	}
+function recargaBandejaEntrada()
+{
+  linkTo('<?php echo BPM ?>Proceso/index');
+}
 
 </script>
 

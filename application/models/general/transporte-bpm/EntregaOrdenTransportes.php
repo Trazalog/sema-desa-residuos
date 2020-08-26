@@ -406,7 +406,7 @@ class EntregaOrdenTransportes extends CI_Model {
   function CertificadoVuelco($data)
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|CertificadoVuelco($caseId) >> ');
-    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|CertificadoVuelco($caseId): $caseId  >> '.json_encode($caseId));
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|CertificadoVuelco($caseId): $data  >> '.json_encode($data));
     $dato[]['_put_contenedoresEntregados_descargar'] = $data['_put_contenedoresEntregados_descargar'];
     $dato[]['_post_contenedoresEntregados_descargar_recipiente'] = $data['_post_contenedoresEntregados_descargar_recipiente'];
 

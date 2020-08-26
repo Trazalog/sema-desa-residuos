@@ -24,8 +24,8 @@ class OrdenTransportes extends CI_Model
     {
         $usr = userNick();
         $data['usuario_app'] = $usr;
-        $post["ordenTransporte"] = $data;      
-        log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> '); 
+        $post["ordenTransporte"] = $data;
+        log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> ');
         log_message('DEBUG','#SolicitudPedidos/RegistrarContenedor: '.json_encode($post));
         // $aux = $this->rest->callAPI("POST",REST."/solicitudContenedores", $post); //servicio que llamaba antes de que caiga el server
         $aux = $this->rest->callAPI("POST",API_URL."/ordenTransporte",$post);
@@ -35,26 +35,12 @@ class OrdenTransportes extends CI_Model
 
     function ObtenerOTpordominio($dominio)
     {
-        // $sotr_id = $this->rest->callAPI("GET",REST."/solicitantesTransporte/hugoDS");
-        $usuario_app = userNick();
-        $sotr = $this->rest->callAPI("GET",REST."/solicitantesTransporte/$usuario_app"); // servicio en wso2 solicitanteTransporteGetPorUsr
-        $sotraux =json_decode($sotr["data"]);
-        $id_sotr = $sotraux->solicitantes_transporte->sotr_id;
-        $aux = $this->rest->callAPI("GET",REST."/vehiculo/asignadoARetiro/$dominio/solicitanteTransporte/$id_sotr");      //nombre del servicio en wso2 vehiculoAsignadoARetiro
+        $sotr = usrIdGeneradorByNick();
+        $aux = $this->rest->callAPI("GET",REST."/vehiculo/asignadoARetiro/$dominio/solicitanteTransporte/$sotr");
         $aux =json_decode($aux["data"]);
         return $aux;
     }
-function Guardar_OrdenT(){
 
-        // $post["post_ordenT"] = $data;
-        // log_message('DEBUG','#OrdenTransporte/Guardar_OrdenTransporte: '.json_encode($post))
-        // $aux = $this->rest->callAPI("POST",REST."/RECURSO", $post);
-        // $aux =json_decode($aux["status"]);
-        // return $aux;	
-
-        
-
-}
 
 function Asignar_Transportista($data){
 

@@ -39,7 +39,7 @@ class SolicitudRetiro extends CI_Controller {
     $solicitud['sotr_id'] = usrIdGeneradorByNick();
 
     $resp = $this->SolicitudesRetiro->Guardar_solicitudRetiro($solicitud);
-    if(!$resp){
+    if($resp){
       echo "ok";
     }
     else{
