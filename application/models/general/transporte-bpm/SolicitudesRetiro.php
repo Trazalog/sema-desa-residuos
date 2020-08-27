@@ -63,14 +63,18 @@ class SolicitudesRetiro extends CI_Model {
     return $aux->contenedores->contenedor;				
   }
 
+  /**
+  * Crea nueva solicitud de Retiro iniciando un nuevo proceso
+  * @param array con datos de los contenedores e info de solicitante de transporte(generador)
+  * @return string estado de respuesta del servicio
+  */
   function Guardar_solicitudRetiro($data)
   {
     $post["solicitudRetiroContenedores"] = $data;      
-    log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> '); 
+    log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> ');
     log_message('DEBUG','#SolicitudPedidos/RegistrarContenedor: '.json_encode($post));
-    // $aux = $this->rest->callAPI("POST",REST."/solicitudContenedores", $post); //servicio que llamaba antes de que caiga el server
     $aux = $this->rest->callAPI("POST",API_URL."/solicitudRetiroContenedores",$post);
-    $aux =json_decode($aux);
+    $aux =json_decode($aux['status']);
     return $aux;
   }
 }

@@ -22,37 +22,25 @@ class OrdenTransportes extends CI_Model
 
     function Guardar_ordenTransportes($data)
     {
-        $post["ordenTransporte"] = $data;      
-        log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> '); 
+        $usr = userNick();
+        $data['usuario_app'] = $usr;
+        $post["ordenTransporte"] = $data;
+        log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> ');
         log_message('DEBUG','#SolicitudPedidos/RegistrarContenedor: '.json_encode($post));
         // $aux = $this->rest->callAPI("POST",REST."/solicitudContenedores", $post); //servicio que llamaba antes de que caiga el server
         $aux = $this->rest->callAPI("POST",API_URL."/ordenTransporte",$post);
-        $aux =json_decode($aux["status"]);
-        return $aux;
+        $aux =json_decode($aux["data"]);
+        return $aux->respuesta->resultado; // si la creacion de la OT es sin problemas entonces en data respuesta resultado vendara un OK caso contrario viene sin resultado por ende devolvera null
     }
 
     function ObtenerOTpordominio($dominio)
     {
-        // $sotr_id = $this->rest->callAPI("GET",REST."/solicitantesTransporte/hugoDS");
-        $usuario_app = userNick();
-        $sotr = $this->rest->callAPI("GET",REST."/solicitantesTransporte/hugoDS");
-        $sotraux =json_decode($sotr["data"]);
-        $id_sotr = $sotraux->solicitantes_transporte->sotr_id;
-        $aux = $this->rest->callAPI("GET",REST."/vehiculo/asignadoARetiro/$dominio/solicitanteTransporte/$id_sotr");
+        $sotr = usrIdGeneradorByNick();
+        $aux = $this->rest->callAPI("GET",REST."/vehiculo/asignadoARetiro/$dominio/solicitanteTransporte/$sotr");
         $aux =json_decode($aux["data"]);
         return $aux;
     }
-function Guardar_OrdenT(){
 
-        // $post["post_ordenT"] = $data;
-        // log_message('DEBUG','#OrdenTransporte/Guardar_OrdenTransporte: '.json_encode($post))
-        // $aux = $this->rest->callAPI("POST",REST."/RECURSO", $post);
-        // $aux =json_decode($aux["status"]);
-        // return $aux;	
-
-        
-
-}
 
 function Asignar_Transportista($data){
 

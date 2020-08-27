@@ -49,15 +49,15 @@ class Contenedor extends CI_Controller {
             } 
         // 3  con id circ  agregar a array tipo de carga armar batch  /_post_circuitos_tipocarga_batch_req  
         foreach ($datos_tipo_carga as $key => $carga) {
-        $tipocarga[$key]['cont_id'] = $cont_id;
-        $tipocarga[$key]['tica_id'] = $carga;
+          $tipocarga[$key]['cont_id'] = $cont_id;
+          $tipocarga[$key]['tica_id'] = $carga;
         }
         $resp = $this->Contenedores->Guardar_tipo_carga($tipocarga);
         // Operacion de validacion tipo carga
         if (!$resp['status']) {
-        log_message('ERROR','#TRAZA|Contenedor|Guardar_Contenedor() >> $resp: '.$resp);
-        echo "tipo carga no asociado";return;
-          }
+          log_message('ERROR','#TRAZA|Contenedor|Guardar_Contenedor() >> $resp: '.$resp);
+          echo "tipo carga no asociado";return;
+        }
         echo 'ok';
     }
      /**

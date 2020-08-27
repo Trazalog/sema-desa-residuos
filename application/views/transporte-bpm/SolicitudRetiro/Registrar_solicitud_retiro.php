@@ -225,7 +225,7 @@
 
 
 <!--TABLA LISTADO TODAS LAS SOLICITUDES-->
-<div class="box box-primary">
+<!-- <div class="box box-primary">
 
   <div class="box-header with-border">
     <h5>Listado de Retiro Contenedores</h5>
@@ -241,7 +241,7 @@
 
         <div class="col-sm-12 table-scroll">
 
-          <!--__________________TABLA___________________________-->
+          <!- -__________________TABLA___________________________- ->
           <table id="tabla_solicitudes" class="table table-bordered table-striped">
             <thead class="thead-dark" bgcolor="#eeeeee">
               <th>Acciones</th>
@@ -269,24 +269,24 @@
             </tbody>
           </table>
 
-          <!--__________________FIN TABLA___________________________-->
+          <!- -__________________FIN TABLA___________________________- ->
         </div>
       </div>
 
     </div>
   </div>
-  <!--TABLA LISTADO TODAS LAS SOLICITUDES-->
+  <!- -TABLA LISTADO TODAS LAS SOLICITUDES- ->
   <div class="box-body">
     <div class="row">
       <div class="col-sm-12 table-scroll" id="tbl_listado_contenedores"></div>
     </div>
-</div>
+</div> -->
 
 
 
   <script>
   // FIXME: agregar tabla en este archivo
-  $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_SolicitudesPedido");
+  //$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_SolicitudesPedido");
 
 
   //Script Bootstrap Validacion.FORMULARIO GENERAL        
@@ -531,7 +531,6 @@
     //guardar();
   });
 
-
   //script que muestra box de datos al dar click en boton agregar
   $("#botonAgregar").on("click", function() {
     $("#botonAgregar").attr("disabled", "");
@@ -551,6 +550,7 @@
   // carga tipo de RSU dependiendo de Transportista
   $('#transportista').change(function() {   
     var tran_id = this.value;
+    wo();
     $.ajax({
       type: "POST",
       data: {
@@ -566,14 +566,16 @@
 							respuesta.forEach(function(e) {
 								selector.append("<option value='" + e.tica_id + "'>" + e.valor + "</option");
 							});
+              wc();
       },
       error: function() {
 							var selector = $("#tica_id");
 							selector.find('option').remove();
 							selector.append('<option value="" disabled selected>-Error-</option>');
+              wc();
       },
       complete: function() {
-
+              wc();
       }
     });
   });
@@ -581,40 +583,36 @@
   // carga contenedores dependiendo de RSU	
   // $("#tica_id").change(function() {
 
-  //   var tica_id = this.value;
-  //   alert(tica_id);
+    //   var tica_id = this.value;
+    //   alert(tica_id);
 
-  //   $.ajax({
-  //     type: "POST",
-  //     data: {
-  //       tica_id: tica_id
-  //     },
-  //     dataType: 'json',
-  //     url: "general/Estructura/Contenedor/",
-  //     success: function(respuesta) {
+    //   $.ajax({
+    //     type: "POST",
+    //     data: {
+    //       tica_id: tica_id
+    //     },
+    //     dataType: 'json',
+    //     url: "general/Estructura/Contenedor/",
+    //     success: function(respuesta) {
 
-  //       var selector_cont = $("#cont_ent");
-  //       selector_cont.find('option').remove();
-  //       selector_cont.append('<option value="" disabled selected>-Seleccione opcion-</option>');
-  //       respuesta.forEach(function(e) {
-  //         selector_cont.append("<option value='" + e.cont_id + "'>" + e.codigo + "</option");
-  //       });
-  //     },
-  //     error: function() {
-  //       var selector_cont = $("#cont_ent");
-  //       selector_cont.find('option').remove();
-  //       selector_cont.append('<option value="" disabled selected>-Sin contenedores de este RSU-</option>');
-  //     },
-  //     complete: function() {
+    //       var selector_cont = $("#cont_ent");
+    //       selector_cont.find('option').remove();
+    //       selector_cont.append('<option value="" disabled selected>-Seleccione opcion-</option>');
+    //       respuesta.forEach(function(e) {
+    //         selector_cont.append("<option value='" + e.cont_id + "'>" + e.codigo + "</option");
+    //       });
+    //     },
+    //     error: function() {
+    //       var selector_cont = $("#cont_ent");
+    //       selector_cont.find('option').remove();
+    //       selector_cont.append('<option value="" disabled selected>-Sin contenedores de este RSU-</option>');
+    //     },
+    //     complete: function() {
 
-  //     }
-  //   });
+    //     }
+    //   });
 
   // });
-
-
-
-
 
   // funcion agregar contenedores a tabla 
   function Agregar_contenedor() {
@@ -644,82 +642,55 @@
     $(this).parents("tr").remove();
   });
 
-
+  // crea una nueva solicitud de de retiro e inicia un nuevo proceso
   function guardar() {
-    debugger;
+    wo();
     var datos = new FormData();
     datos = formToObject(datos);
-	  datos.usuario_app = "HugoDS";
-    datos.sotr_id = 38;
 
     var datos_contenedor = [];
     var rows = $('#tbl_cont tbody tr');
     rows.each(function(i,e) {  
 				datos_contenedor.push(getJson(e));
-				// datos_contenedores.push("usuarioAp:");
-				// datos_contenedores.push("otro:");
-		});	
-	datos.contenedores = datos_contenedor;
-
-    console.table(datos_contenedor);
+		});
+	  datos.contenedores = datos_contenedor;
 
     if (datos_contenedor.lenght == 0) {
       alert('Sin Datos para Registrar.');
       return;
     }
 
-    //if ($("#formCircuitos").data('bootstrapValidator').isValid()) {
-
     $.ajax({
-      type: "POST",
-      data: {datos},
-      url: "general/transporte-bpm/SolicitudRetiro/Guardar_SolicitudRetiro",
-      success: function(respuesta) {
-        console.log(respuesta);
-        if (respuesta == "ok") {
-
-          $("#tbl_listado_contenedores").load(
-            "<?php echo base_url(); ?>index.php/general"
-          );
-          alertify.success("Agregado con exito");
-          $("#formPedidos")[0].reset();
-          $("#boxDatos").hide(500);
-          $("#botonAgregar").removeAttr("disabled");
-
-          //  $('#formCircuitos').data('bootstrapValidator').resetForm();
-          //  $("#formCircuitos")[0].reset();
-
-
-          //  $("#boxDatos").hide(500);
-          //  $("#botonAgregar").removeAttr("disabled");
-
-        } else {
+        type: "POST",
+        data: {datos},
+        url: "general/transporte-bpm/SolicitudRetiro/Guardar_SolicitudRetiro",
+        success: function(respuesta) {
+          wc();
           console.log(respuesta);
-          alertify.error("error al agregar");
+          if (respuesta) {
+
+            alertify.success("Solicitud de Retiro creada con exito");
+            $("#formPedidos")[0].reset();
+            $("#boxDatos").hide(500);
+            $("#botonAgregar").removeAttr("disabled");
+
+          } else {
+            console.log(respuesta);
+            alertify.error("Error al crear Solicitud de Retiro");
+          }
         }
-      }
     });
-
-
-
-
-
-    // }
-
-
-
-
 
   }
 
   // Initialize Select2 Elements
-  $('.select3').select2();
+    $('.select3').select2();
 
-  //Datatables  
-  DataTable($('#tabla_residuos'));
-  DataTable($('#tabla_contenedores'));
-  DataTable($('#tabla_solicitudes'));
-  DataTable($('#tabla_transportistas'));
-  DataTable($('#tbl_cont'));
+  //Datatables
+    DataTable($('#tabla_residuos'));
+    DataTable($('#tabla_contenedores'));
+    DataTable($('#tabla_solicitudes'));
+    DataTable($('#tabla_transportistas'));
+    DataTable($('#tbl_cont'));
   // Datatables 
   </script>

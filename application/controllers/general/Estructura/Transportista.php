@@ -8,8 +8,8 @@ class Transportista extends CI_Controller
 {   
     /**
     * Constructor de Clase
-    * @param 
-    * @return
+    * @param
+    * @return 
     */
     function __construct(){
       parent::__construct();
@@ -24,7 +24,7 @@ class Transportista extends CI_Controller
     function templateTransportistas()
     {
         log_message('INFO','#TRAZA|TRANSPORTISTA|templateTransportistas() >>');
-        $data['Rsu'] = $this->Transportistas->obtener_RSU();    
+        $data['Rsu'] = $this->Transportistas->obtener_RSU();
         $this->load->view('layout/Transportistas/registrar_transportista',$data);        
     }
    

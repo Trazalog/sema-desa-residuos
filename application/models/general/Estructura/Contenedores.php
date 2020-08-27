@@ -7,7 +7,7 @@
 class Contenedores extends CI_Model
 {       /**
     * Constructor de Clase
-    * @param 
+    * @param
     * @return 
     */
     function __construct()
@@ -30,14 +30,14 @@ class Contenedores extends CI_Model
         * Guarda un nuevo contendor
         * @param array datos del contenedor
         * @return string data
-        */    
+        */
     function Guardar_Contenedor($data)
     {
         // var_dump($data);
         $usuario = userNick();
         $data["usuario_app"] = $usuario;
-        log_message('INFO','#TRAZA|Contenedores|Guardar_Contenedor() >> '); 
-        $post["post_contenedor"] = $data;       
+        log_message('INFO','#TRAZA|Contenedores|Guardar_Contenedor() >> ');
+        $post["post_contenedor"] = $data;
         log_message('DEBUG','#Contenedores/Guardar_Contenedor'.json_encode($post));
         $aux = $this->rest->callAPI("POST",REST."/contenedores", $post);
         $aux =json_decode($aux["data"]);
@@ -50,12 +50,12 @@ class Contenedores extends CI_Model
         */  
     function Guardar_tipo_carga($data)
     {
-    log_message('INFO','#TRAZA|Contenedores|Guardar_Tipo_Carga() >> '); 
-    $arraycargas["_post_contenedores_tipocarga"]  = $data;  
-    $post["_post_contenedores_tipocarga_batch_req"]= $arraycargas;
-    log_message('DEBUG','#Contenedores/Guardar_tipo_carga: '.json_encode($post));
-    $aux = $this->rest->callAPI("POST",REST."/_post_contenedores_tipocarga_batch_req", $post);
-    return $aux;    
+				log_message('INFO','#TRAZA|Contenedores|Guardar_Tipo_Carga() >> ');
+				$arraycargas["_post_contenedores_tipocarga"]  = $data;
+				$post["_post_contenedores_tipocarga_batch_req"]= $arraycargas;
+				log_message('DEBUG','#Contenedores/Guardar_tipo_carga: '.json_encode($post));
+				$aux = $this->rest->callAPI("POST",REST."/_post_contenedores_tipocarga_batch_req", $post);
+				return $aux;
     }
      /**
         * Actualiza contenedor

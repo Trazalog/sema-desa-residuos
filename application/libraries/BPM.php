@@ -344,7 +344,7 @@ class BPM
 
     public function getUsuariosBPM()
     {
-        $resource = 'API/identity/user?p=0&c=50';
+        $resource = 'API/identity/user?p=0&c=50000'; // siempre debe jaber un numero altopor la cant de usr
 
         $url = BONITA_URL . $resource;
 
