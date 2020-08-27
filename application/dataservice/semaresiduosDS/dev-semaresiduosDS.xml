@@ -1,4 +1,4 @@
-<data enableBatchRequests="true" enableBoxcarring="true" name="semaresiduosDS" transports="http https local">
+<data disableLegacyBoxcarringMode="true" enableBatchRequests="true" enableBoxcarring="true" name="semaresiduosDS" transports="http https local">
    <config enableOData="false" id="semaresiduosDS">
       <property name="carbon_datasource_name">SemaResiduosDataSource</property>
    </config>
@@ -871,13 +871,16 @@
       <param name="tran_id&#x9;" sqlType="STRING"/>
    </query>
    <query id="contenedoresEntregadosDescargarEnRecipiente" useConfig="semaresiduosDS">
-      <sql>SELECT prd.cambiar_recipiente(ce.batch_id,cast(:reci_id_destino as integer),2000,1,:usuario_app,'false'::varchar)&#xd;FROM log.contenedores_entregados ce &#xd;WHERE ce.ortr_id = cast(:ortr_id as integer) &#xd;AND ce.cont_id = cast(:cont_id as integer);</sql>
+      <sql>SELECT prd.cambiar_recipiente(ce.batch_id,cast(:reci_id_destino as integer),2000,1,:usuario_app,'false'::varchar) resultado&#xd;FROM log.contenedores_entregados ce &#xd;WHERE ce.ortr_id = cast(:ortr_id as integer) &#xd;AND ce.cont_id = cast(:cont_id as integer);</sql>
+      <result element="respuesta" rowName="">
+         <element column="resultado" name="resultado" xsdType="string"/>
+      </result>
       <param name="reci_id_destino" sqlType="STRING"/>
       <param name="usuario_app" sqlType="STRING"/>
       <param name="ortr_id" sqlType="STRING"/>
       <param name="cont_id" sqlType="STRING"/>
    </query>
-   <query id="contenedoresEntregadosDescagarUpdate" useConfig="semaresiduosDS">
+   <query id="contenedoresEntregadosDescargarUpdate" useConfig="semaresiduosDS">
       <sql>update log.contenedores_entregados&#xd;set foto=:foto&#xd;,tiva_id=:tiva_id&#xd;,observaciones_descarga=:observaciones_descarga&#xd;,fec_descarga = now()&#xd;where ortr_id = cast(:ortr_id as integer)&#xd;and cont_id =cast(:cont_id as integer)</sql>
       <param name="foto" optional="false" sqlType="BINARY"/>
       <param name="tiva_id" sqlType="STRING"/>
@@ -1798,25 +1801,8 @@
          <with-param name="tran_id&#x9;" query-param="tran_id&#x9;"/>
       </call-query>
    </resource>
-   <resource method="PUT" path="/contenedoresentregados/descargar/">
-      <call-query href="contenedoresentregadosdescagarupdate">
-         <with-param name="foto" query-param="foto"/>
-         <with-param name="tiva_id" query-param="tiva_id"/>
-         <with-param name="observaciones_descarga" query-param="observaciones_descarga"/>
-         <with-param name="ortr_id" query-param="ortr_id"/>
-         <with-param name="cont_id" query-param="cont_id"/>
-      </call-query>
-   </resource>
-   <resource method="POST" path="/contenedoresentregados/descargar/recipiente">
-      <call-query href="contenedoresentregadosdescargarenrecipiente">
-         <with-param name="reci_id_destino" query-param="reci_id_destino"/>
-         <with-param name="usuario_app" query-param="usuario_app"/>
-         <with-param name="ortr_id" query-param="ortr_id"/>
-         <with-param name="cont_id" query-param="cont_id"/>
-      </call-query>
-   </resource>
-   <resource method="PUT" path="/contenedoresEntregados/descargar/">
-      <call-query href="contenedoresEntregadosDescagarUpdate">
+   <resource method="PUT" path="/contenedoresEntregados/descargar">
+      <call-query href="contenedoresEntregadosDescargarUpdate">
          <with-param name="foto" query-param="foto"/>
          <with-param name="tiva_id" query-param="tiva_id"/>
          <with-param name="observaciones_descarga" query-param="observaciones_descarga"/>
