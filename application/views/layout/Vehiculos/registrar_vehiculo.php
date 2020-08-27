@@ -23,7 +23,7 @@
 <div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
     <div class="box-header with-border">
         <div class="box-tittle">
-        <h5>Informacion</h5>
+        <h5>Informacion</h5>  
         </div>
         <div class="box-tools pull-right">
             <button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
@@ -35,10 +35,16 @@
 
 ​        <!--_____________________________________________________________-->
 
-		<div class="box-body">
-				<form class="formVehiculo" id="formVehiculo"  method="POST" autocomplete="off" class="registerForm">
+        <div class="box-body">
+            <form class="formVehiculo" id="formVehiculo"  method="POST" autocomplete="off" class="registerForm">
+                <div class="col-md-6 col-sm-6 col-xs-12">
 
-						<div class="col-md-6 col-sm-6 col-xs-12">
+                    <!--Descripcion-->
+                        <div class="form-group">
+                            <label for="Descripcion" >Descripcion:</label>
+                            <input type="text" class="form-control" id="descripcion" name="descripcion">
+                        </div>
+            ​        <!--_____________________________________________________________-->
 
                     <!--Dominio-->
                         <div class="form-group dominio">
@@ -47,72 +53,63 @@
                         </div>
             ​        <!--_____________________________________________________________-->
 
-								<!--Dominio-->
-										<div class="form-group">
-												<label for="Dominio">Dominio:</label>
-												<input type="text" class="form-control" id="dominio" name="dominio">
-										</div>
-								<!--_____________________________________________________________-->
+                    <!--Marca-->
+                        <div class="form-group">
+                            <label for="Marca" >Marca:</label>
+                            <input type="text" class="form-control" id="marca" name="marca">
+                        </div>
+            ​        <!--_____________________________________________________________-->
+                     <!--Condicion-->
+                        <div class="form-group">
+                            <label for="transportista" >Transportista:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="tran_id" name="tran_id" >
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                    foreach ($transportista as $i) {
+                                        echo '<option value="'.$i->tran_id.'">'.$i->razon_social.'</option>';
+                                    }
+                                ?>
+                            </select>
+                        </div>
+            ​        <!--_____________________________________________________________-->
+                                    <!--Tara-->
+                    <div class="form-group">
+                        <label for="Tara" >Tara:</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                                <input type="number" class="form-control" name="tara" id="tara">
+                        </div>
+                    </div>
+                    <!--Condicion-->
+                        <!-- <div class="form-group">
+                            <label for="condicion" >Condicion:</label>
+                            <select class="form-control select2 select2-hidden-accesible" id="condicion" name="condicion" >
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <?php
+                                    foreach ($condicion as $i) {
+                                        echo '<option>'.$i->nombre.'</option>';
+                                    }
+                                ?>
+                            </select>
+                        </div> -->
+            ​        <!--_____________________________________________________________-->
 
-								<!--Marca-->
-										<div class="form-group">
-												<label for="Marca" >Marca:</label>
-												<input type="text" class="form-control" id="marca" name="marca">
-										</div>
-								<!--_____________________________________________________________-->
-								<!--Condicion-->
-										<div class="form-group">
-												<label for="transportista" >Transportista:</label>
-												<select class="form-control select2 select2-hidden-accesible" id="tran_id" name="tran_id" >
-														<option value="" disabled selected>-Seleccione opcion-</option>
-														<?php
-																foreach ($transportista as $i) {
-																		echo '<option value="'.$i->tran_id.'">'.$i->razon_social.'</option>';
-																}
-														?>
-												</select>
-										</div>
-								<!--_____________________________________________________________-->
-								<!--Tara-->
-										<div class="form-group">
-												<label for="Tara" >Tara:</label>
-												<div class="input-group date">
-														<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-																<input type="number" class="form-control" name="tara" id="tara">
-												</div>
-										</div>
-								<!--_____________________________________________________________-->
+                    <!--Modelo-->
+                        <!-- <div class="form-group">
+                            <label for="Modelo" >Modelo:</label>
+                            <input type="text" class="form-control" id="modelo" name="modelo">
+                        </div> -->
+            ​        <!--_____________________________________________________________-->
 
-								<!--Tolva-->
-									<div class="form-group">
-										<label for="fecha_ingreso" >Tiene tolva?:</label>
-										<div class="form-group">
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionsTolva" id="optionsTolvaNo" value="no" checked="">
-													No
-												</label>
-											</div>
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionsTolva" id="optionsTolvaSi" value="si">
-													Si
-												</label>
-											</div>
-										</div>
-									</div>
-								<!--_____________________________________________________________-->
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
 
-								<div id="datosTolva">
-									<!--Capacidad-->
-										<div class="form-group">
-											<label for="capacidad" >Capacidad:</label>
-											<div class="input-group date">
-													<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-															<input type="number" class="form-control" name="capacidad" id="capacidad">
-											</div>
-										</div>
-									<!--_____________________________________________________________-->
+                    <!--Capacidad-->
+                        <!-- <div class="form-group">
+                            <label for="Capacidad" >Capacidad:</label>
+                            <input type="text" class="form-control" id="Capacidad" name="capacidad">
+                        </div> -->
+            ​        <!--_____________________________________________________________-->
 
                     <!--Tara-->
                         <!-- <div class="form-group">
@@ -128,7 +125,12 @@
                     <!--_____________________________________________________________-->    
  
 
-						<div class="col-md-6 col-sm-6 col-xs-12">
+                    <!--Habilitacion-->
+                        <!-- <div class="form-group">
+                            <label for="Habilitacion" >Habilitacion:</label>
+                            <input type="text" class="form-control" id="Habilitacion" name="habilitacion" >
+                        </div> -->
+            ​        <!--_____________________________________________________________-->    
 
                     <!--Registro-->
                         <div class="form-group codigo">
@@ -137,52 +139,57 @@
                         </div>
             ​        <!--_____________________________________________________________--> 
 
-								<!--Registro-->
-										<div class="form-group">
-												<label for="codigo" >Codigo:</label>
-												<input type="text" class="form-control" id="codigo" name="codigo" >
-										</div>
-								<!--_____________________________________________________________-->
+                    <!--Fecha de habilitacion-->
+                        <div class="form-group" >
+                            <label for="fecha_ingreso" >Fecha de Ingreso:</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="date" class="form-control pull-right" id="fecha_ingreso" name="fecha_ingreso">
+                            </div>
+                           
+                        </div>
+            ​        <!--_____________________________________________________________-->
+                          <!--Adjuntar imagen--> 
+                        <div class="form-group">
+                            <form action="cargar_archivo" method="post" enctype="multipart/form-data"  id="fileimage">
+                                <label for="img_File">Seleccione Imagen</label>
+                                <input type="file" name="imagen" id="img_File" onchange="convertA()" style="font-size: smaller">
+                                <input type="text" id="input_aux_img" style="display:none" >
+                            </form>
+                            <img src="" alt="" id="imagen" width="" height="">
+                        </div>
+                   
 
-								<!--Fecha de habilitacion-->
-										<div class="form-group" >
-												<label for="fecha_ingreso" >Fecha de Ingreso:</label>
-												<div class="input-group date">
-														<div class="input-group-addon">
-																<i class="fa fa-calendar"></i>
-														</div>
-														<input type="date" class="form-control pull-right" id="fecha_ingreso" name="fecha_ingreso">
-												</div>
-												
-										</div>
-								<!--_____________________________________________________________-->
+                </div>
 
-								<!--Adjuntar imagen-->
-										<div class="form-group">
-												<form action="cargar_archivo" method="post" enctype="multipart/form-data"  id="fileimage">
-														<label for="img_File">Seleccione Imagen</label>
-														<input type="file" name="imagen" id="img_File" onchange="convertA()" style="font-size: smaller">
-														<input type="text" id="input_aux_img" style="display:none" >
-												</form>
-												<img src="" alt="" id="imagen" width="" height="">
-										</div>
-								<!--_____________________________________________________________-->
+                    <!--__________________SEPARADOR__________________-->            
 
-						</div>
+                <div class="col-md-12"><hr></div>
 
-						<!--__________________SEPARADOR__________________-->
-								<div class="col-md-12"><hr></div>
-						<!--__________________SEPARADOR__________________-->
+                    <!--__________________SEPARADOR__________________-->
 
-								
+<!--                    
+                        <div class="col-md-6">
+                            <form action="cargar_archivo" method="post" enctype="multipart/form-data">
+                                <input type="file" name="imagen" id="img_File" onchange="convertA()" style="font-size: smaller" id="img_Id">
+                                <input type="text" id="input_aux_img" style="display:none" >
+                            </form>
+                            <img src="" alt="" id="img_Base" width="" height="">
+                        </div> -->
+                    <!--_____________________________________________-->           
+                    <!--_____________________________________________________________-->            
 
-						<!--Boton de guardado-->
-								<button type="submit" class="btn btn-primary pull-right" onclick="GuardarVhiculo()">Guardar</button>
-						<!--_____________________________________________________________-->
+                <div class="col-md-12"><hr></div><br>
 
-				</form>
-		</div>
+                    <!--Boton de guardado--> 
+                        <button type="submit" class="btn btn-primary pull-right" onclick="GuardarVhiculo()">Guardar</button>
+                    <!--_____________________________________________________________--> 
 
+            </form>
+        </div>
+    </div>
 </div>
 
 <!---//////////////////////////////////////--- FIN BOX---//////////////////////////////////////----->
@@ -388,9 +395,6 @@
 <!-- script que muestra box de datos al dar click en boton agregar -->
 <script>
 
-
-
-
 // deshabilita img y spinner	
 $(document).ready(function(){		
                 var aux= "";	
@@ -399,18 +403,6 @@ $(document).ready(function(){
                 $(".redimensionar").attr("style","width: 24rem;");
                
 		});
-
-// muestra y oculta opiones de tolva
-$("#optionsTolvaSi").on("click", function() {
-	$('#datosTolva').show();
-});
-
-$("#optionsTolvaNo").on("click", function() {
-	$('#datosTolva').hide();
-	$('#capacidad').val("");
-	$('#tica_id').select2('val', 'All');
-});
-
 
 //Convertir a base64 el archivo Imagen
 function GetFile(file){
@@ -618,13 +610,13 @@ async function convertA(){
         var datos = new FormData($('#formVehiculo')[0]);
         datos = formToObject(datos);
         datos.imagen = $("#input_aux_img").val();
-				datos.tara = $("#tara").val();
-				var tipocarga = $("#tica_id").val();
-
-				if(jQuery.isEmptyObject(tipocarga)){
-					tipocarga = {};
-				}
-
+        datos.tara = $("#tara").val();
+        //datos.imagen = $("#input_aux_img").val();
+        //datos.usuario_app = "nachete"; //HARCODE - falta asignar funcion que asigne tipo usuario
+        
+        
+        console.table(datos);
+  
         //--------------------------------------------------------------
         if(datos.imagen != "")
         {
@@ -664,7 +656,7 @@ async function convertA(){
        
     }
 
-
+    
 
 
 //Funcion Editar el vehiculo
@@ -1133,8 +1125,6 @@ function cerrar_Ampliar(){
 
 <!-- script Datatables -->
 <script>
-		// Initialize Select2 Elements
-		$('.select3').select2();
     DataTable($('#tabla_vehiculos'))
 </script>
 <!--_____________________________________________________________-->
