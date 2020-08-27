@@ -103,8 +103,8 @@ class EntregaOrdenTransportes extends CI_Model {
             break;
 
           case 'Registro Salida':
-            $resp = $this->ContenedoresEntrSalida($form);
-            $contrato = $this->ContratoRegSalida($form);
+            $resp = $this->ContenedoresEntrSalida($form); // escribe en DB fecha salida
+            $contrato = $this->ContratoRegSalida($form);  // devuelve contrato para cerrar tarea
             return $contrato;
             break;
 
@@ -428,8 +428,8 @@ class EntregaOrdenTransportes extends CI_Model {
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|CertificadoVuelco($caseId) >> ');
     log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|CertificadoVuelco($caseId): $data  >> '.json_encode($data));
-    $dato[]['_put_contenedoresEntregados_descargar'] = $data['_put_contenedoresEntregados_descargar'];
-    $dato[]['_post_contenedoresEntregados_descargar_recipiente'] = $data['_post_contenedoresEntregados_descargar_recipiente'];
+    $dato[]['_put_contenedoresentregados_descargar'] = $data['_put_contenedoresEntregados_descargar'];
+    $dato[]['_post_contenedoresentregados_descargar_recipiente'] = $data['_post_contenedoresEntregados_descargar_recipiente'];
 
     $rsp = requestBox(REST.'/', $dato);
     $aux = $rsp;

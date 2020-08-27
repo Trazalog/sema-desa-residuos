@@ -86,7 +86,7 @@ class OrdenTransporte extends CI_Controller {
           log_message('ERROR','#TRAZA|ORDENTRANSPORTE|Guardar_ordentransporte() >> $resp: '.$resp);
           echo 'error';
        }
-           
+
        }
    
        function ObtenerinfoOt()

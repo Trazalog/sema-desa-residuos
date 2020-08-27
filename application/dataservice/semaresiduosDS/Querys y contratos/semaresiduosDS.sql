@@ -3657,8 +3657,8 @@ http://10.142.0.3:8280/services/semaresiduosDS
   recurso: /vehiculo/asignadoARetiro/{dominio}/solicitanteTransporte/{sotr_id}
   metodo : get
 
-  select eq.dominio dominio       , eq.codigo codigo       , eq.marca ||' '||eq.descripcion descripcion;       , :sotr_id sotr_id ;       , eq.equi_id equi_id       , eq.tran_id tran_id from core.equipos eq where eq.dominio = :dominio
-  
+  select eq.dominio dominio, eq.codigo codigo , eq.marca ||' '||eq.descripcion descripcion;  , :sotr_id sotr_id ;       , eq.equi_id equi_id       , eq.tran_id tran_id from core.equipos eq where eq.dominio = :dominio
+
   subquery contenedoresARetirarPorEquipoGet
 
   select ce.cont_id        ,t.valor tipo_carga       ,ce.porc_llenado        ,ce.mts_cubicos from log.contenedores_entregados ce	,core.tablas t 	,core.equipos eq	,log.solicitudes_retiro sr where eq.equi_id = ce.equi_id and ce.equi_id = cast(:equi_id as integer) and ce.sore_id = sr.sore_id and sr.sotr_id = cast(:sotr_id as integer)and ce.tica_id =t.tabl_id and ce.ortr_id is null
