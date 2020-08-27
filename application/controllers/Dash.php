@@ -7,12 +7,12 @@ class Dash extends CI_Controller {
 		$this->load->helper('menu_helper');
 		$this->load->helper('file');
 		//TODO: PREGUNTAR SI ESTA VENCIDA LA SESION Y REDIRECCIONAR AL LOGIN SI ES NECESARIO
-		// $data = $this->session->userdata();
-		// log_message('DEBUG','#Main/login | '.json_encode($data));
-		// if(!$data['email']){
-		// 	log_message('DEBUG','#TRAZA|DASH|CONSTRUCT|ERROR  >> Sesion Expirada!!!');
-		// 	redirect(DNATO.'main/login');
-		// }
+		$data = $this->session->userdata();
+		log_message('DEBUG','#Main/login | '.json_encode($data));
+		if(!$data['email']){
+			log_message('DEBUG','#TRAZA|DASH|CONSTRUCT|ERROR  >> Sesion Expirada!!!');
+			redirect(DNATO.'main/login');
+		}
 	}
 
 	function index(){
