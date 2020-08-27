@@ -39,6 +39,7 @@
 	// llena modal solo lectura
 		$(".btnInfo").on("click", function(e){
 			$("#modalEdit").data('bootstrapValidator').resetForm();
+			$(".titulo").text('Informacion Circuito')
 			datajson = $(this).parents("tr").attr("data-json");
 			console.table(datajson);
 			llenarModal(datajson);	
@@ -53,6 +54,7 @@
 			datajson = $(this).parents("tr").attr("data-json");
 			$('#form_editar_pto_critico').show();	
 			$("#btnsave_edit").show();
+			$(".titulo").text('Editar Circuito')
 			$("#img_file").removeAttr("readonly");
 			$("#img_file").removeAttr("disabled");
 			llenarModal(datajson);

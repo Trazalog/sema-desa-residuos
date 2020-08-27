@@ -80,7 +80,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h5 class="modal-title" id="exampleModalLabel">Chofer</h5>
+				<h5 class="modal-title titulo" id="exampleModalLabel">Editar Chofer</h5>
 			</div>
 			<div class="modal-body col-md-12 col-sm-12 col-xs-12">
 
@@ -263,16 +263,20 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-blue">
-				<h5 class="modal-title"><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>Eliminar</h5>
+				
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
+				<h5 class="modal-title" id="exampleModalLabel"> Eliminar Chofer</h5>
+
+				
+               						
 			</div>
 			<input id="chof_delete" style="display: none;">
 			<div class="modal-body">
 				<center>
 					<h4>
-						<p>¿Desea eliminar el chofer?</p>
+						<p>¿DESEA ELIMINAR EL CHOFER?</p>
 					</h4>
 				</center>
 			</div>
@@ -385,6 +389,7 @@ $(document).ready(function(){
 					console.log('Validacion FRM Chores');
 					console.log($("#formChofer").data('bootstrapValidator').isValid());
 					if ($("#formChofer").data('bootstrapValidator').isValid()){
+						wo();
 						$.ajax({
 							type: "POST",
 							data: { datos },
@@ -392,20 +397,23 @@ $(document).ready(function(){
 							success: function(r) {
 								console.table(r);
 								if (r == "ok") {
-
+									wc();
 									$("#cargar_tabla").load(
 										"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
-									alertify.success("Agregado con exito");
+									alertify.success("Chofer Agregado con exito");
 
 									$('#formChofer').data('bootstrapValidator').resetForm();
 									$("#formChofer")[0].reset();
 
 									$("#boxDatos").hide(500);
 									$("#botonAgregar").removeAttr("disabled");
+									
 
 								} else {
 									//console.log(r);
-									alertify.error("error al agregar");
+									wc();
+									alertify.error("Error al Agregar Chofer");
+									
 								}
 							}
 						});
@@ -607,22 +615,56 @@ $("#btnsave").on("click", function() {
 			var chofer = new FormData($('#frm_chofer_edit')[0]);
 			chofer = formToObject(chofer);
 			chofer.imagen = $("#input_aux_img64").val(); 
-	
-			// if ($("#frm_chofer_edit").data('bootstrapValidator').isValid()) {
-				$.ajax({
-					type: "POST",
-					data: {	chofer },
-					url: "general/Estructura/Chofer/Modificar_Chofer",
-					success: function(result) {
-						if (result == "error") {
-							alertify.error("Hubo un error a modificar Chofer");
-						} else {
-							$("#cargar_tabla").load(
-								"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
-							alertify.success("Datos de Chofer modificados con exito...");
+			var aux = 0;
+			if($("#nombre_edit").val() != ""){
+				if($("#apellido_edit").val() != ""){
+					if($("#dni_edit").val() != ""){
+						if($("#fec_nacimiento_edit").val() != ""){
+							if($("#direccion_edit").val() != ""){
+								if($("#celular_edit").val() != ""){
+									if($("#codigo_edit").val() != ""){
+										if($("#tran_id_edit").val() != ""){
+											if($("#carnet_edit").val() != ""){
+												if($("#cach_id_edit").val() != ""){
+													if($("#vencimiento_edit").val() != ""){
+														if($("#habilitacion_edit").val() != ""){
+															aux = 1;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
 						}
 					}
-				});
+				}
+			}
+			if(aux != 0)
+			{
+				wo();
+				// if ($("#frm_chofer_edit").data('bootstrapValidator').isValid()) {
+					$.ajax({
+						type: "POST",
+						data: {	chofer },
+						url: "general/Estructura/Chofer/Modificar_Chofer",
+						success: function(result) {
+							if (result == "error") {
+								wc();
+								alertify.error("Error al Actualizar Chofer");
+							} else {
+								wc();
+								$("#cargar_tabla").load(
+									"<?php echo base_url(); ?>index.php/general/Estructura/Chofer/Listar_Chofer");
+								$("#modalEdit").modal('hide');
+								alertify.success("Chofer Actualizado con exito");
+							}
+						}
+					});
+			}else{
+				alert("ATENCION!!! Hay campos vacios o mal ingresados");
+			}
 		//	}
 		});
 
