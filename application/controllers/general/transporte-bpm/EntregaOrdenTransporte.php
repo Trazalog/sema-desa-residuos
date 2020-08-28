@@ -8,7 +8,7 @@ class EntregaOrdenTransporte extends CI_Controller {
   /**
   * Constructor de Clase
   * @param 
-  * @return 
+  * @return
   */
   function __construct(){
     parent::__construct();  

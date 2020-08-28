@@ -109,7 +109,7 @@
 									</div>
 								<!--_____________________________________________-->								
 
-								<!--Tipo de residuo-->							
+								<!--Tipo de residuo-->
 										<div class="form-group">
 												<label for="tipoResiduos">Tipos de residuo:</label>
 												<div class="input-group date">
@@ -444,7 +444,7 @@
     }
 
 	//boton guardar
-	$("#btnsave").on("click", function() {
+		$("#btnsave").on("click", function() {
 			//tomo datos del form y hago objeto
 			
 			var transportista = new FormData($('#frm_transportista')[0]);

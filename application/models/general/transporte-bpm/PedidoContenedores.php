@@ -52,15 +52,15 @@ class PedidoContenedores extends CI_Model
         $aux->color = 'primary';
         $aux->texto = 'Solicitante: '.$aux_sol_cont->razon_social;
         $data['info'][] = $aux;
-        
+
         return $data;
-    } 
-     
+    }
+
     /**
-   * Atualiza info en BD y devuelve contrato para cierre de tareas segun las mismas 
-   * @param array $tarea y $form con info para actualizar
-   * @return array $contrato para cierre de tarea en BPM
-   */
+    * Atualiza info en BD y devuelve contrato para cierre de tareas segun las mismas
+    * @param array $tarea y $form con info para actualizar
+    * @return array $contrato para cierre de tarea en BPM
+    */
     public function getContrato($tarea, $form)
     {
         switch ($tarea->nombreTarea) {
@@ -82,7 +82,7 @@ class PedidoContenedores extends CI_Model
                   break;  
 
             case 'Entregar contenedores':
-                  $contrato = $this->PedidoContenedores->contratoEntregaContenedor($form);	
+                  $contrato = $this->PedidoContenedores->contratoEntregaContenedor($form);
                                   
                   return $contrato;
               
@@ -96,7 +96,7 @@ class PedidoContenedores extends CI_Model
 
     /**
     * Despliega datos de tareas en maquetacion segun tarea especifica, para notif estandar
-    * @param array con info de tarea  
+    * @param array con info de tarea
     * @return view vista (maquetacion y datos) de la tarea especifica
     */
     function desplegarVista($tarea)
@@ -109,7 +109,7 @@ class PedidoContenedores extends CI_Model
           $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);
           $tarea->infoContenedores = $this->obtenerContSolicitados($tarea->caseId);
           $info_proceso = $this->obtenerInfoSolContenedores($tarea);
-          $resp = $this->load->view('transporte-bpm/proceso/analizaSolicitud', $tarea, true);                   
+          $resp = $this->load->view('transporte-bpm/proceso/analizaSolicitud', $tarea, true);
           return $resp;
           break;
 
@@ -128,12 +128,12 @@ class PedidoContenedores extends CI_Model
         $soco_id= $tarea->infoSolicitud->soco_id;
         $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
         $tarea->infoContenedoresEntregados = $this->obtenerContEntregados($soco_id);
-        $tarea->camion = $this->ObtenerCamiones();
+        $tarea->camion = $this->ObtenerCamiones();  // camiones por usuario logueado
         $tarea->contenedores =$this->ObtenerContenedores();
         $resp = $this->load->view('transporte-bpm/proceso/entregaContenedor', $tarea, true);
         return $resp;
         break;
-        
+
         default:
           # code...
           break;
@@ -300,27 +300,30 @@ class PedidoContenedores extends CI_Model
     */
     function ObtenerCamiones()
     {
+      $tran_id = usrIdTransportistaByNick();
       log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|ObtenerCamiones()');
-      $aux = $this->rest->callAPI("GET",REST."/vehiculos");
+      $aux = $this->rest->callAPI("GET",REST."/vehiculos/transp/".$tran_id);
       $aux =json_decode($aux["data"]);
       return $aux->vehiculos->vehiculo;
     }
 
     /**
-    * Devuelve informacion de Contenedores (todos los contenedores)
+    * Devuelve informacion de Contenedores (del transpotista logueado)
     * @param 
-    * @return array informacion de  contenedores (todos los contenedores)
+    * @return array informacion de  contenedores (del transpotista logueado)
     */
     function ObtenerContenedores()
     {
+      $tran_id = usrIdTransportistaByNick();
       log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|ObtenerContenedores()');
-      $aux = $this->rest->callAPI("GET",REST."/contenedores");
+      log_message('DEBUG','#TRAZA|PEDIDOCONTENEDORES|ObtenerContenedores(): $tran_id >> '.json_encode($tran_id));
+      $aux = $this->rest->callAPI("GET",REST."/contenedores/disponibles/transportista/".$tran_id);
       $aux =json_decode($aux["data"]);
       return $aux->contenedores->contenedor;
     }
 
       /**
-    * Guarda informacion de Contenedores a entregar 
+    * Guarda informacion de Contenedores a entregar
     * @param array datos de los contenedores a entregar
     * @return json status
     */

@@ -33,20 +33,19 @@ class SolicitudRetiro extends CI_Controller {
  
   function Guardar_SolicitudRetiro()
   {
-    // $solicitud = $this->input->post('datos');
-    // var_dump($solicitud);
-    
-    // $usuario['usuario_app'] = 'hugoDS';
+    $solicitud = $this->input->post('datos');
 
-    $resp = $this->SolicitudesRetiro->Guardar_solicitudRetiro($this->input->post('datos'));
-    if(!$resp){
+    $solicitud['usuario_app'] = userNick();
+    $solicitud['sotr_id'] = usrIdGeneradorByNick();
+
+    $resp = $this->SolicitudesRetiro->Guardar_solicitudRetiro($solicitud);
+    if($resp){
       echo "ok";
-   }
-   else{
-      log_message('ERROR','#TRAZA|Solicitud|Eliminar_Zona() >> $resp: '.$resp);
-      echo 'error';
-   }
-      
+    }
+    else{
+        log_message('ERROR','#TRAZA|SOLICITUDRETIRO|Guardar_SolicitudRetiro() >> $resp: '.$resp);
+        echo 'error';
+    }
   }
     
   

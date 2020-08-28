@@ -38,6 +38,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <property name="TOOLS_ERROR" value="POST /solicitudContenedor con problemas" type="STRING"/>
                <sequence key="toolsFault"/>
             </else>
@@ -71,6 +72,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -116,6 +118,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -163,6 +166,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -212,6 +216,7 @@
          <send/>
       </outSequence>
       <faultSequence>
+         <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
          <property name="TOOLS_ERROR" value="Error general generando Solicitud de Contendores" type="STRING"/>
          <sequence key="toolsFault"/>
       </faultSequence>
@@ -249,6 +254,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <property name="TOOLS_ERROR" value="POST /solicitudRetiro con problemas" type="STRING"/>
                <sequence key="toolsFault"/>
             </else>
@@ -278,6 +284,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -320,6 +327,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -364,6 +372,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -413,6 +422,7 @@
          <send/>
       </outSequence>
       <faultSequence>
+         <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
          <property name="TOOLS_ERROR" value="Error General generando Solicitud de Retiro de Contendores" type="STRING"/>
          <sequence key="toolsFault"/>
       </faultSequence>
@@ -455,6 +465,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <property name="TOOLS_ERROR" value="POST /ordenTransporte con problemas" type="STRING"/>
                <sequence key="toolsFault"/>
             </else>
@@ -484,6 +495,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -530,6 +542,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -579,6 +592,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -635,6 +649,7 @@
          <send/>
       </outSequence>
       <faultSequence>
+         <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
          <property name="TOOLS_ERROR" value="Error General generando Orden de Transporte" type="STRING"/>
          <sequence key="toolsFault"/>
       </faultSequence>
@@ -678,6 +693,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <property name="TOOLS_ERROR" value="POST /ordenTransporte con problemas" type="STRING"/>
                <sequence key="toolsFault"/>
             </else>
@@ -707,6 +723,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -753,6 +770,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -802,6 +820,7 @@
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <payloadFactory media-type="json" description="borrar solicitud">
@@ -858,9 +877,9 @@
          <send/>
       </outSequence>
       <faultSequence>
+         <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
          <property name="TOOLS_ERROR" value="Error General generando Orden de Transporte" type="STRING"/>
          <sequence key="toolsFault"/>
       </faultSequence>
    </resource>
 </api>
-                        

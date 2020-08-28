@@ -52,7 +52,7 @@
 											<label for="tipoResiduos">Tipo de residuo:</label>
 											<div class="input-group date">
 													<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-													<select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_id" name="tica_id">															
+													<select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_id" name="tica_id">
 															<?php
 																	foreach ($tipoResiduos as $i) {		
 																			echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
@@ -848,7 +848,7 @@ $(".close_modal_edit").click(function(e){
 			var inpImagen = $('input#imagen');	
 			datos_circuito = formToObject(datos_circuito);
 			datos_circuito.imagen = $("#input_aux_img").val();
-			
+
 			// recorre tabla guardando ptos criticos en array
 			var datos_puntos_criticos = [];		
 			var rows = $('#datos tbody tr');				
