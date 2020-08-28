@@ -27,20 +27,20 @@ class EntregaOrdenTransportes extends CI_Model {
     return $resp;
   } 
 
-  /**
-  * Despliega cabeceras usando helpers
-  * @param array $tarea con info de tarea desde BPM   
-  * @return view cabeceras con info
-  */
-  function desplegarCabecera($tarea)
-  {
-    $resp = infoproceso($tarea).infoentidadesproceso($tarea);
-    return $resp;
-  } 
+  // /**
+  // * Despliega cabeceras usando helpers
+  // * @param array $tarea con info de tarea desde BPM   
+  // * @return view cabeceras con info
+  // */
+  // function desplegarCabecera($tarea)
+  // {
+  //   $resp = infoproceso($tarea).infoentidadesproceso($tarea);
+  //   return $resp;
+  // }
 
   /**
   * configuracion de la info que muestra la bandeja de entradas por PROCESO
-  * @param array $tarea info de tarea en BPM  
+  * @param array $tarea info de tarea en BPM
   * @return array con info de configuracion de datos para la bandeja de entrada
   */
   public function map($tarea)
@@ -48,6 +48,7 @@ class EntregaOrdenTransportes extends CI_Model {
     $data['descripcion'] = 'Ingreso de contenedores a PTA';
 
     $aux_OT = $this->obtenerInfoEntrega($tarea);
+    $deposito = $this->obtenerDeposito($aux_OT->ortr_id);
 
     $aux = new StdClass();
     $aux->color = 'warning';
@@ -64,13 +65,19 @@ class EntregaOrdenTransportes extends CI_Model {
     $aux->texto = 'Dominio: '.$aux_OT->dominio;
     $data['info'][] = $aux;
 
+    $aux = new StdClass();
+    $aux->color = 'primary';
+    $aux->texto = 'Deposito: '.$deposito->descripcion;
+    $aux->depo_id = $deposito->depo_id;
+    $data['info'][] = $aux;
+
     return $data;
   }
-  
+
   /**
   * Devuelve contrato de cierre tarea, ademas graba en BD lo necesario
   * @param array $tarea con info tarea BPM, $form info a guardar en BD
-  * @return 
+  * @return
   */
   public function getContrato($tarea, $form)
   {
@@ -79,7 +86,7 @@ class EntregaOrdenTransportes extends CI_Model {
       switch ($tarea->nombreTarea) {
           
           case 'Registra Ingreso':
-          
+
             $resp = $this->entregaOrdenTransporte($form);
             if (!$resp) {
               log_message('ERROR','#TRAZA|ENTREGAORDENTRANSPORTES|getContrato($tarea, $form)/Registra Ingreso >> ERROR ');
@@ -96,8 +103,8 @@ class EntregaOrdenTransportes extends CI_Model {
             break;
 
           case 'Registro Salida':
-            $resp = $this->ContenedoresEntrSalida($form);
-            $contrato = $this->ContratoRegSalida($form);
+            $resp = $this->ContenedoresEntrSalida($form); // escribe en DB fecha salida
+            $contrato = $this->ContratoRegSalida($form);  // devuelve contrato para cerrar tarea
             return $contrato;
             break;
 
@@ -113,7 +120,7 @@ class EntregaOrdenTransportes extends CI_Model {
   * @return view de acuerdo a tarea especifica
   */
   function desplegarVista($tarea)
-  {     
+  {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|desplegarVista($tarea) >> ');
     switch ($tarea->nombreTarea) {
 
@@ -160,8 +167,8 @@ class EntregaOrdenTransportes extends CI_Model {
         log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|desplegarVista($tarea)|Registro Salida: $tarea >> '.json_encode($tarea));
         $tarea->infoOTransporte = $this->obtenerInFoOTransporte($tarea->caseId);
         // IMAGEN
-        $imagen = $tarea->infoOTransporte->img_chofer;        
-        $newImgChof = substr_replace($imagen, 'data:image/jpeg;base64,', 0, 20);        
+        $imagen = $tarea->infoOTransporte->img_chofer;
+        $newImgChof = substr_replace($imagen, 'data:image/jpeg;base64,', 0, 20);
         $tarea->infoOTransporte->img_chofer = $newImgChof;
 
         $imagen_vehi = $tarea->infoOTransporte->img_vehiculo;
@@ -171,6 +178,7 @@ class EntregaOrdenTransportes extends CI_Model {
         $tarea->infoContenedores = $this->obtenerContEntregadosSalida($tarea->caseId);
         $tarea->infoOT = $this->obtenerInfoOTIncidencia($tarea->caseId);
         $tarea->tipoIncidencia = $this->obtenerTipoIncidencia();
+        $tarea->contRestanteDescarga = $this->obtenerContRestanteDesc($tarea->caseId);
         $resp = $this->load->view('transporte-bpm/proceso/registraSalida', $tarea, true);
         return $resp;
         break;
@@ -188,7 +196,7 @@ class EntregaOrdenTransportes extends CI_Model {
   function entregaOrdenTransporte($form)
   {     
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTES|entregaOrdenTransporte() >> ');
-    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|entregaOrdenTransporte($form): $form >> '.json_encode($form));  
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|entregaOrdenTransporte($form): $form >> '.json_encode($form));
     $data['_put_contenedoresentregados_registra_ingreso'] = $form['data'];
     $aux = $this->rest->callAPI("PUT",REST."/contenedoresEntregados/registra/ingreso", $data);
     $aux =json_decode($aux["status"]);
@@ -204,14 +212,19 @@ class EntregaOrdenTransportes extends CI_Model {
   {     
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|contratoIngreso($form) >> '); 
     log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|contratoIngreso($form): $form >> '.json_encode($form));   
-    $contrato["depo_id"] = $form['data']["depo_id"];
+    $contrato["sectorDescarga"] = $form['data']["depo_id"];
     return $contrato;
   }
 
+  /**
+  * Contrato de cierre taera Registrar Salida
+  * @param array info enviada de la vista
+  * @return array contrato cierre
+  */
   function ContratoRegSalida($form)
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|ContratoRegSalida($form) >> '); 
-    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|ContratoRegSalida($form): $form >> '.json_encode($form));   
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|ContratoRegSalida($form): $form >> '.json_encode($form));
     $contrato["quedanContenedores"] = $form['salida']['contrato']['quedanContenedores'];
     return $contrato;
   }
@@ -232,7 +245,7 @@ class EntregaOrdenTransportes extends CI_Model {
   }
   
   /**
-  * devuelve array con contenedores entregados 
+  * devuelve array con contenedores entregados
   * @param string case_id
   * @return array con contenedores entregados
   */
@@ -325,6 +338,21 @@ class EntregaOrdenTransportes extends CI_Model {
     return $aux->imag_contenedor->imagen;
   }
 
+  /**
+  * Obtiene cantidad de contenedores que aun no fueron descargados en depositos por OT
+  * @param string case_id
+  * @return string noEntregados
+  */
+  function obtenerContRestanteDesc($case_id)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerContRestanteDesc($case_id) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerContRestanteDesc($caseId): $caseId  >> '.json_encode($case_id));
+    $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/restantes/descarga/case/".$case_id);
+    $res =json_decode($aux["data"]);
+    return $res->contenedores;
+  }
+
+
    // ---------------------- FUNCIONES BANDEJA DE ENTRADA ----------------------
 
   /**
@@ -334,11 +362,26 @@ class EntregaOrdenTransportes extends CI_Model {
   */
   function obtenerInfoEntrega($tarea){
 
-    $case_id = $tarea->caseId; 
+    $case_id = $tarea->caseId;
     $aux = $this->rest->callAPI("GET",REST."/ordenTransporte/info/entrega/case/".$case_id);
     $data =json_decode($aux["data"]);
     $aux_OT = $data->ordenTransporte;
     return $aux_OT;
+  }
+
+  /**
+  * Devuelve deposito donde se descargara el contenedor (info en bandeja de entrada)
+  * @param int ortr_id
+  * @return array depo_id, depo_nombre
+  */
+  function obtenerDeposito($ortr_id)
+  {
+    log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTES|obtenerDeposito($ortr_id) >> ');
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTES|obtenerDeposito($ortr_id): >> '.json_encode($ortr_id));
+    $aux = $this->rest->callAPI("GET",REST."/deposito/descarga/".$ortr_id);
+    $aux =json_decode($aux["data"]);
+    return $aux->deposito;
+    
   }
 
   // obtenerContEntregados($tarea)
@@ -353,7 +396,7 @@ class EntregaOrdenTransportes extends CI_Model {
   // obtenerTransportista($tarea)
   // $aux_tran = $this->rest->callAPI("GET",REST."/transportistas/proceso/ingreso/case/".$ent_case_id);
   // $aux_tran =json_decode($aux_tran["data"]); 
- //TODO: 
+
   function obtenerTamañoDeposito($depo_id)
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerTamañoDeposito($depo_id) >> ');
@@ -362,7 +405,7 @@ class EntregaOrdenTransportes extends CI_Model {
     $aux =json_decode($aux["data"]);
     return $aux->deposito;
   }
- //TODO:
+
   function obtenerRecipientes($depo_id)
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerRecipientes($depo_id) >> ');
@@ -371,32 +414,25 @@ class EntregaOrdenTransportes extends CI_Model {
     $aux =json_decode($aux["data"]);
     return $aux->recipientes->recipiente;
   }
-  //TODO: para el que vea este codigo hay que arreglar el servicio 
+
   function obtenerInFoOTransporteCont($caseId)
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInFoOTransporte($caseId) >> ');
     log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|obtenerInFoOTransporte($caseId): $caseId  >> '.json_encode($caseId));
     $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/info/vuelco/case/".$caseId);
     $aux =json_decode($aux["data"]);
-    return $aux->contenedores->contenedor;   
+    return $aux->contenedores->contenedor;
   }
 
   function CertificadoVuelco($data)
   {
     log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|CertificadoVuelco($caseId) >> ');
-    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|CertificadoVuelco($caseId): $caseId  >> '.json_encode($caseId));
-    $dato[]['_put_contenedoresEntregados_descargar'] = $data['_put_contenedoresEntregados_descargar'];
-    $dato[]['_post_contenedoresEntregados_descargar_recipiente'] = $data['_post_contenedoresEntregados_descargar_recipiente'];
-   
-    // $date['request_box'] = $dato;
+    log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|CertificadoVuelco($caseId): $data  >> '.json_encode($data));
+    $dato[]['_put_contenedoresentregados_descargar'] = $data['_put_contenedoresEntregados_descargar'];
+    $dato[]['_post_contenedoresentregados_descargar_recipiente'] = $data['_post_contenedoresEntregados_descargar_recipiente'];
+
     $rsp = requestBox(REST.'/', $dato);
     $aux = $rsp;
-    // $aux2 = $this->rest->callAPI("POST",REST_PRD."/request_box", $date);
-    // $aux1 = $this->rest->callAPI("PUT",REST_PRD."/contenedoresEntregados/descargar", $dato1);
-    
-    // $aux3 =json_decode($aux1["status"]);
-    // $aux4 =json_decode($aux1["status"]);
-       
   }
 
   function obtenerValorizado()
@@ -449,8 +485,8 @@ class EntregaOrdenTransportes extends CI_Model {
     $data['ortr_id']= $dato['ortr_id'];
     $post['_put_contenedoresEntregados_salida']= $data;
       log_message('INFO','#TRAZA|ENTREGAORDENTRANSPORTE|ContenedoresEntrSalida($data) >> '); 
-      log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|ContenedoresEntrSalida($post): $post >> '.json_encode($post));  
-      $auxx = $this->rest->callAPI("GET",REST."/contenedoresEntregados/salida",$post);
+      log_message('DEBUG','#TRAZA|ENTREGAORDENTRANSPORTE|ContenedoresEntrSalida($post): $post >> '.json_encode($post));
+      $auxx = $this->rest->callAPI("PUT",REST."/contenedoresEntregados/salida",$post);
       $aux =json_decode($auxx["status"]);
       return $aux;
   }

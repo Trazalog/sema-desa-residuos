@@ -8,7 +8,7 @@
 			<label for="Generador" class="col-sm-4 control-label">Generador:</label>
 			<div class="col-sm-8">
 				<input type="text" class="form-control habilitar" name="Generador" value="<?php echo $infoSolicitud->razon_social?>" id="generador" readonly> 
-			</div>	
+			</div>
 		</div>
 	<!--__________________________-->
     <!--_____________ Nro Pedido _____________-->
@@ -54,12 +54,12 @@
                         </div>
     </div>
 	 <div class="form-group fecEntrega">
-	 <label for="FechaEntrega">Fecha de Entrega:</label>
-	 	<div class="input-group date">
-                            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                <input type="date" class="form-control"  name="FechaEntrega" id="fec_entrega">
-     	</div>
-		 <input id="idSelCantPend" type="text" style="display:none;">			
+		<label for="FechaEntrega">Fecha de Entrega:</label>
+			<div class="input-group date">
+															<div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+																	<input type="date" class="form-control"  name="FechaEntrega" id="fec_entrega">
+				</div>
+				<input id="idSelCantPend" type="text" style="display:none;">
 	</div>
 <!--_____________ Tabla info soliccitaodos _____________-->
 <div class="box-body table-scroll">		
@@ -78,11 +78,11 @@
 							echo "<div id='divdato' dato-infoContenedores='".json_encode($infoContenedores)."' dato-ContEntregados='".json_encode($infoContenedoresEntregados)."'>";
 							echo '</div>';
 							if($infoContenedores)
-							{	$id = 0;
+							{
+								$id = 0;
 								foreach($infoContenedores as $fila)
-								{	
+								{
 									echo "<tr ide='$id' data-json='".json_encode($fila)."'>";
-									//echo "<tr data-json= >";
 									    
 										if($infoContenedoresEntregados)
 										{   
@@ -128,7 +128,7 @@
 													if($aux == 0)
 													{echo "<td id='$id'>0</td>";}
 													else{
-													 echo "<td id='$id'>".$aux."</td>";	
+													 echo "<td id='$id'>".$aux."</td>";
 													}
 												}else{
 													
@@ -140,15 +140,15 @@
 											}
 
 										}else{
-											echo "<td id='$id'>".$fila->cantidad_acordada."</td>"; //cantidad pendiente la tendre que calcular con la tabla o los elementos que vienen en contenedoresEntregados Ademas deberia calcular que al tener todas las cantidades pendientes en cero no se deberia poder asiganr 
+											echo "<td id='$id'>".$fila->cantidad_acordada."</td>"; //cantidad pendiente la tendre que calcular con la tabla o los elementos que vienen en contenedoresEntregados Ademas deberia calcular que al tener todas las cantidades pendientes en cero no se deberia poder asiganr
 										}
-																	
+
                                         // echo "<td id='contenedores'><select  id='cont_id'><option  value='' disabled selected >seleccione</option>";
 										// foreach($contenedores as $k){echo '<option  value="'.$k->cont_id.'">'.$k->codigo.'</option>';};
-										// echo "</select></td>"; // aca van los contenedores en este caso es un selct el cual se selecciona el contenedor done ira a parar los residuos este no se setea se deja a disposicion para que el usuario seleccione 
+										// echo "</select></td>"; // aca van los contenedores en este caso es un selct el cual se selecciona el contenedor done ira a parar los residuos este no se setea se deja a disposicion para que el usuario seleccione
                                         // // echo "<td> <input id='' style='border:none;' placeholder='Ingrese cantidad'> </td>";
 									echo '</tr>';
-									$id=$id+1;
+									$id = $id + 1;
 								}
 							}
 						?>
@@ -175,15 +175,11 @@
 			<table id="tbl_contenedoresagregados" class="table table-bordered table-striped" style="display:none">
 				<thead class="thead-dark" bgcolor="#eeeeee">				
 						<tr>
-                               
-							
 								<th style="display:none">Tipo de Residuos</th>
 								<th>Tipo de Carga</th>
 								<th style="display:none">Camion</th>
 								<th>Camion Dominio</th>
 								<th>Contenedor</th>
-								
-                                                     
 						</tr>
 				</thead>
 				<tbody>
@@ -269,12 +265,11 @@
 
 //deshabilita los botones originales de la notificacion estandar						
 $(document).ready(function(){
-			 $('.btnNotifEstandar').hide();
+			$('.btnNotifEstandar').hide();
 			dataCont = JSON.parse($("#divdato").attr("dato-infoContenedores"));
 			dataEnt = JSON.parse($("#divdato").attr("dato-ContEntregados"));
 			console.table(dataCont);
 			console.table(dataEnt);
-			debugger;
 			var cantCont = dataCont.length;
 			var aux = 0;
 			for(var i=0; i<dataCont.length; i++)
@@ -300,21 +295,16 @@ $(document).ready(function(){
 				$("#botonCerrar").removeAttr("style");
 				$(".camion").attr("style","display:none;");
 				$(".fecEntrega").attr("style","display:none;");
-				// aca agregar desactivacion de botones 
 			}
 			
 	});	
 
 $(".btnEntregar").on("click", function(e) {
-	// datajson = $(this).parents("tr").attr("data-json");
-	// console.table(datajson);
-	debugger;
+
 	datajson = JSON.parse($(this).parents("tr").attr("data-json"));
 	ided = $(this).parents("tr").attr("ide");
 	$("#idSelCantPend").val(ided); // aca voy a guardar el id 
-	var cantPend = document.getElementById(ided).innerHTML // aca accedo a la fila y columna cant_pendiente que hice clik la cual tiene un id igual al valor que tiene el atributo de la fila tr con esto voy a poder acceder a dicha columna y fila y poder cambiarle el valor 
-	// que es cuando entrego  un contenedor podre descontar de a uno y tener un if que controle que ese valor no sea cero, cosa que si llega a serlo no permitir seguir agregando cont a entregar, el resultado del decremetno lo podre ingresar en dicha fila y columna es decir actualizarle el valor con lo siguiente
-	//document.getElementById(ided).innerHTML = "200";
+	var cantPend = document.getElementById(ided).innerHTML 
 	if (cantPend != 0)
 	{
 		console.table(cantPend);
@@ -329,14 +319,11 @@ $(".btnEntregar").on("click", function(e) {
 	}else{
 		alert("ATENCION!!! ya entrogo todos los contenedores");
 	}
-	
-	
-	
 });
 
+// en modal contenedores guarda datos en tabla temporal y demas operaciones para enviar
 function OK()
 {
-	
 	$("#modalEntregar").modal('hide');
 	var camion = $("#camion_id").val(); 
 	if( camion == null)
@@ -345,7 +332,7 @@ function OK()
 		alert("ATENCION! debe seleccionar un Camion");
 
 	}else{
-		debugger;
+
 		var entregaCont = new FormData();
 		entregaCont = formToObject(entregaCont);
 		entregaCont.tica_id = $("#tica_id").val();
@@ -370,28 +357,16 @@ function OK()
 		document.getElementById(ided).innerHTML = cantPend;
 	}
 	
-	
-	
 }
 
-function RecargarVista()
+function recargaBandejaEntrada()
 {
-	debugger;
-	var taskId = $('#taskId').val();
-	$.ajax({
-
-			url: 'traz-comp-bpm/Proceso/detalleTarea/' + taskId,
-			success: function(result) {
-					
-													
-			}
-			
-	});
+  linkTo('<?php echo BPM ?>Proceso/index');
 }
 
 function RealizarEntrega()
 {
-			debugger;
+			wo();
 			var contEnt = new FormData();
 			contEnt = formToObject(contEnt);
 			var datos_contenedores_entregados= [];
@@ -400,7 +375,7 @@ function RealizarEntrega()
 						
 					rows.each(function(i,e) { 
 						datos_contenedores_entregados.push(getJson(e));	
-					});	
+					});
 					console.table(datos_contenedores_entregados);
 					if(datos_contenedores_entregados == "")
 					{
@@ -412,7 +387,6 @@ function RealizarEntrega()
 						//llenarlo afuera del each y aca solo armar el arreglo con el push(getJson(e)) por lo tanto usar dos arreglos uno dentro dep each para obtener bien los datos de la tabla y luego afuera recorrerlo ir armando el modelos e ir insertando en otro arreglo que es el que se enviara como final 
 						contEnt.fec_entrega = $("#fec_entrega").val();
 						contEnt.cont_id = datos_contenedores_entregados[j].cont;
-						contEnt.usuario_app = "hugoDS";
 						contEnt.soco_id = $("#soco_id").val();
 						contEnt.tica_id = datos_contenedores_entregados[j].tica_id;
 						contEnt.equi_id_entrega = datos_contenedores_entregados[j].camion;
@@ -425,44 +399,35 @@ function RealizarEntrega()
 						{
 							alert("ATENCION! no selecciono fecha de entrega...");
 						}else{
-							
-						// 	$.ajax({
-						// 	type: "POST",
-						// 	data: {cont_entregados_listo},							
-						// 	url: "general/transporte-bpm/EntregaContenedor/GuardaContEntregado",
-						// 	success: function(respuesta) {
-						// 		if(respuesta == 1)
-						// 		{
-						// 			alertify.success("Contenedor Entregado exitosamente...");
-									
 
-						// 		}else{
-						// 			alertify.error('Error al entregar Contenedor...');
-						// 		}
-					
-					
-						// 	},
-						// 	complete: function(){
-						// 		RecargarVista();
-						// 	}
-						// });
+							$.ajax({
+								type: "POST",
+								data: {cont_entregados_listo},
+								url: "general/transporte-bpm/EntregaContenedor/GuardaContEntregado",
+								success: function(respuesta) {
+									wc();
+									if(respuesta == 1){
+										alertify.success("Contenedoes entregados exitosamente...");
+										recargaBandejaEntrada();
+									}else{
+										alertify.error('Error en completar la Tarea...');
+									}
+						
+
+								},
+								complete: function(){
+									wc();
+								}
+							});
 						}
 						
 					}
 	
 }
-function cerrarTareaTodo()
-{
-	if ($('#miniView').length == 0) {
-        linkTo('<?php echo BPM ?>Tarea');
-    } else {
-        if(existFunction('closeView')) closeView();
-    }
-}
+
 function CerrarTarea()
 {
 	var opcion = 'acepta';
-	alert("La Tarea se esta por cerrar");
 	var taskId = $('#taskId').val();
 	var elegido = {opcion: opcion};	
 	$.ajax({
@@ -470,13 +435,11 @@ function CerrarTarea()
 				data:{ elegido },
 				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 				success: function(result) {
-					
-					alert(result);
 
 									wc();
-									if(result == '{"status":true,"msj":"OK","data":false}'){										
-										alertify.success("Tarea completada exitosamente...");	
-										cerrarTareaTodo();	
+									if(result == '{"status":true,"msj":"OK","data":false}'){
+										alertify.success("Tarea completada exitosamente...");
+										recargaBandejaEntrada();
 									}else{
 										alertify.error('Error en completar la Tarea...');
 										
@@ -487,9 +450,7 @@ function CerrarTarea()
 							 },
 				complete: function(){
 									wc();
-										if(existFunction('cerrarTarea')){
-											cerrarTarea();
-										}	
+
 									}
 		});
 }

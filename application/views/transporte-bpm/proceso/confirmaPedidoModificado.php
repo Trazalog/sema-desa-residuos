@@ -119,14 +119,14 @@ function cerrarConfirma(opcion)
 				data:{ elegido },
 				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 				success: function(result) {
-					
-									alert(result);
 
 									wc();
-									if( result.status ){										
-										alertify.success("Tarea completada exitosamente...");	
+									if( result.status ){
+										response =  JSON.parse(result);
+										recargaBandejaEntrada();
+										alertify.success("Confirmación exitosa...");
 									}else{
-										alertify.error('Error en completar la Tarea...');
+										alertify.error('Error en completar la Confirmacion...');
 									}
 								},
 				error: function(result){
@@ -140,5 +140,10 @@ function cerrarConfirma(opcion)
 									}
 		});
 }
+
+function recargaBandejaEntrada()
+	{
+		linkTo('<?php echo BPM ?>Proceso/index');
+	}
 
 </script>

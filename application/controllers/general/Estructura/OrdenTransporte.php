@@ -12,7 +12,7 @@ class OrdenTransporte extends CI_Controller {
       
    }
 
-  
+
 
 
   // ---------------- Funcion Cargar vista Orden de transporte  y Datos
@@ -59,7 +59,7 @@ class OrdenTransporte extends CI_Controller {
       // ---------------- Funcion Cargar vista Recepcion de orden
 
       function templateRecepcionOrden()
-      
+
       {          
        
 
@@ -73,7 +73,7 @@ class OrdenTransporte extends CI_Controller {
           
       }
    
-       
+
    
        function Guardar_ordentransporte()
        {
@@ -83,10 +83,10 @@ class OrdenTransporte extends CI_Controller {
           echo "ok";
        }
        else{
-          log_message('ERROR','#TRAZA|Solicitud|Eliminar_Zona() >> $resp: '.$resp);
+          log_message('ERROR','#TRAZA|ORDENTRANSPORTE|Guardar_ordentransporte() >> $resp: '.$resp);
           echo 'error';
        }
-           
+
        }
    
        function ObtenerinfoOt()
