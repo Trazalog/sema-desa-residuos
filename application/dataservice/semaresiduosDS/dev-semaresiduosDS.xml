@@ -1,4 +1,4 @@
-<data disableLegacyBoxcarringMode="true" enableBatchRequests="true" enableBoxcarring="true" name="semaresiduosDS" transports="http https local">
+<data enableBatchRequests="true" enableBoxcarring="true" name="semaresiduosDS" transports="http https local">
    <config enableOData="false" id="semaresiduosDS">
       <property name="carbon_datasource_name">SemaResiduosDataSource</property>
    </config>
@@ -892,6 +892,12 @@
       <sql>select count(ce.cont_id) as noEntregados from log.contenedores_entregados ce,  log.ordenes_transporte OT&#xd;  where ce.fec_descarga IS null&#xd;  AND ce.ortr_id = ot.ortr_id&#xd;  and OT.case_id = :case_id</sql>
       <result outputType="json">{&#xd;  "contenedores":{&#xd;    "noEntregados": "$noEntregados"&#xd;   }&#xd;}</result>
       <param name="case_id" sqlType="STRING"/>
+   </query>
+   <query id="contenedoresEntregadosGetPorTipoCargaNick" useConfig="semaresiduosDS">
+      <sql>SELECT&#xd;    C.cont_id&#xd;    , C.codigo&#xd;    , C.descripcion&#xd;  FROM&#xd;    log.contenedores C&#xd;    , log.contenedores_entregados CE&#xd;    , log.solicitantes_transporte st&#xd;    , seg.users u&#xd;    , log.solicitudes_contenedor sc&#xd;  WHERE&#xd;    C.cont_id = CE.cont_id&#xd;    AND CE.ortr_id IS NULL&#xd;    AND CE.tica_id = :tica_id&#xd;    AND st.sotr_id = sc.sotr_id&#xd;    AND sc.soco_id = ce.soco_id&#xd;    AND st.user_id = u.email&#xd;    AND u.usernick = :usernick</sql>
+      <result outputType="json">{&#xd;    "contenedores":{&#xd;      "contenedor":[&#xd;        {&#xd;          "cont_id": "$cont_id",&#xd;          "codigo": "$codigo",&#xd;          "descripcion": "$descripcion"&#xd;        }&#xd;      ]&#xd;    }&#xd;  }</result>
+      <param name="tica_id" sqlType="STRING"/>
+      <param name="usernick" sqlType="STRING"/>
    </query>
    <resource method="POST" path="/departamentos">
       <call-query href="departamentosSet">
@@ -1821,6 +1827,12 @@
    <resource method="GET" path="/contenedoresEntregados/restantes/descarga/case/{case_id}">
       <call-query href="contenedoresEntregadosRestantesDescargar">
          <with-param name="case_id" query-param="case_id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/contenedoresEntregados/tipocarga/{tica_id}/user/{usernick}">
+      <call-query href="contenedoresEntregadosGetPorTipoCargaNick">
+         <with-param name="tica_id" query-param="tica_id"/>
+         <with-param name="usernick" query-param="usernick"/>
       </call-query>
    </resource>
 </data>
