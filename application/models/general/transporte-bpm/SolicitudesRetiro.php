@@ -55,12 +55,13 @@ class SolicitudesRetiro extends CI_Model {
     return $aux->tiposCarga->cargas;				
   }
 
-  function obtenerContenedor()
+  function obtenerContenedor($tica_id, $usernick)
   {
     log_message('INFO','#TRAZA|SolicitudesRetiro|obtenerContenedor >> ');
-    $aux = $this->rest->callAPI("GET",REST."/contenedores");
+    $carga = urlencode($tica_id); // saca los espacios del string de tipo de carga
+    $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/tipocarga/".$carga."/user/".$usernick);
     $aux =json_decode($aux["data"]);
-    return $aux->contenedores->contenedor;				
+    return $aux->contenedores->contenedor;
   }
 
   /**

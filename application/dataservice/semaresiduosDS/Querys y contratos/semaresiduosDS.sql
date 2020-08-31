@@ -1287,6 +1287,43 @@ http://10.142.0.3:8280/services/semaresiduosDS
   retorna 202 si ok
 
 
+-- contenedoresEntregadosGetPorTipoCargaNick (devuelve contenedores de a retirar por nick de generador logueado)
+  recurso:/contenedoresEntregados/tipocarga/{tica_id}/user/{usernick}
+  metodo: get
+
+  SELECT
+    C.cont_id
+    , C.codigo
+    , C.descripcion
+  FROM
+    log.contenedores C
+    , log.contenedores_entregados CE
+    , log.solicitantes_transporte st
+    , seg.users u
+    , log.solicitudes_contenedor sc
+  WHERE
+    C.cont_id = CE.cont_id
+    AND CE.ortr_id IS NULL
+    AND CE.tica_id = :tica_id
+    AND st.sotr_id = sc.sotr_id
+    AND sc.soco_id = ce.soco_id
+    AND st.user_id = u.email
+    AND u.usernick = :usernick
+
+  {
+    "contenedores":{
+      "contenedor":[
+        {
+          "cont_id": "$cont_id",
+          "codigo": "$codigo",
+          "descripcion": "$descripcion"
+        }
+      ]
+    }
+  }
+
+
+
 
 
 -- contenedoresSolicitadosGet (/solicitudContenedores/{usuario_app}, para pantalla entrega contenedores tambien)

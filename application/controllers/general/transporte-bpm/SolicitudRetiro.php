@@ -69,8 +69,20 @@ class SolicitudRetiro extends CI_Controller {
     echo json_encode($response);
   }
       
+  /**
+  * Devuelve contenedores a retirar por usuario logueado y por tipo de carga
+  * @param string tipo carga
+  * @return array coninfo contenedores a entregar
+  */
+  function obtenerContenedor()
+  {     
+    log_message('INFO','#TRAZA|| >> ');
+    $tica_id = $this->input->post('tica_id');
+    $usernick = userNick();
+    $resp =$this->SolicitudesRetiro->obtenerContenedor($tica_id, $usernick);
+    echo json_encode($resp);
+  }
 
-     
   
 
     
