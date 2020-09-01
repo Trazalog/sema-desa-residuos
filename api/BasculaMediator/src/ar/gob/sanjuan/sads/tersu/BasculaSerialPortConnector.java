@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.util.Enumeration;
 
 public class BasculaSerialPortConnector {
 
@@ -18,7 +19,7 @@ public class BasculaSerialPortConnector {
 		String wantedPortName = args[0];
 		System.setProperty("gnu.io.rxtx.SerialPorts", wantedPortName);
 
-		var portIdentifiers = CommPortIdentifier.getPortIdentifiers();
+		Enumeration portIdentifiers = CommPortIdentifier.getPortIdentifiers();
 //
 // Check each port identifier if
 //   (a) it indicates a serial (not a parallel) port, and

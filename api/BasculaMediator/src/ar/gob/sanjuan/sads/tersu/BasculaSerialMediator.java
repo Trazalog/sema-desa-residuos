@@ -8,12 +8,13 @@ import org.apache.synapse.mediators.AbstractMediator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Enumeration;
 
 /**
  * Mediator que permite conectarse a una Báscula conectada al puerto serial
  * y tomar el peso actual que esat midiendo
  * @author rruiz - Trazalog
- * @date   25 jun 2020
+ * @date   25 jun 2020port
  */
 public class BasculaSerialMediator extends AbstractMediator {
 
@@ -38,7 +39,7 @@ public class BasculaSerialMediator extends AbstractMediator {
 		log.info("Abriendo puerto serie " + portName);
 
 		System.setProperty("gnu.io.rxtx.SerialPorts", portName);
-		var portIdentifiers = CommPortIdentifier.getPortIdentifiers();
+		Enumeration portIdentifiers = CommPortIdentifier.getPortIdentifiers();
 
 		CommPortIdentifier portId = null;  // will be set if port found
 		while (portIdentifiers.hasMoreElements()) {
@@ -133,11 +134,11 @@ public class BasculaSerialMediator extends AbstractMediator {
 					throw e;
 				}
 			}
-			return true;
 		} catch (Exception e) {
-			log.fatal(e);
+			log.error("Imposible tomar peso",e);
+			log.error(e);
 		}
-		return false;
+		return true;
 	}
 }
 
