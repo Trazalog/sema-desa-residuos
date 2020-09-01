@@ -858,6 +858,75 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
+         
+         
+         <log level="custom" category="DEBUG" description="donde 5">
+            <property name="msg actual 7 despues de ACT CASE ID" expression="json-eval($)"/>
+         </log>
+         <header name="Accept" scope="transport" value="application/json"/>
+	 <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+	 <script language="js">mc.setPayloadJSON(mc.getProperty("ORIGINAL_PAYLOAD"));</script>
+         <payloadFactory media-type="json" description="actualizar solicitud">
+            <format>                               {      
+            {
+             "p1" : "$1",
+             "p2" : "$2",
+             "p3" : "$3",
+             "p4" : "$4",
+             "prefijoTipoDocumento" : "DAC-01"
+            }
+            <args>
+               <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+               <arg evaluator="xml" expression="get-property('sotr_cuit')"/>
+               <arg evaluator="xml" expression="get-property('tran_cuit')"/>
+               <arg evaluator="xml" expression="get-property('dominio')"/>
+            </args>
+         </payloadFactory>
+         <log level="custom" category="DEBUG" description="donde 4">
+            <property name="msg actual 10 despues de hash " expression="json-eval($)"/>
+         </log>
+         <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
+            <then/>
+            <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <payloadFactory media-type="json" description="borrar solicitud">
+                  <format>{ "_delete_ordentransporte": { "ortr_id":"$1"} }</format>
+                  <args>
+                     <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+                  </args>
+               </payloadFactory>
+               <property name="uri.var.ordenTransporteDELETE" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
+               <call>
+                  <endpoint>
+                     <http method="DELETE" uri-template="{uri.var.ordenTransporteDELETE}"/>
+                  </endpoint>
+               </call>
+               <payloadFactory media-type="json" description="Borrar instancia bpm">
+                  <format>{"caseid":"$1", "session":"$2"} </format>
+                  <args>
+                     <arg evaluator="xml" expression="get-property('uri.var.caseid')"/>
+                     <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
+                  </args>
+               </payloadFactory>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <property name="uri.var.borrarInstanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia/')" scope="default"/>
+               <log level="custom" category="DEBUG" description="donde 11">
+                  <property name="msg actual 11 eliminando caso de BPM" expression="json-eval($)"/>
+                  <property name="url actual 11 eliminando caso de BPM" expression="$ctx:uri.var.borrarInstanciaBPM_url"/>
+               </log>
+               <call>
+                  <endpoint>
+                     <http method="DELETE" uri-template="{uri.var.borrarInstanciaBPM_url}"/>
+                  </endpoint>
+               </call>
+               <property name="TOOLS_ERROR" value="PUT /ordenTransporte/caseid con problemas" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </else>
+         </filter>
+         
          <log level="full" category="DEBUG" description="salida insequence"/>
          <loopback/>
       </inSequence>
@@ -883,3 +952,4 @@
       </faultSequence>
    </resource>
 </api>
+                        

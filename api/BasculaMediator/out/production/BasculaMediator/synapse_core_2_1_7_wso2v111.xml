@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="synapse-core_2.1.7.wso2v111">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/dev/sema-desa-residuos/synapse-core_2.1.7.wso2v111.jar!/" />
+      <root url="jar://$USER_HOME$/dev/sema-desa-residuos/org.wso2.carbon.logging_4.4.40.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
