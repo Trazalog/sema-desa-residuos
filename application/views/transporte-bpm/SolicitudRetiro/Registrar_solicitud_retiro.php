@@ -115,11 +115,7 @@
                   <i class="glyphicon glyphicon-check"></i>
                 </div>
                 <select class="form-control select2 select2-hidden-accesible" name="cont_ent" id="cont_ent">
-                <?php
-										// foreach ($contenedores as $c) {
-										// 		echo '<option  value="'.$c->cont_id.'">'.$c->codigo.'</option>';
-										// }
-									?>
+
                 </select>
               </div>
             </div>
@@ -585,8 +581,7 @@
 
       wo();
       var tica_id = this.value;
-      alert(tica_id);
-
+      
       $.ajax({
         type: "POST",
         data: {

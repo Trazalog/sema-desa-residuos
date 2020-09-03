@@ -12,7 +12,7 @@ class SolicitudRetiro extends CI_Controller {
   * @return 
   */
   function __construct()
-  {        
+  {
     parent::__construct();
     $this->load->model('general/transporte-bpm/SolicitudesRetiro');
   }
@@ -26,7 +26,7 @@ class SolicitudRetiro extends CI_Controller {
   {
     $data['transportista'] = $this->SolicitudesRetiro->obtener_Transportista();
     $data['nuevo_sore_id'] = $this->SolicitudesRetiro->solicitudRetiroProx();
-    $data['contenedores'] =  $this->SolicitudesRetiro->obtenerContenedor();
+    //$data['contenedores'] =  $this->SolicitudesRetiro->obtenerContenedor();
     $this->load->view('transporte-bpm/SolicitudRetiro/Registrar_solicitud_retiro', $data);
   }
    
