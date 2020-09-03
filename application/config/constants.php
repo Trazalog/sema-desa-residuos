@@ -175,7 +175,6 @@ define('FILES', 'files/');
 
 # DNATO
 define('LOGIN', true);
-//define('DNATO', 'http://localhost/login/');
 define('DNATO', 'http://localhost/traz-comp-dnato/');
 
 
