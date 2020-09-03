@@ -61,6 +61,11 @@ class Dash extends CI_Controller {
 																	"link": "general/Estructura/Contenedor/templateContenedores"
 															},
 															{
+																	"titulo": "Liquidacion de O.T.",
+																	"icono": "fa fa-genderless",
+																	"link": "general/Estructura/LiquidacionOT/templateLiquidacion"
+															},
+															{
 																"titulo": "Solicitud de Contenedores ",
 																"icono": "fa fa-genderless",
 																"link": "general/transporte-bpm/Solicitud_Pedido/templateSolicitudPedidos"
