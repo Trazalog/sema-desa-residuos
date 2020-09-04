@@ -1,0 +1,35 @@
+<api xmlns="http://ws.apache.org/ns/synapse" name="toolsLogBasculaAPI" context="/tools/log/bascula">
+   <resource methods="GET" uri-template="/peso">
+      <inSequence>
+         <log level="custom">
+            <property name="Tomando peso" value="Tomando peso Bascula"/>
+         </log>
+         <spring:spring xmlns:spring="http://ws.apache.org/ns/synapse" bean="BasculaBean" key="conf:tools/BasculaBean.xml"/>
+         <log level="custom" category="DEBUG" description="donde 3">
+            <property name="peso obtenido" expression="$ctx:pesoBascula"/>
+         </log>
+      </inSequence>
+      <outSequence>
+         <log level="full" category="DEBUG">
+            <property name="MESSAGE" value="FIRST"/>
+         </log>
+         <payloadFactory media-type="json" description="Mensaje">
+            <format>{"respuesta":              { "resultado" : "ok"              , "peso":"$1"                   }             }</format>
+            <args>
+               <arg evaluator="xml" expression="get-property('pesoBascula')"/>
+            </args>
+         </payloadFactory>
+         <log level="full"/>
+         <send/>
+      </outSequence>
+      <faultSequence>
+         <log level="full" category="DEBUG">
+            <property name="MESSAGE" value="FIRST"/>
+         </log>
+         <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+         <property name="TOOLS_ERROR" value="Error General tomando peso" type="STRING"/>
+         <sequence key="toolsFault"/>
+      </faultSequence>
+   </resource>
+</api>
+                        
