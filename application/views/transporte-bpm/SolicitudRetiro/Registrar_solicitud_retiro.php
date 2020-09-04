@@ -96,7 +96,7 @@
                 </div>
                 <select class="form-control" id="tica_id" style="width: 100%;">
                   <?php
-										foreach ($Rsu as $i) {     
+										foreach ($Rsu as $i) {
 												echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
 										}
 									?>
@@ -115,11 +115,7 @@
                   <i class="glyphicon glyphicon-check"></i>
                 </div>
                 <select class="form-control select2 select2-hidden-accesible" name="cont_ent" id="cont_ent">
-                <?php
-										foreach ($contenedores as $c) {     
-												echo '<option  value="'.$c->cont_id.'">'.$c->codigo.'</option>';
-										}
-									?>
+
                 </select>
               </div>
             </div>
@@ -548,7 +544,7 @@
 
 
   // carga tipo de RSU dependiendo de Transportista
-  $('#transportista').change(function() {   
+  $('#transportista').change(function() {
     var tran_id = this.value;
     wo();
     $.ajax({
@@ -581,38 +577,39 @@
   });
 
   // carga contenedores dependiendo de RSU	
-  // $("#tica_id").change(function() {
+  $("#tica_id").change(function() {
 
-    //   var tica_id = this.value;
-    //   alert(tica_id);
+      wo();
+      var tica_id = this.value;
+      
+      $.ajax({
+        type: "POST",
+        data: {
+          tica_id: tica_id
+        },
+        dataType: 'json',
+        url: "general/transporte-bpm/SolicitudRetiro/obtenerContenedor",
+        success: function(respuesta) {
+          wc();
+          var selector_cont = $("#cont_ent");
+          selector_cont.find('option').remove();
+          selector_cont.append('<option value="" disabled selected>-Seleccione opcion-</option>');
+          respuesta.forEach(function(e) {
+            selector_cont.append("<option value='" + e.cont_id + "'>" + e.codigo + "</option");
+          });
+        },
+        error: function() {
+          wc();
+          var selector_cont = $("#cont_ent");
+          selector_cont.find('option').remove();
+          selector_cont.append('<option value="" disabled selected>-Sin contenedores de este RSU-</option>');
+        },
+        complete: function() {
+          wc();
+        }
+      });
 
-    //   $.ajax({
-    //     type: "POST",
-    //     data: {
-    //       tica_id: tica_id
-    //     },
-    //     dataType: 'json',
-    //     url: "general/Estructura/Contenedor/",
-    //     success: function(respuesta) {
-
-    //       var selector_cont = $("#cont_ent");
-    //       selector_cont.find('option').remove();
-    //       selector_cont.append('<option value="" disabled selected>-Seleccione opcion-</option>');
-    //       respuesta.forEach(function(e) {
-    //         selector_cont.append("<option value='" + e.cont_id + "'>" + e.codigo + "</option");
-    //       });
-    //     },
-    //     error: function() {
-    //       var selector_cont = $("#cont_ent");
-    //       selector_cont.find('option').remove();
-    //       selector_cont.append('<option value="" disabled selected>-Sin contenedores de este RSU-</option>');
-    //     },
-    //     complete: function() {
-
-    //     }
-    //   });
-
-  // });
+  });
 
   // funcion agregar contenedores a tabla 
   function Agregar_contenedor() {

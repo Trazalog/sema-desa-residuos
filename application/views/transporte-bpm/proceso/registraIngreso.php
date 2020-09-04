@@ -328,7 +328,7 @@
 					data:{ data },
 					url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 					success: function(result) {
-
+								//debugger;
 								wc();
 								if(result.status){
 									alertify.success("Contenedoes actualizados exitosamente...");
@@ -339,13 +339,13 @@
 					},
 					error: function(result){
 								alertify.error('Error ingresando contenedor...');
-								wc();		
+								wc();
 					},
 					complete: function(){
 								wc();
 					}
 			});
-		}	
+		}
 
 	// guarda incidencia nueva
 		function modalIncidencia(){
@@ -381,7 +381,7 @@
 			});
 		}
 
-		// recarga bandeja de entrada
+	// recarga bandeja de entrada
 		function recargaBandejaEntrada()
 		{
 			linkTo('<?php echo BPM ?>Proceso/index');

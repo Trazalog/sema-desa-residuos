@@ -50,6 +50,11 @@ if(!function_exists('usrIdTransportistaByNick')){
 	}
 }
 
+/**
+* Devuelve id de Generador por nick de usuario logueado
+* @param
+* @return string $sotr_id
+*/
 if(!function_exists('usrIdGeneradorByNick')){
 
 	function usrIdGeneradorByNick(){

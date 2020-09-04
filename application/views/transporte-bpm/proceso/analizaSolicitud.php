@@ -11,7 +11,7 @@
 						<tr>
 								<th>Tipo Residuo</th>
 								<th>Cantidad Solicitada</th>
-								<th>Cantidad Propuesta</th>                    
+								<th>Cantidad Propuesta</th>
 						</tr>
 				</thead>
 				<tbody>

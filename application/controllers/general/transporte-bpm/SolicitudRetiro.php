@@ -12,7 +12,7 @@ class SolicitudRetiro extends CI_Controller {
   * @return 
   */
   function __construct()
-  {        
+  {
     parent::__construct();
     $this->load->model('general/transporte-bpm/SolicitudesRetiro');
   }
@@ -26,7 +26,7 @@ class SolicitudRetiro extends CI_Controller {
   {
     $data['transportista'] = $this->SolicitudesRetiro->obtener_Transportista();
     $data['nuevo_sore_id'] = $this->SolicitudesRetiro->solicitudRetiroProx();
-    $data['contenedores'] =  $this->SolicitudesRetiro->obtenerContenedor();
+    //$data['contenedores'] =  $this->SolicitudesRetiro->obtenerContenedor();
     $this->load->view('transporte-bpm/SolicitudRetiro/Registrar_solicitud_retiro', $data);
   }
    
@@ -68,13 +68,20 @@ class SolicitudRetiro extends CI_Controller {
     $response = $this->SolicitudesRetiro->obtener_Tipo_residuo($this->input->post('tran_id'));
     echo json_encode($response);
   }
-      
 
-     
-  
-
-    
-
-      
+  /**
+  * Devuelve contenedores a retirar por usuario logueado y por tipo de carga
+  * @param string tipo carga
+  * @return array coninfo contenedores a entregar
+  */
+  function obtenerContenedor()
+  {     
+    log_message('INFO','#TRAZA|SOLICITUDRETIRO|obtenerContenedor() >> ');
+    $tica_id = $this->input->post('tica_id');
+    $usernick = userNick();
+    log_message('DEBUG','#TRAZA|SOLICITUDRETIRO|obtenerContenedor() $tica_id: >> '.json_encode($tica_id));
+    $resp =$this->SolicitudesRetiro->obtenerContenedor($tica_id, $usernick);
+    echo json_encode($resp);
+  }
 
 }
