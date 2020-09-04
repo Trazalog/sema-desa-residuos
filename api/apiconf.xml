@@ -1,6 +1,8 @@
 <!--?xml version="1.0" encoding="UTF-8"?-->
 <api>
 	<api_url>http://10.142.0.7:8280/tools</api_url>
+        <soa_firmadigital_url>https://soa.sanjuan.gob.ar/ciudadano_get_hash_validacion</soa_firmadigital_url>
+        <soa_firmadigital_auth>20286448276.CUIT:jpL1m3ruTT1</soa_firmadigital_auth>
 	<dataservices_url>http://10.142.0.7:8280/services/semaresiduosDS</dataservices_url>
 </api>
 

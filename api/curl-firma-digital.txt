@@ -1,0 +1,7 @@
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --header "Accept: application/json; charset=utf-8" \
+  --header "Authorization:Basic MjAyODY0NDgyNzYuQ1VJVDpqcEwxbTNydVRUMQ==" \
+  --data  '{ "p1" : "248", "p2" : "1241242141", "p3" : "123456", "p4" : "asf", "prefijoTipoDocumento" : "DAC-01" }'\
+   https://soa.sanjuan.gob.ar/ciudadano_get_hash_validacion > /tmp/rodo.txt
+
