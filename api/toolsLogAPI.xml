@@ -1,4 +1,4 @@
-<api xmlns="http://ws.apache.org/ns/synapse" name="toolsLogAPIv06" context="/tools/log">
+<api xmlns="http://ws.apache.org/ns/synapse" name="toolsLogAPIv06" context="/tools/log/v06">
    <resource methods="POST" uri-template="/solicitudContenedores">
       <inSequence>
          <property name="uri.var.bpmSession" value="$.uri.var.bpmSession" type="STRING"/>
@@ -756,12 +756,14 @@
          <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="apiconf" expression="get-property('registry','conf:tools/apiconf.xml')" scope="default" type="OM"/>
          <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="api_url" expression="$ctx:apiconf//api_url"/>
          <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="dataservices_url" expression="$ctx:apiconf//dataservices_url"/>
+         <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="soa_firmadigital_url" expression="$ctx:apiconf//soa_firmadigital_url"/>
+         <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="soa_firmadigital_auth" expression="$ctx:apiconf//soa_firmadigital_auth"/>
          <log level="custom">
-            <property name="donde" value="dentro de generacion Orden Transporte"/>
+            <property name="donde" value="Generando cabecera Orden Transporte"/>
             <property name="payload" expression="json-eval($)"/>
          </log>
          <script language="js">var payload = mc.getPayloadJSON();  mc.setProperty("ORIGINAL_PAYLOAD",JSON.stringify(payload));</script>
-         <payloadFactory media-type="json" description="crear ot">
+<payloadFactory media-type="json" description="crear ot">
             <format>       {          "_post_ordentransporte":{          "fec_retiro":"$1",         "difi_id":"$2",       "sotr_id":"$3",       "equi_id":"$4",       "chof_id":"$5",        "usuario_app": "$6"  ,"teot_id":"$7" ,"tran_id":"$8"  }     }     </format>
             <args>
                <arg evaluator="json" expression="$.ordenTransporte.fec_retiro"/>
@@ -778,7 +780,7 @@
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
          <log level="custom" description="aca">
-            <property name="msg actual 2 antes orden transporte " expression="json-eval($)"/>
+            <property name="Msg listo por enviar a dataservice generacion OT" expression="json-eval($)"/>
          </log>
          <property name="uri.var.ordenTransporte_url" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
          <call>
@@ -795,7 +797,7 @@
             </else>
          </filter>
          <log level="custom" description="donde 3">
-            <property name="msg actual 3 despues orden transporte" expression="json-eval($)"/>
+            <property name="Armando mensaje para generar detalle OT" expression="json-eval($)"/>
             <property name="ortr id" expression="json-eval($.respuesta.ortr_id)"/>
          </log>
          <property name="setIdEnHijos_elemento_origen" value="ordenTransporte" type="STRING"/>
@@ -808,7 +810,7 @@
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
          <log level="custom" description="donde 4">
-            <property name="msg actual 4 antes de contenedores entregados solicitud retiro " expression="json-eval($)"/>
+            <property name="Msg detalle listo por enviar a dataservice" expression="json-eval($)"/>
          </log>
          <property name="uri.var.contenedoresRetirados_url" expression="fn:concat($ctx:dataservices_url,'/_put_contenedores_retirados_batch_req')" scope="default"/>
          <call>
@@ -830,7 +832,7 @@
                </payloadFactory>
                <property name="uri.var.ordenTransporteDELETE" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
                <log level="custom" description="donde delete 4">
-                  <property name="msg delete" expression="json-eval($)"/>
+                  <property name="Error en generacion detalle borrando OT" expression="json-eval($)"/>
                   <property name="url delete" expression="$ctx:uri.var.ordenTransporteDELETE"/>
                </log>
                <call>
@@ -843,7 +845,7 @@
             </else>
          </filter>
          <log level="custom" description="donde 4">
-            <property name="msg actual 5 despues de contenedores retirados" expression="json-eval($)"/>
+            <property name="Lanzando proceso BPM para OT" expression="json-eval($)"/>
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
@@ -855,7 +857,7 @@
             </args>
          </payloadFactory>
          <log level="custom" description="donde 4">
-            <property name="msg actual 5 antes de BPM" expression="json-eval($)"/>
+            <property name="Msg listo para llamar a servicio BPM" expression="json-eval($)"/>
          </log>
          <property name="uri.var.instanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia')" scope="default"/>
          <call>
@@ -863,6 +865,8 @@
                <http method="POST" uri-template="{uri.var.instanciaBPM_url}"/>
             </endpoint>
          </call>
+         <property name="uri.var.caseid" expression="json-eval($.payload.caseId)" type="STRING"/>
+         <property name="uri.var.bpmSession" expression="json-eval($.session)" type="STRING"/>
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
             <then/>
             <else>
@@ -877,7 +881,7 @@
                </payloadFactory>
                <property name="uri.var.ordenTransporteDELETE" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
                <log level="custom" description="donde delete 4">
-                  <property name="msg delete" expression="json-eval($)"/>
+                  <property name="Error generando proceso, eliminando OT" expression="json-eval($)"/>
                   <property name="url delete" expression="$ctx:uri.var.ordenTransporteDELETE"/>
                </log>
                <call>
@@ -889,17 +893,109 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 4">
-            <property name="msg actual 6 despues de BPM" expression="json-eval($)"/>
+         <log level="custom" description="pidiendo hash">
+            <property name="BPM Generado, genero firma digital" expression="json-eval($)"/>
          </log>
-         <property name="uri.var.caseid" expression="json-eval($.payload.caseId)" type="STRING"/>
-         <property name="uri.var.bpmSession" expression="json-eval($.session)" type="STRING"/>
+         <property name="Server" scope="transport" action="remove"/>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <header name="Accept-Encoding" scope="transport" value="gzip,deflate"/>
+         <header name="Content-Type" scope="transport" action="remove"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <property name="uri.var.ordenTransporteGET" expression="fn:concat($ctx:dataservices_url,'/ordenesTransporte/lista/',$ctx:setIdEnHijos_id_padre)" scope="default"/>
+         <log level="custom" description="pidiendo hash">
+            <property name="url para consultar OT" expression="get-property('uri.var.ordenTransporteGET')"/>
+         </log>
+         <call>
+            <endpoint>
+               <http method="GET" uri-template="{uri.var.ordenTransporteGET}"/>
+            </endpoint>
+         </call>
+         <log level="custom" description="OT RETORNADA">
+            <property name="retorna OT" expression="json-eval($)"/>
+         </log>
+         <payloadFactory media-type="json" description="actualizar solicitud">
+            <format>                                           {             "p1" : "$1",             "p2" : "$2",             "p3" : "$3",             "p4" : "$4",             "prefijoTipoDocumento" : "DAC-01"      }            </format>
+            <args>
+               <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+               <arg evaluator="json" expression="$.ordenTransporte.ordenesTransporte[0].cuit"/>
+               <arg evaluator="json" expression="$.ordenTransporte.ordenesTransporte[0].tran_cuit"/>
+               <arg evaluator="json" expression="$.ordenTransporte.ordenesTransporte[0].dominio"/>
+            </args>
+         </payloadFactory>
+         <log level="custom" description="antes hash">
+            <property name="msg armado por obtener firma digital" expression="json-eval($)"/>
+            <property name="url" expression="$ctx:soa_firmadigital_url"/>
+            <property name="auth" expression="$ctx:soa_firmadigital_auth"/>
+         </log>
+         <header name="Accept" scope="transport" value="application/json; charset=utf-8"/>
+         <header name="Authorization" scope="transport" expression="fn:concat('Basic ', base64Encode($ctx:soa_firmadigital_auth))"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <property name="uri.var.soa_firma_digital_urlPOST" expression="$ctx:soa_firmadigital_url"/>
+         <call>
+            <endpoint>
+               <http method="POST" uri-template="{uri.var.soa_firma_digital_urlPOST}"/>
+            </endpoint>
+         </call>
+         <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
+            <then>
+               <log level="custom" description="OT RETORNADA">
+                  <property name="retorna hash" expression="json-eval($)"/>
+               </log>
+            </then>
+            <else>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <payloadFactory media-type="json" description="borrar solicitud">
+                  <format>{ "_delete_ordentransporte": { "ortr_id":"$1"} }</format>
+                  <args>
+                     <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+                  </args>
+               </payloadFactory>
+               <property name="uri.var.ordenTransporteDELETE" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
+               <call>
+                  <endpoint>
+                     <http method="DELETE" uri-template="{uri.var.ordenTransporteDELETE}"/>
+                  </endpoint>
+               </call>
+               <payloadFactory media-type="json" description="Borrar instancia bpm">
+                  <format>{"caseid":"$1", "session":"$2"} </format>
+                  <args>
+                     <arg evaluator="xml" expression="get-property('uri.var.caseid')"/>
+                     <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
+                  </args>
+               </payloadFactory>
+               <header name="Accept" scope="transport" value="application/json"/>
+               <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+               <property name="uri.var.borrarInstanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia/')" scope="default"/>
+               <log level="custom" description="donde 11">
+                  <property name="msg actual 11 eliminando caso de BPM" expression="json-eval($)"/>
+                  <property name="url actual 11 eliminando caso de BPM" expression="$ctx:uri.var.borrarInstanciaBPM_url"/>
+               </log>
+               <call>
+                  <endpoint>
+                     <http method="DELETE" uri-template="{uri.var.borrarInstanciaBPM_url}"/>
+                  </endpoint>
+               </call>
+               <property name="TOOLS_ERROR" value="PUT /ordenTransporte/caseid con problemas" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </else>
+         </filter>
+         <log level="custom" description="post firma">
+            <property name="BPM lanzado y firma digital generada, actualizando caseid y hash en OT" expression="json-eval($)"/>
+            <property name="Firma Digital hash" expression="json-eval($.hash)"/>
+         </log>
+         <property name="uri.var.firmaDigitalHash" expression="json-eval($.hash)" type="STRING"/>
+         <log level="custom" description="donde 4">
+            <property name="BPM lanzado y firma digital generada, actualizando caseid y hash en OT" expression="json-eval($)"/>
+         </log>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
          <payloadFactory media-type="json" description="actualizar solicitud">
-            <format>                               {      "_put_ordentransporte_caseid":{        "case_id":"$1",         "ortr_id":"$2"        }      }      </format>
+            <format>                               {      "_put_ordentransporte_caseyfirma":{        "case_id":"$1",        "firma_digital":"$2", "ortr_id":"$3"        }      }      </format>
             <args>
-               <arg evaluator="json" expression="$.payload.caseId"/>
+               <arg evaluator="xml" expression="get-property('uri.var.caseid')"/>
+               <arg evaluator="xml" expression="get-property('uri.var.firmaDigitalHash')"/>
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
             </args>
          </payloadFactory>
@@ -907,10 +1003,10 @@
             <property name="msg actual 7 despues de BPM antes de actualizar caseid" expression="$ctx:caseid"/>
             <property name="msg actual 7 despues de BPM antes de actualizar caseid" expression="json-eval($)"/>
          </log>
-         <property name="uri.var.ordenTransporteCaseId_url" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte/caseid')" scope="default"/>
+         <property name="uri.var.ordenTransporteCaseYFirma_url" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte/caseYFirma')" scope="default"/>
          <call>
             <endpoint>
-               <http method="PUT" uri-template="{uri.var.ordenTransporteCaseId_url}"/>
+               <http method="PUT" uri-template="{uri.var.ordenTransporteCaseYFirma_url}"/>
             </endpoint>
          </call>
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
