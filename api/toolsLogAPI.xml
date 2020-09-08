@@ -25,7 +25,7 @@
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
          <property name="uri.var.solicitudContenedor_url" expression="fn:concat($ctx:dataservices_url,'/solicitudContenedor')" scope="default"/>
-         <log level="custom">
+         <log level="custom" category="DEBUG">
             <property name="donde" value="dentro de solicitudContenedor RR"/>
             <property name="payload" expression="json-eval($)"/>
             <property name="api url" expression="$ctx:uri.var.solicitudContenedor_url"/>
@@ -43,7 +43,7 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 3">
+         <log level="custom"  category="DEBUG" description="donde 3">
             <property name="msg actual 3 despues solicitud contenedor" expression="json-eval($)"/>
             <property name="soco id" expression="json-eval($.respuesta.soco_id)"/>
          </log>
@@ -56,11 +56,11 @@
          <script language="js" key="conf:tools/setIdEnHijos.js" function="setIdEnHijos"/>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="msg actual 4 antes de contenedores solicitados" expression="json-eval($)"/>
          </log>
          <property name="uri.var.contenedoresSolicitados_url" expression="fn:concat($ctx:dataservices_url,'/_post_solicitudcontenedor_tipocarga_batch_req')" scope="default"/>
-         <log level="custom">
+         <log level="custom"  category="DEBUG">
             <property name="payload" expression="json-eval($)"/>
             <property name="invocar url" expression="$ctx:uri.var.contenedoresSolicitados_url"/>
          </log>
@@ -91,7 +91,7 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="msg actual 5 despues de contenedores solicitados" expression="json-eval($)"/>
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
@@ -103,7 +103,7 @@
                <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
             </args>
          </payloadFactory>
-         <log level="custom" description="donde 4">
+         <log level="custom" description="donde 4"  category="DEBUG">
             <property name="msg actual 5 antes de BPM" expression="json-eval($)"/>
          </log>
          <property name="uri.var.instanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia')" scope="default"/>
@@ -112,7 +112,7 @@
                <http method="POST" uri-template="{uri.var.instanciaBPM_url}"/>
             </endpoint>
          </call>
-         <log level="custom" description="resp bonita 4">
+	 <log level="custom"  category="DEBUG" description="resp bonita 4">
             <property name="resp" expression="get-property('axis2', 'HTTP_SC')"/>
          </log>
          <filter source="get-property('axis2', 'HTTP_SC')" regex="2[0-9][0-9]">
@@ -127,7 +127,7 @@
                      <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
                   </args>
                </payloadFactory>
-               <log level="custom" description="delete sol">
+	       <log level="custom"  category="DEBUG" description="delete sol">
                   <property name="delete" expression="json-eval($)"/>
                </log>
                <property name="uri.var.solicitudContenedorDELETE" expression="fn:concat($ctx:dataservices_url,'/solicitudContenedor')" scope="default"/>
@@ -140,7 +140,7 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="msg actual 6 despues de BPM" expression="json-eval($)"/>
          </log>
          <property name="uri.var.caseid" expression="json-eval($.payload.caseId)" type="STRING"/>
@@ -154,7 +154,7 @@
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
             </args>
          </payloadFactory>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="msg actual 7 despues de BPM antes de actualizar caseid" expression="json-eval($)"/>
          </log>
          <property name="uri.var.solicitudContenedorCaseId_url" expression="fn:concat($ctx:dataservices_url,'/solicitudContenedor/caseid')" scope="default"/>
@@ -184,7 +184,7 @@
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <property name="uri.var.borrarInstanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia/')" scope="default"/>
-               <log level="custom" description="donde 10">
+               <log level="custom"  category="DEBUG" description="donde 10">
                   <property name="msg actual 10 eliminando caso de BPM" expression="json-eval($)"/>
                   <property name="url actual 10 eliminando caso de BPM" expression="$ctx:uri.var.borrarInstanciaBPM_url"/>
                </log>
@@ -197,11 +197,11 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="full" description="salida insequence"/>
+         <log level="full"  category="DEBUG" description="salida insequence"/>
          <loopback/>
       </inSequence>
       <outSequence>
-         <log level="full">
+         <log  category="DEBUG" level="full">
             <property name="MESSAGE" value="FIRST"/>
          </log>
          <payloadFactory media-type="json" description="Mensaje error">
@@ -242,7 +242,7 @@
          <property name="messageType" value="application/json" scope="axis2"/>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
-         <log level="custom" description="aca">
+	 <log level="custom"  category="DEBUG" description="aca">
             <property name="msg actual 2 antes solicitud retiro contenedor " expression="json-eval($)"/>
          </log>
          <property name="uri.var.solicitudRetiro_url" expression="fn:concat($ctx:dataservices_url,'/solicitudRetiro')" scope="default"/>
@@ -259,7 +259,7 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 3">
+         <log level="custom"  category="DEBUG" description="donde 3">
             <property name="msg actual 3 despues solicitud retiro contenedor" expression="json-eval($)"/>
             <property name="sore id" expression="json-eval($.respuesta.sore_id)"/>
          </log>
@@ -272,7 +272,7 @@
          <script language="js" key="conf:tools/setIdEnHijos.js" function="setIdEnHijos"/>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="msg actual 4 antes de contenedores entregados solicitud retiro " expression="json-eval($)"/>
          </log>
          <property name="uri.var.contenedoresEntregadorRetirar_url" expression="fn:concat($ctx:dataservices_url,'/_put_contenedores_entregados_retirar_batch_req')" scope="default"/>
@@ -303,7 +303,7 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="msg actual 5 despues de contenedores solicitados" expression="json-eval($)"/>
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
@@ -315,7 +315,7 @@
                <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
             </args>
          </payloadFactory>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="msg actual 5 antes de BPM" expression="json-eval($)"/>
          </log>
          <property name="uri.var.instanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia')" scope="default"/>
@@ -346,7 +346,7 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="msg actual 6 despues de BPM" expression="json-eval($)"/>
          </log>
          <property name="uri.var.caseid" expression="json-eval($.payload.caseId)" type="STRING"/>
@@ -360,7 +360,7 @@
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
             </args>
          </payloadFactory>
-         <log level="custom" description="donde 4">
+         <log level="custom" category="DEBUG" description="donde 4">
             <property name="msg actual 7 despues de BPM antes de actualizar caseid" expression="json-eval($)"/>
          </log>
          <property name="uri.var.solicitudRetiroCaseId_url" expression="fn:concat($ctx:dataservices_url,'/solicitudRetiro/caseid')" scope="default"/>
@@ -390,7 +390,7 @@
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <property name="uri.var.borrarInstanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia/')" scope="default"/>
-               <log level="custom" description="donde 10">
+               <log level="custom"  category="DEBUG" description="donde 10">
                   <property name="msg actual 10 eliminando caso de BPM" expression="json-eval($)"/>
                   <property name="url actual 10 eliminando caso de BPM" expression="$ctx:uri.var.borrarInstanciaBPM_url"/>
                </log>
@@ -403,11 +403,11 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="full" description="salida insequence"/>
+         <log level="full"  category="DEBUG" description="salida insequence"/>
          <loopback/>
       </inSequence>
       <outSequence>
-         <log level="full">
+         <log level="full"  category="DEBUG">
             <property name="MESSAGE" value="FIRST"/>
          </log>
          <payloadFactory media-type="json" description="Mensaje error">
@@ -455,7 +455,7 @@
          <property name="messageType" value="application/json" scope="axis2"/>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
-         <log level="custom" description="aca">
+         <log level="custom"  category="DEBUG" description="aca">
             <property name="Msg listo por enviar a dataservice generacion OT" expression="json-eval($)"/>
          </log>
          <property name="uri.var.ordenTransporte_url" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
@@ -472,7 +472,7 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 3">
+         <log level="custom"  category="DEBUG" description="donde 3">
             <property name="Armando mensaje para generar detalle OT" expression="json-eval($)"/>
             <property name="ortr id" expression="json-eval($.respuesta.ortr_id)"/>
          </log>
@@ -485,7 +485,7 @@
          <script language="js" key="conf:tools/setIdEnHijos.js" function="setIdEnHijos"/>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
-         <log level="custom" description="donde 4">
+	 <log level="custom"  category="DEBUG" description="donde 4">
             <property name="Msg detalle listo por enviar a dataservice" expression="json-eval($)"/>
          </log>
          <property name="uri.var.contenedoresRetirados_url" expression="fn:concat($ctx:dataservices_url,'/_put_contenedores_retirados_batch_req')" scope="default"/>
@@ -507,7 +507,7 @@
                   </args>
                </payloadFactory>
                <property name="uri.var.ordenTransporteDELETE" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
-               <log level="custom" description="donde delete 4">
+               <log level="custom"  category="DEBUG" description="donde delete 4">
                   <property name="Error en generacion detalle borrando OT" expression="json-eval($)"/>
                   <property name="url delete" expression="$ctx:uri.var.ordenTransporteDELETE"/>
                </log>
@@ -520,7 +520,7 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="Lanzando proceso BPM para OT" expression="json-eval($)"/>
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
@@ -532,7 +532,7 @@
                <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
             </args>
          </payloadFactory>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="Msg listo para llamar a servicio BPM" expression="json-eval($)"/>
          </log>
          <property name="uri.var.instanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia')" scope="default"/>
@@ -556,7 +556,7 @@
                   </args>
                </payloadFactory>
                <property name="uri.var.ordenTransporteDELETE" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
-               <log level="custom" description="donde delete 4">
+               <log level="custom"  category="DEBUG" description="donde delete 4">
                   <property name="Error generando proceso, eliminando OT" expression="json-eval($)"/>
                   <property name="url delete" expression="$ctx:uri.var.ordenTransporteDELETE"/>
                </log>
@@ -662,7 +662,7 @@
             <property name="Firma Digital hash" expression="json-eval($.hash)"/>
          </log>
          <property name="uri.var.firmaDigitalHash" expression="json-eval($.hash)" type="STRING"/>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="BPM lanzado y firma digital generada, actualizando caseid y hash en OT" expression="json-eval($)"/>
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
@@ -675,7 +675,7 @@
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
             </args>
          </payloadFactory>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="msg actual 7 despues de BPM antes de actualizar caseid" expression="$ctx:caseid"/>
             <property name="msg actual 7 despues de BPM antes de actualizar caseid" expression="json-eval($)"/>
          </log>
@@ -713,7 +713,7 @@
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <property name="uri.var.borrarInstanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia/')" scope="default"/>
-               <log level="custom" description="donde 10">
+               <log level="custom"  category="DEBUG" description="donde 10">
                   <property name="msg actual 10 eliminando caso de BPM" expression="json-eval($)"/>
                   <property name="url actual 10 eliminando caso de BPM" expression="$ctx:uri.var.borrarInstanciaBPM_url"/>
                </log>
@@ -726,11 +726,11 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="full" description="salida insequence"/>
+         <log level="full"  category="DEBUG" description="salida insequence"/>
          <loopback/>
       </inSequence>
       <outSequence>
-         <log level="full">
+         <log level="full"  category="DEBUG">
             <property name="MESSAGE" value="FIRST"/>
          </log>
          <payloadFactory media-type="json" description="Mensaje error">
@@ -779,7 +779,7 @@
          <property name="messageType" value="application/json" scope="axis2"/>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
-         <log level="custom" description="aca">
+         <log level="custom"  category="DEBUG" description="aca">
             <property name="Msg listo por enviar a dataservice generacion OT" expression="json-eval($)"/>
          </log>
          <property name="uri.var.ordenTransporte_url" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
@@ -796,7 +796,7 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 3">
+         <log level="custom"  category="DEBUG" description="donde 3">
             <property name="Armando mensaje para generar detalle OT" expression="json-eval($)"/>
             <property name="ortr id" expression="json-eval($.respuesta.ortr_id)"/>
          </log>
@@ -809,7 +809,7 @@
          <script language="js" key="conf:tools/setIdEnHijos.js" function="setIdEnHijos"/>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="Msg detalle listo por enviar a dataservice" expression="json-eval($)"/>
          </log>
          <property name="uri.var.contenedoresRetirados_url" expression="fn:concat($ctx:dataservices_url,'/_put_contenedores_retirados_batch_req')" scope="default"/>
@@ -831,7 +831,7 @@
                   </args>
                </payloadFactory>
                <property name="uri.var.ordenTransporteDELETE" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
-               <log level="custom" description="donde delete 4">
+               <log level="custom"  category="DEBUG" description="donde delete 4">
                   <property name="Error en generacion detalle borrando OT" expression="json-eval($)"/>
                   <property name="url delete" expression="$ctx:uri.var.ordenTransporteDELETE"/>
                </log>
@@ -844,7 +844,7 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="Lanzando proceso BPM para OT" expression="json-eval($)"/>
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
@@ -856,7 +856,7 @@
                <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
             </args>
          </payloadFactory>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="Msg listo para llamar a servicio BPM" expression="json-eval($)"/>
          </log>
          <property name="uri.var.instanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia')" scope="default"/>
@@ -880,7 +880,7 @@
                   </args>
                </payloadFactory>
                <property name="uri.var.ordenTransporteDELETE" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte')" scope="default"/>
-               <log level="custom" description="donde delete 4">
+               <log level="custom"  category="DEBUG" description="donde delete 4">
                   <property name="Error generando proceso, eliminando OT" expression="json-eval($)"/>
                   <property name="url delete" expression="$ctx:uri.var.ordenTransporteDELETE"/>
                </log>
@@ -986,7 +986,7 @@
             <property name="Firma Digital hash" expression="json-eval($.hash)"/>
          </log>
          <property name="uri.var.firmaDigitalHash" expression="json-eval($.hash)" type="STRING"/>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="BPM lanzado y firma digital generada, actualizando caseid y hash en OT" expression="json-eval($)"/>
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
@@ -999,7 +999,7 @@
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
             </args>
          </payloadFactory>
-         <log level="custom" description="donde 4">
+         <log level="custom"  category="DEBUG" description="donde 4">
             <property name="msg actual 7 despues de BPM antes de actualizar caseid" expression="$ctx:caseid"/>
             <property name="msg actual 7 despues de BPM antes de actualizar caseid" expression="json-eval($)"/>
          </log>
@@ -1037,7 +1037,7 @@
                <header name="Accept" scope="transport" value="application/json"/>
                <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
                <property name="uri.var.borrarInstanciaBPM_url" expression="fn:concat($ctx:api_url,'/bpm/proceso/instancia/')" scope="default"/>
-               <log level="custom" description="donde 10">
+               <log level="custom"  category="DEBUG" description="donde 10">
                   <property name="msg actual 10 eliminando caso de BPM" expression="json-eval($)"/>
                   <property name="url actual 10 eliminando caso de BPM" expression="$ctx:uri.var.borrarInstanciaBPM_url"/>
                </log>
@@ -1050,11 +1050,11 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
-         <log level="full" description="salida insequence"/>
+         <log level="full"  category="DEBUG" description="salida insequence"/>
          <loopback/>
       </inSequence>
       <outSequence>
-         <log level="full">
+         <log level="full"  category="DEBUG">
             <property name="MESSAGE" value="FIRST"/>
          </log>
          <payloadFactory media-type="json" description="Mensaje error">
