@@ -91,15 +91,49 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <property name="uri.var.getOTNicks" expression="fn:concat($ctx:dataservices_url,'/solicitudContenedor/nicks/',$ctx:setIdEnHijos_id_padre)" scope="default"/>
+         <log level="custom" category="DEBUG" description="antes getnick">
+            <property name="url actual tran" expression="$ctx:uri.var.getOTNicks"/>
+         </log>
+         <property name="HTTP_METHOD" value="GET" scope="axis2" type="STRING"/>
+         <call>
+            <endpoint>
+               <http method="GET" uri-template="{uri.var.getOTNicks}"/>
+            </endpoint>
+         </call>
+         <property name="tran_usrnick" expression="json-eval($.ordenTransporte.tran_nick)" type="STRING"/>
+         <property name="sotr_usrnick" expression="json-eval($.ordenTransporte.sotr_nick)" type="STRING"/>
+         <log level="custom" category="DEBUG" description="nicks">
+            <property name="tran" expression="$ctx:tran_usrnick"/>
+            <property name="sotr" expression="$ctx:sotr_usrnick"/>
+         </log>
+         <filter source="boolean(get-property('tran_usrnick'))" regex="false">
+            <then>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+               <property name="TOOLS_ERROR" value="El transportista no tiene usrnick" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </then>
+         </filter>
+         <filter source="boolean(get-property('sotr_usrnick'))" regex="false">
+            <then>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+               <property name="TOOLS_ERROR" value="El solicitante transporte no tiene usrnick" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </then>
+         </filter>
          <log level="custom" category="DEBUG" description="donde 4">
             <property name="msg actual 5 despues de contenedores solicitados" expression="json-eval($)"/>
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
          <payloadFactory media-type="json" description="crear solicitud">
-            <format>                 { "nombre_proceso": "TERSU-BPM01"     ,"payload" : { "idPedido":"$1"}     ,"session" :"$2"          }     </format>
+            <format>                 { "nombre_proceso": "TERSU-BPM01"     ,"payload" : { "idPedido":"$1","usuarioSolicitanteTransporte":"$2", "usuarioTransportista":"$3"}     ,"session" :"$4"          }     </format>
             <args>
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+               <arg evaluator="xml" expression="get-property('sotr_usrnick')"/>
+               <arg evaluator="xml" expression="get-property('tran_usrnick')"/>
                <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
             </args>
          </payloadFactory>
@@ -308,10 +342,44 @@
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <property name="uri.var.getOTNicks" expression="fn:concat($ctx:dataservices_url,'/solicitudRetiro/nicks/',$ctx:setIdEnHijos_id_padre)" scope="default"/>
+         <log level="custom" category="DEBUG" description="antes getnick">
+            <property name="url actual tran" expression="$ctx:uri.var.getOTNicks"/>
+         </log>
+         <property name="HTTP_METHOD" value="GET" scope="axis2" type="STRING"/>
+         <call>
+            <endpoint>
+               <http method="GET" uri-template="{uri.var.getOTNicks}"/>
+            </endpoint>
+         </call>
+         <property name="tran_usrnick" expression="json-eval($.ordenTransporte.tran_nick)" type="STRING"/>
+         <property name="sotr_usrnick" expression="json-eval($.ordenTransporte.sotr_nick)" type="STRING"/>
+         <log level="custom" category="DEBUG" description="nicks">
+            <property name="tran" expression="$ctx:tran_usrnick"/>
+            <property name="sotr" expression="$ctx:sotr_usrnick"/>
+         </log>
+         <filter source="boolean(get-property('tran_usrnick'))" regex="false">
+            <then>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+               <property name="TOOLS_ERROR" value="El transportista no tiene usrnick" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </then>
+         </filter>
+         <filter source="boolean(get-property('sotr_usrnick'))" regex="false">
+            <then>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+               <property name="TOOLS_ERROR" value="El solicitante transporte no tiene usrnick" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </then>
+         </filter>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
          <payloadFactory media-type="json" description="crear solicitud">
-            <format>                 { "nombre_proceso": "TERSU-BPM02"     ,"payload" : { "idSolicitudRetiro":"$1"}     ,"session" :"$2"          }     </format>
+            <format>                 { "nombre_proceso": "TERSU-BPM02"     ,"payload" : { "idSolicitudRetiro":"$1","usuarioSolicitanteTransporte":"$2", "usuarioTransportista":"$3"}     ,"session" :"$4"      }     </format>
             <args>
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+               <arg evaluator="xml" expression="get-property('sotr_usrnick')"/>
+               <arg evaluator="xml" expression="get-property('tran_usrnick')"/>
                <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
             </args>
          </payloadFactory>
@@ -518,15 +586,49 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <property name="uri.var.getOTNicks" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte/nicks/',$ctx:setIdEnHijos_id_padre)" scope="default"/>
+         <log level="custom" category="DEBUG" description="antes getnick">
+            <property name="url actual tran" expression="$ctx:uri.var.getOTNicks"/>
+         </log>
+         <property name="HTTP_METHOD" value="GET" scope="axis2" type="STRING"/>
+         <call>
+            <endpoint>
+               <http method="GET" uri-template="{uri.var.getOTNicks}"/>
+            </endpoint>
+         </call>
+         <property name="tran_usrnick" expression="json-eval($.ordenTransporte.tran_nick)" type="STRING"/>
+         <property name="sotr_usrnick" expression="json-eval($.ordenTransporte.sotr_nick)" type="STRING"/>
+         <log level="custom" category="DEBUG" description="nicks">
+            <property name="tran" expression="$ctx:tran_usrnick"/>
+            <property name="sotr" expression="$ctx:sotr_usrnick"/>
+         </log>
+         <filter source="boolean(get-property('tran_usrnick'))" regex="false">
+            <then>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+               <property name="TOOLS_ERROR" value="El transportista no tiene usrnick" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </then>
+         </filter>
+         <filter source="boolean(get-property('sotr_usrnick'))" regex="false">
+            <then>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+               <property name="TOOLS_ERROR" value="El solicitante transporte no tiene usrnick" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </then>
+         </filter>
          <log level="custom" category="DEBUG" description="donde 4">
             <property name="msg actual 5 despues de contenedores retirados" expression="json-eval($)"/>
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
          <payloadFactory media-type="json" description="crear solicitud">
-            <format>                 { "nombre_proceso": "TERSU-BPM03"     ,"payload" : { "ortr_id":"$1"}     ,"session" :"$2"          }     </format>
+            <format>                 { "nombre_proceso": "TERSU-BPM03"     ,"payload" : { "ortr_id":"$1","usuarioSolicitanteTransporte":"$2", "usuarioTransportista":"$3"}     ,"session" :"$4"      }          </format>
             <args>
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+               <arg evaluator="xml" expression="get-property('sotr_usrnick')"/>
+               <arg evaluator="xml" expression="get-property('tran_usrnick')"/>
                <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
             </args>
          </payloadFactory>
@@ -746,15 +848,49 @@
                <sequence key="toolsFault"/>
             </else>
          </filter>
+         <header name="Accept" scope="transport" value="application/json"/>
+         <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
+         <property name="uri.var.getOTNicks" expression="fn:concat($ctx:dataservices_url,'/ordenTransporte/nicks/',$ctx:setIdEnHijos_id_padre)" scope="default"/>
+         <log level="custom" category="DEBUG" description="antes getnick">
+            <property name="url actual tran" expression="$ctx:uri.var.getOTNicks"/>
+         </log>
+         <property name="HTTP_METHOD" value="GET" scope="axis2" type="STRING"/>
+         <call>
+            <endpoint>
+               <http method="GET" uri-template="{uri.var.getOTNicks}"/>
+            </endpoint>
+         </call>
+         <property name="tran_usrnick" expression="json-eval($.ordenTransporte.tran_nick)" type="STRING"/>
+         <property name="sotr_usrnick" expression="json-eval($.ordenTransporte.sotr_nick)" type="STRING"/>
+         <log level="custom" category="DEBUG" description="nicks">
+            <property name="tran" expression="$ctx:tran_usrnick"/>
+            <property name="sotr" expression="$ctx:sotr_usrnick"/>
+         </log>
+         <filter source="boolean(get-property('tran_usrnick'))" regex="false">
+            <then>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+               <property name="TOOLS_ERROR" value="El transportista no tiene usrnick" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </then>
+         </filter>
+         <filter source="boolean(get-property('sotr_usrnick'))" regex="false">
+            <then>
+               <property name="ERROR_MESSAGE" expression="json-eval($)" type="STRING"/>
+               <property name="TOOLS_ERROR" value="El solicitante transporte no tiene usrnick" type="STRING"/>
+               <sequence key="toolsFault"/>
+            </then>
+         </filter>
          <log level="custom" category="DEBUG" description="donde 4">
             <property name="msg actual 5 despues de contenedores retirados" expression="json-eval($)"/>
          </log>
          <header name="Accept" scope="transport" value="application/json"/>
          <property name="FORCE_ERROR_ON_SOAP_FAULT" value="true" scope="default" type="STRING"/>
          <payloadFactory media-type="json" description="crear solicitud">
-            <format>                 { "nombre_proceso": "TERSU-BPM03"     ,"payload" : { "ortr_id":"$1"}     ,"session" :"$2"          }     </format>
+            <format>                 { "nombre_proceso": "TERSU-BPM03"     ,"payload" : { "ortr_id":"$1","usuarioSolicitanteTransporte":"$2", "usuarioTransportista":"$3"}     ,"session" :"$4"      }     </format>
             <args>
                <arg evaluator="xml" expression="get-property('setIdEnHijos_id_padre')"/>
+               <arg evaluator="xml" expression="get-property('sotr_usrnick')"/>
+               <arg evaluator="xml" expression="get-property('tran_usrnick')"/>
                <arg evaluator="xml" expression="get-property('uri.var.bpmSession')"/>
             </args>
          </payloadFactory>
@@ -883,3 +1019,4 @@
       </faultSequence>
    </resource>
 </api>
+                        
