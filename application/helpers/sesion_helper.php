@@ -43,7 +43,6 @@ if(!function_exists('usrIdTransportistaByNick')){
 
 		$ci =& get_instance();
 		$usernick = userNick();
-
 		$aux = $ci->rest->callAPI("GET",REST."/transportista/id/".$usernick);
 		$aux =json_decode($aux["data"]);
 		return $aux->transportista->tran_id;

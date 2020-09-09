@@ -59,16 +59,16 @@ class Solicitud_Pedido extends CI_Controller {
 
 	/**
 	* Resgistra la solicitud de pedidos
-	* @param 
+	* @param
 	* @return json resp
 	*/
 	function registrarSolicitud()
 	{
-		log_message('INFO','#TRAZA|Solicitud_Pedido|registrarSolicitud() >> '); 
+		log_message('INFO','#TRAZA|Solicitud_Pedido|registrarSolicitud() >> ');
 		$usr = userNick();
 		$datos = $this->input->post('datos');
 		$datos['usuario_app'] = $usr;
-		$datos['sotr_id'] = $this->SolicitudPedidos->Obtenersoltransp($usr);
+		$datos['sotr_id'] = usrIdGeneradorByNick();
 		for ($i=0; $i < count($datos['contenedores']); $i++)
 		{
 			$datos['contenedores'][$i]['usuario_app'] = $usr;

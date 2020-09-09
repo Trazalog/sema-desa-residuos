@@ -581,7 +581,7 @@
 
       wo();
       var tica_id = this.value;
-      
+
       $.ajax({
         type: "POST",
         data: {
