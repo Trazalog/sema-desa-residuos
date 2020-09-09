@@ -1953,23 +1953,22 @@ http://10.142.0.3:8280/services/semaresiduosDS
   recurso: /solicitantesTransporte/case/{case_id}
   metodo: get
 
-  select  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, 
-		TTIPO.valor as tipo_generador, 		
+  select  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro,
+		TTIPO.valor as tipo_generador,
 		DEPA.nombre as departamento,
 		ZONA.nombre as zona,
 		TRUB.valor as rubro
-  from 
-      log.solicitantes_transporte ST, 
-      core.tablas TTIPO, 
-      core.departamentos DEPA, 
+  from
+      log.solicitantes_transporte ST,
+      core.tablas TTIPO,
+      core.departamentos DEPA,
       core.zonas ZONA,
       core.tablas TRUB
   where ST.sotr_id = (select SC.sotr_id from log.solicitudes_contenedor SC where SC.case_id = :case_id)
   and ST.tist_id = TTIPO.tabl_id 
   and ST.depa_id = DEPA.depa_id
-  and ST.zona_id = ZONA.zona_id 
-  and ST.rubr_id = TRUB.tabl_id 
-  and ST.eliminado = 0
+  and ST.zona_id = ZONA.zona_id
+  and ST.rubr_id = TRUB.tabl_id
 
   {
     "generador":{
@@ -1995,7 +1994,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
           DEPA.nombre as departamento,
           ZONA.nombre as zona,
           TRUB.valor as rubro
-  from 
+  from
         log.solicitantes_transporte ST,
         core.tablas TTIPO,
         core.departamentos DEPA, 
@@ -2005,12 +2004,12 @@ http://10.142.0.3:8280/services/semaresiduosDS
       ST.sotr_id = (select SR.sotr_id from log.solicitudes_retiro SR where SR.case_id = :case_id)
   and 
       ST.tist_id = TTIPO.tabl_id	
-  and 
+  and
       ST.depa_id = DEPA.depa_id
   and 
       ST.zona_id = ZONA.zona_id 
-  and 
-      ST.rubr_id = TRUB.tabl_id 
+  and
+      ST.rubr_id = TRUB.tabl_id
   and 
       ST.eliminado = 0
 
@@ -2773,7 +2772,7 @@ resultado
   recurso: /solicitudContenedores/info/{case_id}
   metodo: get
   select 
-  SC.soco_id, SC.estado, SC.observaciones, SC.fec_alta, SC.sotr_id, 
+  SC.soco_id, SC.estado, SC.observaciones, SC.fec_alta, SC.sotr_id,
   ST.razon_social, ST.domicilio 
   from log.solicitudes_contenedor SC, log.solicitantes_transporte ST
   where SC.sotr_id = ST.sotr_id 
@@ -2796,7 +2795,7 @@ resultado
 -- solicitudContenedoresSetMotivo
   recurso: /contenedoresSolicitados/rechazados/motivo
   metodo: put
-  update log.contenedores_solicitados 
+  update log.contenedores_solicitados
   set motivo_rechazo = :motivo_rechazo
   where soco_id = CAST(:soco_id as INTEGER)
 
@@ -2811,10 +2810,10 @@ resultado
   recurso: /contenedoresSolicitados/case/{case_id}
   metodo: get
   select cs.coso_id, cs.cantidad, cs.fec_alta,  cs.tica_id, cs.soco_id, cs.reci_id, cs.cantidad_acordada,
-  t.valor 
-  from log.contenedores_solicitados cs, core.tablas t 
+  t.valor, cs.motivo_rechazo
+  from log.contenedores_solicitados cs, core.tablas t
   where cs.soco_id = (select soco_id from log.solicitudes_contenedor sc where sc.case_id = :case_id )
-  and cs.tica_id = t.tabl_id 
+  and cs.tica_id = t.tabl_id
 
   {
     "contenedores":{
@@ -2827,7 +2826,8 @@ resultado
         "soco_id": "$soco_id",
         "reci_id": "$reci_id",
         "cantidad_acordada": "$cantidad_acordada",
-        "valor": "$valor"
+        "valor": "$valor",
+        "motivo_rechazo": "$motivo_rechazo"
         }
       ]
     }
@@ -3431,7 +3431,7 @@ where ortr_id = cast(:ortr_id as integer)
         {
           "tran_id": "$tran_id",
           "razon_social": "$razon_social",
-          "@choferesGetPorTransportistas": "$tran_id->tran_id" 
+          "@choferesGetPorTransportistas": "$tran_id->tran_id"
         }
       ]
     }
