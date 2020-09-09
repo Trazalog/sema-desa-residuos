@@ -54,11 +54,10 @@ class SolicitudPedidos extends CI_Model
   * @return array data
   */
   function obtenerTransportista(){
-    //FIXME: DESHARDCODEAR USUARIO
-    log_message('INFO','#TRAZA|SolicitudPedidos|obtenerTransportista() >> '); 
-    $usuario_app  = "hugoDS";
+
+    log_message('INFO','#TRAZA|SolicitudPedidos|obtenerTransportista() >> ');
     $aux = $this->rest->callAPI("GET",REST."/transportistas");
-    $aux =json_decode($aux["data"]);    
+    $aux =json_decode($aux["data"]);
     return $aux->transportistas->transportista;
   }
 

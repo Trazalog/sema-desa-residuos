@@ -31,7 +31,7 @@ if(!function_exists('infoproceso')){
 				case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE:
 
 						log_message('INFO','#TRAZA|INFOPROCESO_HELPER|/ordenTransporte/info/entrega/case/".$case_id : $case_id >> '.json_encode($case_id));
-						
+
 						$aux = $ci->rest->callAPI("GET",REST."/ordenTransporte/info/entrega/case/".$case_id);
 						$data =json_decode($aux["data"]);
 						$aux = $data->ordenTransporte;
@@ -57,7 +57,7 @@ if(!function_exists('infoproceso')){
 													if (BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE == $processId) {
 														echo ' - Orden Transporte Nº: '.$aux->ortr_id;
 													}
-												
+
 												?>
 							</a>
 						</h4>
