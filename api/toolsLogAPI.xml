@@ -103,8 +103,8 @@
                <http method="GET" uri-template="{uri.var.getOTNicks}"/>
             </endpoint>
          </call>
-         <property name="tran_usrnick" expression="json-eval($.ordenTransporte.tran_nick)" type="STRING"/>
-         <property name="sotr_usrnick" expression="json-eval($.ordenTransporte.sotr_nick)" type="STRING"/>
+         <property name="tran_usrnick" expression="json-eval($.solicitudContenedor.tran_nick)" type="STRING"/>
+         <property name="sotr_usrnick" expression="json-eval($.solicitudContenedor.sotr_nick)" type="STRING"/>
          <log level="custom" category="DEBUG" description="nicks">
             <property name="tran" expression="$ctx:tran_usrnick"/>
             <property name="sotr" expression="$ctx:sotr_usrnick"/>
@@ -352,8 +352,8 @@
                <http method="GET" uri-template="{uri.var.getOTNicks}"/>
             </endpoint>
          </call>
-         <property name="tran_usrnick" expression="json-eval($.ordenTransporte.tran_nick)" type="STRING"/>
-         <property name="sotr_usrnick" expression="json-eval($.ordenTransporte.sotr_nick)" type="STRING"/>
+         <property name="tran_usrnick" expression="json-eval($.solicitudRetiro.tran_nick)" type="STRING"/>
+         <property name="sotr_usrnick" expression="json-eval($.solicitudRetiro.sotr_nick)" type="STRING"/>
          <log level="custom" category="DEBUG" description="nicks">
             <property name="tran" expression="$ctx:tran_usrnick"/>
             <property name="sotr" expression="$ctx:sotr_usrnick"/>
