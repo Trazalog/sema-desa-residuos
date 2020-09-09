@@ -347,6 +347,7 @@
 								datos_contenedores.push(getJson(e));
 						});
 					datos.contenedores = datos_contenedores;
+					debugger;
 					$.ajax({
 							type: "POST",
 							data: {datos},
