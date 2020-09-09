@@ -28,7 +28,26 @@ class OrdenTransporte extends CI_Controller {
         $data['numero'] = $this->OrdenTransportes->obtener_numero_orden();
         $data['chofer'] = $this->OrdenTransportes->obtenerChofer();
         $data['dispfinal'] = $this->OrdenTransportes->obtenerdispfinal();
-        $data['equipo'] = $this->OrdenTransportes->obtenerEquipo();
+        // $data['equipo'] = $this->OrdenTransportes->obtenerEquipo();
+
+        //SELECCION DE EQUIPOS QUE SI POSEEN CONTENEDORES ASOCIADOS
+        $arregloEq = array();
+        $equipos = $this->OrdenTransportes->obtenerEquipo();
+        $cont = count($equipos);
+        for($i=0; $i < 2; $i++)
+        {
+          $auxiliar = $equipos[$i];
+          $dom = $auxiliar->dominio;
+          $resp = $this->OrdenTransportes->ObtenerOTpordominio($dom);
+          $vehiAsignado = $resp->vehiculoAsignadoARetiro;
+          $contador = count($vehiAsignado->contenedores->contenedor);
+          if($contador !=0)
+          {
+            $arregloEq[] = $auxiliar;
+          }
+        }
+        $data['equipo'] = $arregloEq;
+        //FIN SELECCION
         $data['contenedores'] = $this->OrdenTransportes->obtenerContenedores();
         $data['sotrid'] = $this->OrdenTransportes->obtenerSotrid();
         $this->load->view('layout/Ordenes/orden_transporte',$data);

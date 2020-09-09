@@ -42,6 +42,7 @@
 			$(".titulo").text('Informacion Transportista');
 			$(".oculta_info").removeAttr("style");
 			$(".oculta_edit").attr("style","display:none");
+			$(".esconder").attr("style","left: -2rem; top: -2rem; "); 
 			llenarModal(datajson);	
 			blockEdicion();
 			
@@ -54,6 +55,7 @@
 			$(".titulo").text('Editar Transportista');
 			$(".oculta_info").attr("style","display:none");
 			$(".oculta_edit").removeAttr("style");
+			$(".esconder").attr("style","display:none");
 			llenarModal(datajson);
 			habilitarEdicion();
 		});

@@ -41,6 +41,11 @@
 			$("#modalEdit").data('bootstrapValidator').resetForm();
 			$(".titulo").text('Informacion Circuito')
 			datajson = $(this).parents("tr").attr("data-json");
+			$(".ocultarfyle").attr("style","display:none;");
+			$("#img_base").attr("style","margin-top: -48px; margin-left: 9rem; border-radius: 8px;");
+			$(".fa-spinner").attr("style","margin-top: -48px; margin-left: 9rem; border-radius: 8px;");
+			$("#imgtitulo").attr("style","padding-left: 8rem;");
+			$(".fa-spinner").show();
 			console.table(datajson);
 			llenarModal(datajson);	
 			blockEdicion();
@@ -50,13 +55,19 @@
 			// $("#formPuntos_edit")[0].reset();
 			// $("#modalEdit")[0].reset();
 			$("#formPuntos_edit").data('bootstrapValidator').resetForm();
+			$(".fa-spinner").show();
 			$("#modalEdit").data('bootstrapValidator').resetForm();
+			$("#imgtitulo").removeAttr("style");
 			datajson = $(this).parents("tr").attr("data-json");
 			$('#form_editar_pto_critico').show();	
 			$("#btnsave_edit").show();
+			$(".ocultarfyle").removeAttr("style");
 			$(".titulo").text('Editar Circuito')
 			$("#img_file").removeAttr("readonly");
 			$("#img_file").removeAttr("disabled");
+			$("#img_base").removeAttr("style");
+			$("#img_base").attr("style","margin-top: 20px;border-radius: 8px;");
+			$(".fa-spinner").attr("style","margin-top: 20px;border-radius: 8px;");
 			llenarModal(datajson);
 			habilitarEdicion();
 		});
@@ -306,6 +317,7 @@
 						url: "general/Estructura/Circuito/obtener_Imagen",
 						success: function ($dato) {		
 										var imagen = JSON.parse($dato);	
+										$(".fa-spinner").hide();
 										//console.info('imagen en llenar imagen: ' + imagen);						
 										var img_b64 = imagen;									
 										if(img_b64[4]=='a'){
