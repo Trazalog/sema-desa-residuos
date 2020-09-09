@@ -44,17 +44,7 @@
                         <input type="number" size="10" type="text" name="nro" id="nro" min="0" class="form-control"
                             required>
                     </div>
-                    <div class="form-group">
-                        <label for="zona" class="form-label">Zona:</label>
-                        <select class="form-control select2 select2-hidden-accesible" id="zona" name="zona" required>
-                            <option value="" disabled selected>-Seleccione opcion-</option>
-                            <?php
-                                        foreach ($zona as $i) {
-                                            echo '<option value="'.$i->zona_id.'">'.$i->nombre.'</option>';
-                                        }
-                                        ?>
-                        </select>
-                    </div>
+               
                     <div class="form-group">
                         <label for="tiporesiduo" class="form-label">Tipo de residuo:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="tiporesiduo"
@@ -70,7 +60,7 @@
                     <div class="form-group">
                     <label for="observaciones" class="form-label">Observaciones:</label>
                     <br>
-                    <input type="text" id="obs">
+                    <input type="text" id="obs" style="width: 52rem; height: 4rem;">
                     <input type="text" id="teot_id" style="display:none">
                     </div>
                 </div>
@@ -142,10 +132,7 @@
                                     ?>
                         </select>
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="registron" class="form-label">Registro n°:</label>
-                        <input type="text" class="form-control" id="registron" name="numreg" readonly>
-                    </div> -->
+                   
                     <div class="form-group">
                         <label for="chofer" class="form-label">Chofer:</label>
                         <select class="form-control select2 select2-hidden-accesible" id="chofer" name="chofer"
@@ -165,10 +152,7 @@
                         <select size="3" class="form-control" id="selecmov" name="movilidad" required>
                         </select>
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="dominio" class="form-label">Dominio:</label>
-                        <input type="text" class="form-control" name="dominio" id="dominio" name="dominio" readonly>
-                    </div> -->
+                   
                 </div>
             </div>
 
@@ -193,57 +177,7 @@
                 </div>
     </div>
     </div>
-<!-- <div class="row">
-    <div class="col-xs-12">
-        <div class="box box-primary animated fadeInLeft"> -->
-            <!-- /.box-header -->
-            <!-- <div class="box-body">
-                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                    <div class="row">
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-6"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 table-scroll">
-                            <table id="example2" class="table table-condensed table-bordered table-hover dataTable"
-                                role="grid" aria-describedby="example2_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Rendering engine: activate to sort column descending">Zona</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">Circuito
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Platform(s): activate to sort column ascending">
-                                            Transportista</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Engine version: activate to sort column ascending">
-                                            Movilidad</th>
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Rendering engine: activate to sort column descending">Chofer
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending">Acciones
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tabadd">
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <br>
-                </div>
-            </div> -->
-            <!-- /.box-body -->
-        <!-- </div> -->
-        <!-- /.box -->
-    <!-- </div>
-</div> -->
 
 <!-- Modal editar-->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -261,23 +195,7 @@
 
                     <div class="row">
                         <div class="col-md-6 col-xs-12">
-                            <!-- <div class="form-group">
-                                <label for="nroo" class="form-label">Nro:</label>
-                                <input type="number" size="10" type="text" name="nro" id="nroo" min="0"
-                                    class="form-control" auto required pattern="^(0|[1-9][0-9]*)$">
-                            </div> -->
-                            <div class="form-group">
-                                <label for="zonaa" class="form-label">Zona:</label>
-                                <select class="form-control select2 select2-hidden-accesible" id="zonaedit" name="zona"
-                                    required>
-                                    <option value="" disabled selected>-Seleccione opcion-</option>
-                                    <?php
-                                                           foreach ($zona as $i) {
-                                                            echo '<option value="'.$i->zona_id.'">'.$i->nombre.'</option>';
-                                                        }
-                                                            ?>
-                                </select>
-                            </div>
+                       
                             <div class="form-group">
                                 <label for="tiporesiduoo" class="form-label">Tipo de residuo:</label>
                                 <select class="form-control select2 select2-hidden-accesible" id="tiporesiduoedit"
@@ -293,7 +211,7 @@
                             <div class="form-group">
                             <label for="tiporesiduoo" class="form-label">Observaciones:</label>
                             <br>
-                            <input type="text" id="obsedit">
+                            <textarea  id="obsedit" cols="41" rows="5" style="border-color: #d2d6de;"></textarea>
                             <input type="text" id="teot_id"  style="display:none">
                             </div>
                         </div>
@@ -397,13 +315,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <!-- <div class="form-group">
-                            <label for="fechita" class="form-label">Fecha:</label>
-                            <input type="text" id="fechainfo" class="form-control input-sm" readonly>
-                        </div> -->
+            
                         <div class="form-group">
-                            <label for="zonita" class="form-label">Zona:</label>
+                            <label for="zonita" class="form-label">Zona asociada a circuito:</label>
                             <input type="text" id="zonainfo" class="form-control input-sm" readonly>
+                            
                         </div>
                         <div class="form-group">
                             <label for="dispofinal" class="form-label">Disposicion final</label>
@@ -431,6 +347,11 @@
                             <label for="chof" class="form-label">Chofer:</label>
                             <input type="text" id="chofinfo" class="form-control input-sm" readonly>
                         </div>
+                        <div class="form-group">
+                            <label for="tiporesiduoo" class="form-label">Observaciones:</label>
+                            <br>
+                            <textarea  id="obseinfo" cols="41" rows="5" style="border-color: #d2d6de;" readonly></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -453,18 +374,20 @@
                 </button>
                 <h5 class="modal-title" id="exampleModalLabel"> Eliminar Template</h5>
             </div>
+            <input type="text" id="id_templateot" style="display:none">
             <div class="modal-body">
-
-           <input type="text" id="id_templateot" style="display:none">
-
+            <center>
+					<h4>
+						<p>¿DESEA ELIMINAR EL TEMPLATE?</p>
+					</h4>
+			</center>
             <!--__________________ FIN FORMULARIO MODAL ___________________________-->
-
             </div>
             <div class="modal-footer">
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletevehiculo()">Aceptar</button>
-                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">Cancelar</button>
-                </div>
+                    <center>
+                    <button type="submit" class="btn btn-primary" id="btndelete" onclick="deletevehiculo()">SI</button>
+                    <button type="submit" class="btn btn-default" id="btncancelar" data-dismiss="modal" id="cerrar">NO</button>
+                    </center>
             </div>
         </div>
     </div>
@@ -473,26 +396,29 @@
 
 <!---//////////////////////////////////////--- FIN MODAL BORRAR ---///////////////////////////////////////////////////////----->
 
-<!-- script que muestra datos en modal edit -->
+<!-- script 
+ muestra datos en modal edit -->
 <script>
  $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
 
 $("#emp").change(function(){
     var empresa_id = $("#emp").val();
     var resp;
+    wo();
     $.ajax({
         type: "POST",
         data: {id_empresa: empresa_id},
         dataType: 'json',
         url: "general/Orden/ObtenerVehixtran_id",
         success: function($respuesta) {
+            wc();
           resp = $respuesta;
           console.table(resp[0].equi_id);
           console.table(resp.length);
       
         },
         error: function() {
-                                
+             wc();                   
         },
         complete: function() {
             for(var i=0; i<resp.length; i++){
@@ -533,38 +459,45 @@ $("#btnregistrar").click(function(e){
    
     var datosTemplate = new FormData();
     datosTemplate = formToObject(datosTemplate);
-    //datosTemplate.zona_id = $("#zona").val();
-    datosTemplate.usuario_app = "HugoDS";
     datosTemplate.observaciones = $("#obs").val();
     datosTemplate.tica_id = $("#tiporesiduo").val();
     datosTemplate.difi_id = $("#dispfinal").val();
     datosTemplate.circ_id = $("#circuito").val();
-    //datosTemplate.tran_id = $("#emp").val();
     datosTemplate.equi_id = $("#selecmov").val();
     datosTemplate.chof_id = $("#chofer").val();
-    datosTemplate.sotr_id = "38";
     console.table(datosTemplate);
-    $.ajax({
-        type: "POST",
-        data: {datos: datosTemplate},
-        url: "general/Orden/RegistrarTemplateOt",
-        success: function(r) {
-        console.table(r);
-        if(r == "Ok"){
-            
-            $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
-            alertify.success("Registrado con exito");
-            $('#formDatos').data('bootstrapValidator').resetForm();
-            $("#formDatos")[0].reset();
-            $("#boxDatos").hide(500);
-            $("#botonAgregar").removeAttr("disabled");
-        }else{
-             alertify.error("error al agregar");
-        }
-      
-        }
+    if($("#formDatos").data('bootstrapValidator').isValid())
+    {
+        wo();
+        $.ajax({
+            type: "POST",
+            data: {datos: datosTemplate},
+            url: "general/Orden/RegistrarTemplateOt",
+            success: function(r) {
+            console.table(r);
+            if(r == "Ok"){
+                wc();
+                $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
+                alertify.success("Template Registrado con exito");
+                $('#formDatos').data('bootstrapValidator').resetForm();
+                $("#formDatos")[0].reset();
+                $("#boxDatos").hide(500);
+                $("#botonAgregar").removeAttr("disabled");
+            }else{
+                wc();
+                alertify.error("Error al agregar Template");
+            }
+        
+            }, 
+            error: function() {
+                wc();                   
+            }
 
-    });
+        });
+    }else{
+        alert("ATENCION! Hay campos vacios");
+    }
+   
 });
 
 
@@ -573,37 +506,38 @@ $("#btnregistrar").click(function(e){
 $("#btnsavedit").click(function(e){
     var datosTemEdit = new FormData();
     datosTemEdit = formToObject(datosTemEdit);
-    // datosTemEdit.zona_id = $("#zona").val();
-    datosTemEdit.usuario_app = "hugoDS";
     datosTemEdit.observaciones = $("#obsedit").val();
     datosTemEdit.tica_id = $("#tiporesiduoedit").val();
     datosTemEdit.difi_id = $("#dispfinaledit").val();
-    datosTemEdit.circ_id = $("#circuitoedit").val();
-    // datosTemEdit.tran_id = $("#emp").val();
+    datosTemEdit.circ_id = $("#circuitoedit").val();   
     datosTemEdit.equi_id = $("#movedit").val();
     datosTemEdit.chof_id = $("#choferedit").val();
     datosTemEdit.teot_id = $("#teot_id").val();
-        console.table(datosTemEdit);
-        //faltaria la ubicaion, el codigo y tran_id
+    console.table(datosTemEdit);
+        
+        wo();
         $.ajax({
                 type: "POST",
                 data: {datosEdit: datosTemEdit},
                 url: "general/Orden/ActualizarTemplateOt",
                 success: function (r) {
-                    
+                    wc();
                     console.table(r);
                     if (r == "ok") {
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
-                        alertify.success("Actualizado con exito");
+                        alertify.success("Template Actualizado con exito");
                         $("#modalEdit").modal('hide');
                        
 
                       
 
                     } else {
-                        
-                        alertify.error("error al actualizar");
+                    
+                        alertify.error("Error al Actualizar Template");
                     }
+                }, 
+                error: function() {
+                     wc();                   
                 }
             });
 
@@ -615,16 +549,17 @@ $("#btndelete").click(function(e){
     datosTemDelete.teot_id = $("#id_templateot").val();
   
         //faltaria la ubicaion, el codigo y tran_id
+        wo();
         $.ajax({
                 type: "POST",
                 data: {datosDelete: datosTemDelete},
                 url: "general/Orden/EliminarTemplateOt",
                 success: function (r) {
-                    
+                    wc();
                     console.table(r);
                     if (r == "ok") {
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Orden/Listar_templateOt");
-                        alertify.success("Borrado con exito");
+                        alertify.success("Template Eliminado con exito");
                         $("#modalBorrar").modal('hide');
                        
 
@@ -632,8 +567,11 @@ $("#btndelete").click(function(e){
 
                     } else {
                         
-                        alertify.error("error al Borrar");
+                        alertify.error("Error al Eliminar Template");
                     }
+                }, 
+                error: function() {
+                    wc();                   
                 }
             });
 
@@ -642,123 +580,14 @@ $("#btndelete").click(function(e){
 </script>
 
 
-<script>
-    function clickedit(aux) {
-        //limpia los select para cargar datos especificos
-        $("#selecempp").prop('selectedIndex', 0);
-        $('#selecmovv').find('option').remove();
-        $('#choferr').find('option').remove();
 
-        //se obtiene el valor de la empresa seleccionada
-        var emp = localStorage.getItem('empresa' + aux);
 
-        //se carga parte del formulario con los datos previamente cargados
-        $("#nroo").val(localStorage.getItem('num' + aux));
-        $("#fechaa").val(localStorage.getItem('fecha' + aux));
-        $("#zonaa").val(localStorage.getItem('zona' + aux));
-        $("#dispfinall").val(localStorage.getItem('dispfinal' + aux));
-        $("#tiporesiduoo").val(localStorage.getItem('tiporesiduo' + aux));
-        $("#circuitoo").val(localStorage.getItem('circuito' + aux));
-        $("#registronn").val(localStorage.getItem('numreg' + aux));
-        $("#dominioo").val(localStorage.getItem('dominio' + aux));
-
-        //se le asigna el valor especifico previamente cargado y se lo selecciona
-        $('#selecempp').val(emp).trigger('click');
-        //se trae el json de la opcion seleccionada
-        var json = $('#selecempp').find(':selected').data('json');
-
-        //json = JSON.parse(json);
-        //se inicializa las variables
-        var html_mov = " ",
-            html_chof = "";
-
-        //carga la variable html_mov con las movilidades disponibles de la empresa seleccionada
-        json.movilidades.movilidad.forEach(function (valor) {
-            html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
-                .dominio + "'>" + valor.nom_movil + "</option>"
-        });
-
-        //idem anterior pero con los choferes de la empresa
-        json.choferes.chofer.forEach(function (valor) {
-            html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
-        });
-
-        //se asigna las variables antes mencionadas a sus select correspondientes
-        $('#selecmovv').html(html_mov);
-        $("#choferr").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-
-        //se termina de cargar el formulario con los datos previamente cargados
-        $("#selecmovv").val(localStorage.getItem('movilidad' + aux));
-        $("#choferr").val(localStorage.getItem('chofer' + aux));
-
-        //se guarda localmente una nueva variable auxedit que indica el id de la fila seleccionada para luego saber en que id guardar los datos a actualizar
-        localStorage.setItem('auxedit', aux);
-    }
-</script>
-<!--script close modal edit -->
 <script>
     //este script me permite limpiar la validacion una vez cerrado el modal
     $("#modalEdit").on("hidden.bs.modal", function (e) {
         $("#formEditDatos").data('bootstrapValidator').resetForm();
     });
-</script>
-<!-- script muestra datos modal info -->
-<script>
-    function clickinfo(aux) {
-        //console.log(localStorage.getItem('num'));
-        $("#num").val(localStorage.getItem('num' + aux));
-        $("#fechita").val(localStorage.getItem('fecha' + aux));
-        $("#zonita").val(localStorage.getItem('zona' + aux));
-        $("#dispofinal").val(localStorage.getItem('dispfinal' + aux));
-        $("#tipores").val(localStorage.getItem('tiporesiduo' + aux));
-        $("#circuit").val(localStorage.getItem('circuito' + aux));
-        $("#empresita").val(localStorage.getItem('empresa' + aux));
-        $("#movi").val(localStorage.getItem('movilidad' + aux));
-        $("#reg").val(localStorage.getItem('numreg' + aux));
-        $("#dom").val(localStorage.getItem('dominio' + aux));
-        $("#chof").val(localStorage.getItem('chofer' + aux));
-    }
-</script>
-<!-- script delete con sweet alert 2 -->
-<script>
-    function borrar(aux) {
-        swal({
-            title: "Esta seguro que desea eliminar el elemento?",
-            text: "Una vez completada la accion no se podra revertir el cambio!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "Si, eliminar",
-            cancelButtonText: "No, cancelar",
-            closeOnConfirm: false,
-            //closeOnCancel: false
-        },
-            function (isConfirm) {
-                if (isConfirm) {
-                    swal({
-                        title: "Eliminado!",
-                        text: "La accion fue completada con exito",
-                        type: "success",
-                        timer: 1800,
-                        showConfirmButton: false
-                    });
 
-                    //oculta la fila eliminada
-                    //$("#" + aux).hide(500);
-                    /*var myTable = $('#example2').DataTable();
-                    myTable.row(this).delete();*/
-                    var t = $('#example2').DataTable();
-                    t.row("#"+aux).remove().draw();
-
-                } else {
-
-                }
-            });
-    }
-</script>
-
-<!-- script bootstrap validator -->
-<script>
     $('#formDatos').bootstrapValidator({
         message: 'This value is not valid',
         /*feedbackIcons: {
@@ -881,9 +710,9 @@ $("#btndelete").click(function(e){
         e.preventDefault();
         // guardar();
     });
-</script>
-<!-- script bootstrap validator -->
-<script>
+
+    // <!-- script bootstrap validator -->
+
     $('#formEditDatos').bootstrapValidator({
         message: 'This value is not valid',
         /*feedbackIcons: {
@@ -925,57 +754,11 @@ $("#btndelete").click(function(e){
         //se invoca a la funcion actualizar con el parametro auxedit que contiene el id de la fila seleccionada, a la que le vamos a actualizar los datos
         actualizar(localStorage.getItem('auxedit'));
     });
-</script>
-<!-- script actualiza datos -->
-<script>
-    function actualizar(aux) {
-        //datos para mostrar a modo de ejemplo para DEMO---------------
-        //Serialize the Form
-        var values = {};
-        $.each($("#formEditDatos").serializeArray(), function (i, field) {
-            values[field.name] = field.value;
-        });
-        //Value Retrieval Function
-        var getValue = function (valueName) {
-            return values[valueName];
-        };
-        //Retrieve the Values
-        var empresa = getValue("empresa");
-        var zona = getValue("zona");
-        var circuito = getValue("circuito");
-        var movilidad = getValue("movilidad");
-        var numreg = getValue("numreg");
-        var dominio = getValue("dominio");
-        var chofer = getValue("chofer");
-        var fecha = getValue("fecha");
-        var dispfinal = getValue("dispfinal");
-        var tiporesiduo = getValue("tiporesiduo");
-        var num = getValue("nro");
 
-        //se actualizan los datos en localStorage
-        localStorage.setItem('num' + aux, num);
-        localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
-        localStorage.setItem('dispfinal' + aux, dispfinal);
-        localStorage.setItem('fecha' + aux, fecha);
-        localStorage.setItem('chofer' + aux, chofer);
-        localStorage.setItem('dominio' + aux, dominio);
-        localStorage.setItem('numreg' + aux, numreg);
-        localStorage.setItem('movilidad' + aux, movilidad);
-        localStorage.setItem('circuito' + aux, circuito);
-        localStorage.setItem('zona' + aux, zona);
-        localStorage.setItem('empresa' + aux, empresa);
 
-        var t = $('#example2').DataTable();
-        //me permite editar una fila de dataTable indicando el id de la fila(aux) y pasando como parametro en data un array con los datos a editar
-        t.row(aux).data([zona, circuito, empresa, movilidad, chofer, '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>']).draw();
 
-        //se cierra el modal y se indica que los datos se actualizaron con exito
-        $('#modalEdit').modal('toggle');
-        alertify.success("Actualizacion realizada con exito");
-    }
-</script>
-<!-- script que cierra box con boton (x) -->
-<script>
+// <!-- script que cierra box con boton (x) -->
+
     $("#btnclose").on("click", function () {
         $("#boxDatos").hide(500);
         $("#botonAgregar").removeAttr("disabled");
@@ -984,9 +767,9 @@ $("#btndelete").click(function(e){
         $('#selecmov').find('option').remove();
         $('#chofer').find('option').remove();
     });
-</script>
-<!-- script que muestra box de datos al dar click en boton agregar -->
-<script>
+
+// <!-- script que muestra box de datos al dar click en boton agregar -->
+
     $("#botonAgregar").on("click", function () {
         //crea un valor aleatorio entre 1 y 100 y se asigna al input nro
         var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
@@ -998,173 +781,15 @@ $("#btndelete").click(function(e){
         $("#boxDatos").show();
 
     });
-</script>
-<!-- Script modal para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
-<script>
-    $(".emp").on('click', function () {
 
-        var json = this.dataset.json;
 
-        json = JSON.parse(json);
+// <!-- Script inicia variable auxiliar gloabal -->
 
-        var html_mov = " ",
-            html_chof = "";
-
-        json.movilidades.movilidad.forEach(function (valor) {
-            html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
-                .dominio + "'>" + valor.nom_movil + "</option>"
-        });
-
-        json.choferes.chofer.forEach(function (valor) {
-            html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
-        });
-
-        $('#selecmovv').html(html_mov);
-        $("#choferr").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-
-        $("#registronn").val("");
-        $("#dominioo").val("");
-    });
-
-    $("#selecmovv").on('change', function () {
-        var sel = $(this).find(":selected");
-        $("#registronn").val(sel.data('reg'));
-        $("#dominioo").val(sel.data('dom'));
-    });
-</script>
-<!-- Script para mostrar por empresa las movilidades y choferes disponibles y por movilidad su respectiva informacion -->
-<script>
-    $(".emp").on('click', function () {
-
-        var json = this.dataset.json;
-
-        json = JSON.parse(json);
-
-        var html_mov = " ",
-            html_chof = "";
-
-        json.movilidades.movilidad.forEach(function (valor) {
-            html_mov += "<option class='movilito' data-reg='" + valor.registro + "' data-dom='" + valor
-                .dominio + "'>" + valor.nom_movil + "</option>"
-        });
-
-        json.choferes.chofer.forEach(function (valor) {
-            html_chof += "<option class='chof'>" + valor.nom_chofer + "</option>"
-        });
-
-        $('#selecmov').html(html_mov);
-        $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>" + html_chof);
-
-        $("#registron").val("");
-        $("#dominio").val("");
-    });
-
-    $("#selecmov").on('change', function () {
-
-        var sel = $(this).find(":selected");
-        $("#registron").val(sel.data('reg'));
-        $("#dominio").val(sel.data('dom'));
-
-    });
-</script>
-<!-- Script inicia variable auxiliar gloabal -->
-<script>
     $(document).ready(function () {
         localStorage.setItem('aux', 0);
-        /*var val = localStorage.getItem('aux');
-        var aux = parseInt(val);
-        aux = aux + 1;
-        console.log(aux);*/
+      
     });
-</script>
-<!-- Script Agregar datos -->
-<script>
-    // function guardar() {
 
-    //     datos = $('#formDatos').serialize();
-
-    //     //datos para mostrar a modo de ejemplo para DEMO---------------
-    //     //Serialize the Form
-    //     var values = {};
-    //     $.each($("#formDatos").serializeArray(), function (i, field) {
-    //         values[field.name] = field.value;
-    //     });
-    //     //Value Retrieval Function
-    //     var getValue = function (valueName) {
-    //         return values[valueName];
-    //     };
-    //     //Retrieve the Values
-    //     var empresa = getValue("empresa");
-    //     var zona = getValue("zona");
-    //     var circuito = getValue("circuito");
-    //     var movilidad = getValue("movilidad");
-    //     var numreg = getValue("numreg");
-    //     var dominio = getValue("dominio");
-    //     var chofer = getValue("chofer");
-    //     var fecha = getValue("fecha");
-    //     var dispfinal = getValue("dispfinal");
-    //     var tiporesiduo = getValue("tiporesiduo");
-    //     var num = getValue("nro");
-
-    //     var aux = parseInt(localStorage.getItem('aux'));
-
-    //     localStorage.setItem('num' + aux, num);
-    //     localStorage.setItem('tiporesiduo' + aux, tiporesiduo);
-    //     localStorage.setItem('dispfinal' + aux, dispfinal);
-    //     localStorage.setItem('fecha' + aux, fecha);
-    //     localStorage.setItem('chofer' + aux, chofer);
-    //     localStorage.setItem('dominio' + aux, dominio);
-    //     localStorage.setItem('numreg' + aux, numreg);
-    //     localStorage.setItem('movilidad' + aux, movilidad);
-    //     localStorage.setItem('circuito' + aux, circuito);
-    //     localStorage.setItem('zona' + aux, zona);
-    //     localStorage.setItem('empresa' + aux, empresa);
-
-    //     //--------------------------------------------------------------
-
-    //     if ($("#formDatos").data('bootstrapValidator').isValid()) {
-    //         $.ajax({
-    //             type: "POST",
-    //             data: datos,
-    //             url: "ajax/Ordentrabajo/guardarDato",
-    //             success: function (r) {
-    //                 if (r == "ok") {
-                        
-    //                     //esta porcion de codigo me permite agregar una nueva fila a dataTable asignando al final un id unico a la fila agregada para luego identificarla
-    //                     var t = $('#example2').DataTable();
-    //                     var fila = t.row.add([
-    //                         zona,
-    //                         circuito,
-    //                         empresa,
-    //                         movilidad,
-    //                         chofer,
-    //                         //agrega los iconos correspondientes
-    //                         '<div class="text-center"><button type="button" title="ok" class="btn btn-primary btn-circle btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>&nbsp<button type="button" title="editar" onclick="clickedit('+aux+')" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalEdit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp<button type="button" title="eliminar" onclick="borrar('+aux+')" id="delete" class="btn btn-primary btn-circle"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp<button type="button" title="buscar" class="btn btn-primary btn-circle info" onclick="clickinfo('+aux+')" data-toggle="modal" data-target="#modalInfo"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>'
-    //                     ]).node().id = aux; //esta linea de codigo permite agregar un id a la fila recien insertada para identificarla luego
-    //                     t.draw(false);
-
-    //                     aux = aux + 1;//incrementa en 1 la variable auxiliar, la cual indica el id de las filas que se agregan a la tabla
-    //                     localStorage.setItem('aux', aux);//actualiza la variable local aux para la proxima insercion
-
-    //                     $('#formDatos').data('bootstrapValidator').resetForm();
-    //                     $("#formDatos")[0].reset();
-    //                     $('#selecmov').find('option').remove();
-    //                     $('#chofer').find('option').remove();
-    //                     $("#chofer").html("<option value='' disabled selected>-Seleccione opcion-</option>");
-    //                     $("#boxDatos").hide(500);
-    //                     $("#botonAgregar").removeAttr("disabled");
-    //                     alertify.success("Agregado con exito");
-    //                 } else {
-    //                     //console.log(r);
-    //                     alertify.error("error al agregar");
-    //                 }
-    //             }
-    //         });
-    //     }
-    // }
-</script>
-
-<script>
     $(function () {
         $('#example1').DataTable()
         $('#example2').DataTable({
