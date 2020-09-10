@@ -34,7 +34,7 @@ class OrdenTransporte extends CI_Controller {
         $arregloEq = array();
         $equipos = $this->OrdenTransportes->obtenerEquipo();
         $cont = count($equipos);
-        for($i=0; $i < 2; $i++)
+        for($i=0; $i < $cont; $i++)
         {
           $auxiliar = $equipos[$i];
           $dom = $auxiliar->dominio;
