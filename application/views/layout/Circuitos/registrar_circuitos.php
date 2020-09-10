@@ -478,7 +478,7 @@
 							<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="box box-primary">
 											<div class="box-header with-border">
-													<h4> Puntos Criticos</h4>
+													<h5> Puntos Criticos</h5>
 											</div>
 									</div>
 							</div>
