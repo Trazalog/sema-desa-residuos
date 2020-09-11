@@ -119,6 +119,13 @@
                                                 <input type="text" class="form-control  ocultarInfofecha" name="anio_elaboracion" id="Añoelab" style="width: 35rem;" readonly>
                                         </div>
                                         <!--_____________________________________________-->
+                                        <div class="form-group ocultarInfofecha">
+                                            <label for="anio_elaboracion">Fecha de Alta:</label>
+                                            <br>
+                                               
+                                            
+                                                <input type="text" class="form-control  ocultarInfofecha" name="fec_alta" id="fecalta" style="width: 35rem;" readonly>
+                                        </div>
    
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -484,6 +491,7 @@ $(".btnInfo").click(function(e){
     $("#Descripcion").val(data.descripcion);
     $("#Capacidad").val(data.capacidad);
     $("#Añoelab").val(data.anio_elaboracion.slice(0, 10)); // saco hs y minutos
+    $("#fecalta").val(data.fec_alta.slice(0, 10));
     $("#Tara").val(data.tara);
     $("#estadoInfo").val(data.esco_id.substr(17,30));
     $("#cargaInfo").val();

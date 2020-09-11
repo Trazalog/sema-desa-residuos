@@ -150,6 +150,38 @@
                             </div>
                            
                         </div>
+
+                        <div class="form-group">
+                            <label for="optolva" >Pose Tolva:</label>
+                            <select class="form-control select2 select2-hidden-accesible opcionTolva" id="optolva" name="optionsTolva" >
+                                <option value="" disabled selected>-Seleccione opcion-</option>
+                                <option value="si">SI</option>
+                                <option value="no">NO</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group Capacidad" style="display:none;">
+                            <label for="codigo" >Capacidad:</label>
+                            <input type="number" class="form-control" id="capacidad" name="capacidad" >
+                        </div>
+
+                            <!--Tipo carga-->                
+                        <div class="form-group RSU" style="display:none;">
+                            <label for="rsu">Tipo de residuo:</label>
+                            <div class="input-group date" id="carg">
+                                <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+                                    <select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="rsu" name="rsu" required>
+                                
+                                        <?php
+                                            foreach ($Rsu as $i) {
+                                                
+
+                                                echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
+                                            }
+                                        ?>
+                                    </select>
+                            </div>
+                        </div>               
             ​        <!--_____________________________________________________________-->
                           <!--Adjuntar imagen--> 
                         <div class="form-group">
@@ -158,6 +190,7 @@
                                 <input type="file" name="imagen" id="img_File" onchange="convertA()" style="font-size: smaller">
                                 <input type="text" id="input_aux_img" style="display:none" >
                             </form>
+                            <br>
                             <img src="" alt="" id="imagen" width="" height="">
                         </div>
                    
@@ -621,31 +654,91 @@ async function convertA(){
         if(datos.imagen != "")
         {
                 if ($("#formVehiculo").data('bootstrapValidator').isValid()) {
-                wo();
-                $.ajax({
-                    type: "POST",
-                    data: {datos},
-                    url: "general/Estructura/Vehiculo/Guardar_Vehiculo",
-                    success: function (r) {
-                        console.log(r);
-                        if (r == "ok") {
-                        wc();
-                        $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
-                            alertify.success("Vehiculo Agregado con exito");
-                            $("#formVehiculo")[0].reset();
-                            $('#formVehiculo').data('bootstrapValidator').resetForm();
-                            
+                    if($(".opcionTolva").val() != "")
+                    {
+                        if($(".opcionTolva").val()=="si")
+                        {
+                            datos.optionsTolva = "si";
+                            if($("#capacidad").val()!="")
+                            {
+                                datos.capacidad = $("#capacidad").val();
+                                if($("#rsu").val()!="")
+                                {
+                                    var tipocarga= $('#rsu').val(); 
+                                     //llama funcion controller
 
-                            $("#boxDatos").hide(500);
-                            $("#botonAgregar").removeAttr("disabled");
+                                        wo();
+                                        $.ajax({
+                                        type: "POST",
+                                        data: {datos, tipocarga},
+                                        url: "general/Estructura/Vehiculo/Guardar_Vehiculo",
+                                        success: function (r) {
+                                            console.log(r);
+                                            if (r == "ok") {
+                                            wc();
+                                            $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
+                                                alertify.success("Vehiculo Agregado con exito");
+                                                $("#formVehiculo")[0].reset();
+                                                $('#formVehiculo').data('bootstrapValidator').resetForm();
+                                                
 
-                        } else {
-                            //console.log(r);
-                            wc();
-                            alertify.error("Error al Agregar Vehiculo");
+                                                $("#boxDatos").hide(500);
+                                                $("#botonAgregar").removeAttr("disabled");
+
+                                            } else {
+                                                //console.log(r);
+                                                wc();
+                                                alertify.error("Error al Agregar Vehiculo");
+                                            }
+                                        }
+                                        });
+
+                                }else{
+                                    alert("ATENCION!!! NO selecciono tipo de residuos");
+                                }
+                               
+                               
+
+                            }else{
+                                alert("ATENCION!!! No ingreso capacidad");
+                            }
+
+                        }else{
+                            datos.optionsTolva = "no";
+                            datos.capacidad = 1;
+                            //llama funcion controller
+                            wo();
+                            $.ajax({
+                            type: "POST",
+                            data: {datos},
+                            url: "general/Estructura/Vehiculo/Guardar_Vehiculo",
+                            success: function (r) {
+                                console.log(r);
+                                if (r == "ok") {
+                                wc();
+                                $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Vehiculo/Listar_Vehiculo");
+                                    alertify.success("Vehiculo Agregado con exito");
+                                    $("#formVehiculo")[0].reset();
+                                    $('#formVehiculo').data('bootstrapValidator').resetForm();
+                                    
+
+                                    $("#boxDatos").hide(500);
+                                    $("#botonAgregar").removeAttr("disabled");
+
+                                } else {
+                                    //console.log(r);
+                                    wc();
+                                    alertify.error("Error al Agregar Vehiculo");
+                                }
+                            }
+                            });
+
                         }
+
+                    }else{
+                        alert("ATENCION!!! no selecciono si tiene o no tolva");
                     }
-                });
+              
             }else{
                 alert("ATENCION!!! Hay Campos Sin Completar o Mal Ingresados");
                 // swal("Atencion Hay campos sin completar o mal Ingresados");
@@ -657,7 +750,19 @@ async function convertA(){
     }
 
     
-
+$(".opcionTolva").change(function(){
+    debugger;
+    if($(".opcionTolva").val()=="si")
+    {
+            $(".Capacidad").removeAttr("style");
+            $(".RSU").removeAttr("style");
+    }
+    if($(".opcionTolva").val()=="no")
+    {
+            $(".Capacidad").attr("style","display:none;");
+            $(".RSU").attr("style","display:none;");
+    }
+});
 
 //Funcion Editar el vehiculo
 
@@ -855,6 +960,22 @@ async function convertA(){
                 }
             },
             tran_id: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            optionsTolva: {
+                message: 'la entrada no es valida',
+                validators: {
+                    notEmpty: {
+                        message: 'la entrada no puede ser vacia'
+                    }
+                }
+            },
+            rsu: {
                 message: 'la entrada no es valida',
                 validators: {
                     notEmpty: {
@@ -1126,5 +1247,6 @@ function cerrar_Ampliar(){
 <!-- script Datatables -->
 <script>
     DataTable($('#tabla_vehiculos'))
+    $('.select3').select2();
 </script>
 <!--_____________________________________________________________-->

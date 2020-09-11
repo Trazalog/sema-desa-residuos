@@ -18,7 +18,7 @@
         <!--DNI-->
         <div class="form-group">
             <label for="DNI">DNI:</label>
-            <input type="text" <?php echo req() ?> class="form-control" id="documento" name="documento">
+            <input type="number" <?php echo req() ?> class="form-control" id="documento" name="documento">
         </div> ​
         <!--_____________________________________________________________-->
 
@@ -44,7 +44,7 @@
         <!--Celular-->
         <div class="form-group">
             <label for="Celular">Celular:</label>
-            <input type="text" <?php echo req() ?> class="form-control" id="celular" name="celular">
+            <input type="number" <?php echo req() ?> class="form-control" id="celular" name="celular">
         </div>
         <!--_____________________________________________________________-->
     </div>

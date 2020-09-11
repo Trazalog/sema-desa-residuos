@@ -39,6 +39,8 @@ class Contenedor extends CI_Controller {
         log_message('INFO','#TRAZA|Contenedor|Guardar_Contenedor() >>'); 
         // datos de la vista  
         $datos =  $this->input->post('datos');
+        $tran_id = usrIdTransportistaByNick();
+        $datos['tran_id'] = $tran_id;
         $datos_tipo_carga = $this->input->post('datos_tipo_carga');
          // 1 guarda contenedor y devuelve su id
         $cont_id = $this->Contenedores->Guardar_Contenedor($datos)->respuesta->cont_id;
@@ -97,7 +99,22 @@ class Contenedor extends CI_Controller {
     function Listar_Contenedor()
     {
       log_message('INFO','#TRAZA|Contenedor|Listar_Contenedor() >>');
-      $data["contenedores"] = $this->Contenedores->Listar_Contenedor();
+      //CODIGO PARA FILTRAR POR TRANSPORTISTA
+      $tran_id = usrIdTransportistaByNick();
+      $conte =  $this->Contenedores->ObtenerContxTranid($tran_id);
+      $cant = count($conte);
+      $arregloEq = array();
+      for($i=0; $i< $cant;$i++)
+      {
+        $auxiliar = $conte[$i];
+        $idCont = $auxiliar->cont_id;
+        $resp = $this->Contenedores->ObtenerContxContid($idCont);
+        $arregloEq[] = $resp;
+      }
+      $data["contenedores"] = $arregloEq;
+      //FIN CODIGO FILTRADOR
+
+      // $data["contenedores"] = $this->Contenedores->Listar_Contenedor();
       $data["estados"] = $this->Contenedores->obtener_Estados();
       $data["carga"] = $this->Contenedores->obtener_Tipo_Carga();
       $data["habilitacion"] = $this->Contenedores->Obtener_Habilitacion();
@@ -110,7 +127,22 @@ class Contenedor extends CI_Controller {
       */
     function Listar_Contenedor_Tabla(){
       log_message('INFO','#TRAZA|Contenedor|Listar_Contenedor_Tabla() >>');
-      $data["contenedores"] = $this->Contenedores->Listar_Contenedor();
+       //CODIGO PARA FILTRAR POR TRANSPORTISTA
+       $tran_id = usrIdTransportistaByNick();
+       $conte =  $this->Contenedores->ObtenerContxTranid($tran_id);
+       $cant = count($conte);
+       $arregloEq = array();
+       for($i; $i< $cant;$i++)
+       {
+         $auxiliar = $conte[$i];
+         $idCont = $auxiliar->cont_id;
+         $resp = $this->Contenedores->ObtenerContxContid($idCont);
+         $arregloEq[] = $resp;
+       }
+       $data["contenedores"] = $arregloEq;
+       //FIN CODIGO FILTRADOR
+
+      // $data["contenedores"] = $this->Contenedores->Listar_Contenedor();
       $data["estados"] = $this->Contenedores->obtener_Estados();
       $data["carga"] = $this->Contenedores->obtener_Tipo_Carga();
       $data["habilitacion"] = $this->Contenedores->Obtener_Habilitacion();

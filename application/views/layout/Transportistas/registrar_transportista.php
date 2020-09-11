@@ -259,6 +259,7 @@
 											<div class="form-group">
 												<label for="descripcion_edit" name="descripcion_edit">Descripcion:</label>
 												<input type="text" class="form-control habilitar" id="descripcion_edit" name="descripcion">
+												<span class="glyphicon glyphicon-eye-open esconder" aria-hidden="true"  style="left: -2rem; top: -2rem; " title="Ampliar Descripcion" onclick="ampliarDesc()"></span> 
 											</div>													
 											<!--__________-->
 										</div>
@@ -376,6 +377,26 @@
 		</div>
 	</div>
 <!---///////--- FIN MODAL AVISO ---///////--->
+<!---//////////////////////////////////////--- MODAL AMPLIAR DESCRIPCION ---///////////////////////////////////////////////////////-----> 
+<div class="modal fade" id="modalVerDescAmpliada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+    <div class="modal-dialog" role="document"> 
+        <div class="modal-content"> 
+            <div class="modal-header bg-blue"> 
+                <button type="button" class=" close btn-cerrar-modal" data-dismiss="modal" aria-label="Close" onclick="cerrar_Ampliar()"> 
+                    <span aria-hidden="true">&times;</span> 
+                </button> 
+                <h5 class="modal-title" id="exampleModalLabel">Descripcion de Transportista</h5> 
+            </div> 
+            <div class="modal-body"> 
+ 
+               <textarea name="" id="descrip" cols="30" rows="10" readonly></textarea>  
+ 
+            </div> 
+        </div> 
+    </div> 
+</div> 
+ 
+<!---//////////////////////////////////////--- FIN MODAL DESCRIPCION ---///////////////////////////////////////////////////////-----> 
 
 <!--- SCRIPTS --->
 <script>
@@ -559,6 +580,21 @@
         $("#boxDatos").show();
 
     });
+
+	//modal ojo ampliar descripcion 
+	function ampliarDesc () 
+	{ 
+		$("#modalEdit").modal("hide"); 
+		$("#modalVerDescAmpliada").modal("show"); 
+		var valor = $("#descripcion_edit").val(); 
+		$("#descrip").val(valor); 
+     
+	} 
+	function cerrar_Ampliar()
+	{ 
+		$("#modalVerDescAmpliada").modal("hide"); 
+		$("#modalEdit").modal("show"); 
+    } 
 
 	//cierra box de datos
     $("#btnclose").on("click", function() {

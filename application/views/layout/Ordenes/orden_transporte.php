@@ -537,7 +537,8 @@ $("#equipo").change(function(){
         dataType: 'json',
         url: "general/Estructura/OrdenTransporte/ObtenerinfoOt",
         success: function($respuesta) {
-
+            debugger;
+            wc();
             var resp = $respuesta;
             aux = resp.vehiculoAsignadoARetiro.tran_id; // esto guardarlo en algun input oculto
             console.table(resp);

@@ -64,6 +64,8 @@ class Contenedores extends CI_Model
         */
     function actualizar_Contenedor($data){
         log_message('INFO','#TRAZA|Contenedores|actualizar_Contenedor() >> '); 
+        $usuario = userNick();
+        $data["usuario_app"] = $usuario;
         $post["put_contenedor"]= $data;
         log_message('DEBUG','#Contenedores/Actualizar_Contenedor'.json_encode($post));
         $aux = $this->rest->callAPI("PUT",REST."/contenedores", $post);
@@ -144,10 +146,26 @@ class Contenedores extends CI_Model
 
     function obtenerImagen_Cont_Id($cont_id)
     {
-        log_message('INFO','#TRAZA|Zonas|obtenerImagen_Zona_Id() >> ');   
-        log_message('DEBUG','#Zonas/obtenerImagen_Zona_Id: '.json_encode($dato)); 
+        log_message('INFO','#TRAZA|Contenedores|obtenerImagen_Zona_Id() >> ');   
+        log_message('DEBUG','#Contenedores/obtenerImagen_Cont_Id: '.json_encode($dato)); 
         $auxx = $this->rest->callAPI("GET",REST."/contenedores/get/imagen/$cont_id");
         $aux =json_decode($auxx["data"]);
         return $aux;
+    }
+    function ObtenerContxTranid($tran_id)
+    {
+        log_message('INFO','#TRAZA|Contenedores|ObtenerContxTranid() >> ');   
+        // log_message('DEBUG','#Contenedores/ObtenerContxTranid: '.$tran_id); 
+        $auxx = $this->rest->callAPI("GET",REST."/contenedores/transportista/$tran_id");
+        $aux =json_decode($auxx["data"]);
+        return $aux->contenedores->contenedor;
+    }
+
+    function ObtenerContxContid($cont_id)
+    {
+        log_message('INFO','#TRAZA|Contenedores|ObtenerContxContid() >> '); 
+        $aux = $this->rest->callAPI("GET",REST."/contenedores/$cont_id");
+        $aux =json_decode($aux["data"]);       
+        return $aux->contenedor;
     }
 }

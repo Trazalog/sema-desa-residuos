@@ -2442,6 +2442,29 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }
   }
 
+-- getOrdenTransporteNicks" 
+   recurso /ordenTransporte/nicks/{ortr_id}
+   metodo GET
+
+SELECT u1.usernick tran_nick, u2.usernick sotr_nick
+FROM log.ordenes_transporte ot 
+,log.solicitantes_transporte st 
+,log.transportistas tr
+,seg.users u1
+,seg.users u2
+WHERE ot.ortr_id =  CAST ( :ortr_id AS integer)
+AND tr.tran_id = ot.tran_id 
+AND st.sotr_id = ot.sotr_id 
+AND u1.email = tr.user_id 
+AND u2.email = st.user_id</sql>
+
+resultado
+{
+ "ordenTransporte": {
+ "tran_nick": "$tran_nick",
+ "sotr_nick": "$sotr_nick"
+ }
+}
 
 -- puntosCriticosCircuitosset
   recurso: /puntosCriticos/circuito
@@ -2810,12 +2833,39 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }
   }
 
+--getSolicitudContenedorNicks" 
+  recurso: /solicitudContenedor/nicks/{soco_id}
+  metodo: get
+
+SELECT u1.usernick tran_nick, u2.usernick sotr_nick
+FROM log.solicitudes_contenedor sc  
+,log.solicitantes_transporte st 
+,log.transportistas tr
+,seg.users u1
+,seg.users u2
+WHERE sc.soco_id =  CAST ( :soco_id AS integer)
+AND tr.tran_id = sc.tran_id  
+AND st.sotr_id = sc.sotr_id  
+AND u1.email = tr.user_id 
+AND u2.email = st.user_id</sql>
+resultado
+
+{
+ "solicitudContenedor": {
+ "tran_nick": "$tran_nick",
+ "sotr_nick": "$sotr_nick"
+ }
+}
+
+
 
 -- solicitudContenedorEstadoUpdate" 
     recurso PUT /solicitudesContenedor/estado
 
 
-    update log.solicitudes_contenedor&#xd;set estado = :estado&#xd;where soco_id = cast(:soco_id as integer)
+    update log.solicitudes_contenedor
+set estado = :estado
+where soco_id = cast(:soco_id as integer)
 
     retorna 200 si ok
 
@@ -2862,7 +2912,9 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
 
 --ordenTransporteEstadoUpdate" 
-  update log.ordenes_transporte&#xd;set estado = :estado&#xd;where ortr_id = cast(:ortr_id as integer)
+  update log.ordenes_transporte
+set estado = :estado
+where ortr_id = cast(:ortr_id as integer)
 
   {"_put_ordenesTransporte_estado":{
     "ortr_id":"21",
@@ -3660,6 +3712,38 @@ http://10.142.0.3:8280/services/semaresiduosDS
   }
 
   retorna 200 si ok
+
+
+
+-- getSolicitudRetiroNicks" useConfig="semaresiduosDS">
+   recurso /solicitudRetiro/nicks/{sore_id}
+   metodo GET
+
+SELECT u1.usernick tran_nick, u2.usernick sotr_nick
+FROM log.solicitudes_retiro sr   
+,log.solicitantes_transporte st 
+,log.transportistas tr
+,log.contenedores_entregados ce
+,log.contenedores c 
+,seg.users u1
+,seg.users u2
+WHERE sr.sore_id =  CAST ( :sore_id AS integer)
+AND st.sotr_id = sr.sotr_id   
+AND ce.sore_id = sr.sore_id
+AND c.cont_id =ce.cont_id 
+AND c.tran_id = tr.tran_id 
+AND u1.email = tr.user_id 
+AND u2.email = st.user_id 
+LIMIT 1
+
+resultado
+{
+ "solicitudRetiro": {
+ "tran_nick": "$tran_nick",
+ "sotr_nick": "$sotr_nick"
+ }
+}
+
 
 -- updateSolicitudRetiroContenedores
   recurso:
