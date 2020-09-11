@@ -924,7 +924,8 @@ function cerrarTarea()
     $.ajax({
 				type: 'POST',
 				data:{ ResPeligrosos, redirecciona},
-				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
+                url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
+                dataType: "json",
 				success: function(result) {
 									wc();
 									if(result.status){

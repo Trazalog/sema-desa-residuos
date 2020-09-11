@@ -327,6 +327,7 @@
 					type: 'POST',
 					data:{ data },
 					url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
+					dataType: "json",
 					success: function(result) {
 								//debugger;
 								wc();

@@ -394,6 +394,12 @@ function guardarIncindencia(){
 	});
 }
 
+// recarga la bandeja de entrada
+function recargaBandejaEntrada()
+{
+  linkTo('<?php echo BPM ?>Proceso/index');
+}
+
 function cerrarTarea ()
 {
 
@@ -418,6 +424,7 @@ function cerrarTarea ()
 								type: 'POST',
 								data:{salida},
 								url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
+								dataType: "json",
 								success: function(result) {
 										
 													alert(result);
@@ -425,6 +432,7 @@ function cerrarTarea ()
 													wc();
 													if( result.status ){
 															alertify.success("Tarea completada exitosamente...");
+															recargaBandejaEntrada();
 													}else{
 															alertify.error('Error en completar la Tarea...');
 													}
