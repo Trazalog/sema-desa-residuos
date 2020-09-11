@@ -417,10 +417,11 @@ function cerrarTarea ()
 				$.ajax({
 								type: 'POST',
 								data:{salida},
+								dataType: "json",
 								url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 								success: function(result) {
 										
-													alert(result);
+													//alert(result);
 
 													wc();
 													if( result.status ){
