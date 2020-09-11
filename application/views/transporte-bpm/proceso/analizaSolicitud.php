@@ -144,15 +144,9 @@
 		$.ajax({
 				type: 'POST',
 				data:{ elegido, coincideCant, contAcordados, motivo },
+				dataType: "json",
 				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 				success: function(result) {
-
-
-					status:true
-					msj:"OK"
-					data:false
-
-									response =  JSON.parse(result);
 									wc();
 									if(response.status){
 										alertify.success("Respuesta enviada exitosamente...");
