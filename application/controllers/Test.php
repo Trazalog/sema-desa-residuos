@@ -5,7 +5,11 @@ class Test extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+<<<<<<< Updated upstream
         $this->load->model('TestModel');
+=======
+        $this->load->model('testModel');
+>>>>>>> Stashed changes
     }
 
     public function index()
@@ -23,6 +27,7 @@ class Test extends CI_Controller
         echo json_encode($data);
     }
 
+<<<<<<< Updated upstream
     public function obtenerEstablecimientos()
     {
       $esta_id = $this->input->get("esta_id");
@@ -64,5 +69,28 @@ class Test extends CI_Controller
     {
         $data = $this->input->post();
         $data = $this->TestModel->setRecipiente($data);
+=======
+    //REPORTE DE INTERNO
+
+    public function reporteInterno()
+    {
+        $this->load->view('test2');
+    }
+
+    public function obtenerEmpresas()
+    {
+        $rsp = $this->testModel->obtenerEmpresas();
+        $rsp = $rsp['data'];
+        $rsp = json_decode($rsp);
+        $rsp = json_encode($rsp->empresas->empresa);
+        echo $rsp;
+    }
+
+    public function filtrarEmpresas()
+    {
+        $rsp = $this->input->post();
+        $fechas = explode(" - ",$rsp['fechas']);
+        $rsp = $this->tasasModel->FiltrarEmpresas($fechas);
+>>>>>>> Stashed changes
     }
 }
