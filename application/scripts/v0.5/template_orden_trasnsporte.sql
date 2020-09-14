@@ -2,7 +2,7 @@
 
 -- Drop table
 
--- DROP TABLE log.templates_orden_transporte;
+-- DROP TABLE templates_orden_transporte;
 
 CREATE TABLE log.templates_orden_transporte (
 	teot_id serial NOT NULL,
@@ -16,7 +16,8 @@ CREATE TABLE log.templates_orden_transporte (
 	chof_id varchar NOT NULL,
 	tica_id varchar NOT NULL,
 	difi_id varchar NOT NULL,
-	sotr_id int4 NOT NULL
+	sotr_id int4 NOT NULL,
+	CONSTRAINT templates_orden_transporte_un UNIQUE (teot_id)
 );
 
 

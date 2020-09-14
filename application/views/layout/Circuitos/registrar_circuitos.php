@@ -52,7 +52,7 @@
 											<label for="tipoResiduos">Tipo de residuo:</label>
 											<div class="input-group date">
 													<div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
-													<select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_id" name="tica_id">															
+													<select class="form-control select3" multiple="multiple"  data-placeholder="Seleccione tipo residuo"  style="width: 100%;"  id="tica_id" name="tica_id">
 															<?php
 																	foreach ($tipoResiduos as $i) {		
 																			echo '<option  value="'.$i->tabl_id.'">'.$i->valor.'</option>';
@@ -333,7 +333,7 @@
 						<button type="button" class="close close_modal_edit" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 						</button>
-						<h5 class="modal-title" id="exampleModalLabel">Circuitos</h5>
+						<h5 class="modal-title titulo" id="exampleModalLabel">Editar Circuitos</h5>
 				</div>
 
 				<div class="modal-body ">
@@ -648,15 +648,16 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-blue">
-				<h5 class="modal-title" ><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>  Eliminar</h5>
+				
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true" >&times;</span>
 				</button>
+				<h5 class="modal-title" id="exampleModalLabel"> Eliminar Circuito</h5>
 			</div>
 			<input id="circuito_delete" style="display: none;">
 			<div class="modal-body">
 				<center>
-				<h4><p>¿ DESEA ELIMINAR CIRCUITO ?</p></h4>
+				<h4><p>¿ DESEA ELIMINAR EL CIRCUITO ?</p></h4>
 				</center>
 			</div>
 			<div class="modal-footer">
@@ -847,7 +848,7 @@ $(".close_modal_edit").click(function(e){
 			var inpImagen = $('input#imagen');	
 			datos_circuito = formToObject(datos_circuito);
 			datos_circuito.imagen = $("#input_aux_img").val();
-			
+
 			// recorre tabla guardando ptos criticos en array
 			var datos_puntos_criticos = [];		
 			var rows = $('#datos tbody tr');				
@@ -871,6 +872,7 @@ $(".close_modal_edit").click(function(e){
 				{
 					alert("ATENCION! no cargo ninguna Imagen, Por favor cargue una");
 				}else{
+					wo();
 					$.ajax({
 							type: "POST",
 							data: {datos_circuito_enviar, datos_puntos_criticos,datos_tipo_carga},							
@@ -879,12 +881,14 @@ $(".close_modal_edit").click(function(e){
 									 
 									
 										if ($respuesta == "Error codigo existente")
-										{
+										{	
+											wc();
 											// alertify.error("Error...El codigo"+ datos_circuito_enviar.codigo+ "de circuito que ingreso ya existe, Pruebe con otro");
 											alert("Error...El codigo"+ datos_circuito_enviar.codigo+ "de circuito que ingreso ya existe, Pruebe con otro");
 										}else{
 											if($respuesta == "Error... Punto Crítico no asociado")
-											{
+											{	
+												wc();
 												alertify.error("Error...El circuito se registro pero no se pudo asociar los ptos criticos ");
 												$('#formCircuitos').data('bootstrapValidator').resetForm();
 														$("#formCircuitos")[0].reset();
@@ -902,6 +906,7 @@ $(".close_modal_edit").click(function(e){
 											else{
 												if($respuesta == "Error... Tipo de RSU no asociado")
 												{
+													wc();
 													alertify.error("Error al vincular los tipos de residuos al circuito...");
 													$('#formCircuitos').data('bootstrapValidator').resetForm();
 														$("#formCircuitos")[0].reset();
@@ -915,9 +920,10 @@ $(".close_modal_edit").click(function(e){
 														
 												}else{
 													if ($respuesta != "") {
+														wc();
 														$res = JSON.parse($respuesta);
 														$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
-														alertify.success("Circuito Agregado Con Exito");
+														alertify.success("Circuito Agregado con exito");
 														$('#formCircuitos').data('bootstrapValidator').resetForm();
 														$("#formCircuitos")[0].reset();
 														$('#formPuntos').data('bootstrapValidator').resetForm();
@@ -946,8 +952,9 @@ $(".close_modal_edit").click(function(e){
 													
 														// alert("Atencion hay algunos puntos criticos que no se asociaron al circuito");
 													}else{
+														wc();
 														$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");
-														alertify.success("Circuito Agregado Con Exito");
+														alertify.success("Circuito Agregado con exito");
 														$('#formCircuitos').data('bootstrapValidator').resetForm();
 														$("#formCircuitos")[0].reset();
 														$('#formPuntos').data('bootstrapValidator').resetForm();
@@ -1287,19 +1294,21 @@ $(".close_modal_edit").click(function(e){
 		circ_zona.zona_id = idzona;	
 
 		console.table('array objeto no se: ' + circ_zona);
-
+		wo();
 		$.ajax({
 				type: 'POST',
 				data:{circ_zona},
 				url: "general/Estructura/Circuito/Asignar_Zona",
 				success: function(result) {					
 							if(result == 'ok'){
-								alertify.success("Zona asociada con exito...!!!!!");
+								wc();
+								alertify.success("Zona Asociada con exito");
 								$("#cargar_tabla").load(
 												"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
 										);
 							}else{
-								alertify.error("Hubo error en la Asociacion...");
+								wc();
+								alertify.error("Error al Asociar Zona");
 							}
 				},
 				error: function(result){
@@ -1421,19 +1430,22 @@ DataTable($('#tabla_puntos_criticos_edit'));
 function eliminar(){
 
 var circ_id = $("#circuito_delete").val();
+wo();
 $.ajax({
 		type: 'POST',
 		data:{circ_id: circ_id},
 		url: "general/Estructura/Circuito/borrar_Circuito",
 		success: function(result) {
 					if(result == "ok"){
+						wc();
 						$("#modalaviso").modal('hide');
-						alertify.success("circuito eliminado con exito...");
+						alertify.success("Circuito Eliminado con exito");
 						$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos");	
 						
 					}else{
+						wc();
 						$("#modalaviso").modal('hide');	
-						alertify.success("error al eliminar...");
+						alertify.success("Error al Eliminar Circuito");
 					}
 		},
 		error: function(result){
@@ -1497,26 +1509,27 @@ $("#btnsave_edit").on("click", function() {
 				if( circuito_edit.imagen != "")
 				{   
 					if($("#tica_edit").val() != "")
-					{    
+					{    wo();
 						$.ajax({
 								type: 'POST',
 								data:{ datos_circuito_enviar_edit, tica_edit, ptos_criticos_edit},
 								url: "general/Estructura/Circuito/actulizaCircuitos",
 								success: function(result) {
 											if(result == "ok"){
+												wc();
 												$("#modalEdit").data('bootstrapValidator').resetForm();
 												$("#formPuntos_edit")[0].reset();
 												$("#formPuntos_edit").data('bootstrapValidator').resetForm();
 												
-													alertify.success("Circuito editado con exito...");
+													alertify.success("Circuito Actualizado con exito");
 												$("#cargar_tabla").load(
 																"<?php echo base_url(); ?>index.php/general/Estructura/Circuito/Listar_Circuitos"
 														);
 											
 												
 											}else{
-												
-												alertify.error("Error Al Editar Circuito...");
+												wc();
+												alertify.error("Error al Actualizar Circuito");
 												$("#modalEdit").data('bootstrapValidator').resetForm();
 												$("#formPuntos_edit")[0].reset();
 												$("#formPuntos_edit").data('bootstrapValidator').resetForm();

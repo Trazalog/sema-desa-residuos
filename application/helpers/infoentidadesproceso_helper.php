@@ -11,7 +11,7 @@ if(!function_exists('infoentidadesproceso')){
 	
       $ci2 =& get_instance();
       $ent_case_id = $tarea->caseId;
-      $processId = $tarea->processId;      
+      $processId = $tarea->processId;
 
       switch ($processId) {
 
@@ -38,8 +38,8 @@ if(!function_exists('infoentidadesproceso')){
               $aux_gen =json_decode($aux_gen["data"]);
 
               $aux_tran = $ci2->rest->callAPI("GET",REST."/transportistas/proceso/ingreso/case/".$ent_case_id);
-              $aux_tran =json_decode($aux_tran["data"]);              
-            break;        
+              $aux_tran =json_decode($aux_tran["data"]);
+            break;
           default:
             # code...
             break;

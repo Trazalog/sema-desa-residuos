@@ -22,7 +22,7 @@
           <div class="col-md-4 col-md-6 mb-4 mb-lg-0">
               <div class="form-group">
                   <label for="cont_restantes" class="form-label">Contenedores Restantes:</label>
-                  <input type="text" name="" id="cont_restantes" min="0" class="form-control" required readonly>
+                  <input type="text" name="" id="cont_restantes" min="0" class="form-control" required readonly value="<?php echo $contRestanteDescarga->noEntregados; ?>">
               </div>
           </div>
 
@@ -248,17 +248,14 @@
 
 // llena cantidad de contenedores que faltan 
 $( document ).ready(function() {
-    
-				var cant = <?php echo $contRest; ?>;
-                var tara = parseInt($("#tara").val());
-                var neto =parseInt($("#peso_neto").val());
-                var bruto = neto + tara;
-                $("#bruto").val(bruto);
-				$("#cont_restantes").val(cant);
-                var cont = $("#cont_id").val();
-                GetImagen(cont);
-                
-		});
+
+		var tara = parseInt($("#tara").val());
+		var neto =parseInt($("#peso_neto").val());
+		var bruto = neto + tara;
+		$("#bruto").val(bruto);
+		var cont = $("#cont_id").val();
+		GetImagen(cont);
+});
 
 function jpg($img_b64)
 {
@@ -364,82 +361,81 @@ function GetImagen($cont_id)
             $("#modalIncidencia").modal('show');
         });
 			
-		
 
-		function guardarIncindencia(){		
 
-			// tomo los datos de circuito editados
-			var incidencia = new FormData($('#formIncidencia')[0]);
-			incidencia.adjunto = $("#input_aux_img").val();
-			incidencia = formToObject(incidencia);		
-			//console.table(incidencia);
-            var aux = 1;
-            $("tieneInci").val(aux);
-            
-			$.ajax({
-					type: 'POST',
-					data:{ incidencia },
-					url: "general/Estructura/Incidencia/guardarIncidencia",
-					success: function(result) {		
-						
-								if(result == 'ok'){
-									$("#modalIncidencia").modal('hide');
-									alertify.success("Incidencia agregada con exito...");
+function guardarIncindencia(){
+
+	// tomo los datos de circuito editados
+	var incidencia = new FormData($('#formIncidencia')[0]);
+	incidencia.adjunto = $("#input_aux_img").val();
+	incidencia = formToObject(incidencia);		
+	//console.table(incidencia);
+				var aux = 1;
+				$("tieneInci").val(aux);
+				
+	$.ajax({
+			type: 'POST',
+			data:{ incidencia },
+			url: "general/Estructura/Incidencia/guardarIncidencia",
+			success: function(result) {		
+				
+						if(result == 'ok'){
+							$("#modalIncidencia").modal('hide');
+							alertify.success("Incidencia agregada con exito...");
+						}
+			},
+			error: function(result){
+						$("#modalIncidencia").modal('hide');
+						alertify.error('Error agregando incidencia...');
+			},
+			complete: function(){
+							
+			}
+	});
+}
+
+function cerrarTarea ()
+{
+
+				var taskId = $('#taskId').val();
+
+				var salida = new FormData();
+				salida = formToObject(salida);
+				salida.cont_id = $("#cont_id").val();
+				salida.ortr_id = $("#ortr_id").val();
+
+				if($("#cont_restantes").val() != 0){
+						var op = "true";
+						var quedanCont = {quedanContenedores : op};
+						salida.contrato = quedanCont;
+				}else{
+						var op = "false";
+						var quedanCont = {quedanContenedores : op};
+						salida.contrato = quedanCont;
+				}
+
+				$.ajax({
+								type: 'POST',
+								data:{salida},
+								url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
+								success: function(result) {
+										
+													alert(result);
+
+													wc();
+													if( result.status ){
+															alertify.success("Tarea completada exitosamente...");
+													}else{
+															alertify.error('Error en completar la Tarea...');
+													}
+								},
+								error: function(result){
+																		wc();
+														},
+								complete: function(){
+													wc();
+
 								}
-					},
-					error: function(result){
-								$("#modalIncidencia").modal('hide');
-								alertify.error('Error agregando incidencia...');
-					},
-					complete: function(){
-									
-					}
-			});
-		}
-
-        function cerrarTarea ()
-        {
-            if($("#tieneInci").val()==1)
-            {   var opcion = "true";
-                var Incidencia = {opcion: opcion};	
-            }else{
-                var opcion = "false";
-                var Incidencia = {opcion: opcion};	
-                 }
-                 var taskId = $('#taskId').val();
-                 
-                 var salida = new FormData();
-                 salida = formToObject(salida);
-                 salida.cont_id = $("#cont_id").val();
-                 salida.ortr_id = $("#ortr_id").val();
-                 var op = "false";
-                 var quedanCont = {quedanContenedores : op};
-                 salida.contrato = quedanCont;
-               
-                $.ajax({
-                        type: 'POST',
-                        data:{salida},
-                        url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
-                        success: function(result) {
-                            
-                                            alert(result);
-
-                                            wc();
-                                            if( result.status ){										
-                                                alertify.success("Tarea completada exitosamente...");	
-                                            }else{
-                                                alertify.error('Error en completar la Tarea...');
-                                            }
-                                        },
-                        error: function(result){
-                                            wc();
-                                    },
-                        complete: function(){
-                                            wc();
-                                                if(existFunction('cerrarTarea')){
-                                                     cerrarTarea();
-                                                }	
-                                            }
-                    });
-        }
+				});
+}
 </script>

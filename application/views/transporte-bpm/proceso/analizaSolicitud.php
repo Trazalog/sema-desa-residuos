@@ -11,7 +11,7 @@
 						<tr>
 								<th>Tipo Residuo</th>
 								<th>Cantidad Solicitada</th>
-								<th>Cantidad Propuesta</th>                    
+								<th>Cantidad Propuesta</th>
 						</tr>
 				</thead>
 				<tbody>
@@ -69,7 +69,7 @@
 
 	// para guardar						
 	function cerrarAnalisis(opcion){
-		//debugger;
+
 		wo();
 		var taskId = $('#taskId').val();
 		var elegido = {opcion: opcion};	
@@ -81,7 +81,7 @@
 		var coincideCant = {};
 
 		// recorre tabla guardando datos para enviar
-		rows.each(function(i,e) {  
+		rows.each(function(i,e) {
 
 				datajson = $(this).attr("data-json");
 				data = JSON.parse(datajson); 
@@ -92,7 +92,6 @@
 				tmp.tica_id = data.tica_id;
 				tmp.cantidad_acordada = propuesta;
 				contAcordados.push(tmp);
-			
 				// si esta vacio el campo propuesta				
 				if(propuesta === ""){	
 					vacio = 1;
@@ -103,14 +102,12 @@
 					igualCant += 1;
 				}			
 		});
-
 		// si los campos cantidad estan vacios
 		if (vacio == 1) {
 			alert("Por favor complete el/los campos Cantidad Propuesta");
 			wc();
 			return;
 		}
-
 		//  Si rechaza la solicitud
 		if (opcion == "rechaza") {
 			
@@ -127,12 +124,11 @@
 
 			$('#motivo').val("");  // si acepta se vacia el campo motivo
 		}
-
 		// si las cantidades no coinciden
 		if (igualCant > 0) {						
 			coincideCant.cantIguales = 0;					
 		}else{					
-			coincideCant.cantIguales = 1;			
+			coincideCant.cantIguales = 1;
 		}
 
 		$.ajax({
@@ -140,12 +136,14 @@
 				data:{ elegido, coincideCant, contAcordados, motivo },
 				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 				success: function(result) {
-									//alert(result);
+
+									response =  JSON.parse(result);
 									wc();
-									if(result == ''){										
-										alertify.success("Contenedoes actualizados exitosamente...");	
+									if(response.status){
+										alertify.success("Respuesta enviada exitosamente...");
+										recargaBandejaEntrada();
 									}else{
-										alertify.error('Error en completar la Tarea...');
+										alertify.error('Error al enviar respuesta...');
 									}
 								},
 				error: function(result){
@@ -153,27 +151,19 @@
 							 },
 				complete: function(){
 									wc();
-										if(existFunction('cerrarTarea')){
-											cerrarTarea();
-										}	
+
 									}
 		});
 	}
 
+	function recargaBandejaEntrada()
+	{
+		linkTo('<?php echo BPM ?>Proceso/index');
+	}
 
 	// Datatable	
 	DataTable($('#tbl_contenedores'));	
 </script>
-
-
-
-
-<?php
-
-		//  var_dump($infoSolicitud);
-		//  var_dump($infoContenedores);
-
-?>
 
 
 

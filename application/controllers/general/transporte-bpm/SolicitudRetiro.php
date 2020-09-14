@@ -12,7 +12,7 @@ class SolicitudRetiro extends CI_Controller {
   * @return 
   */
   function __construct()
-  {        
+  {
     parent::__construct();
     $this->load->model('general/transporte-bpm/SolicitudesRetiro');
   }
@@ -26,27 +26,26 @@ class SolicitudRetiro extends CI_Controller {
   {
     $data['transportista'] = $this->SolicitudesRetiro->obtener_Transportista();
     $data['nuevo_sore_id'] = $this->SolicitudesRetiro->solicitudRetiroProx();
-    $data['contenedores'] =  $this->SolicitudesRetiro->obtenerContenedor();
+    //$data['contenedores'] =  $this->SolicitudesRetiro->obtenerContenedor();
     $this->load->view('transporte-bpm/SolicitudRetiro/Registrar_solicitud_retiro', $data);
   }
    
  
   function Guardar_SolicitudRetiro()
   {
-    // $solicitud = $this->input->post('datos');
-    // var_dump($solicitud);
-    
-    // $usuario['usuario_app'] = 'hugoDS';
+    $solicitud = $this->input->post('datos');
 
-    $resp = $this->SolicitudesRetiro->Guardar_solicitudRetiro($this->input->post('datos'));
-    if(!$resp){
+    $solicitud['usuario_app'] = userNick();
+    $solicitud['sotr_id'] = usrIdGeneradorByNick();
+
+    $resp = $this->SolicitudesRetiro->Guardar_solicitudRetiro($solicitud);
+    if($resp){
       echo "ok";
-   }
-   else{
-      log_message('ERROR','#TRAZA|Solicitud|Eliminar_Zona() >> $resp: '.$resp);
-      echo 'error';
-   }
-      
+    }
+    else{
+        log_message('ERROR','#TRAZA|SOLICITUDRETIRO|Guardar_SolicitudRetiro() >> $resp: '.$resp);
+        echo 'error';
+    }
   }
     
   
@@ -69,13 +68,20 @@ class SolicitudRetiro extends CI_Controller {
     $response = $this->SolicitudesRetiro->obtener_Tipo_residuo($this->input->post('tran_id'));
     echo json_encode($response);
   }
-      
 
-     
-  
-
-    
-
-      
+  /**
+  * Devuelve contenedores a retirar por usuario logueado y por tipo de carga
+  * @param string tipo carga
+  * @return array coninfo contenedores a entregar
+  */
+  function obtenerContenedor()
+  {     
+    log_message('INFO','#TRAZA|SOLICITUDRETIRO|obtenerContenedor() >> ');
+    $tica_id = $this->input->post('tica_id');
+    $usernick = userNick();
+    log_message('DEBUG','#TRAZA|SOLICITUDRETIRO|obtenerContenedor() $tica_id: >> '.json_encode($tica_id));
+    $resp =$this->SolicitudesRetiro->obtenerContenedor($tica_id, $usernick);
+    echo json_encode($resp);
+  }
 
 }

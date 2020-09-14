@@ -94,11 +94,11 @@ define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '8803232493891311406');
 
 define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '6013058915384903051');
 
-define('BPM_PROCESS_ID_PEDIDO_CONTENEDORES', '8351305278287205920');
+define('BPM_PROCESS_ID_PEDIDO_CONTENEDORES', '8351305278287205920'); 
 
 define('BPM_PROCESS_ID_RETIRO_CONTENEDORES', '4817856371144276175');
 
-define('BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE', '7241733770067282313');
+define('BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE', '5759037948661107222');
 
 #COMPONENTE ALMACENES
 define('ALM', 'traz-comp-almacen/');
@@ -110,7 +110,7 @@ define('BPM_PROCESS', json_encode(array(
     '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
     '8351305278287205920' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'PedidoContenedores'],
     '4817856371144276175' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#ABC51A', 'proyecto'=>'general/transporte-bpm/', 'model'=>'RetiroContenedores'],
-    '7241733770067282313' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#1A56C5', 'proyecto'=>'general/transporte-bpm/', 'model'=>'EntregaOrdenTransportes']
+    '5759037948661107222' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#1A56C5', 'proyecto'=>'general/transporte-bpm/', 'model'=>'EntregaOrdenTransportes']
 )));
 
 
@@ -171,7 +171,7 @@ define('REST3', 'http://10.142.0.7:8280/services/produccionTest');
 define('REST4', 'http://10.142.0.7:8280/services/TrazabilidadDataService');
 define('API_URL', 'http://10.142.0.7:8280/tools/log');
 define('REST_PRD', 'http://10.142.0.7:8280/services/sema/PRDDataService');
-define('REST_ALM', 'http://10.142.0.7:8280/services/sema/ALMDataService');
+define('REST_BPM', 'http://10.142.0.7:8280/tools/bpm');
 
 define('HOST', 'http://localhost/');
 
@@ -181,7 +181,7 @@ define('FILES', 'files/');
 
 # DNATO
 define('LOGIN', true);
-define('DNATO', 'http://localhost/login/');
+define('DNATO', 'http://localhost/traz-comp-dnato/');
 
 
 define('PORT', ':3000/');

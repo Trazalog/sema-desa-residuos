@@ -2,7 +2,6 @@
     <table id="tabla_vehiculos" class="table table-bordered table-striped">
         <thead class="thead-dark" bgcolor="#eeeeee">
         <th>Acciones</th>
-        <th>Id</th>
         <th>Dominio</th>
         <th>Descripcion</th>
         <th>Marca</th>
@@ -23,7 +22,6 @@
                     <button type="button" title="eliminar" class="btn btn-primary btn-circle btnEliminar" data-toggle="modal" data-target="#modalBorrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>&nbsp';
                 
             echo   '</td>';
-            echo    '<td>'.$fila->equi_id.'</td>';   
             echo    '<td>'.$fila->dominio.'</td>';
             echo    '<td>'.$fila->descripcion.'</td>';                       
             echo    '<td>'.$fila->marca.'</td>';                        

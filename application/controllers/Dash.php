@@ -6,7 +6,9 @@ class Dash extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('menu_helper');
 		$this->load->helper('file');
-		//TODO: PREGUNTAR SI ESTA VENCIDA LA SESION Y REDIRECCIONAR AL LOGIN SI ES NECESARIO
+		$this->load->model('Dashs');
+		
+		// si esta vencida la sesion redirige al login
 		// $data = $this->session->userdata();
 		// log_message('DEBUG','#Main/login | '.json_encode($data));
 		// if(!$data['email']){
@@ -248,49 +250,11 @@ class Dash extends CI_Controller {
 
 		$data['menu'] = menu(json_decode($aux), $aux2);
 	
+		$aux = $this->Dashs->obtenerMenu();
+		$data['menu'] = menu($aux);
 		$this->load->view('layout/Admin',$data);
 	}
-}
 
-// {
-// 	"titulo": "Registrar Inspectores",
-// 	"icono": "fa fa-genderless",
-// 	"link": "general/RegistrarIn/templateIn"
-// 	},
-// 	{
-// 	"titulo": "Registrar Proceso Productivo",
-// 	"icono": "fa fa-genderless",
-// 	"link": "general/RegistrarPp/templatePp"
-// 	},
-// 	{
-// 	"titulo": "Establecimiento",
-// 	"icono": "fa fa-genderless",
-// 	"link": "general/RegistrarE/templateEs"
-// 	},
-// 	{
-// 	"titulo": "ABM establecimiento",
-// 	"icono": "fa fa-genderless",
-// 	"link": "general/Orden/nueva"
-// 	},
-// 	{
-// 	"titulo": "ABM Infracciones ",
-// 	"icono": "fa fa-genderless",
-// 	"link": "general/Estructura/Infraccion/templateInfracciones"
-// 	},
-// 	{
-// 	"titulo": "Etapa",
-// 	"icono": "fa fa-genderless",
-// 	"link": "general/RegistrarEt/templateEt"
-// 	},
-// 	{
-// 	"titulo": "Gestion de seguimiento",
-// 	"icono": "fa fa-genderless",
-// 	"link": "general/Estructura/GestionDeSeguimiento/templateGestion"
-// 	},
-// 	{
-// 	"titulo": "Registrar acta de infraccion",
-// 	"icono": "fa fa-genderless",
-// 	"link": "general/RegistrarVehi/templateVehi"
-// 	},
+}
 
 ?>

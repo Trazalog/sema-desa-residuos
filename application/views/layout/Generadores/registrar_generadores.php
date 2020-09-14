@@ -347,7 +347,7 @@
             <div class="modal-body">
             <center>
 					<h4>
-						<p>¿Desea eliminar el contenedor?</p>
+						<p>¿DESEA ELIMINAR EL GENERADOR?</p>
 					</h4>
 			</center>
            
@@ -681,6 +681,7 @@ $('#formGeneradoresEdit').bootstrapValidator({
 						var datos_tipo_carga = $("#tica_id").val();
 
             if ($("#formGeneradores").data('bootstrapValidator').isValid()) { 
+                wo();
                 $.ajax({
                     type: "POST",
                     data: {datos, datos_tipo_carga},
@@ -688,9 +689,9 @@ $('#formGeneradoresEdit').bootstrapValidator({
                     success: function (r) {
                         console.log(r);
                         if (r == "ok") {
-
+                            wc();
                             $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Generador/Listar_Generador");
-                            alertify.success("Agregado con exito");
+                            alertify.success("Generador Agregado con exito");
                             $('#tica_id').select2('val', 'All');
                             $('#formGeneradores').data('bootstrapValidator').resetForm();
                             $("#formGeneradores")[0].reset();
@@ -700,8 +701,8 @@ $('#formGeneradoresEdit').bootstrapValidator({
                            
 
                         } else {
-                          
-                            alertify.error("error al agregar");
+                            wc();
+                            alertify.error("Error al Agregar Generador");
                             $('#tica_id').select2('val', 'All');
                             $('#formGeneradores').data('bootstrapValidator').resetForm();
                             $("#formGeneradores")[0].reset();
@@ -762,6 +763,7 @@ $('#formGeneradoresEdit').bootstrapValidator({
 
 				var datos_tipo_carga = $("#tica_edit").val();
         if (aux != 0){
+            wo();
         $.ajax({
                 type: "POST",
                 data: {generador, datos_tipo_carga},
@@ -770,16 +772,17 @@ $('#formGeneradoresEdit').bootstrapValidator({
                     
                     console.table(r);
                     if (r == "ok") {
+                        wc();
                          $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Generador/Listar_Generador");
-                        alertify.success("Actualizado con exito");
+                        alertify.success("Generador Actualizado con exito");
                         $("#modalEdit").modal('hide');      
                         $('#tica_edit').select2('val', 'All');
                         $('#formGeneradoresEdit').data('bootstrapValidator').resetForm();
                                      
 
                     } else {
-                        
-                        alertify.error("error al actualizar");
+                        wc();
+                        alertify.error("Error al Actualizar Generador");
                         $('#tica_edit').select2('val', 'All');
                         $('#formGeneradoresEdit').data('bootstrapValidator').resetForm();
                     }
@@ -798,6 +801,7 @@ function deletegenerador (){
         elimina.sotr_id = $("#id_generador").val();
         elimina.eliminado = 1;
         console.table(elimina);
+        wo();
         $.ajax({
                 type: "POST",
                 data: {elimina},
@@ -805,12 +809,14 @@ function deletegenerador (){
                 success: function (r) {
                     console.table(r);
                     if(r == "ok") {
+                        wc();
                         $('#btndelete').hide();
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Generador/Listar_Generador");
-                         alertify.success("Contenedor Eliminado con exito");
+                         alertify.success("Generador Eliminado con exito");
                          $("#modalBorrar").modal('hide');
-                    } else {                        
-                        alertify.error("error al Eliminar");
+                    } else {                     
+                        wc();   
+                        alertify.error("Error al Eliminar Generador");
                         
                     }
                 }

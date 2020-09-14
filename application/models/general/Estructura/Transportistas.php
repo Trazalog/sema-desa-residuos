@@ -107,7 +107,7 @@ class Transportistas extends CI_Model
 
 		/**
 		* Obtiene todos los tipos de carga
-		* @param 
+		* @param
 		* @return array con tipos de carga
 		*/
     public function obtener_RSU(){
@@ -115,7 +115,7 @@ class Transportistas extends CI_Model
 				log_message('INFO','#TRAZA|TRANSPORTISTAS|obtener_RSU >> ');
 				$aux = $this->rest->callAPI("GET",REST."/tablas/tipo_carga");
 				$aux =json_decode($aux["data"]);
-				return $aux->valores->valor;				
+				return $aux->valores->valor;
 		}
 
 }

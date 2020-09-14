@@ -328,28 +328,31 @@
 					data:{ data },
 					url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 					success: function(result) {
+								//debugger;
 								wc();
-								if(result == 'OK'){
-									alertify.success('Contenedor ingresado con exito...');
-									existFunction('cerrarTarea');
+								if(result.status){
+									alertify.success("Contenedoes actualizados exitosamente...");
+									recargaBandejaEntrada();
+								}else{
+									alertify.error('Error en completar la Tarea...');
 								}
 					},
 					error: function(result){
 								alertify.error('Error ingresando contenedor...');
-								wc();		
+								wc();
 					},
 					complete: function(){
-								wc();		
+								wc();
 					}
 			});
-		}	
+		}
 
 	// guarda incidencia nueva
 		function modalIncidencia(){
 			$("#modalIncidencia").modal('show');
 		}
 
-		function guardarIncindencia(){		
+		function guardarIncindencia(){
 
 			// tomo los datos de circuito editados
 			var incidencia = new FormData($('#formIncidencia')[0]);
@@ -378,6 +381,11 @@
 			});
 		}
 
+	// recarga bandeja de entrada
+		function recargaBandejaEntrada()
+		{
+			linkTo('<?php echo BPM ?>Proceso/index');
+		}
 	// trae imagen al cambiar de contenedore en el select contenedores
 		$("#coen_id").on("change", function(){
 

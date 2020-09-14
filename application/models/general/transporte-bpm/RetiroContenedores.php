@@ -156,14 +156,12 @@ class RetiroContenedores extends CI_Model {
   * @return array listado decamiones de un transportista
   */
   function obtenerVehiculos()
-  {     
-    //FIXME: DESHARDCODEAR USER NICK
-    //$usuario_app = userNick();
-    $usuario_app = 'hugoDS';
-
+  {
     log_message('INFO','#TRAZA|RETIROCONTENEDORES|obtenerVehiculos() >> ');
-    log_message('DEBUG','#TRAZA|RETIROCONTENEDORES|$usuario_app >> '.json_encode($usuario_app));
-    $aux = $this->rest->callAPI("GET",REST."/vehiculos/transp/usr/".$usuario_app);
+    $tran_id = usrIdTransportistaByNick();
+    log_message('DEBUG','#TRAZA|RETIROCONTENEDORES|$tran_id >> '.json_encode($tran_id));
+    log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|ObtenerCamiones()');
+    $aux = $this->rest->callAPI("GET",REST."/vehiculos/transp/".$tran_id);
     $aux =json_decode($aux["data"]);
     return $aux->vehiculos->vehiculo;
     
@@ -174,7 +172,7 @@ class RetiroContenedores extends CI_Model {
   
   /**
   * Devuelve info de Solicitud Retiro para configuracion Bandeja Entrada 
-  * @param array $tarea con info de tarea BPM 
+  * @param array $tarea con info de tarea BPM
   * @return array con info de solicitud de retiro contenedores
   */
   function obtenerInfoSolRetiro($tarea)

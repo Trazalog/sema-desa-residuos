@@ -109,7 +109,7 @@
 									</div>
 								<!--_____________________________________________-->								
 
-								<!--Tipo de residuo-->							
+								<!--Tipo de residuo-->
 										<div class="form-group">
 												<label for="tipoResiduos">Tipos de residuo:</label>
 												<div class="input-group date">
@@ -186,7 +186,7 @@
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 								</button>
-								<h5 class="modal-title" id="exampleModalLabel">Editar Transportista</h5>
+								<h5 class="modal-title titulo" id="exampleModalLabel">Editar Transportista</h5>
 						</div>
 
 						<div class="modal-body col-md-12 col-sm-12 col-xs-12">
@@ -354,15 +354,16 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-blue">
-					<h5 class="modal-title" ><span class="fa fa-fw fa-times-circle" style="color:#A4A4A4"></span>  Eliminar</h5>
+					
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true" >&times;</span>
 					</button>
+					<h5 class="modal-title" id="exampleModalLabel"> Eliminar Transportista</h5>
 				</div>
 				<input id="transp_delete" style="display: none;">
 				<div class="modal-body">
 					<center>
-					<h4><p>¿ DESEA ELIMINAR TRANSPORTISTA ?</p></h4>
+					<h4><p>¿ DESEA ELIMINAR EL TRANSPORTISTA ?</p></h4>
 					</center>
 				</div>
 				<div class="modal-footer">
@@ -414,6 +415,7 @@
 				var tipocarga = $("#tica_id").val();
       
         if ($("#formTransportistas").data('bootstrapValidator').isValid()) {
+			wo();
             $.ajax({
                 type: "POST",
                 data: {datos, tipocarga},
@@ -421,9 +423,9 @@
                 success: function (r) {
                     console.log(r);
                     if (r == "ok") {
-
+						wc();
                         $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
-						alertify.success("Agregado con exito");
+						alertify.success("Transportista Agregado con exito");
 						$('#tica_id').select2('val', 'All');
                         $('#formTransportistas').data('bootstrapValidator').resetForm();
                         $("#formTransportistas")[0].reset();                       
@@ -431,7 +433,8 @@
                         $("#botonAgregar").removeAttr("disabled");
                     } else {
                         //console.log(r);
-                        alertify.error("error al agregar");
+						wc();
+                        alertify.error("Error al Agregar Transportista");
                     }
                 }
             });
@@ -441,7 +444,7 @@
     }
 
 	//boton guardar
-	$("#btnsave").on("click", function() {
+		$("#btnsave").on("click", function() {
 			//tomo datos del form y hago objeto
 			
 			var transportista = new FormData($('#frm_transportista')[0]);
@@ -471,7 +474,11 @@
 													{
 														if(transportista.tran_id != "")
 														{
-															aux = 1;
+															if($("#tica_edit").val() != "")
+															{
+																aux = 1;
+															}
+															
 														}
 													}
 												}
@@ -488,23 +495,25 @@
 			var tipo_carga = $("#tica_edit").val();		
 			if (aux != 0) {
 				$("#frm_transportista")[0].reset();
+					wo();
 					$.ajax({
 							type: "POST",
 							data: {transportista, tipo_carga},
 							url: "general/Estructura/Transportista/Modificar_Transportista",
 							success: function (result) {
 								if(result == "error_transportista"){
-									alertify.error("Hubo un error a modificar Transportista");
+									wc();
+									alertify.error("Error al Actualizar Transportista");
 								
 									
                         			       
 								}else{
-									
+									wc();
 									$('#tica_edit').select2('val', 'All');
 									
 									$('#frm_transportista').data('bootstrapValidator').resetForm();
 									$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");
-									alertify.success("Transportista modificado con exito...");
+									alertify.success("Transportista Actualizado con exito");
 									
 								
 									                      
@@ -522,19 +531,21 @@
 		//elimina transp y recarga la tabla
 		function eliminar(){
 			var tran_id = $("#transp_delete").val();
+			wo();
 			$.ajax({
 					type: "POST",
 					data: {tran_id:tran_id},
 					url: "general/Estructura/Transportista/Borrar_Transportista",
 					success: function(result) {
-						
+						wc();
 						$("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Transportista/Listar_Transportista");	
 						$("#modalaviso").modal('hide');
-						alertify.success("Transportista Eliminado con exito...");
+						alertify.success("Transportista Eliminado con exito");
 					},
 					error: function(result){
+						wc();
 						$("#modalaviso").modal('hide');
-						alertify.success("Error al eliminar Transportista...");
+						alertify.success("Error al Eliminar Transportista");
 					}
 			});
 		}

@@ -55,22 +55,34 @@ class SolicitudesRetiro extends CI_Model {
     return $aux->tiposCarga->cargas;				
   }
 
-  function obtenerContenedor()
+  /**
+  * Devuelve contenedores a retirar por usuario logueado y por tipo de carga
+  * @param string tipo carga, string nick
+  * @return array con info contenedores a entregar
+  */
+  function obtenerContenedor($tica_id, $usernick)
   {
     log_message('INFO','#TRAZA|SolicitudesRetiro|obtenerContenedor >> ');
-    $aux = $this->rest->callAPI("GET",REST."/contenedores");
+    log_message('DEBUG','#TRAZA|SOLICITUDESRETIRO|obtenerContenedor($tica_id, $usernick) $tica_id: >> '.json_encode($tica_id));
+    log_message('DEBUG','#TRAZA|SOLICITUDESRETIRO|obtenerContenedor($tica_id, $usernick) $usernick: >> '.json_encode($usernick));
+    $carga = urlencode($tica_id); // saca los espacios del string de tipo de carga
+    $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/tipocarga/".$carga."/user/".$usernick);
     $aux =json_decode($aux["data"]);
-    return $aux->contenedores->contenedor;				
+    return $aux->contenedores->contenedor;
   }
 
+  /**
+  * Crea nueva solicitud de Retiro iniciando un nuevo proceso
+  * @param array con datos de los contenedores e info de solicitante de transporte(generador)
+  * @return string estado de respuesta del servicio
+  */
   function Guardar_solicitudRetiro($data)
   {
     $post["solicitudRetiroContenedores"] = $data;      
-    log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> '); 
+    log_message('INFO','#TRAZA|SolicitudPedidos|RegistrarContenedor() >> ');
     log_message('DEBUG','#SolicitudPedidos/RegistrarContenedor: '.json_encode($post));
-    // $aux = $this->rest->callAPI("POST",REST."/solicitudContenedores", $post); //servicio que llamaba antes de que caiga el server
     $aux = $this->rest->callAPI("POST",API_URL."/solicitudRetiroContenedores",$post);
-    $aux =json_decode($aux);
+    $aux =json_decode($aux['status']);
     return $aux;
   }
 }
