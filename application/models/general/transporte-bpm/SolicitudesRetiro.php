@@ -55,12 +55,20 @@ class SolicitudesRetiro extends CI_Model {
     return $aux->tiposCarga->cargas;				
   }
 
-  function obtenerContenedor()
+  /**
+  * Devuelve contenedores a retirar por usuario logueado y por tipo de carga
+  * @param string tipo carga, string nick
+  * @return array con info contenedores a entregar
+  */
+  function obtenerContenedor($tica_id, $usernick)
   {
     log_message('INFO','#TRAZA|SolicitudesRetiro|obtenerContenedor >> ');
-    $aux = $this->rest->callAPI("GET",REST."/contenedores");
+    log_message('DEBUG','#TRAZA|SOLICITUDESRETIRO|obtenerContenedor($tica_id, $usernick) $tica_id: >> '.json_encode($tica_id));
+    log_message('DEBUG','#TRAZA|SOLICITUDESRETIRO|obtenerContenedor($tica_id, $usernick) $usernick: >> '.json_encode($usernick));
+    $carga = urlencode($tica_id); // saca los espacios del string de tipo de carga
+    $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/tipocarga/".$carga."/user/".$usernick);
     $aux =json_decode($aux["data"]);
-    return $aux->contenedores->contenedor;				
+    return $aux->contenedores->contenedor;
   }
 
   /**
