@@ -31,4 +31,9 @@ class EntregaContenedor extends CI_Controller {
     }
 
 }
+    public function obtenerContenedores(){
+      log_message('INFO','#TRAZA|EntregaContenedor|GuardaContEntregados() >> ');
+      $resp = $this->PedidoContenedores->ObtenerContenedores();
+      echo json_encode($resp);
+    }   
 }
