@@ -174,6 +174,7 @@
 			<table id="tbl_contenedoresagregados" class="table table-bordered table-striped" style="display:none">
 				<thead class="thead-dark" bgcolor="#eeeeee">				
 						<tr>
+								<th>Acciones</th>
 								<th style="display:none">Tipo de Residuos</th>
 								<th>Tipo de Carga</th>
 								<th style="display:none">Camion</th>
@@ -301,15 +302,16 @@ $(document).ready(function(){
 
 function ModalEntregar($dataJson)
 {
-	debugger;
+	
 	var tica = $dataJson.tica_id;
 	$("#cont_id").empty();
+	wo();
 	$.ajax({
 		type: "POST",
 		data: {},
 		url: "general/transporte-bpm/EntregaContenedor/obtenerContenedores",
 		success: function ($resp) {
-			debugger;
+			
 			var cont = JSON.parse($resp);
 			for(var i = 0; i< cont.length; i++)
 			{
@@ -323,8 +325,10 @@ function ModalEntregar($dataJson)
 				}
 				
 			}
+			wc();
 		},
 		complete: function(){
+		wc();
 		$("#modalEntregar").modal('show');
 		}
 	});
@@ -343,8 +347,6 @@ $(".btnEntregar").on("click", function(e) {
 		$("#tica_id").val(datajson.tica_id);
 		$("#tica_valor").val(datajson.valor);
 		$("#soco_id").val(datajson.soco_id);
-		$("#entrega").removeAttr("style");
-		$("#tbl_contenedoresagregados").removeAttr("style");
 		ModalEntregar(datajson);
 		
 		
@@ -352,6 +354,14 @@ $(".btnEntregar").on("click", function(e) {
 		alert("ATENCION!!! ya entrogo todos los contenedores");
 	}
 });
+
+$(document).on("click",".fa-minus",function() {
+			$('#tbl_contenedoresagregados').DataTable().row( $(this).closest('tr') ).remove().draw();
+			var ide = $(idSelCantPend).val();
+			var cantPend = document.getElementById(ide).innerHTML
+			cantPend = parseInt(cantPend) + 1;
+			document.getElementById(ided).innerHTML = cantPend;
+		});
 
 // en modal contenedores guarda datos en tabla temporal y demas operaciones para enviar
 function OK()
@@ -364,7 +374,8 @@ function OK()
 		alert("ATENCION! debe seleccionar un Camion");
 
 	}else{
-
+		$("#entrega").removeAttr("style");
+		$("#tbl_contenedoresagregados").removeAttr("style");
 		var entregaCont = new FormData();
 		entregaCont = formToObject(entregaCont);
 		entregaCont.tica_id = $("#tica_id").val();
@@ -374,6 +385,7 @@ function OK()
 		var dominio = $("#camion_id option:selected" ).text();
 		var table = $('#tbl_contenedoresagregados').DataTable();
 				var row =  `<tr data-json='${JSON.stringify(entregaCont)}'> 
+							<td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>
 							<td style='display:none;'>${entregaCont.tica_id}</td>
 							<td>${entregaCont.valor}</td>
 							<td style='display:none;'>${entregaCont.camion}</td>
@@ -398,7 +410,7 @@ function recargaBandejaEntrada()
 
 function RealizarEntrega()
 {
-			wo();
+			
 			var contEnt = new FormData();
 			contEnt = formToObject(contEnt);
 			var datos_contenedores_entregados= [];
@@ -431,7 +443,7 @@ function RealizarEntrega()
 						{
 							alert("ATENCION! no selecciono fecha de entrega...");
 						}else{
-
+							wo();
 							$.ajax({
 								type: "POST",
 								data: {cont_entregados_listo},
