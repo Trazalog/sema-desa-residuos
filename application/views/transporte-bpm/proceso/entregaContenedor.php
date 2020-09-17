@@ -239,13 +239,14 @@
                             <select class="form-control select2 select2-hidden-accesible" name="cont" id="cont_id">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
-                                        foreach ($contenedores as $k) {
-                                            echo '<option  value="'.$k->cont_id.'">'.$k->codigo.'</option>';
-                                        }
+                                        // foreach ($contenedores as $k) {
+                                        //     echo '<option  value="'.$k->cont_id.'">'.$k->codigo.'</option>';
+                                        // }
                                     ?>
                             </select>
                         </div>			
 				</center>
+			
 				<input type="text" style="display:none" id="tica_id">
 				<input type="text" style="display:none" id="tica_valor">
 				<input type="text" style="display:none" id="soco_id">
@@ -298,6 +299,37 @@ $(document).ready(function(){
 			
 	});	
 
+function ModalEntregar($dataJson)
+{
+	debugger;
+	var tica = $dataJson.tica_id;
+	$("#cont_id").empty();
+	$.ajax({
+		type: "POST",
+		data: {},
+		url: "general/transporte-bpm/EntregaContenedor/obtenerContenedores",
+		success: function ($resp) {
+			debugger;
+			var cont = JSON.parse($resp);
+			for(var i = 0; i< cont.length; i++)
+			{
+				for(var j=0; j<cont[i].tipos_carga.tipoCarga.length; j++)
+				{
+					if(cont[i].tipos_carga.tipoCarga[j].tica_id == tica)
+					{
+						$("#cont_id").append("<option selected value= '" + cont[i].cont_id + "'> " + cont[i].codigo +"</option>");
+					 
+					}
+				}
+				
+			}
+		},
+		complete: function(){
+		$("#modalEntregar").modal('show');
+		}
+	});
+}
+
 $(".btnEntregar").on("click", function(e) {
 
 	datajson = JSON.parse($(this).parents("tr").attr("data-json"));
@@ -313,7 +345,8 @@ $(".btnEntregar").on("click", function(e) {
 		$("#soco_id").val(datajson.soco_id);
 		$("#entrega").removeAttr("style");
 		$("#tbl_contenedoresagregados").removeAttr("style");
-		$("#modalEntregar").modal('show');
+		ModalEntregar(datajson);
+		
 		
 	}else{
 		alert("ATENCION!!! ya entrogo todos los contenedores");
