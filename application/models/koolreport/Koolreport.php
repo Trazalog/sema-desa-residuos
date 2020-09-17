@@ -305,4 +305,13 @@ class Koolreport extends CI_Model
         log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETTONELADASPORDISPOSICION|');
         return $rsp;
     }
+
+    public function getGeneradores()
+    {
+        $url = "http://localhost:8080/generadores";
+        $rsp = $this->rest->callApi('GET',$url);
+        $rsp = json_decode($rsp['data']);
+        log_message('DEBUG', '#RECIDUOS| #KOOLREPORT.PHP|#KOOLREPORT|#GETGENERADORES|');
+        return $rsp;
+    }
 }

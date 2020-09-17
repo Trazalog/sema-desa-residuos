@@ -111,24 +111,33 @@ class Reportes extends CI_Controller
         $this->load->view('reportes/filtro', $data);
     }
 
-    public function incidenciaPorTransportista()
+    public function incidenciaPorTransportista($generador = null)
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#INCIDENCIAPORTRANSPORTISTA|');
         $filtro = $this->input->post('data');
         $desde = $filtro['datepickerDesde'];
         $hasta = $filtro['datepickerHasta'];
-        if($hasta || $desde)
+        if($hasta || $desde || $generador)
         {
-            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
-            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
-            $url = CONSTANTE.'/incidenciaPorTransportista?desde='.$desde.'&hasta'.$hasta;
-            $data = $this->Koolreport->getIncidenciaPorTransportista($url)->transportistas->transportista;
-            $reporte = new IncidenciaPorTransportista($data);
-            $reporte->run()->render();
+            if($generador){
+                $url = CONSTANTE.'/incidenciaPorTransportista?generador='.$generador;
+                $data = $this->Koolreport->getIncidenciaPorTransportista($url)->transportistas->transportista;
+                $reporte = new IncidenciaPorTransportista($data);
+                $reporte->run()->render();
+            }else{
+                $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+                $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+                $url = CONSTANTE.'/incidenciaPorTransportista?desde='.$desde.'&hasta'.$hasta;
+                $data = $this->Koolreport->getIncidenciaPorTransportista($url)->transportistas->transportista;
+                $reporte = new IncidenciaPorTransportista($data);
+                $reporte->run()->render();
+            }
+
         }else
         {
             $url = CONSTANTE.'desde//hasta';
             $data = $this->Koolreport->getIncidenciasPorTransportista($url)->transportistas->transportista;
+            // $data['generadores'] = $this->Koolreport->getGeneradores()->generadores->generador;
             $reporte = new IncidenciaPorTransportista($data);
             $reporte->run()->render();
         }
@@ -176,20 +185,27 @@ class Reportes extends CI_Controller
         $this->load->view('layout/Filtro',$data);
     }
 
-    public function incidenciaPorZona()
+    public function incidenciaPorZona($zona = null)
     {
         log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#INCIDENCIAPORZONA|');
         $filtro = $this->input->post('data');
         $desde = $filtro['datepickerDesde'];
         $hasta = $filtro['datepickerHasta'];
-        if($hasta || $desde)
+        if($hasta || $desde || $zona)
         {
-            $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
-            $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
-            $url = CONSTANTE.'/incidenciaPorZona?desde='.$desde.'&hasta'.$hasta;
-            $data = $this->Koolreport->getIncidenciasPorZona($url)->zonas->zona;
-            $reporte = new IncidenciaPorZona($data);
-            $reporte->run()->render();
+            if($zona){
+                $url = CONSTANTE.'/incidenciaPorZona?zona='.$zona;
+                $data = $this->Koolreport->getIncidenciasPorZona($url)->zonas->zona;
+                $reporte = new IncidenciaPorZona($data);
+                $reporte->run()->render();
+            }else{
+                $desde = ($desde) ? date("d-m-Y", strtotime($desde)) : null;
+                $hasta = ($hasta) ? date("d-m-Y", strtotime($hasta)) : null;
+                $url = CONSTANTE.'/incidenciaPorZona?desde='.$desde.'&hasta'.$hasta;
+                $data = $this->Koolreport->getIncidenciasPorZona($url)->zonas->zona;
+                $reporte = new IncidenciaPorZona($data);
+                $reporte->run()->render();
+            }
         }else
         {
             $url = CONSTANTE.'desde//hasta';
@@ -366,5 +382,13 @@ class Reportes extends CI_Controller
         $data['calendarioHasta'] = true;
         $data['reporte'] = 'toneladasPorDisposicion';
         $this->load->view('layout/Filtro',$data);
+    }
+
+    public function obtenerGeneradores()
+    {
+        log_message('INFO', '#RECIDUOS| #REPORTES.PHP|#REPORTES|#OBTENERGENERADORES|');
+        $rsp = $this->Koolreport->getGeneradores()->generadores->generador;
+        $rsp = json_encode($rsp);
+        echo $rsp;
     }
 }

@@ -192,6 +192,5 @@ class Generadores extends CI_Model
         return $aux->zonas->zona;
     }
 
-
 }
 

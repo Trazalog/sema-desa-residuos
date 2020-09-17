@@ -147,11 +147,11 @@ define('NOM', 'Residuos');
 
 //Vista por Defecto
 // define('DEF_VIEW',BPM.'Proceso');
-<<<<<<< Updated upstream
-define('DEF_VIEW','tasas/reporteTasas');
-=======
-define('DEF_VIEW','Test/reporteInterno');
->>>>>>> Stashed changes
+// <<<<<<< Updated upstream
+define('DEF_VIEW','Reportes/incidenciaPorZona');
+// =======
+// define('DEF_VIEW','Test/reporteInterno');
+// >>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------

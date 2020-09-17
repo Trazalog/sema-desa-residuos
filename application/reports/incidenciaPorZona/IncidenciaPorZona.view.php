@@ -22,6 +22,14 @@ use \koolreport\widgets\koolphp\Card;
                     </div>
                     <!--_________________FILTRO_________________-->
                     <filtro></filtro>
+                    <div class="col-md-3" style="padding-left:35px">
+                            <label>Generador:</label>
+                                <?php
+                                echo "<select class='form-control' id='gene_id'>";
+                                echo "<option selected disabled id='opt_default'> Default </option>";
+                                echo "</select>";
+                                ?>
+                    </div>
                     <!--_________________TABLA_________________-->
                     <div class="col-md-12">
                         <hr>
@@ -89,6 +97,21 @@ use \koolreport\widgets\koolphp\Card;
         </div>
     </div>
     <script>
+        $.ajax({
+            dataType: 'JSON',
+            type: 'GET',
+            url: 'Reportes/obtenerGeneradores',
+            success: function(res) {
+                res.forEach(function(e){
+                    console.log(e);
+                    var htmlTag = `<option value='${e.nombre}' id='${e.gene_id}'>${e.nombre}</option>`;
+                    $('#gene_id').append(htmlTag);
+                });
+            },
+            error: function() {},
+            complete: function() {}
+        });
+
         $('tr > td').each(function() {
             if ($(this).text() == 0) {
                 $(this).text('-');
@@ -104,6 +127,19 @@ use \koolreport\widgets\koolphp\Card;
         $(this).find('i').remove();
         if (ban) $(this).prepend('<i class="fa fa-minus"></i>');
         else $(this).prepend('<i class="fa fa-plus"></i>');
+    });
+
+    $('#gene_id').on('change',function(){
+        console.log(this.value);
+        var data = this.value;
+        $.ajax({
+            dataType: 'JSON',
+            type: 'GET',
+            url: 'Reportes/incidenciaPorZona/'+ data,
+            success: function() {},
+            error: function() {},
+            complete: function() {}
+        });
     });
     </script>
 </body>
