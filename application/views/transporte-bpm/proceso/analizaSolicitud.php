@@ -76,6 +76,12 @@
 			$('.btnNotifEstandar').hide();
 	});						
 
+	function recargaBandejaEntrada()
+	{
+		debugger;
+		linkTo('<?php echo BPM ?>Proceso/index');
+	}
+
 	// para guardar						
 	function cerrarAnalisis(opcion){
 
@@ -147,28 +153,28 @@
 				dataType: "json",
 				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 				success: function(result) {
+					debugger;
 									wc();
-									if(response.status){
+									if(result.status){
 										alertify.success("Respuesta enviada exitosamente...");
 										recargaBandejaEntrada();
 									}else{
 										alertify.error('Error al enviar respuesta...');
+										recargaBandejaEntrada();
 									}
 								},
 				error: function(result){
 									wc();
+									recargaBandejaEntrada();
 							 },
 				complete: function(){
 									wc();
+									recargaBandejaEntrada();
 
 									}
 		});
 	}
 
-	function recargaBandejaEntrada()
-	{
-		linkTo('<?php echo BPM ?>Proceso/index');
-	}
 
 	// Datatable
 	DataTable($('#tbl_contenedores'));	

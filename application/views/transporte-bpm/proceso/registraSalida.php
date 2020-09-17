@@ -121,11 +121,8 @@
     </div>
 
       </div> 
-
-  </div>
-
-    <!-- ____________________________ SEPARADOR ____________________________ -->
-    <div class="col-md-12"> <hr> </div>
+	  <!-- ____________________________ SEPARADOR ____________________________ -->
+	  <div class="col-md-12"> <hr> </div>
     <!-- ____________________________ / SEPARADOR ____________________________ -->
     <label for="inci">Incidencia</label>
     <button type="button" title="Incidencia" calss="btn btn-primary btn-circle" id="incidencia"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>                                     
@@ -133,7 +130,10 @@
 	<div class="text-right">
                 <button class="btn btn-primary " onclick="recargaBandejaEntrada()">Cerrar</button>
                 <button class="btn btn-success " onclick="cerrarTarea()">Hecho</button>
-            </div>
+            </div>										
+  </div>
+
+  
 <!-- Modal incidencia-->
 <div class="modal fade" id="modalIncidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 			aria-hidden="true">

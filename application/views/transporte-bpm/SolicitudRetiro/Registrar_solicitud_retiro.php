@@ -168,7 +168,8 @@
 
 <!--_________________BTN AGREGAR_________________-->
 <div class="col-md-12">
-  <button type="submit" class="btn btn-default pull-right" onclick="Agregar_contenedor()">AGREGAR</button>
+  <button type="submit" class="btn btn-default pull-right" id="btnagregar" onclick="Agregar_contenedor()">AGREGAR</button>
+  <button type="submit" class="btn btn-default pull-right" title="Agregar contenedores restanes" id="btnmas" style="display:none;">+ Contenedores Restantes</button>
   <!-- <button type="submit" class="btn btn-default pull-right" onclick="">AGREGAR</button> -->
 </div>
 <!--_________________BTN AGREGAR_________________-->
@@ -185,6 +186,7 @@
       <!--__________________HEADER TABLA___________________________-->
       <table class="table table-striped" id="tbl_cont">
         <thead class="thead-dark" bgcolor="#eeeeee">
+          <th>Acciones</th>
           <th>Contenedor</th>
           <th>% de llenado</th>
           <th>Mts3</th>
@@ -610,30 +612,60 @@
       });
 
   });
-
+  
+  $(document).on("click",".fa-minus",function() {
+			$('#tbl_cont').DataTable().row( $(this).closest('tr') ).remove().draw();
+		});
   // funcion agregar contenedores a tabla 
   function Agregar_contenedor() {
+    var validador = 1;
+     if($("#porcentaje").val() != "")
+     { 
+        if($("#metros_cub").val()!= "")
+        {
+          if($("#cont_ent").val() != "")
+          {
+            validador = 0;
+          }
+        }
+     }
+     if(validador == 0)
+     {
+          $('#contenedores').show();
+        //var data = new FormData($('#formPedidos')[0]);
+        var data = new FormData();
+        data = formToObject(data);
+        data.porc_llenado = $("#porcentaje").val();
+        data.mts_cubicos = $("#metros_cub").val();
+        data.cont_id = $("#cont_ent").val();
+        var table = $('#tbl_cont').DataTable();
+        var row = `<tr data-json='${JSON.stringify(data)}'>  
+                <td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>
+                <td>${data.cont_id}</td>
+                <td>${data.porc_llenado}</td>
+                <td>${data.mts_cubicos}</td>		
+            </tr>`;
+        table.row.add($(row)).draw();
+        //elimina del select los contenedores que se seleccionaron
+        var sel = document.getElementById("tica_id");
+  			sel.remove(sel.selectedIndex);
+        var sele = document.getElementById("cont_ent");
+  			sele.remove(sele.selectedIndex);
 
-    // if(){ validar que los campos no esten vaciosal momento de agregar
-
-    // }
-    $('#contenedores').show();
-    //var data = new FormData($('#formPedidos')[0]);
-    var data = new FormData();
-    data = formToObject(data);
-    data.porc_llenado = $("#porcentaje").val();
-    data.mts_cubicos = $("#metros_cub").val();
-    data.cont_id = $("#cont_ent").val();
-    var table = $('#tbl_cont').DataTable();
-    var row = `<tr data-json='${JSON.stringify(data)}'>  
-						<td>${data.cont_id}</td>
-						<td>${data.porc_llenado}</td>
-						<td>${data.mts_cubicos}</td>		
-				</tr>`;
-    table.row.add($(row)).draw();
-    $('#formPedidos')[0].reset();
+        $('#formPedidos')[0].reset();
+        $("#btnagregar").attr("style","display:none;");
+        $("#btnmas").removeAttr("style");
+       
+     }else{
+       alert("ATENCION!!! verifique que ingreso contenedor, porcentaje de llenado y mts cubicos")
+     }
+    
   }
 
+  $("#btnmas").click(function(e){
+    $("#btnagregar").removeAttr("style");
+    $("#btnmas").attr("style","display:none;");
+  });
   // remueve registro de lista temporal de contenedres a agregar
   $(document).on("click", ".fa-minus", function() {
     $(this).parents("tr").remove();
