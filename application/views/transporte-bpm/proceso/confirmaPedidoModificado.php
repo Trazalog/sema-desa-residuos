@@ -83,7 +83,7 @@
 		<div class="form-group">															
 			<label for="motivo" class="col-sm-4 control-label">Motivo rechazo:</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control habilitar" name="descripcion" value="<?php echo $infoSolicitud->observaciones?>" id="motivo" readonly> 
+				<input type="text" class="form-control habilitar" name="descripcion" value="<?php echo $infoContenedores[0]->motivo_rechazo?>" id="motivo" readonly> 
                 
 			</div>	
 		</div>

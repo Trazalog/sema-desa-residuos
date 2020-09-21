@@ -583,11 +583,13 @@
 
       wo();
       var tica_id = this.value;
+      var tran_id = $("#transportista").val();
 
       $.ajax({
         type: "POST",
         data: {
-          tica_id: tica_id
+          tica_id: tica_id,
+          Tran_id: tran_id
         },
         dataType: 'json',
         url: "general/transporte-bpm/SolicitudRetiro/obtenerContenedor",

@@ -78,9 +78,10 @@ class SolicitudRetiro extends CI_Controller {
   {     
     log_message('INFO','#TRAZA|SOLICITUDRETIRO|obtenerContenedor() >> ');
     $tica_id = $this->input->post('tica_id');
+    $tran_id = $this->input->post('Tran_id');
     $usernick = userNick();
     log_message('DEBUG','#TRAZA|SOLICITUDRETIRO|obtenerContenedor() $tica_id: >> '.json_encode($tica_id));
-    $resp =$this->SolicitudesRetiro->obtenerContenedor($tica_id, $usernick);
+    $resp =$this->SolicitudesRetiro->obtenerContenedor($tica_id, $usernick, $tran_id);
     echo json_encode($resp);
   }
 

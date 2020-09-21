@@ -20,7 +20,7 @@
 	<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
 			<div class="box-header with-border">
 					<div class="box-tittle">
-							<h5>Informacion</h5>
+							<h4>Informacion</h4>
 					</div>
 					<div class="box-tools pull-right border ">
 							<button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
@@ -333,7 +333,7 @@
 						<button type="button" class="close close_modal_edit" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 						</button>
-						<h5 class="modal-title titulo" id="exampleModalLabel">Editar Circuitos</h5>
+						<h4 class="modal-title titulo" id="exampleModalLabel">Editar Circuitos</h4>
 				</div>
 
 				<div class="modal-body ">
@@ -478,7 +478,7 @@
 							<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="box box-primary">
 											<div class="box-header with-border">
-													<h5> Puntos Criticos</h5>
+													<h4> Puntos Criticos</h4>
 											</div>
 									</div>
 							</div>
