@@ -70,7 +70,7 @@
           <div class="col-md-8 col-sm-8 col-xs-12">
             <div class="form-group">
               <label for="transportista">Transportista:</label>
-              <div class="input-group date">
+              <div class="input-group date transportistas">
                 <div class="input-group-addon">
                   <i class="glyphicon glyphicon-check"></i>
                 </div>
@@ -83,6 +83,8 @@
 									?>
                 </select>
               </div>
+              <br>
+              <input type="text" id="nom_transportista" style="display:none;">
             </div>
           </div>
 
@@ -187,7 +189,8 @@
       <table class="table table-striped" id="tbl_cont">
         <thead class="thead-dark" bgcolor="#eeeeee">
           <th>Acciones</th>
-          <th>Contenedor</th>
+          <th>Codigo Contenedor</th>
+          <th style="display:none;">Contenedor</th>
           <th>% de llenado</th>
           <th>Mts3</th>
         </thead>
@@ -212,7 +215,7 @@
 <div class="col-md-12">
   <div class="form-group">
     <!-- <button type="submit" class="btn btn-primary pull-right" aria-label="Left Align">Guardar</button> -->
-    <button type="submit" class="btn btn-primary pull-right" onclick="guardar()">GUARDAR</button>
+    <button type="submit" class="btn btn-primary pull-right btn-guardar-retiro" style="display:none;" onclick="guardar()">GUARDAR</button>
   </div>
 </div>
 <!--_________________BTN GUARDAR_________________-->
@@ -583,16 +586,19 @@
 
       wo();
       var tica_id = this.value;
+      var tran_id = $("#transportista").val();
 
       $.ajax({
         type: "POST",
         data: {
-          tica_id: tica_id
+          tica_id: tica_id,
+          Tran_id: tran_id
         },
         dataType: 'json',
         url: "general/transporte-bpm/SolicitudRetiro/obtenerContenedor",
         success: function(respuesta) {
           wc();
+          debugger;
           var selector_cont = $("#cont_ent");
           selector_cont.find('option').remove();
           selector_cont.append('<option value="" disabled selected>-Seleccione opcion-</option>');
@@ -638,23 +644,32 @@
         data.porc_llenado = $("#porcentaje").val();
         data.mts_cubicos = $("#metros_cub").val();
         data.cont_id = $("#cont_ent").val();
+        data.codcont = $("#cont_ent option:selected").text();
         var table = $('#tbl_cont').DataTable();
         var row = `<tr data-json='${JSON.stringify(data)}'>  
                 <td> <i class='fa fa-fw fa-minus text-light-blue' style='cursor: pointer; margin-left: 15px;' title='Nuevo'></i> </td>
-                <td>${data.cont_id}</td>
+                <td>${data.codcont}</td>
+                <td style='display:none;'>${data.cont_id}</td>
                 <td>${data.porc_llenado}</td>
                 <td>${data.mts_cubicos}</td>		
             </tr>`;
         table.row.add($(row)).draw();
+        $(".btn-guardar-retiro").removeAttr("style");
         //elimina del select los contenedores que se seleccionaron
-        var sel = document.getElementById("tica_id");
-  			sel.remove(sel.selectedIndex);
+        // var sel = document.getElementById("tica_id");
+  			// sel.remove(sel.selectedIndex);
         var sele = document.getElementById("cont_ent");
   			sele.remove(sele.selectedIndex);
-
-        $('#formPedidos')[0].reset();
-        $("#btnagregar").attr("style","display:none;");
-        $("#btnmas").removeAttr("style");
+        $(".transportistas").attr("style","display:none;");
+        var nomtran = $("#transportista option:selected" ).text();
+        $("#nom_transportista").removeAttr("style");
+        $("#nom_transportista").attr("style","width: 50rem;");
+        $("#nom_transportista").val(nomtran);
+        $("#porcentaje").val("");
+        $("#metros_cub").val("");
+        // $('#formPedidos')[0].reset();
+        // $("#btnagregar").attr("style","display:none;");
+        // $("#btnmas").removeAttr("style");
        
      }else{
        alert("ATENCION!!! verifique que ingreso contenedor, porcentaje de llenado y mts cubicos")
@@ -662,10 +677,10 @@
     
   }
 
-  $("#btnmas").click(function(e){
-    $("#btnagregar").removeAttr("style");
-    $("#btnmas").attr("style","display:none;");
-  });
+  // $("#btnmas").click(function(e){
+  //   $("#btnagregar").removeAttr("style");
+  //   $("#btnmas").attr("style","display:none;");
+  // });
   // remueve registro de lista temporal de contenedres a agregar
   $(document).on("click", ".fa-minus", function() {
     $(this).parents("tr").remove();
@@ -673,23 +688,41 @@
 
   // crea una nueva solicitud de de retiro e inicia un nuevo proceso
   function guardar() {
+    debugger;
     wo();
     var datos = new FormData();
     datos = formToObject(datos);
 
     var datos_contenedor = [];
+    var cont_entregados_listo = [];	
+    var contEnt = new FormData();
+		contEnt = formToObject(contEnt);
+
     var rows = $('#tbl_cont tbody tr');
     rows.each(function(i,e) {  
 				datos_contenedor.push(getJson(e));
 		});
-	  datos.contenedores = datos_contenedor;
+
+    for(var j=0; j<datos_contenedor.length; j++){
+						//llenarlo afuera del each y aca solo armar el arreglo con el push(getJson(e)) por lo tanto usar dos arreglos uno dentro dep each para obtener bien los datos de la tabla y luego afuera recorrerlo ir armando el modelos e ir insertando en otro arreglo que es el que se enviara como final 
+
+						contEnt.cont_id = datos_contenedor[j].cont_id;
+						contEnt.porc_llenado = datos_contenedor[j].porc_llenado;
+						contEnt.mts_cubicos = datos_contenedor[j].mts_cubicos;
+						cont_entregados_listo.push(contEnt);
+						var contEnt = new FormData();
+						contEnt = formToObject(contEnt);
+						}
+
+
+	  datos.contenedores = cont_entregados_listo;
 
     if (datos_contenedor.lenght == 0) {
       alert('Sin Datos para Registrar.');
       return;
-    }
+    }else{
 
-    $.ajax({
+      $.ajax({
         type: "POST",
         data: {datos},
         url: "general/transporte-bpm/SolicitudRetiro/Guardar_SolicitudRetiro",
@@ -702,13 +735,21 @@
             $("#formPedidos")[0].reset();
             $("#boxDatos").hide(500);
             $("#botonAgregar").removeAttr("disabled");
+            $(".transportistas").removeAttr("style");
+            $("#nom_transportista").attr("style","display:none;");
 
           } else {
             console.log(respuesta);
             alertify.error("Error al crear Solicitud de Retiro");
+            $(".transportistas").removeAttr("style");
+            $("#nom_transportista").attr("style","display:none;");
           }
         }
     });
+
+    }
+
+    
 
   }
 

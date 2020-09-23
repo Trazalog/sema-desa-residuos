@@ -78,8 +78,11 @@
 <table id="tbl_temporal" class="table table-bordered table-striped">
 		<thead class="thead-dark" bgcolor="#eeeeee">
 				<th>Borrar</th>
-				<th>Contenedor</th>
-				<th>Dominio</th>					
+				<th>id Contenedor</th>
+				<th>Codigo Contenedor</th>
+				<th>id vehiculo</th>
+				<th>Dominio</th>	
+								
 		</thead>
 		<tbody >
 		</tbody>
@@ -119,17 +122,46 @@ function agregar(){
 
 				var d = JSON.parse(datos);
 				var dom= $("#vehiculo").val();
-				// dibujar tabla temporal
-				if (!(reg).hasClass("hidden")) {
-					
-					$("#tbl_temporal").DataTable().row.add([
-						'<button type="button" title="Eliminar" class="btn btn-primary btn-circle btnEliminar" onclick="sacar('+ id_row +')"><span class="glyphicon glyphicon-trash" aria-hidden="true" ></span></button>',
-						d.coen_id,
-						dom
-					]).draw().node().id = id_row;
-					//oculto el registro de la tabla principal
-					reg.addClass('hidden');
-				} 			
+				var dompat = $("#vehiculo option:selected").text();
+				//trae info del contenedor
+				var cont_id = d.cont_id;
+				wo();
+				
+				$.ajax({
+					type: 'POST',
+					data:{cont_id},
+					url: 'general/transporte-bpm/SolicitudRetiro/ObtenerContenedorCont_id',
+					success: function(result) {
+						
+							var cont = JSON.parse(result);
+							
+							// dibujar tabla temporal
+							if (!(reg).hasClass("hidden")) {
+								
+								$("#tbl_temporal").DataTable().row.add([
+									'<button type="button" title="Eliminar" class="btn btn-primary btn-circle btnEliminar" onclick="sacar('+ id_row +')"><span class="glyphicon glyphicon-trash" aria-hidden="true" ></span></button>',
+									d.coen_id,
+									cont.codigo,
+									dom,
+									dompat
+								]).draw().node().id = id_row;
+								//oculto el registro de la tabla principal
+								reg.addClass('hidden');
+				} 
+				wc();
+					},
+					error: function(result){
+
+								wc();
+								alertify.error('Error Al obtener info de contenedor seleccionado');
+					},
+					complete: function(){
+
+								
+					}
+				});
+
+							
 			}	
   });	
 }
@@ -145,6 +177,7 @@ function sacar(data){
 function guardar(){
 
 	wo();
+	debugger;
 	// valida si el retiro es completo
 		var rows = $("#tabla_contenedores tbody tr");
 		var retiro = {};
@@ -165,7 +198,7 @@ function guardar(){
 		fila.each(function(i,e) { 
 
 			var contenedor= $(this).find("td").eq(1).html();	
-			var vehiculo = $(this).find("td").eq(2).html();	
+			var vehiculo = $(this).find("td").eq(3).html();	
 			tmp = {};		
 			tmp.coen_id = contenedor;
 			tmp.equi_id = vehiculo;
@@ -176,7 +209,7 @@ function guardar(){
 	$.ajax({
 			type: 'POST',
 			data:{ contAsign, retiro },
-			url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
+		    url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 			success: function(result) {
 
 						wc();

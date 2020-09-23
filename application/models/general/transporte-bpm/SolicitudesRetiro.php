@@ -60,13 +60,13 @@ class SolicitudesRetiro extends CI_Model {
   * @param string tipo carga, string nick
   * @return array con info contenedores a entregar
   */
-  function obtenerContenedor($tica_id, $usernick)
+  function obtenerContenedor($tica_id, $usernick, $tran_id)
   {
     log_message('INFO','#TRAZA|SolicitudesRetiro|obtenerContenedor >> ');
     log_message('DEBUG','#TRAZA|SOLICITUDESRETIRO|obtenerContenedor($tica_id, $usernick) $tica_id: >> '.json_encode($tica_id));
     log_message('DEBUG','#TRAZA|SOLICITUDESRETIRO|obtenerContenedor($tica_id, $usernick) $usernick: >> '.json_encode($usernick));
     $carga = urlencode($tica_id); // saca los espacios del string de tipo de carga
-    $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/tipocarga/".$carga."/user/".$usernick);
+    $aux = $this->rest->callAPI("GET",REST."/contenedoresEntregados/tipocarga/".$carga."/user/".$usernick."/".$tran_id);
     $aux =json_decode($aux["data"]);
     return $aux->contenedores->contenedor;
   }
@@ -84,5 +84,14 @@ class SolicitudesRetiro extends CI_Model {
     $aux = $this->rest->callAPI("POST",API_URL."/solicitudRetiroContenedores",$post);
     $aux =json_decode($aux['status']);
     return $aux;
+  }
+
+  function obtenerContenedorCont_id($cont_id)
+  {
+    log_message('INFO','#TRAZA|SolicitudPedidos|obtenerContenedorCont_id() >> ');
+    log_message('DEBUG','#SolicitudPedidos/obtenerContenedorCont_id: '.json_encode($cont_id));
+    $aux = $this->rest->callAPI("GET",REST."/contenedores/$cont_id");
+    $aux =json_decode($aux["data"]);
+    return $aux->contenedor;
   }
 }
