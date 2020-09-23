@@ -306,7 +306,8 @@
       <table class="table table-striped" id="tbl_cont">
         <thead class="thead-dark" bgcolor="#eeeeee">
         <th>Acciones</th>
-          <th>Contenedor</th>
+          <th style="display:none;">cont_id</th>
+          <th>Codigo Contenedor</th>
           <th>tipo carga</th>
           <th>porcentaje llenado</th>
           <th>mts cubicos</th>
@@ -463,16 +464,46 @@ function AgregarCont($datos) {
             data.tipo_carga = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].tipo_carga;
             data.porc_llenado = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].porc_llenado;
             data.mts_cubicos = $datos.vehiculoAsignadoARetiro.contenedores.contenedor[i].mts_cubicos;
-            var table = $('#tbl_cont').DataTable();
-            var row = `<tr data-json='${JSON.stringify(data)}'>  
+            // TRAE INFO DEL CONTENEDOR - CODIGO PARA MOSTRARLO EN LA TABLA
+            var cont_id = data.cont_id;
+           
+				
+				$.ajax({
+					type: 'POST',
+					data:{cont_id},
+					url: 'general/transporte-bpm/SolicitudRetiro/ObtenerContenedorCont_id',
+					success: function(result) {
+						
+							var cont = JSON.parse(result);
+							
+							// dibujar tabla temporal
+                            var table = $('#tbl_cont').DataTable();
+                                var row = `<tr data-json='${JSON.stringify(data)}'>  
                                 <td><i class="fa fa-wa fa-minus text-light-blue" style="cursor: pointer; margin-left: 15px;" title="Quitar"></i></td>        
-                                <td>${data.cont_id}</td>
+                                <td style='display:none;'>${data.cont_id}</td>
+                                <td>${cont.codigo}</td>
                                 <td>${data.tipo_carga}</td>
                                 <td>${data.porc_llenado}</td>
                                 <td>${data.mts_cubicos}</td>		
-                        </tr>`;
+                                </tr>`;
                         
             table.row.add($(row)).draw();
+						
+				            wc();
+					},
+					error: function(result){
+
+								wc();
+								alertify.error('Error Al obtener info de contenedor seleccionado');
+					},
+					complete: function(){
+
+								
+					}
+				});
+
+            //FIN LLAMADA
+           
         }
     }
                 // data.cont_id = $datos.vehiculoAsignadoARetiro.
@@ -538,7 +569,6 @@ $("#equipo").change(function(){
         url: "general/Estructura/OrdenTransporte/ObtenerinfoOt",
         success: function($respuesta) {
             debugger;
-            wc();
             var resp = $respuesta;
             aux = resp.vehiculoAsignadoARetiro.tran_id; // esto guardarlo en algun input oculto
             console.table(resp);
@@ -612,7 +642,7 @@ function Agregar_Residuo() {
 }
 
 function Guardar_Orden_transporte(){
-
+    debugger;
     if(  $('#tbl_cont').DataTable().data().any() ) 
     {console.table($("#dispfinal").val());
         if($("#dispfinal").val() != null)

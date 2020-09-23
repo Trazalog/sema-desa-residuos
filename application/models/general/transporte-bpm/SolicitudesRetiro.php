@@ -85,4 +85,13 @@ class SolicitudesRetiro extends CI_Model {
     $aux =json_decode($aux['status']);
     return $aux;
   }
+
+  function obtenerContenedorCont_id($cont_id)
+  {
+    log_message('INFO','#TRAZA|SolicitudPedidos|obtenerContenedorCont_id() >> ');
+    log_message('DEBUG','#SolicitudPedidos/obtenerContenedorCont_id: '.json_encode($cont_id));
+    $aux = $this->rest->callAPI("GET",REST."/contenedores/$cont_id");
+    $aux =json_decode($aux["data"]);
+    return $aux->contenedor;
+  }
 }

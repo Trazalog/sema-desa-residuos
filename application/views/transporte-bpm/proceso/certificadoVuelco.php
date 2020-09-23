@@ -9,7 +9,7 @@
 			<label for="Camion" class="col-sm-4 control-label">Camion:</label>
             
 			<!-- <div class="col-sm-8"> -->
-				<input type="text" class="form-control habilitar" name="Camion" value="<?php echo $infoOTransporte->dominio?>" id="camion_id" readonly> 
+				<input type="text" class="form-control habilitar" style="width: 35rem;" name="Camion" value="<?php echo $infoOTransporte->dominio?>" id="camion_id" readonly> 
                 <input type="text" style="display:none" id="dato_cont_id" value="<?php echo $infoOTransporteCont[0]->cont_id?>">
                 <input type="text" style="display:none" id="reci_id">
                 <input type="text" style="display:none" id="id_reci_mov">
@@ -19,10 +19,10 @@
 	<!--__________________________-->
     <div class="col-md-4">
                 <div class="form-group">
-                        <label for="valorizado">Valorizado:</label>
+                        <label for="valorizado" style="margin-left: 11rem;">Valorizado:</label>
                         <br>
                         <!-- <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>                     -->
-                            <select class="form-control select2 select2-hidden-accesible" name="valorizado" id="valorizado_id">
+                            <select class="form-control select2 select2-hidden-accesible" style="margin-left: 11rem; width:35rem;" name="valorizado" id="valorizado_id">
                                 <option value="" disabled selected>-Seleccione opcion-</option>
                                     <?php
                                         foreach ($tipoValorizado as $l) {
@@ -40,31 +40,33 @@
                 <label for="obs">Observaciones:</label>
                     <!-- <div class="input-group date"> -->
                             <!-- <div class="input-group-addon"><i class="fa fa-calendar"></i></div> -->
-                <input type="text" class="form-control"  name="obs" id="obs">
+                <input type="text" style="width: 72rem;" class="form-control"  name="obs" id="obs">
                     <!-- </div>			 -->
             </div>
     </div>
 </div>
-<div class="col-md-12  ">
+<div class="col-md-12" style="margin-left: 14rem;">
     <div class="col-md-4">  
         <div class="form-group">
-             <button type="button" title="Incidencia" calss="btn btn-primary btn-circle" id="incidencia"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>                                     
+             <button type="button" title="Incidencia" calss="btn btn-primary btn-circle" id="incidencia" style="background: #3c8dbc; border-radius: 6rem; border: unset; color: beige; width: 4rem; height: 4rem;"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>                                     
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="form-group">
-            <button type="button" title="Adjuntar Imagen" calss="btn btn-primary btn-circle" id="adjimg"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span></button>
+            <button type="button" title="Adjuntar Imagen" calss="btn btn-primary btn-circle" id="adjimg" style="background: #3c8dbc; border-radius: 6rem; border: unset; color: beige; width: 4rem; height: 4rem; margin-left: -8rem;"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span></button>
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="form-group">
-            <button type="button" title="cancelarsel" calss="btn btn-primary btn-circle" id="cancelarsel"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></button>
-             <input type="text" style="display:none;" id="idBox">
-             <input type="text" style="display:none;" id="idRecDestino">                           
+            <button type="button" title="Certificado de Vuelco" calss="btn btn-primary btn-circle" id="adjimg" style="background: #3c8dbc; border-radius: 6rem; border: unset; color: beige; width: 4rem; height: 4rem; margin-left: -15rem;" onclick="Certificado()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
         </div>
     </div>
+
+    
+
+    
 </div>
 
 <?php
@@ -96,7 +98,7 @@
                         echo '<div class="col-xs-2" style="margin-right: -5rem; width: 15.666667%;">';
                                 echo'<div class="thumbnail" style="margin-right: 3rem;">';
                                     echo'<div class="caption">';
-                                            echo '<h5 style="font-size: 12px;">'.$idcol.'</h5>';
+                                            echo '<h5 style="font-size: 12px; margin-left: 1rem;">'.$idcol.'</h5>';
                                             if($aux == 1){
                                                 for($t=0;$t<count($deposito);$t++)
                                                 {
@@ -107,11 +109,11 @@
                                                         $suma = $sumaj."/".$sumai."@".$idcol;
                                                         if($deposito[$t]->estado == "VACIO"){
                                                             $aux2 = 1;                                                  
-                                                            echo "<input class='btnvolcar btnMatriz $ij' type='button' name='Volcar' id='$suma'  data-json=".json_encode($deposito[$t])."  value='Volcar' onclick='btnVolcar(this)' style='border-radius: 15px; color: #040cff; '/>";
+                                                            echo "<input class='btnvolcar btnMatriz $ij' type='button' name='Volcar' id='$suma'  data-json=".json_encode($deposito[$t])."  value='Volcar' onclick='btnVolcar(this)' style='border-radius: 41rem; width: 5rem; color:#77d86b; border: unset; height: 5rem; '/>";
                                                             // echo"<button type='button' class='btn btn-default btnvolcar' style='font-size: 10px;' id='$idcol'>Volcar</button>";
                                                         }else{
                                                             $aux2= 1;
-                                                            echo "<input class='btnmover btnMatriz $ij'  type='button' name='Mover' id='$suma' value='Mover' onclick='btnMover(this)' style='border-radius: 15px; color: red; '/>";
+                                                            echo "<input class='btnmover btnMatriz $ij'  type='button' name='Mover' id='$suma' value='Mover' onclick='btnMover(this)' style='border-radius: 41rem; width: 5rem; color:#f57474; border: unset; height: 5rem;  '/>";
                                                             // echo"<button type='button' class='btn btn-default btnMover' style='font-size: 10px;' id='$idcol'>Mover</button>";
                                                         }
                                                     }
@@ -138,10 +140,16 @@
             }
         
 ?>
-
+<div class="col-md-4">
+        <div class="form-group">
+            <button type="button" title="Cancelar seleccion volcar" calss="btn btn-primary btn-circle" id="cancelarsel" style="background: #3c8dbc; border-radius: 6rem; border: unset; color: beige; width: 3rem; height: 3rem;"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span></button>
+             <input type="text" style="display:none;" id="idBox">
+             <input type="text" style="display:none;" id="idRecDestino">                           
+        </div>
+</div>
 <div class="text-right">
 	<button class="btn btn-primary" id="redirecciona"  onclick="ReDirecciona()">Re Direccionar</button>
-	<button class="btn btn-primary" id="certificado" onclick="Certificado()" style="margin-left:20px;">Certificado de Vuelco</button>
+	<!-- <button class="btn btn-primary" id="certificado" onclick="Certificado()" style="margin-left:20px;">Certificado de Vuelco</button> -->
 </div>
 
 
@@ -513,6 +521,10 @@
     </div>
 </div>
 <script>
+//deshabilita los botones originales de la notificacion estandar						
+$(document).ready(function(){
+			$('.btnNotifEstandar').hide();
+	});
 
 function ReDirecciona()
 {
@@ -646,7 +658,7 @@ function btnVolcar (comp)
   
     
      $("#idBox").val(idfinal); // Guarda el id en un input que esta oculto
-     $("."+idfinal).attr("style","background: #56bd4f"); // cambio el color de fondo del boton
+     $("."+idfinal).attr("style","background: #c1f9b7; border-radius: 41rem; width: 5rem; color: #3c8dbc; border: unset; height: 5rem;"); // cambio el color de fondo del boton
      $(".btnMatriz").attr("disabled", ""); // a todos lo demas botones que de hecho todos tienen la misma clase btnMatriz se los desactiva
      datareci = JSON.parse($("."+idfinal).attr("data-json")); // aca obtenego todos los datos de ese recipiente
      console.table(datareci);
@@ -667,7 +679,7 @@ $("#adjimg").click(function(e){
 $("#cancelarsel").click(function(e){
    var idf =  $("#idBox").val();
    $("."+idf).removeAttr("style");
-   $("."+idf).attr("style","");
+   $("."+idf).attr("style","border-radius: 41rem; width: 5rem; color:#77d86b; border: unset; height: 5rem; ");
      $(".btnMatriz").removeAttr("disabled", "");
 });
 </script>

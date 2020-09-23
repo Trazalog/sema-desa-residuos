@@ -85,4 +85,13 @@ class SolicitudRetiro extends CI_Controller {
     echo json_encode($resp);
   }
 
+  function ObtenerContenedorCont_id()
+  {
+    log_message('INFO','#TRAZA|SOLICITUDRETIRO|ObtenerContenedorCont_id() >> ');
+    $cont_id = $this->input->post('cont_id');
+    log_message('DEBUG','#TRAZA|SOLICITUDRETIRO|ObtenerContenedorCont_id() $cont_id: >> '.json_encode($cont_id));
+    $resp =$this->SolicitudesRetiro->obtenerContenedorCont_id($cont_id);
+    echo json_encode($resp);
+  }
+
 }

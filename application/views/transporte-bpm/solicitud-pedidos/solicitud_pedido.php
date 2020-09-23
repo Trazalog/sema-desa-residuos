@@ -193,14 +193,14 @@
 							<div class="form-group">
 								<label for="observaciones" >Observaciones:</label>
 								<div class="input-group date">
-									<textarea name="observaciones" id="observaciones" cols="50" rows="8"></textarea>
+									<textarea name="observaciones" id="observaciones" cols="170" rows="2"></textarea>
 								</div>
 							</div>
 					</div>                                                  
                                                                         
 					<!--_________________ GUARDAR_________________-->
 					<div class="col-md-12">
-							<button type="submit" class="btn btn-primary pull-right" onclick="Guardar_pedidoContenedor()">GUARDAR</button>
+							<button type="submit" class="btn btn-primary pull-right btn-guardar-pedido" style="display:none;" onclick="Guardar_pedidoContenedor()">GUARDAR</button>
 					</div>
 					<!--__________________________________-->
 
@@ -323,6 +323,7 @@
 										<td>${tipocarga}</td>
 									</tr>`;
 			table.row.add($(row)).draw();
+			$(".btn-guardar-pedido").removeAttr("style");
 		}else{
 			alert("ATENCION!!! No ingreso Cantidad");
 		}        
