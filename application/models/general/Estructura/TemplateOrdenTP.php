@@ -117,6 +117,7 @@ class TemplateOrdenTP extends CI_Model
     {
         $usuario_app = userNick();
         $datos["usuario_app"] = $usuario_app;
+        $datos["sotr_id"] = usrIdGeneradorByNick();
         $post["_post_templatesOrdenTransporte"]= $datos;
         log_message('INFO','#TRAZA|TemplateOrdenTP|RegistrarTemplateOT() >> '); 
         log_message('DEBUG','#TemplateOrdenTP/RegistrarTemplateOT: '.json_encode($post));
@@ -136,7 +137,7 @@ class TemplateOrdenTP extends CI_Model
         $usuario_app = userNick();
         $sotr = $this->rest->callAPI("GET",REST."/solicitantesTransporte/$usuario_app");
         $sotraux =json_decode($sotr["data"]);
-        $id_sotr = $sotraux->solicitantes_transporte->sotr_id;
+        $id_sotr = usrIdGeneradorByNick();
         $aux = $this->rest->callAPI("GET",REST."/templatesOrdenTransporte/list/solicitanteTransporte/$id_sotr");
         $aux =json_decode($aux["data"]);
         return $aux->templatesOrdenTransporte->templateOrdenTransporte;

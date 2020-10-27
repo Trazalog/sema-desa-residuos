@@ -20,7 +20,7 @@
 	<div class="box box-primary animated bounceInDown" id="boxDatos" hidden>
 			<div class="box-header with-border">
 					<div class="box-tittle">
-							<h5>Informacion</h5>
+							<h4>Informacion</h4>
 					</div>
 					<div class="box-tools pull-right border ">
 							<button type="button" id="btnclose" title="cerrar" class="btn btn-box-tool" data-widget="remove"
@@ -333,7 +333,7 @@
 						<button type="button" class="close close_modal_edit" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 						</button>
-						<h5 class="modal-title titulo" id="exampleModalLabel">Editar Circuitos</h5>
+						<h4 class="modal-title titulo" id="exampleModalLabel">Editar Circuitos</h4>
 				</div>
 
 				<div class="modal-body ">
@@ -450,17 +450,20 @@
 													<input type="text" class="form-control" name="zona_asociada_edit" id="zona_asociada_edit" readonly placeholder="zona asociada"> 
 												</div>
 								</div>
-							<									
+																
 						</div>
 							<!--_____________ IMAGEN _____________-->
 								<div class="col-sm-12">	
 										<div class="form-group pull-left">
 											<form action="cargar_archivo" method="post" enctype="multipart/form-data">	
-												<label for="img_file" class="col-sm-4 control-label" name="img">Imagen:</label>
+												<label for="img_file" class="col-sm-4 control-label" name="img" id="imgtitulo">Imagen:</label>
 												<div class="col-sm-8">
-													<input type="file" class="ocultar habilitar" name="img" id="img_file" onchange=convert_Edit()>
+													<input type="file" class="ocultar habilitar ocultarfyle" name="img" id="img_file" onchange=convert_Edit()>
 													<input type="text" id="input_aux_img64" style="display:none">
-													<input type="text" id="input_aux_zonaID" style="display:none">                                   
+													<input type="text" id="input_aux_zonaID" style="display:none">  
+													<br>
+													<i class="fa fa-spinner fa-pulse fa-3x fa-fw" ></i>            
+													<br>                     
 													<img src="" alt="imagen" id="img_base" width="" height="" style="margin-top: 20px;border-radius: 8px;" name="img_base">
 												</div>
 											</form>		

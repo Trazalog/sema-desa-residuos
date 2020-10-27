@@ -150,7 +150,7 @@
                 <!--__________________________________________________________________________________________-->
 
                 <!--Habilitacion-->
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                         <label for="tran_id" >Transportista:</label>
                         <div class="input-group date"><div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
                             <select class="form-control select2 select2-hidden-accesible" name="tran_id" id="tran_id">
@@ -374,13 +374,13 @@ async function convertA(){
                         
                         console.table(r);
                         if (r == "ok") {
-                            wc();
+                            
                             $("#cargar_tabla").load("<?php echo base_url(); ?>index.php/general/Estructura/Contenedor/Listar_Contenedor");
                             alertify.success("Contenedor Agregado con exito");
 
                             $('#formContenedores').data('bootstrapValidator').resetForm();
                             $("#formContenedores")[0].reset();
-
+                            wc();
                             $("#boxDatos").hide(500);
                             $("#botonAgregar").removeAttr("disabled");
 

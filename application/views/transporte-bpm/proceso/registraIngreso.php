@@ -326,6 +326,7 @@
 			$.ajax({
 					type: 'POST',
 					data:{ data },
+					dataType: "json",
 					url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 					success: function(result) {
 								//debugger;

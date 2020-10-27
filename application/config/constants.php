@@ -94,11 +94,11 @@ define('BPM_PROCESS_ID_PEDIDOS_NORMALES', '8803232493891311406');
 
 define('BPM_PROCESS_ID_PEDIDOS_EXTRAORDINARIOS', '6013058915384903051');
 
-define('BPM_PROCESS_ID_PEDIDO_CONTENEDORES', '8351305278287205920'); 
+define('BPM_PROCESS_ID_PEDIDO_CONTENEDORES', '4914088989692457565');
 
-define('BPM_PROCESS_ID_RETIRO_CONTENEDORES', '4817856371144276175');
+define('BPM_PROCESS_ID_RETIRO_CONTENEDORES', '6698304776086614055');
 
-define('BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE', '5759037948661107222');
+define('BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE', '7522690032220353691');
 
 #COMPONENTE ALMACENES
 define('ALM', 'traz-comp-almacen/');
@@ -108,9 +108,9 @@ define('BPM_PROCESS', json_encode(array(
     '8803232493891311406' => ['nombre' => 'Ped. Materiales', 'color' => '#F39C12', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
     '6013058915384903051' => ['nombre' => 'Ped. Materiales Ext', 'color' => '#F39C12', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
     '7503443566840192735' => ['nombre' => 'Proc. Mantenimiento', 'color' => '#00A65A', 'proyecto'=>BPM, 'model'=>'GEN_Tareas'],
-    '8351305278287205920' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'PedidoContenedores'],
-    '4817856371144276175' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#ABC51A', 'proyecto'=>'general/transporte-bpm/', 'model'=>'RetiroContenedores'],
-    '5759037948661107222' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#1A56C5', 'proyecto'=>'general/transporte-bpm/', 'model'=>'EntregaOrdenTransportes']
+    '4914088989692457565' => ['nombre' => 'TERSU-BPM01 - Solicitud de Contenedores', 'color' => '#FF3300', 'proyecto'=>'general/transporte-bpm/', 'model'=>'PedidoContenedores'],
+    '6698304776086614055' => ['nombre' => 'TERSU-BPM02 - Solicitud de Retiro de Contenedores', 'color' => '#ABC51A', 'proyecto'=>'general/transporte-bpm/', 'model'=>'RetiroContenedores'],
+    '7522690032220353691' => ['nombre' => 'TERSU-BPM03 - Generación Orden de Transporte', 'color' => '#1A56C5', 'proyecto'=>'general/transporte-bpm/', 'model'=>'EntregaOrdenTransportes']
 )));
 
 

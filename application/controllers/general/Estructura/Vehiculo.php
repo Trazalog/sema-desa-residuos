@@ -78,8 +78,8 @@
 						}
         		$resp = $this->Contenedores->Guardar_tipo_carga($tipocarga);
 				}
-				unset($datos['optionsTolva'], $datos['capacidad']);
-
+				unset($datos['optionsTolva'], $datos['capacidad'], $datos['rsu']);
+				
 				$resp = $this->Vehiculos->Guardar_Vehiculos($datos);
 
 				$datos;

@@ -1953,23 +1953,22 @@ http://10.142.0.3:8280/services/semaresiduosDS
   recurso: /solicitantesTransporte/case/{case_id}
   metodo: get
 
-  select  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro, 
-		TTIPO.valor as tipo_generador, 		
+  select  ST.sotr_id, ST.razon_social, ST.cuit, ST.domicilio, ST.num_registro,
+		TTIPO.valor as tipo_generador,
 		DEPA.nombre as departamento,
 		ZONA.nombre as zona,
 		TRUB.valor as rubro
-  from 
-      log.solicitantes_transporte ST, 
-      core.tablas TTIPO, 
-      core.departamentos DEPA, 
+  from
+      log.solicitantes_transporte ST,
+      core.tablas TTIPO,
+      core.departamentos DEPA,
       core.zonas ZONA,
       core.tablas TRUB
   where ST.sotr_id = (select SC.sotr_id from log.solicitudes_contenedor SC where SC.case_id = :case_id)
   and ST.tist_id = TTIPO.tabl_id 
   and ST.depa_id = DEPA.depa_id
-  and ST.zona_id = ZONA.zona_id 
-  and ST.rubr_id = TRUB.tabl_id 
-  and ST.eliminado = 0
+  and ST.zona_id = ZONA.zona_id
+  and ST.rubr_id = TRUB.tabl_id
 
   {
     "generador":{
@@ -1995,7 +1994,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
           DEPA.nombre as departamento,
           ZONA.nombre as zona,
           TRUB.valor as rubro
-  from 
+  from
         log.solicitantes_transporte ST,
         core.tablas TTIPO,
         core.departamentos DEPA, 
@@ -2005,12 +2004,12 @@ http://10.142.0.3:8280/services/semaresiduosDS
       ST.sotr_id = (select SR.sotr_id from log.solicitudes_retiro SR where SR.case_id = :case_id)
   and 
       ST.tist_id = TTIPO.tabl_id	
-  and 
+  and
       ST.depa_id = DEPA.depa_id
   and 
       ST.zona_id = ZONA.zona_id 
-  and 
-      ST.rubr_id = TRUB.tabl_id 
+  and
+      ST.rubr_id = TRUB.tabl_id
   and 
       ST.eliminado = 0
 
@@ -2443,6 +2442,29 @@ http://10.142.0.3:8280/services/semaresiduosDS
     }
   }
 
+-- getOrdenTransporteNicks" 
+   recurso /ordenTransporte/nicks/{ortr_id}
+   metodo GET
+
+SELECT u1.usernick tran_nick, u2.usernick sotr_nick
+FROM log.ordenes_transporte ot 
+,log.solicitantes_transporte st 
+,log.transportistas tr
+,seg.users u1
+,seg.users u2
+WHERE ot.ortr_id =  CAST ( :ortr_id AS integer)
+AND tr.tran_id = ot.tran_id 
+AND st.sotr_id = ot.sotr_id 
+AND u1.email = tr.user_id 
+AND u2.email = st.user_id</sql>
+
+resultado
+{
+ "ordenTransporte": {
+ "tran_nick": "$tran_nick",
+ "sotr_nick": "$sotr_nick"
+ }
+}
 
 -- puntosCriticosCircuitosset
   recurso: /puntosCriticos/circuito
@@ -2750,7 +2772,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
   recurso: /solicitudContenedores/info/{case_id}
   metodo: get
   select 
-  SC.soco_id, SC.estado, SC.observaciones, SC.fec_alta, SC.sotr_id, 
+  SC.soco_id, SC.estado, SC.observaciones, SC.fec_alta, SC.sotr_id,
   ST.razon_social, ST.domicilio 
   from log.solicitudes_contenedor SC, log.solicitantes_transporte ST
   where SC.sotr_id = ST.sotr_id 
@@ -2773,7 +2795,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
 -- solicitudContenedoresSetMotivo
   recurso: /contenedoresSolicitados/rechazados/motivo
   metodo: put
-  update log.contenedores_solicitados 
+  update log.contenedores_solicitados
   set motivo_rechazo = :motivo_rechazo
   where soco_id = CAST(:soco_id as INTEGER)
 
@@ -2788,10 +2810,10 @@ http://10.142.0.3:8280/services/semaresiduosDS
   recurso: /contenedoresSolicitados/case/{case_id}
   metodo: get
   select cs.coso_id, cs.cantidad, cs.fec_alta,  cs.tica_id, cs.soco_id, cs.reci_id, cs.cantidad_acordada,
-  t.valor 
-  from log.contenedores_solicitados cs, core.tablas t 
+  t.valor, cs.motivo_rechazo
+  from log.contenedores_solicitados cs, core.tablas t
   where cs.soco_id = (select soco_id from log.solicitudes_contenedor sc where sc.case_id = :case_id )
-  and cs.tica_id = t.tabl_id 
+  and cs.tica_id = t.tabl_id
 
   {
     "contenedores":{
@@ -2804,18 +2826,46 @@ http://10.142.0.3:8280/services/semaresiduosDS
         "soco_id": "$soco_id",
         "reci_id": "$reci_id",
         "cantidad_acordada": "$cantidad_acordada",
-        "valor": "$valor"
+        "valor": "$valor",
+        "motivo_rechazo": "$motivo_rechazo"
         }
       ]
     }
   }
+
+--getSolicitudContenedorNicks" 
+  recurso: /solicitudContenedor/nicks/{soco_id}
+  metodo: get
+
+SELECT u1.usernick tran_nick, u2.usernick sotr_nick
+FROM log.solicitudes_contenedor sc  
+,log.solicitantes_transporte st 
+,log.transportistas tr
+,seg.users u1
+,seg.users u2
+WHERE sc.soco_id =  CAST ( :soco_id AS integer)
+AND tr.tran_id = sc.tran_id  
+AND st.sotr_id = sc.sotr_id  
+AND u1.email = tr.user_id 
+AND u2.email = st.user_id</sql>
+resultado
+
+{
+ "solicitudContenedor": {
+ "tran_nick": "$tran_nick",
+ "sotr_nick": "$sotr_nick"
+ }
+}
+
 
 
 -- solicitudContenedorEstadoUpdate" 
     recurso PUT /solicitudesContenedor/estado
 
 
-    update log.solicitudes_contenedor&#xd;set estado = :estado&#xd;where soco_id = cast(:soco_id as integer)
+    update log.solicitudes_contenedor
+set estado = :estado
+where soco_id = cast(:soco_id as integer)
 
     retorna 200 si ok
 
@@ -2862,7 +2912,9 @@ http://10.142.0.3:8280/services/semaresiduosDS
 
 
 --ordenTransporteEstadoUpdate" 
-  update log.ordenes_transporte&#xd;set estado = :estado&#xd;where ortr_id = cast(:ortr_id as integer)
+  update log.ordenes_transporte
+set estado = :estado
+where ortr_id = cast(:ortr_id as integer)
 
   {"_put_ordenesTransporte_estado":{
     "ortr_id":"21",
@@ -3379,7 +3431,7 @@ http://10.142.0.3:8280/services/semaresiduosDS
         {
           "tran_id": "$tran_id",
           "razon_social": "$razon_social",
-          "@choferesGetPorTransportistas": "$tran_id->tran_id" 
+          "@choferesGetPorTransportistas": "$tran_id->tran_id"
         }
       ]
     }
@@ -3660,6 +3712,38 @@ http://10.142.0.3:8280/services/semaresiduosDS
   }
 
   retorna 200 si ok
+
+
+
+-- getSolicitudRetiroNicks" useConfig="semaresiduosDS">
+   recurso /solicitudRetiro/nicks/{sore_id}
+   metodo GET
+
+SELECT u1.usernick tran_nick, u2.usernick sotr_nick
+FROM log.solicitudes_retiro sr   
+,log.solicitantes_transporte st 
+,log.transportistas tr
+,log.contenedores_entregados ce
+,log.contenedores c 
+,seg.users u1
+,seg.users u2
+WHERE sr.sore_id =  CAST ( :sore_id AS integer)
+AND st.sotr_id = sr.sotr_id   
+AND ce.sore_id = sr.sore_id
+AND c.cont_id =ce.cont_id 
+AND c.tran_id = tr.tran_id 
+AND u1.email = tr.user_id 
+AND u2.email = st.user_id 
+LIMIT 1
+
+resultado
+{
+ "solicitudRetiro": {
+ "tran_nick": "$tran_nick",
+ "sotr_nick": "$sotr_nick"
+ }
+}
+
 
 -- updateSolicitudRetiroContenedores
   recurso:

@@ -100,7 +100,7 @@ class PedidoContenedores extends CI_Model
     * @return view vista (maquetacion y datos) de la tarea especifica
     */
     function desplegarVista($tarea)
-    {           
+    {
       switch ($tarea->nombreTarea) {
 
         case 'Analizar Solicitud':
@@ -114,8 +114,9 @@ class PedidoContenedores extends CI_Model
           break;
 
         case 'Confirmar pedido modificado':
+
           log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
-          $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);  
+          $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);
           $soco_id = $tarea->infoSolicitud->soco_id; 
           $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
           $resp = $this->load->view('transporte-bpm/proceso/confirmaPedidoModificado', $tarea, true);
@@ -123,15 +124,25 @@ class PedidoContenedores extends CI_Model
           break;
 
         case 'Entregar contenedores':
-        log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
-        $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);  
-        $soco_id= $tarea->infoSolicitud->soco_id;
-        $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
-        $tarea->infoContenedoresEntregados = $this->obtenerContEntregados($soco_id);
-        $tarea->camion = $this->ObtenerCamiones();  // camiones por usuario logueado
-        $tarea->contenedores =$this->ObtenerContenedores();
-        $resp = $this->load->view('transporte-bpm/proceso/entregaContenedor', $tarea, true);
-        return $resp;
+
+          log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
+          $tarea->infoSolicitud = $this->obtenerInFoSolicitud($tarea->caseId);
+          $soco_id= $tarea->infoSolicitud->soco_id;
+          $tarea->infoContenedores = $this->obtenerContSolicitadosConfirma($soco_id);
+          $tarea->infoContenedoresEntregados = $this->obtenerContEntregados($soco_id);
+          $tarea->camion = $this->ObtenerCamiones();  // camiones por usuario logueado
+          $tarea->contenedores =$this->ObtenerContenedores();
+          $resp = $this->load->view('transporte-bpm/proceso/entregaContenedor', $tarea, true);
+          return $resp;
+          break;
+
+        case 'Notificar no aceptación del pedido':
+
+          log_message('INFO','#TRAZA|PEDIDOCONTENEDORES|desplegarVista($tarea): $tarea >> '.json_encode($tarea));
+          $infocontsolicitados = $this->obtenerContSolicitados($tarea->caseId);
+          $tarea->motivo_rechazo = $infocontsolicitados[0]->motivo_rechazo;
+          $resp = $this->load->view('transporte-bpm/proceso/notificacion', $tarea, true);
+          return $resp;
         break;
 
         default:

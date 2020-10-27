@@ -121,16 +121,19 @@
     </div>
 
       </div> 
-
-  </div>
-
-    <!-- ____________________________ SEPARADOR ____________________________ -->
-    <div class="col-md-12"> <hr> </div>
+	  <!-- ____________________________ SEPARADOR ____________________________ -->
+	  <div class="col-md-12"> <hr> </div>
     <!-- ____________________________ / SEPARADOR ____________________________ -->
     <label for="inci">Incidencia</label>
     <button type="button" title="Incidencia" calss="btn btn-primary btn-circle" id="incidencia"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>                                     
                  
+	<div class="text-right">
+                <button class="btn btn-primary " onclick="recargaBandejaEntrada()">Cerrar</button>
+                <button class="btn btn-success " onclick="cerrarTarea()">Hecho</button>
+            </div>										
+  </div>
 
+  
 <!-- Modal incidencia-->
 <div class="modal fade" id="modalIncidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 			aria-hidden="true">
@@ -249,6 +252,7 @@
 // llena cantidad de contenedores que faltan 
 $( document ).ready(function() {
 
+		$(".btnNotifEstandar").attr("style","display:none;");
 		var tara = parseInt($("#tara").val());
 		var neto =parseInt($("#peso_neto").val());
 		var bruto = neto + tara;
@@ -394,9 +398,16 @@ function guardarIncindencia(){
 	});
 }
 
+// recarga la bandeja de entrada
+function recargaBandejaEntrada()
+{
+  linkTo('<?php echo BPM ?>Proceso/index');
+}
+
+
 function cerrarTarea ()
 {
-
+				debugger;
 				var taskId = $('#taskId').val();
 
 				var salida = new FormData();
@@ -417,14 +428,16 @@ function cerrarTarea ()
 				$.ajax({
 								type: 'POST',
 								data:{salida},
+								dataType: "json",
 								url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 								success: function(result) {
 										
-													alert(result);
+													//alert(result);
 
 													wc();
 													if( result.status ){
 															alertify.success("Tarea completada exitosamente...");
+															recargaBandejaEntrada();
 													}else{
 															alertify.error('Error en completar la Tarea...');
 													}

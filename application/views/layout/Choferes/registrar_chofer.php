@@ -114,7 +114,7 @@
 						<!--DNI-->
 						<div class="form-group">
 							<label for="DNI">DNI:</label>
-							<input type="text" class="form-control habilitar" id="dni_edit" name="documento">
+							<input type="number" class="form-control habilitar" id="dni_edit" name="documento">
 						</div>
 						​
 						<!--_____________________________________________________________-->
@@ -143,7 +143,7 @@
 						<!--Celular-->
 						<div class="form-group">
 							<label for="Celular">Celular:</label>
-							<input type="text" class="form-control habilitar" id="celular_edit" name="celular">
+							<input type="number" class="form-control habilitar" id="celular_edit" name="celular">
 						</div>
 						<!--_____________________________________________________________-->
 						

@@ -5,7 +5,7 @@
 <!--_________________SEPARADOR_________________-->
 
 <!--_____________ Tabla info soliccitaodos _____________-->
-<div class="box-body table-scroll">		
+<div class="box-body table-scroll">
 			<table id="tbl_contenedores" class="table table-bordered table-striped">
 				<thead class="thead-dark" bgcolor="#eeeeee">				
 						<tr>
@@ -21,9 +21,8 @@
 								foreach($infoContenedores as $fila)
 								{
 									echo "<tr data-json='".json_encode($fila)."'>";
-									//echo "<tr data-json= >";
 										echo "<td>".$fila->valor."</td>";
-										echo "<td>".$fila->cantidad."</td>";										
+										echo "<td>".$fila->cantidad."</td>";
 										echo "<td> <input id='' style='border:none;' placeholder='Ingrese cantidad'> </td>";
 									echo '</tr>';
 								}
@@ -38,15 +37,25 @@
 <div class="col-md-12 col-sm-12 col-xs-12"></div>
 <!--_________________SEPARADOR_________________-->
 
+<!--_____________ Observaciones _____________-->
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="form-group">
+      <label for="disabledTextInput">Observaciones</label>
+	<textarea class="form-control" rows="3" readonly><?php echo $infoSolicitud->observaciones ?></textarea>
+</div>
+</div>
+
+<!--_________________SEPARADOR_________________-->
+<div class="col-md-12 col-sm-12 col-xs-12"><br></div>
+<!--_________________SEPARADOR_________________-->
 
 <!--_____________ motivo de rechazo _____________-->
 <div class="col-md-12 col-sm-12 col-xs-12">
 	<!--_____________ Descripcion _____________-->
-		<div class="form-group">															
-			<label for="motivo" class="col-sm-4 control-label">Motivo rechazo:</label>
-			<div class="col-sm-8">
-				<input type="text" class="form-control habilitar" name="descripcion" id="motivo"> 
-			</div>	
+		<div class="form-group">
+			<!-- <label for="motivo" class="col-sm-4 control-label">Motivo rechazo:</label> -->
+			<label for="motivo" class="disabledTextInput">Motivo rechazo:</label>
+			<textarea class="form-control" id="motivo" rows="3" placeholder="Si rechaza la soicitud, por favor ingrese el motivo..."></textarea>
 		</div>
 	<!--__________________________-->
 </div>
@@ -67,12 +76,18 @@
 			$('.btnNotifEstandar').hide();
 	});						
 
+	function recargaBandejaEntrada()
+	{
+		debugger;
+		linkTo('<?php echo BPM ?>Proceso/index');
+	}
+
 	// para guardar						
 	function cerrarAnalisis(opcion){
 
 		wo();
 		var taskId = $('#taskId').val();
-		var elegido = {opcion: opcion};	
+		var elegido = {opcion: opcion};
 		var contAcordados = [];		
 		var vacio = 0;
 		var igualCant = 0;
@@ -124,6 +139,7 @@
 
 			$('#motivo').val("");  // si acepta se vacia el campo motivo
 		}
+
 		// si las cantidades no coinciden
 		if (igualCant > 0) {						
 			coincideCant.cantIguales = 0;					
@@ -134,34 +150,33 @@
 		$.ajax({
 				type: 'POST',
 				data:{ elegido, coincideCant, contAcordados, motivo },
+				dataType: "json",
 				url: 'traz-comp-bpm/Proceso/cerrarTarea/' + taskId,
 				success: function(result) {
-
-									response =  JSON.parse(result);
+					debugger;
 									wc();
-									if(response.status){
+									if(result.status){
 										alertify.success("Respuesta enviada exitosamente...");
 										recargaBandejaEntrada();
 									}else{
 										alertify.error('Error al enviar respuesta...');
+										recargaBandejaEntrada();
 									}
 								},
 				error: function(result){
 									wc();
+									recargaBandejaEntrada();
 							 },
 				complete: function(){
 									wc();
+									recargaBandejaEntrada();
 
 									}
 		});
 	}
 
-	function recargaBandejaEntrada()
-	{
-		linkTo('<?php echo BPM ?>Proceso/index');
-	}
 
-	// Datatable	
+	// Datatable
 	DataTable($('#tbl_contenedores'));	
 </script>
 

@@ -7,7 +7,7 @@
 */
 if(!function_exists('infoentidadesproceso')){
    
-    function infoentidadesproceso($tarea){		
+    function infoentidadesproceso($tarea){
 	
       $ci2 =& get_instance();
       $ent_case_id = $tarea->caseId;
@@ -17,6 +17,8 @@ if(!function_exists('infoentidadesproceso')){
 
           case BPM_PROCESS_ID_PEDIDO_CONTENEDORES:
 
+              log_message('DEBUG','#TRAZA|INFOENTIDADESPROCESO_HELPER|infoentidadesproceso($tarea) >> '.json_encode($tarea));
+              log_message('DEBUG','#TRAZA|INFOENTIDADESPROCESO_HELPER|infoentidadesproceso($tarea) $ent_case_id: >> '.json_encode($ent_case_id));
               $aux_gen = $ci2->rest->callAPI("GET",REST."/solicitantesTransporte/case/".$ent_case_id);
               $aux_gen =json_decode($aux_gen["data"]);
 
@@ -25,14 +27,20 @@ if(!function_exists('infoentidadesproceso')){
             break;
 
           case BPM_PROCESS_ID_RETIRO_CONTENEDORES:
-            
+
+              log_message('DEBUG','#TRAZA|INFOENTIDADESPROCESO_HELPER|infoentidadesproceso($tarea) >> '.json_encode($tarea));
+              log_message('DEBUG','#TRAZA|INFOENTIDADESPROCESO_HELPER|infoentidadesproceso($tarea) $ent_case_id: >> '.json_encode($ent_case_id));
               $aux_gen = $ci2->rest->callAPI("GET",REST."/solicitantesTransporte/proceso/retiro/case/".$ent_case_id);
               $aux_gen =json_decode($aux_gen["data"]);
-              
+
               $aux_tran = $ci2->rest->callAPI("GET",REST."/transportistas/proceso/retiro/case/".$ent_case_id);
               $aux_tran =json_decode($aux_tran["data"]);
             break;
+
           case BPM_PROCESS_ID_ENTREGA_ORDEN_TRANSPORTE:
+
+              log_message('DEBUG','#TRAZA|INFOENTIDADESPROCESO_HELPER|infoentidadesproceso($tarea) >> '.json_encode($tarea));
+              log_message('DEBUG','#TRAZA|INFOENTIDADESPROCESO_HELPER|infoentidadesproceso($tarea) $ent_case_id: >> '.json_encode($ent_case_id));
 
               $aux_gen = $ci2->rest->callAPI("GET",REST."/solicitantesTransporte/proceso/ingreso/case/".$ent_case_id);
               $aux_gen =json_decode($aux_gen["data"]);
@@ -40,6 +48,7 @@ if(!function_exists('infoentidadesproceso')){
               $aux_tran = $ci2->rest->callAPI("GET",REST."/transportistas/proceso/ingreso/case/".$ent_case_id);
               $aux_tran =json_decode($aux_tran["data"]);
             break;
+
           default:
             # code...
             break;
