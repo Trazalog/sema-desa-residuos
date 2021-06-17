@@ -57,7 +57,7 @@ class OrdenMuniMasivas extends CI_Controller {
           $masivas["teot_id"] = $valor["teot_id"];
           $cont["cont_id"] = $valor["cont_id"];
           $masivas["contenedores"] = $cont;
-          $masivas["fec_retiro"] =  date('d-m-Y');
+          $masivas["fec_retiro"] =  date('Y-m-d');
           $resp = $this->OrdenesMuniMasivas->Ejecutar_OT($masivas);
           $aux =$aux + $resp;
         }
